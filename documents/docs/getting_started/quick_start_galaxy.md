@@ -1,0 +1,711 @@
+# Quick Start Guide - Alien³ cluster
+
+Welcome to **Alien³ cluster** – the Multi-Device AgentOS! This guide will help you orchestrate complex cross-platform workflows across multiple devices in just a few steps.
+
+**What is Alien³ cluster?**
+
+Alien³ cluster is a multi-tier orchestration framework that coordinates distributed agents across Windows and Linux devices. It enables complex workflows that span multiple machines, combining desktop automation, server operations, and heterogeneous device capabilities into unified task execution.
+
+---
+
+## 🛠️ Step 1: Installation
+
+### Requirements
+
+- **Python** >= 3.10
+- **Windows OS** >= 10 (for Windows agents)
+- **Linux** (for Linux agents)
+- **Git** (for cloning the repository)
+- **Network connectivity** between all devices
+
+### Installation Steps
+
+```powershell
+# [Optional] Create conda environment
+conda create -n Alien python=3.10
+conda activate Alien
+
+# Clone the repository
+git clone https://github.com/microsoft/Alien.git
+cd Alien
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+> **💡 Tip:** If you want to use Qwen as your LLM, uncomment the related libraries in `requirements.txt` before installing.
+
+---
+
+## ⚙️ Step 2: Configure networkAgent LLM
+
+Alien³ cluster uses a **networkAgent** that orchestrates all device agents. You need to configure its LLM settings.
+
+### Configure network Agent
+
+```powershell
+# Copy template to create network agent config
+copy config\cluster\agent.yaml.template config\cluster\agent.yaml
+notepad config\cluster\agent.yaml   # Edit your LLM API credentials
+```
+
+**Configuration File Location:**
+```
+config/cluster/
+├── agent.yaml.template    # Template - COPY THIS
+├── agent.yaml             # Your config with API keys (DO NOT commit)
+└── devices.yaml           # Device pool configuration (Step 4)
+```
+
+### LLM Configuration Examples
+
+#### Azure OpenAI Configuration
+
+**Edit `config/cluster/agent.yaml`:**
+
+```yaml
+network_AGENT:
+  REASONING_MODEL: false
+  API_TYPE: "aoai"
+  API_BASE: "https://YOUR_RESOURCE.openai.azure.com"
+  API_KEY: "YOUR_AOAI_KEY"
+  API_VERSION: "2024-02-15-preview"
+  API_MODEL: "gpt-4o"
+  API_DEPLOYMENT_ID: "YOUR_DEPLOYMENT_ID"
+```
+
+> **ℹ️ More LLM Options:** cluster supports various LLM providers including Qwen, Gemini, Claude, DeepSeek, and more. See the [Model Configuration Guide](../configuration/models/overview.md) for complete details.
+
+---
+  
+  # Prompt configurations (use defaults)
+  network_CREATION_PROMPT: "cluster/prompts/network/share/network_creation.yaml"
+  network_EDITING_PROMPT: "cluster/prompts/network/share/network_editing.yaml"
+  network_CREATION_EXAMPLE_PROMPT: "cluster/prompts/network/examples/network_creation_example.yaml"
+  network_EDITING_EXAMPLE_PROMPT: "cluster/prompts/network/examples/network_editing_example.yaml"
+```
+
+#### OpenAI Configuration
+
+```yaml
+network_AGENT:
+  REASONING_MODEL: false
+  API_TYPE: "openai"
+  API_BASE: "https://api.openai.com/v1/chat/completions"
+  API_KEY: "sk-YOUR_KEY_HERE"
+  API_VERSION: "2025-02-01-preview"
+  API_MODEL: "gpt-4o"
+  
+  # Prompt configurations (use defaults)
+  network_CREATION_PROMPT: "cluster/prompts/network/share/network_creation.yaml"
+  network_EDITING_PROMPT: "cluster/prompts/network/share/network_editing.yaml"
+  network_CREATION_EXAMPLE_PROMPT: "cluster/prompts/network/examples/network_creation_example.yaml"
+  network_EDITING_EXAMPLE_PROMPT: "cluster/prompts/network/examples/network_editing_example.yaml"
+```
+
+!!!info "More LLM Options"
+    cluster supports various LLM providers including **Qwen**, **Gemini**, **Claude**, **DeepSeek**, and more. See the **[Model Configuration Guide](../configuration/models/overview.md)** for complete details.
+
+---
+
+## 🖥️ Step 3: Set Up Device Agents
+
+cluster orchestrates **device agents** that execute tasks on individual machines. You need to start the appropriate device agents based on your needs.
+
+### Supported Device Agents
+
+| Device Agent | Platform | Documentation | Use Cases |
+|--------------|----------|---------------|-----------|
+| **WindowsAgent (Alien²)** | Windows 10/11 | [Alien² as cluster Device](../Alien-Unis/as_cluster_device.md) | Desktop automation, Office apps, GUI operations |
+| **LinuxAgent** | Linux | [Linux as cluster Device](../linux/as_cluster_device.md) | Server management, CLI operations, log analysis |
+| **MobileAgent** | Android | [Mobile as cluster Device](../mobile/as_cluster_device.md) | Mobile app automation, UI testing, device control |
+
+> **💡 Choose Your Devices:** You can use any combination of Windows, Linux, and Mobile agents. cluster will intelligently route tasks based on device capabilities.
+
+### Quick Setup Overview
+
+For each device agent you want to use, you need to:
+
+1. **Start the Device Agent Server** (manages tasks)
+2. **Start the Device Agent Client** (executes commands)
+3. **Start MCP Services** (provides automation tools, if needed)
+
+**Detailed Setup Instructions:**
+
+- **For Windows devices (Alien²):** See [Alien² as cluster Device](../Alien-Unis/as_cluster_device.md) for complete step-by-step instructions.
+- **For Linux devices:** See [Linux as cluster Device](../linux/as_cluster_device.md) for complete step-by-step instructions.
+- **For Mobile devices:** See [Mobile as cluster Device](../mobile/as_cluster_device.md) for complete step-by-step instructions.
+
+### Example: Quick Windows Device Setup
+
+**On your Windows machine:**
+
+```powershell
+# Terminal 1: Start Alien² Server
+python -m Alien.server.app --port 5000
+
+# Terminal 2: Start Alien² Client (connect to server)
+python -m Alien.client.client `
+  --ws `
+  --ws-server ws://localhost:5000/ws `
+  --client-id windows_device_1 `
+  --platform windows
+```
+
+> **💡 Important:** Always include `--platform windows` for Windows devices and `--platform linux` for Linux devices!
+
+### Example: Quick Linux Device Setup
+
+**On your Linux machine:**
+
+```bash
+# Terminal 1: Start Device Agent Server
+python -m Alien.server.app --port 5001
+
+# Terminal 2: Start Linux Client (connect to server)
+python -m Alien.client.client \
+  --ws \
+  --ws-server ws://localhost:5001/ws \
+  --client-id linux_device_1 \
+  --platform linux
+
+# Terminal 3: Start HTTP MCP Server (for Linux tools)
+python -m Alien.client.mcp.http_servers.linux_mcp_server
+```
+
+> **💡 Note:** For detailed Mobile Agent setup with ADB and Android device configuration, see [Mobile Quick Start](quick_start_mobile.md).
+
+---
+
+## 🔌 Step 4: Configure Device Pool
+
+After starting your device agents, register them in cluster's device pool configuration.
+
+### Option 1: Add Devices via Configuration File
+
+### Edit Device Configuration
+
+```powershell
+notepad config\cluster\devices.yaml
+```
+
+### Example Device Pool Configuration
+
+```yaml
+# Device Configuration for cluster
+# Each device agent must be registered here
+
+devices:
+  # Windows Device (Alien²)
+  - device_id: "windows_device_1"              # Must match --client-id
+    server_url: "ws://localhost:5000/ws"       # Must match server WebSocket URL
+    os: "windows"
+    capabilities:
+      - "desktop_automation"
+      - "office_applications"
+      - "excel"
+      - "word"
+      - "outlook"
+      - "email"
+      - "web_browsing"
+    metadata:
+      os: "windows"
+      version: "11"
+      performance: "high"
+      installed_apps:
+        - "Microsoft Excel"
+        - "Microsoft Word"
+        - "Microsoft Outlook"
+        - "Google Chrome"
+      description: "Primary Windows desktop for office automation"
+    auto_connect: true
+    max_retries: 5
+
+  # Linux Device
+  - device_id: "linux_device_1"                # Must match --client-id
+    server_url: "ws://localhost:5001/ws"       # Must match server WebSocket URL
+    os: "linux"
+    capabilities:
+      - "server_management"
+      - "log_analysis"
+      - "file_operations"
+      - "database_operations"
+    metadata:
+      os: "linux"
+      performance: "medium"
+      logs_file_path: "/var/log/myapp/app.log"
+      dev_path: "/home/user/projects/"
+      warning_log_pattern: "WARN"
+      error_log_pattern: "ERROR|FATAL"
+      description: "Development server for backend operations"
+    auto_connect: true
+    max_retries: 5
+
+  # Mobile Device (Android)
+  - device_id: "mobile_phone_1"                # Must match --client-id
+    server_url: "ws://localhost:5001/ws"       # Must match server WebSocket URL
+    os: "mobile"
+    capabilities:
+      - "mobile"
+      - "android"
+      - "ui_automation"
+      - "messaging"
+      - "camera"
+      - "location"
+    metadata:
+      os: "mobile"
+      device_type: "phone"
+      android_version: "13"
+      screen_size: "1080x2400"
+      installed_apps:
+        - "com.android.chrome"
+        - "com.google.android.apps.maps"
+        - "com.whatsapp"
+      description: "Android phone for mobile automation and testing"
+    auto_connect: true
+    max_retries: 5
+```
+
+> **⚠️ Critical:** IDs and URLs must match exactly:
+> 
+> - `device_id` must exactly match the `--client-id` flag
+> - `server_url` must exactly match the server WebSocket URL
+> - Otherwise, cluster cannot control the device!
+
+**Complete Configuration Guide:** For detailed information about all configuration options, capabilities, and metadata, see [cluster Devices Configuration](../configuration/system/cluster_devices.md).
+
+### Option 2: Add Devices via WebUI (When Using --webui Mode)
+
+If you start cluster with the `--webui` flag (see Step 5), you can add new device agents directly through the web interface without editing configuration files.
+
+**Steps to Add Device via WebUI:**
+
+1. **Launch cluster with WebUI** (as shown in Step 5):
+   ```powershell
+   python -m cluster --webui
+   ```
+
+2. **Click the "+" button** in the top-right corner of the Device Agent panel (left sidebar)
+
+3. **Fill in the device information** in the Add Device Modal:
+
+<div align="center">
+  <img src="../img/add_device.png" alt="Add Device Modal" width="70%">
+  <p><em>➕ Add Device Modal - Register new device agents through the WebUI</em></p>
+</div>
+
+**Required Fields:**
+- **Device ID**: Unique identifier (must match `--client-id` in device agent)
+- **Server URL**: WebSocket endpoint (e.g., `ws://localhost:5000/ws`)
+- **Operating System**: Select Windows, Linux, macOS, or enter custom OS
+- **Capabilities**: Add at least one capability (e.g., `excel`, `outlook`, `log_analysis`)
+
+**Optional Fields:**
+- **Auto-connect**: Enable to automatically connect after registration (default: enabled)
+- **Max Retries**: Maximum connection attempts (default: 5)
+- **Metadata**: Add custom key-value pairs (e.g., `region: us-east-1`)
+
+**Benefits of WebUI Device Management:**
+- ✅ No need to manually edit YAML files
+- ✅ Real-time validation of device ID uniqueness
+- ✅ Automatic connection after registration
+- ✅ Immediate visual feedback on device status
+- ✅ Form validation prevents configuration errors
+
+**After Adding:**
+The device will be:
+1. Saved to `config/cluster/devices.yaml` automatically
+2. Registered with cluster's Device Manager
+3. Connected automatically (if auto-connect is enabled)
+4. Displayed in the Device Agent panel with real-time status
+
+> **💡 Tip:** You can add devices while cluster is running! No need to restart the server.
+
+---
+
+## 🎉 Step 5: Start Alien³ cluster
+
+With all device agents running and configured, you can now launch cluster!
+
+### Pre-Launch Checklist
+
+Before starting cluster, ensure:
+
+1. ✅ All Device Agent Servers are running
+2. ✅ All Device Agent Clients are connected
+3. ✅ MCP Services are running (for Linux devices)
+4. ✅ LLM configured in `config/cluster/agent.yaml`
+5. ✅ Devices configured in `config/cluster/devices.yaml`
+6. ✅ Network connectivity between all components
+
+### 🎨 Launch cluster - WebUI Mode (Recommended)
+
+Start cluster with an interactive web interface for real-time network visualization and monitoring:
+
+```powershell
+# Assume you are in the cloned Alien folder
+python -m cluster --webui
+```
+
+This will start the cluster server with WebUI and automatically open your browser to the interactive interface:
+
+<div align="center">
+  <img src="../img/webui.png" alt="Alien³ cluster WebUI Interface" width="90%">
+  <p><em>🎨 cluster WebUI - Interactive network visualization and chat interface</em></p>
+</div>
+
+**WebUI Features:**
+
+- 🗣️ **Chat Interface**: Submit requests and interact with networkAgent in real-time
+- 📊 **Live DAG Visualization**: Watch task network formation and execution
+- 🎯 **Task Status Tracking**: Monitor each TaskStar's progress and completion
+- 🔄 **Dynamic Updates**: See network evolution as tasks complete
+- 📱 **Responsive Design**: Works on desktop and tablet devices
+
+**Default URL:** `http://localhost:8000` (automatically finds next available port if 8000 is occupied)
+
+---
+
+### 💬 Launch cluster - Interactive Terminal Mode
+
+Start cluster in interactive mode where you can enter requests dynamically:
+
+```powershell
+# Assume you are in the cloned Alien folder
+python -m cluster --interactive
+```
+
+**Expected Output:**
+
+```
+🌌 Welcome to Alien³ cluster Framework
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Multi-Device AI Orchestration System
+
+📡 Initializing cluster...
+✅ networkAgent initialized
+✅ Connected to device: windows_device_1 (windows)
+✅ Connected to device: linux_device_1 (linux)
+
+🌟 cluster Ready - 2 devices online
+
+Please enter your request 🛸:
+```
+
+---
+
+### ⚡ Launch cluster - Direct Request Mode
+
+Invoke cluster with a specific request directly:
+
+```powershell
+python -m cluster --request "Your task description here"
+```
+
+**Example:**
+
+```powershell
+python -m cluster --request "Generate a sales report from the database and create an Excel dashboard"
+```
+
+---
+
+### 🎬 Launch cluster - Demo Mode
+
+Run cluster in demo mode to see example workflows:
+
+```powershell
+python -m cluster --demo
+```
+
+---
+
+## 🎯 Step 6: Try Your First Multi-Device Workflow
+
+### Example 1: Simple Cross-Platform Task
+
+**User Request:**
+> "Check the server logs for errors and email me a summary"
+
+**cluster orchestrates:**
+
+1. **Linux Device**: Analyze server logs for error patterns
+2. **Windows Device**: Open Outlook, create email with log summary
+3. **Windows Device**: Send email
+
+**How to run:**
+
+```powershell
+python -m cluster --request "Check the server logs for errors and email me a summary"
+```
+
+### Example 2: Data Processing Pipeline
+
+**User Request:**
+> "Export sales data from the database, create an Excel report with charts, and email it to the team"
+
+**cluster orchestrates:**
+
+1. **Linux Device**: Query database, export CSV
+2. **Windows Device**: Open Excel, import CSV, create charts
+3. **Windows Device**: Open Outlook, attach Excel file, send email
+
+**How to run:**
+
+```powershell
+python -m cluster --request "Export sales data from the database, create an Excel report with charts, and email it to the team"
+```
+
+### Example 3: Multi-Server Monitoring
+
+**User Request:**
+> "Check all servers for disk usage and alert if any are above 80%"
+
+**cluster orchestrates:**
+
+1. **Linux Device 1**: Check disk usage on server 1
+2. **Linux Device 2**: Check disk usage on server 2
+3. **cluster**: Aggregate results, check thresholds
+4. **Windows Device**: Send alert email if needed
+
+---
+
+## 📔 Step 7: Understanding Device Routing
+
+cluster uses **capability-based routing** to intelligently assign tasks to appropriate devices.
+
+### How cluster Selects Devices
+
+| Factor | Description | Example |
+|--------|-------------|---------|
+| **Capabilities** | Matches task requirements | `"excel"` → Windows device with Excel |
+| **OS Requirement** | Platform-specific tasks | Linux commands → Linux device |
+| **Metadata** | Device-specific context | Email task → device with Outlook |
+| **Status** | Online and healthy devices only | Skips offline devices |
+
+### Example Task Decomposition
+
+**User Request:**
+> "Prepare monthly reports and distribute to team"
+
+**cluster Decomposition:**
+
+```yaml
+Subtask 1:
+  Description: "Extract monthly data from database"
+  Target Device: linux_device_1
+  Reason: Has "database_operations" capability
+
+Subtask 2:
+  Description: "Create Excel report with visualizations"
+  Target Device: windows_device_1
+  Reason: Has "excel" capability
+
+Subtask 3:
+  Description: "Email reports to distribution list"
+  Target Device: windows_device_1
+  Reason: Has "email" and "outlook" capabilities
+```
+
+---
+
+## 🔄 Step 8: Execution Logs
+
+cluster automatically saves execution logs, task graphs, and device traces for debugging and analysis.
+
+**Log Location:**
+
+```
+./logs/<session_name>/
+```
+
+**Log Contents:**
+
+| File/Folder | Description |
+|-------------|-------------|
+| `network/` | DAG visualization and task decomposition |
+| `device_logs/` | Individual device execution logs |
+| `screenshots/` | Screenshots from Windows devices (if enabled) |
+| `task_results/` | Task execution results |
+| `request_response.log` | Complete LLM request/response logs |
+
+> **Analyzing Logs:** Use the logs to debug task routing, identify bottlenecks, replay execution flow, and analyze orchestration decisions.
+
+---
+
+## 🔧 Advanced Configuration
+
+### Custom Session Name
+
+```powershell
+python -m cluster --request "Your task" --session-name "my_project"
+```
+
+### Custom Output Directory
+
+```powershell
+python -m cluster --request "Your task" --output-dir "./custom_results"
+```
+
+### Debug Mode
+
+```powershell
+python -m cluster --interactive --log-level DEBUG
+```
+
+### Limit Maximum Rounds
+
+```powershell
+python -m cluster --interactive --max-rounds 20
+```
+
+---
+
+## ❓ Troubleshooting
+
+### Issue 1: Device Not Appearing in cluster
+
+**Error:** Device not found in configuration
+
+```log
+ERROR - Device 'windows_device_1' not found in configuration
+```
+
+**Solutions:**
+
+1. Verify `devices.yaml` configuration:
+   ```powershell
+   notepad config\cluster\devices.yaml
+   ```
+
+2. Check device ID matches:
+   - In `devices.yaml`: `device_id: "windows_device_1"`
+   - In client command: `--client-id windows_device_1`
+
+3. Check server URL matches:
+   - In `devices.yaml`: `server_url: "ws://localhost:5000/ws"`
+   - In client command: `--ws-server ws://localhost:5000/ws`
+
+### Issue 2: Device Agent Not Connecting
+
+**Error:** Connection refused
+
+```log
+ERROR - [WS] Failed to connect to ws://localhost:5000/ws
+Connection refused
+```
+
+**Solutions:**
+
+1. Verify server is running:
+   ```powershell
+   curl http://localhost:5000/api/health
+   ```
+
+2. Check port number is correct:
+   - Server: `--port 5000`
+   - Client: `ws://localhost:5000/ws`
+
+3. Ensure platform flag is set:
+   ```powershell
+   # For Windows devices
+   --platform windows
+   
+   # For Linux devices
+   --platform linux
+   ```
+
+### Issue 3: cluster Cannot Find network Agent Config
+
+**Error:** Configuration file not found
+
+```log
+ERROR - Cannot find config/cluster/agent.yaml
+```
+
+**Solution:**
+```powershell
+# Copy template to create configuration file
+copy config\cluster\agent.yaml.template config\cluster\agent.yaml
+
+# Edit with your LLM credentials
+notepad config\cluster\agent.yaml
+```
+
+### Issue 4: Task Not Routed to Expected Device
+
+**Issue:** Wrong device selected for task
+
+**Diagnosis:** Check device capabilities in `devices.yaml`:
+
+```yaml
+capabilities:
+  - "desktop_automation"
+  - "office_applications"
+  - "excel"  # Required for Excel tasks
+  - "outlook"  # Required for email tasks
+```
+
+**Solution:** Add appropriate capabilities to your device configuration.
+
+---
+
+## 📚 Additional Resources
+
+### Core Documentation
+
+**Architecture & Concepts:**
+
+- [cluster Overview](../cluster/overview.md) - System architecture and design principles
+- [network Orchestrator](../cluster/network_orchestrator/overview.md) - Task orchestration and DAG management
+- [Agent Interaction Protocol (AIP)](../aip/overview.md) - Communication substrate
+
+### Device Agent Setup
+
+**Device Agent Guides:**
+
+- [Alien² as cluster Device](../Alien-Unis/as_cluster_device.md) - Complete Windows device setup
+- [Linux as cluster Device](../linux/as_cluster_device.md) - Complete Linux device setup
+- [Mobile as cluster Device](../mobile/as_cluster_device.md) - Complete Android device setup
+- [Alien² Overview](../Alien-Unis/overview.md) - Windows desktop automation capabilities
+- [Linux Agent Overview](../linux/overview.md) - Linux server automation capabilities
+- [Mobile Agent Overview](../mobile/overview.md) - Android mobile automation capabilities
+
+### Configuration
+
+**Configuration Guides:**
+
+- [cluster Devices Configuration](../configuration/system/cluster_devices.md) - Complete device pool configuration
+- [cluster network Configuration](../configuration/system/cluster_network.md) - Runtime settings
+- [Agents Configuration](../configuration/system/agents_config.md) - LLM settings for all agents
+- [Model Configuration](../configuration/models/overview.md) - Supported LLM providers
+
+### Advanced Features
+
+**Advanced Topics:**
+
+- [Task network](../cluster/network/task_network.md) - DAG-based task planning
+- [network Orchestrator](../cluster/network_orchestrator/overview.md) - Multi-device orchestration
+- [Device Registry](../cluster/agent_registration/device_registry.md) - Device management
+- [Agent Profiles](../cluster/agent_registration/agent_profile.md) - Multi-source profiling
+
+---
+
+## ❓ Getting Help
+
+- 📖 **Documentation**: [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
+- 🐛 **GitHub Issues**: [https://github.com/microsoft/Alien/issues](https://github.com/microsoft/Alien/issues) (preferred)
+- 📧 **Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
+
+---
+
+## 🎯 Next Steps
+
+Now that cluster is set up, explore these guides to unlock its full potential:
+
+1. **[Add More Devices](../configuration/system/cluster_devices.md)** - Expand your device pool
+2. **[Configure Capabilities](../configuration/system/cluster_devices.md)** - Optimize task routing
+3. **[network Agent](../cluster/network_agent/overview.md)** - Deep dive into orchestration agent
+4. **[Advanced Orchestration](../cluster/network_orchestrator/overview.md)** - Deep dive into DAG planning
+
+Happy orchestrating with Alien³ cluster! 🌌🚀

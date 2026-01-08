@@ -1,0 +1,293 @@
+site_name: Alien³ Documentation
+
+
+nav:
+  - Home: index.md
+  - Choose Your Path: choose_path.md
+  - Project Directory Structure: project_directory_structure.md
+  - Getting Started:
+      - Quick Start (Alien³ Agent cluster): getting_started/quick_start_cluster.md
+      - Quick Start (Alien²): getting_started/quick_start_Alien-Unis.md
+      - Quick Start (Linux Agent): getting_started/quick_start_linux.md
+      - Quick Start (Mobile Agent): getting_started/quick_start_mobile.md
+      - Migration Alien² → Alien³: getting_started/migration_Alien-Unis_to_cluster.md
+      - More Guidance: getting_started/more_guidance.md
+  - Configuration & Setup:
+      - Configuration System:
+          - Overview: configuration/system/overview.md
+          - Agent Configuration: configuration/system/agents_config.md
+          - System Configuration: configuration/system/system_config.md
+          - RAG Configuration: configuration/system/rag_config.md
+          - Pricing Configuration: configuration/system/prices_config.md
+          - Third-Party Configuration: configuration/system/third_party_config.md
+          - MCP Reference: configuration/system/mcp_reference.md
+          - Migration Guide: configuration/system/migration.md
+          - Extending Configuration: configuration/system/extending.md
+          - cluster Configuration:
+              - Devices: configuration/system/cluster_devices.md
+              - network: configuration/system/cluster_network.md
+              - Agent: configuration/system/cluster_agent.md
+      - Model Setup:
+          - Overview: configuration/models/overview.md
+          - OpenAI: configuration/models/openai.md
+          - Azure OpenAI: configuration/models/azure_openai.md
+          - OpenAI CUA (Operator): configuration/models/operator.md
+          - Gemini: configuration/models/gemini.md
+          - Claude: configuration/models/claude.md
+          - Qwen: configuration/models/qwen.md
+          - DeepSeek: configuration/models/deepseek.md
+          - Ollama: configuration/models/ollama.md
+          - Custom Model: configuration/models/custom_model.md
+  - Alien³ Agent cluster:
+      - Overview: cluster/overview.md
+      - WebUI: cluster/webui.md
+      - cluster Client:
+          - Overview: cluster/client/overview.md
+          - networkClient: cluster/client/network_client.md
+          - DeviceManager: cluster/client/device_manager.md
+          - Components: cluster/client/components.md
+          - AIP Integration: cluster/client/aip_integration.md
+          - clusterClient: cluster/client/cluster_client.md
+      - Agent Registration:
+          - Overview: cluster/agent_registration/overview.md
+          - Agent Profile: cluster/agent_registration/agent_profile.md
+          - Device Registry: cluster/agent_registration/device_registry.md
+          - Registration Flow: cluster/agent_registration/registration_flow.md
+      - Task network (DAG):
+          - Overview: cluster/network/overview.md
+          - TaskStar: cluster/network/task_star.md
+          - TaskStarLine: cluster/network/task_star_line.md
+          - Tasknetwork: cluster/network/task_network.md
+          - networkEditor: cluster/network/network_editor.md
+      - network Agent:
+          - Overview: cluster/network_agent/overview.md
+          - State Machine: cluster/network_agent/state.md
+          - Strategy Pattern: cluster/network_agent/strategy.md
+          - MCP Commands: cluster/network_agent/command.md
+      - network Orchestrator:
+          - Overview: cluster/network_orchestrator/overview.md
+          - Event-Driven Coordination: cluster/network_orchestrator/event_driven_coordination.md
+          - Asynchronous Scheduling: cluster/network_orchestrator/asynchronous_scheduling.md
+          - Safe Assignment Locking: cluster/network_orchestrator/safe_assignment_locking.md
+          - Consistency Guarantees: cluster/network_orchestrator/consistency_guarantees.md
+          - Batched Editing: cluster/network_orchestrator/batched_editing.md
+          - network Manager: cluster/network_orchestrator/network_manager.md
+          - API Reference: cluster/network_orchestrator/api_reference.md
+      - Observer System:
+          - Overview: cluster/observer/overview.md
+          - Event System: cluster/observer/event_system.md
+          - Progress Observer: cluster/observer/progress_observer.md
+          - Agent Output Observer: cluster/observer/agent_output_observer.md
+          - Synchronizer: cluster/observer/synchronizer.md
+          - Metrics Observer: cluster/observer/metrics_observer.md
+          - Visualization Observer: cluster/observer/visualization_observer.md
+      - Evaluation & Logging:
+          - Trajectory Report: cluster/evaluation/trajectory_report.md
+          - Performance Metrics: cluster/evaluation/performance_metrics.md
+          - Result JSON Reference: cluster/evaluation/result_json.md
+  - Alien² Desktop AgentOS:
+      - Overview: Alien-Unis/overview.md
+      - Using as cluster Device: Alien-Unis/as_cluster_device.md
+      - HostAgent:
+          - Overview: Alien-Unis/host_agent/overview.md
+          - State Machine: Alien-Unis/host_agent/state.md
+          - Processing Strategy: Alien-Unis/host_agent/strategy.md
+          - Command System: Alien-Unis/host_agent/commands.md
+      - AppAgent:
+          - Overview: Alien-Unis/app_agent/overview.md
+          - State Machine: Alien-Unis/app_agent/state.md
+          - Processing Strategy: Alien-Unis/app_agent/strategy.md
+          - Command System: Alien-Unis/app_agent/commands.md
+      - Core Features:
+          - Hybrid GUI–API Actions: Alien-Unis/core_features/hybrid_actions.md
+          - Control Detection:
+              - Overview: Alien-Unis/core_features/control_detection/overview.md
+              - UIA Detection: Alien-Unis/core_features/control_detection/uia_detection.md
+              - Visual Detection: Alien-Unis/core_features/control_detection/visual_detection.md
+              - Hybrid Detection: Alien-Unis/core_features/control_detection/hybrid_detection.md
+          - Knowledge Substrate:
+              - Overview: Alien-Unis/core_features/knowledge_substrate/overview.md
+              - Help Documents: Alien-Unis/core_features/knowledge_substrate/learning_from_help_document.md
+              - Bing Search: Alien-Unis/core_features/knowledge_substrate/learning_from_bing_search.md
+              - Experience Learning: Alien-Unis/core_features/knowledge_substrate/experience_learning.md              
+              - Demos: Alien-Unis/core_features/knowledge_substrate/learning_from_demonstration.md
+          - Speculative Multi-Action: Alien-Unis/core_features/multi_action.md
+      - Advanced Usage:
+          - Follower Mode: Alien-Unis/advanced_usage/follower_mode.md
+          - Batch Mode: Alien-Unis/advanced_usage/batch_mode.md
+          - Operator Integration: Alien-Unis/advanced_usage/operator_as_app_agent.md
+          - Customization: Alien-Unis/advanced_usage/customization.md
+      - Prompts:
+          - Overview: Alien-Unis/prompts/overview.md
+          - Basic Template: Alien-Unis/prompts/basic_template.md
+          - Examples: Alien-Unis/prompts/examples_prompts.md
+      - Evaluation:
+          - EvaluationAgent: Alien-Unis/evaluation/evaluation_agent.md
+          - Benchmark Overview: Alien-Unis/evaluation/benchmark/overview.md
+          - Windows Agent Arena: Alien-Unis/evaluation/benchmark/windows_agent_arena.md
+          - OSWorld (Windows): Alien-Unis/evaluation/benchmark/osworld.md
+          - Performance Logs:
+              - Overview: Alien-Unis/evaluation/logs/overview.md
+              - Evaluation Logs: Alien-Unis/evaluation/logs/evaluation_logs.md
+              - Markdown Log Viewer: Alien-Unis/evaluation/logs/markdown_log_viewer.md
+              - Request Logs: Alien-Unis/evaluation/logs/request_logs.md
+              - Screenshots Logs: Alien-Unis/evaluation/logs/screenshots_logs.md
+              - Step Logs: Alien-Unis/evaluation/logs/step_logs.md
+              - UI Tree Logs: Alien-Unis/evaluation/logs/ui_tree_logs.md
+      - Dataflow:
+          - Overview: Alien-Unis/dataflow/overview.md
+          - Instantiation: Alien-Unis/dataflow/instantiation.md
+          - Execution: Alien-Unis/dataflow/execution.md
+          - Windows App Environment: Alien-Unis/dataflow/windows_app_env.md
+          - Result: Alien-Unis/dataflow/result.md
+  - Linux Agent:
+      - Overview: linux/overview.md
+      - Using as cluster Device: linux/as_cluster_device.md
+      - State Machine: linux/state.md
+      - Processing Strategy: linux/strategy.md
+      - MCP Commands: linux/commands.md
+  - Mobile Agent:
+      - Overview: mobile/overview.md
+      - Using as cluster Device: mobile/as_cluster_device.md
+      - State Machine: mobile/state.md
+      - Processing Strategy: mobile/strategy.md
+      - MCP Commands: mobile/commands.md
+  - Tutorials & Development:
+      - Creating Custom MCP Servers: tutorials/creating_mcp_servers.md
+      - Creating Custom Third-Party Agents: tutorials/creating_third_party_agents.md
+      - Creating Custom Device Agents:
+          - Overview: tutorials/creating_device_agent/overview.md
+          - Index: tutorials/creating_device_agent/index.md
+          - Client Setup: tutorials/creating_device_agent/client_setup.md
+          - Core Components: tutorials/creating_device_agent/core_components.md
+          - MCP Server: tutorials/creating_device_agent/mcp_server.md
+          - Configuration: tutorials/creating_device_agent/configuration.md
+          - Testing: tutorials/creating_device_agent/testing.md
+          - Example Mobile Agent: tutorials/creating_device_agent/example_mobile_agent.md
+      - Enhancing AppAgent Capabilities:
+          - Overview: tutorials/creating_app_agent/overview.md
+          - Help Document Provision: tutorials/creating_app_agent/help_document_provision.md
+          - Demonstration Provision: tutorials/creating_app_agent/demonstration_provision.md
+          - Wrapping App-Native APIs: tutorials/creating_app_agent/warpping_app_native_api.md
+  - Infrastructure:
+      - Basic Modules:
+          - Overview: infrastructure/modules/overview.md
+          - Session: infrastructure/modules/session.md
+          - Round: infrastructure/modules/round.md
+          - Context: infrastructure/modules/context.md
+          - Dispatcher: infrastructure/modules/dispatcher.md
+          - Session Factory & Pool: infrastructure/modules/session_pool.md
+          - Platform Sessions: infrastructure/modules/platform_sessions.md
+      - Device Agent Architecture:
+          - Overview: infrastructure/agents/overview.md
+          - Agent Types & Implementation: infrastructure/agents/agent_types.md
+          - Server-Client Architecture: infrastructure/agents/server_client_architecture.md
+          - Architecture Layers:
+              - State Layer (Level-1): infrastructure/agents/design/state.md
+              - Strategy Layer (Level-2): infrastructure/agents/design/processor.md
+              - Strategy Components: infrastructure/agents/design/strategy.md
+              - Command Layer (Level-3): infrastructure/agents/design/command.md
+          - Supporting Systems:
+              - Memory System: infrastructure/agents/design/memory.md
+              - Blackboard: infrastructure/agents/design/blackboard.md
+              - Prompter: infrastructure/agents/design/prompter.md
+  - Agent Interaction Protocol (AIP):
+      - Overview: aip/overview.md
+      - Message Reference: aip/messages.md
+      - Protocol Guide: aip/protocols.md
+      - Transport Layer: aip/transport.md
+      - Endpoints: aip/endpoints.md
+      - Resilience: aip/resilience.md
+  - Agent Server:
+      - Overview: server/overview.md
+      - Quick Start: server/quick_start.md
+      - Session Manager: server/session_manager.md
+      - WebSocket Handler: server/websocket_handler.md
+      - Client Connection Manager: server/client_connection_manager.md
+      - HTTP API: server/api.md
+      - Monitoring: server/monitoring.md
+  - Agent Client:
+      - Overview: client/overview.md
+      - Quick Start: client/quick_start.md
+      - WebSocket Client: client/websocket_client.md
+      - Alien Client: client/Alien_client.md
+      - Computer Manager: client/computer_manager.md
+      - Computer: client/computer.md
+      - Device Info Provider: client/device_info.md
+      - MCP Integration: client/mcp_integration.md
+  - MCP (Model Context Protocol):
+      - Overview: mcp/overview.md
+      - Data Collection Servers: mcp/data_collection.md
+      - Action Servers: mcp/action.md
+      - Configuration Guide: mcp/configuration.md
+      - Local Servers: mcp/local_servers.md
+      - Remote Servers: mcp/remote_servers.md
+      - Server Reference:
+          - UICollector: mcp/servers/ui_collector.md
+          - HostUIExecutor: mcp/servers/host_ui_executor.md
+          - AppUIExecutor: mcp/servers/app_ui_executor.md
+          - CommandLineExecutor: mcp/servers/command_line_executor.md
+          - WordCOMExecutor: mcp/servers/word_com_executor.md
+          - ExcelCOMExecutor: mcp/servers/excel_com_executor.md
+          - PowerPointCOMExecutor: mcp/servers/ppt_com_executor.md
+          - PDFReaderExecutor: mcp/servers/pdf_reader_executor.md
+          - networkEditor: mcp/servers/network_editor.md
+          - HardwareExecutor: mcp/servers/hardware_executor.md
+          - BashExecutor: mcp/servers/bash_executor.md
+          - MobileExecutor: mcp/servers/mobile_executor.md
+  - About:
+      - Contributing: about/CONTRIBUTING.md
+      - License: about/LICENSE.md
+      - Code of Conduct: about/CODE_OF_CONDUCT.md
+      - Disclaimer: about/DISCLAIMER.md
+      - Support: about/SUPPORT.md
+  - FAQ: faq.md
+
+markdown_extensions:
+  - pymdownx.tasklist
+  - admonition
+
+theme:
+  name: readthedocs
+  analytics:
+    - gtag: G-FX17ZGJYGC
+  favicon: ./assets/Alien_blue.png
+  features:
+  - content.code.annotate
+  - content.code.copy
+  - content.code.select
+  - content.tooltips
+  - content.tabs.link
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+
+
+plugins:
+    - search
+    - mkdocstrings:
+        handlers:
+            python:
+                paths: ["../Alien", "../record_processor", "../dataflow", "../config", "../aip", ".."]
+                options:
+                    docstring_style: sphinx
+                    docstring_section_style: list
+                    merge_init_into_class: true
+                    show_docstring_returns: true
