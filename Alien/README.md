@@ -274,10 +274,6 @@ You can find the screenshots taken and request & response logs in the following 
 You may use them to debug, replay, or analyze the agent output.
 
 
-## ❓Get help 
-* Please first check our our documentation [here](https://github.com/DEVELOPER-DEEVEN/alien-project/).
-* ❔GitHub Issues (prefered)
-* For other communications, please contact [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com).
 
 ---
 
