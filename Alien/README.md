@@ -392,18 +392,7 @@ For complete migration details including code examples, testing procedures, roll
 
 ---
 
-## 📊 Evaluation
 
-Alien² is rigorously benchmarked on two publicly‑available live‑task suites:
-
-| Benchmark | Scope | Documents |
-|-----------|-------|-------|
-| [**Windows Agent Arena (WAA)**](https://github.com/nice-mee/WindowsAgentArena) | 154 real Windows tasks across 15 applications (Office, Edge, File Explorer, VS Code, …) | <https://github.com/DEVELOPER-DEEVEN/alien-project/benchmark/windows_agent_arena/> |
-| [**OSWorld (Windows)**](https://github.com/nice-mee/WindowsAgentArena/tree/2020-qqtcg/osworld) | 49 cross‑application tasks that mix Office 365, browser and system utilities | <https://github.com/DEVELOPER-DEEVEN/alien-project/benchmark/osworld> |
-
-The integration of these benchmarks into Alien² is in separate repositories. Please follow the above documents for more details.
-
----
 
 
 
