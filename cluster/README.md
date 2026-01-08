@@ -8,17 +8,9 @@
 </p>
 
 <p align="center">
-  <strong>📖 Language / 语言:</strong>
-  <a href="README.md"><strong>English</strong></a> | 
-  <a href="README_ZH.md">中文</a>
-</p>
 
-<div align="center">
 
-[![arxiv](https://img.shields.io/badge/Paper-arXiv:2511.11332-b31b1b.svg)](https://arxiv.org/abs/2511.11332)&ensp;
-![Python Version](https://img.shields.io/badge/Python-3776AB?&logo=python&logoColor=white-blue&label=3.10%20%7C%203.11)&ensp;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&ensp;
-[![Documentation](https://img.shields.io/badge/Documentation-%230ABAB5?style=flat&logo=readthedocs&logoColor=black)](https://microsoft.github.io/Alien/)&ensp;
+
 
 </div>
 
@@ -26,7 +18,7 @@
 
 ## 🌟 What is Alien³ cluster?
 
-**Alien³ cluster** is a revolutionary **cross-device orchestration framework** that transforms isolated device agents into a unified digital ecosystem. It models complex user requests as **Task networks** (星座) — dynamic distributed DAGs where nodes represent executable subtasks and edges capture dependencies across heterogeneous devices.
+**Alien³ cluster** is a revolutionary **cross-device orchestration framework** that transforms isolated device agents into a unified digital ecosystem. It models complex user requests as **Task networks**  — dynamic distributed DAGs where nodes represent executable subtasks and edges capture dependencies across heterogeneous devices.
 
 ### 🎯 The Vision
 
@@ -656,96 +648,6 @@ Alien³ is designed as a **universal orchestration framework** that seamlessly i
 
 ---
 
-## 🌟 From Devices to cluster
-
-Alien³ represents a paradigm shift in intelligent automation:
-
-```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#E8F4F8','primaryTextColor':'#1A1A1A','primaryBorderColor':'#7CB9E8','lineColor':'#A8D5E2','secondaryColor':'#B8E6F0','tertiaryColor':'#D4F1F4','fontSize':'16px','fontFamily':'Segoe UI, Arial, sans-serif'}}}%%
-graph LR
-    A["<b>🎈 Alien</b><br/><span style='font-size:14px'>February 2024</span><br/><span style='font-size:13px; color:#666'><i>GUI Agent for Windows</i></span>"] 
-    B["<b>🖥️ Alien²</b><br/><span style='font-size:14px'>April 2025</span><br/><span style='font-size:13px; color:#666'><i>Desktop AgentOS</i></span>"]
-    C["<b>🌌 Alien³ cluster</b><br/><span style='font-size:14px'>November 2025</span><br/><span style='font-size:13px; color:#666'><i>Multi-Device Orchestration</i></span>"]
-    
-    A -->|Evolve| B
-    B -->|Scale| C
-    
-    style A fill:#E8F4F8,stroke:#7CB9E8,stroke-width:2.5px,color:#1A1A1A,rx:15,ry:15
-    style B fill:#C5E8F5,stroke:#5BA8D0,stroke-width:2.5px,color:#1A1A1A,rx:15,ry:15
-    style C fill:#A4DBF0,stroke:#3D96BE,stroke-width:2.5px,color:#1A1A1A,rx:15,ry:15
-```
-
-Over time, multiple networks interconnect, forming a self-organizing **Digital Agent cluster** where devices, agents, and capabilities weave together into adaptive, resilient, and intelligent ubiquitous computing systems.
-
----
-
-## 📄 Citation
-
-If you use Alien³ cluster in your research, please cite:
-
-**Alien³ cluster Framework:**
-```bibtex
-@article{zhang2025Alien-Group,
-  title={Alien$^3$: Weaving the Digital Agent cluster}, 
-  author = {Zhang, Chaoyun and Li, Liqun and Huang, He and Ni, Chiming and Qiao, Bo and Qin, Si and Kang, Yu and Ma, Minghua and Lin, Qingwei and Rajmohan, Saravan and Zhang, Dongmei},
-  journal = {arXiv preprint arXiv:2511.11332},
-  year    = {2025},
-}
-```
-
 **Alien² Desktop AgentOS:**
-```bibtex
-@article{zhang2025Alien-Unis,
-  title   = {{Alien-Unis: The Desktop AgentOS}},
-  author  = {Zhang, Chaoyun and Huang, He and Ni, Chiming and Mu, Jian and Qin, Si and He, Shilin and Wang, Lu and Yang, Fangkai and Zhao, Pu and Du, Chao and Li, Liqun and Kang, Yu and Jiang, Zhao and Zheng, Suzhen and Wang, Rujia and Qian, Jiaxu and Ma, Minghua and Lou, Jian-Guang and Lin, Qingwei and Rajmohan, Saravan and Zhang, Dongmei},
-  journal = {arXiv preprint arXiv:2504.14603},
-  year    = {2025}
-}
-```
-
-**First Alien:**
-```bibtex
-@article{zhang2024Alien,
-  title   = {{Alien: A UI-Focused Agent for Windows OS Interaction}},
-  author  = {Zhang, Chaoyun and Li, Liqun and He, Shilin and Zhang, Xu and Qiao, Bo and Qin, Si and Ma, Minghua and Kang, Yu and Lin, Qingwei and Rajmohan, Saravan and Zhang, Dongmei and Zhang, Qi},
-  journal = {arXiv preprint arXiv:2402.07939},
-  year    = {2024}
-}
-```
-
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Whether building new device agents, improving orchestration algorithms, or enhancing the protocol:
-
-- 🐛 [Report Issues](https://github.com/microsoft/Alien/issues)
-- 💡 [Request Features](https://github.com/microsoft/Alien/discussions)
-- 📝 [Improve Documentation](https://github.com/microsoft/Alien/pulls)
-- 🧪 [Submit Pull Requests](../../CONTRIBUTING.md)
-
----
-
-## 📬 Contact & Support
-
-- 📖 **Documentation**: [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/microsoft/Alien/discussions)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/microsoft/Alien/issues)
-- 📧 **Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
-
----
-
-## ⚖️ License
-
-Alien³ cluster is released under the [MIT License](../../LICENSE).
-
-See [DISCLAIMER.md](../../DISCLAIMER.md) for privacy and safety notices.
-
----
-
-<div align="center">
-  <p><strong>Transform your distributed devices into a unified digital collective.</strong></p>
-  <p><em>Alien³ cluster — Where every device is a star, and every task is a network.</em></p>
-  <br>
-  <sub>© Microsoft 2025 • Alien³ is an open-source research project</sub>
-</div>
