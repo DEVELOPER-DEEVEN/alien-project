@@ -9,18 +9,6 @@
 
 
 
-<div align="center">
-<a href="https://trendshift.io/repositories/7874" target="_blank"><img src="https://trendshift.io/api/badge/repositories/7874" alt="microsoft%2FAlien | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-
-<br/>
-
-[![arxiv](https://img.shields.io/badge/Paper-arXiv:2511.11332-b31b1b.svg)](https://arxiv.org/abs/2511.11332)&ensp;
-[![arxiv](https://img.shields.io/badge/Paper-arXiv:2504.14603-b31b1b.svg)](https://arxiv.org/abs/2504.14603)&ensp;
-![Python Version](https://img.shields.io/badge/Python-3776AB?&logo=python&logoColor=white-blue&label=3.10%20%7C%203.11)&ensp;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&ensp;
-[![Documentation](https://img.shields.io/badge/Documentation-%230ABAB5?style=flat&logo=readthedocs&logoColor=black)](https://microsoft.github.io/Alien/)&ensp;
-[![YouTube](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=%23FF0000)](https://www.youtube.com/watch?v=NGrVWGcJL8o)&ensp;
-
 
 </div>
 
@@ -56,7 +44,7 @@
 
 
 **📖 [cluster Documentation →](./cluster/README.md)**  
-**📖 [cluster Quick Start →](https://microsoft.github.io/Alien/getting_started/quick_start_cluster/)** ⭐ **Online Docs**
+
 
 </td>
 <td width="50%" valign="top">
@@ -86,37 +74,9 @@
 
 ---
 
-## 🎬 See Alien³ cluster in Action
-
-Watch how Alien³ cluster orchestrates complex workflows across multiple devices:
-
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=NGrVWGcJL8o">
-    <img src="assets/poster_with_play.png" alt="Alien³ cluster Demo" width="90%">
-  </a>
-  <p><em>🎥 Click to watch: Cross-device task orchestration with Alien³ cluster</em></p>
-</div>
 
 ---
 
-## 🌟 What's New in Alien³?
-
-### Evolution Timeline
-
-```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#E8F4F8','primaryTextColor':'#1A1A1A','primaryBorderColor':'#7CB9E8','lineColor':'#A8D5E2','secondaryColor':'#B8E6F0','tertiaryColor':'#D4F1F4','fontSize':'16px','fontFamily':'Segoe UI, Arial, sans-serif'}}}%%
-graph LR
-    A["<b>🎈 Alien</b><br/><span style='font-size:14px'>February 2024</span><br/><span style='font-size:13px; color:#666'><i>GUI Agent for Windows</i></span>"] 
-    B["<b>🖥️ Alien²</b><br/><span style='font-size:14px'>April 2025</span><br/><span style='font-size:13px; color:#666'><i>Desktop AgentOS</i></span>"]
-    C["<b>🌌 Alien³ cluster</b><br/><span style='font-size:14px'>November 2025</span><br/><span style='font-size:13px; color:#666'><i>Multi-Device Orchestration</i></span>"]
-    
-    A -->|Evolve| B
-    B -->|Scale| C
-    
-    style A fill:#E8F4F8,stroke:#7CB9E8,stroke-width:2.5px,color:#1A1A1A,rx:15,ry:15
-    style B fill:#C5E8F5,stroke:#5BA8D0,stroke-width:2.5px,color:#1A1A1A,rx:15,ry:15
-    style C fill:#A4DBF0,stroke:#3D96BE,stroke-width:2.5px,color:#1A1A1A,rx:15,ry:15
-```
 
 ### 🚀 Alien³ = **cluster** (Multi-Device Orchestration) + **Alien²** (Device Agent)
 
@@ -433,75 +393,22 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 
 ---
 
-## 📢 Latest Updates
-
-### 2025-11 – Alien³ cluster Framework Released 🌌
-**Major Research Breakthrough:** Multi-Device Orchestration System
-
-- 🌟 **Declarative DAG Decomposition**: Tasknetwork structure for workflow logic and dependencies
-- 🔄 **Dynamic Graph Evolution**: Living network that adapts through controlled rewrites
-- 🎯 **Heterogeneous Orchestration**: Safe, asynchronous execution with capability-based device matching
-- 🔌 **Unified AIP Protocol**: WebSocket-based secure agent coordination with fault tolerance
-- 🛠️ **MCP-Empowered Agent Framework**: Template-driven toolkit for rapid device agent development
-- 📄 **Research Paper**: [Alien³: Weaving the Digital Agent cluster](https://arxiv.org/abs/2511.11332)
-
+##
 **Key Features:**
 - First multi-device orchestration framework for GUI agents
 - Result-driven adaptive execution instead of rigid workflows
 - Model Context Protocol (MCP) integration for tool augmentation
 - Formally verified correctness and concurrency safety guarantees
 
-### 2025-04 – Alien² v2.0.0
-- 📅 Alien² Desktop AgentOS released
-- 🏗️ Enhanced architecture with AgentOS concept
-- 📄 [Technical Report](https://arxiv.org/pdf/2504.14603) published
-- ✅ Entered Long-Term Support (LTS) status
-
-### 2024-02 – Original Alien
-- 🎈 First Alien release - UI-Focused agent for Windows
-- 📄 [Original Paper](https://arxiv.org/abs/2402.07939)
-- 🌍 Wide media coverage and adoption
-
 ---
 
 
 
 ---
 
-## 🌐 Media & Community
 
-**Media Coverage:**
-- [微软正式开源Alien²，Windows桌面迈入「AgentOS 时代」](https://www.jiqizhixin.com/articles/2025-05-06-13)
-- [Microsoft's Alien: Smarter Windows Experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
-- [下一代Windows系统曝光](https://baijiahao.baidu.com/s?id=1790938358152188625)
-- **[More coverage →](./Alien/README.md#-tracing-the-stars)**
 
-**Community:**
-- 💬 [GitHub Discussions](https://github.com/microsoft/Alien/discussions)
-- 🐛 [Issue Tracker](https://github.com/microsoft/Alien/issues)
-- 📧 Email: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
-- 📺 [YouTube Channel](https://www.youtube.com/watch?v=QT_OhygMVXU)
 
----
-
-## 🎨 Related Projects & Research
-
-**Microsoft Research:**
-- **[TaskWeaver](https://github.com/microsoft/TaskWeaver)** – Code-first LLM agent framework for data analytics and task automation
-
-**GUI Agent Research:**
-- **[LLM-Brained GUI Agents Survey](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey)** – Comprehensive survey of GUI automation agents
-- **[Interactive Survey Site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)** – Explore latest GUI agent research and developments
-
-**Multi-Agent Systems:**
-- **Alien³ cluster** represents a novel approach to multi-device orchestration, introducing the network framework for coordinating heterogeneous agents across platforms
-- Builds on multi-agent coordination research while addressing unique challenges of cross-device GUI automation
-
-**Benchmarks:**
-- **[Windows Agent Arena (WAA)](https://github.com/nice-mee/WindowsAgentArena)** – Evaluation benchmark for Windows automation agents
-- **[OSWorld](https://github.com/nice-mee/WindowsAgentArena/tree/2020-qqtcg/osworld)** – Cross-application task evaluation suite
-
----
 
 ## 💡 FAQ
 
@@ -607,39 +514,7 @@ See [Migration Guide](./documents/docs/getting_started/migration_Alien-Unis_to_c
 - Custom orchestration strategies
 - Custom visualization components
 
-See respective documentation for extension guides.
 
-</details>
-
-<details>
-<summary><strong>🤝 How can I contribute?</strong></summary>
-
-We welcome contributions to both Alien² and cluster!
-
-**Ways to contribute:**
-- 🐛 Report bugs and issues
-- 💡 Suggest features and improvements
-- 📝 Improve documentation
-- 🧪 Add tests and examples
-- 🔧 Submit pull requests
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
-
-</details>
-
-
-
----
-
-## ⚠️ Disclaimer & License
-
-**Disclaimer:** By using this software, you acknowledge and agree to the terms in [DISCLAIMER.md](./DISCLAIMER.md).
-
-**License:** This project is licensed under the [MIT License](LICENSE).
-
-**Trademarks:** Use of Microsoft trademarks follows [Microsoft's Trademark Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-
----
 
 <div align="center">
 
@@ -683,3 +558,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
   <br>
   <strong>Alien³ - Weaving the Future of Intelligent Automation</strong>
 </p>
+
