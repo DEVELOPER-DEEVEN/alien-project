@@ -118,7 +118,7 @@ If you want to contribute to Alien³ or build extensions, here's your developmen
 
 ```bash
 # Clone the repository
-git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/alien-project
 cd Alien
 
 # Create development environment
@@ -371,7 +371,7 @@ Brief description of changes
 - **[GitHub Repository](https://github.com/DEVELOPER-DEEVEN/Alien)** - Source code and releases
 - **[GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)** - Q&A and community
 - **[GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)** - Bug reports and features
-- **[Project Website](https://microsoft.github.io/Alien/)** - Official website
+- **[Project Website](https://github.com/DEVELOPER-DEEVEN/alien-project/)** - Official website
 
 ### Research Papers
 

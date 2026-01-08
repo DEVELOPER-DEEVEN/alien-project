@@ -438,7 +438,7 @@ Still unsure? Answer these questions:
 
 ## 🤝 Getting Help
 
-- **Documentation:** [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
+- **Documentation:** [https://github.com/DEVELOPER-DEEVEN/alien-project/](https://github.com/DEVELOPER-DEEVEN/alien-project/)
 - **GitHub Issues:** [https://github.com/DEVELOPER-DEEVEN/Alien/issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
 - **Discussions:** [https://github.com/DEVELOPER-DEEVEN/Alien/discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
 

@@ -200,10 +200,10 @@ Alien² serves dual roles: **standalone Windows automation** and **cluster devic
 | Feature | Description | Documentation |
 |---------|-------------|---------------|
 | **Deep OS Integration** | Windows UIA, Win32, WinCOM native control | [Learn More](https://microsoft.github.io/Alien) |
-| **Hybrid Actions** | GUI clicks + API calls for optimal performance | [Learn More](https://microsoft.github.io/Alien/automator/overview) |
-| **Speculative Multi-Action** | Batch predictions → **51% fewer LLM calls** | [Learn More](https://microsoft.github.io/Alien/advanced_usage/multi_action) |
-| **Visual + UIA Detection** | Hybrid control detection for robustness | [Learn More](https://microsoft.github.io/Alien/advanced_usage/control_detection/hybrid_detection) |
-| **Knowledge Substrate** | RAG with docs, demos, execution traces | [Learn More](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/overview/) |
+| **Hybrid Actions** | GUI clicks + API calls for optimal performance | [Learn More](https://github.com/DEVELOPER-DEEVEN/alien-project/automator/overview) |
+| **Speculative Multi-Action** | Batch predictions → **51% fewer LLM calls** | [Learn More](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/multi_action) |
+| **Visual + UIA Detection** | Hybrid control detection for robustness | [Learn More](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/control_detection/hybrid_detection) |
+| **Knowledge Substrate** | RAG with docs, demos, execution traces | [Learn More](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/overview/) |
 | **Device Agent Role** | Can serve as Windows executor in cluster orchestration | [Learn More](./cluster/README.md) |
 
 </div>
@@ -335,7 +335,7 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 
 </details>
 
-> 💡 **More LLM Options:** See [Model Configuration Guide](https://microsoft.github.io/Alien/supported_models/overview/) for Qwen, Gemini, Claude, and more.
+> 💡 **More LLM Options:** See [Model Configuration Guide](https://github.com/DEVELOPER-DEEVEN/alien-project/supported_models/overview/) for Qwen, Gemini, Claude, and more.
 
 ---
 
@@ -348,19 +348,19 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 ### 🌌 cluster Documentation
 
 - **[cluster Framework Overview](./cluster/README.md)** ⭐ **Start Here** – Architecture & technical concepts
-- **[Quick Start Tutorial](https://microsoft.github.io/Alien/getting_started/quick_start_cluster/)** – Get running in minutes
-- **[cluster Client](https://microsoft.github.io/Alien/cluster/client/overview/)** – Device coordination and API
-- **[network Agent](https://microsoft.github.io/Alien/cluster/network_agent/overview/)** – Task decomposition and planning
-- **[Task Orchestrator](https://microsoft.github.io/Alien/cluster/network_orchestrator/overview/)** – Execution engine
-- **[Task network](https://microsoft.github.io/Alien/cluster/network/overview/)** – DAG structure
-- **[Agent Registration](https://microsoft.github.io/Alien/cluster/agent_registration/overview/)** – Device registry
-- **[Configuration Guide](https://microsoft.github.io/Alien/configuration/system/cluster_devices/)** – Setup and device pools
+- **[Quick Start Tutorial](https://github.com/DEVELOPER-DEEVEN/alien-project/getting_started/quick_start_cluster/)** – Get running in minutes
+- **[cluster Client](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/client/overview/)** – Device coordination and API
+- **[network Agent](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/network_agent/overview/)** – Task decomposition and planning
+- **[Task Orchestrator](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/network_orchestrator/overview/)** – Execution engine
+- **[Task network](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/network/overview/)** – DAG structure
+- **[Agent Registration](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/agent_registration/overview/)** – Device registry
+- **[Configuration Guide](https://github.com/DEVELOPER-DEEVEN/alien-project/configuration/system/cluster_devices/)** – Setup and device pools
 
 **📖 Technical Documentation:**
-- [AIP Protocol](https://microsoft.github.io/Alien/aip/overview/) – WebSocket messaging
-- [Session Management](https://microsoft.github.io/Alien/cluster/session/overview/) – Session lifecycle
-- [Visualization](https://microsoft.github.io/Alien/cluster/visualization/overview/) – Real-time monitoring
-- [Events & Observers](https://microsoft.github.io/Alien/cluster/core/overview/) – Event system
+- [AIP Protocol](https://github.com/DEVELOPER-DEEVEN/alien-project/aip/overview/) – WebSocket messaging
+- [Session Management](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/session/overview/) – Session lifecycle
+- [Visualization](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/visualization/overview/) – Real-time monitoring
+- [Events & Observers](https://github.com/DEVELOPER-DEEVEN/alien-project/cluster/core/overview/) – Event system
 
 </td>
 <td width="50%" valign="top">
@@ -371,8 +371,8 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 - **[Installation](./Alien/README.md#️-step-1-installation)** – Setup & dependencies
 - **[Configuration](./Alien/README.md#️-step-2-configure-the-llms)** – LLM & RAG setup
 - **[Usage Guide](./Alien/README.md#-step-4-start-Alien)** – Running Alien²
-- **[Advanced Features](https://microsoft.github.io/Alien/advanced_usage/overview/)** – Multi-action, RAG, etc.
-- **[Automator Guide](https://microsoft.github.io/Alien/automator/overview)** – Hybrid GUI + API
+- **[Advanced Features](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/overview/)** – Multi-action, RAG, etc.
+- **[Automator Guide](https://github.com/DEVELOPER-DEEVEN/alien-project/automator/overview)** – Hybrid GUI + API
 - **[Benchmarks](./Alien/README.md#-evaluation)** – WAA & OSWorld results
 
 

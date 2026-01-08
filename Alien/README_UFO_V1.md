@@ -16,7 +16,7 @@
 <b>Alien</b> <img src="../assets/Alien_blue.png" alt="Alien Image" width="24"> operates as a multi-agent framework, encompassing:
 - <b>HostAgent 🤖</b>, tasked with choosing an application for fulfilling user requests. This agent may also switch to a different application when a request spans multiple applications, and the task is partially completed in the preceding application. 
 - <b>AppAgent 👾</b>, responsible for iteratively executing actions on the selected applications until the task is successfully concluded within a specific application. 
-- <b>Application Automator 🎮</b>, is tasked with translating actions from HostAgent and AppAgent into interactions with the application and through UI controls, native APIs or AI tools. Check out more details [here](https://microsoft.github.io/Alien/automator/overview/).
+- <b>Application Automator 🎮</b>, is tasked with translating actions from HostAgent and AppAgent into interactions with the application and through UI controls, native APIs or AI tools. Check out more details [here](https://github.com/DEVELOPER-DEEVEN/alien-project/automator/overview/).
 
 Both agents leverage the multi-modal capabilities of GPT-4V(o) to comprehend the application UI and fulfill the user's request. For more details, please consult our technical report and documentation.
 <h1 align="center">
@@ -24,35 +24,7 @@ Both agents leverage the multi-modal capabilities of GPT-4V(o) to comprehend the
 </h1>
 
 
-## 📢 News
-- 📅 2025-01-21: Version **v1.2.1** Released! We’re excited to announce the release of **v1.2.1**! 🎉 This update includes:
-    1. **Bug Fixes**: Resolved issues in `requirements.txt` for smoother setup.
-    2. **Multi-Action Mode**: Introducing a powerful new feature to execute **multiple actions** in a single inference step! Enable this mode by setting `ACTION_SEQUENCE=True` in `config_dev.yaml` and enjoy a more efficient workflow.
-- 📅 2024-12-13: We have a **New Release for v1.2.0!**! Checkout our new features and improvements:
-    1. **Large Action Model (LAM) Data Collection:** We have released the code and sample data for Large Action Model (LAM) data collection with Alien! Please checkout our [new paper](https://arxiv.org/abs/2412.10047), [code](dataflow/README.md) and [documentation](https://microsoft.github.io/Alien/dataflow/overview/) for more details.    
-    2. **Bash Command Support:** HostAgent also support bash command now!
-    3. **Bug Fixes:** We have fixed some bugs, error handling, and improved the overall performance.
-- 📅 2024-09-08: We have a **New Release for v1.1.0!**, to allows Alien to click on any region of the application and reduces its latency by up tp 1/3!
-- 📅 2024-07-06: We have a **New Release for v1.0.0!**.  You can check out our [documentation](https://microsoft.github.io/Alien/). We welcome your contributions and feedback!
-- 📅 2024-06-28: We are thrilled to announce that our official introduction video is now available on [YouTube](https://www.youtube.com/watch?v=QT_OhygMVXU)!
-<!-- - 📅 2024-06-25: **New Release for v0.2.1!**  We are excited to announce the release of version 0.2.1! This update includes several new features and improvements:
-    1. **HostAgent Refactor:** We've refactored the HostAgent to enhance its efficiency in managing AppAgents within Alien.
-    2. **Evaluation Agent:** Introducing an evaluation agent that assesses task completion and provides real-time feedback.
-    3. **Google Gemini && Claude Support:** Alien now supports Google Gemini and Cluade as the inference engine. Refer to our detailed guide in [Gemini documentation](https://microsoft.github.io/Alien/supported_models/gemini/) or [Claude documentation](https://microsoft.github.io/Alien/supported_models/claude/).
-    4. **Customized User Agents:** Users can now create customized agents by simply answering a few questions.
-- 📅 2024-05-21: We have reached 5K stars!✨
-- 📅 2024-05-08: **New Release for v0.1.1!** We've made some significant updates! Previously known as AppAgent and ActAgent, we've rebranded them to HostAgent and AppAgent to better align with their functionalities. Explore the latest enhancements:
-    1. **Learning from Human Demonstration:** Alien now supports learning from human demonstration! Utilize the [Windows Step Recorder](https://support.microsoft.com/en-us/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) to record your steps and demonstrate them for Alien. Refer to our detailed guide in [README.md](https://microsoft.github.io/Alien/creating_app_agent/demonstration_provision/) for more information.
-    2. **Win32 Support:** We've incorporated support for [Win32](https://learn.microsoft.com/en-us/windows/win32/controls/window-controls) as a control backend, enhancing our UI automation capabilities.
-    3. **Extended Application Interaction:** Alien now goes beyond UI controls, allowing interaction with your application through keyboard inputs and native APIs! Presently, we support Word ([examples](/Alien/prompts/apps/word/api.yaml)), with more to come soon. Customize and build your own interactions.
-    4. **Control Filtering:** Streamline LLM's action process by using control filters to remove irrelevant control items. Enable them in [config_dev.yaml](/Alien/config/config_dev.yaml) under the `control filtering` section at the bottom.
-- 📅 2024-03-25: **New Release for v0.0.1!** Check out our exciting new features.
-    1. We now support creating your help documents for each Windows application to become an app expert. Check the [documentation](https://microsoft.github.io/Alien/creating_app_agent/help_document_provision/) for more details!
-    2. Alien now supports RAG from offline documents and online Bing search.
-    3. You can save the task completion trajectory into its memory for Alien's reference, improving its future success rate!
-    4. You can customize different GPT models for HostAgent and AppAgent. Text-only models (e.g., GPT-4) are now supported! -->
-- 📅 ...
-- 📅 2024-02-14: Our [technical report](https://arxiv.org/abs/2402.07939) is online!
+#
 
 
 
@@ -79,7 +51,7 @@ Alien requires **Python >= 3.10** running on **Windows OS >= 10**. It can be ins
 # conda activate Alien
 
 # clone the repository
-git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/alien-project
 cd Alien
 # install the requirements
 pip install -r requirements.txt
@@ -122,16 +94,16 @@ You can utilize non-visual models (e.g., GPT-4) for each agent by configuring th
 Optionally, you can set a backup language model (LLM) engine in the `BACKUP_AGENT` field to handle cases where the primary engines fail during inference. Ensure you configure these settings accurately to leverage non-visual models effectively.
 
 #### NOTE 💡 
-Alien also supports other LLMs and advanced configurations, such as customize your own model, please check the [documents](https://microsoft.github.io/Alien/supported_models/overview/) for more details. Because of the limitations of model input, a lite version of the prompt is provided to allow users to experience it, which is configured in `config_dev.yaml`.
+Alien also supports other LLMs and advanced configurations, such as customize your own model, please check the [documents](https://github.com/DEVELOPER-DEEVEN/alien-project/supported_models/overview/) for more details. Because of the limitations of model input, a lite version of the prompt is provided to allow users to experience it, which is configured in `config_dev.yaml`.
 
 ### 📔 Step 3: Additional Setting for RAG (optional).
 If you want to enhance Alien's ability with external knowledge, you can optionally configure it with an external database for retrieval augmented generation (RAG) in the `Alien/config/config.yaml` file. 
 
 We provide the following options for RAG to enhance Alien's capabilities:
-- [Offline Help Document](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/learning_from_help_document/) Enable Alien to retrieve information from offline help documents.
-- [Online Bing Search Engine](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/learning_from_bing_search/): Enhance Alien's capabilities by utilizing the most up-to-date online search results.
-- [Self-Experience](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/experience_learning/): Save task completion trajectories into Alien's memory for future reference.
-- [User-Demonstration](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/learning_from_demonstration/): Boost Alien's capabilities through user demonstration.
+- [Offline Help Document](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/learning_from_help_document/) Enable Alien to retrieve information from offline help documents.
+- [Online Bing Search Engine](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/learning_from_bing_search/): Enhance Alien's capabilities by utilizing the most up-to-date online search results.
+- [Self-Experience](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/experience_learning/): Save task completion trajectories into Alien's memory for future reference.
+- [User-Demonstration](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/learning_from_demonstration/): Boost Alien's capabilities through user demonstration.
 
 Consult their respective documentation for more information on how to configure these settings.
 
@@ -215,7 +187,7 @@ You may use them to debug, replay, or analyze the agent output.
 
 
 ## ❓Get help 
-* Please first check our our documentation [here](https://microsoft.github.io/Alien/).
+* Please first check our our documentation [here](https://github.com/DEVELOPER-DEEVEN/alien-project/).
 * ❔GitHub Issues (prefered)
 * For other communications, please contact [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com).
 ---
@@ -257,7 +229,7 @@ Please consult the [WindowsBench](https://arxiv.org/pdf/2402.07939.pdf) provided
 ## 📝 Todo List
 - [x] RAG enhanced Alien.
 - [x] Support more control using Win32 API.
-- [x] [Documentation](https://microsoft.github.io/Alien/).
+- [x] [Documentation](https://github.com/DEVELOPER-DEEVEN/alien-project/).
 - [ ] Support local host GUI interaction model.
 - [ ] Chatbox GUI for Alien.
 

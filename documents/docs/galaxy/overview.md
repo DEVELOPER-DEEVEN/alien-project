@@ -323,7 +323,7 @@ Ready to build your Digital Agent cluster? Follow these steps:
 ### 1. Install Alien³
 ```bash
 # Clone the repository
-git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/alien-project
 cd Alien
 
 # Install dependencies

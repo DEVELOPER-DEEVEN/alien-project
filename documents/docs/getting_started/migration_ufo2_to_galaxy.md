@@ -738,4 +738,4 @@ Use this checklist to track your migration progress:
 
 **🎉 Congratulations!** You're now ready to leverage the full power of Alien³ cluster's multi-device orchestration while preserving your existing Alien² workflows.
 
-For questions or issues, please open an issue on [GitHub](https://github.com/DEVELOPER-DEEVEN/Alien) or check the [documentation](https://microsoft.github.io/Alien/).
+For questions or issues, please open an issue on [GitHub](https://github.com/DEVELOPER-DEEVEN/Alien) or check the [documentation](https://github.com/DEVELOPER-DEEVEN/alien-project/).

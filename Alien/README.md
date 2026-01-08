@@ -29,17 +29,17 @@
 ## ✨ Key Capabilities
 <div align="center">
 
-| [Deep OS Integration](https://microsoft.github.io/Alien)  | Picture‑in‑Picture Desktop *(coming soon)* | [Hybrid GUI + API Actions](https://microsoft.github.io/Alien/automator/overview) |
+| [Deep OS Integration](https://microsoft.github.io/Alien)  | Picture‑in‑Picture Desktop *(coming soon)* | [Hybrid GUI + API Actions](https://github.com/DEVELOPER-DEEVEN/alien-project/automator/overview) |
 |---------------------|-------------------------------------------|---------------------------|
 | Combines Windows UIA, Win32 and WinCOM for first‑class control detection and native commands. | Automation runs in a sandboxed virtual desktop so you can keep using your main screen. | Chooses native APIs when available, falls back to clicks/keystrokes when not—fast *and* robust. |
 
-| [Speculative Multi‑Action](https://microsoft.github.io/Alien/advanced_usage/multi_action) | [Continuous Knowledge Substrate](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/overview/) | [UIA + Visual Control Detection](https://microsoft.github.io/Alien/advanced_usage/control_detection/hybrid_detection) |
+| [Speculative Multi‑Action](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/multi_action) | [Continuous Knowledge Substrate](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/overview/) | [UIA + Visual Control Detection](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/control_detection/hybrid_detection) |
 |--------------------------|--------------------------------|--------------------------------|
 | Bundles several predicted steps into one LLM call, validated live—up to **51 % fewer** queries. | Mixes docs, Bing search, user demos and execution traces via RAG for agents that learn over time. | Detects standard *and* custom controls with a hybrid UIA + vision pipeline. |
 
 </div>
 
-*See the [documentation](https://microsoft.github.io/Alien/) for full details.*
+*See the [documentation](https://github.com/DEVELOPER-DEEVEN/alien-project/) for full details.*
 
 ---
 
@@ -82,7 +82,7 @@ Alien requires **Python >= 3.10** running on **Windows OS >= 10**. It can be ins
 # conda activate Alien
 
 # clone the repository
-git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/alien-project
 cd Alien
 # install the requirements
 pip install -r requirements.txt
@@ -212,7 +212,7 @@ API_MODEL: "gpt-4o",  # The only OpenAI model
 API_DEPLOYMENT_ID: "YOUR_AOAI_DEPLOYMENT", # The deployment id for the AOAI API
 ```
 
-> Need Qwen, Gemini, non‑visual GPT‑4, or even **OpenAI CUA Operator** as a AppAgent? See the [model guide](https://microsoft.github.io/Alien/supported_models/overview/).
+> Need Qwen, Gemini, non‑visual GPT‑4, or even **OpenAI CUA Operator** as a AppAgent? See the [model guide](https://github.com/DEVELOPER-DEEVEN/alien-project/supported_models/overview/).
 
 ### 📔 Step 3: Additional Setting for RAG (optional).
 
@@ -222,10 +222,10 @@ If you want to enhance Alien's ability with external knowledge, you can optional
 **For Legacy Config**: Edit `Alien/config/config.yaml`
 
 We provide the following options for RAG to enhance Alien's capabilities:
-- [Offline Help Document](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/learning_from_help_document/) Enable Alien to retrieve information from offline help documents.
-- [Online Bing Search Engine](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/learning_from_bing_search/): Enhance Alien's capabilities by utilizing the most up-to-date online search results.
-- [Self-Experience](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/experience_learning/): Save task completion trajectories into Alien's memory for future reference.
-- [User-Demonstration](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/learning_from_demonstration/): Boost Alien's capabilities through user demonstration.
+- [Offline Help Document](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/learning_from_help_document/) Enable Alien to retrieve information from offline help documents.
+- [Online Bing Search Engine](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/learning_from_bing_search/): Enhance Alien's capabilities by utilizing the most up-to-date online search results.
+- [Self-Experience](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/experience_learning/): Save task completion trajectories into Alien's memory for future reference.
+- [User-Demonstration](https://github.com/DEVELOPER-DEEVEN/alien-project/advanced_usage/reinforce_appagent/learning_from_demonstration/): Boost Alien's capabilities through user demonstration.
 
 **Example RAG config (`config/Alien/rag.yaml`):**
 ```yaml
@@ -275,7 +275,7 @@ You may use them to debug, replay, or analyze the agent output.
 
 
 ## ❓Get help 
-* Please first check our our documentation [here](https://microsoft.github.io/Alien/).
+* Please first check our our documentation [here](https://github.com/DEVELOPER-DEEVEN/alien-project/).
 * ❔GitHub Issues (prefered)
 * For other communications, please contact [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com).
 
@@ -392,7 +392,7 @@ If you prefer manual migration or want to understand what the conversion tool do
 
 For complete migration details including code examples, testing procedures, rollback instructions, and configuration file mapping, see:
 
-**📖 [Complete Migration Documentation](https://microsoft.github.io/Alien/configuration/system/migration/)**
+**📖 [Complete Migration Documentation](https://github.com/DEVELOPER-DEEVEN/alien-project/configuration/system/migration/)**
 
 ---
 
@@ -402,8 +402,8 @@ Alien² is rigorously benchmarked on two publicly‑available live‑task suites
 
 | Benchmark | Scope | Documents |
 |-----------|-------|-------|
-| [**Windows Agent Arena (WAA)**](https://github.com/nice-mee/WindowsAgentArena) | 154 real Windows tasks across 15 applications (Office, Edge, File Explorer, VS Code, …) | <https://microsoft.github.io/Alien/benchmark/windows_agent_arena/> |
-| [**OSWorld (Windows)**](https://github.com/nice-mee/WindowsAgentArena/tree/2020-qqtcg/osworld) | 49 cross‑application tasks that mix Office 365, browser and system utilities | <https://microsoft.github.io/Alien/benchmark/osworld> |
+| [**Windows Agent Arena (WAA)**](https://github.com/nice-mee/WindowsAgentArena) | 154 real Windows tasks across 15 applications (Office, Edge, File Explorer, VS Code, …) | <https://github.com/DEVELOPER-DEEVEN/alien-project/benchmark/windows_agent_arena/> |
+| [**OSWorld (Windows)**](https://github.com/nice-mee/WindowsAgentArena/tree/2020-qqtcg/osworld) | 49 cross‑application tasks that mix Office 365, browser and system utilities | <https://github.com/DEVELOPER-DEEVEN/alien-project/benchmark/osworld> |
 
 The integration of these benchmarks into Alien² is in separate repositories. Please follow the above documents for more details.
 

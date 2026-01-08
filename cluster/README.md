@@ -189,7 +189,7 @@ Enables platform extension (mobile, web, IoT, embedded).
 
 ```powershell
 # Clone repository
-git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/alien-project
 cd Alien
 
 # Create environment (recommended)

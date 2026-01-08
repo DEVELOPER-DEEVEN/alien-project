@@ -24,7 +24,7 @@ conda create -n Alien python=3.10
 conda activate Alien
 
 # Clone the repository
-git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/alien-project
 cd Alien
 
 # Install dependencies
@@ -321,7 +321,7 @@ python -m Alien.tools.convert_config --force
 
 ## ❓ Getting Help
 
-- 📖 **Documentation**: [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
+- 📖 **Documentation**: [https://github.com/DEVELOPER-DEEVEN/alien-project/](https://github.com/DEVELOPER-DEEVEN/alien-project/)
 - 🐛 **GitHub Issues**: [https://github.com/DEVELOPER-DEEVEN/Alien/issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues) (preferred)
 - 📧 **Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
 
