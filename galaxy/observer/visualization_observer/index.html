@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>DAG Visualization Observer - Alien³ Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DAG Visualization Observer";
+        var mkdocs_page_input_path = "galaxy/observer/visualization_observer.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Alien³ Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../choose_path/">Choose Your Path</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../project_directory_structure/">Project Directory Structure</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../getting_started/quick_start_cluster.md">Quick Start (Alien³ Agent cluster)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../getting_started/quick_start_Alien-Unis.md">Quick Start (Alien²)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quick_start_linux/">Quick Start (Linux Agent)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quick_start_mobile/">Quick Start (Mobile Agent)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../getting_started/migration_Alien-Unis_to_cluster.md">Migration Alien² → Alien³</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/more_guidance/">More Guidance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Setup</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Configuration System</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/agents_config/">Agent Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/system_config/">System Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/rag_config/">RAG Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/prices_config/">Pricing Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/third_party_config/">Third-Party Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/mcp_reference/">MCP Reference</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/migration/">Migration Guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/system/extending/">Extending Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >cluster Configuration</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../configuration/system/cluster_devices.md">Devices</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../configuration/system/cluster_network.md">network</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../configuration/system/cluster_agent.md">Agent</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model Setup</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/openai/">OpenAI</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/azure_openai/">Azure OpenAI</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/operator/">OpenAI CUA (Operator)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/gemini/">Gemini</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/claude/">Claude</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/qwen/">Qwen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/deepseek/">DeepSeek</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/ollama/">Ollama</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../configuration/models/custom_model/">Custom Model</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Alien³ Agent cluster</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../cluster/overview.md">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../cluster/webui.md">WebUI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >cluster Client</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/network_client.md">networkClient</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/device_manager.md">DeviceManager</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/components.md">Components</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/aip_integration.md">AIP Integration</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/cluster_client.md">clusterClient</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Agent Registration</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/agent_profile.md">Agent Profile</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/device_registry.md">Device Registry</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/registration_flow.md">Registration Flow</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Task network (DAG)</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/task_star.md">TaskStar</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/task_star_line.md">TaskStarLine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/task_network.md">Tasknetwork</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/network_editor.md">networkEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >network Agent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/strategy.md">Strategy Pattern</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/command.md">MCP Commands</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >network Orchestrator</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/event_driven_coordination.md">Event-Driven Coordination</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/asynchronous_scheduling.md">Asynchronous Scheduling</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/safe_assignment_locking.md">Safe Assignment Locking</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/consistency_guarantees.md">Consistency Guarantees</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/batched_editing.md">Batched Editing</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/network_manager.md">network Manager</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/api_reference.md">API Reference</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Observer System</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/event_system.md">Event System</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/progress_observer.md">Progress Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/agent_output_observer.md">Agent Output Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/synchronizer.md">Synchronizer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/metrics_observer.md">Metrics Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/visualization_observer.md">Visualization Observer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation & Logging</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/evaluation/trajectory_report.md">Trajectory Report</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/evaluation/performance_metrics.md">Performance Metrics</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/evaluation/result_json.md">Result JSON Reference</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Alien² Desktop AgentOS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../Alien-Unis/overview.md">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../Alien-Unis/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >HostAgent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/strategy.md">Processing Strategy</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/commands.md">Command System</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >AppAgent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/strategy.md">Processing Strategy</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/commands.md">Command System</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core Features</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/core_features/hybrid_actions.md">Hybrid GUI–API Actions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Control Detection</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/uia_detection.md">UIA Detection</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/visual_detection.md">Visual Detection</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/hybrid_detection.md">Hybrid Detection</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Knowledge Substrate</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/learning_from_help_document.md">Help Documents</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/learning_from_bing_search.md">Bing Search</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/experience_learning.md">Experience Learning</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/learning_from_demonstration.md">Demos</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/core_features/multi_action.md">Speculative Multi-Action</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Advanced Usage</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/follower_mode.md">Follower Mode</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/batch_mode.md">Batch Mode</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/operator_as_app_agent.md">Operator Integration</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/customization.md">Customization</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Prompts</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/prompts/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/prompts/basic_template.md">Basic Template</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/prompts/examples_prompts.md">Examples</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/evaluation_agent.md">EvaluationAgent</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/benchmark/overview.md">Benchmark Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/benchmark/windows_agent_arena.md">Windows Agent Arena</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/benchmark/osworld.md">OSWorld (Windows)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Performance Logs</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/evaluation_logs.md">Evaluation Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/markdown_log_viewer.md">Markdown Log Viewer</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/request_logs.md">Request Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/screenshots_logs.md">Screenshots Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/step_logs.md">Step Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/ui_tree_logs.md">UI Tree Logs</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Dataflow</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/instantiation.md">Instantiation</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/execution.md">Execution</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/windows_app_env.md">Windows App Environment</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/result.md">Result</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux Agent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../linux/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/state/">State Machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/strategy/">Processing Strategy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/commands/">MCP Commands</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mobile Agent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../mobile/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/state/">State Machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/strategy/">Processing Strategy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/commands/">MCP Commands</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials & Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/creating_mcp_servers/">Creating Custom MCP Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/creating_third_party_agents/">Creating Custom Third-Party Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Creating Custom Device Agents</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/client_setup/">Client Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/core_components/">Core Components</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/mcp_server/">MCP Server</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/testing/">Testing</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/example_mobile_agent/">Example Mobile Agent</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Enhancing AppAgent Capabilities</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/help_document_provision/">Help Document Provision</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/demonstration_provision/">Demonstration Provision</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/warpping_app_native_api/">Wrapping App-Native APIs</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Infrastructure</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Modules</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/session/">Session</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/round/">Round</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/context/">Context</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/dispatcher/">Dispatcher</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/session_pool/">Session Factory & Pool</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/platform_sessions/">Platform Sessions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Device Agent Architecture</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/agents/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/agents/agent_types/">Agent Types & Implementation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/agents/server_client_architecture/">Server-Client Architecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Architecture Layers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/state/">State Layer (Level-1)</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/processor/">Strategy Layer (Level-2)</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/strategy/">Strategy Components</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/command/">Command Layer (Level-3)</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Supporting Systems</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/memory/">Memory System</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/blackboard/">Blackboard</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/prompter/">Prompter</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Interaction Protocol (AIP)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/messages/">Message Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/protocols/">Protocol Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/transport/">Transport Layer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/endpoints/">Endpoints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/resilience/">Resilience</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Server</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/quick_start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/session_manager/">Session Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/websocket_handler/">WebSocket Handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/client_connection_manager/">Client Connection Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/api/">HTTP API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/monitoring/">Monitoring</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Client</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/quick_start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/websocket_client/">WebSocket Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../client/Alien_client.md">Alien Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/computer_manager/">Computer Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/computer/">Computer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/device_info/">Device Info Provider</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/mcp_integration/">MCP Integration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MCP (Model Context Protocol)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/data_collection/">Data Collection Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/action/">Action Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/configuration/">Configuration Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/local_servers/">Local Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/remote_servers/">Remote Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Server Reference</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/ui_collector/">UICollector</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/host_ui_executor/">HostUIExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/app_ui_executor/">AppUIExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/command_line_executor/">CommandLineExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/word_com_executor/">WordCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/excel_com_executor/">ExcelCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/ppt_com_executor/">PowerPointCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/pdf_reader_executor/">PDFReaderExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../mcp/servers/network_editor.md">networkEditor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/hardware_executor/">HardwareExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/bash_executor/">BashExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/mobile_executor/">MobileExecutor</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/CONTRIBUTING/">Contributing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/LICENSE/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/CODE_OF_CONDUCT/">Code of Conduct</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/DISCLAIMER/">Disclaimer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/SUPPORT/">Support</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Alien³ Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">DAG Visualization Observer</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="dag-visualization-observer">DAG Visualization Observer</h1>
+<p>The <strong>DAGVisualizationObserver</strong> provides real-time visual feedback during network execution. It displays DAG topology, task progress, and network modifications using rich terminal graphics.</p>
+<p><strong>Location:</strong> <code>cluster/session/observers/dag_visualization_observer.py</code></p>
+<h2 id="purpose">Purpose</h2>
+<p>The Visualization Observer enables developers and users to:</p>
+<ul>
+<li><strong>See DAG Structure</strong> — View network topology and task dependencies</li>
+<li><strong>Monitor Progress</strong> — Track task execution in real-time</li>
+<li><strong>Observe Modifications</strong> — Visualize how the network changes</li>
+<li><strong>Debug Issues</strong> — Identify bottlenecks and failed tasks visually</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<p>The observer uses a <strong>delegation pattern</strong> with specialized handlers:</p>
+<div class="mermaid">graph TB
+    subgraph "Main Observer"
+        DVO[DAGVisualizationObserver]
+        CE[network Events]
+        TE[Task Events]
+    end
+
+    subgraph "Specialized Handlers"
+        CVH[networkVisualizationHandler]
+        TVH[TaskVisualizationHandler]
+    end
+
+    subgraph "Display Components"
+        CD[networkDisplay]
+        TD[TaskDisplay]
+        DV[DAGVisualizer]
+    end
+
+    DVO --&gt; CE
+    DVO --&gt; TE
+    CE --&gt; CVH
+    TE --&gt; TVH
+
+    CVH --&gt; CD
+    CVH --&gt; DV
+    TVH --&gt; TD
+    TVH --&gt; DV
+
+    style DVO fill:#66bb6a,stroke:#333,stroke-width:3px
+    style CVH fill:#ffa726,stroke:#333,stroke-width:2px
+    style TVH fill:#ffa726,stroke:#333,stroke-width:2px</div>
+<p><strong>Component Responsibilities:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+<th>Handled Events</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DAGVisualizationObserver</strong></td>
+<td>Main coordinator, routes events</td>
+<td>All network and task events</td>
+</tr>
+<tr>
+<td><strong>networkVisualizationHandler</strong></td>
+<td>Handles network-level displays</td>
+<td>network_STARTED, COMPLETED, MODIFIED</td>
+</tr>
+<tr>
+<td><strong>TaskVisualizationHandler</strong></td>
+<td>Handles task-level displays</td>
+<td>TASK_STARTED, COMPLETED, FAILED</td>
+</tr>
+<tr>
+<td><strong>DAGVisualizer</strong></td>
+<td>Renders complex DAG visualizations</td>
+<td>Used by handlers for topology</td>
+</tr>
+<tr>
+<td><strong>networkDisplay</strong></td>
+<td>Renders network information</td>
+<td>Used by handler for network events</td>
+</tr>
+<tr>
+<td><strong>TaskDisplay</strong></td>
+<td>Renders task information</td>
+<td>Used by handler for task events</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation">Implementation</h2>
+<h3 id="initialization">Initialization</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cluster.session.observers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DAGVisualizationObserver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rich.console</span><span class="w"> </span><span class="kn">import</span> <span class="n">Console</span>
+
+<span class="c1"># Create visualization observer</span>
+<span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span>
+    <span class="n">enable_visualization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">console</span><span class="o">=</span><span class="n">Console</span><span class="p">()</span>  <span class="c1"># Optional: provide custom console</span>
+<span class="p">)</span>
+
+<span class="c1"># Subscribe to event bus</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cluster.core.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_bus</span>
+<span class="n">event_bus</span> <span class="o">=</span> <span class="n">get_event_bus</span><span class="p">()</span>
+<span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Constructor Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_visualization</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>Whether to enable visualization</td>
+</tr>
+<tr>
+<td><code>console</code></td>
+<td><code>rich.Console</code></td>
+<td><code>None</code></td>
+<td>Optional rich console for output</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disabling-visualization">Disabling Visualization</h3>
+<p>Visualization can be toggled at runtime:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable visualization temporarily</span>
+<span class="n">viz_observer</span><span class="o">.</span><span class="n">set_visualization_enabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Re-enable</span>
+<span class="n">viz_observer</span><span class="o">.</span><span class="n">set_visualization_enabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="visualization-types">Visualization Types</h2>
+<p>The observer produces several types of visualizations:</p>
+<h3 id="1-network-started">1. network Started</h3>
+<p>Displays when a network begins execution:</p>
+<div class="highlight"><pre><span></span><code>╭──────────────────────────────────────────────────────────────╮
+│ 🌟 network Started: email_batch_network          │
+├──────────────────────────────────────────────────────────────┤
+│ ID: const_abc123                                             │
+│ Total Tasks: 8                                               │
+│ Status: ACTIVE                                               │
+│ Parallel Capacity: 3                                         │
+╰──────────────────────────────────────────────────────────────╯
+</code></pre></div>
+<p>Followed by DAG topology:</p>
+<div class="mermaid">graph TD
+    fetch_emails[Fetch Emails]
+    parse_1[Parse Email 1]
+    parse_2[Parse Email 2]
+    parse_3[Parse Email 3]
+    reply_1[Reply Email 1]
+    reply_2[Reply Email 2]
+    reply_3[Reply Email 3]
+    summarize[Summarize Results]
+
+    fetch_emails --&gt; parse_1
+    fetch_emails --&gt; parse_2
+    fetch_emails --&gt; parse_3
+    parse_1 --&gt; reply_1
+    parse_2 --&gt; reply_2
+    parse_3 --&gt; reply_3
+    reply_1 --&gt; summarize
+    reply_2 --&gt; summarize
+    reply_3 --&gt; summarize</div>
+<h3 id="2-task-progress">2. Task Progress</h3>
+<p>Displays task execution events:</p>
+<p><strong>Task Started:</strong>
+<div class="highlight"><pre><span></span><code>▶ Task Started: parse_email_1
+  └─ Type: parse_email
+  └─ Device: windows_pc_001
+  └─ Priority: MEDIUM
+</code></pre></div></p>
+<p><strong>Task Completed:</strong>
+<div class="highlight"><pre><span></span><code>✅ Task Completed: parse_email_1
+   Duration: 2.3s
+   Result: Parsed 1 email with 2 attachments
+   Newly Ready: [reply_email_1]
+</code></pre></div></p>
+<p><strong>Task Failed:</strong>
+<div class="highlight"><pre><span></span><code>❌ Task Failed: parse_email_2
+   Duration: 1.8s
+   Error: NetworkTimeout: Failed to connect to email server
+   Retry: 1/3
+   Newly Ready: []
+</code></pre></div></p>
+<h3 id="3-network-modified">3. network Modified</h3>
+<p>Shows structural changes to the network:</p>
+<div class="highlight"><pre><span></span><code>🔄 network Modified: email_batch_network
+   Modification Type: add_tasks
+   On Task: parse_email_1
+
+   Changes:
+   ├─ Tasks Added: 2
+   │  └─ extract_attachment_1
+   │  └─ extract_attachment_2
+   ├─ Dependencies Added: 2
+   │  └─ parse_email_1 → extract_attachment_1
+   │  └─ parse_email_1 → extract_attachment_2
+   └─ Tasks Modified: 1
+      └─ reply_email_1 (dependencies updated)
+</code></pre></div>
+<p>Followed by updated DAG topology showing new tasks.</p>
+<h3 id="4-execution-flow">4. Execution Flow</h3>
+<p>Shows current execution state (for smaller networks):</p>
+<div class="highlight"><pre><span></span><code>Execution Flow:
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┓
+┃ Task ID         ┃ Status    ┃ Device  ┃ Duration ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━┩
+│ fetch_emails    │ COMPLETED │ win_001 │ 1.2s     │
+│ parse_email_1   │ RUNNING   │ win_001 │ 0.8s...  │
+│ parse_email_2   │ RUNNING   │ mac_002 │ 0.5s...  │
+│ parse_email_3   │ PENDING   │ -       │ -        │
+│ reply_email_1   │ PENDING   │ -       │ -        │
+└─────────────────┴───────────┴─────────┴──────────┘
+</code></pre></div>
+<h2 id="event-handling-flow">Event Handling Flow</h2>
+<div class="mermaid">sequenceDiagram
+    participant O as Orchestrator
+    participant EB as EventBus
+    participant DVO as DAGVisualizationObserver
+    participant CVH as networkHandler
+    participant TVH as TaskHandler
+    participant D as Display Components
+
+    O-&gt;&gt;EB: network_STARTED
+    EB-&gt;&gt;DVO: on_event(event)
+    DVO-&gt;&gt;CVH: handle_network_event()
+    CVH-&gt;&gt;D: Display network start
+    CVH-&gt;&gt;D: Display DAG topology
+
+    O-&gt;&gt;EB: TASK_STARTED
+    EB-&gt;&gt;DVO: on_event(event)
+    DVO-&gt;&gt;TVH: handle_task_event()
+    TVH-&gt;&gt;D: Display task start
+
+    O-&gt;&gt;EB: TASK_COMPLETED
+    EB-&gt;&gt;DVO: on_event(event)
+    DVO-&gt;&gt;TVH: handle_task_event()
+    TVH-&gt;&gt;D: Display task completion
+    TVH-&gt;&gt;D: Display execution flow
+
+    Note over O: Agent modifies network
+
+    O-&gt;&gt;EB: network_MODIFIED
+    EB-&gt;&gt;DVO: on_event(event)
+    DVO-&gt;&gt;CVH: handle_network_event()
+    CVH-&gt;&gt;D: Display modifications
+    CVH-&gt;&gt;D: Display updated topology</div>
+<h2 id="api-reference">API Reference</h2>
+<h3 id="main-observer-methods">Main Observer Methods</h3>
+<h4 id="constructor">Constructor</h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> 
+    <span class="n">enable_visualization</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="n">console</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>enable_visualization</code> — Enable/disable visualization output</li>
+<li><code>console</code> — Optional <code>rich.Console</code> for output control</li>
+</ul>
+<h4 id="set_visualization_enabled">set_visualization_enabled()</h4>
+<p>Toggle visualization at runtime:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_visualization_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable during bulk operations</span>
+<span class="n">viz_observer</span><span class="o">.</span><span class="n">set_visualization_enabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_network</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+
+<span class="c1"># Re-enable for interactive use</span>
+<span class="n">viz_observer</span><span class="o">.</span><span class="n">set_visualization_enabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="network-management">network Management</h3>
+<h4 id="register_network">register_network()</h4>
+<p>Manually register a network for visualization:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">register_network</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">network_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="n">network</span><span class="p">:</span> <span class="n">Tasknetwork</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Use Case:</strong> Pre-register networks before execution starts.</p>
+<h4 id="get_network">get_network()</h4>
+<p>Retrieve stored network reference:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">network_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tasknetwork</span><span class="p">]</span>
+</code></pre></div>
+<h4 id="clear_networks">clear_networks()</h4>
+<p>Clear all stored network references:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clear_networks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+<h2 id="customization">Customization</h2>
+<h3 id="custom-console">Custom Console</h3>
+<p>Provide custom Rich console for output control:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rich.console</span><span class="w"> </span><span class="kn">import</span> <span class="n">Console</span>
+
+<span class="c1"># Console with custom width and theme</span>
+<span class="n">custom_console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">theme</span><span class="o">=</span><span class="n">my_custom_theme</span><span class="p">,</span>
+    <span class="n">record</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Enable recording for export</span>
+<span class="p">)</span>
+
+<span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span>
+    <span class="n">enable_visualization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">console</span><span class="o">=</span><span class="n">custom_console</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="selective-visualization">Selective Visualization</h3>
+<p>Visualize only specific event types:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cluster.core.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">EventType</span>
+
+<span class="c1"># Subscribe to specific events only</span>
+<span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">EventType</span><span class="o">.</span><span class="n">network_STARTED</span><span class="p">,</span>
+    <span class="n">EventType</span><span class="o">.</span><span class="n">network_MODIFIED</span><span class="p">,</span>
+    <span class="n">EventType</span><span class="o">.</span><span class="n">TASK_FAILED</span>  <span class="c1"># Only show failures</span>
+<span class="p">})</span>
+</code></pre></div>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="example-1-basic-visualization">Example 1: Basic Visualization</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">cluster.session.observers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DAGVisualizationObserver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cluster.core.events</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_event_bus</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">visualize_execution</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute network with visualization.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create and subscribe visualization observer</span>
+    <span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span><span class="n">enable_visualization</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">event_bus</span> <span class="o">=</span> <span class="n">get_event_bus</span><span class="p">()</span>
+    <span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+
+    <span class="c1"># Execute network (visualization happens automatically)</span>
+    <span class="k">await</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_network</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+
+    <span class="c1"># Clean up</span>
+    <span class="n">event_bus</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="example-2-conditional-visualization">Example 2: Conditional Visualization</h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute_with_conditional_viz</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute with visualization only if verbose mode enabled.&quot;&quot;&quot;</span>
+
+    <span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span><span class="n">enable_visualization</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+    <span class="n">event_bus</span> <span class="o">=</span> <span class="n">get_event_bus</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_network</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">event_bus</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="example-3-export-visualization">Example 3: Export Visualization</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rich.console</span><span class="w"> </span><span class="kn">import</span> <span class="n">Console</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">execute_and_export_visualization</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute network and export visualization to HTML.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create console with recording enabled</span>
+    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+    <span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span>
+        <span class="n">enable_visualization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">console</span><span class="o">=</span><span class="n">console</span>
+    <span class="p">)</span>
+
+    <span class="n">event_bus</span> <span class="o">=</span> <span class="n">get_event_bus</span><span class="p">()</span>
+    <span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_network</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">event_bus</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+
+    <span class="c1"># Export recorded output to HTML</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">save_html</span><span class="p">(</span><span class="s2">&quot;execution_visualization.html&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Visualization saved to execution_visualization.html&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="example-4-multiple-networks">Example 4: Multiple networks</h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">visualize_multiple_networks</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Visualize multiple network executions.&quot;&quot;&quot;</span>
+
+    <span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span><span class="n">enable_visualization</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">event_bus</span> <span class="o">=</span> <span class="n">get_event_bus</span><span class="p">()</span>
+    <span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">network</span> <span class="ow">in</span> <span class="n">networks</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">60</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executing: </span><span class="si">{</span><span class="n">network</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">60</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">await</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_network</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+
+            <span class="c1"># Clear network references between executions</span>
+            <span class="n">viz_observer</span><span class="o">.</span><span class="n">clear_networks</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">event_bus</span><span class="o">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="visualization-overhead">Visualization Overhead</h3>
+<p>Visualization adds minimal overhead:</p>
+<ul>
+<li><strong>Small DAGs</strong> (&lt; 10 tasks): Negligible impact</li>
+<li><strong>Medium DAGs</strong> (10-50 tasks): &lt; 1% overhead</li>
+<li><strong>Large DAGs</strong> (&gt; 50 tasks): Topology rendering may be slow</li>
+</ul>
+<h3 id="optimization-strategies">Optimization Strategies</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Strategy 1: Disable for large networks</span>
+<span class="k">if</span> <span class="n">network</span><span class="o">.</span><span class="n">task_count</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="n">viz_observer</span><span class="o">.</span><span class="n">set_visualization_enabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Strategy 2: Subscribe to fewer events</span>
+<span class="n">event_bus</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">viz_observer</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">EventType</span><span class="o">.</span><span class="n">network_STARTED</span><span class="p">,</span>
+    <span class="n">EventType</span><span class="o">.</span><span class="n">network_COMPLETED</span><span class="p">,</span>
+    <span class="n">EventType</span><span class="o">.</span><span class="n">TASK_FAILED</span>  <span class="c1"># Only show problems</span>
+<span class="p">})</span>
+
+<span class="c1"># Strategy 3: Conditional topology display</span>
+<span class="c1"># (Handler automatically skips topology for networks &gt; 10 tasks)</span>
+</code></pre></div>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="1-enable-for-interactive-sessions">1. Enable for Interactive Sessions</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># ✅ Good: Interactive development/debugging</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span><span class="n">enable_visualization</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+
+<span class="c1"># ✅ Good: Batch processing</span>
+<span class="k">if</span> <span class="n">running_in_batch_mode</span><span class="p">:</span>
+    <span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span><span class="n">enable_visualization</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="2-clean-up-network-references">2. Clean Up network References</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># After processing many networks</span>
+<span class="k">for</span> <span class="n">network</span> <span class="ow">in</span> <span class="n">network_list</span><span class="p">:</span>
+    <span class="k">await</span> <span class="n">orchestrator</span><span class="o">.</span><span class="n">execute_network</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="n">viz_observer</span><span class="o">.</span><span class="n">clear_networks</span><span class="p">()</span>  <span class="c1"># Free memory</span>
+</code></pre></div>
+<h3 id="3-export-for-documentation">3. Export for Documentation</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Record visualization for documentation/reports</span>
+<span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">viz_observer</span> <span class="o">=</span> <span class="n">DAGVisualizationObserver</span><span class="p">(</span><span class="n">console</span><span class="o">=</span><span class="n">console</span><span class="p">)</span>
+
+<span class="c1"># ... execute network ...</span>
+
+<span class="c1"># Export</span>
+<span class="n">console</span><span class="o">.</span><span class="n">save_html</span><span class="p">(</span><span class="s2">&quot;docs/execution_example.html&quot;</span><span class="p">)</span>
+<span class="n">console</span><span class="o">.</span><span class="n">save_text</span><span class="p">(</span><span class="s2">&quot;logs/execution.txt&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="related-documentation">Related Documentation</h2>
+<ul>
+<li><strong><a href="../overview/">Observer System Overview</a></strong> — Architecture and design</li>
+<li><strong><a href="../progress_observer/">Progress Observer</a></strong> — Task completion tracking</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>The DAG Visualization Observer:</p>
+<ul>
+<li><strong>Displays</strong> network structure and execution progress</li>
+<li><strong>Delegates</strong> to specialized handlers for clean separation</li>
+<li><strong>Uses</strong> Rich terminal graphics for beautiful output</li>
+<li><strong>Supports</strong> conditional enabling/disabling</li>
+<li><strong>Exports</strong> visualization for documentation</li>
+</ul>
+<p>This observer is essential for understanding and debugging network execution, providing intuitive visual feedback for complex DAG workflows.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      <script src="../../../javascripts/mermaid-init.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

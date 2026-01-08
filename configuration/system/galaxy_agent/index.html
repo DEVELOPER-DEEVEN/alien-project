@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>cluster network Agent Configuration - Alien³ Documentation</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "cluster network Agent Configuration";
+        var mkdocs_page_input_path = "configuration/system/galaxy_agent.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../.." class="icon icon-home"> Alien³ Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../choose_path/">Choose Your Path</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../project_directory_structure/">Project Directory Structure</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../getting_started/quick_start_cluster.md">Quick Start (Alien³ Agent cluster)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../getting_started/quick_start_Alien-Unis.md">Quick Start (Alien²)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quick_start_linux/">Quick Start (Linux Agent)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quick_start_mobile/">Quick Start (Mobile Agent)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../getting_started/migration_Alien-Unis_to_cluster.md">Migration Alien² → Alien³</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/more_guidance/">More Guidance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Setup</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Configuration System</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../agents_config/">Agent Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../system_config/">System Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../rag_config/">RAG Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../prices_config/">Pricing Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../third_party_config/">Third-Party Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../mcp_reference/">MCP Reference</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../migration/">Migration Guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../extending/">Extending Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >cluster Configuration</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../cluster_devices.md">Devices</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../cluster_network.md">network</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../cluster_agent.md">Agent</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model Setup</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/openai/">OpenAI</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/azure_openai/">Azure OpenAI</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/operator/">OpenAI CUA (Operator)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/gemini/">Gemini</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/claude/">Claude</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/qwen/">Qwen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/deepseek/">DeepSeek</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/ollama/">Ollama</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../models/custom_model/">Custom Model</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Alien³ Agent cluster</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../cluster/overview.md">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../cluster/webui.md">WebUI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >cluster Client</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/network_client.md">networkClient</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/device_manager.md">DeviceManager</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/components.md">Components</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/aip_integration.md">AIP Integration</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/client/cluster_client.md">clusterClient</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Agent Registration</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/agent_profile.md">Agent Profile</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/device_registry.md">Device Registry</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/agent_registration/registration_flow.md">Registration Flow</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Task network (DAG)</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/task_star.md">TaskStar</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/task_star_line.md">TaskStarLine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/task_network.md">Tasknetwork</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network/network_editor.md">networkEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >network Agent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/strategy.md">Strategy Pattern</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_agent/command.md">MCP Commands</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >network Orchestrator</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/event_driven_coordination.md">Event-Driven Coordination</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/asynchronous_scheduling.md">Asynchronous Scheduling</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/safe_assignment_locking.md">Safe Assignment Locking</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/consistency_guarantees.md">Consistency Guarantees</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/batched_editing.md">Batched Editing</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/network_manager.md">network Manager</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/network_orchestrator/api_reference.md">API Reference</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Observer System</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/event_system.md">Event System</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/progress_observer.md">Progress Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/agent_output_observer.md">Agent Output Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/synchronizer.md">Synchronizer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/metrics_observer.md">Metrics Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/observer/visualization_observer.md">Visualization Observer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation & Logging</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../cluster/evaluation/trajectory_report.md">Trajectory Report</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/evaluation/performance_metrics.md">Performance Metrics</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../cluster/evaluation/result_json.md">Result JSON Reference</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Alien² Desktop AgentOS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../../Alien-Unis/overview.md">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../Alien-Unis/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >HostAgent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/strategy.md">Processing Strategy</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/host_agent/commands.md">Command System</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >AppAgent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/strategy.md">Processing Strategy</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/app_agent/commands.md">Command System</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core Features</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/core_features/hybrid_actions.md">Hybrid GUI–API Actions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Control Detection</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/uia_detection.md">UIA Detection</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/visual_detection.md">Visual Detection</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/control_detection/hybrid_detection.md">Hybrid Detection</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Knowledge Substrate</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/learning_from_help_document.md">Help Documents</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/learning_from_bing_search.md">Bing Search</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/experience_learning.md">Experience Learning</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/core_features/knowledge_substrate/learning_from_demonstration.md">Demos</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/core_features/multi_action.md">Speculative Multi-Action</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Advanced Usage</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/follower_mode.md">Follower Mode</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/batch_mode.md">Batch Mode</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/operator_as_app_agent.md">Operator Integration</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/advanced_usage/customization.md">Customization</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Prompts</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/prompts/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/prompts/basic_template.md">Basic Template</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/prompts/examples_prompts.md">Examples</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/evaluation_agent.md">EvaluationAgent</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/benchmark/overview.md">Benchmark Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/benchmark/windows_agent_arena.md">Windows Agent Arena</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/evaluation/benchmark/osworld.md">OSWorld (Windows)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Performance Logs</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/evaluation_logs.md">Evaluation Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/markdown_log_viewer.md">Markdown Log Viewer</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/request_logs.md">Request Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/screenshots_logs.md">Screenshots Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/step_logs.md">Step Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../../Alien-Unis/evaluation/logs/ui_tree_logs.md">UI Tree Logs</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Dataflow</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/instantiation.md">Instantiation</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/execution.md">Execution</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/windows_app_env.md">Windows App Environment</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../Alien-Unis/dataflow/result.md">Result</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux Agent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../linux/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/state/">State Machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/strategy/">Processing Strategy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../linux/commands/">MCP Commands</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mobile Agent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../mobile/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/state/">State Machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/strategy/">Processing Strategy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mobile/commands/">MCP Commands</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials & Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/creating_mcp_servers/">Creating Custom MCP Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/creating_third_party_agents/">Creating Custom Third-Party Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Creating Custom Device Agents</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/client_setup/">Client Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/core_components/">Core Components</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/mcp_server/">MCP Server</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/testing/">Testing</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_device_agent/example_mobile_agent/">Example Mobile Agent</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Enhancing AppAgent Capabilities</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/help_document_provision/">Help Document Provision</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/demonstration_provision/">Demonstration Provision</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../tutorials/creating_app_agent/warpping_app_native_api/">Wrapping App-Native APIs</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Infrastructure</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Modules</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/session/">Session</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/round/">Round</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/context/">Context</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/dispatcher/">Dispatcher</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/session_pool/">Session Factory & Pool</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/modules/platform_sessions/">Platform Sessions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Device Agent Architecture</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/agents/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/agents/agent_types/">Agent Types & Implementation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../infrastructure/agents/server_client_architecture/">Server-Client Architecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Architecture Layers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/state/">State Layer (Level-1)</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/processor/">Strategy Layer (Level-2)</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/strategy/">Strategy Components</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/command/">Command Layer (Level-3)</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Supporting Systems</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/memory/">Memory System</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/blackboard/">Blackboard</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../../infrastructure/agents/design/prompter/">Prompter</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Interaction Protocol (AIP)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/messages/">Message Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/protocols/">Protocol Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/transport/">Transport Layer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/endpoints/">Endpoints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../aip/resilience/">Resilience</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Server</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/quick_start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/session_manager/">Session Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/websocket_handler/">WebSocket Handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/client_connection_manager/">Client Connection Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/api/">HTTP API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../server/monitoring/">Monitoring</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Client</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/quick_start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/websocket_client/">WebSocket Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../../client/Alien_client.md">Alien Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/computer_manager/">Computer Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/computer/">Computer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/device_info/">Device Info Provider</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../client/mcp_integration/">MCP Integration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MCP (Model Context Protocol)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/data_collection/">Data Collection Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/action/">Action Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/configuration/">Configuration Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/local_servers/">Local Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../mcp/remote_servers/">Remote Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Server Reference</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/ui_collector/">UICollector</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/host_ui_executor/">HostUIExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/app_ui_executor/">AppUIExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/command_line_executor/">CommandLineExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/word_com_executor/">WordCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/excel_com_executor/">ExcelCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/ppt_com_executor/">PowerPointCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/pdf_reader_executor/">PDFReaderExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../../mcp/servers/network_editor.md">networkEditor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/hardware_executor/">HardwareExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/bash_executor/">BashExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../mcp/servers/mobile_executor/">MobileExecutor</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/CONTRIBUTING/">Contributing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/LICENSE/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/CODE_OF_CONDUCT/">Code of Conduct</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/DISCLAIMER/">Disclaimer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../about/SUPPORT/">Support</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">Alien³ Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">cluster network Agent Configuration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="cluster-network-agent-configuration">cluster network Agent Configuration</h1>
+<p><strong>agent.yaml</strong> configures the <strong>network Agent</strong> - the AI agent responsible for creating networks (task decomposition) and editing them based on execution results.</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>The <strong>agent.yaml</strong> configuration file provides <strong>LLM and API settings</strong> for the network Agent. This agent is responsible for:</p>
+<ul>
+<li><strong>network Creation</strong>: Breaking down user requests into device-specific tasks</li>
+<li><strong>network Editing</strong>: Adjusting task plans based on execution results</li>
+<li><strong>Device Selection</strong>: Choosing appropriate devices for each sub-task</li>
+<li><strong>Task Orchestration</strong>: Coordinating multi-device workflows</li>
+</ul>
+<p><strong>Configuration Separation:</strong></p>
+<ul>
+<li><strong>agent.yaml</strong> - LLM configuration for network agent (this document)</li>
+<li><strong>network.yaml</strong> - Runtime settings for orchestrator (<a href="./cluster_network.md">cluster network Configuration</a>)</li>
+<li><strong>devices.yaml</strong> - Device definitions (<a href="./cluster_devices.md">cluster Devices Configuration</a>)</li>
+</ul>
+<p><strong>Agent Role in System:</strong></p>
+<div class="mermaid">graph TB
+    A[User Request] --&gt;|Natural Language| B[network Agent]
+    B --&gt;|Uses LLM Config| C[agent.yaml]
+    B --&gt;|Creates/Edits| D[network Plan]
+    D --&gt;|Tasks| E[Device Agent 1]
+    D --&gt;|Tasks| F[Device Agent 2]
+    D --&gt;|Tasks| G[Device Agent N]
+
+    style B fill:#e1f5ff
+    style C fill:#ffe1e1
+    style D fill:#fff4e1</div>
+<hr />
+<h2 id="file-location">File Location</h2>
+<p><strong>Standard Location:</strong></p>
+<div class="highlight"><pre><span></span><code>Alien-Unis/
+├── config/
+│   └── cluster/
+│       ├── agent.yaml              # ← network agent config (copy from template)
+│       ├── agent.yaml.template     # ← Template for initial setup
+│       ├── network.yaml      # ← Runtime settings
+│       └── devices.yaml            # ← Device definitions
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Setup Required</p>
+<ol>
+<li>Copy <code>agent.yaml.template</code> to <code>agent.yaml</code></li>
+<li>Fill in your API credentials (API_KEY, AAD_TENANT_ID, etc.)</li>
+<li>Never commit <code>agent.yaml</code> with real credentials to version control</li>
+</ol>
+</div>
+<p><strong>Loading in Code:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">config.config_loader</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_cluster_config</span>
+
+<span class="c1"># Load cluster configuration (includes agent settings)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">get_cluster_config</span><span class="p">()</span>
+
+<span class="c1"># Access network agent settings</span>
+<span class="n">agent_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">network_agent</span>
+<span class="n">reasoning_model</span> <span class="o">=</span> <span class="n">agent_config</span><span class="o">.</span><span class="n">reasoning_model</span>
+<span class="n">api_type</span> <span class="o">=</span> <span class="n">agent_config</span><span class="o">.</span><span class="n">api_type</span>
+<span class="n">api_model</span> <span class="o">=</span> <span class="n">agent_config</span><span class="o">.</span><span class="n">api_model</span>
+</code></pre></div>
+<hr />
+<h2 id="configuration-schema">Configuration Schema</h2>
+<h3 id="complete-schema">Complete Schema</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># cluster network Agent Configuration</span>
+
+<span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Reasoning</span>
+<span class="w">  </span><span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bool</span><span class="w">          </span><span class="c1"># Enable reasoning/chain-of-thought</span>
+
+<span class="w">  </span><span class="c1"># API Connection</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">               </span><span class="c1"># API provider type</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">               </span><span class="c1"># API base URL</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">                </span><span class="c1"># API authentication key</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">            </span><span class="c1"># API version</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">              </span><span class="c1"># Model name/deployment</span>
+
+<span class="w">  </span><span class="c1"># Azure AD Authentication (for azure_ad API_TYPE)</span>
+<span class="w">  </span><span class="nt">AAD_TENANT_ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">          </span><span class="c1"># Azure AD tenant ID</span>
+<span class="w">  </span><span class="nt">AAD_API_SCOPE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">          </span><span class="c1"># API scope name</span>
+<span class="w">  </span><span class="nt">AAD_API_SCOPE_BASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">     </span><span class="c1"># API scope base GUID</span>
+
+<span class="w">  </span><span class="c1"># Prompt Configuration</span>
+<span class="w">  </span><span class="nt">network_CREATION_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">         </span><span class="c1"># Path to creation prompt template</span>
+<span class="w">  </span><span class="nt">network_EDITING_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">          </span><span class="c1"># Path to editing prompt template</span>
+<span class="w">  </span><span class="nt">network_CREATION_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w"> </span><span class="c1"># Path to creation examples</span>
+<span class="w">  </span><span class="nt">network_EDITING_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span><span class="w">  </span><span class="c1"># Path to editing examples</span>
+</code></pre></div>
+<hr />
+<h2 id="configuration-fields">Configuration Fields</h2>
+<h3 id="reasoning-capabilities">Reasoning Capabilities</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REASONING_MODEL</code></td>
+<td><code>bool</code></td>
+<td>No</td>
+<td><code>False</code></td>
+<td>Enable chain-of-thought reasoning for complex planning</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w">  </span><span class="c1"># Standard LLM response (faster)</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Reasoning Model</p>
+<p>Set <code>REASONING_MODEL: True</code> for:
+- Complex multi-device workflows
+- Tasks requiring step-by-step planning
+- Debugging network failures</p>
+<p><strong>Trade-off:</strong> Slower response time, higher token cost</p>
+</div>
+<hr />
+<h3 id="api-connection-settings">API Connection Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>API_TYPE</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>API provider: <code>"openai"</code>, <code>"azure"</code>, <code>"azure_ad"</code>, <code>"aoai"</code></td>
+</tr>
+<tr>
+<td><code>API_BASE</code></td>
+<td><code>string</code></td>
+<td>Yes*</td>
+<td>-</td>
+<td>API base URL (required for Azure)</td>
+</tr>
+<tr>
+<td><code>API_KEY</code></td>
+<td><code>string</code></td>
+<td>Yes*</td>
+<td>-</td>
+<td>API authentication key (required for non-AAD auth)</td>
+</tr>
+<tr>
+<td><code>API_VERSION</code></td>
+<td><code>string</code></td>
+<td>Yes*</td>
+<td>-</td>
+<td>API version (required for Azure)</td>
+</tr>
+<tr>
+<td><code>API_MODEL</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Model name or deployment name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported API Types:</strong></p>
+<table>
+<thead>
+<tr>
+<th>API_TYPE</th>
+<th>Provider</th>
+<th>Authentication</th>
+<th>Example API_BASE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openai</code></td>
+<td>OpenAI</td>
+<td>API Key</td>
+<td>Not required (uses default)</td>
+</tr>
+<tr>
+<td><code>azure</code></td>
+<td>Azure OpenAI</td>
+<td>API Key</td>
+<td><code>https://your-resource.openai.azure.com/</code></td>
+</tr>
+<tr>
+<td><code>azure_ad</code></td>
+<td>Azure OpenAI</td>
+<td>Azure AD (AAD)</td>
+<td><code>https://your-resource.azure-api.net/</code></td>
+</tr>
+<tr>
+<td><code>aoai</code></td>
+<td>Azure OpenAI (alias)</td>
+<td>API Key</td>
+<td><code>https://your-resource.openai.azure.com/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="example-1-openai-configuration">Example 1: OpenAI Configuration</h4>
+<div class="highlight"><pre><span></span><code><span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sk-proj-...&quot;</span><span class="w">           </span><span class="c1"># Your OpenAI API key</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span><span class="w">              </span><span class="c1"># OpenAI model name</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-01&quot;</span><span class="w">        </span><span class="c1"># Optional for OpenAI</span>
+</code></pre></div>
+<hr />
+<h4 id="example-2-azure-openai-api-key-auth">Example 2: Azure OpenAI (API Key Auth)</h4>
+<div class="highlight"><pre><span></span><code><span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://my-resource.openai.azure.com/&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;abc123...&quot;</span><span class="w">             </span><span class="c1"># Azure OpenAI API key</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o-deployment&quot;</span><span class="w">   </span><span class="c1"># Your deployment name</span>
+</code></pre></div>
+<hr />
+<h4 id="example-3-azure-openai-azure-ad-auth">Example 3: Azure OpenAI (Azure AD Auth)</h4>
+<div class="highlight"><pre><span></span><code><span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure_ad&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://cloudgpt-openai.azure-api.net/&quot;</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-5-chat-20251003&quot;</span>
+
+<span class="w">  </span><span class="c1"># Azure AD Configuration</span>
+<span class="w">  </span><span class="nt">AAD_TENANT_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;72f988bf-86f1-41af-91ab-2d7cd011db47&quot;</span>
+<span class="w">  </span><span class="nt">AAD_API_SCOPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">AAD_API_SCOPE_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;feb7b661-cac7-44a8-8dc1-163b63c23df2&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Azure AD Authentication</p>
+<p>When using <code>API_TYPE: "azure_ad"</code>:
+- No <code>API_KEY</code> needed (uses Azure AD token)
+- Requires <code>AAD_TENANT_ID</code>, <code>AAD_API_SCOPE</code>, <code>AAD_API_SCOPE_BASE</code>
+- User must be authenticated with <code>az login</code> or have proper AAD credentials</p>
+</div>
+<hr />
+<h3 id="azure-ad-fields-azure_ad-api_type-only">Azure AD Fields (azure_ad API_TYPE only)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AAD_TENANT_ID</code></td>
+<td><code>string</code></td>
+<td>Yes*</td>
+<td>Azure AD tenant GUID</td>
+</tr>
+<tr>
+<td><code>AAD_API_SCOPE</code></td>
+<td><code>string</code></td>
+<td>Yes*</td>
+<td>API scope identifier (e.g., "openai")</td>
+</tr>
+<tr>
+<td><code>AAD_API_SCOPE_BASE</code></td>
+<td><code>string</code></td>
+<td>Yes*</td>
+<td>API scope base GUID</td>
+</tr>
+</tbody>
+</table>
+<p>*Required only when <code>API_TYPE: "azure_ad"</code></p>
+<hr />
+<h3 id="prompt-configuration-paths">Prompt Configuration Paths</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>network_CREATION_PROMPT</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Path to network creation prompt template</td>
+</tr>
+<tr>
+<td><code>network_EDITING_PROMPT</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Path to network editing prompt template</td>
+</tr>
+<tr>
+<td><code>network_CREATION_EXAMPLE_PROMPT</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Path to creation examples (few-shot learning)</td>
+</tr>
+<tr>
+<td><code>network_EDITING_EXAMPLE_PROMPT</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>-</td>
+<td>Path to editing examples (few-shot learning)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Default Prompt Paths:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">network_CREATION_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_creation.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_editing.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_CREATION_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_creation_example.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_editing_example.yaml&quot;</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Custom Prompts</p>
+<p>You can customize prompts for your use case:
+<div class="highlight"><pre><span></span><code><span class="nt">network_CREATION_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;custom_prompts/my_network_creation.yaml&quot;</span>
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="complete-examples">Complete Examples</h2>
+<h3 id="example-1-production-azure-ad">Example 1: Production (Azure AD)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># cluster network Agent Configuration - Production</span>
+<span class="c1"># Uses Azure OpenAI with Azure AD authentication</span>
+
+<span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Capabilities</span>
+<span class="w">  </span><span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+
+<span class="w">  </span><span class="c1"># Azure OpenAI (Azure AD Auth)</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure_ad&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://cloudgpt-openai.azure-api.net/&quot;</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-5-chat-20251003&quot;</span>
+
+<span class="w">  </span><span class="c1"># Azure AD Configuration</span>
+<span class="w">  </span><span class="nt">AAD_TENANT_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;72f988bf-86f1-41af-91ab-2d7cd011db47&quot;</span>
+<span class="w">  </span><span class="nt">AAD_API_SCOPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">AAD_API_SCOPE_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;feb7b661-cac7-44a8-8dc1-163b63c23df2&quot;</span>
+
+<span class="w">  </span><span class="c1"># Prompt Configurations</span>
+<span class="w">  </span><span class="nt">network_CREATION_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_creation.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_editing.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_CREATION_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_creation_example.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_editing_example.yaml&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="example-2-development-openai">Example 2: Development (OpenAI)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># cluster network Agent Configuration - Development</span>
+<span class="c1"># Uses OpenAI API for quick testing</span>
+
+<span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Capabilities</span>
+<span class="w">  </span><span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">   </span><span class="c1"># Enable for debugging</span>
+
+<span class="w">  </span><span class="c1"># OpenAI API</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sk-proj-...&quot;</span><span class="w">  </span><span class="c1"># Your OpenAI API key (DO NOT COMMIT!)</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-01&quot;</span>
+
+<span class="w">  </span><span class="c1"># Prompt Configurations (default paths)</span>
+<span class="w">  </span><span class="nt">network_CREATION_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_creation.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_editing.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_CREATION_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_creation_example.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_editing_example.yaml&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="example-3-azure-openai-api-key">Example 3: Azure OpenAI (API Key)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># cluster network Agent Configuration - Azure (API Key Auth)</span>
+<span class="c1"># Uses Azure OpenAI with API key authentication</span>
+
+<span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Capabilities</span>
+<span class="w">  </span><span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span>
+
+<span class="w">  </span><span class="c1"># Azure OpenAI (API Key Auth)</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://my-openai-resource.openai.azure.com/&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;abc123...&quot;</span><span class="w">    </span><span class="c1"># Azure OpenAI API key (DO NOT COMMIT!)</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o-deployment-name&quot;</span>
+
+<span class="w">  </span><span class="c1"># Prompt Configurations</span>
+<span class="w">  </span><span class="nt">network_CREATION_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_creation.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/share/network_editing.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_CREATION_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_creation_example.yaml&quot;</span>
+<span class="w">  </span><span class="nt">network_EDITING_EXAMPLE_PROMPT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cluster/prompts/network/examples/network_editing_example.yaml&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="security-best-practices">Security Best Practices</h2>
+<div class="admonition danger">
+<p class="admonition-title">Never Commit Credentials</p>
+<p><strong>DO NOT commit <code>agent.yaml</code> with real credentials to version control!</strong></p>
+<p>✅ <strong>Recommended Workflow:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Copy template</span>
+cp<span class="w"> </span>config/cluster/agent.yaml.template<span class="w"> </span>config/cluster/agent.yaml
+
+<span class="c1"># 2. Edit agent.yaml with your credentials</span>
+<span class="c1"># (This file is .gitignored)</span>
+
+<span class="c1"># 3. Commit only the template</span>
+git<span class="w"> </span>add<span class="w"> </span>config/cluster/agent.yaml.template
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update agent template&quot;</span>
+</code></pre></div></p>
+</div>
+<p><strong>Use Environment Variables for Sensitive Data:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># In agent.yaml</span>
+<span class="nt">network_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${cluster_API_KEY}</span><span class="w">  </span><span class="c1"># Read from environment variable</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># In your shell</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">cluster_API_KEY</span><span class="o">=</span><span class="s2">&quot;sk-proj-...&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="integration-with-other-configurations">Integration with Other Configurations</h2>
+<p>The agent configuration works together with other cluster configs:</p>
+<p><strong>agent.yaml</strong> (LLM config) + <strong>network.yaml</strong> (runtime) + <strong>devices.yaml</strong> (devices) → <strong>Complete cluster System</strong></p>
+<h3 id="complete-initialization-example">Complete Initialization Example</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">config.config_loader</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_cluster_config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cluster.agents.network_agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">networkAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cluster.client.device_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">networkDeviceManager</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+
+<span class="c1"># 1. Load all cluster configurations</span>
+<span class="n">cluster_config</span> <span class="o">=</span> <span class="n">get_cluster_config</span><span class="p">()</span>
+
+<span class="c1"># 2. Initialize network Agent with LLM config</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">networkAgent</span><span class="p">(</span>
+    <span class="n">reasoning_model</span><span class="o">=</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">reasoning_model</span><span class="p">,</span>
+    <span class="n">api_type</span><span class="o">=</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">api_type</span><span class="p">,</span>
+    <span class="n">api_base</span><span class="o">=</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">api_base</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span>
+    <span class="n">api_version</span><span class="o">=</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">api_version</span><span class="p">,</span>
+    <span class="n">api_model</span><span class="o">=</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">api_model</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Load network runtime settings</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config/cluster/network.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">network_config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># 4. Initialize Device Manager with runtime settings</span>
+<span class="n">device_manager</span> <span class="o">=</span> <span class="n">networkDeviceManager</span><span class="p">(</span>
+    <span class="n">task_name</span><span class="o">=</span><span class="n">network_config</span><span class="p">[</span><span class="s2">&quot;network_ID&quot;</span><span class="p">],</span>
+    <span class="n">heartbeat_interval</span><span class="o">=</span><span class="n">network_config</span><span class="p">[</span><span class="s2">&quot;HEARTBEAT_INTERVAL&quot;</span><span class="p">],</span>
+    <span class="n">reconnect_delay</span><span class="o">=</span><span class="n">network_config</span><span class="p">[</span><span class="s2">&quot;RECONNECT_DELAY&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># 5. Load and register devices</span>
+<span class="n">device_config_path</span> <span class="o">=</span> <span class="n">network_config</span><span class="p">[</span><span class="s2">&quot;DEVICE_INFO&quot;</span><span class="p">]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">device_config_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">devices_config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices_config</span><span class="p">[</span><span class="s2">&quot;devices&quot;</span><span class="p">]:</span>
+    <span class="k">await</span> <span class="n">device_manager</span><span class="o">.</span><span class="n">register_device</span><span class="p">(</span><span class="o">**</span><span class="n">device</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ cluster network System Initialized&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Agent Model: </span><span class="si">{</span><span class="n">cluster_config</span><span class="o">.</span><span class="n">network_agent</span><span class="o">.</span><span class="n">api_model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   network ID: </span><span class="si">{</span><span class="n">network_config</span><span class="p">[</span><span class="s1">&#39;network_ID&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Devices: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">devices_config</span><span class="p">[</span><span class="s1">&#39;devices&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<p><strong>Configuration Best Practices:</strong></p>
+<ol>
+<li>
+<p><strong>Use Templates for Team Collaboration</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Share template, not credentials</span>
+config/cluster/agent.yaml.template<span class="w">  </span><span class="c1"># ✅ Commit this</span>
+config/cluster/agent.yaml<span class="w">           </span><span class="c1"># ❌ Never commit this</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Test with OpenAI, Deploy with Azure</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Development: OpenAI (fast iteration)</span>
+<span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+
+<span class="c1"># Production: Azure (enterprise features)</span>
+<span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure_ad&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Use Reasoning Mode Selectively</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># For complex workflows</span>
+<span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+
+<span class="c1"># For simple tasks</span>
+<span class="nt">REASONING_MODEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w">  </span><span class="c1"># Faster</span>
+</code></pre></div></p>
+</li>
+</ol>
+<hr />
+<h2 id="related-documentation">Related Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>network Runtime</strong></td>
+<td><a href="./cluster_network.md">cluster network Configuration</a></td>
+<td>Runtime settings for orchestrator</td>
+</tr>
+<tr>
+<td><strong>Device Configuration</strong></td>
+<td><a href="./cluster_devices.md">cluster Devices Configuration</a></td>
+<td>Device definitions</td>
+</tr>
+<tr>
+<td><strong>System Configuration</strong></td>
+<td><a href="../overview/">Configuration Overview</a></td>
+<td>Overall configuration architecture</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ol>
+<li><strong>Copy Template</strong>: <code>cp agent.yaml.template agent.yaml</code></li>
+<li><strong>Configure Credentials</strong>: Fill in API_KEY or AAD settings</li>
+<li><strong>Configure Runtime</strong>: See <a href="./cluster_network.md">cluster network Configuration</a></li>
+<li><strong>Configure Devices</strong>: See <a href="./cluster_devices.md">cluster Devices Configuration</a></li>
+<li><strong>Test network</strong>: Run cluster orchestrator</li>
+</ol>
+<hr />
+<h2 id="source-code-references">Source Code References</h2>
+<ul>
+<li><strong>networkAgent</strong>: <code>cluster/agents/network_agent.py</code></li>
+<li><strong>Configuration Loading</strong>: <code>config/config_loader.py</code></li>
+<li><strong>Configuration Schemas</strong>: <code>config/config_schemas.py</code></li>
+<li><strong>Prompt Templates</strong>: <code>cluster/prompts/network/</code></li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      <script src="../../../javascripts/mermaid-init.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

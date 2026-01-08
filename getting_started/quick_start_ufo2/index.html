@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Quick Start Guide - Alien³ Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Quick Start Guide";
+        var mkdocs_page_input_path = "getting_started/quick_start_ufo2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Alien³ Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../choose_path/">Choose Your Path</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../project_directory_structure/">Project Directory Structure</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../quick_start_cluster.md">Quick Start (Alien³ Agent cluster)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../quick_start_Alien-Unis.md">Quick Start (Alien²)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../quick_start_linux/">Quick Start (Linux Agent)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../quick_start_mobile/">Quick Start (Mobile Agent)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../migration_Alien-Unis_to_cluster.md">Migration Alien² → Alien³</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../more_guidance/">More Guidance</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Configuration & Setup</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Configuration System</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/agents_config/">Agent Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/system_config/">System Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/rag_config/">RAG Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/prices_config/">Pricing Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/third_party_config/">Third-Party Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/mcp_reference/">MCP Reference</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/migration/">Migration Guide</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/system/extending/">Extending Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >cluster Configuration</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../configuration/system/cluster_devices.md">Devices</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../configuration/system/cluster_network.md">network</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../configuration/system/cluster_agent.md">Agent</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Model Setup</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/openai/">OpenAI</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/azure_openai/">Azure OpenAI</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/operator/">OpenAI CUA (Operator)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/gemini/">Gemini</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/claude/">Claude</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/qwen/">Qwen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/deepseek/">DeepSeek</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/ollama/">Ollama</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../configuration/models/custom_model/">Custom Model</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Alien³ Agent cluster</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../cluster/overview.md">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../cluster/webui.md">WebUI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >cluster Client</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/client/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/client/network_client.md">networkClient</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/client/device_manager.md">DeviceManager</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/client/components.md">Components</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/client/aip_integration.md">AIP Integration</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/client/cluster_client.md">clusterClient</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Agent Registration</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/agent_registration/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/agent_registration/agent_profile.md">Agent Profile</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/agent_registration/device_registry.md">Device Registry</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/agent_registration/registration_flow.md">Registration Flow</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Task network (DAG)</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/network/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network/task_star.md">TaskStar</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network/task_star_line.md">TaskStarLine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network/task_network.md">Tasknetwork</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network/network_editor.md">networkEditor</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >network Agent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_agent/strategy.md">Strategy Pattern</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_agent/command.md">MCP Commands</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >network Orchestrator</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/event_driven_coordination.md">Event-Driven Coordination</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/asynchronous_scheduling.md">Asynchronous Scheduling</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/safe_assignment_locking.md">Safe Assignment Locking</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/consistency_guarantees.md">Consistency Guarantees</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/batched_editing.md">Batched Editing</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/network_manager.md">network Manager</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/network_orchestrator/api_reference.md">API Reference</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Observer System</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/event_system.md">Event System</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/progress_observer.md">Progress Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/agent_output_observer.md">Agent Output Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/synchronizer.md">Synchronizer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/metrics_observer.md">Metrics Observer</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/observer/visualization_observer.md">Visualization Observer</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation & Logging</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../cluster/evaluation/trajectory_report.md">Trajectory Report</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/evaluation/performance_metrics.md">Performance Metrics</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../cluster/evaluation/result_json.md">Result JSON Reference</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Alien² Desktop AgentOS</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../../Alien-Unis/overview.md">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../Alien-Unis/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >HostAgent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/host_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/host_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/host_agent/strategy.md">Processing Strategy</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/host_agent/commands.md">Command System</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >AppAgent</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/app_agent/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/app_agent/state.md">State Machine</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/app_agent/strategy.md">Processing Strategy</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/app_agent/commands.md">Command System</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Core Features</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/core_features/hybrid_actions.md">Hybrid GUI–API Actions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Control Detection</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/control_detection/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/control_detection/uia_detection.md">UIA Detection</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/control_detection/visual_detection.md">Visual Detection</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/control_detection/hybrid_detection.md">Hybrid Detection</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Knowledge Substrate</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/knowledge_substrate/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/knowledge_substrate/learning_from_help_document.md">Help Documents</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/knowledge_substrate/learning_from_bing_search.md">Bing Search</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/knowledge_substrate/experience_learning.md">Experience Learning</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/core_features/knowledge_substrate/learning_from_demonstration.md">Demos</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/core_features/multi_action.md">Speculative Multi-Action</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Advanced Usage</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/advanced_usage/follower_mode.md">Follower Mode</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/advanced_usage/batch_mode.md">Batch Mode</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/advanced_usage/operator_as_app_agent.md">Operator Integration</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/advanced_usage/customization.md">Customization</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Prompts</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/prompts/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/prompts/basic_template.md">Basic Template</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/prompts/examples_prompts.md">Examples</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Evaluation</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/evaluation/evaluation_agent.md">EvaluationAgent</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/evaluation/benchmark/overview.md">Benchmark Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/evaluation/benchmark/windows_agent_arena.md">Windows Agent Arena</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/evaluation/benchmark/osworld.md">OSWorld (Windows)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Performance Logs</a>
+    <ul>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/evaluation_logs.md">Evaluation Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/markdown_log_viewer.md">Markdown Log Viewer</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/request_logs.md">Request Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/screenshots_logs.md">Screenshots Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/step_logs.md">Step Logs</a>
+                </li>
+                <li class="toctree-l3"><a class="" href="../../Alien-Unis/evaluation/logs/ui_tree_logs.md">UI Tree Logs</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Dataflow</a>
+    <ul>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/dataflow/overview.md">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/dataflow/instantiation.md">Instantiation</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/dataflow/execution.md">Execution</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/dataflow/windows_app_env.md">Windows App Environment</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../Alien-Unis/dataflow/result.md">Result</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux Agent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../linux/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/state/">State Machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/strategy/">Processing Strategy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../linux/commands/">MCP Commands</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Mobile Agent</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mobile/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../mobile/as_cluster_device.md">Using as cluster Device</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mobile/state/">State Machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mobile/strategy/">Processing Strategy</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mobile/commands/">MCP Commands</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials & Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/creating_mcp_servers/">Creating Custom MCP Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/creating_third_party_agents/">Creating Custom Third-Party Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Creating Custom Device Agents</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/client_setup/">Client Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/core_components/">Core Components</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/mcp_server/">MCP Server</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/configuration/">Configuration</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/testing/">Testing</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_device_agent/example_mobile_agent/">Example Mobile Agent</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Enhancing AppAgent Capabilities</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_app_agent/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_app_agent/help_document_provision/">Help Document Provision</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_app_agent/demonstration_provision/">Demonstration Provision</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../tutorials/creating_app_agent/warpping_app_native_api/">Wrapping App-Native APIs</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Infrastructure</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" >Basic Modules</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/session/">Session</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/round/">Round</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/context/">Context</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/dispatcher/">Dispatcher</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/session_pool/">Session Factory & Pool</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/modules/platform_sessions/">Platform Sessions</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Device Agent Architecture</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/agents/overview/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/agents/agent_types/">Agent Types & Implementation</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../infrastructure/agents/server_client_architecture/">Server-Client Architecture</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Architecture Layers</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/state/">State Layer (Level-1)</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/processor/">Strategy Layer (Level-2)</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/strategy/">Strategy Components</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/command/">Command Layer (Level-3)</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" >Supporting Systems</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/memory/">Memory System</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/blackboard/">Blackboard</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../../infrastructure/agents/design/prompter/">Prompter</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Interaction Protocol (AIP)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../aip/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../aip/messages/">Message Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../aip/protocols/">Protocol Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../aip/transport/">Transport Layer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../aip/endpoints/">Endpoints</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../aip/resilience/">Resilience</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Server</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/quick_start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/session_manager/">Session Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/websocket_handler/">WebSocket Handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/client_connection_manager/">Client Connection Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/api/">HTTP API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../server/monitoring/">Monitoring</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Agent Client</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/quick_start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/websocket_client/">WebSocket Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../client/Alien_client.md">Alien Client</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/computer_manager/">Computer Manager</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/computer/">Computer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/device_info/">Device Info Provider</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../client/mcp_integration/">MCP Integration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">MCP (Model Context Protocol)</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mcp/overview/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mcp/data_collection/">Data Collection Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mcp/action/">Action Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mcp/configuration/">Configuration Guide</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mcp/local_servers/">Local Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mcp/remote_servers/">Remote Servers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Server Reference</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/ui_collector/">UICollector</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/host_ui_executor/">HostUIExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/app_ui_executor/">AppUIExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/command_line_executor/">CommandLineExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/word_com_executor/">WordCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/excel_com_executor/">ExcelCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/ppt_com_executor/">PowerPointCOMExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/pdf_reader_executor/">PDFReaderExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="" href="../../mcp/servers/network_editor.md">networkEditor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/hardware_executor/">HardwareExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/bash_executor/">BashExecutor</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../mcp/servers/mobile_executor/">MobileExecutor</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/CONTRIBUTING/">Contributing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/LICENSE/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/CODE_OF_CONDUCT/">Code of Conduct</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/DISCLAIMER/">Disclaimer</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/SUPPORT/">Support</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Alien³ Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Quick Start Guide</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="quick-start-guide">Quick Start Guide</h1>
+<p>Welcome to <strong>Alien²</strong> – the Desktop AgentOS! This guide will help you get started with Alien² in just a few minutes.</p>
+<p><strong>What is Alien²?</strong></p>
+<p>Alien² is a Desktop AgentOS that turns natural-language requests into automatic, reliable, multi-application workflows on Windows. It goes beyond UI-focused automation by combining GUI actions with native API calls for faster and more robust execution.</p>
+<hr />
+<h2 id="step-1-installation">🛠️ Step 1: Installation</h2>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li><strong>Python</strong> &gt;= 3.10</li>
+<li><strong>Windows OS</strong> &gt;= 10</li>
+<li><strong>Git</strong> (for cloning the repository)</li>
+</ul>
+<h3 id="installation-steps">Installation Steps</h3>
+<div class="highlight"><pre><span></span><code><span class="c"># [Optional] Create conda environment</span>
+<span class="n">conda</span> <span class="n">create</span> <span class="n">-n</span> <span class="n">Alien</span> <span class="n">python</span><span class="p">=</span><span class="n">3</span><span class="p">.</span><span class="n">10</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">Alien</span>
+
+<span class="c"># Clone the repository</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">DEVELOPER-DEEVEN</span><span class="p">/</span><span class="n">alien-project</span>
+<span class="nb">cd </span><span class="n">Alien</span>
+
+<span class="c"># Install dependencies</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
+<blockquote>
+<p><strong>💡 Tip:</strong> If you want to use Qwen as your LLM, uncomment the related libraries in <code>requirements.txt</code> before installing.</p>
+</blockquote>
+<hr />
+<hr />
+<h2 id="step-2-configure-llms">⚙️ Step 2: Configure LLMs</h2>
+<blockquote>
+<p><strong>📢 New Configuration System (Recommended)</strong><br />
+Alien² now uses a <strong>new modular config system</strong> located in <code>config/Alien/</code> with auto-discovery and type validation. While the legacy <code>Alien/config/config.yaml</code> is still supported for backward compatibility, we strongly recommend migrating to the new system for better maintainability.</p>
+</blockquote>
+<h3 id="option-1-new-config-system-recommended">Option 1: New Config System (Recommended)</h3>
+<p>The new config files are organized in <code>config/Alien/</code> with separate YAML files for different components:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Copy template to create your agent config file (contains API keys)</span>
+<span class="nb">copy </span><span class="n">config</span><span class="p">\</span><span class="n">Alien</span><span class="p">\</span><span class="n">agents</span><span class="p">.</span><span class="n">yaml</span><span class="p">.</span><span class="n">template</span> <span class="n">config</span><span class="p">\</span><span class="n">Alien</span><span class="p">\</span><span class="n">agents</span><span class="p">.</span><span class="n">yaml</span>
+<span class="n">notepad</span> <span class="n">config</span><span class="p">\</span><span class="n">Alien</span><span class="p">\</span><span class="n">agents</span><span class="p">.</span><span class="n">yaml</span>   <span class="c"># Edit your LLM API credentials</span>
+</code></pre></div>
+<p><strong>Directory Structure:</strong>
+<div class="highlight"><pre><span></span><code>config/Alien/
+├── agents.yaml.template     # Template: Agent configs (HOST_AGENT, APP_AGENT) - COPY &amp; EDIT THIS
+├── agents.yaml              # Your agent configs with API keys (DO NOT commit to git)
+├── rag.yaml                 # RAG and knowledge settings (default values, edit if needed)
+├── system.yaml              # System settings (default values, edit if needed)
+├── mcp.yaml                 # MCP integration settings (default values, edit if needed)
+└── ...                      # Other modular configs with defaults
+</code></pre></div></p>
+<blockquote>
+<p><strong>Configuration Files:</strong> <code>agents.yaml</code> contains sensitive information (API keys) and must be configured. Other config files have default values and only need editing for customization.</p>
+</blockquote>
+<p><strong>Migration Benefits:</strong></p>
+<ul>
+<li>✅ <strong>Type Safety</strong>: Automatic validation with Pydantic schemas</li>
+<li>✅ <strong>Auto-Discovery</strong>: No manual config loading needed</li>
+<li>✅ <strong>Modular</strong>: Separate concerns into individual files</li>
+<li>✅ <strong>IDE Support</strong>: Better autocomplete and error detection</li>
+</ul>
+<h3 id="option-2-legacy-config-backward-compatible">Option 2: Legacy Config (Backward Compatible)</h3>
+<p>For existing users, the old config path still works:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">copy </span><span class="n">Alien</span><span class="p">\</span><span class="n">config</span><span class="p">\</span><span class="n">config</span><span class="p">.</span><span class="n">yaml</span><span class="p">.</span><span class="n">template</span> <span class="n">Alien</span><span class="p">\</span><span class="n">config</span><span class="p">\</span><span class="n">config</span><span class="p">.</span><span class="n">yaml</span>
+<span class="n">notepad</span> <span class="n">Alien</span><span class="p">\</span><span class="n">config</span><span class="p">\</span><span class="n">config</span><span class="p">.</span><span class="n">yaml</span>   <span class="c"># Paste your key &amp; endpoint</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Config Precedence:</strong> If both old and new configs exist, the new config in <code>config/Alien/</code> takes precedence. A warning will be displayed during startup.</p>
+</blockquote>
+<hr />
+<h3 id="llm-configuration-examples">LLM Configuration Examples</h3>
+<h4 id="openai-configuration">OpenAI Configuration</h4>
+<p><strong>New Config (<code>config/Alien/agents.yaml</code>):</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">HOST_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">VISUAL_MODE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.openai.com/v1/chat/completions&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sk-YOUR_KEY_HERE&quot;</span><span class="w">  </span><span class="c1"># Replace with your actual API key</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+
+<span class="nt">APP_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">VISUAL_MODE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.openai.com/v1/chat/completions&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sk-YOUR_KEY_HERE&quot;</span><span class="w">  </span><span class="c1"># Replace with your actual API key</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-02-01-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+</code></pre></div></p>
+<p><strong>Legacy Config (<code>Alien/config/config.yaml</code>):</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">HOST_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">VISUAL_MODE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;openai&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://api.openai.com/v1/chat/completions&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sk-YOUR_KEY_HERE&quot;</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-15-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+</code></pre></div></p>
+<h4 id="azure-openai-aoai-configuration">Azure OpenAI (AOAI) Configuration</h4>
+<p><strong>New Config (<code>config/Alien/agents.yaml</code>):</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">HOST_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">VISUAL_MODE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;aoai&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://YOUR_RESOURCE.openai.azure.com&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_AOAI_KEY&quot;</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-15-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+<span class="w">  </span><span class="nt">API_DEPLOYMENT_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_DEPLOYMENT_ID&quot;</span>
+
+<span class="nt">APP_AGENT</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">VISUAL_MODE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">API_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;aoai&quot;</span>
+<span class="w">  </span><span class="nt">API_BASE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://YOUR_RESOURCE.openai.azure.com&quot;</span>
+<span class="w">  </span><span class="nt">API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_AOAI_KEY&quot;</span>
+<span class="w">  </span><span class="nt">API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-02-15-preview&quot;</span>
+<span class="w">  </span><span class="nt">API_MODEL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gpt-4o&quot;</span>
+<span class="w">  </span><span class="nt">API_DEPLOYMENT_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_DEPLOYMENT_ID&quot;</span>
+</code></pre></div></p>
+<blockquote>
+<p><strong>ℹ️ More LLM Options:</strong> Alien² supports various LLM providers including Qwen, Gemini, Claude, DeepSeek, and more. See the <a href="../../configuration/models/overview/">Model Configuration Guide</a> for complete details.</p>
+</blockquote>
+<hr />
+<hr />
+<h2 id="step-3-additional-settings-optional">📔 Step 3: Additional Settings (Optional)</h2>
+<h3 id="rag-configuration">RAG Configuration</h3>
+<p>Enhance Alien's capabilities with external knowledge through Retrieval Augmented Generation (RAG):</p>
+<p><strong>For New Config</strong>: Edit <code>config/Alien/rag.yaml</code> (already exists with default values)<br />
+<strong>For Legacy Config</strong>: Edit <code>Alien/config/config.yaml</code></p>
+<p><strong>Available RAG Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Documentation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Offline Help Documents</strong></td>
+<td><a href="../Alien-Unis/core_features/knowledge_substrate/learning_from_help_document.md">Learning from Help Documents</a></td>
+<td>Retrieve information from offline help documentation</td>
+</tr>
+<tr>
+<td><strong>Online Bing Search</strong></td>
+<td><a href="../Alien-Unis/core_features/knowledge_substrate/learning_from_bing_search.md">Learning from Bing Search</a></td>
+<td>Utilize up-to-date online search results</td>
+</tr>
+<tr>
+<td><strong>Self-Experience</strong></td>
+<td><a href="../Alien-Unis/core_features/knowledge_substrate/experience_learning.md">Experience Learning</a></td>
+<td>Save task trajectories into memory for future reference</td>
+</tr>
+<tr>
+<td><strong>User Demonstrations</strong></td>
+<td><a href="../Alien-Unis/core_features/knowledge_substrate/learning_from_demonstration.md">Learning from Demonstrations</a></td>
+<td>Learn from user-provided demonstrations</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example RAG Config (<code>config/Alien/rag.yaml</code>):</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable Bing search</span>
+<span class="nt">RAG_ONLINE_SEARCH</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">BING_API_KEY</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;YOUR_BING_API_KEY&quot;</span><span class="w">  </span><span class="c1"># Get from https://www.microsoft.com/en-us/bing/apis</span>
+
+<span class="c1"># Enable experience learning</span>
+<span class="nt">RAG_EXPERIENCE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></p>
+<blockquote>
+<p><strong>ℹ️ RAG Resources:</strong> See <a href="../Alien-Unis/core_features/knowledge_substrate/overview.md">Knowledge Substrate Overview</a> for complete RAG configuration and best practices.</p>
+</blockquote>
+<hr />
+<hr />
+<h2 id="step-4-start-alien2">🎉 Step 4: Start Alien²</h2>
+<h3 id="interactive-mode">Interactive Mode</h3>
+<p>Start Alien² in interactive mode where you can enter requests dynamically:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Assume you are in the cloned Alien folder</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">Alien</span> <span class="p">-</span><span class="n">-task</span> <span class="p">&lt;</span><span class="n">your_task_name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p><strong>Expected Output:</strong>
+<div class="highlight"><pre><span></span><code>Welcome to use Alien🛸, A UI-focused Agent for Windows OS Interaction. 
+ALIEN ACTIVE
+Please enter your request to be completed🛸:
+</code></pre></div></p>
+<h3 id="direct-request-mode">Direct Request Mode</h3>
+<p>Invoke Alien² with a specific task and request directly:</p>
+<div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="n">-m</span> <span class="n">Alien</span> <span class="p">-</span><span class="n">-task</span> <span class="p">&lt;</span><span class="n">your_task_name</span><span class="p">&gt;</span> <span class="n">-r</span> <span class="s2">&quot;&lt;your_request&gt;&quot;</span>
+</code></pre></div>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="n">-m</span> <span class="n">Alien</span> <span class="p">-</span><span class="n">-task</span> <span class="n">email_demo</span> <span class="n">-r</span> <span class="s2">&quot;Send an email to john@example.com with subject &#39;Meeting Reminder&#39;&quot;</span>
+</code></pre></div></p>
+<hr />
+<hr />
+<h2 id="step-5-execution-logs">🎥 Step 5: Execution Logs</h2>
+<p>Alien² automatically saves execution logs, screenshots, and traces for debugging and analysis.</p>
+<p><strong>Log Location:</strong>
+<div class="highlight"><pre><span></span><code>./logs/&lt;your_task_name&gt;/
+</code></pre></div></p>
+<p><strong>Log Contents:</strong></p>
+<table>
+<thead>
+<tr>
+<th>File/Folder</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>screenshots/</code></td>
+<td>Screenshots captured during execution</td>
+</tr>
+<tr>
+<td><code>action_*.json</code></td>
+<td>Agent actions and responses</td>
+</tr>
+<tr>
+<td><code>ui_trees/</code></td>
+<td>UI control tree snapshots (if enabled)</td>
+</tr>
+<tr>
+<td><code>request_response.log</code></td>
+<td>Complete LLM request/response logs</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Analyzing Logs:</strong> Use the logs to debug agent behavior, replay execution flow, and analyze agent decision-making patterns.</p>
+<p><strong>Privacy Notice:</strong> Screenshots may contain sensitive or confidential information. Ensure no private data is visible during execution. See <a href="https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/DISCLAIMER.md">DISCLAIMER.md</a> for details.</p>
+</blockquote>
+<hr />
+<h2 id="migrating-from-legacy-config">🔄 Migrating from Legacy Config</h2>
+<p>If you're upgrading from an older version that used <code>Alien/config/config.yaml</code>, Alien² provides an <strong>automated conversion tool</strong>.</p>
+<h3 id="automatic-conversion-recommended">Automatic Conversion (Recommended)</h3>
+<div class="highlight"><pre><span></span><code><span class="c"># Interactive conversion with automatic backup</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">Alien</span><span class="p">.</span><span class="n">tools</span><span class="p">.</span><span class="n">convert_config</span>
+
+<span class="c"># Preview changes first (dry run)</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">Alien</span><span class="p">.</span><span class="n">tools</span><span class="p">.</span><span class="n">convert_config</span> <span class="p">-</span><span class="n">-dry-run</span>
+
+<span class="c"># Force conversion without confirmation</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">Alien</span><span class="p">.</span><span class="n">tools</span><span class="p">.</span><span class="n">convert_config</span> <span class="p">-</span><span class="n">-force</span>
+</code></pre></div>
+<p><strong>What the tool does:</strong></p>
+<ul>
+<li>✅ Splits monolithic <code>config.yaml</code> into modular files</li>
+<li>✅ Converts flow-style YAML (with braces) to block-style YAML</li>
+<li>✅ Maps legacy file names to new structure</li>
+<li>✅ Preserves all configuration values</li>
+<li>✅ Creates timestamped backup for rollback</li>
+<li>✅ Validates output files</li>
+</ul>
+<p><strong>Conversion Mapping:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Legacy File</th>
+<th>→</th>
+<th>New File(s)</th>
+<th>Transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config.yaml</code> (monolithic)</td>
+<td>→</td>
+<td><code>agents.yaml</code> + <code>rag.yaml</code> + <code>system.yaml</code></td>
+<td>Smart field splitting</td>
+</tr>
+<tr>
+<td><code>agent_mcp.yaml</code></td>
+<td>→</td>
+<td><code>mcp.yaml</code></td>
+<td>Rename + format conversion</td>
+</tr>
+<tr>
+<td><code>config_prices.yaml</code></td>
+<td>→</td>
+<td><code>prices.yaml</code></td>
+<td>Rename + format conversion</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Migration Guide:</strong> For detailed migration instructions, rollback procedures, and troubleshooting, see the <a href="../../configuration/system/migration/">Configuration Migration Guide</a>.</p>
+</blockquote>
+<hr />
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<h3 id="core-documentation">Core Documentation</h3>
+<p><strong>Architecture &amp; Concepts:</strong></p>
+<ul>
+<li><a href="../Alien-Unis/overview.md">Alien² Overview</a> - System architecture and design principles</li>
+<li><a href="../Alien-Unis/host_agent/overview.md">HostAgent</a> - Desktop-level coordination agent</li>
+<li><a href="../Alien-Unis/app_agent/overview.md">AppAgent</a> - Application-level execution agent</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<p><strong>Configuration Guides:</strong></p>
+<ul>
+<li><a href="../../configuration/system/overview/">Configuration Overview</a> - Configuration system architecture</li>
+<li><a href="../../configuration/system/agents_config/">Agents Configuration</a> - LLM and agent settings</li>
+<li><a href="../../configuration/system/system_config/">System Configuration</a> - Runtime and execution settings</li>
+<li><a href="../../configuration/system/mcp_reference/">MCP Configuration</a> - MCP server settings</li>
+<li><a href="../../configuration/models/overview/">Model Configuration</a> - Supported LLM providers</li>
+</ul>
+<h3 id="advanced-features">Advanced Features</h3>
+<p><strong>Advanced Topics:</strong></p>
+<ul>
+<li><a href="../Alien-Unis/core_features/hybrid_actions.md">Hybrid Actions</a> - GUI + API automation</li>
+<li><a href="../Alien-Unis/core_features/control_detection/overview.md">Control Detection</a> - UIA + Vision detection</li>
+<li><a href="../Alien-Unis/core_features/knowledge_substrate/overview.md">Knowledge Substrate</a> - RAG and learning</li>
+<li><a href="../Alien-Unis/core_features/multi_action.md">Multi-Action Execution</a> - Speculative action batching</li>
+</ul>
+<h3 id="evaluation-benchmarks">Evaluation &amp; Benchmarks</h3>
+<p><strong>Benchmarking:</strong></p>
+<ul>
+<li><a href="../Alien-Unis/evaluation/benchmark/overview.md">Benchmark Overview</a> - Evaluation framework and datasets</li>
+<li><a href="../Alien-Unis/evaluation/benchmark/windows_agent_arena.md">Windows Agent Arena</a> - 154 real Windows tasks</li>
+<li><a href="../Alien-Unis/evaluation/benchmark/osworld.md">OSWorld</a> - Cross-application benchmarks</li>
+</ul>
+<hr />
+<h2 id="getting-help">❓ Getting Help</h2>
+<ul>
+<li>📖 <strong>Documentation</strong>: <a href="https://github.com/DEVELOPER-DEEVEN/alien-project/">https://github.com/DEVELOPER-DEEVEN/alien-project/</a></li>
+<li>🐛 <strong>GitHub Issues</strong>: <a href="https://github.com/DEVELOPER-DEEVEN/Alien/issues">https://github.com/DEVELOPER-DEEVEN/Alien/issues</a> (preferred)</li>
+<li>📧 <strong>Email</strong>: <a href="mailto:Alien-agent@microsoft.com">Alien-agent@microsoft.com</a></li>
+</ul>
+<hr />
+<h2 id="next-steps">🎯 Next Steps</h2>
+<p>Now that Alien² is set up, explore these guides to unlock its full potential:</p>
+<ol>
+<li><strong><a href="../../configuration/system/overview/">Configuration Customization</a></strong> - Fine-tune Alien² behavior</li>
+<li><strong><a href="../Alien-Unis/core_features/knowledge_substrate/overview.md">Knowledge Substrate Setup</a></strong> - Enable RAG capabilities</li>
+<li><strong><a href="../../tutorials/creating_app_agent/overview/">Creating Custom Agents</a></strong> - Build specialized agents</li>
+<li><strong><a href="../../mcp/overview/">MCP Integration</a></strong> - Extend with custom MCP servers</li>
+</ol>
+<p>Happy automating with Alien²! 🛸</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      <script src="../../javascripts/mermaid-init.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
