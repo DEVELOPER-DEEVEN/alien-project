@@ -6,7 +6,7 @@ Alien can learn from user-provided demonstrations for specific requests and use 
 ## Demo ❗
 Here's a demo of using user demonstrations to enhance Alien's understanding of user requests. Alien currently could assist users with a wide range of tasks. However, like any AI system, Alien may encounter challenges in accurately interpreting complex user requests.To address this, we demonstrate how Alien leverages user demonstrations to improve its performance over time. By observing and analyzing user interactions, Alien adapts and refines its understanding of user requests, leading to more accurate and efficient assistance.
 
-https://github.com/yunhao0204/Alien/assets/59384816/0146f83e-1b5e-4933-8985-fe3f24ec4777
+
 
 
 ## How to Enable and Config this Function ❓
@@ -26,7 +26,7 @@ Alien currently support study user trajectories recorded by Steps Recorder app i
 
 **Step 1: Record your steps**
 
-You can follow this [official guidance](https://support.microsoft.com/en-us/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) to record your steps for a specific request.
+You can follow this official guidance to record your steps for a specific request.
 
 
 **Step 2: Add comments in each step if needed**

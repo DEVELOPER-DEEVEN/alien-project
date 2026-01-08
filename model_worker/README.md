@@ -3,7 +3,7 @@ The lite version of the prompt is not fully optimized. To achieve better results
 
 ### If you use Gemini as the Agent
 
-1. Create an account on [Google AI](https://ai.google.dev/) and get your API key.
+1. Create an account on Google AI and get your API key.
 2. Install the required packages google-generativeai or install the `requirement.txt` with uncommenting the Gemini.
 ```bash
 pip install -U google-generativeai==0.7.0
@@ -17,11 +17,11 @@ pip install -U google-generativeai==0.7.0
 }
 ```
 NOTE: `API_MODEL` is the model name of Gemini LLM API. 
-You can find the model name in the [Gemini LLM model list](https://ai.google.dev/gemini-api).
+You can find the model name in the Gemini LLM model list.
 If you meet the `429 Resource has been exhausted (e.g. check quota).`, it may because the rate limit of your Gemini API.
 ### If you use Claude as the Agent
 
-1. Create an account on [Claude](https://www.anthropic.com/) and get your API key.
+1. Create an account on Claude and get your API key.
 2. Install the required packages anthropic or install the `requirement.txt` with uncommenting the Claude.
 ```bash
 pip install -U anthropic==0.37.1
@@ -35,11 +35,11 @@ pip install -U anthropic==0.37.1
 }
 ```
 NOTE: `API_MODEL` is the model name of Claude LLM API. 
-You can find the model name in the [Claude LLM model list](https://www.anthropic.com/pricing#anthropic-api).
+You can find the model name in the Claude LLM model list.
 
 ### If you use QWEN as the Agent
 
-1. QWen (Tongyi Qianwen) is a LLM developed by Alibaba. Go to [QWen](https://dashscope.aliyun.com/) and register an account and get the API key. More details can be found [here](https://help.aliyun.com/zh/dashscope/developer-reference/activate-dashscope-and-create-an-api-key?spm=a2c4g.11186623.0.0.7b5749d72j3SYU) (in Chinese).
+1. QWen (Tongyi Qianwen) is a LLM developed by Alibaba. Go to QWen and register an account and get the API key. More details can be found here (in Chinese).
 2. Install the required packages dashscope or install the `requirement.txt` with uncommenting the Qwen.
 ```bash
 pip install dashscope
@@ -53,10 +53,10 @@ pip install dashscope
 }
 ```
 NOTE: `API_MODEL` is the model name of QWen LLM API. 
-You can find the model name in the [QWen LLM model list](https://help.aliyun.com/zh/dashscope/developer-reference/model-square/?spm=a2c4g.11186623.0.0.35a36ffdt97ljI).
+You can find the model name in the QWen LLM model list.
 
 ### If you use Ollama as the Agent
-1. Go to [Ollama](https://github.com/jmorganca/ollama) and follow the instructions to serve a LLM model on your local environment.
+1. Go to Ollama and follow the instructions to serve a LLM model on your local environment.
 We provide a short example to show how to configure the ollama in the following, which might change if ollama makes updates.
 
 ```bash title="install ollama and serve LLMs in local" showLineNumbers
@@ -160,7 +160,7 @@ Also, Alien provides the usage of ***LLaVA-1.5*** and ***CogAgent*** as the exam
 
 #### If you use LLaVA-1.5 as the Agent
 
-Please refer to the [LLaVA](https://github.com/haotian-liu/LLaVA) project to download and prepare the LLaVA-1.5 model, for example:
+Please refer to the LLaVA project to download and prepare the LLaVA-1.5 model, for example:
 
 ```bash
 git clone https://github.com/haotian-liu/LLaVA.git
@@ -173,7 +173,7 @@ pip install -e .
 
 #### If you use CogAgent as the Agent
 
-Please refer to the [CogVLM](https://github.com/THUDM/CogVLM) project to download and prepare the CogAgent model. Download the sat version of the CogAgent weights `cogagent-chat.zip` from [here](https://huggingface.co/THUDM/CogAgent/tree/main), unzip it.
+Please refer to the CogVLM project to download and prepare the CogAgent model. Download the sat version of the CogAgent weights `cogagent-chat.zip` from here, unzip it.
 
 1.2 Start your custom model. You must customize your model to support the interface of the Alien.
 For simplicity, you have to configure `YOUR_ENDPOINT/chat/completions`.

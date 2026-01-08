@@ -3,17 +3,7 @@
 </h1>
 
 
-<div align="center">
 
-[![arxiv](https://img.shields.io/badge/Paper-arXiv:202402.07939-b31b1b.svg)](https://arxiv.org/abs/2402.07939)&ensp;
-![Python Version](https://img.shields.io/badge/Python-3776AB?&logo=python&logoColor=white-blue&label=3.10%20%7C%203.11)&ensp;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&ensp;
-[![Documentation](https://img.shields.io/badge/Documentation-%230ABAB5?style=flat&logo=readthedocs&logoColor=black)](https://microsoft.github.io/Alien/)&ensp;
-[![YouTube](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=%23FF0000)](https://www.youtube.com/watch?v=QT_OhygMVXU)&ensp;
-<!-- [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/Alien_Agent)](https://twitter.com/intent/follow?screen_name=Alien_Agent) -->
-<!-- ![Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)&ensp; -->
-
-</div>
 
 **Alien** is a **UI-Focused** multi-agent framework to fulfill user requests on **Windows OS** by seamlessly navigating and operating within individual or spanning multiple applications.
 
@@ -28,7 +18,7 @@
 - <b>AppAgent 👾</b>, responsible for iteratively executing actions on the selected applications until the task is successfully concluded within a specific application. 
 - <b>Application Automator 🎮</b>, is tasked with translating actions from HostAgent and AppAgent into interactions with the application and through UI controls, native APIs or AI tools. Check out more details [here](https://microsoft.github.io/Alien/automator/overview/).
 
-Both agents leverage the multi-modal capabilities of GPT-4V(o) to comprehend the application UI and fulfill the user's request. For more details, please consult our [technical report](https://arxiv.org/abs/2402.07939) and [documentation](https://microsoft.github.io/Alien/).
+Both agents leverage the multi-modal capabilities of GPT-4V(o) to comprehend the application UI and fulfill the user's request. For more details, please consult our technical report and documentation.
 <h1 align="center">
     <img src="../assets/framework_v2.png"/> 
 </h1>
@@ -66,7 +56,6 @@ Both agents leverage the multi-modal capabilities of GPT-4V(o) to comprehend the
 
 
 
-These sources provide insights into the evolving landscape of technology and the implications of Alien phenomena on various platforms.
 
 
 ## 💥 Highlights
@@ -263,17 +252,7 @@ Please consult the [WindowsBench](https://arxiv.org/pdf/2402.07939.pdf) provided
 
 
 
-## 📚 Citation
-Our technical report paper can be found [here](https://arxiv.org/abs/2402.07939). Note that previous AppAgent and ActAgent in the paper are renamed to HostAgent and AppAgent in the code base to better reflect their functions.
-If you use Alien in your research, please cite our paper:
-```
-@article{Alien,
-  title={{Alien: A UI-Focused Agent for Windows OS Interaction}},
-  author={Zhang, Chaoyun and Li, Liqun and He, Shilin and Zhang, Xu and Qiao, Bo and  Qin, Si and Ma, Minghua and Kang, Yu and Lin, Qingwei and Rajmohan, Saravan and Zhang, Dongmei and  Zhang, Qi},
-  journal={arXiv preprint arXiv:2402.07939},
-  year={2024}
-}
-```
+
 
 ## 📝 Todo List
 - [x] RAG enhanced Alien.
@@ -284,13 +263,6 @@ If you use Alien in your research, please cite our paper:
 
 
 
-## 🎨 Related Projects
-1. If you're interested in data analytics agent frameworks, check out [TaskWeaver](https://github.com/DEVELOPER-DEEVEN/TaskWeaver?tab=readme-ov-file), a code-first LLM agent framework designed for seamlessly planning and executing data analytics tasks.
-
-2. For more information on GUI agents, refer to our survey paper: [Large Language Model-Brained GUI Agents: A Survey](https://arxiv.org/abs/2411.18279). You can also explore the survey through:
-- [Paper](https://arxiv.org/abs/2411.18279)
-- [GitHub Repository](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey)
-- [Searchable Website](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)
 
 ## ⚠️ Disclaimer
 By choosing to run the provided code, you acknowledge and agree to the following terms and conditions regarding the functionality and data handling practices in [DISCLAIMER.md](./DISCLAIMER.md)

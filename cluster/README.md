@@ -145,18 +145,7 @@ Enables platform extension (mobile, web, IoT, embedded).
 
 ---
 
-## 🎥 Demo Video
 
-See Alien³ cluster in action with this comprehensive demonstration of cross-device orchestration:
-
-<div align="center">
-  <a href="https://www.youtube.com/watch?v=NGrVWGcJL8o">
-    <img src="../assets/poster_with_play.png" alt="Alien³ cluster Demo Video" width="90%">
-  </a>
-  <p><em>🎬 Click to watch: Multi-device workflow orchestration with Alien³ cluster</em></p>
-</div>
-
----
 
 ## 🏗️ Architecture Overview
 
@@ -651,25 +640,7 @@ Alien³ is designed as a **universal orchestration framework** that seamlessly i
 **Alien² Desktop AgentOS:**
 ---
 
-## 🤝 Contributing
 
-We welcome contributions! Whether building new device agents, improving orchestration algorithms, or enhancing the protocol:
-
-- 🐛 [Report Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
-- 💡 [Request Features](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
-- 📝 [Improve Documentation](https://github.com/DEVELOPER-DEEVEN/Alien/pulls)
-- 🧪 [Submit Pull Requests](../../CONTRIBUTING.md)
-
----
-
-## 📬 Contact & Support
-
-- 📖 **Documentation**: [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
-- 📧 **Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
-
----
 
 ## ⚖️ License
 

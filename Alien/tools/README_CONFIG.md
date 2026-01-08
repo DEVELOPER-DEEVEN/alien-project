@@ -287,7 +287,7 @@ TIMEOUT: 60            # ← Used (not in new config)
 ## 📞 Support
 
 - **Full Documentation:** [docs/configuration_guide.md](../docs/configuration_guide.md)
-- **GitHub Issues:** https://github.com/DEVELOPER-DEEVEN/Alien/issues
+- **GitHub Issues:** (Link removed)
 - **Email:** Alien-agent@microsoft.com
 
 ---

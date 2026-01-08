@@ -221,9 +221,9 @@ CMD ["python", "-m", "cluster", "--webui"]
 
 ## 📚 Additional Resources
 
-- [React Documentation](https://react.dev/)
-- [FastAPI WebSocket](https://fastapi.tiangolo.com/advanced/websockets/)
-- [ReactFlow](https://reactflow.dev/)
-- [Zustand](https://github.com/pmndrs/zustand)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/)
+- React Documentation
+- FastAPI WebSocket
+- ReactFlow
+- Zustand
+- Tailwind CSS
+- Vite

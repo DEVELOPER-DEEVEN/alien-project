@@ -15,8 +15,7 @@
 <p align="center">
   <strong>📚 Quick Links:</strong>
   <a href="./cluster/README.md">🌌 Alien³ README</a> •
-  <a href="./Alien/README.md">🖥️ Alien² README</a> •
-  <a href="https://microsoft.github.io/Alien/">📖 Full Documentation</a>
+  <a href="./Alien/README.md">🖥️ Alien² README</a>
 </p>
 
 ---
@@ -252,11 +251,7 @@ python -m cluster --interactive
 
 **📖 Complete Guide:**
 - [cluster README](./cluster/README.md) – Architecture & concepts
-- [Online Quick Start](https://microsoft.github.io/Alien/getting_started/quick_start_cluster/) – Step-by-step tutorial
-- [Windows Device Setup](https://microsoft.github.io/Alien/getting_started/quick_start_Alien-Unis/)
-- [Linux Device Setup](https://microsoft.github.io/Alien/getting_started/quick_start_linux/)
-- [Mobile Device Setup](https://microsoft.github.io/Alien/getting_started/quick_start_mobile/) – Android agent setup
-- [Configuration](https://microsoft.github.io/Alien/configuration/system/cluster_devices/) – Device pool configuration
+
 
 </td>
 <td width="50%" valign="top">
@@ -280,7 +275,7 @@ python -m Alien --task <task_name>
 **📖 Complete Guide:**
 - [Alien² README](./Alien/README.md) – Full documentation
 - [Configuration Guide](./Alien/README.md#️-step-2-configure-the-llms) – LLM setup
-- [Advanced Features](https://microsoft.github.io/Alien/advanced_usage/overview/) – Multi-action, RAG
+
 
 </td>
 </tr>
@@ -380,10 +375,7 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 - **[Automator Guide](https://microsoft.github.io/Alien/automator/overview)** – Hybrid GUI + API
 - **[Benchmarks](./Alien/README.md#-evaluation)** – WAA & OSWorld results
 
-**📖 Online Docs:**
-- [Complete Documentation](https://microsoft.github.io/Alien/)
-- [Model Support](https://microsoft.github.io/Alien/supported_models/overview/)
-- [RAG Configuration](https://microsoft.github.io/Alien/advanced_usage/reinforce_appagent/overview/)
+
 
 </td>
 </tr>
@@ -407,36 +399,7 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 ---
 
 
-**Media Coverage:**
-- [Microsoft's Alien: Smarter Windows Experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
-- **[More coverage →](./Alien/README.md#-tracing-the-stars)**
 
-**Community:**
-- 💬 [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
-- 🐛 [Issue Tracker](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
-- 📧 Email: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
-- 📺 [YouTube Channel](https://www.youtube.com/watch?v=QT_OhygMVXU)
-
----
-
-## 🎨 Related Projects & Research
-
-**Microsoft Research:**
-- **[TaskWeaver](https://github.com/DEVELOPER-DEEVEN/TaskWeaver)** – Code-first LLM agent framework for data analytics and task automation
-
-**GUI Agent Research:**
-- **[LLM-Brained GUI Agents Survey](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey)** – Comprehensive survey of GUI automation agents
-- **[Interactive Survey Site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)** – Explore latest GUI agent research and developments
-
-**Multi-Agent Systems:**
-- **Alien³ cluster** represents a novel approach to multi-device orchestration, introducing the network framework for coordinating heterogeneous agents across platforms
-- Builds on multi-agent coordination research while addressing unique challenges of cross-device GUI automation
-
-**Benchmarks:**
-- **[Windows Agent Arena (WAA)](https://github.com/nice-mee/WindowsAgentArena)** – Evaluation benchmark for Windows automation agents
-- **[OSWorld](https://github.com/nice-mee/WindowsAgentArena/tree/2020-qqtcg/osworld)** – Cross-application task evaluation suite
-
----
 
 ## 💡 FAQ
 

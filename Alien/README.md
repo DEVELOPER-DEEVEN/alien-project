@@ -9,17 +9,7 @@
 
 
 
-<div align="center">
 
-[![arxiv](https://img.shields.io/badge/Paper-arXiv:2504.14603-b31b1b.svg)](https://arxiv.org/abs/2504.14603)&ensp;
-![Python Version](https://img.shields.io/badge/Python-3776AB?&logo=python&logoColor=white-blue&label=3.10%20%7C%203.11)&ensp;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&ensp;
-[![Documentation](https://img.shields.io/badge/Documentation-%230ABAB5?style=flat&logo=readthedocs&logoColor=black)](https://microsoft.github.io/Alien/)&ensp;
-[![YouTube](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=%23FF0000)](https://www.youtube.com/watch?v=QT_OhygMVXU)&ensp;
-<!-- [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/Alien_Agent)](https://twitter.com/intent/follow?screen_name=Alien_Agent) -->
-<!-- ![Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)&ensp; -->
-
-</div>
 
 <p align="center">
   <strong>⬆️ Looking for Alien³ (Multi-Device cluster)?</strong>
@@ -79,18 +69,7 @@ For a deep dive see our [technical report](https://arxiv.org/pdf/2504.14603) or 
 
 ---
 
-## 🌐 Media Coverage 
 
-Alien sightings have garnered attention from various media outlets, including:
-- [Microsoft's Alien abducts traditional user interfaces for a smarter Windows experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
-- [🚀 Alien & GPT-4-V: Sit back and relax, mientras GPT lo hace todo🌌](https://www.linkedin.com/posts/gutierrezfrancois_ai-Alien-microsoft-activity-7176819900399652865-pLoo?utm_source=share&utm_medium=member_desktop)
-- [The AI PC - The Future of Computers? - Microsoft Alien](https://www.youtube.com/watch?v=1k4LcffCq3E)
-
-- ...
-
-These sources provide insights into the evolving landscape of technology and the implications of Alien phenomena on various platforms.
-
----
 
 ## 🚀 Three‑minute Quickstart
 
@@ -431,35 +410,7 @@ The integration of these benchmarks into Alien² is in separate repositories. Pl
 ---
 
 
-## 📚 Citation
 
-If you build on this work, please cite our the AgentOS framework:
-
-**Alien² – The Desktop AgentOS (2025)**  
-<https://arxiv.org/abs/2504.14603>
-```bibtex
-@article{zhang2025Alien-Unis,
-  title   = {{Alien-Unis: The Desktop AgentOS}},
-  author  = {Zhang, Chaoyun and Huang, He and Ni, Chiming and Mu, Jian and Qin, Si and He, Shilin and Wang, Lu and Yang, Fangkai and Zhao, Pu and Du, Chao and Li, Liqun and Kang, Yu and Jiang, Zhao and Zheng, Suzhen and Wang, Rujia and Qian, Jiaxu and Ma, Minghua and Lou, Jian-Guang and Lin, Qingwei and Rajmohan, Saravan and Zhang, Dongmei},
-  journal = {arXiv preprint arXiv:2504.14603},
-  year    = {2025}
-}
-```
-
-**Alien – A UI‑Focused Agent for Windows OS Interaction (2024)**  
-<https://arxiv.org/abs/2402.07939>
-```bibtex
-@article{zhang2024Alien,
-  title   = {{Alien: A UI-Focused Agent for Windows OS Interaction}},
-  author  = {Zhang, Chaoyun and Li, Liqun and He, Shilin and Zhang, Xu and Qiao, Bo and Qin, Si and Ma, Minghua and Kang, Yu and Lin, Qingwei and Rajmohan, Saravan and Zhang, Dongmei and Zhang, Qi},
-  journal = {arXiv preprint arXiv:2402.07939},
-  year    = {2024}
-}
-```
-
-
-
----
 
 ## 📝 Roadmap
 
@@ -473,11 +424,7 @@ The Alien² team is actively working on the following features and improvements:
 
 ---
 
-## 🎨 Related Projects
-- **TaskWeaver** — a code‑first LLM agent for data analytics: <https://github.com/DEVELOPER-DEEVEN/TaskWeaver>  
-- **LLM‑Brained GUI Agents: A Survey**: <https://arxiv.org/abs/2411.18279> • [GitHub](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey) • [Interactive site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)
 
----
 
 
 ## ⚠️ Disclaimer
