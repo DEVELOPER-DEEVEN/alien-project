@@ -85,7 +85,7 @@ Alien sightings have garnered attention from various media outlets, including:
 - [Microsoft's Alien abducts traditional user interfaces for a smarter Windows experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
 - [🚀 Alien & GPT-4-V: Sit back and relax, mientras GPT lo hace todo🌌](https://www.linkedin.com/posts/gutierrezfrancois_ai-Alien-microsoft-activity-7176819900399652865-pLoo?utm_source=share&utm_medium=member_desktop)
 - [The AI PC - The Future of Computers? - Microsoft Alien](https://www.youtube.com/watch?v=1k4LcffCq3E)
-- [Microsoft発のオープンソース版「Alien」登場！　Windowsを自動操縦するAIエージェントを試す](https://internet.watch.impress.co.jp/docs/column/shimizu/1570581.html)
+
 - ...
 
 These sources provide insights into the evolving landscape of technology and the implications of Alien phenomena on various platforms.
@@ -103,7 +103,7 @@ Alien requires **Python >= 3.10** running on **Windows OS >= 10**. It can be ins
 # conda activate Alien
 
 # clone the repository
-git clone https://github.com/microsoft/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
 cd Alien
 # install the requirements
 pip install -r requirements.txt
@@ -275,11 +275,7 @@ If everything goes well, you will see the following message:
 
 ```powershell
 Welcome to use Alien🛸, A UI-focused Agent for Windows OS Interaction. 
- _   _  _____   ___
-| | | ||  ___| / _ \
-| | | || |_   | | | |
-| |_| ||  _|  | |_| |
- \___/ |_|     \___/
+ALIEN ACTIVE
 Please enter your request to be completed🛸:
 ```
 
@@ -478,7 +474,7 @@ The Alien² team is actively working on the following features and improvements:
 ---
 
 ## 🎨 Related Projects
-- **TaskWeaver** — a code‑first LLM agent for data analytics: <https://github.com/microsoft/TaskWeaver>  
+- **TaskWeaver** — a code‑first LLM agent for data analytics: <https://github.com/DEVELOPER-DEEVEN/TaskWeaver>  
 - **LLM‑Brained GUI Agents: A Survey**: <https://arxiv.org/abs/2411.18279> • [GitHub](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey) • [Interactive site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)
 
 ---

@@ -1,6 +1,6 @@
 """
-测试新配置系统的属性访问方式
-验证使用大写和小写属性访问时，与旧配置系统的值完全一致
+ [Text Cleaned] 
+ [Text Cleaned] ， [Text Cleaned] 
 """
 
 import os
@@ -10,10 +10,8 @@ from rich.console import Console
 from rich.table import Table
 from rich import box
 
-# 添加项目根目录到路径
 sys.path.insert(0, os.path.abspath("."))
 
-# 导入新旧配置系统
 from Alien.config import Config as LegacyConfig
 from config.config_loader import get_Alien_config, get_cluster_config
 
@@ -21,7 +19,7 @@ console = Console()
 
 
 class AttributeAccessValidator:
-    """验证属性访问方式的配置值"""
+    """ [Text Cleaned] """
 
     def __init__(self):
         self.test_results = []
@@ -32,12 +30,12 @@ class AttributeAccessValidator:
         self, name: str, legacy_val: Any, new_val_upper: Any, new_val_lower: Any = None
     ):
         """
-        测试单个配置值
+         [Text Cleaned] 
 
-        :param name: 配置名称
-        :param legacy_val: 旧配置的值
-        :param new_val_upper: 新配置大写属性访问的值
-        :param new_val_lower: 新配置小写属性访问的值（可选）
+        :param name:  [Text Cleaned] 
+        :param legacy_val:  [Text Cleaned] 
+        :param new_val_upper:  [Text Cleaned] 
+        :param new_val_lower:  [Text Cleaned] （ [Text Cleaned] ）
         """
         result = {
             "name": name,
@@ -47,19 +45,16 @@ class AttributeAccessValidator:
             "status": "✓",
         }
 
-        # 处理 DynamicConfig 对象
         if hasattr(new_val_upper, "_data"):
             new_val_upper = new_val_upper._data
         if new_val_lower is not None and hasattr(new_val_lower, "_data"):
             new_val_lower = new_val_lower._data
 
-        # 检查大写属性访问是否与旧配置一致
         if self._compare_values(legacy_val, new_val_upper):
-            # 如果提供了小写访问，检查是否与大写一致
             if new_val_lower is not None:
                 if not self._compare_values(new_val_upper, new_val_lower):
                     result["status"] = "✗"
-                    result["error"] = "大写和小写访问值不一致"
+                    result["error"] = " [Text Cleaned] "
                     self.failed += 1
                 else:
                     self.passed += 1
@@ -67,31 +62,28 @@ class AttributeAccessValidator:
                 self.passed += 1
         else:
             result["status"] = "✗"
-            result["error"] = "新旧配置值不一致"
+            result["error"] = " [Text Cleaned] "
             self.failed += 1
 
         self.test_results.append(result)
         return result["status"] == "✓"
 
     def _compare_values(self, val1: Any, val2: Any) -> bool:
-        """比较两个值是否相等"""
+        """ [Text Cleaned] """
         if val1 is None and val2 is None:
             return True
         if val1 is None or val2 is None:
             return False
 
-        # 处理 API_BASE URL 转换
         if isinstance(val1, str) and isinstance(val2, str):
             if "chat/completions" in val2 and "chat/completions" not in val1:
                 return val2.startswith(val1.rstrip("/"))
 
-        # 处理列表
         if isinstance(val1, list) and isinstance(val2, list):
             if len(val1) != len(val2):
                 return False
             return all(a == b for a, b in zip(val1, val2))
 
-        # 处理字典
         if isinstance(val1, dict) and isinstance(val2, dict):
             if set(val1.keys()) != set(val2.keys()):
                 return False
@@ -100,8 +92,8 @@ class AttributeAccessValidator:
         return val1 == val2
 
     def test_Alien_system_config(self):
-        """测试 Alien SystemConfig 的属性访问"""
-        console.print("\n[bold cyan]测试 Alien SystemConfig 属性访问[/bold cyan]")
+        """ [Text Cleaned]  Alien SystemConfig  [Text Cleaned] """
+        console.print("\n[bold cyan] [Text Cleaned]  Alien SystemConfig  [Text Cleaned] [/bold cyan]")
 
         legacy = LegacyConfig.get_instance().config_data
         new_config = get_Alien_config()
@@ -128,8 +120,8 @@ class AttributeAccessValidator:
                 )
 
     def test_Alien_agent_config(self):
-        """测试 Alien AgentConfig 的属性访问"""
-        console.print("\n[bold cyan]测试 Alien AgentConfig 属性访问[/bold cyan]")
+        """ [Text Cleaned]  Alien AgentConfig  [Text Cleaned] """
+        console.print("\n[bold cyan] [Text Cleaned]  Alien AgentConfig  [Text Cleaned] [/bold cyan]")
 
         legacy = LegacyConfig.get_instance().config_data
         new_config = get_Alien_config()
@@ -170,8 +162,8 @@ class AttributeAccessValidator:
                     )
 
     def test_Alien_rag_config(self):
-        """测试 Alien RAGConfig 的属性访问"""
-        console.print("\n[bold cyan]测试 Alien RAGConfig 属性访问[/bold cyan]")
+        """ [Text Cleaned]  Alien RAGConfig  [Text Cleaned] """
+        console.print("\n[bold cyan] [Text Cleaned]  Alien RAGConfig  [Text Cleaned] [/bold cyan]")
 
         legacy = LegacyConfig.get_instance().config_data
         new_config = get_Alien_config()
@@ -198,15 +190,14 @@ class AttributeAccessValidator:
                 )
 
     def test_cluster_network_config(self):
-        """测试 cluster networkRuntimeConfig 的属性访问"""
+        """ [Text Cleaned]  cluster networkRuntimeConfig  [Text Cleaned] """
         console.print(
-            "\n[bold cyan]测试 cluster networkRuntimeConfig 属性访问[/bold cyan]"
+            "\n[bold cyan] [Text Cleaned]  cluster networkRuntimeConfig  [Text Cleaned] [/bold cyan]"
         )
 
         try:
             cluster_config = get_cluster_config()
 
-            # 测试配置字段
             network_fields = [
                 ("network_ID", "network_id"),
                 ("HEARTBEAT_INTERVAL", "heartbeat_interval"),
@@ -220,7 +211,6 @@ class AttributeAccessValidator:
                 new_val_upper = getattr(cluster_config.network, upper_name, None)
                 new_val_lower = getattr(cluster_config.network, lower_name, None)
 
-                # cluster 没有旧配置，只验证大小写访问一致性
                 result = {
                     "name": f"network.{upper_name}",
                     "new_upper": new_val_upper,
@@ -236,17 +226,17 @@ class AttributeAccessValidator:
                     self.passed += 1
                 else:
                     self.failed += 1
-                    result["error"] = "大写和小写访问值不一致"
+                    result["error"] = " [Text Cleaned] "
 
                 self.test_results.append(result)
 
         except Exception as e:
-            console.print(f"[yellow]cluster 配置测试跳过: {e}[/yellow]")
+            console.print(f"[yellow]cluster  [Text Cleaned] : {e}[/yellow]")
 
     def test_cluster_agent_config(self):
-        """测试 cluster AgentConfig 的属性访问"""
+        """ [Text Cleaned]  cluster AgentConfig  [Text Cleaned] """
         console.print(
-            "\n[bold cyan]测试 cluster network_AGENT 属性访问[/bold cyan]"
+            "\n[bold cyan] [Text Cleaned]  cluster network_AGENT  [Text Cleaned] [/bold cyan]"
         )
 
         try:
@@ -281,82 +271,76 @@ class AttributeAccessValidator:
                     self.passed += 1
                 else:
                     self.failed += 1
-                    result["error"] = "大写和小写访问值不一致"
+                    result["error"] = " [Text Cleaned] "
 
                 self.test_results.append(result)
 
         except Exception as e:
-            console.print(f"[yellow]cluster Agent 配置测试跳过: {e}[/yellow]")
+            console.print(f"[yellow]cluster Agent  [Text Cleaned] : {e}[/yellow]")
 
     def print_summary(self):
-        """打印测试摘要"""
+        """ [Text Cleaned] """
         console.print("\n" + "=" * 70)
-        console.print("[bold]测试结果摘要[/bold]")
+        console.print("[bold] [Text Cleaned] [/bold]")
         console.print("=" * 70)
 
-        # 创建统计表格
         table = Table(box=box.ROUNDED)
-        table.add_column("指标", style="cyan")
-        table.add_column("数量", justify="right", style="yellow")
-        table.add_column("百分比", justify="right", style="green")
+        table.add_column(" [Text Cleaned] ", style="cyan")
+        table.add_column(" [Text Cleaned] ", justify="right", style="yellow")
+        table.add_column(" [Text Cleaned] ", justify="right", style="green")
 
         total = self.passed + self.failed
         pass_rate = (self.passed / total * 100) if total > 0 else 0
 
-        table.add_row("通过", str(self.passed), f"{pass_rate:.2f}%")
-        table.add_row("失败", str(self.failed), f"{(100-pass_rate):.2f}%")
-        table.add_row("总计", str(total), "100%")
+        table.add_row(" [Text Cleaned] ", str(self.passed), f"{pass_rate:.2f}%")
+        table.add_row(" [Text Cleaned] ", str(self.failed), f"{(100-pass_rate):.2f}%")
+        table.add_row(" [Text Cleaned] ", str(total), "100%")
 
         console.print(table)
 
-        # 显示失败项
         if self.failed > 0:
-            console.print("\n[bold red]失败的测试项:[/bold red]")
+            console.print("\n[bold red] [Text Cleaned] :[/bold red]")
             for result in self.test_results:
                 if result["status"] == "✗":
                     console.print(
-                        f"  ✗ {result['name']}: {result.get('error', '未知错误')}"
+                        f"  ✗ {result['name']}: {result.get('error', ' [Text Cleaned] ')}"
                     )
                     if "legacy" in result:
-                        console.print(f"    旧值: {result['legacy']}")
-                    console.print(f"    大写: {result['new_upper']}")
-                    console.print(f"    小写: {result['new_lower']}")
+                        console.print(f"     [Text Cleaned] : {result['legacy']}")
+                    console.print(f"     [Text Cleaned] : {result['new_upper']}")
+                    console.print(f"     [Text Cleaned] : {result['new_lower']}")
 
-        # 最终判断
         if self.failed == 0:
-            console.print("\n[bold green]✅ 所有属性访问测试通过！[/bold green]")
+            console.print("\n[bold green]✅  [Text Cleaned] ！[/bold green]")
             return True
         else:
-            console.print(f"\n[bold red]❌ {self.failed} 项测试失败[/bold red]")
+            console.print(f"\n[bold red]❌ {self.failed}  [Text Cleaned] [/bold red]")
             return False
 
 
 def main():
-    """主测试函数"""
+    """ [Text Cleaned] """
     console.print("\n" + "=" * 70)
-    console.print("[bold]配置属性访问验证测试[/bold]")
+    console.print("[bold] [Text Cleaned] [/bold]")
     console.print("=" * 70)
-    console.print("测试新配置系统的大写/小写属性访问与旧配置的一致性\n")
+    console.print(" [Text Cleaned] / [Text Cleaned] \n")
 
     validator = AttributeAccessValidator()
 
     try:
-        # Alien 配置测试
         validator.test_Alien_system_config()
         validator.test_Alien_agent_config()
         validator.test_Alien_rag_config()
 
-        # cluster 配置测试
         validator.test_cluster_network_config()
         validator.test_cluster_agent_config()
 
-        # 打印摘要
         success = validator.print_summary()
 
         return 0 if success else 1
 
     except Exception as e:
-        console.print(f"\n[bold red]测试执行失败: {e}[/bold red]")
+        console.print(f"\n[bold red] [Text Cleaned] : {e}[/bold red]")
         import traceback
 
         traceback.print_exc()

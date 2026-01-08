@@ -84,21 +84,16 @@ async def test_stop_task_and_restart_full_flow(cluster_service, mock_app_state):
         result = await cluster_service.stop_task_and_restart()
 
         # Assert
-        # 1. shutdown(force=True) 应该被调用
         mock_app_state.cluster_client._client.shutdown.assert_called_once()
         mock_app_state.cluster_client._session.force_finish.assert_called()
 
-        # 2. initialize 应该被调用
         mock_app_state.cluster_client._client.initialize.assert_called_once()
 
-        # 3. request counter 应该被重置
         assert mock_app_state._request_counter == 0
         assert mock_app_state._request_counter != original_counter
 
-        # 4. create_next_session 应该被调用
         mock_create_session.assert_called_once()
 
-        # 5. 返回结果应该包含新session信息
         assert result["status"] == "success"
         assert result["session_name"] == "new_session_123"
 

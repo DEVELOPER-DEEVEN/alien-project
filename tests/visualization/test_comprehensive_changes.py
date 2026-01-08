@@ -146,9 +146,9 @@ async def test_all_change_types():
 
     print("✅ All comprehensive change detection tests completed!")
     print("🎉 Features successfully implemented:")
-    print("   • 自动对比 old/new network，展示节点和边的增删")
-    print("   • 优化 Rich 表格布局，防止换行")
-    print("   • task 和 dep 属性变化都展示")
+    print("   •  [Text Cleaned]  old/new network， [Text Cleaned] ")
+    print("   •  [Text Cleaned]  Rich  [Text Cleaned] ， [Text Cleaned] ")
+    print("   • task  [Text Cleaned]  dep  [Text Cleaned] ")
 
 
 if __name__ == "__main__":

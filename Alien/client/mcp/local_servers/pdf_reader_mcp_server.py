@@ -56,13 +56,10 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
         pdf_process = None
         try:
             if simulate_human:
-                # 模拟人工操作：打开PDF文件
                 print(f"🔍 Opening PDF file: {os.path.basename(pdf_path)}")
                 try:
-                    # 尝试用默认程序打开PDF（通常是Adobe Reader或浏览器）
                     pdf_process = subprocess.Popen(["start", "", pdf_path], shell=True)
 
-                    # 模拟人工查看时间：随机等待2-5秒
                     wait_time = random.uniform(2.0, 5.0)
                     print(
                         f"👁️  Simulating human reading... waiting {wait_time:.1f} seconds"
@@ -73,7 +70,6 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
                     print(f"⚠️  Could not open PDF with default application: {e}")
                     print("📄 Proceeding with text extraction...")
 
-            # 提取文本内容
             print(f"📝 Extracting text from: {os.path.basename(pdf_path)}")
             with open(pdf_path, "rb") as file:
                 pdf_reader = PyPDF2.PdfReader(file)
@@ -86,7 +82,6 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
                     text_content += page_text
 
                     if simulate_human and len(pdf_reader.pages) > 1:
-                        # 模拟人工翻页等待时间
                         page_wait = random.uniform(0.5, 1.5)
                         print(
                             f"📖 Processing page {page_num + 1}... waiting {page_wait:.1f}s"
@@ -134,7 +129,6 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
             if simulate_human:
                 print(f"\n📂 Processing file {i}/{total_files}: {file_name}")
 
-                # 模拟人工在文件间的停顿
                 if i > 1:
                     between_files_wait = random.uniform(1.0, 3.0)
                     print(
@@ -272,7 +266,6 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
         if not pdf_files:
             return {"message": f"No PDF files found in directory: {directory_path}"}
 
-        # 使用新的批处理函数
         return _extract_text_from_pdf_batch(pdf_files, simulate_human)
 
     return mcp

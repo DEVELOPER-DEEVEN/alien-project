@@ -24,7 +24,7 @@ conda create -n Alien python=3.10
 conda activate Alien
 
 # Clone the repository
-git clone https://github.com/microsoft/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
 cd Alien
 
 # Install dependencies
@@ -196,11 +196,7 @@ python -m Alien --task <your_task_name>
 **Expected Output:**
 ```
 Welcome to use Alien🛸, A UI-focused Agent for Windows OS Interaction. 
- _   _  _____   ___
-| | | ||  ___| / _ \
-| | | || |_   | | | |
-| |_| ||  _|  | |_| |
- \___/ |_|     \___/
+ALIEN ACTIVE
 Please enter your request to be completed🛸:
 ```
 
@@ -242,7 +238,7 @@ Alien² automatically saves execution logs, screenshots, and traces for debuggin
 
 > **Analyzing Logs:** Use the logs to debug agent behavior, replay execution flow, and analyze agent decision-making patterns.
 
-> **Privacy Notice:** Screenshots may contain sensitive or confidential information. Ensure no private data is visible during execution. See [DISCLAIMER.md](https://github.com/microsoft/Alien/blob/main/DISCLAIMER.md) for details.
+> **Privacy Notice:** Screenshots may contain sensitive or confidential information. Ensure no private data is visible during execution. See [DISCLAIMER.md](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/DISCLAIMER.md) for details.
 
 ---
 
@@ -326,7 +322,7 @@ python -m Alien.tools.convert_config --force
 ## ❓ Getting Help
 
 - 📖 **Documentation**: [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
-- 🐛 **GitHub Issues**: [https://github.com/microsoft/Alien/issues](https://github.com/microsoft/Alien/issues) (preferred)
+- 🐛 **GitHub Issues**: [https://github.com/DEVELOPER-DEEVEN/Alien/issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues) (preferred)
 - 📧 **Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
 
 ---

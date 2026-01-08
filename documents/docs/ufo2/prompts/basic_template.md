@@ -6,9 +6,9 @@ Default file paths for basic prompt templates:
 
 | Agent | File Path |
 | --- | --- |
-| HostAgent | [Alien/prompts/share/base/host_agent.yaml](https://github.com/microsoft/Alien/blob/main/Alien/prompts/share/base/host_agent.yaml) |
-| AppAgent | [Alien/prompts/share/base/app_agent.yaml](https://github.com/microsoft/Alien/blob/main/Alien/prompts/share/base/app_agent.yaml) |
-| EvaluationAgent | [Alien/prompts/evaluation/evaluate.yaml](https://github.com/microsoft/Alien/blob/main/Alien/prompts/evaluation/evaluate.yaml) |
+| HostAgent | [Alien/prompts/share/base/host_agent.yaml](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/Alien/prompts/share/base/host_agent.yaml) |
+| AppAgent | [Alien/prompts/share/base/app_agent.yaml](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/Alien/prompts/share/base/app_agent.yaml) |
+| EvaluationAgent | [Alien/prompts/evaluation/evaluate.yaml](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/Alien/prompts/evaluation/evaluate.yaml) |
 
 You can configure the prompt template in the system configuration files. See the [System Configuration Guide](../../configuration/system/system_config.md) for details.
 

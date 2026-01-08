@@ -2,13 +2,13 @@
 
 Windows Agent Arena (WAA) is a benchmark suite designed to evaluate the performance of AI agents in executing real-world tasks on Windows operating systems. It consists of 154 tasks across 15 applications, including Microsoft Office, Edge, File Explorer, and VS Code. The tasks are designed to cover a wide range of functionalities and interactions that users typically perform on their computers.
 
-This repository provides a modified version of [**Windows Agent Arena (WAA) 🪟**](https://github.com/microsoft/WindowsAgentArena), a scalable platform for benchmarking and evaluating multimodal desktop AI agents. This customized fork integrates with [**Alien**](https://github.com/microsoft/Alien), a UI-focused automation agent for Windows OS.
+This repository provides a modified version of [**Windows Agent Arena (WAA) 🪟**](https://github.com/DEVELOPER-DEEVEN/WindowsAgentArena), a scalable platform for benchmarking and evaluating multimodal desktop AI agents. This customized fork integrates with [**Alien**](https://github.com/DEVELOPER-DEEVEN/Alien), a UI-focused automation agent for Windows OS.
 
 ---
 
 ## 💻 Deployment Guide (WSL Recommended)
 
-> We strongly recommend reviewing the [original WAA deployment guide](https://github.com/microsoft/WindowsAgentArena) beforehand. The instructions below assume you are familiar with the original setup.
+> We strongly recommend reviewing the [original WAA deployment guide](https://github.com/DEVELOPER-DEEVEN/WindowsAgentArena) beforehand. The instructions below assume you are familiar with the original setup.
 
 ---
 
@@ -49,7 +49,7 @@ This will generate the `windowsarena/winarena:latest` image using the latest cod
 
 ### 3. Integrate Alien
 
-1. Configure Alien via `Alien/config/config.json` (see [Alien repo](https://github.com/microsoft/Alien) for details).
+1. Configure Alien via `Alien/config/config.json` (see [Alien repo](https://github.com/DEVELOPER-DEEVEN/Alien) for details).
 2. Copy the entire `Alien` folder into the WAA container client directory:
 
 ```bash

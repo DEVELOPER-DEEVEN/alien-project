@@ -573,7 +573,7 @@ class TestRealclusterSessionWithMockDevices:
             # Complex multi-step request
             "First collect nginx logs from web-server-01, then analyze errors, then create detailed Excel charts with performance metrics on the Windows analyst workstation",
             # Chinese request
-            "从linux服务器收集日志并在Windows工作站生成Excel报告",
+            " [Text Cleaned] linux [Text Cleaned] Windows [Text Cleaned] Excel [Text Cleaned] ",
             # Technical request with specific paths
             "Execute 'tail -n 1000 /var/log/nginx/error.log' on linux_server_001 and save results to Excel file using openpyxl on windows_workstation_001",
         ]

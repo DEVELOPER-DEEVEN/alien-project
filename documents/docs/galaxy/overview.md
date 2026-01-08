@@ -323,7 +323,7 @@ Ready to build your Digital Agent cluster? Follow these steps:
 ### 1. Install Alien³
 ```bash
 # Clone the repository
-git clone https://github.com/microsoft/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
 cd Alien
 
 # Install dependencies
@@ -582,7 +582,7 @@ print(f"🔀 Parallelism Ratio: {const_stats['parallelism_ratio']:.2f}")
 
 - **Research Paper**: [Alien³: Weaving the Digital Agent cluster](https://arxiv.org/) *(Coming Soon)*
 - **Alien² (Desktop AgentOS)**: [Documentation](../Alien-Unis/overview.md)
-- **Alien (Original)**: [GitHub Repository](https://github.com/microsoft/Alien)
+- **Alien (Original)**: [GitHub Repository](https://github.com/DEVELOPER-DEEVEN/Alien)
 
 ---
 

@@ -2,13 +2,13 @@
 # Licensed under the MIT License.
 
 """
-集成测试：cluster状态机与观察者系统
+ [Text Cleaned] ：cluster [Text Cleaned] 
 
-测试范围：
-1. clusterRound与状态机集成
-2. Observer与状态机的事件流
-3. 完整的任务执行生命周期
-4. 竞态条件解决验证
+ [Text Cleaned] ：
+1. clusterRound [Text Cleaned] 
+2. Observer [Text Cleaned] 
+3.  [Text Cleaned] 
+4.  [Text Cleaned] 
 """
 
 import pytest
@@ -28,11 +28,11 @@ from Alien.module.context import Context
 
 
 class IntegrationTestHelper:
-    """集成测试助手类"""
+    """ [Text Cleaned] """
     
     @staticmethod
     def create_test_network() -> Tasknetwork:
-        """创建测试用network"""
+        """ [Text Cleaned] network"""
         return create_simple_network(
             task_descriptions=["Task 1", "Task 2", "Task 3"],
             network_name="test_network",
@@ -41,14 +41,14 @@ class IntegrationTestHelper:
     
     @staticmethod
     def create_mock_client() -> networkClient:
-        """创建mock客户端"""
+        """ [Text Cleaned] mock [Text Cleaned] """
         client = MagicMock(spec=networkClient)
         client.device_manager = MagicMock()
         return client
     
     @staticmethod
     def create_mock_orchestrator() -> TasknetworkOrchestrator:
-        """创建mock编排器"""
+        """ [Text Cleaned] mock [Text Cleaned] """
         orchestrator = MagicMock(spec=TasknetworkOrchestrator)
         orchestrator.assign_devices_automatically = AsyncMock()
         orchestrator.orchestrate_network = AsyncMock()
@@ -56,22 +56,20 @@ class IntegrationTestHelper:
 
 
 class TestclusterRoundStateMachineIntegration:
-    """测试clusterRound与状态机集成"""
+    """ [Text Cleaned] clusterRound [Text Cleaned] """
     
     def setup_method(self):
-        """测试设置"""
+        """ [Text Cleaned] """
         self.agent = MockclusterWeaverAgent()
         self.context = Context()
         self.orchestrator = IntegrationTestHelper.create_mock_orchestrator()
         
-        # 创建测试network
         self.test_network = IntegrationTestHelper.create_test_network()
         self.agent.process_initial_request = AsyncMock(return_value=self.test_network)
     
     @pytest.mark.asyncio
     async def test_round_state_machine_execution(self):
-        """测试round状态机执行"""
-        # 创建round
+        """ [Text Cleaned] round [Text Cleaned] """
         round_instance = clusterRound(
             request="test request",
             agent=self.agent,
@@ -81,21 +79,17 @@ class TestclusterRoundStateMachineIntegration:
             orchestratior=self.orchestrator
         )
         
-        # Mock状态机执行
         with patch.object(round_instance, 'is_finished') as mock_finished:
-            # 模拟状态机循环：先运行，然后结束
             mock_finished.side_effect = [False, False, True]
             
-            # 运行round
             await round_instance.run()
             
-            # 验证orchestrator被调用
             self.orchestrator.assign_devices_automatically.assert_called_once()
             self.orchestrator.orchestrate_network.assert_called_once()
     
     @pytest.mark.asyncio
     async def test_round_state_transitions(self):
-        """测试round状态转换"""
+        """ [Text Cleaned] round [Text Cleaned] """
         round_instance = clusterRound(
             request="test request",
             agent=self.agent,
@@ -105,20 +99,16 @@ class TestclusterRoundStateMachineIntegration:
             orchestratior=self.orchestrator
         )
         
-        # 检查初始状态
         assert round_instance.agent._status == "creating"
         
-        # 模拟状态机执行一步
         await round_instance.agent.handle(round_instance._context)
         
-        # 检查状态转换
         assert round_instance.agent._status == "monitoring"
         assert round_instance.agent.current_network is not None
     
     @pytest.mark.asyncio
     async def test_round_handles_agent_failure(self):
-        """测试round处理agent失败"""
-        # Mock失败场景
+        """ [Text Cleaned] round [Text Cleaned] agent [Text Cleaned] """
         self.agent.process_initial_request = AsyncMock(side_effect=Exception("Test failure"))
         
         round_instance = clusterRound(
@@ -130,43 +120,36 @@ class TestclusterRoundStateMachineIntegration:
             orchestratior=self.orchestrator
         )
         
-        # 模拟状态机执行
         await round_instance.agent.handle(round_instance._context)
         
-        # 检查失败状态
         assert round_instance.agent._status == "failed"
 
 
 class TestObserverStateMachineIntegration:
-    """测试Observer与状态机集成"""
+    """ [Text Cleaned] Observer [Text Cleaned] """
     
     def setup_method(self):
-        """测试设置"""
+        """ [Text Cleaned] """
         self.agent = MockclusterWeaverAgent()
         self.context = Context()
         self.event_bus = get_event_bus()
         
-        # 创建observer
         self.observer = networkProgressObserver(
             agent=self.agent,
             context=self.context
         )
         
-        # 订阅事件
         self.event_bus.subscribe(self.observer)
         
-        # 创建测试network
         self.test_network = IntegrationTestHelper.create_test_network()
         self.agent._current_network = self.test_network
         self.agent._status = "monitoring"
     
     @pytest.mark.asyncio
     async def test_task_event_forwarding_to_state_machine(self):
-        """测试任务事件转发到状态机"""
-        # Mock状态机的队列方法
+        """ [Text Cleaned] """
         self.agent.queue_task_update_to_current_state = AsyncMock()
         
-        # 创建任务事件
         task_event = TaskEvent(
             event_type=EventType.TASK_STARTED,
             source_id="test_source",
@@ -176,13 +159,10 @@ class TestObserverStateMachineIntegration:
             status="running"
         )
         
-        # 发布事件
         await self.event_bus.publish_event(task_event)
         
-        # 等待事件处理
         await asyncio.sleep(0.1)
         
-        # 验证事件被转发到状态机
         self.agent.queue_task_update_to_current_state.assert_called_once()
         call_args = self.agent.queue_task_update_to_current_state.call_args[0][0]
         assert call_args["task_id"] == "task_1"
@@ -190,11 +170,9 @@ class TestObserverStateMachineIntegration:
     
     @pytest.mark.asyncio
     async def test_task_lifecycle_event_sequence(self):
-        """测试任务生命周期事件序列"""
-        # Mock状态机方法
+        """ [Text Cleaned] """
         self.agent.queue_task_update_to_current_state = AsyncMock()
         
-        # 创建任务生命周期事件序列
         events = [
             TaskEvent(
                 event_type=EventType.TASK_STARTED,
@@ -215,26 +193,20 @@ class TestObserverStateMachineIntegration:
             )
         ]
         
-        # 发布事件序列
         for event in events:
             await self.event_bus.publish_event(event)
-            await asyncio.sleep(0.05)  # 短暂延迟确保顺序
-        
-        # 等待事件处理完成
+            await asyncio.sleep(0.05)        
         await asyncio.sleep(0.1)
         
-        # 验证所有事件都被转发
         assert self.agent.queue_task_update_to_current_state.call_count == 2
     
     @pytest.mark.asyncio
     async def test_observer_error_handling(self):
-        """测试observer错误处理"""
-        # Mock状态机方法抛异常
+        """ [Text Cleaned] observer [Text Cleaned] """
         self.agent.queue_task_update_to_current_state = AsyncMock(
             side_effect=Exception("State machine error")
         )
         
-        # 创建任务事件
         task_event = TaskEvent(
             event_type=EventType.TASK_STARTED,
             source_id="test_source",
@@ -244,24 +216,21 @@ class TestObserverStateMachineIntegration:
             status="running"
         )
         
-        # 发布事件（应该不抛异常）
         await self.event_bus.publish_event(task_event)
         await asyncio.sleep(0.1)
         
-        # 验证observer处理了错误但继续运行
         self.agent.queue_task_update_to_current_state.assert_called_once()
 
 
 class TestEndToEndExecution:
-    """端到端执行测试"""
+    """ [Text Cleaned] """
     
     def setup_method(self):
-        """测试设置"""
+        """ [Text Cleaned] """
         self.agent = MockclusterWeaverAgent()
         self.client = IntegrationTestHelper.create_mock_client()
         self.event_bus = get_event_bus()
         
-        # 创建session
         self.session = clusterSession(
             task="test_task",
             should_evaluate=False,
@@ -272,8 +241,7 @@ class TestEndToEndExecution:
     
     @pytest.mark.asyncio
     async def test_complete_execution_flow(self):
-        """测试完整执行流程"""
-        # 设置network
+        """ [Text Cleaned] """
         test_network = IntegrationTestHelper.create_test_network()
         self.agent.process_initial_request = AsyncMock(return_value=test_network)
         
@@ -284,32 +252,26 @@ class TestEndToEndExecution:
             mock_assign.return_value = asyncio.coroutine(lambda: None)()
             mock_orchestrate.return_value = asyncio.coroutine(lambda: None)()
             
-            # 运行session
             await self.session.run()
             
-            # 验证流程执行
             assert self.agent.current_network is not None
             mock_assign.assert_called_once()
             mock_orchestrate.assert_called_once()
     
     @pytest.mark.asyncio
     async def test_race_condition_resolution(self):
-        """测试竞态条件解决"""
-        # 这个测试验证状态机是否正确处理异步任务完成
+        """ [Text Cleaned] """
         
-        # 创建真实的监控状态
         from cluster.agents.cluster_agent_state import MonitoringclusterAgentState
         
         monitoring_state = MonitoringclusterAgentState()
         self.agent._state = monitoring_state
         self.agent._status = "monitoring"
         
-        # 设置network
         test_network = IntegrationTestHelper.create_test_network()
         test_network.is_complete = MagicMock(return_value=False)
         self.agent._current_network = test_network
         
-        # 模拟任务事件序列（可能的竞态条件场景）
         task_events = [
             {"task_id": "task_1", "event_type": EventType.TASK_STARTED.value, "status": "running"},
             {"task_id": "task_2", "event_type": EventType.TASK_STARTED.value, "status": "running"},
@@ -317,11 +279,9 @@ class TestEndToEndExecution:
             {"task_id": "task_2", "event_type": EventType.TASK_COMPLETED.value, "status": "completed"},
         ]
         
-        # 快速添加所有事件到队列
         for event in task_events:
             await monitoring_state.queue_task_update(event)
         
-        # 模拟network在最后一个任务完成后变为完成状态
         def mock_is_complete():
             return monitoring_state._pending_task_updates.empty() and len(monitoring_state._running_tasks) == 0
         
@@ -329,27 +289,20 @@ class TestEndToEndExecution:
         self.agent.should_continue = AsyncMock(return_value=False)
         self.agent.update_network_with_lock = AsyncMock()
         
-        # 处理所有更新
         await monitoring_state._process_pending_updates(self.agent, None)
         
-        # 验证状态机正确处理了所有事件
-        assert len(monitoring_state._running_tasks) == 0  # 所有任务都被正确跟踪和移除
-        assert monitoring_state._pending_task_updates.empty()  # 所有更新都被处理
-        
-        # 检查完成状态
+        assert len(monitoring_state._running_tasks) == 0        assert monitoring_state._pending_task_updates.empty()        
         is_complete = await monitoring_state._check_true_completion(self.agent, None)
-        assert is_complete  # 应该正确识别为完成
-    
+        assert is_complete    
     @pytest.mark.asyncio
     async def test_concurrent_task_updates(self):
-        """测试并发任务更新"""
+        """ [Text Cleaned] """
         from cluster.agents.cluster_agent_state import MonitoringclusterAgentState
         
         monitoring_state = MonitoringclusterAgentState()
         self.agent._state = monitoring_state
         self.agent.update_network_with_lock = AsyncMock()
         
-        # 创建多个并发任务更新
         async def add_task_updates():
             for i in range(10):
                 await monitoring_state.queue_task_update({
@@ -357,25 +310,21 @@ class TestEndToEndExecution:
                     "event_type": EventType.TASK_STARTED.value,
                     "status": "running"
                 })
-                await asyncio.sleep(0.001)  # 微小延迟
-        
+                await asyncio.sleep(0.001)        
         async def process_updates():
-            await asyncio.sleep(0.05)  # 让一些更新先积累
-            await monitoring_state._process_pending_updates(self.agent, None)
+            await asyncio.sleep(0.05)            await monitoring_state._process_pending_updates(self.agent, None)
         
-        # 并发执行
         await asyncio.gather(add_task_updates(), process_updates())
         
-        # 验证所有任务都被正确跟踪
         assert len(monitoring_state._running_tasks) == 10
 
 
 class TestErrorScenarios:
-    """错误场景测试"""
+    """ [Text Cleaned] """
     
     @pytest.mark.asyncio
     async def test_network_creation_failure_handling(self):
-        """测试network创建失败处理"""
+        """ [Text Cleaned] network [Text Cleaned] """
         agent = MockclusterWeaverAgent()
         agent.process_initial_request = AsyncMock(side_effect=Exception("Creation failed"))
         
@@ -386,15 +335,13 @@ class TestErrorScenarios:
         from Alien.module.context import ContextNames
         context.set(ContextNames.REQUEST, "test request")
         
-        # 执行状态处理
         await creating_state.handle(agent, context)
         
-        # 验证失败处理
         assert agent._status == "failed"
     
     @pytest.mark.asyncio
     async def test_monitoring_state_with_no_network(self):
-        """测试监控状态但没有network"""
+        """ [Text Cleaned] network"""
         agent = MockclusterWeaverAgent()
         agent._current_network = None
         
@@ -402,32 +349,27 @@ class TestErrorScenarios:
         
         monitoring_state = MonitoringclusterAgentState()
         
-        # 执行状态处理
         await monitoring_state.handle(agent, None)
         
-        # 验证失败处理
         assert agent._status == "failed"
     
     @pytest.mark.asyncio
     async def test_invalid_task_update_handling(self):
-        """测试无效任务更新处理"""
+        """ [Text Cleaned] """
         from cluster.agents.cluster_agent_state import MonitoringclusterAgentState
         
         monitoring_state = MonitoringclusterAgentState()
         agent = MockclusterWeaverAgent()
         agent.update_network_with_lock = AsyncMock(side_effect=Exception("Update failed"))
         
-        # 添加无效更新
         await monitoring_state.queue_task_update({
             "task_id": "invalid_task",
             "event_type": EventType.TASK_COMPLETED.value,
             "status": "completed"
         })
         
-        # 处理更新（应该不抛异常）
         await monitoring_state._process_pending_updates(agent, None)
         
-        # 验证错误被处理，系统继续运行
         assert monitoring_state._pending_task_updates.empty()
 
 

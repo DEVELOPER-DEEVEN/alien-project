@@ -204,46 +204,46 @@ class StrategyDependencyValidator:
         :param report: Report from validate_strategy_chain
         """
         print("\n" + "=" * 60)
-        print("策略依赖关系验证报告")
+        print(" [Text Cleaned] ")
         print("=" * 60)
 
         if report["valid"]:
-            print("✅ 所有策略依赖关系都满足")
+            print("✅  [Text Cleaned] ")
         else:
-            print("❌ 发现依赖问题:")
+            print("❌  [Text Cleaned] :")
             for issue in report["issues"]:
                 if issue["type"] == "missing_required_fields":
                     print(
-                        f"  - {issue['phase']}: {issue['strategy']} 缺少必需字段: {issue['fields']}"
+                        f"  - {issue['phase']}: {issue['strategy']}  [Text Cleaned] : {issue['fields']}"
                     )
                 elif issue["type"] == "missing_required_phases":
                     print(
-                        f"  - {issue['phase']}: {issue['strategy']} 缺少必需阶段: {issue['phases']}"
+                        f"  - {issue['phase']}: {issue['strategy']}  [Text Cleaned] : {issue['phases']}"
                     )
 
-        print(f"\n处理阶段顺序: {' -> '.join(report['phase_order'])}")
+        print(f"\n [Text Cleaned] : {' -> '.join(report['phase_order'])}")
 
-        print("\n字段流向分析:")
+        print("\n [Text Cleaned] :")
         for field, flow in report["field_flow"].items():
             providers = [f"{p['phase']}({p['strategy']})" for p in flow["providers"]]
             consumers = [f"{c['phase']}({c['strategy']})" for c in flow["consumers"]]
 
             if not providers:
-                print(f"  ⚠️  {field}: 无提供者 -> {', '.join(consumers)}")
+                print(f"  ⚠️  {field}:  [Text Cleaned]  -> {', '.join(consumers)}")
             elif not consumers:
-                print(f"  ℹ️  {field}: {', '.join(providers)} -> 无消费者")
+                print(f"  ℹ️  {field}: {', '.join(providers)} ->  [Text Cleaned] ")
             else:
                 print(f"  ✅ {field}: {', '.join(providers)} -> {', '.join(consumers)}")
 
-        print("\n详细依赖图:")
+        print("\n [Text Cleaned] :")
         for phase, info in report["dependency_graph"].items():
             print(f"  {phase} ({info['strategy']}):")
             if info["requires"]:
-                print(f"    需要: {', '.join(info['requires'])}")
+                print(f"     [Text Cleaned] : {', '.join(info['requires'])}")
             if info["optional"]:
-                print(f"    可选: {', '.join(info['optional'])}")
+                print(f"     [Text Cleaned] : {', '.join(info['optional'])}")
             if info["provides"]:
-                print(f"    提供: {', '.join(info['provides'])}")
+                print(f"     [Text Cleaned] : {', '.join(info['provides'])}")
             if info["depends_on_phases"]:
-                print(f"    依赖阶段: {', '.join(info['depends_on_phases'])}")
+                print(f"     [Text Cleaned] : {', '.join(info['depends_on_phases'])}")
             print()

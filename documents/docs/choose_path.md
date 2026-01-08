@@ -439,7 +439,7 @@ Still unsure? Answer these questions:
 ## 🤝 Getting Help
 
 - **Documentation:** [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
-- **GitHub Issues:** [https://github.com/microsoft/Alien/issues](https://github.com/microsoft/Alien/issues)
-- **Discussions:** [https://github.com/microsoft/Alien/discussions](https://github.com/microsoft/Alien/discussions)
+- **GitHub Issues:** [https://github.com/DEVELOPER-DEEVEN/Alien/issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
+- **Discussions:** [https://github.com/DEVELOPER-DEEVEN/Alien/discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
 
 Still have questions? Check the [Migration FAQ](./getting_started/migration_Alien-Unis_to_cluster.md#getting-help) or open a discussion on GitHub!

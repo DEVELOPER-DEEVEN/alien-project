@@ -5,7 +5,7 @@ This test module (`test_linux_log_collection_excel_generation.py`) demonstrates 
 
 ## Test Scenario
 **English**: Collect logs from two Linux servers and generate an Excel report on Windows  
-**中文**: 从两个Linux服务器采集日志并在Windows上生成Excel报告
+
 
 ## Mock Devices Created
 

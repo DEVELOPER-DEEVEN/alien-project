@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/env python3
 """
-测试 network Client 注册时的设备验证机制
+ [Text Cleaned]  network Client  [Text Cleaned] 
 """
 
 import asyncio
@@ -8,13 +8,11 @@ import logging
 import sys
 import os
 
-# 设置路径
 sys.path.insert(0, os.path.abspath("."))
 
 from cluster.client.config_loader import networkConfig
 from cluster.client.network_client import networkClient
 
-# 设置日志
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -22,17 +20,15 @@ logger = logging.getLogger(__name__)
 
 
 async def test_device_validation():
-    """测试设备验证机制"""
+    """ [Text Cleaned] """
 
     print("=" * 80)
-    print("🔍 测试 network Client 设备验证机制")
+    print("🔍  [Text Cleaned]  network Client  [Text Cleaned] ")
     print("=" * 80)
 
-    # 测试1: 尝试连接到不存在的设备
-    print("\n[1] 测试连接到不存在的设备...")
+    print("\n[1]  [Text Cleaned] ...")
 
     try:
-        # 创建一个指向不存在设备的配置
         invalid_config = networkConfig(
             network_id="test_validation",
             devices={
@@ -46,73 +42,67 @@ async def test_device_validation():
             max_concurrent_tasks=2,
         )
 
-        # 尝试创建并初始化客户端
         network_client = networkClient(invalid_config)
 
-        print("🚀 正在尝试初始化并连接到不存在的设备...")
+        print("🚀  [Text Cleaned] ...")
 
         try:
             await network_client.initialize()
-            print("❌ 意外成功：客户端应该无法连接到不存在的设备")
+            print("❌  [Text Cleaned] ： [Text Cleaned] ")
         except Exception as e:
-            print(f"✅ 预期失败：无法连接到不存在的设备 - {e}")
+            print(f"✅  [Text Cleaned] ： [Text Cleaned]  - {e}")
 
         await network_client.shutdown()
 
     except Exception as e:
-        print(f"✅ 测试按预期失败：{e}")
+        print(f"✅  [Text Cleaned] ：{e}")
 
-    # 测试2: 先连接一个真实设备，再测试 network
-    print("\n[2] 测试完整的设备验证流程...")
+    print("\n[2]  [Text Cleaned] ...")
 
     try:
-        # 加载正确的配置
         valid_config = networkConfig.from_yaml("config/network_sample.yaml")
 
-        print(f"📋 加载配置成功，设备数量: {len(valid_config.devices)}")
+        print(f"📋  [Text Cleaned] ， [Text Cleaned] : {len(valid_config.devices)}")
         for device_id in valid_config.devices:
-            print(f"   设备: {device_id}")
+            print(f"    [Text Cleaned] : {device_id}")
 
-        # 创建客户端
         network_client = networkClient(valid_config)
 
-        print("🚀 正在初始化 network client...")
+        print("🚀  [Text Cleaned]  network client...")
         await network_client.initialize()
 
-        # 检查连接状态
         connected_devices = network_client.get_connected_devices()
-        print(f"✅ 成功连接的设备: {connected_devices}")
+        print(f"✅  [Text Cleaned] : {connected_devices}")
 
-        # 测试连接稳定性
-        print("⏳ 等待 5 秒测试连接稳定性...")
+        print("⏳  [Text Cleaned]  5  [Text Cleaned] ...")
         await asyncio.sleep(5)
 
         final_devices = network_client.get_connected_devices()
-        print(f"📊 最终连接状态: {final_devices}")
+        print(f"📊  [Text Cleaned] : {final_devices}")
 
         await network_client.shutdown()
-        print("✅ 客户端已正常关闭")
+        print("✅  [Text Cleaned] ")
 
     except Exception as e:
-        print(f"❌ 有效配置测试失败: {e}")
+        print(f"❌  [Text Cleaned] : {e}")
         import traceback
 
         traceback.print_exc()
 
     print("\n" + "=" * 80)
-    print("🎯 设备验证机制测试完成")
-    print("   请检查服务器日志确认验证逻辑是否正确执行")
+    print("🎯  [Text Cleaned] ")
+    print("    [Text Cleaned] ")
     print("=" * 80)
 
 
 async def main():
-    """主函数"""
+    """ [Text Cleaned] """
     try:
         await test_device_validation()
     except KeyboardInterrupt:
-        print("\n测试被用户中断")
+        print("\n [Text Cleaned] ")
     except Exception as e:
-        print(f"测试失败: {e}")
+        print(f" [Text Cleaned] : {e}")
         import traceback
 
         traceback.print_exc()

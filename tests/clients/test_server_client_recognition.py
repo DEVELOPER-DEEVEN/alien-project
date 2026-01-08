@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-测试服务器端的客户端类型识别功能
-通过检查服务器日志来验证是否正确区分了客户端类型
+ [Text Cleaned] 
+ [Text Cleaned] 
 """
 
 import asyncio
@@ -12,7 +12,6 @@ import websockets
 from datetime import datetime, timezone
 from aip.messages import ClientMessage, ClientMessageType, TaskStatus
 
-# 设置日志
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -20,19 +19,17 @@ logger = logging.getLogger(__name__)
 
 
 async def test_server_client_recognition():
-    """测试服务器是否能正确识别客户端类型"""
+    """ [Text Cleaned] """
 
     print("=" * 80)
-    print("🔍 测试服务器端客户端类型识别")
+    print("🔍  [Text Cleaned] ")
     print("=" * 80)
 
     server_url = "ws://localhost:5000/ws"
 
-    # 测试1: 连接一个普通设备客户端
-    print("\n[1] 测试普通设备客户端识别...")
+    print("\n[1]  [Text Cleaned] ...")
 
     try:
-        # 连接设备客户端
         device_ws = await websockets.connect(server_url)
 
         device_reg = ClientMessage(
@@ -48,9 +45,8 @@ async def test_server_client_recognition():
         )
 
         await device_ws.send(device_reg.model_dump_json())
-        print("📱 设备客户端注册消息已发送")
+        print("📱  [Text Cleaned] ")
 
-        # 发送心跳
         await asyncio.sleep(1)
         heartbeat = ClientMessage(
             type=ClientMessageType.HEARTBEAT,
@@ -59,19 +55,17 @@ async def test_server_client_recognition():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await device_ws.send(heartbeat.model_dump_json())
-        print("💓 设备客户端心跳已发送")
+        print("💓  [Text Cleaned] ")
 
         await device_ws.close()
-        print("✅ 设备客户端测试完成")
+        print("✅  [Text Cleaned] ")
 
     except Exception as e:
-        print(f"❌ 设备客户端测试失败: {e}")
+        print(f"❌  [Text Cleaned] : {e}")
 
-    # 测试2: 连接一个星座客户端
-    print("\n[2] 测试星座客户端识别...")
+    print("\n[2]  [Text Cleaned] ...")
 
     try:
-        # 连接星座客户端
         network_ws = await websockets.connect(server_url)
 
         network_reg = ClientMessage(
@@ -89,9 +83,8 @@ async def test_server_client_recognition():
         )
 
         await network_ws.send(network_reg.model_dump_json())
-        print("🌟 星座客户端注册消息已发送")
+        print("🌟  [Text Cleaned] ")
 
-        # 发送心跳
         await asyncio.sleep(1)
         heartbeat = ClientMessage(
             type=ClientMessageType.HEARTBEAT,
@@ -100,32 +93,32 @@ async def test_server_client_recognition():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await network_ws.send(heartbeat.model_dump_json())
-        print("💓 星座客户端心跳已发送")
+        print("💓  [Text Cleaned] ")
 
         await network_ws.close()
-        print("✅ 星座客户端测试完成")
+        print("✅  [Text Cleaned] ")
 
     except Exception as e:
-        print(f"❌ 星座客户端测试失败: {e}")
+        print(f"❌  [Text Cleaned] : {e}")
 
     print("\n" + "=" * 80)
-    print("🎯 测试完成！请检查服务器日志以确认:")
-    print("   - 设备客户端应该显示: 📱 Device client test_device_001 connected")
+    print("🎯  [Text Cleaned] ！ [Text Cleaned] :")
+    print("   -  [Text Cleaned] : 📱 Device client test_device_001 connected")
     print(
-        "   - 星座客户端应该显示: 🌟 network client test_network@client_001 connected"
+        "   -  [Text Cleaned] : 🌟 network client test_network@client_001 connected"
     )
-    print("   - 消息处理应该有相应的emoji标识")
+    print("   -  [Text Cleaned] emoji [Text Cleaned] ")
     print("=" * 80)
 
 
 async def main():
-    """主函数"""
+    """ [Text Cleaned] """
     try:
         await test_server_client_recognition()
     except KeyboardInterrupt:
-        print("\n测试被用户中断")
+        print("\n [Text Cleaned] ")
     except Exception as e:
-        print(f"测试失败: {e}")
+        print(f" [Text Cleaned] : {e}")
 
 
 if __name__ == "__main__":

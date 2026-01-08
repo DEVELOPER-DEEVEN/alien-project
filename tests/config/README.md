@@ -261,5 +261,5 @@ pip install pytest pytest-cov pyyaml rich
 ## Contact
 
 For test-related questions:
-- **Issues:** https://github.com/microsoft/Alien/issues
+- **Issues:** https://github.com/DEVELOPER-DEEVEN/Alien/issues
 - **Email:** Alien-agent@microsoft.com

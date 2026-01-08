@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/env python3
 """
-测试 networkClient 连接真实设备的脚本
+ [Text Cleaned]  networkClient  [Text Cleaned] 
 """
 
 import asyncio
@@ -8,14 +8,12 @@ import sys
 from pathlib import Path
 import logging
 
-# 添加项目根目录到路径
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 from cluster.client.network_client import networkClient
 from cluster.client.config_loader import networkConfig
 
-# 设置日志 - 只输出到控制台，避免文件编码问题
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -24,105 +22,96 @@ logging.basicConfig(
 
 
 async def test_network_client():
-    """测试 networkClient 连接功能"""
+    """ [Text Cleaned]  networkClient  [Text Cleaned] """
 
     print("=" * 80)
-    print("[*] networkClient 真实设备连接测试")
+    print("[*] networkClient  [Text Cleaned] ")
     print("=" * 80)
 
     try:
-        # 1. 加载配置
-        print("\n[1] 1. 加载配置文件...")
+        print("\n[1] 1.  [Text Cleaned] ...")
         config_path = "config/network_sample.yaml"
         config = networkConfig.from_yaml(config_path)
 
-        print(f"[+] 配置加载成功!")
-        print(f"   星群ID: {config.network_id}")
-        print(f"   设备数量: {len(config.devices)}")
+        print(f"[+]  [Text Cleaned] !")
+        print(f"    [Text Cleaned] ID: {config.network_id}")
+        print(f"    [Text Cleaned] : {len(config.devices)}")
         for i, device in enumerate(config.devices, 1):
-            print(f"   设备{i}: {device.device_id} -> {device.server_url}")
+            print(f"    [Text Cleaned] {i}: {device.device_id} -> {device.server_url}")
 
-        # 2. 创建客户端
-        print("\n[2] 2. 创建 networkClient...")
+        print("\n[2] 2.  [Text Cleaned]  networkClient...")
         client = networkClient(config=config)
 
-        # 3. 初始化并注册设备
-        print("\n[3] 3. 初始化客户端并注册设备...")
+        print("\n[3] 3.  [Text Cleaned] ...")
         registration_results = await client.initialize()
 
-        print("[*] 设备注册结果:")
+        print("[*]  [Text Cleaned] :")
         success_count = 0
         for device_id, success in registration_results.items():
-            status = "[+] 成功" if success else "[-] 失败"
+            status = "[+]  [Text Cleaned] " if success else "[-]  [Text Cleaned] "
             print(f"   {device_id}: {status}")
             if success:
                 success_count += 1
 
         print(
-            f"\n[*] 注册统计: {success_count}/{len(registration_results)} 设备注册成功"
+            f"\n[*]  [Text Cleaned] : {success_count}/{len(registration_results)}  [Text Cleaned] "
         )
 
         if success_count == 0:
-            print("[-] 没有设备注册成功，停止测试")
+            print("[-]  [Text Cleaned] ， [Text Cleaned] ")
             return False
 
-        # 4. 检查连接状态
-        print("\n[4] 4. 检查设备连接状态...")
+        print("\n[4] 4.  [Text Cleaned] ...")
         connected_devices = client.get_connected_devices()
-        print(f"连接的设备: {connected_devices}")
+        print(f" [Text Cleaned] : {connected_devices}")
 
         for device_id in connected_devices:
             status = client.get_device_status(device_id)
             print(f"   {device_id}: {status}")
 
-        # 5. 获取星群信息
-        print("\n[5] 5. 星群信息总结:")
+        print("\n[5] 5.  [Text Cleaned] :")
         network_info = client.get_network_info()
-        print(f"   星群ID: {network_info['network_id']}")
-        print(f"   已连接设备: {network_info['connected_devices']}")
-        print(f"   总设备数: {network_info['total_devices']}")
+        print(f"    [Text Cleaned] ID: {network_info['network_id']}")
+        print(f"    [Text Cleaned] : {network_info['connected_devices']}")
+        print(f"    [Text Cleaned] : {network_info['total_devices']}")
         print(
-            f"   心跳间隔: {network_info['configuration']['heartbeat_interval']}s"
+            f"    [Text Cleaned] : {network_info['configuration']['heartbeat_interval']}s"
         )
         print(
-            f"   最大并发任务: {network_info['configuration']['max_concurrent_tasks']}"
+            f"    [Text Cleaned] : {network_info['configuration']['max_concurrent_tasks']}"
         )
 
-        # 6. 等待一段时间观察连接稳定性
         if connected_devices:
-            print("\n[6] 6. 测试连接稳定性 (等待 10 秒)...")
+            print("\n[6] 6.  [Text Cleaned]  ( [Text Cleaned]  10  [Text Cleaned] )...")
             await asyncio.sleep(10)
 
-            # 再次检查连接状态
             final_connected = client.get_connected_devices()
-            print(f"10秒后连接状态: {final_connected}")
+            print(f"10 [Text Cleaned] : {final_connected}")
 
             if len(final_connected) == len(connected_devices):
-                print("[+] 连接稳定")
+                print("[+]  [Text Cleaned] ")
             else:
-                print("[!] 连接不稳定，有设备断开")
+                print("[!]  [Text Cleaned] ， [Text Cleaned] ")
 
-        # 7. 测试配置验证
-        print("\n[7] 7. 配置验证测试...")
+        print("\n[7] 7.  [Text Cleaned] ...")
         validation = client.validate_config()
         if validation["valid"]:
-            print("[+] 配置验证通过")
+            print("[+]  [Text Cleaned] ")
         else:
-            print("[-] 配置验证失败:")
+            print("[-]  [Text Cleaned] :")
             for error in validation["errors"]:
-                print(f"   错误: {error}")
+                print(f"    [Text Cleaned] : {error}")
             for warning in validation["warnings"]:
-                print(f"   警告: {warning}")
+                print(f"    [Text Cleaned] : {warning}")
 
-        # 8. 清理
-        print("\n[8] 8. 清理连接...")
+        print("\n[8] 8.  [Text Cleaned] ...")
         await client.shutdown()
-        print("[+] 客户端已关闭")
+        print("[+]  [Text Cleaned] ")
 
         return success_count > 0
 
     except Exception as e:
-        print(f"\n[-] 测试过程中出现错误: {e}")
+        print(f"\n[-]  [Text Cleaned] : {e}")
         import traceback
 
         traceback.print_exc()
@@ -130,78 +119,71 @@ async def test_network_client():
 
 
 async def test_device_operations():
-    """测试设备操作功能"""
+    """ [Text Cleaned] """
 
     print("\n" + "=" * 80)
-    print("[*] 设备操作功能测试")
+    print("[*]  [Text Cleaned] ")
     print("=" * 80)
 
     try:
-        # 使用配置创建客户端
         config = networkConfig.from_yaml("config/network_sample.yaml")
         client = networkClient(config=config)
 
-        # 测试手动添加设备
-        print("\n[+] 测试手动添加设备...")
+        print("\n[+]  [Text Cleaned] ...")
         added = await client.add_device_to_config(
             device_id="test_device_manual",
             server_url="ws://localhost:5001/ws",
             capabilities=["testing", "manual"],
             metadata={"test": True},
-            auto_connect=False,  # 不自动连接，避免连接错误
-            register_immediately=False,
+            auto_connect=False,            register_immediately=False,
         )
 
         if added:
-            print("[+] 手动添加设备成功")
+            print("[+]  [Text Cleaned] ")
             config_summary = client.get_config_summary()
-            print(f"   当前设备总数: {config_summary['devices_count']}")
+            print(f"    [Text Cleaned] : {config_summary['devices_count']}")
         else:
-            print("[-] 手动添加设备失败")
+            print("[-]  [Text Cleaned] ")
 
-        # 清理
         await client.shutdown()
         return True
 
     except Exception as e:
-        print(f"[-] 设备操作测试失败: {e}")
+        print(f"[-]  [Text Cleaned] : {e}")
         return False
 
 
 async def main():
-    """主测试函数"""
+    """ [Text Cleaned] """
 
-    print("[*] 开始 networkClient 测试套件")
+    print("[*]  [Text Cleaned]  networkClient  [Text Cleaned] ")
 
-    # 测试1: 基础连接测试
     connection_test_passed = await test_network_client()
 
-    # 测试2: 设备操作测试
     operations_test_passed = await test_device_operations()
 
-    # 总结
     print("\n" + "=" * 80)
-    print("[*] 测试结果总结")
+    print("[*]  [Text Cleaned] ")
     print("=" * 80)
 
     tests = [
-        ("连接测试", connection_test_passed),
-        ("设备操作测试", operations_test_passed),
+        (" [Text Cleaned] ", connection_test_passed),
+        (" [Text Cleaned] ", operations_test_passed),
     ]
 
     passed_count = 0
     for test_name, passed in tests:
-        status = "[+] 通过" if passed else "[-] 失败"
+        status = "[+]  [Text Cleaned] " if passed else "[-]  [Text Cleaned] "
         print(f"   {test_name}: {status}")
         if passed:
             passed_count += 1
 
-    print(f"\n总体结果: {passed_count}/{len(tests)} 测试通过")
+    print(f"\n [Text Cleaned] : {passed_count}/{len(tests)}  [Text Cleaned] ")
 
     if passed_count == len(tests):
-        print("[+] 所有测试都通过了！networkClient 工作正常。")
+        print("[+]  [Text Cleaned] ！networkClient  [Text Cleaned] 。")
     else:
-        print("[!] 部分测试失败，请检查配置和服务器状态。")
+        print("[!]  [Text Cleaned] ， [Text Cleaned] 。")
 
 
 if __name__ == "__main__":

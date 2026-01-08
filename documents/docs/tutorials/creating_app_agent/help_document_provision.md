@@ -44,7 +44,7 @@ python -m learner --app <app_name> --docs <path_of_the_docs>
 - Replace `<app_name>` with the **Exact Process Name** of the application, such as `WINWORD.EXE` for Microsoft Word or `POWERPNT.EXE` for PowerPoint. 
 - Replace `<path_of_the_docs>` with the full path to the folder containing all your documents.
 
-This command will create an offline indexer for all documents in the `path_of_the_docs` folder using Faiss and embedding with sentence transformer (additional embeddings will be supported soon). By default, the created index will be placed [here](https://github.com/microsoft/Alien/tree/main/vectordb/docs).
+This command will create an offline indexer for all documents in the `path_of_the_docs` folder using Faiss and embedding with sentence transformer (additional embeddings will be supported soon). By default, the created index will be placed [here](https://github.com/DEVELOPER-DEEVEN/Alien/tree/main/vectordb/docs).
 
 !!! note "Application Name Requirement"
     Ensure the `app_name` is accurately defined, as it is used to match the offline indexer in online RAG.

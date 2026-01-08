@@ -525,7 +525,7 @@ class TestLinuxLogCollectionExcelGeneration:
 
     def test_request_english_translation(self):
         """Test that the Chinese request translates to the expected English scenario."""
-        chinese_request = "帮我mock 三个AgentProfile 做测试，两个linux，一个windows，然后在 tests 文件夹建立测试英文request是关于从两个linux服务器采集log 在windows上生成excel"
+        chinese_request = " [Text Cleaned] mock  [Text Cleaned] AgentProfile  [Text Cleaned] ， [Text Cleaned] linux， [Text Cleaned] windows， [Text Cleaned]  tests  [Text Cleaned] request [Text Cleaned] linux [Text Cleaned] log  [Text Cleaned] windows [Text Cleaned] excel"
 
         english_equivalent = (
             "Help me mock three AgentProfile objects for testing: two Linux servers and one Windows machine. "

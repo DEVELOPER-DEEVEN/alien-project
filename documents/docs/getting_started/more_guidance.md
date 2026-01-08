@@ -85,8 +85,8 @@ After installation, customize Alien³ to your needs:
 
 **Get Help:**
 
-- **[GitHub Discussions](https://github.com/microsoft/Alien/discussions)** - Ask questions, share tips
-- **[GitHub Issues](https://github.com/microsoft/Alien/issues)** - Report bugs, request features
+- **[GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)** - Ask questions, share tips
+- **[GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)** - Report bugs, request features
 - **Email:** Alien-agent@microsoft.com
 
 ---
@@ -118,7 +118,7 @@ If you want to contribute to Alien³ or build extensions, here's your developmen
 
 ```bash
 # Clone the repository
-git clone https://github.com/microsoft/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
 cd Alien
 
 # Create development environment
@@ -368,9 +368,9 @@ Brief description of changes
 
 ### Community Resources
 
-- **[GitHub Repository](https://github.com/microsoft/Alien)** - Source code and releases
-- **[GitHub Discussions](https://github.com/microsoft/Alien/discussions)** - Q&A and community
-- **[GitHub Issues](https://github.com/microsoft/Alien/issues)** - Bug reports and features
+- **[GitHub Repository](https://github.com/DEVELOPER-DEEVEN/Alien)** - Source code and releases
+- **[GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)** - Q&A and community
+- **[GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)** - Bug reports and features
 - **[Project Website](https://microsoft.github.io/Alien/)** - Official website
 
 ### Research Papers
@@ -384,8 +384,8 @@ Brief description of changes
 ## 🆘 Need More Help?
 
 - **Can't find what you're looking for?** Check the [FAQ](../faq.md)
-- **Still stuck?** Ask on [GitHub Discussions](https://github.com/microsoft/Alien/discussions)
-- **Found a bug?** Open an issue on [GitHub Issues](https://github.com/microsoft/Alien/issues)
-- **Want to contribute?** Read the [Contributing Guidelines](https://github.com/microsoft/Alien/blob/main/CONTRIBUTING.md)
+- **Still stuck?** Ask on [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
+- **Found a bug?** Open an issue on [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
+- **Want to contribute?** Read the [Contributing Guidelines](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/CONTRIBUTING.md)
 
 **Happy automating!** 🚀

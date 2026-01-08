@@ -160,14 +160,14 @@ def test_mcp_server():
         "tasks": [
             {
                 "task_id": "batch_task1",
-                "name": "批量任务1",
-                "description": "批量创建的任务1",
+                "name": " [Text Cleaned] 1",
+                "description": " [Text Cleaned] 1",
                 "priority": 1,
             },
             {
                 "task_id": "batch_task2",
-                "name": "批量任务2",
-                "description": "批量创建的任务2",
+                "name": " [Text Cleaned] 2",
+                "description": " [Text Cleaned] 2",
                 "priority": 2,
             },
         ],

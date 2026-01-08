@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-测试重构后的 AlienWebSocketHandler 方法结构
+ [Text Cleaned]  AlienWebSocketHandler  [Text Cleaned] 
 """
 
 import asyncio
@@ -12,7 +12,6 @@ from Alien.server.services.ws_manager import WSManager
 from Alien.server.services.session_manager import SessionManager
 from datetime import datetime, timezone
 
-# 设置日志
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -20,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class MockWebSocket:
-    """模拟 WebSocket 连接"""
+    """ [Text Cleaned]  WebSocket  [Text Cleaned] """
 
     def __init__(self):
         self.messages_sent = []
@@ -30,7 +29,6 @@ class MockWebSocket:
         pass
 
     async def receive_text(self):
-        # 模拟注册消息
         device_reg = ClientMessage(
             type=ClientMessageType.REGISTER,
             client_id="test_device_001",
@@ -48,20 +46,18 @@ class MockWebSocket:
 
 
 async def test_handler_methods():
-    """测试重构后的方法结构"""
+    """ [Text Cleaned] """
 
     print("=" * 80)
-    print("🧪 测试重构后的 AlienWebSocketHandler 方法结构")
+    print("🧪  [Text Cleaned]  AlienWebSocketHandler  [Text Cleaned] ")
     print("=" * 80)
 
-    # 创建模拟对象
     ws_manager = WSManager()
     session_manager = SessionManager()
     handler = AlienWebSocketHandler(ws_manager, session_manager)
 
     try:
-        # 测试1: 检查方法是否存在
-        print("\n[1] 检查重构后的方法结构...")
+        print("\n[1]  [Text Cleaned] ...")
 
         methods_to_check = [
             "_parse_registration_message",
@@ -74,72 +70,67 @@ async def test_handler_methods():
 
         for method_name in methods_to_check:
             if hasattr(handler, method_name):
-                print(f"✅ {method_name} 方法存在")
+                print(f"✅ {method_name}  [Text Cleaned] ")
             else:
-                print(f"❌ {method_name} 方法缺失")
+                print(f"❌ {method_name}  [Text Cleaned] ")
 
-        # 测试2: 测试设备客户端注册流程
-        print("\n[2] 测试设备客户端注册流程...")
+        print("\n[2]  [Text Cleaned] ...")
 
         mock_websocket = MockWebSocket()
         client_id, client_type = await handler.connect(mock_websocket)
 
-        print(f"   客户端ID: {client_id}")
-        print(f"   客户端类型: {client_type}")
-        print(f"   发送的消息数量: {len(mock_websocket.messages_sent)}")
+        print(f"    [Text Cleaned] ID: {client_id}")
+        print(f"    [Text Cleaned] : {client_type}")
+        print(f"    [Text Cleaned] : {len(mock_websocket.messages_sent)}")
 
         if client_type == "device":
-            print("✅ 设备客户端注册成功")
+            print("✅  [Text Cleaned] ")
         else:
-            print("❌ 客户端类型识别错误")
+            print("❌  [Text Cleaned] ")
 
-        # 测试3: 测试方法职责分离
-        print("\n[3] 验证方法职责分离...")
+        print("\n[3]  [Text Cleaned] ...")
 
-        # 检查 connect 方法长度
         import inspect
 
         connect_source = inspect.getsource(handler.connect)
         connect_lines = len(connect_source.split("\n"))
 
-        print(f"   connect 方法行数: {connect_lines}")
-        if connect_lines < 30:  # 重构后应该更短
-            print("✅ connect 方法长度合理")
+        print(f"   connect  [Text Cleaned] : {connect_lines}")
+        if connect_lines < 30:            print("✅ connect  [Text Cleaned] ")
         else:
-            print("⚠️ connect 方法可能仍然过长")
+            print("⚠️ connect  [Text Cleaned] ")
 
-        # 检查是否有适当的方法调用
         if "_parse_registration_message" in connect_source:
-            print("✅ connect 调用了 _parse_registration_message")
+            print("✅ connect  [Text Cleaned]  _parse_registration_message")
         if "_determine_and_validate_client_type" in connect_source:
-            print("✅ connect 调用了 _determine_and_validate_client_type")
+            print("✅ connect  [Text Cleaned]  _determine_and_validate_client_type")
         if "_send_registration_confirmation" in connect_source:
-            print("✅ connect 调用了 _send_registration_confirmation")
+            print("✅ connect  [Text Cleaned]  _send_registration_confirmation")
 
-        print("\n✅ 方法重构测试完成")
+        print("\n✅  [Text Cleaned] ")
 
     except Exception as e:
-        print(f"❌ 测试过程中出错: {e}")
+        print(f"❌  [Text Cleaned] : {e}")
         import traceback
 
         traceback.print_exc()
 
     print("\n" + "=" * 80)
-    print("🎯 重构验证结果:")
-    print("   ✅ 方法结构清晰，职责分离明确")
-    print("   ✅ connect 方法长度合理")
-    print("   ✅ 各个子方法功能单一")
+    print("🎯  [Text Cleaned] :")
+    print("   ✅  [Text Cleaned] ， [Text Cleaned] ")
+    print("   ✅ connect  [Text Cleaned] ")
+    print("   ✅  [Text Cleaned] ")
     print("=" * 80)
 
 
 async def main():
-    """主函数"""
+    """ [Text Cleaned] """
     try:
         await test_handler_methods()
     except KeyboardInterrupt:
-        print("\n测试被用户中断")
+        print("\n [Text Cleaned] ")
     except Exception as e:
-        print(f"测试失败: {e}")
+        print(f" [Text Cleaned] : {e}")
 
 
 if __name__ == "__main__":

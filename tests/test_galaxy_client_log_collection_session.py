@@ -530,7 +530,7 @@ class TestclusterClientLogCollectionSession:
         """Test various log collection request formats."""
         test_requests = [
             "Collect logs from Linux servers and generate Excel report",
-            "从两个Linux服务器采集日志并在Windows上生成Excel报告",
+            " [Text Cleaned] Linux [Text Cleaned] Windows [Text Cleaned] Excel [Text Cleaned] ",
             "Analyze system logs from web-server-01 and api-server-01, create summary in Excel",
             "Pull error logs from nginx and apache servers, create performance report",
             "Gather database logs from PostgreSQL and MySQL, generate analytics dashboard",

@@ -242,7 +242,7 @@ example8:
     ControlLabel: |-
       36
     ControlText: |-
-      搜索
+       [Text Cleaned] 
     Function: |-
       set_edit_text
     Args: 

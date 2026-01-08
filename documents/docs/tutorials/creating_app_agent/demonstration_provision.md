@@ -22,7 +22,7 @@ Include any specific details or instructions for Alien to notice by adding comme
 
 ### Step 3: Review and Save the Recorded Demonstrations
 
-Review the recorded steps and save them to a ZIP file. Refer to the [sample_record.zip](https://github.com/microsoft/Alien/blob/main/record_processor/example/sample_record.zip) for an example of recorded steps for a specific request, such as "sending an email to example@gmail.com to say hi."
+Review the recorded steps and save them to a ZIP file. Refer to the [sample_record.zip](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/record_processor/example/sample_record.zip) for an example of recorded steps for a specific request, such as "sending an email to example@gmail.com to say hi."
 
 ### Step 4: Create an Action Trajectory Indexer
 
@@ -56,7 +56,7 @@ Plan [3]
 Would you like to save any one of them as a future reference for the agent? Press [1] [2] [3] to save the corresponding plan, or press any other key to skip.
 ```
 
-Press `1` to save the plan into its memory for future reference. A sample can be found [here](https://github.com/microsoft/Alien/blob/main/vectordb/demonstration/example.yaml).
+Press `1` to save the plan into its memory for future reference. A sample can be found [here](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/vectordb/demonstration/example.yaml).
 
 You can view a demonstration video [here](https://github.com/yunhao0204/Alien/assets/59384816/0146f83e-1b5e-4933-8985-fe3f24ec4777).
 

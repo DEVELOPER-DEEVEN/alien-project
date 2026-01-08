@@ -407,8 +407,36 @@ API_DEPLOYMENT_ID: "your-deployment-id"
 ---
 
 
+**Media Coverage:**
+- [Microsoft's Alien: Smarter Windows Experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
+- **[More coverage →](./Alien/README.md#-tracing-the-stars)**
 
+**Community:**
+- 💬 [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
+- 🐛 [Issue Tracker](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
+- 📧 Email: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
+- 📺 [YouTube Channel](https://www.youtube.com/watch?v=QT_OhygMVXU)
 
+---
+
+## 🎨 Related Projects & Research
+
+**Microsoft Research:**
+- **[TaskWeaver](https://github.com/DEVELOPER-DEEVEN/TaskWeaver)** – Code-first LLM agent framework for data analytics and task automation
+
+**GUI Agent Research:**
+- **[LLM-Brained GUI Agents Survey](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey)** – Comprehensive survey of GUI automation agents
+- **[Interactive Survey Site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)** – Explore latest GUI agent research and developments
+
+**Multi-Agent Systems:**
+- **Alien³ cluster** represents a novel approach to multi-device orchestration, introducing the network framework for coordinating heterogeneous agents across platforms
+- Builds on multi-agent coordination research while addressing unique challenges of cross-device GUI automation
+
+**Benchmarks:**
+- **[Windows Agent Arena (WAA)](https://github.com/nice-mee/WindowsAgentArena)** – Evaluation benchmark for Windows automation agents
+- **[OSWorld](https://github.com/nice-mee/WindowsAgentArena/tree/2020-qqtcg/osworld)** – Cross-application task evaluation suite
+
+---
 
 ## 💡 FAQ
 

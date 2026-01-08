@@ -7,7 +7,7 @@ OSWorld is a benchmark suite designed to evaluate the performance of AI agents i
 
 ## 💻 Deployment Guide (WSL Recommended)
 
-> We strongly recommend reviewing the [original WAA deployment guide](https://github.com/microsoft/WindowsAgentArena) beforehand. The instructions below assume you are familiar with the original setup.
+> We strongly recommend reviewing the [original WAA deployment guide](https://github.com/DEVELOPER-DEEVEN/WindowsAgentArena) beforehand. The instructions below assume you are familiar with the original setup.
 
 ---
 
@@ -48,7 +48,7 @@ This will generate the `windowsarena/winarena:latest` image using the latest cod
 
 ### 3. Integrate Alien
 
-1. Configure Alien via `Alien/config/config.json` (see [Alien repo](https://github.com/microsoft/Alien) for details).
+1. Configure Alien via `Alien/config/config.json` (see [Alien repo](https://github.com/DEVELOPER-DEEVEN/Alien) for details).
 2. Copy the entire `Alien` folder into the WAA container client directory:
 
 ```bash

@@ -63,19 +63,8 @@ Both agents leverage the multi-modal capabilities of GPT-4V(o) to comprehend the
     4. You can customize different GPT models for HostAgent and AppAgent. Text-only models (e.g., GPT-4) are now supported! -->
 - 📅 ...
 - 📅 2024-02-14: Our [technical report](https://arxiv.org/abs/2402.07939) is online!
-- 📅 2024-02-10: Alien is released on GitHub🎈. Happy Chinese New year🐉!
 
 
-## 🌐 Media Coverage 
-
-Alien sightings have garnered attention from various media outlets, including:
-- [Microsoft's Alien abducts traditional user interfaces for a smarter Windows experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
-- [🚀 Alien & GPT-4-V: Sit back and relax, mientras GPT lo hace todo🌌](https://www.linkedin.com/posts/gutierrezfrancois_ai-Alien-microsoft-activity-7176819900399652865-pLoo?utm_source=share&utm_medium=member_desktop)
-- [The AI PC - The Future of Computers? - Microsoft Alien](https://www.youtube.com/watch?v=1k4LcffCq3E)
-- [下一代Windows系统曝光：基于GPT-4V，Agent跨应用调度，代号Alien](https://baijiahao.baidu.com/s?id=1790938358152188625&wfr=spider&for=pc)
-- [下一代智能版 Windows 要来了？微软推出首个 Windows Agent，命名为 Alien！](https://blog.csdn.net/csdnnews/article/details/136161570)
-- [Microsoft発のオープンソース版「Alien」登場！　Windowsを自動操縦するAIエージェントを試す](https://internet.watch.impress.co.jp/docs/column/shimizu/1570581.html)
-- ...
 
 These sources provide insights into the evolving landscape of technology and the implications of Alien phenomena on various platforms.
 
@@ -101,7 +90,7 @@ Alien requires **Python >= 3.10** running on **Windows OS >= 10**. It can be ins
 # conda activate Alien
 
 # clone the repository
-git clone https://github.com/microsoft/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
 cd Alien
 # install the requirements
 pip install -r requirements.txt
@@ -219,11 +208,7 @@ If everything goes well, you will see the following message:
 
 ```bash
 Welcome to use Alien🛸, A UI-focused Agent for Windows OS Interaction. 
- _   _  _____   ___
-| | | ||  ___| / _ \
-| | | || |_   | | | |
-| |_| ||  _|  | |_| |
- \___/ |_|     \___/
+ALIEN ACTIVE
 Please enter your request to be completed🛸:
 ```
 #### ⚠️Reminder:  ####
@@ -255,7 +240,7 @@ We present two demo videos that complete user request on Windows OS using Alien.
 In this example, we will demonstrate how to efficiently use Alien to delete all notes on a PowerPoint presentation with just a few simple steps. Explore this functionality to enhance your productivity and work smarter, not harder!
 
 
-https://github.com/microsoft/Alien/assets/11352048/cf60c643-04f7-4180-9a55-5fb240627834
+https://github.com/DEVELOPER-DEEVEN/Alien/assets/11352048/cf60c643-04f7-4180-9a55-5fb240627834
 
 
 
@@ -263,7 +248,7 @@ https://github.com/microsoft/Alien/assets/11352048/cf60c643-04f7-4180-9a55-5fb24
 In this example, we will demonstrate how to utilize Alien to extract text from Word documents, describe an image, compose an email, and send it seamlessly. Enjoy the versatility and efficiency of cross-application experiences with Alien!
 
 
-https://github.com/microsoft/Alien/assets/11352048/aa41ad47-fae7-4334-8e0b-ba71c4fc32e0 -->
+https://github.com/DEVELOPER-DEEVEN/Alien/assets/11352048/aa41ad47-fae7-4334-8e0b-ba71c4fc32e0 -->
 
 
 
@@ -300,7 +285,7 @@ If you use Alien in your research, please cite our paper:
 
 
 ## 🎨 Related Projects
-1. If you're interested in data analytics agent frameworks, check out [TaskWeaver](https://github.com/microsoft/TaskWeaver?tab=readme-ov-file), a code-first LLM agent framework designed for seamlessly planning and executing data analytics tasks.
+1. If you're interested in data analytics agent frameworks, check out [TaskWeaver](https://github.com/DEVELOPER-DEEVEN/TaskWeaver?tab=readme-ov-file), a code-first LLM agent framework designed for seamlessly planning and executing data analytics tasks.
 
 2. For more information on GUI agents, refer to our survey paper: [Large Language Model-Brained GUI Agents: A Survey](https://arxiv.org/abs/2411.18279). You can also explore the survey through:
 - [Paper](https://arxiv.org/abs/2411.18279)

@@ -1,6 +1,6 @@
 # Visual Control Detection (OmniParser)
 
-Visual control detection uses [OmniParser-v2](https://github.com/microsoft/OmniParser), a vision-based grounding model that detects UI elements through computer vision. This method is particularly effective for custom controls, icons, images, and visual elements that may not be accessible through standard UIA.
+Visual control detection uses [OmniParser-v2](https://github.com/DEVELOPER-DEEVEN/OmniParser), a vision-based grounding model that detects UI elements through computer vision. This method is particularly effective for custom controls, icons, images, and visual elements that may not be accessible through standard UIA.
 
 ## Use Cases
 
@@ -16,7 +16,7 @@ Visual control detection uses [OmniParser-v2](https://github.com/microsoft/OmniP
 On your remote GPU server:
 
 ```bash
-git clone https://github.com/microsoft/OmniParser.git
+git clone https://github.com/DEVELOPER-DEEVEN/OmniParser.git
 cd OmniParser/omnitool/omniparserserver
 ```
 
@@ -33,7 +33,7 @@ This will generate output similar to:
 * Running on public URL: https://xxxxxxxxxxxxxxxxxx.gradio.live
 ```
 
-For detailed deployment instructions, refer to the [OmniParser README](https://github.com/microsoft/OmniParser/tree/master/omnitool).
+For detailed deployment instructions, refer to the [OmniParser README](https://github.com/DEVELOPER-DEEVEN/OmniParser/tree/master/omnitool).
 
 ## Configuration
 

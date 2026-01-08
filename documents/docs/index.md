@@ -11,7 +11,7 @@
 [![arxiv](https://img.shields.io/badge/Paper-arXiv:2504.14603-b31b1b.svg)](https://arxiv.org/abs/2504.14603)
 ![Python Version](https://img.shields.io/badge/Python-3776AB?&logo=python&logoColor=white-blue&label=3.10%20%7C%203.11)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub](https://img.shields.io/github/stars/microsoft/Alien)](https://github.com/microsoft/Alien)
+[![GitHub](https://img.shields.io/github/stars/microsoft/Alien)](https://github.com/DEVELOPER-DEEVEN/Alien)
 [![YouTube](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=%23FF0000)](https://www.youtube.com/watch?v=QT_OhygMVXU)
 
 
@@ -358,8 +358,8 @@ Get help when you need it:
 | Resource | What You'll Find |
 |----------|------------------|
 | [FAQ](faq.md) | Common questions and answers |
-| [GitHub Discussions](https://github.com/microsoft/Alien/discussions) | Community Q&A |
-| [GitHub Issues](https://github.com/microsoft/Alien/issues) | Bug reports and feature requests |
+| [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions) | Community Q&A |
+| [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues) | Bug reports and feature requests |
 
 ---
 
@@ -410,18 +410,16 @@ Perfect for Windows automation and rapid task execution:
 Check out our official deep dive of Alien on [YouTube](https://www.youtube.com/watch?v=QT_OhygMVXU).
 
 ### Media Coverage:
-- [微软正式开源Alien²，Windows桌面迈入「AgentOS 时代」](https://www.jiqizhixin.com/articles/2025-05-06-13)
-- [Microsoft's Alien: Smarter Windows Experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
-- [下一代Windows系统曝光：基于GPT-4V](https://baijiahao.baidu.com/s?id=1790938358152188625)
+
 
 ### 💬 Get Help & Connect
 - **📖 Documentation**: You're here! Browse the navigation above
-- **💬 Discussions**: [GitHub Discussions](https://github.com/microsoft/Alien/discussions)
-- **🐛 Issues**: [GitHub Issues](https://github.com/microsoft/Alien/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
+- **🐛 Issues**: [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
 - **📧 Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
 
 ### 🎨 Related Projects
-- **[TaskWeaver](https://github.com/microsoft/TaskWeaver)** – Code-first LLM agent framework
+- **[TaskWeaver](https://github.com/DEVELOPER-DEEVEN/TaskWeaver)** – Code-first LLM agent framework
 - **[Windows Agent Arena](https://github.com/nice-mee/WindowsAgentArena)** – Evaluation benchmark
 - **[GUI Agents Survey](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)** – Latest research
 
@@ -491,8 +489,8 @@ If you use Alien³ in your research, please cite:
 
 ## ⚖️ License & Legal
 
-- **License**: [MIT License](https://github.com/microsoft/Alien/blob/main/LICENSE)
-- **Disclaimer**: [Read our disclaimer](https://github.com/microsoft/Alien/blob/main/DISCLAIMER.md)
+- **License**: [MIT License](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/LICENSE)
+- **Disclaimer**: [Read our disclaimer](https://github.com/DEVELOPER-DEEVEN/Alien/blob/main/DISCLAIMER.md)
 - **Trademarks**: [Microsoft Trademark Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks)
 - **Contributing**: [Contribution Guidelines](about/CONTRIBUTING.md)
 
@@ -518,7 +516,7 @@ Choose your framework and begin your automation journey:
 
 ### 📖 Explore the Documentation
 
-[Core Concepts](cluster/overview.md) | [Configuration](configuration/system/agents_config.md) | [FAQ](faq.md) | [GitHub](https://github.com/microsoft/Alien)
+[Core Concepts](cluster/overview.md) | [Configuration](configuration/system/agents_config.md) | [FAQ](faq.md) | [GitHub](https://github.com/DEVELOPER-DEEVEN/Alien)
 
 
 ---

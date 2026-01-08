@@ -169,7 +169,7 @@ example6:
       function: |-
         set_edit_text
       arguments: 
-        {"id": "36", "name": "搜索", "text": "Imdiffusion GitHub"}
+        {"id": "36", "name": " [Text Cleaned] ", "text": "Imdiffusion GitHub"}
       status: |-
         CONTINUE
     plan:
@@ -181,7 +181,7 @@ example6:
     save_screenshot:
       {"save": false, "reason": ""}
     result: |-
-      Successfully inputted the search query 'Imdiffusion GitHub' into the Google search box (ComboBox ID: 36, name: '搜索'). The subtask is in progress (CONTINUE status) as additional steps are needed to complete the user's request. Remaining steps include: (1) clicking the Google Search button to execute the search, (2) identifying and clicking the Imdiffusion repository hyperlink from the search results, (3) navigating to the GitHub repository page, and (4) visually observing and reporting the star count displayed on the repository page. The search query has been properly formatted to help find the official Imdiffusion GitHub repository. The Edge browser with Google search page is ready for the search execution.
+      Successfully inputted the search query 'Imdiffusion GitHub' into the Google search box (ComboBox ID: 36, name: ' [Text Cleaned] '). The subtask is in progress (CONTINUE status) as additional steps are needed to complete the user's request. Remaining steps include: (1) clicking the Google Search button to execute the search, (2) identifying and clicking the Imdiffusion repository hyperlink from the search results, (3) navigating to the GitHub repository page, and (4) visually observing and reporting the star count displayed on the repository page. The search query has been properly formatted to help find the official Imdiffusion GitHub repository. The Edge browser with Google search page is ready for the search execution.
   Tips: 
     - The search box is usually in a type of ComboBox.
     - The number of stars of a Github repo page can be found in the repo page visually.

@@ -6,7 +6,7 @@ This project uses GitHub Issues to track bugs and feature requests. Please searc
 issues before filing new issues to avoid duplicates.  For new issues, file your bug or 
 feature request as a new Issue.
 
-You may use [GitHub Issues](https://github.com/microsoft/Alien/issues) to raise questions, bug reports, and feature requests.
+You may use [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues) to raise questions, bug reports, and feature requests.
 
 For help and questions about using this project, please please contact [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com).
 

@@ -472,7 +472,7 @@ Alien³ follows **SOLID principles** and established software engineering patter
 
 ## 📝 Additional Resources
 
-- **[GitHub Repository](https://github.com/microsoft/Alien)** - Source code and issues
+- **[GitHub Repository](https://github.com/DEVELOPER-DEEVEN/Alien)** - Source code and issues
 - **[Research Paper](https://arxiv.org/abs/2504.14603)** - Alien³ technical details
 - **[Documentation Site](https://microsoft.github.io/Alien/)** - Full documentation
 - **[Video Demo](https://www.youtube.com/watch?v=QT_OhygMVXU)** - YouTube demonstration

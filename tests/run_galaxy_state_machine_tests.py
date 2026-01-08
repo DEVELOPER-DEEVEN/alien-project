@@ -2,9 +2,9 @@
 # Licensed under the MIT License.
 
 """
-cluster状态机系统测试运行器
+cluster [Text Cleaned] 
 
-此脚本运行所有相关测试并生成报告，验证重构的正确性
+ [Text Cleaned] ， [Text Cleaned] 
 """
 
 import asyncio
@@ -14,7 +14,6 @@ import time
 from pathlib import Path
 from typing import Dict, Any, List
 
-# 添加项目根目录到路径
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
@@ -34,7 +33,7 @@ from Alien.module.context import Context
 
 
 class clusterStateMachineTestRunner:
-    """cluster状态机测试运行器"""
+    """cluster [Text Cleaned] """
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
@@ -47,72 +46,65 @@ class clusterStateMachineTestRunner:
         }
     
     def setup_logging(self):
-        """设置日志"""
+        """ [Text Cleaned] """
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
         )
     
     async def run_all_tests(self) -> Dict[str, Any]:
-        """运行所有测试"""
+        """ [Text Cleaned] """
         self.setup_logging()
         start_time = time.time()
         
-        print("🚀 开始运行cluster状态机系统测试...")
+        print("🚀  [Text Cleaned] cluster [Text Cleaned] ...")
         print("=" * 60)
         
-        # 基础功能测试
         await self.test_state_manager()
         await self.test_state_transitions()
         await self.test_monitoring_state_task_tracking()
         await self.test_observer_integration()
         
-        # 集成测试
         await self.test_complete_workflow()
         await self.test_race_condition_resolution()
         await self.test_error_handling()
         
-        # 性能测试
         await self.test_concurrent_operations()
         
         self.results["execution_time"] = time.time() - start_time
         
-        # 生成报告
         self.generate_report()
         
         return self.results
     
     async def test_state_manager(self):
-        """测试状态管理器"""
-        print("📋 测试状态管理器...")
+        """ [Text Cleaned] """
+        print("📋  [Text Cleaned] ...")
         
         try:
             manager = clusterAgentStateManager()
             
-            # 测试状态获取
             creating_state = manager.get_state(clusterAgentStatus.CREATING.value)
             monitoring_state = manager.get_state(clusterAgentStatus.MONITORING.value)
             finished_state = manager.get_state(clusterAgentStatus.FINISHED.value)
             failed_state = manager.get_state(clusterAgentStatus.FAILED.value)
             
-            # 验证状态类型
             assert isinstance(creating_state, CreatingclusterAgentState)
             assert isinstance(monitoring_state, MonitoringclusterAgentState)
             assert isinstance(finished_state, FinishedclusterAgentState)
             assert isinstance(failed_state, FailedclusterAgentState)
             
-            # 测试状态缓存
             same_state = manager.get_state(clusterAgentStatus.CREATING.value)
             assert creating_state is same_state
             
-            self._record_success("状态管理器基础功能")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("状态管理器基础功能", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_state_transitions(self):
-        """测试状态转换"""
-        print("🔄 测试状态转换...")
+        """ [Text Cleaned] """
+        print("🔄  [Text Cleaned] ...")
         
         try:
             agent = MockclusterWeaverAgent()
@@ -120,31 +112,28 @@ class clusterStateMachineTestRunner:
             from Alien.module.context import ContextNames
             context.set(ContextNames.REQUEST, "test request")
             
-            # 测试创建状态
             creating_state = CreatingclusterAgentState()
             await creating_state.handle(agent, context)
             
             assert agent._status == clusterAgentStatus.MONITORING.value
             assert agent.current_network is not None
             
-            # 测试状态转换
             next_state = creating_state.next_state(agent)
             assert isinstance(next_state, MonitoringclusterAgentState)
             
-            self._record_success("状态转换逻辑")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("状态转换逻辑", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_monitoring_state_task_tracking(self):
-        """测试监控状态任务跟踪"""
-        print("📊 测试监控状态任务跟踪...")
+        """ [Text Cleaned] """
+        print("📊  [Text Cleaned] ...")
         
         try:
             monitoring_state = MonitoringclusterAgentState()
             agent = MockclusterWeaverAgent()
             
-            # 创建network
             network = create_simple_network(
                 task_descriptions=["Task 1", "Task 2"],
                 network_name="test",
@@ -155,7 +144,6 @@ class clusterStateMachineTestRunner:
             agent.update_network_with_lock = lambda *args: asyncio.coroutine(lambda: network)()
             agent.should_continue = lambda *args: asyncio.coroutine(lambda: False)()
             
-            # 测试任务开始跟踪
             await monitoring_state.queue_task_update({
                 "task_id": "task_1",
                 "event_type": EventType.TASK_STARTED.value,
@@ -165,7 +153,6 @@ class clusterStateMachineTestRunner:
             await monitoring_state._process_pending_updates(agent, None)
             assert "task_1" in monitoring_state._running_tasks
             
-            # 测试任务完成跟踪
             await monitoring_state.queue_task_update({
                 "task_id": "task_1",
                 "event_type": EventType.TASK_COMPLETED.value,
@@ -175,31 +162,28 @@ class clusterStateMachineTestRunner:
             await monitoring_state._process_pending_updates(agent, None)
             assert "task_1" not in monitoring_state._running_tasks
             
-            self._record_success("监控状态任务跟踪")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("监控状态任务跟踪", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_observer_integration(self):
-        """测试观察者集成"""
-        print("👁️ 测试观察者集成...")
+        """ [Text Cleaned] """
+        print("👁️  [Text Cleaned] ...")
         
         try:
             agent = MockclusterWeaverAgent()
             context = Context()
             event_bus = get_event_bus()
             
-            # 设置监控状态
             from cluster.agents.cluster_agent_state import MonitoringclusterAgentState
             monitoring_state = MonitoringclusterAgentState()
             agent._state = monitoring_state
             agent.queue_task_update_to_current_state = monitoring_state.queue_task_update
             
-            # 创建观察者
             observer = networkProgressObserver(agent, context)
             event_bus.subscribe(observer)
             
-            # 发布任务事件
             task_event = TaskEvent(
                 event_type=EventType.TASK_STARTED,
                 source_id="test_source",
@@ -210,22 +194,19 @@ class clusterStateMachineTestRunner:
             )
             
             await event_bus.publish_event(task_event)
-            await asyncio.sleep(0.1)  # 等待事件处理
-            
-            # 处理pending updates
+            await asyncio.sleep(0.1)            
             await monitoring_state._process_pending_updates(agent, context)
             
-            # 验证事件被转发到状态机
             assert "task_1" in monitoring_state._running_tasks
                 
-            self._record_success("观察者集成")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("观察者集成", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_complete_workflow(self):
-        """测试完整工作流"""
-        print("🔄 测试完整工作流...")
+        """ [Text Cleaned] """
+        print("🔄  [Text Cleaned] ...")
         
         try:
             agent = MockclusterWeaverAgent()
@@ -233,21 +214,17 @@ class clusterStateMachineTestRunner:
             from Alien.module.context import ContextNames
             context.set(ContextNames.REQUEST, "complete workflow test")
             
-            # 模拟完整状态机循环
             state_manager = clusterAgentStateManager()
             
-            # 1. 创建状态
             agent._status = clusterAgentStatus.CREATING.value
             state = state_manager.get_state(agent._status)
             await state.handle(agent, context)
             
             assert agent._status == clusterAgentStatus.MONITORING.value
             
-            # 2. 监控状态
             state = state_manager.get_state(agent._status)
             monitoring_state = state
             
-            # 模拟任务执行
             await monitoring_state.queue_task_update({
                 "task_id": "task_1",
                 "event_type": EventType.TASK_STARTED.value,
@@ -258,7 +235,6 @@ class clusterStateMachineTestRunner:
                 "event_type": EventType.TASK_COMPLETED.value,
             })
             
-            # 设置network完成
             agent.current_network.is_complete = lambda: True
             agent.should_continue = lambda *args: asyncio.coroutine(lambda: False)()
             
@@ -266,20 +242,19 @@ class clusterStateMachineTestRunner:
             
             assert agent._status == clusterAgentStatus.FINISHED.value
             
-            self._record_success("完整工作流")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("完整工作流", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_race_condition_resolution(self):
-        """测试竞态条件解决"""
-        print("⚡ 测试竞态条件解决...")
+        """ [Text Cleaned] """
+        print("⚡  [Text Cleaned] ...")
         
         try:
             monitoring_state = MonitoringclusterAgentState()
             agent = MockclusterWeaverAgent()
             
-            # 创建network
             network = create_simple_network(
                 task_descriptions=["Task 1", "Task 2"],
                 network_name="race_test",
@@ -288,7 +263,6 @@ class clusterStateMachineTestRunner:
             agent._current_network = network
             agent.update_network_with_lock = lambda *args: asyncio.coroutine(lambda: network)()
             
-            # 模拟竞态条件：快速连续的任务完成
             tasks = [
                 {"task_id": "task_1", "event_type": EventType.TASK_STARTED.value},
                 {"task_id": "task_2", "event_type": EventType.TASK_STARTED.value},
@@ -296,11 +270,9 @@ class clusterStateMachineTestRunner:
                 {"task_id": "task_2", "event_type": EventType.TASK_COMPLETED.value},
             ]
             
-            # 快速添加所有任务更新
             for task in tasks:
                 await monitoring_state.queue_task_update(task)
             
-            # 设置completion逻辑
             def mock_is_complete():
                 return (monitoring_state._pending_task_updates.empty() and 
                        len(monitoring_state._running_tasks) == 0)
@@ -308,28 +280,24 @@ class clusterStateMachineTestRunner:
             network.is_complete = mock_is_complete
             agent.should_continue = lambda *args: asyncio.coroutine(lambda: False)()
             
-            # 处理所有更新
             await monitoring_state._process_pending_updates(agent, None)
             
-            # 验证所有任务被正确处理
             assert len(monitoring_state._running_tasks) == 0
             assert monitoring_state._pending_task_updates.empty()
             
-            # 检查真正完成
             is_complete = await monitoring_state._check_true_completion(agent, None)
             assert is_complete
             
-            self._record_success("竞态条件解决")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("竞态条件解决", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_error_handling(self):
-        """测试错误处理"""
-        print("🚨 测试错误处理...")
+        """ [Text Cleaned] """
+        print("🚨  [Text Cleaned] ...")
         
         try:
-            # 测试创建状态错误处理
             agent = MockclusterWeaverAgent()
             agent.process_initial_request = lambda *args: asyncio.coroutine(
                 lambda: exec('raise Exception("Test error")')
@@ -344,7 +312,6 @@ class clusterStateMachineTestRunner:
             
             assert agent._status == clusterAgentStatus.FAILED.value
             
-            # 测试监控状态无network错误处理
             monitoring_state = MonitoringclusterAgentState()
             agent._current_network = None
             
@@ -352,21 +319,20 @@ class clusterStateMachineTestRunner:
             
             assert agent._status == clusterAgentStatus.FAILED.value
             
-            self._record_success("错误处理")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("错误处理", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     async def test_concurrent_operations(self):
-        """测试并发操作"""
-        print("🏃‍♂️ 测试并发操作...")
+        """ [Text Cleaned] """
+        print("🏃‍♂️  [Text Cleaned] ...")
         
         try:
             monitoring_state = MonitoringclusterAgentState()
             agent = MockclusterWeaverAgent()
             agent.update_network_with_lock = lambda *args: asyncio.coroutine(lambda: None)()
             
-            # 并发添加任务更新
             async def add_updates(start_id: int, count: int):
                 for i in range(count):
                     await monitoring_state.queue_task_update({
@@ -376,32 +342,29 @@ class clusterStateMachineTestRunner:
                     })
                     await asyncio.sleep(0.001)
             
-            # 启动多个并发任务
             await asyncio.gather(
                 add_updates(0, 10),
                 add_updates(10, 10),
                 add_updates(20, 10)
             )
             
-            # 处理所有更新
             await monitoring_state._process_pending_updates(agent, None)
             
-            # 验证所有任务都被正确跟踪
             assert len(monitoring_state._running_tasks) == 30
             
-            self._record_success("并发操作")
+            self._record_success(" [Text Cleaned] ")
             
         except Exception as e:
-            self._record_failure("并发操作", e)
+            self._record_failure(" [Text Cleaned] ", e)
     
     def _record_success(self, test_name: str):
-        """记录成功测试"""
+        """ [Text Cleaned] """
         self.results["tests_run"] += 1
         self.results["tests_passed"] += 1
-        print(f"✅ {test_name} - 通过")
+        print(f"✅ {test_name} -  [Text Cleaned] ")
     
     def _record_failure(self, test_name: str, error: Exception):
-        """记录失败测试"""
+        """ [Text Cleaned] """
         self.results["tests_run"] += 1
         self.results["tests_failed"] += 1
         self.results["failures"].append({
@@ -409,39 +372,38 @@ class clusterStateMachineTestRunner:
             "error": str(error),
             "type": type(error).__name__
         })
-        print(f"❌ {test_name} - 失败: {error}")
+        print(f"❌ {test_name} -  [Text Cleaned] : {error}")
     
     def generate_report(self):
-        """生成测试报告"""
+        """ [Text Cleaned] """
         print("\n" + "=" * 60)
-        print("📊 测试报告")
+        print("📊  [Text Cleaned] ")
         print("=" * 60)
         
-        print(f"总测试数: {self.results['tests_run']}")
-        print(f"通过: {self.results['tests_passed']}")
-        print(f"失败: {self.results['tests_failed']}")
-        print(f"执行时间: {self.results['execution_time']:.2f}秒")
+        print(f" [Text Cleaned] : {self.results['tests_run']}")
+        print(f" [Text Cleaned] : {self.results['tests_passed']}")
+        print(f" [Text Cleaned] : {self.results['tests_failed']}")
+        print(f" [Text Cleaned] : {self.results['execution_time']:.2f} [Text Cleaned] ")
         
         if self.results["failures"]:
-            print("\n❌ 失败测试详情:")
+            print("\n❌  [Text Cleaned] :")
             for failure in self.results["failures"]:
                 print(f"  - {failure['test']}: {failure['error']}")
         
         success_rate = (self.results['tests_passed'] / self.results['tests_run']) * 100 if self.results['tests_run'] > 0 else 0
-        print(f"\n成功率: {success_rate:.1f}%")
+        print(f"\n [Text Cleaned] : {success_rate:.1f}%")
         
         if success_rate == 100:
-            print("🎉 所有测试通过！cluster状态机系统重构成功！")
+            print("🎉  [Text Cleaned] ！cluster [Text Cleaned] ！")
         else:
-            print("⚠️ 存在失败测试，需要进一步调试")
+            print("⚠️  [Text Cleaned] ， [Text Cleaned] ")
 
 
 async def main():
-    """主函数"""
+    """ [Text Cleaned] """
     runner = clusterStateMachineTestRunner()
     results = await runner.run_all_tests()
     
-    # 返回适当的退出代码
     exit_code = 0 if results["tests_failed"] == 0 else 1
     sys.exit(exit_code)
 

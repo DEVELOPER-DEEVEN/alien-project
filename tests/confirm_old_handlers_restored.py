@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python3
 
 """
-总结脚本：确认DAGVisualizationObserver已恢复使用旧的handler
+ [Text Cleaned] ： [Text Cleaned] DAGVisualizationObserver [Text Cleaned] handler
 """
 
 import sys
@@ -31,20 +31,20 @@ from cluster.core.events import Event, EventType, TaskEvent, networkEvent
 
 
 def main():
-    """确认observer已恢复使用旧的handler"""
-    print("🔧 DAGVisualizationObserver 旧Handler恢复确认")
+    """ [Text Cleaned] observer [Text Cleaned] handler"""
+    print("🔧 DAGVisualizationObserver  [Text Cleaned] Handler [Text Cleaned] ")
     print("=" * 60)
 
     console = Console()
     observer = DAGVisualizationObserver(console=console)
 
-    print(f"✅ Observer 已初始化")
-    print(f"✅ 可视化已启用: {observer.enable_visualization}")
-    print(f"✅ 主要可视化器: {type(observer._visualizer).__name__}")
-    print(f"✅ 任务处理器: {type(observer._task_handler).__name__}")
-    print(f"✅ 星座处理器: {type(observer._network_handler).__name__}")
+    print(f"✅ Observer  [Text Cleaned] ")
+    print(f"✅  [Text Cleaned] : {observer.enable_visualization}")
+    print(f"✅  [Text Cleaned] : {type(observer._visualizer).__name__}")
+    print(f"✅  [Text Cleaned] : {type(observer._task_handler).__name__}")
+    print(f"✅  [Text Cleaned] : {type(observer._network_handler).__name__}")
 
-    print(f"\n📋 任务处理器方法:")
+    print(f"\n📋  [Text Cleaned] :")
     task_handler_methods = [
         m
         for m in dir(observer._task_handler)
@@ -53,7 +53,7 @@ def main():
     for method in task_handler_methods:
         print(f"   - {method}")
 
-    print(f"\n📋 星座处理器方法:")
+    print(f"\n📋  [Text Cleaned] :")
     network_handler_methods = [
         m
         for m in dir(observer._network_handler)
@@ -62,18 +62,18 @@ def main():
     for method in network_handler_methods:
         print(f"   - {method}")
 
-    print(f"\n✅ 状态确认:")
-    print(f"   🔄 Observer 使用旧的TaskVisualizationHandler处理任务事件")
-    print(f"   🔄 Observer 使用旧的networkVisualizationHandler处理星座事件")
-    print(f"   🔄 所有事件类型都能产生丰富的可视化输出")
-    print(f"   🔄 可扩展性已恢复 - 可在旧handler中自定义逻辑")
+    print(f"\n✅  [Text Cleaned] :")
+    print(f"   🔄 Observer  [Text Cleaned] TaskVisualizationHandler [Text Cleaned] ")
+    print(f"   🔄 Observer  [Text Cleaned] networkVisualizationHandler [Text Cleaned] ")
+    print(f"   🔄  [Text Cleaned] ")
+    print(f"   🔄  [Text Cleaned]  -  [Text Cleaned] handler [Text Cleaned] ")
 
-    print(f"\n🎯 总结:")
-    print("   ✅ DAGVisualizationObserver已成功恢复使用旧的handler组件")
-    print("   ✅ 所有7种事件类型(4种星座事件 + 3种任务事件)都能正确输出")
-    print("   ✅ 可视化系统现在既模块化又向后兼容")
+    print(f"\n🎯  [Text Cleaned] :")
+    print("   ✅ DAGVisualizationObserver [Text Cleaned] handler [Text Cleaned] ")
+    print("   ✅  [Text Cleaned] 7 [Text Cleaned] (4 [Text Cleaned]  + 3 [Text Cleaned] ) [Text Cleaned] ")
+    print("   ✅  [Text Cleaned] ")
     print(
-        "   ✅ 如需扩展功能，可在TaskVisualizationHandler和networkVisualizationHandler中添加逻辑"
+        "   ✅  [Text Cleaned] ， [Text Cleaned] TaskVisualizationHandler [Text Cleaned] networkVisualizationHandler [Text Cleaned] "
     )
 
 

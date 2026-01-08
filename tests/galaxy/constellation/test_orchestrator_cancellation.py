@@ -89,20 +89,17 @@ async def test_cancel_execution_cancels_running_tasks(mock_orchestrator):
     # Assert
     mock_task1.cancel.assert_called_once()
     mock_task2.cancel.assert_called_once()
-    assert len(mock_orchestrator._execution_tasks) == 0  # 应该被清空
-
+    assert len(mock_orchestrator._execution_tasks) == 0
 
 @pytest.mark.asyncio
 async def test_cancel_execution_skips_completed_tasks(mock_orchestrator):
     """Test that cancel_execution skips already completed tasks."""
     # Arrange
     mock_task_done = AsyncMock()
-    mock_task_done.done.return_value = True  # 已完成
-    mock_task_done.cancel = MagicMock()
+    mock_task_done.done.return_value = True    mock_task_done.cancel = MagicMock()
 
     mock_task_running = AsyncMock()
-    mock_task_running.done.return_value = False  # 运行中
-    mock_task_running.cancel = MagicMock()
+    mock_task_running.done.return_value = False    mock_task_running.cancel = MagicMock()
 
     mock_orchestrator._execution_tasks = {
         "task_done": mock_task_done,
@@ -113,9 +110,7 @@ async def test_cancel_execution_skips_completed_tasks(mock_orchestrator):
     await mock_orchestrator.cancel_execution("test_network")
 
     # Assert
-    mock_task_done.cancel.assert_not_called()  # 不应该取消已完成的任务
-    mock_task_running.cancel.assert_called_once()  # 应该取消运行中的任务
-
+    mock_task_done.cancel.assert_not_called()    mock_task_running.cancel.assert_called_once()
 
 @pytest.mark.asyncio
 async def test_execution_loop_checks_cancellation_flag(
@@ -136,7 +131,6 @@ async def test_execution_loop_checks_cancellation_flag(
     mock_orchestrator._schedule_ready_tasks = AsyncMock()
     mock_orchestrator._wait_for_task_completion = AsyncMock()
 
-    # Setup: 在第二次迭代时设置取消标志
     call_count = 0
 
     async def mock_wait():
@@ -152,8 +146,7 @@ async def test_execution_loop_checks_cancellation_flag(
     await mock_orchestrator._run_execution_loop(simple_network)
 
     # Assert
-    assert call_count >= 2  # 应该至少执行了2次迭代
-    assert simple_network.state == networkState.CANCELLED
+    assert call_count >= 2    assert simple_network.state == networkState.CANCELLED
 
 
 @pytest.mark.asyncio
@@ -162,8 +155,7 @@ async def test_execution_loop_stops_immediately_on_cancellation(
 ):
     """Test that execution loop stops immediately when cancellation is pre-set."""
     # Arrange
-    mock_orchestrator._cancellation_requested = True  # 预先设置取消标志
-
+    mock_orchestrator._cancellation_requested = True
     # Mock methods
     mock_orchestrator._sync_network_modifications = AsyncMock(
         return_value=simple_network
@@ -174,7 +166,6 @@ async def test_execution_loop_stops_immediately_on_cancellation(
     await mock_orchestrator._run_execution_loop(simple_network)
 
     # Assert
-    # schedule_ready_tasks 不应该被调用
     mock_orchestrator._schedule_ready_tasks.assert_not_called()
     assert simple_network.state == networkState.CANCELLED
 
@@ -185,11 +176,9 @@ async def test_execution_loop_checks_network_specific_cancellation(
 ):
     """Test that execution loop checks network-specific cancellation flag."""
     # Arrange
-    mock_orchestrator._cancellation_requested = False  # 全局标志未设置
-    mock_orchestrator._cancelled_networks[
+    mock_orchestrator._cancellation_requested = False    mock_orchestrator._cancelled_networks[
         simple_network.network_id
-    ] = True  # 但特定network被取消
-
+    ] = True
     mock_orchestrator._sync_network_modifications = AsyncMock(
         return_value=simple_network
     )
@@ -250,12 +239,10 @@ async def test_multiple_cancel_execution_calls_are_idempotent(mock_orchestrator)
 
     mock_orchestrator._execution_tasks = {"task_1": mock_task}
 
-    # Act - 调用两次
     await mock_orchestrator.cancel_execution("test_network")
     await mock_orchestrator.cancel_execution("test_network")
 
     # Assert
-    # 第二次调用时任务列表已清空，不应该有问题
     assert len(mock_orchestrator._execution_tasks) == 0
 
 

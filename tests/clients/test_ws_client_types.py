@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-测试 WebSocket 客户端类型区分功能
+ [Text Cleaned]  WebSocket  [Text Cleaned] 
 """
 
 import asyncio
@@ -11,7 +11,6 @@ import websockets
 from datetime import datetime, timezone
 from aip.messages import ClientMessage, ClientMessageType, TaskStatus
 
-# 设置日志
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -19,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class TestWSClient:
-    """测试用的 WebSocket 客户端"""
+    """ [Text Cleaned]  WebSocket  [Text Cleaned] """
 
     def __init__(
         self,
@@ -33,11 +32,10 @@ class TestWSClient:
         self.websocket = None
 
     async def connect(self):
-        """连接到服务器并注册"""
+        """ [Text Cleaned] """
         try:
             self.websocket = await websockets.connect(self.server_url)
 
-            # 创建注册消息
             metadata = {}
             if self.client_type == "network":
                 metadata = {
@@ -80,7 +78,7 @@ class TestWSClient:
             return False
 
     async def send_heartbeat(self):
-        """发送心跳消息"""
+        """ [Text Cleaned] """
         if not self.websocket:
             return False
 
@@ -103,73 +101,67 @@ class TestWSClient:
             return False
 
     async def disconnect(self):
-        """断开连接"""
+        """ [Text Cleaned] """
         if self.websocket:
             await self.websocket.close()
             logger.info(f"[{self.client_type.upper()}] {self.client_id} disconnected")
 
 
 async def test_client_types():
-    """测试不同类型的客户端"""
+    """ [Text Cleaned] """
 
     print("=" * 80)
-    print("🧪 测试 WebSocket 客户端类型区分功能")
+    print("🧪  [Text Cleaned]  WebSocket  [Text Cleaned] ")
     print("=" * 80)
 
-    # 创建测试客户端
     device_client = TestWSClient("device_001", "device")
     network_client = TestWSClient(
         "test_network@client_001", "network"
     )
 
     try:
-        # 1. 连接设备客户端
-        print("\n[1] 连接设备客户端...")
+        print("\n[1]  [Text Cleaned] ...")
         device_connected = await device_client.connect()
         if device_connected:
-            print("✅ 设备客户端连接成功")
+            print("✅  [Text Cleaned] ")
         else:
-            print("❌ 设备客户端连接失败")
+            print("❌  [Text Cleaned] ")
             return
 
-        # 2. 连接星座客户端
-        print("\n[2] 连接星座客户端...")
+        print("\n[2]  [Text Cleaned] ...")
         network_connected = await network_client.connect()
         if network_connected:
-            print("✅ 星座客户端连接成功")
+            print("✅  [Text Cleaned] ")
         else:
-            print("❌ 星座客户端连接失败")
+            print("❌  [Text Cleaned] ")
             return
 
-        # 3. 发送心跳测试
-        print("\n[3] 发送心跳测试...")
+        print("\n[3]  [Text Cleaned] ...")
         await device_client.send_heartbeat()
         await network_client.send_heartbeat()
 
-        # 4. 等待一段时间观察日志
-        print("\n[4] 等待 5 秒观察服务器日志...")
+        print("\n[4]  [Text Cleaned]  5  [Text Cleaned] ...")
         await asyncio.sleep(5)
 
-        print("\n✅ 客户端类型区分测试完成")
+        print("\n✅  [Text Cleaned] ")
 
     except Exception as e:
-        logger.error(f"测试过程中出错: {e}")
+        logger.error(f" [Text Cleaned] : {e}")
 
     finally:
-        # 清理连接
-        print("\n[5] 清理连接...")
+        print("\n[5]  [Text Cleaned] ...")
         await device_client.disconnect()
         await network_client.disconnect()
 
 
 async def main():
-    """主函数"""
+    """ [Text Cleaned] """
     try:
         await test_client_types()
     except KeyboardInterrupt:
-        print("\n测试被用户中断")
+        print("\n [Text Cleaned] ")
     except Exception as e:
-        print(f"测试失败: {e}")
+        print(f" [Text Cleaned] : {e}")
 
 
 if __name__ == "__main__":

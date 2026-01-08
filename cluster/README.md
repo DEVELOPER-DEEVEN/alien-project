@@ -7,7 +7,7 @@
   <em>Cross-Device Orchestration Framework for Ubiquitous Intelligent Automation</em>
 </p>
 
-<p align="center">
+
 
 
 
@@ -18,7 +18,7 @@
 
 ## 🌟 What is Alien³ cluster?
 
-**Alien³ cluster** is a revolutionary **cross-device orchestration framework** that transforms isolated device agents into a unified digital ecosystem. It models complex user requests as **Task networks**  — dynamic distributed DAGs where nodes represent executable subtasks and edges capture dependencies across heterogeneous devices.
+**Alien³ cluster** is a revolutionary **cross-device orchestration framework** that transforms isolated device agents into a unified digital ecosystem. It models complex user requests as **Task networks** — dynamic distributed DAGs where nodes represent executable subtasks and edges capture dependencies across heterogeneous devices.
 
 ### 🎯 The Vision
 
@@ -200,7 +200,7 @@ See Alien³ cluster in action with this comprehensive demonstration of cross-dev
 
 ```powershell
 # Clone repository
-git clone https://github.com/microsoft/Alien.git
+git clone https://github.com/DEVELOPER-DEEVEN/Alien.git
 cd Alien
 
 # Create environment (recommended)
@@ -651,3 +651,37 @@ Alien³ is designed as a **universal orchestration framework** that seamlessly i
 **Alien² Desktop AgentOS:**
 ---
 
+## 🤝 Contributing
+
+We welcome contributions! Whether building new device agents, improving orchestration algorithms, or enhancing the protocol:
+
+- 🐛 [Report Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
+- 💡 [Request Features](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
+- 📝 [Improve Documentation](https://github.com/DEVELOPER-DEEVEN/Alien/pulls)
+- 🧪 [Submit Pull Requests](../../CONTRIBUTING.md)
+
+---
+
+## 📬 Contact & Support
+
+- 📖 **Documentation**: [https://microsoft.github.io/Alien/](https://microsoft.github.io/Alien/)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
+- 📧 **Email**: [Alien-agent@microsoft.com](mailto:Alien-agent@microsoft.com)
+
+---
+
+## ⚖️ License
+
+Alien³ cluster is released under the [MIT License](../../LICENSE).
+
+See [DISCLAIMER.md](../../DISCLAIMER.md) for privacy and safety notices.
+
+---
+
+<div align="center">
+  <p><strong>Transform your distributed devices into a unified digital collective.</strong></p>
+  <p><em>Alien³ cluster — Where every device is a star, and every task is a network.</em></p>
+  <br>
+  <sub>© Microsoft 2025 • Alien³ is an open-source research project</sub>
+</div>

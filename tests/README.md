@@ -1,70 +1,70 @@
-# DAG可视化测试套件
+# DAG Visualization Test Suite
 
-本目录包含了用于测试DAG可视化功能的完整测试套件。
+This directory contains a complete test suite for testing DAG visualization features.
 
-## 目录结构
+## Directory Structure
 
 ```
 tests/
-├── run_dag_tests.py           # 主测试运行器
-├── visualization/             # 可视化功能测试
-│   ├── test_dag_simple.py     # 简单DAG测试
-│   ├── test_dag_mock.py       # 模拟DAG可视化测试
-│   └── test_dag_demo.py       # 交互式DAG演示
-└── integration/               # 集成测试
-    └── test_e2e_galaxy.py     # 端到端Galaxy框架测试
+├── run_dag_tests.py           # Main test runner
+├── visualization/             # Visualization feature tests
+│   ├── test_dag_simple.py     # Simple DAG test
+│   ├── test_dag_mock.py       # Mock DAG visualization test
+│   └── test_dag_demo.py       # Interactive DAG demo
+└── integration/               # Integration tests
+    └── test_e2e_galaxy.py     # End-to-end Galaxy framework test
 ```
 
-## 测试说明
+## Test Description
 
-### 1. 简单DAG测试 (`test_dag_simple.py`)
-- **目的**: 验证基本的DAG可视化功能
-- **特点**: 最小化测试，快速验证核心功能
-- **运行时间**: ~5秒
+### 1. Simple DAG Test (`test_dag_simple.py`)
+- **Purpose**: Verify basic DAG visualization features
+- **Features**: Minimal test to quickly verify core functionality
+- **Runtime**: ~5 seconds
 
-### 2. 模拟DAG可视化测试 (`test_dag_mock.py`)
-- **目的**: 使用模拟类测试完整的DAG生命周期
-- **特点**: 包含任务创建、依赖添加、执行模拟
-- **运行时间**: ~10秒
+### 2. Mock DAG Visualization Test (`test_dag_mock.py`)
+- **Purpose**: Test full DAG lifecycle using mock classes
+- **Features**: Includes task creation, dependency addition, execution simulation
+- **Runtime**: ~10 seconds
 
-### 3. 交互式DAG演示 (`test_dag_demo.py`)
-- **目的**: 展示所有可视化模式和功能
-- **特点**: 包含用户交互，演示不同的可视化视图
-- **运行时间**: 变化（取决于用户交互）
+### 3. Interactive DAG Demo (`test_dag_demo.py`)
+- **Purpose**: Showcase all visualization modes and features
+- **Features**: Includes user interaction, demonstrating different visualization views
+- **Runtime**: Variable (depends on user interaction)
 
-### 4. 端到端Galaxy测试 (`test_e2e_galaxy.py`)
-- **目的**: 完整的系统集成测试
-- **特点**: 测试真实的Galaxy框架工作流程
-- **运行时间**: ~15秒
+### 4. End-to-end Galaxy Test (`test_e2e_galaxy.py`)
+- **Purpose**: Complete system integration test
+- **Features**: Tests real Galaxy framework workflow
+- **Runtime**: ~15 seconds
 
-## 如何运行测试
+## How to Run Tests
 
-### 运行所有测试
+### Run All Tests
 ```bash
-# 在UFO2根目录下
+# In Alien root directory
 python tests/run_dag_tests.py
 ```
 
-### 运行单个测试
+### Run Single Test
 ```bash
-# 简单测试
+# Simple Test
 python tests/visualization/test_dag_simple.py
 
-# 模拟DAG测试
+# Mock DAG Test
 python tests/visualization/test_dag_mock.py
 
-# 交互式演示
+# Interactive Demo
 python tests/visualization/test_dag_demo.py
 
-# 端到端测试
+# End-to-end Test
 python tests/integration/test_e2e_galaxy.py
 ```
 
-## 预期输出
+## Expected Output
 
-所有测试都应该显示以下类型的可视化输出：
+All tests should display visualization output similar to the following:
 
-### 1. 星座概览
+### 1. Constellation Overview
 ```
 ─────── Task Constellation Overview ───────
 ╭────────── 📊 Constellation Info ───────────╮ ╭─ 📈 Statistics ─╮
@@ -74,7 +74,7 @@ python tests/integration/test_e2e_galaxy.py
 ╰────────────────────────────────────────────╯ ╰─────────────────╯
 ```
 
-### 2. DAG拓扑图
+### 2. DAG Topology
 ```
 📊 DAG Topology
 🌌 Task Constellation
@@ -85,7 +85,7 @@ python tests/integration/test_e2e_galaxy.py
 │       └── Dependencies: task_1
 ```
 
-### 3. 任务详情表
+### 3. Task Details
 ```
 📋 Task Details
 ╭──────────────┬───────────────┬──────────────┬──────────┬─────────────╮
@@ -95,64 +95,30 @@ python tests/integration/test_e2e_galaxy.py
 ╰──────────────┴───────────────┴──────────────┴──────────┴─────────────╯
 ```
 
-## 故障排除
+## Troubleshooting
 
-### 常见问题
-
-1. **导入错误**
+### Common Data
+1. **Import Error**
    ```
    ❌ Import error: No module named 'ufo.galaxy.visualization.dag_visualizer'
    ```
-   - 检查是否在正确的目录下运行测试
-   - 确保所有依赖模块都已正确安装
+   - Check if running from the correct directory
+   - Ensure all dependencies are installed
 
-2. **可视化器加载失败**
+2. **Visualizer Load Failure**
    ```
    ❌ Could not import DAGVisualizer: ...
    ```
-   - 检查Rich库是否安装：`pip install rich`
-   - 验证DAGVisualizer类是否存在
+   - Check if Rich library is installed: `pip install rich`
+   - Verify DAGVisualizer class exists
 
-3. **路径问题**
-   - 确保从UFO2根目录运行测试
-   - 检查Python路径是否正确设置
+## Test Requirements
 
-### 调试模式
-
-如果测试失败，可以启用调试模式：
-
-```python
-# 在测试文件开头添加
-import logging
-logging.basicConfig(level=logging.DEBUG)
-```
-
-## 测试要求
-
-### 环境要求
+### Environment Requirements
 - Python 3.8+
-- Rich库用于控制台可视化
-- UFO2框架的所有依赖
+- Rich library for console visualization
+- All Alien framework dependencies
 
-### 系统要求
-- 支持Unicode字符的控制台
-- 彩色输出支持（推荐）
-
-## 贡献指南
-
-### 添加新测试
-1. 在相应目录下创建新的测试文件
-2. 遵循现有的命名约定：`test_<功能名>.py`
-3. 在`run_dag_tests.py`中添加新测试的配置
-4. 更新本README文档
-
-### 测试标准
-- 每个测试都应该有清晰的目的说明
-- 包含适当的错误处理
-- 提供有意义的输出信息
-- 运行时间应该合理（通常<30秒）
-
-## 更新历史
-
-- **2025-09-19**: 初始版本，包含四个核心测试
-- **2025-09-19**: 添加了测试运行器和完整文档
+### System Requirements
+- Console supporting Unicode characters
+- Color output support (recommended)

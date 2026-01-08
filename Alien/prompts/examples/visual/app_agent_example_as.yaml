@@ -154,10 +154,10 @@ example6:
       I need to input the text 'Imdiffusion GitHub' in the search box of Google to get to the Imdiffusion repo page from the search results. The search box is usually in a type of ComboBox. Then, I can click the "Search" button to search for the Imdiffusion repo on GitHub at the same step.
     action:
       - function: set_edit_text
-        arguments: {"text": "Imdiffusion GitHub", id: "36", name: "搜索"}
+        arguments: {"text": "Imdiffusion GitHub", id: "36", name: " [Text Cleaned] "}
         status: CONTINUE
       - function: click_input
-        arguments: {"button": "left", "double": false, id: "18", name: "搜一搜"}
+        arguments: {"button": "left", "double": false, id: "18", name: " [Text Cleaned] "}
         status: CONTINUE
     plan:
       - (1) Once the searched results are visible, click the Imdiffusion repo Hyperlink in the searched results to open the repo page.
@@ -167,7 +167,7 @@ example6:
     save_screenshot:
       {"save": false, "reason": ""}
     result: |-
-      Subtask in CONTINUE state. Successfully executed two actions simultaneously: (1) entered the search query 'Imdiffusion GitHub' into the Google search ComboBox (ID: 36, name: '搜索'), and (2) clicked the search button (ID: 18, name: '搜一搜') to initiate the search. The search is now being executed and results should load shortly. No star count has been obtained yet. Remaining steps to answer the user's question: (1) wait for search results to load and become visible, (2) identify and click the hyperlink to the official Imdiffusion GitHub repository from the search results list, (3) wait for the repository page to load, (4) visually locate the star count displayed on the GitHub repo page (typically shown near the top-right with a star icon), and (5) extract and report the exact number of stars to the user. This efficient multi-action approach combines text input and search submission in a single step, reducing total action count.
+      Subtask in CONTINUE state. Successfully executed two actions simultaneously: (1) entered the search query 'Imdiffusion GitHub' into the Google search ComboBox (ID: 36, name: ' [Text Cleaned] '), and (2) clicked the search button (ID: 18, name: ' [Text Cleaned] ') to initiate the search. The search is now being executed and results should load shortly. No star count has been obtained yet. Remaining steps to answer the user's question: (1) wait for search results to load and become visible, (2) identify and click the hyperlink to the official Imdiffusion GitHub repository from the search results list, (3) wait for the repository page to load, (4) visually locate the star count displayed on the GitHub repo page (typically shown near the top-right with a star icon), and (5) extract and report the exact number of stars to the user. This efficient multi-action approach combines text input and search submission in a single step, reducing total action count.
   Tips: |-
     - The search box is usually in a type of ComboBox.
     - The number of stars of a Github repo page can be found in the repo page visually.

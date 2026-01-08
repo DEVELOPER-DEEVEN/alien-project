@@ -1678,8 +1678,8 @@ When deploying to production:
 - [Device Manager](client/device_manager.md)
 
 ### Community
-- [GitHub Issues](https://github.com/microsoft/Alien/issues)
-- [GitHub Discussions](https://github.com/microsoft/Alien/discussions)
+- [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
+- [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
 - [Email Support](mailto:Alien-agent@microsoft.com)
 
 ---

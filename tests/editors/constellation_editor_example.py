@@ -3,9 +3,9 @@
 # Licensed under the MIT License.
 
 """
-Tasknetwork Editor 使用示例
+Tasknetwork Editor  [Text Cleaned] 
 
-展示基于命令模式的星座编辑器的核心功能。
+ [Text Cleaned] 。
 """
 
 import sys
@@ -20,30 +20,27 @@ from cluster.network.enums import TaskPriority, DependencyType
 
 
 def example_basic_operations():
-    """基本操作示例"""
-    print("🌟 基本操作示例")
+    """ [Text Cleaned] """
+    print("🌟  [Text Cleaned] ")
     print("=" * 50)
 
-    # 创建编辑器
     editor = networkEditor()
 
-    # 创建任务
-    print("📝 创建任务...")
-    task1 = editor.create_and_add_task("login", "用户登录", priority=TaskPriority.HIGH)
+    print("📝  [Text Cleaned] ...")
+    task1 = editor.create_and_add_task("login", " [Text Cleaned] ", priority=TaskPriority.HIGH)
     task2 = editor.create_and_add_task(
-        "fetch_data", "获取数据", priority=TaskPriority.MEDIUM
+        "fetch_data", " [Text Cleaned] ", priority=TaskPriority.MEDIUM
     )
     task3 = editor.create_and_add_task(
-        "process_data", "处理数据", priority=TaskPriority.MEDIUM
+        "process_data", " [Text Cleaned] ", priority=TaskPriority.MEDIUM
     )
     task4 = editor.create_and_add_task(
-        "display_result", "显示结果", priority=TaskPriority.LOW
+        "display_result", " [Text Cleaned] ", priority=TaskPriority.LOW
     )
 
-    print(f"✅ 创建了 {len(editor.list_tasks())} 个任务")
+    print(f"✅  [Text Cleaned]  {len(editor.list_tasks())}  [Text Cleaned] ")
 
-    # 添加依赖关系
-    print("\n🔗 添加依赖关系...")
+    print("\n🔗  [Text Cleaned] ...")
     dep1 = editor.create_and_add_dependency("login", "fetch_data", "UNCONDITIONAL")
     dep2 = editor.create_and_add_dependency(
         "fetch_data", "process_data", "SUCCESS_ONLY"
@@ -52,90 +49,85 @@ def example_basic_operations():
         "process_data", "display_result", "UNCONDITIONAL"
     )
 
-    print(f"✅ 创建了 {len(editor.list_dependencies())} 个依赖关系")
+    print(f"✅  [Text Cleaned]  {len(editor.list_dependencies())}  [Text Cleaned] ")
 
-    # 验证星座结构
-    print("\n🔍 验证星座结构...")
+    print("\n🔍  [Text Cleaned] ...")
     is_valid, errors = editor.validate_network()
     if is_valid:
-        print("✅ 星座结构有效")
+        print("✅  [Text Cleaned] ")
         topo_order = editor.get_topological_order()
-        print(f"📋 执行顺序: {' -> '.join(topo_order)}")
+        print(f"📋  [Text Cleaned] : {' -> '.join(topo_order)}")
     else:
-        print(f"❌ 星座结构无效: {errors}")
+        print(f"❌  [Text Cleaned] : {errors}")
 
     return editor
 
 
 def example_undo_redo():
-    """撤销/重做示例"""
-    print("\n🔄 撤销/重做示例")
+    """ [Text Cleaned] / [Text Cleaned] """
+    print("\n🔄  [Text Cleaned] / [Text Cleaned] ")
     print("=" * 50)
 
     editor = networkEditor()
 
-    # 执行一系列操作
-    print("📝 执行操作...")
-    editor.create_and_add_task("task1", "任务1")
-    editor.create_and_add_task("task2", "任务2")
+    print("📝  [Text Cleaned] ...")
+    editor.create_and_add_task("task1", " [Text Cleaned] 1")
+    editor.create_and_add_task("task2", " [Text Cleaned] 2")
     editor.create_and_add_dependency("task1", "task2")
 
-    print(f"当前任务数: {len(editor.list_tasks())}")
-    print(f"当前依赖数: {len(editor.list_dependencies())}")
+    print(f" [Text Cleaned] : {len(editor.list_tasks())}")
+    print(f" [Text Cleaned] : {len(editor.list_dependencies())}")
 
-    # 撤销操作
-    print("\n⏪ 撤销操作...")
+    print("\n⏪  [Text Cleaned] ...")
     while editor.can_undo():
         undo_desc = editor.get_undo_description()
-        print(f"撤销: {undo_desc}")
+        print(f" [Text Cleaned] : {undo_desc}")
         editor.undo()
         print(
-            f"  -> 任务数: {len(editor.list_tasks())}, 依赖数: {len(editor.list_dependencies())}"
+            f"  ->  [Text Cleaned] : {len(editor.list_tasks())},  [Text Cleaned] : {len(editor.list_dependencies())}"
         )
 
-    # 重做操作
-    print("\n⏩ 重做操作...")
+    print("\n⏩  [Text Cleaned] ...")
     while editor.can_redo():
         redo_desc = editor.get_redo_description()
-        print(f"重做: {redo_desc}")
+        print(f" [Text Cleaned] : {redo_desc}")
         editor.redo()
         print(
-            f"  -> 任务数: {len(editor.list_tasks())}, 依赖数: {len(editor.list_dependencies())}"
+            f"  ->  [Text Cleaned] : {len(editor.list_tasks())},  [Text Cleaned] : {len(editor.list_dependencies())}"
         )
 
 
 def example_bulk_operations():
-    """批量操作示例"""
-    print("\n📦 批量操作示例")
+    """ [Text Cleaned] """
+    print("\n📦  [Text Cleaned] ")
     print("=" * 50)
 
     editor = networkEditor()
 
-    # 准备批量数据
     tasks = [
         {
             "task_id": "init",
-            "description": "系统初始化",
+            "description": " [Text Cleaned] ",
             "priority": TaskPriority.CRITICAL.value,
         },
         {
             "task_id": "load_config",
-            "description": "加载配置",
+            "description": " [Text Cleaned] ",
             "priority": TaskPriority.HIGH.value,
         },
         {
             "task_id": "start_services",
-            "description": "启动服务",
+            "description": " [Text Cleaned] ",
             "priority": TaskPriority.HIGH.value,
         },
         {
             "task_id": "health_check",
-            "description": "健康检查",
+            "description": " [Text Cleaned] ",
             "priority": TaskPriority.MEDIUM.value,
         },
         {
             "task_id": "ready",
-            "description": "系统就绪",
+            "description": " [Text Cleaned] ",
             "priority": TaskPriority.LOW.value,
         },
     ]
@@ -163,52 +155,46 @@ def example_bulk_operations():
         },
     ]
 
-    # 批量构建
-    print("🏗️ 批量构建星座...")
+    print("🏗️  [Text Cleaned] ...")
     editor.build_from_tasks_and_dependencies(
         tasks, dependencies, metadata={"purpose": "system_startup", "version": "1.0"}
     )
 
     print(
-        f"✅ 批量创建: {len(editor.list_tasks())} 个任务, {len(editor.list_dependencies())} 个依赖"
+        f"✅  [Text Cleaned] : {len(editor.list_tasks())}  [Text Cleaned] , {len(editor.list_dependencies())}  [Text Cleaned] "
     )
 
-    # 获取统计信息
     stats = editor.get_statistics()
-    print(f"📊 统计信息:")
-    print(f"  - 总任务数: {stats['total_tasks']}")
-    print(f"  - 总依赖数: {stats['total_dependencies']}")
-    print(f"  - 编辑器执行次数: {stats['editor_execution_count']}")
+    print(f"📊  [Text Cleaned] :")
+    print(f"  -  [Text Cleaned] : {stats['total_tasks']}")
+    print(f"  -  [Text Cleaned] : {stats['total_dependencies']}")
+    print(f"  -  [Text Cleaned] : {stats['editor_execution_count']}")
 
     return editor
 
 
 def example_file_operations():
-    """文件操作示例"""
-    print("\n💾 文件操作示例")
+    """ [Text Cleaned] """
+    print("\n💾  [Text Cleaned] ")
     print("=" * 50)
 
-    # 创建并保存星座
     editor1 = networkEditor()
-    editor1.create_and_add_task("web_request", "发送网络请求")
-    editor1.create_and_add_task("parse_response", "解析响应")
+    editor1.create_and_add_task("web_request", " [Text Cleaned] ")
+    editor1.create_and_add_task("parse_response", " [Text Cleaned] ")
     editor1.create_and_add_dependency("web_request", "parse_response")
 
-    # 保存到文件
     filename = "example_network.json"
-    print(f"💾 保存星座到 {filename}...")
+    print(f"💾  [Text Cleaned]  {filename}...")
     editor1.save_network(filename)
-    print("✅ 保存成功")
+    print("✅  [Text Cleaned] ")
 
-    # 从文件加载
-    print(f"📂 从 {filename} 加载星座...")
+    print(f"📂  [Text Cleaned]  {filename}  [Text Cleaned] ...")
     editor2 = networkEditor()
     editor2.load_network(filename)
     print(
-        f"✅ 加载成功: {len(editor2.list_tasks())} 个任务, {len(editor2.list_dependencies())} 个依赖"
+        f"✅  [Text Cleaned] : {len(editor2.list_tasks())}  [Text Cleaned] , {len(editor2.list_dependencies())}  [Text Cleaned] "
     )
 
-    # 验证内容一致性
     original_stats = editor1.get_statistics()
     loaded_stats = editor2.get_statistics()
 
@@ -216,84 +202,74 @@ def example_file_operations():
         original_stats["total_tasks"] == loaded_stats["total_tasks"]
         and original_stats["total_dependencies"] == loaded_stats["total_dependencies"]
     ):
-        print("✅ 文件操作验证通过")
+        print("✅  [Text Cleaned] ")
     else:
-        print("❌ 文件操作验证失败")
+        print("❌  [Text Cleaned] ")
 
-    # 清理文件
     import os
 
     if os.path.exists(filename):
         os.remove(filename)
-        print(f"🗑️ 清理临时文件 {filename}")
+        print(f"🗑️  [Text Cleaned]  {filename}")
 
 
 def example_advanced_features():
-    """高级功能示例"""
-    print("\n🚀 高级功能示例")
+    """ [Text Cleaned] """
+    print("\n🚀  [Text Cleaned] ")
     print("=" * 50)
 
-    # 创建复杂星座
     editor = networkEditor()
 
-    # 观察者模式
     def operation_observer(editor, command, result):
-        print(f"  📢 操作通知: {command}")
+        print(f"  📢  [Text Cleaned] : {command}")
 
-    print("👁️ 添加观察者...")
+    print("👁️  [Text Cleaned] ...")
     editor.add_observer(operation_observer)
 
-    # 创建任务（会触发观察者）
-    print("📝 创建任务（带观察者）...")
-    editor.create_and_add_task("observed_task", "被观察的任务")
+    print("📝  [Text Cleaned] （ [Text Cleaned] ）...")
+    editor.create_and_add_task("observed_task", " [Text Cleaned] ")
 
-    # 移除观察者
     editor.remove_observer(operation_observer)
-    print("👁️ 移除观察者")
+    print("👁️  [Text Cleaned] ")
 
-    # 子图创建
-    print("\n📊 创建复杂星座...")
+    print("\n📊  [Text Cleaned] ...")
     tasks = ["A", "B", "C", "D", "E"]
     for task_id in tasks:
-        editor.create_and_add_task(task_id, f"任务 {task_id}")
+        editor.create_and_add_task(task_id, f" [Text Cleaned]  {task_id}")
 
-    # 创建复杂依赖结构
     dependencies = [("A", "B"), ("A", "C"), ("B", "D"), ("C", "D"), ("D", "E")]
     for from_task, to_task in dependencies:
         editor.create_and_add_dependency(from_task, to_task)
 
-    print(f"✅ 创建了包含 {len(editor.list_tasks())} 个任务的复杂星座")
+    print(f"✅  [Text Cleaned]  {len(editor.list_tasks())}  [Text Cleaned] ")
 
-    # 创建子图
-    print("\n🎯 提取子图...")
+    print("\n🎯  [Text Cleaned] ...")
     subgraph = editor.create_subgraph(["A", "B", "D"])
     print(
-        f"✅ 子图包含 {len(subgraph.list_tasks())} 个任务, {len(subgraph.list_dependencies())} 个依赖"
+        f"✅  [Text Cleaned]  {len(subgraph.list_tasks())}  [Text Cleaned] , {len(subgraph.list_dependencies())}  [Text Cleaned] "
     )
 
-    # 获取就绪任务
     ready_tasks = editor.get_ready_tasks()
-    print(f"🚦 就绪任务: {[t.task_id for t in ready_tasks]}")
+    print(f"🚦  [Text Cleaned] : {[t.task_id for t in ready_tasks]}")
 
 
 def main():
-    """主函数"""
-    print("🌟 Tasknetwork Editor 命令模式示例")
+    """ [Text Cleaned] """
+    print("🌟 Tasknetwork Editor  [Text Cleaned] ")
     print("=" * 80)
 
     try:
-        # 运行各个示例
         example_basic_operations()
         example_undo_redo()
         example_bulk_operations()
         example_file_operations()
         example_advanced_features()
 
-        print("\n🎉 所有示例运行完成！")
-        print("✅ Tasknetwork Editor 命令模式功能验证成功")
+        print("\n🎉  [Text Cleaned] ！")
+        print("✅ Tasknetwork Editor  [Text Cleaned] ")
 
     except Exception as e:
-        print(f"\n❌ 示例运行失败: {e}")
+        print(f"\n❌  [Text Cleaned] : {e}")
         import traceback
 
         traceback.print_exc()

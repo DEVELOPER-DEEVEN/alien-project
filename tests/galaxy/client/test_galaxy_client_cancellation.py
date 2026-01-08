@@ -69,14 +69,12 @@ async def test_shutdown_without_force_with_completed_task(mock_client):
     """Test shutdown(force=False) when task has completed."""
     # Arrange
     mock_task = AsyncMock()
-    mock_task.done.return_value = True  # Task已完成
-    mock_client._current_request_task = mock_task
+    mock_task.done.return_value = True    mock_client._current_request_task = mock_task
 
     # Act
     await mock_client.shutdown(force=False)
 
     # Assert
-    # 不应该尝试取消已完成的任务
     mock_task.cancel.assert_not_called()
     mock_client._session.force_finish.assert_called_once()
 
@@ -86,8 +84,7 @@ async def test_shutdown_with_force_cancels_running_task(mock_client):
     """Test shutdown(force=True) cancels a running task."""
     # Arrange
     mock_task = AsyncMock()
-    mock_task.done.return_value = False  # Task还在运行
-    mock_task.cancel = MagicMock()
+    mock_task.done.return_value = False    mock_task.cancel = MagicMock()
 
     # Mock the task to raise CancelledError when awaited
     async def mock_wait():
@@ -101,8 +98,7 @@ async def test_shutdown_with_force_cancels_running_task(mock_client):
     await mock_client.shutdown(force=True)
 
     # Assert
-    mock_task.cancel.assert_called_once()  # 应该取消任务
-    mock_client._session.force_finish.assert_called_once()
+    mock_task.cancel.assert_called_once()    mock_client._session.force_finish.assert_called_once()
     mock_client._client.shutdown.assert_called_once()
 
 
@@ -128,7 +124,6 @@ async def test_shutdown_with_force_handles_timeout(mock_client):
 
     # Assert
     mock_task.cancel.assert_called_once()
-    # Shutdown应该继续，即使取消超时
     mock_client._client.shutdown.assert_called_once()
 
 
@@ -138,13 +133,9 @@ async def test_shutdown_idempotency(mock_client):
     # Arrange
     mock_client._current_request_task = None
 
-    # Act - 调用两次 shutdown
     await mock_client.shutdown(force=False)
     await mock_client.shutdown(force=False)
 
-    # Assert - 第二次调用应该被跳过（因为 _is_shutting_down 标志）
-    # 由于我们的实现会重置标志，实际会执行两次
-    # 但由于 session 在第一次后被设置为 None，第二次不会重复操作
     assert mock_client._session is None
 
 
@@ -208,8 +199,7 @@ async def test_process_request_clears_task_reference_on_completion(mock_client):
                 result = await mock_client.process_request("test request")
 
                 # Assert
-                assert mock_client._current_request_task is None  # 应该被清除
-                assert result["status"] == "completed"
+                assert mock_client._current_request_task is None                assert result["status"] == "completed"
 
 
 @pytest.mark.asyncio
@@ -232,8 +222,7 @@ async def test_process_request_clears_task_reference_on_error(mock_client):
             result = await mock_client.process_request("test request")
 
             # Assert
-            assert mock_client._current_request_task is None  # 即使出错也应该清除
-            assert result["status"] == "failed"
+            assert mock_client._current_request_task is None            assert result["status"] == "failed"
 
 
 @pytest.mark.asyncio
@@ -252,10 +241,8 @@ async def test_shutdown_handles_exception_gracefully(mock_client):
 
     mock_client._current_request_task = mock_task
 
-    # Act - 不应该抛出异常
     await mock_client.shutdown(force=True)
 
-    # Assert - 应该继续执行 shutdown
     mock_client._client.shutdown.assert_called_once()
 
 

@@ -1,12 +1,12 @@
 {
   "network_id": "example_network",
-  "name": "示例任务星座",
+  "name": " [Text Cleaned] ",
   "state": "CREATED",
   "tasks": {
     "task_001": {
       "task_id": "task_001",
-      "name": "数据提取",
-      "description": "从源系统提取数据",
+      "name": " [Text Cleaned] ",
+      "description": " [Text Cleaned] ",
       "tips": null,
       "target_device_id": null,
       "device_type": "LINUX",
@@ -31,8 +31,8 @@
     },
     "task_002": {
       "task_id": "task_002",
-      "name": "数据处理",
-      "description": "处理提取的数据",
+      "name": " [Text Cleaned] ",
+      "description": " [Text Cleaned] ",
       "tips": null,
       "target_device_id": null,
       "device_type": "LINUX",
@@ -59,8 +59,8 @@
     },
     "task_003": {
       "task_id": "task_003",
-      "name": "结果验证",
-      "description": "验证处理结果",
+      "name": " [Text Cleaned] ",
+      "description": " [Text Cleaned] ",
       "tips": null,
       "target_device_id": null,
       "device_type": "LINUX",

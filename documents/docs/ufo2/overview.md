@@ -3,7 +3,7 @@
 [![arxiv](https://img.shields.io/badge/Paper-arXiv:2504.14603-b31b1b.svg)](https://arxiv.org/abs/2504.14603)&ensp;
 ![Python Version](https://img.shields.io/badge/Python-3776AB?&logo=python&logoColor=white-blue&label=3.10%20%7C%203.11)&ensp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)&ensp;
-[![github](https://img.shields.io/github/stars/microsoft/Alien)](https://github.com/microsoft/Alien)&ensp;
+[![github](https://img.shields.io/github/stars/microsoft/Alien)](https://github.com/DEVELOPER-DEEVEN/Alien)&ensp;
 [![YouTube](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=%23FF0000)](https://www.youtube.com/watch?v=QT_OhygMVXU)&ensp;
 
 
@@ -361,7 +361,7 @@ Alien sightings have garnered attention from various media outlets, including:
 - [Microsoft's Alien abducts traditional user interfaces for a smarter Windows experience](https://the-decoder.com/microsofts-Alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
 - [🚀 Alien & GPT-4-V: Sit back and relax, mientras GPT lo hace todo🌌](https://www.linkedin.com/posts/gutierrezfrancois_ai-Alien-microsoft-activity-7176819900399652865-pLoo?utm_source=share&utm_medium=member_desktop)
 - [The AI PC - The Future of Computers? - Microsoft Alien](https://www.youtube.com/watch?v=1k4LcffCq3E)
-- [Microsoft発のオープンソース版「Alien」登場！　Windowsを自動操縦するAIエージェントを試す](https://internet.watch.impress.co.jp/docs/column/shimizu/1570581.html)
+
 
 ---
 
@@ -371,7 +371,7 @@ Alien sightings have garnered attention from various media outlets, including:
 
 ## 🎨 Related Projects
 
-- **TaskWeaver** — a code‑first LLM agent for data analytics: <https://github.com/microsoft/TaskWeaver>  
+- **TaskWeaver** — a code‑first LLM agent for data analytics: <https://github.com/DEVELOPER-DEEVEN/TaskWeaver>  
 - **LLM‑Brained GUI Agents: A Survey**: <https://arxiv.org/abs/2411.18279> • [GitHub](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey) • [Interactive site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)
 
 ---

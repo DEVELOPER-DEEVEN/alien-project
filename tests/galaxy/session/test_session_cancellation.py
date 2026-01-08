@@ -83,7 +83,6 @@ async def test_request_cancellation_without_network(mock_session):
     # Assert
     assert mock_session._cancellation_requested is True
     assert mock_session._finish is True
-    # 不应该调用 cancel_execution（因为没有 network）
     mock_session._orchestrator.cancel_execution.assert_not_called()
 
 
@@ -117,7 +116,6 @@ async def test_round_checks_cancellation_flag():
         )
         round._session = mock_session
 
-        # Setup: agent.handle 会在第二次调用时设置取消标志
         call_count = 0
 
         async def handle_with_cancellation(ctx):
@@ -125,7 +123,6 @@ async def test_round_checks_cancellation_flag():
             call_count += 1
             if call_count == 2:
                 mock_session._cancellation_requested = True
-                # 设置 round end 以退出循环
                 mock_agent.state.is_round_end = MagicMock(return_value=True)
             await asyncio.sleep(0.01)
 
@@ -135,8 +132,7 @@ async def test_round_checks_cancellation_flag():
         await round.run()
 
         # Assert
-        assert call_count >= 2  # 应该至少执行了2次迭代
-        assert mock_session._cancellation_requested is True
+        assert call_count >= 2        assert mock_session._cancellation_requested is True
 
 
 @pytest.mark.asyncio
@@ -170,7 +166,6 @@ async def test_round_stops_immediately_on_cancellation():
         await round.run()
 
         # Assert
-        # handle 不应该被调用，因为在第一次循环检查时就退出了
         mock_agent.handle.assert_not_called()
 
 

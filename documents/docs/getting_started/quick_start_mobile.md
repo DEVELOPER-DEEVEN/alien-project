@@ -17,7 +17,7 @@ Get your Android device running as a Alien³ device agent in 10 minutes. This gu
 Before you begin, ensure you have:
 
 - **Python 3.10+** installed on your computer
-- **Alien repository** cloned from [GitHub](https://github.com/microsoft/Alien)
+- **Alien repository** cloned from [GitHub](https://github.com/DEVELOPER-DEEVEN/Alien)
 - **Android device** (physical device or emulator) with Android 5.0+ (API 21+)
 - **ADB (Android Debug Bridge)** installed and accessible
 - **USB debugging enabled** on your Android device (for physical devices)

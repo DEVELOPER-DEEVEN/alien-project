@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-综合测试 WSManager 和 AlienWebSocketHandler 的客户端类型区分功能
+ [Text Cleaned]  WSManager  [Text Cleaned]  AlienWebSocketHandler  [Text Cleaned] 
 """
 
 import asyncio
@@ -12,7 +12,6 @@ from datetime import datetime, timezone
 from aip.messages import ClientMessage, ClientMessageType, TaskStatus
 from Alien.server.services.ws_manager import WSManager
 
-# 设置日志
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
@@ -20,20 +19,18 @@ logger = logging.getLogger(__name__)
 
 
 async def comprehensive_client_type_test():
-    """综合客户端类型测试"""
+    """ [Text Cleaned] """
 
     print("=" * 80)
-    print("🧪 综合客户端类型区分功能测试")
+    print("🧪  [Text Cleaned] ")
     print("=" * 80)
 
     server_url = "ws://localhost:5000/ws"
     connections = []
 
     try:
-        # 1. 连接多个不同类型的客户端
-        print("\n[1] 连接多个客户端...")
+        print("\n[1]  [Text Cleaned] ...")
 
-        # 设备客户端1
         device1_ws = await websockets.connect(server_url)
         connections.append(device1_ws)
         device1_reg = ClientMessage(
@@ -48,9 +45,8 @@ async def comprehensive_client_type_test():
             },
         )
         await device1_ws.send(device1_reg.model_dump_json())
-        print("📱 设备客户端 device_001 已连接")
+        print("📱  [Text Cleaned]  device_001  [Text Cleaned] ")
 
-        # 设备客户端2
         device2_ws = await websockets.connect(server_url)
         connections.append(device2_ws)
         device2_reg = ClientMessage(
@@ -65,9 +61,8 @@ async def comprehensive_client_type_test():
             },
         )
         await device2_ws.send(device2_reg.model_dump_json())
-        print("📱 设备客户端 device_002 已连接")
+        print("📱  [Text Cleaned]  device_002  [Text Cleaned] ")
 
-        # 星座客户端1
         network1_ws = await websockets.connect(server_url)
         connections.append(network1_ws)
         network1_reg = ClientMessage(
@@ -84,9 +79,8 @@ async def comprehensive_client_type_test():
             },
         )
         await network1_ws.send(network1_reg.model_dump_json())
-        print("🌟 星座客户端 network_alpha@client_001 已连接")
+        print("🌟  [Text Cleaned]  network_alpha@client_001  [Text Cleaned] ")
 
-        # 星座客户端2
         network2_ws = await websockets.connect(server_url)
         connections.append(network2_ws)
         network2_reg = ClientMessage(
@@ -103,16 +97,13 @@ async def comprehensive_client_type_test():
             },
         )
         await network2_ws.send(network2_reg.model_dump_json())
-        print("🌟 星座客户端 network_beta@client_001 已连接")
+        print("🌟  [Text Cleaned]  network_beta@client_001  [Text Cleaned] ")
 
-        # 2. 等待连接稳定
-        print("\n[2] 等待连接稳定...")
+        print("\n[2]  [Text Cleaned] ...")
         await asyncio.sleep(2)
 
-        # 3. 发送不同类型的消息
-        print("\n[3] 发送测试消息...")
+        print("\n[3]  [Text Cleaned] ...")
 
-        # 设备心跳
         device_heartbeat = ClientMessage(
             type=ClientMessageType.HEARTBEAT,
             client_id="device_001",
@@ -120,9 +111,8 @@ async def comprehensive_client_type_test():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await device1_ws.send(device_heartbeat.model_dump_json())
-        print("💓 设备客户端心跳已发送")
+        print("💓  [Text Cleaned] ")
 
-        # 星座心跳
         network_heartbeat = ClientMessage(
             type=ClientMessageType.HEARTBEAT,
             client_id="network_alpha@client_001",
@@ -130,9 +120,8 @@ async def comprehensive_client_type_test():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await network1_ws.send(network_heartbeat.model_dump_json())
-        print("💓 星座客户端心跳已发送")
+        print("💓  [Text Cleaned] ")
 
-        # 设备信息请求
         device_info_request = ClientMessage(
             type=ClientMessageType.DEVICE_INFO,
             client_id="network_alpha@client_001",
@@ -141,47 +130,45 @@ async def comprehensive_client_type_test():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await network1_ws.send(device_info_request.model_dump_json())
-        print("📊 星座客户端请求设备信息")
+        print("📊  [Text Cleaned] ")
 
-        # 4. 等待处理完成
-        print("\n[4] 等待消息处理完成...")
+        print("\n[4]  [Text Cleaned] ...")
         await asyncio.sleep(3)
 
-        print("\n✅ 综合测试完成")
+        print("\n✅  [Text Cleaned] ")
 
     except Exception as e:
-        print(f"❌ 测试过程中出错: {e}")
+        print(f"❌  [Text Cleaned] : {e}")
         import traceback
 
         traceback.print_exc()
 
     finally:
-        # 清理连接
-        print("\n[5] 清理连接...")
+        print("\n[5]  [Text Cleaned] ...")
         for ws in connections:
             try:
                 await ws.close()
             except:
                 pass
-        print("🧹 连接已清理")
+        print("🧹  [Text Cleaned] ")
 
     print("\n" + "=" * 80)
-    print("🎯 请检查服务器日志确认客户端类型被正确识别:")
-    print("   📱 设备客户端应该有 'Device client' 标识")
-    print("   🌟 星座客户端应该有 'network client' 标识")
-    print("   💓 心跳消息应该有相应的客户端类型标识")
-    print("   📊 设备信息请求应该正确处理")
+    print("🎯  [Text Cleaned] :")
+    print("   📱  [Text Cleaned]  'Device client'  [Text Cleaned] ")
+    print("   🌟  [Text Cleaned]  'network client'  [Text Cleaned] ")
+    print("   💓  [Text Cleaned] ")
+    print("   📊  [Text Cleaned] ")
     print("=" * 80)
 
 
 async def main():
-    """主函数"""
+    """ [Text Cleaned] """
     try:
         await comprehensive_client_type_test()
     except KeyboardInterrupt:
-        print("\n测试被用户中断")
+        print("\n [Text Cleaned] ")
     except Exception as e:
-        print(f"测试失败: {e}")
+        print(f" [Text Cleaned] : {e}")
 
 
 if __name__ == "__main__":

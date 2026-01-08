@@ -164,12 +164,12 @@ example6:
       - Function: set_edit_text
         Args: {"text": "Imdiffusion GitHub"}
         ControlLabel: 36
-        ControlText: 搜索
+        ControlText:  [Text Cleaned] 
         Status: CONTINUE
       - Function: click_input
         Args: {"button": "left", "double": false}
         ControlLabel: 18
-        ControlText: 搜一搜
+        ControlText:  [Text Cleaned] 
         Status: CONTINUE
     Plan:
       - (1) Once the searched results are visible, click the Imdiffusion repo Hyperlink in the searched results to open the repo page.

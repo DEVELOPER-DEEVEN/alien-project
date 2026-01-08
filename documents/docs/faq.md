@@ -516,8 +516,8 @@ Performance may vary by language and model. Test with your specific language and
 
 ### Community & Support
 
-- **GitHub Discussions:** [https://github.com/microsoft/Alien/discussions](https://github.com/microsoft/Alien/discussions)
-- **GitHub Issues:** [https://github.com/microsoft/Alien/issues](https://github.com/microsoft/Alien/issues)
+- **GitHub Discussions:** [https://github.com/DEVELOPER-DEEVEN/Alien/discussions](https://github.com/DEVELOPER-DEEVEN/Alien/discussions)
+- **GitHub Issues:** [https://github.com/DEVELOPER-DEEVEN/Alien/issues](https://github.com/DEVELOPER-DEEVEN/Alien/issues)
 - **Email:** Alien-agent@microsoft.com
 
 ### Debugging Tips

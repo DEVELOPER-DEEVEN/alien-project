@@ -1,12 +1,12 @@
 {
   "network_id": "network_27df923d_20250929_151316",
-  "name": "JSON兼容性测试",
+  "name": "JSON [Text Cleaned] ",
   "state": "CREATED",
   "tasks": {
     "task_2a93f3e6": {
       "task_id": "task_2a93f3e6",
-      "name": "前期准备",
-      "description": "项目准备工作",
+      "name": " [Text Cleaned] ",
+      "description": " [Text Cleaned] ",
       "tips": null,
       "target_device_id": null,
       "device_type": null,
@@ -29,8 +29,8 @@
     },
     "task_3348fc90": {
       "task_id": "task_3348fc90",
-      "name": "执行阶段",
-      "description": "主要工作",
+      "name": " [Text Cleaned] ",
+      "description": " [Text Cleaned] ",
       "tips": null,
       "target_device_id": null,
       "device_type": null,
@@ -53,8 +53,8 @@
     },
     "task_348512fa": {
       "task_id": "task_348512fa",
-      "name": "收尾阶段",
-      "description": "完成和总结",
+      "name": " [Text Cleaned] ",
+      "description": " [Text Cleaned] ",
       "tips": null,
       "target_device_id": null,
       "device_type": null,
