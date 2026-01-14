@@ -26,7 +26,23 @@ Crucially, it handles **Multimodal Input**, automatically resizing and encoding 
 
 ## 2. Supported Models Registry
 
-The following models are fully validated with the ALIEN2 vision pipeline.
+The following models are fully validated with the ALIEN2 vision pipeline. The system selects the best available model based on the following logic:
+
+```mermaid
+flowchart LR
+    Start([Task Request]) --> CheckConfig{Check Config}
+    CheckConfig -->|Provider: OpenAI| OpenAI[Use OpenAI API]
+    CheckConfig -->|Provider: Azure| Azure[Use Azure Endpoint]
+    CheckConfig -->|Provider: Local| Local[Use Ollama/LocalAI]
+    
+    OpenAI --> Primary{Primary Model Available?}
+    Azure --> Primary
+    Local --> Primary
+    
+    Primary -->|Yes| Execute[Execute Inference]
+    Primary -->|No| Fallback[Switch to Backup Model]
+    Fallback --> Execute
+```
 
 | Provider | Model ID | Capabilities | Recommended Use |
 | :--- | :--- | :--- | :--- |

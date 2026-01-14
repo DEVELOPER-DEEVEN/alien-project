@@ -32,6 +32,19 @@ This enables the **"Show, Don't Tell"** workflow:
 
 The processor performs three critical transformations:
 
+```mermaid
+flowchart TD
+    Raw[Raw Screenshots] --> Sync[State Reconstruction]
+    XML[Accessibility XML] --> Sync
+    
+    Sync -->|Synced State| Normalize[Action Normalization]
+    Normalize -->|Relative Coords| Filter{Privacy Filter}
+    
+    Filter -->|Pass| GPT[Training Dataset]
+    Filter -->|Sensitive Info| Blur[Apply Redaction]
+    Blur --> GPT
+```
+
 1.  **State Reconstruction**: Aligns asynchronous screenshots with XML accessibility tree dumps to create a synchronized "State" object.
 2.  **Action Normalization**: Converts raw coordinates `(x, y)` into element-relative references `(Element Name, Offset)`. This ensures robustness against resolution changes.
 3.  **Trace Annotation**: (Optional) Uses GPT-4 to retrospectively generate "Thought" chains explaining *why* the user took a specific action.

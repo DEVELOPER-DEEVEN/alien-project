@@ -68,6 +68,27 @@ Each agent (Host and App) can be configured independently.
 ## 4. Validation Logic
 
 The configuration loader includes a rigorous validation steps:
+
+```mermaid
+stateDiagram-v2
+    [*] --> LoadYAML
+    LoadYAML --> SchemaCheck: Parse Raw File
+    SchemaCheck --> TypeCheck: Keys Exist?
+    
+    state "Validation Pipeline" as Pipe {
+        TypeCheck --> PathCheck: Int/Bool/Str?
+        PathCheck --> DepCheck: Paths Valid?
+        DepCheck --> Success: Depedencies Met?
+    }
+    
+    TypeCheck --> Error: Invalid Type
+    PathCheck --> Error: Path Not Found
+    DepCheck --> Error: Missing Lib
+    
+    Success --> [*]: Config Object Ready
+    Error --> [*]: Raise ConfigError
+```
+
 1.  **Type Checking**: Ensures integers are integers, booleans are booleans.
 2.  **Path Verification**: Checks if `PROMPT_PATH` and `PROJECT_ROOT` actually exist on the disk.
 3.  **Dependency Check**: If `Visual_Mode` is True, checks if `Pillow` is installed.

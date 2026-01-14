@@ -41,6 +41,24 @@ It is built using **FastAPI** for high-performance async handling.
 
 Real-time communication uses the `/ws` endpoint.
 
+```mermaid
+sequenceDiagram
+    participant ID as UI Client
+    participant API as WebUI Server
+    participant Core as Janus Core
+    
+    ID->>API: subscribe("task_123")
+    API->>Core: Register Listener
+    
+    loop Event Loop
+        Core->>API: event("stream_frame", data)
+        API->>ID: forward_event(data)
+    end
+    
+    ID->>API: intervention("Stop Task")
+    API->>Core: cancel_task()
+```
+
 **Server -> Client Events:**
 
 | Event Type | Payload | Description |

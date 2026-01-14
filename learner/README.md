@@ -46,6 +46,26 @@ Documents are chunked and embedded into high-dimensional space.
 
 The retrieval process follows a **Hybrid Search** strategy:
 
+```mermaid
+sequenceDiagram
+    participant Agent
+    participant Embedder
+    participant VectorDB
+    participant DocStore
+
+    Agent->>Embedder: "How do I use Tool X?"
+    Embedder-->>VectorDB: [0.1, 0.8, -0.3...] (Query Vector)
+    
+    rect rgb(20, 20, 30)
+        note right of VectorDB: Semantic Search
+        VectorDB->>VectorDB: Cosine Similarity Scan
+        VectorDB-->>VectorDB: Filter by Metadata (App="Photoshop")
+    end
+    
+    VectorDB-->>DocStore: Get Top-K IDs
+    DocStore-->>Agent: Return Text Chunks
+```
+
 1.  **Semantic Search**: Finds conceptually similar documents using Cosine Similarity.
 2.  **Keyword Filtering**: Filters results to the current active application. You don't want "Excel" help when working in "Word".
 

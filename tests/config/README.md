@@ -37,6 +37,21 @@ The configuration subsystem is the backbone of ALIEN2. These tests ensure that:
 
 ## 3. Running the Suite
 
+The suite executes following this path:
+
+```mermaid
+flowchart LR
+    CLI[User Command] --> Disc[Discover Tests]
+    Disc --> Load[Load Config]
+    Load --> Run{Run Tests}
+    
+    Run -->|Pass| Report[Gen Report]
+    Run -->|Fail| Log[Log Traceback]
+    
+    Report --> Exit[Exit 0]
+    Log --> ExitErr[Exit 1]
+```
+
 ```bash
 # Run only config tests
 python -m unittest discover tests/config

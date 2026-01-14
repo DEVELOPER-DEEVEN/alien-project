@@ -45,7 +45,7 @@ graph TD
     
     Content --> TaskManager[Task Manager View]
     TaskManager --> DAGVisualizer[React Flow Graph]
-    TaskManager --> LogConsole[Execution Logs]
+    TaskManager --> LogConsole[Execution Console]
 ```
 
 ---
