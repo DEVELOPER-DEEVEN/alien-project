@@ -126,8 +126,8 @@ The system improves over time through two mechanisms:
 
 **1. Clone Repository**
 ```bash
-git clone https://github.com/deevenseru/UFO-main.git
-cd UFO-main
+git clone https://github.com/deevenseru/alien-project.git
+cd alien-project
 ```
 
 **2. Virtual Environment (Recommended)**
