@@ -1,73 +1,126 @@
-# ALIEN2: The Desktop Agent
+# ALIEN2 Core Engine: The Autonomous Agent Substrate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Python Version](https://img.shields.io/badge/Python-3.10%2B-green.svg)](https://www.python.org/downloads/)
+[![Component: Core](https://img.shields.io/badge/Component-Core_Engine-purple.svg)]()
+[![Status: Stable](https://img.shields.io/badge/Status-Stable-green.svg)]()
 
-**Created by Deeven Seru**
+**Architect: Deeven Seru**
 
-## Table of Contents
+---
 
-1.  [Overview](#overview)
-2.  [Key Capabilities](#key-capabilities)
-3.  [Inside the Agent](#inside-the-agent)
-4.  [Installation & Setup](#installation--setup)
-5.  [Using the Agent](#using-the-agent)
+## 📑 Table of Contents
 
-## Overview
+1.  [Architectural Overview](#architectural-overview)
+2.  [The Dual-Agent System](#the-dual-agent-system)
+    *   [HostAgent: The Strategic Planner](#hostagent-the-strategic-planner)
+    *   [AppAgent: The Tactical Operator](#appagent-the-tactical-operator)
+3.  [State Machine Logic](#state-machine-logic)
+4.  [Vision & Perception](#vision--perception)
+5.  [Control Interface](#control-interface)
+6.  [Developer API](#developer-api)
 
-ALIEN2 is the core engine of the UFO project. It acts as an "Operating System Agent" that sits on top of Windows. It understands what is happening on your screen and can click buttons, type text, and navigate menus to complete tasks you give it.
+---
 
-Think of it as a helpful digital intern that sits at your computer and follows your instructions.
+## 1. Architectural Overview
 
-## Key Capabilities
+The `alien/` directory contains the kernel of the ALIEN2 framework. It is an implementation of a **proactive logic engine** designed to navigate Operating System GUIs. Unlike standard chatbots that output text, ALIEN2 outputs **control signals** (mouse clicks, keystrokes, API calls).
 
-*   **See & Interact**: It uses advanced computer vision to recognize icons, buttons, and text, even if they move around.
-*   **Smart Planning**: It breaks complex requests (like "Send an email about X") into simple, logical steps.
-*   **Safety First**: It asks for confirmation before doing anything risky, so you're always in control.
-*   **Continuous Learning**: It can read help documents or watch you perform a task to learn new skills.
+The engine treats the OS not as a text-interface, but as a visual environment. It parses screenshots using Mutimodal LLMs (like GPT-4V) to build a semantic understanding of the screen, then maps user intent to actionable UI elements.
 
-## Inside the Agent
+---
 
-The system works using two main "brains":
+## 2. The Dual-Agent System
 
-1.  **HostAgent**: The Manager. It listens to your request, picks the right app for the job, and supervises the process.
-2.  **AppAgent**: The Worker. It specializes in using specific applications (like Word or Chrome) to get the job done.
+To handle long-horizon tasks, we decompose the problem space into two distinct layers of abstraction.
 
-## Installation & Setup
+### HostAgent: The Strategic Planner
 
-### 1. Simple Install
+The **HostAgent** operates at the OS level. It does not know how to "bold text in Word," but it knows how to "Open Word."
 
-Open your terminal and run:
+**Responsibilities:**
+*   **Global Planning**: Breaks down complex requests (e.g., "Summarize this PDF and email it") into sub-tasks (1. Open Reader, 2. Read PDF, 3. Open Outlook, 4. Send Email).
+*   **App Lifecycle Management**: Launches, closes, and switches focus between applications.
+*   **Context Switching**: Maintains the global state of the workflow.
 
-```bash
-git clone https://github.com/deevenseru/UFO-main.git
-cd UFO-main
-pip install -r requirements.txt
+### AppAgent: The Tactical Operator
+
+The **AppAgent** is instantiated when an application is brought into focus. It is ephemeral and highly specialized.
+
+**Responsibilities:**
+*   **Local Action**: Performs atomic interactions (Click button A, Type text B).
+*   **UI Parsing**: Analyzes the specific window's control tree.
+*   **Error Recovery**: Retries actions if the UI doesn't respond as expected (e.g., handling popups).
+
+---
+
+## 3. State Machine Logic
+
+The agents do not execute blindly; they follow a strict Finite State Machine (FSM) to ensure deterministic behavior.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Planning: New User Request
+    Planning --> Host_Act: Plan Generated
+    Host_Act --> App_Focus: Launch/Switch App
+    
+    state "App Interaction Loop" as App_Loop {
+        App_Focus --> Observe: Take Screenshot
+        Observe --> Thought: Analyze UI
+        Thought --> Action: Execute Control
+        Action --> Verify: Check Result
+        Verify --> Observe: Task Incomplete
+        Verify --> App_Complete: Task Done
+    }
+    
+    App_Complete --> Host_Act: Return Control to Host
+    Host_Act --> Idle: All Steps Finished
 ```
 
-### 2. Configuration
+*   **Observe**: Capture purely visual data (RGB Screenshot) and structural data (UI Tree / Accessibility XML).
+*   **Thought**: The LLM processes the observation against the goal. "I see a 'Send' button. My goal is to send email. Therefore, I should click it."
+*   **Action**: The thought is translated into a `pywinauto` command: `click_input(coords=(x,y))`.
 
-You need to give the agent a "brain" (an API key).
+---
 
-1.  Copy the template: `cp config/alien/agents.yaml.template config/alien/agents.yaml`
-2.  Edit `config/alien/agents.yaml` and add your OpenAI or Azure API key.
+## 4. Vision & Perception
 
-## Using the Agent
+ALIEN2 utilizes a hybrid perception system:
 
-### Command Line Mode
+1.  **Set-of-Marks (SoM)**: We overlay numeric tags on every interactive element in the screenshot. The LLM only needs to predict the ID (e.g., "Click #42"), eliminating hallucination of non-existent coordinates.
+2.  **Interactive Region Detection**: If the accessibility tree is broken (common in Electron apps), the Vision model infers buttons based on visual cues (borders, shadows, icons).
 
-The fastest way to use ALIEN2 is via the command line.
+---
 
-**Example:**
-```bash
-python -m alien --task "Look up the weather in Tokyo and save it to a notepad file"
+## 5. Control Interface
+
+The engine abstracts Windows API calls into safe primitives.
+
+*   `click(element)`: Simulates a hardware mouse click.
+*   `type(text)`: Simulates keyboard input with programmable delay.
+*   `scroll(direction)`: Mouse wheel interaction.
+*   `inspect()`: Dumps the current visual state for debugging.
+
+---
+
+## 6. Developer API
+
+To extend ALIEN2 with custom agents or logic:
+
+```python
+from alien.agents import HostAgent, AppAgent
+
+# Initialize Orchestrator
+host = HostAgent(config="config.yaml")
+
+# Manually trigger a task
+task_id = "task_001"
+plan = host.plan_task("Open Notepad and write 'Hello World'")
+
+# Execute
+results = host.execute(plan)
+print(f"Execution finished with status: {results.status}")
 ```
-
-### Interactive Mode
-
-Just run `python -m alien` and chat with the agent directly. It will guide you through the process.
-
-> **Tip**: Make sure the application you want to use (e.g., Chrome) is installed on your computer.
 
 ---
 *© 2026 Deeven Seru. All Rights Reserved.*

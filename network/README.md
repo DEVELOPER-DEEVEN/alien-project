@@ -1,63 +1,114 @@
-# ALIEN3 Network: Multi-Device Orchestration
+# ALIEN3 Network: Distributed Agent Orchestration
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Status: Experimental](https://img.shields.io/badge/Status-Experimental-orange.svg)]()
+[![Component: Network](https://img.shields.io/badge/Component-Distributed_Network-purple.svg)]()
+[![Protocol: WebSocket](https://img.shields.io/badge/Protocol-WebSocket-orange.svg)]()
 
-**Created by Deeven Seru**
+**Architect: Deeven Seru**
 
-## Table of Contents
+---
 
-1.  [What is the ALIEN Network?](#what-is-the-alien-network)
-2.  [How It Works](#how-it-works)
-3.  [Getting Started](#getting-started)
-4.  [Visualizing the Network](#visualizing-the-network)
+## 📑 Table of Contents
 
-## What is the ALIEN Network?
+1.  [Overview](#overview)
+2.  [Network Topology](#network-topology)
+3.  [Communication Protocol](#communication-protocol)
+4.  [The Orion DAG](#the-orion-dag)
+5.  [Deployment](#deployment)
 
-While ALIEN2 controls a *single* computer, the ALIEN3 Network connects *multiple* devices together. It allows you to give a single command that requires actions across different computers—like a Windows PC and a Linux Server.
+---
 
-Imagine telling your main computer: *"Get the logs from the Linux server and make a chart in Excel here."* The Network handles the communication and coordination for you.
+## 1. Overview
 
-## How It Works
+The `network/` module transforms the standalone ALIEN2 engine into **ALIEN3**, a distributed system capable of orchestrating tasks across multiple physical devices.
 
-The system creates a "Task Orion"—a plan that maps out which device does what.
+In a single-device setup, the HostAgent and AppAgent live on the same machine. In the ALIEN3 Network, the logic is decoupled:
+*   **The Brain (Server)**: A central node running the heavy LLM inference and state management.
+*   **The Body (Client)**: Lightweight agents running on edge devices (laptops, VMs) that execute actions and stream video back to the Brain.
 
-1.  **OrionAgent**: The central brain. It receives your request and splits it into sub-tasks.
-2.  **Device Agents**: The workers. Each computer runs a small agent that listens for tasks from the OrionAgent.
-3.  **Synchronization**: The devices talk to each other in real-time to share files and status updates.
+---
 
-## Getting Started
+## 2. Network Topology
 
-### 1. Start the Server
+The architecture implements a **Star Topology** where multiple clients connect to a central signaling server.
 
-On your main computer (the coordinator), run:
+```mermaid
+graph TD
+    Server[Central Server (The Brain)]
+    ClientA[Client A (Windows Laptop)]
+    ClientB[Client B (Linux Server)]
+    ClientC[Client C (Mobile Device)]
 
-```bash
-python -m alien.server.app
+    Server <-->|WebSocket Stream| ClientA
+    Server <-->|WebSocket Stream| ClientB
+    Server <-->|WebSocket Stream| ClientC
 ```
 
-### 2. Connect a Client
+### Components
+1.  **Janus Server**: The gateway that manages WebSocket connections. It handles authentication, heartbeat monitoring, and message routing.
+2.  **Orion Scheduler**: The distributed task manager. It holds the global state of the "World" and assigns sub-tasks to the most appropriate connected client.
 
-On any computer you want to control (including the main one), run:
+---
 
-```bash
-python -m alien.client.client --server-address ws://[SERVER_IP]:5000
+## 3. Communication Protocol
+
+We utilize a custom binary protocol over Secure WebSockets (WSS).
+
+### Message Structure
+Every packet contains a header and a payload.
+
+*   **Header**: `[Type: 1 byte] [Length: 4 bytes] [Timestamp: 8 bytes]`
+*   **Payload**: JSON-serialized command or Binary blob (screenshot).
+
+### Handshake Sequence
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Server: CONNECT (Auth Token)
+    Server->>Client: ACK (Session ID)
+    Client->>Server: REGISTER_CAPABILITIES (OS: Windows, Apps: [Word, Chrome])
+    Server->>Client: READY
+    
+    note right of Server: Idle State
+    
+    Server->>Client: EXECUTE_TASK (Task ID, "Open Calculator")
+    Client->>Server: STREAM_FRAME (Image Data)
+    Server->>Client: ACTION_CLICK (x=100, y=200)
+    Client->>Server: RESULT (Success)
 ```
 
-### 3. Send a Command
+---
 
-You can now send commands to the server, and it will dispatch them to the connected clients!
+## 4. The Orion DAG
 
-## Visualizing the Network
+Tasks in the network are represented as **Directed Acyclic Graphs (DAGs)**.
 
-We provide a beautiful Web Dashboard to see your network in action.
+Example: "Download report from Server A and upload to Server B."
 
-Run this command to open the dashboard:
+*   **Node 1 (Client A)**: Open Browser -> Download File.
+*   **Node 2 (Server)**: Wait for file transfer (simulated or real).
+*   **Node 3 (Client B)**: Open FTP -> Upload File.
+
+The Orion Scheduler ensures Node 3 does not start until Node 1 passes. Dependencies are enforced strictly to prevent race conditions in the physical world.
+
+---
+
+## 5. Deployment
+
+### Server Side
 ```bash
-python -m network --webui
+# Start the central orchestrator
+python -m network.server.main --port 8080
 ```
 
-You'll see a live graph of your tasks and devices!
+### Client Side
+```bash
+# Join the network
+python -m network.client.main --connect wss://alien-server.com:8080 --key <YOUR_KEY>
+```
 
 ---
 *© 2026 Deeven Seru. All Rights Reserved.*

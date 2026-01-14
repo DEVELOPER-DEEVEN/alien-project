@@ -1,34 +1,72 @@
-# Network WebUI Backend
+# Network WebUI: Backend API Specification
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Server: Flask/FastAPI](https://img.shields.io/badge/Server-Python_Backend-green.svg)]()
 
-**Created by Deeven Seru**
+**Architect: Deeven Seru**
 
-## Table of Contents
+---
 
-1.  [What is this?](#what-is-this)
-2.  [How it Works](#how-it-works)
-3.  [Running the Server](#running-the-server)
+## 📑 Table of Contents
 
-## What is this?
+1.  [Service Overview](#service-overview)
+2.  [REST API Endpoints](#rest-api-endpoints)
+3.  [WebSocket Event Catalog](#websocket-event-catalog)
+4.  [Running the Server](#running-the-server)
 
-This is the "Engine Room" of the visual dashboard. It connects your browser to the actual ALIEN network using **WebSockets**. This ensures that when an agent finishes a task, you see it on your screen instantly, without needing to refresh the page.
+---
 
-## How it Works
+## 1. Service Overview
 
-1.  **FastAPI Server**: Handles the web connections.
-2.  **Event Stream**: Listens to the agents.
-3.  **Real-Time Push**: Sends updates to the React frontend immediately.
+The `network/webui` backend serves two purposes:
+1.  **Static File Server**: Hosts the compiled React frontend.
+2.  **API Gateway**: Proxies requests from the UI to the core Janus Server (if running separately) or acts as the Janus Server itself.
 
-## Running the Server
+It is built using **FastAPI** for high-performance async handling.
 
-You typically don't run this manually (the main launch script handles it), but if you need to start it separately for testing:
+---
+
+## 2. REST API Endpoints
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/status` | Returns distinct health metrics of the server. |
+| `GET` | `/api/agents` | Lists all currently connected worker nodes. |
+| `POST` | `/api/task` | Submits a new natural language task to the queue. |
+| `DELETE` | `/api/task/{id}` | Cancels a running task. |
+
+---
+
+## 3. WebSocket Event Catalog
+
+Real-time communication uses the `/ws` endpoint.
+
+**Server -> Client Events:**
+
+| Event Type | Payload | Description |
+| :--- | :--- | :--- |
+| `dag_update` | `{nodes: [], edges: []}` | The task graph structure has changed. |
+| `agent_heartbeat` | `{id: "agent_1", status: "idle"}` | Specific agent status update. |
+| `stream_frame` | `{data: base64_jpg}` | Video frame from the active agent. |
+
+**Client -> Server Events:**
+
+| Event Type | Payload | Description |
+| :--- | :--- | :--- |
+| `subscribe` | `{topic: "task_123"}` | Listen for updates on a specific task. |
+| `intervention` | `{text: "Click the red button"}` | Human guidance injection. |
+
+---
+
+## 4. Running the Server
 
 ```bash
-python -m network --webui
-```
+# Production Mode (Gunicorn)
+gunicorn -w 4 -k uvicorn.workers.UvicornWorker network.webui.app:app
 
-This starts the backend on port 8000.
+# Development Mode
+python -m network.webui.main --debug
+```
 
 ---
 *© 2026 Deeven Seru. All Rights Reserved.*

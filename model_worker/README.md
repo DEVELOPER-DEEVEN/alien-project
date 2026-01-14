@@ -1,56 +1,77 @@
-# Model Integration Guide
+# Model Worker: The Inference Backend
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Component: LLM](https://img.shields.io/badge/Component-Inference_Engine-purple.svg)]()
 
-**Created by Deeven Seru**
+**Architect: Deeven Seru**
 
-## Table of Contents
+---
 
-1.  [Supported Models](#supported-models)
-2.  [Switching Providers](#switching-providers)
-3.  [Local Models (Free)](#local-models-free)
+## 📑 Table of Contents
 
-## Supported Models
+1.  [Overview](#overview)
+2.  [Supported Models Registry](#supported-models-registry)
+3.  [Configuration Guide](#configuration-guide)
+4.  [Developer Extension Guide](#developer-extension-guide)
 
-ALIEN is designed to be "Model Agnostic." This means you can swap out the brain of the agent easily. We support:
+---
 
-*   **OpenAI**: GPT-4o (Recommended for best performance).
-*   **Google**: Gemini 1.5 Pro.
-*   **Anthropic**: Claude 3 (Opus/Sonnet).
-*   **Local**: Llama 3 or Mistral (via Ollama).
+## 1. Overview
 
-## Switching Providers
+The `model_worker/` directory abstracts the interaction with Large Language Models (LLMs). It provides a unified interface for token streaming, cost calculation, and error handling across heterogeneous providers (OpenAI, Azure, Gemini, Ollama).
 
-To switch the AI model, you don't need to change any code. Just update your `config.yaml` file.
+Crucially, it handles **Multimodal Input**, automatically resizing and encoding base64 images to meet specific provider constraints.
 
-**For Google Gemini:**
+---
+
+## 2. Supported Models Registry
+
+The following models are fully validated with the ALIEN2 vision pipeline.
+
+| Provider | Model ID | Capabilities | Recommended Use |
+| :--- | :--- | :--- | :--- |
+| **OpenAI** | `gpt-4o` | Text + Vision | **Primary Driver**. Best reasoning/cost ratio. |
+| **OpenAI** | `gpt-4-turbo` | Text + Vision | Legacy backup. |
+| **Azure** | `gpt-4` | Text + Vision | Enterprise deployments. |
+| **Google** | `gemini-1.5-pro` | Text + Vision | Large context tasks. |
+| **Local** | `llava-v1.6` | Text + Vision | Offline / Privacy-sensitive tasks. |
+
+---
+
+## 3. Configuration Guide
+
+To switch providers, update `aliens/config/agents.yaml`.
+
+**Example: Switching to Azure OpenAI**
+
 ```yaml
-API_TYPE: "Gemini"
-API_KEY: "YOUR_GOOGLE_KEY"
-API_MODEL: "gemini-1.5-pro"
+HOST_AGENT:
+  API_TYPE: "azure"
+  API_BASE: "https://my-resource.openai.azure.com/"
+  API_VERSION: "2024-02-15-preview"
+  API_KEY: "..."
+  API_MODEL: "gpt-4-turbo-v"
 ```
 
-**For Anthropic Claude:**
-```yaml
-API_TYPE: "claude"
-API_KEY: "YOUR_ANTHROPIC_KEY"
-API_MODEL: "claude-3-opus-20240229"
+---
+
+## 4. Developer Extension Guide
+
+To add a new provider (e.g., Anthropic Claude 3), you must implement the `BaseModel` interface.
+
+**Steps:**
+1.  Create `model_worker/clients/claude_client.py`.
+2.  Inherit from `BaseModel`.
+3.  Implement `chat_completion(messages, **kwargs)`.
+4.  Register the new class in `model_worker/factory.py`.
+
+```python
+class ClaudeClient(BaseModel):
+    def chat_completion(self, messages, **kwargs):
+        # Transform OpenAI format to Anthropic format
+        payload = self._transform_messages(messages)
+        return self.client.messages.create(model="claude-3-opus", **payload)
 ```
-
-## Local Models (Free)
-
-Want to run the agent for free without internet? You can use **Ollama**.
-
-1.  Download Ollama from `ollama.com`.
-2.  Run a vision-capable model: `ollama run llama3.2-vision`.
-3.  Update Config:
-    ```yaml
-    API_TYPE: "Ollama"
-    API_BASE: "http://localhost:11434"
-    API_MODEL: "llama3.2-vision"
-    ```
-
-*Note: Local models might be slower and less accurate than GPT-4o.*
 
 ---
 *© 2026 Deeven Seru. All Rights Reserved.*

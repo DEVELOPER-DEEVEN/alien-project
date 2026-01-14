@@ -1,29 +1,37 @@
-# Orion Protocol Tests
+# Orion Scheduler Logic Tests
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Scope: Logic](https://img.shields.io/badge/Scope-Logic_Validation-green.svg)]()
 
-**Created by Deeven Seru**
+**Architect: Deeven Seru**
 
-## Table of Contents
+---
 
-1.  [Overview](#overview)
-2.  [Running the Logic Tests](#running-the-logic-tests)
+## 1. Overview
 
-## Overview
+The Orion Scheduler builds Directed Acyclic Graphs (DAGs) from LLM output. Since LLMs can hallucinate, the output is often non-deterministic.
 
-The "Task Orion" is a complex data structure that represents a distributed plan. It looks like a web of connected tasks.
+These tests validate the **Parser Logic** that converts messy JSON into a strict DAG structure.
 
-Since Generative AI (LLMs) creates these plans, they can sometimes be "hallucinated" or malformed. These tests ensure that our parser is robust enough to handle messy data without crashing.
+---
 
-## Running the Logic Tests
+## 2. Validation Scenarios
 
-We use real-world logs to validate the parser.
+### Cycle Detection
+**Input**: `Task A -> Task B -> Task A`
+**Expected Behavior**: Parser throws `CyclicDependencyError` (Deadlock prevention).
+
+### Topological Sort
+**Input**: `Task B depends on A`, `Task C depends on A`
+**Expected Behavior**: Execution Order `[A, B, C]` or `[A, C, B]`. NEVER `[B, ...]`.
+
+---
+
+## 3. Execution
 
 ```bash
-python tests/network/orion/test_orion_parsing.py
+python -m pytest tests/network/orion/test_orion_parsing.py
 ```
-
-If this passes, it means the network core is stable.
 
 ---
 *© 2026 Deeven Seru. All Rights Reserved.*

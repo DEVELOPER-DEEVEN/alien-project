@@ -1,37 +1,48 @@
-# Scenario: Multi-OS Log Collection
+# End-to-End Scenario: Multi-OS Log Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Type: Integration](https://img.shields.io/badge/Type-System_Integration-orange.svg)]()
 
-**Created by Deeven Seru**
+**Architect: Deeven Seru**
 
-## Table of Contents
+---
 
-1.  [The Mission](#the-mission)
-2.  [The Simulation](#the-simulation)
-3.  [Executing the Mission](#executing-the-mission)
+## 📑 Table of Contents
 
-## The Mission
+1.  [Scenario Description](#scenario-description)
+2.  [Simulated Environment](#simulated-environment)
+3.  [Success Criteria](#success-criteria)
 
-This is an end-to-end test capability. It simulates a common IT request:
+---
 
-> "Go to my Linux servers, grab the error logs, and compile a report on my Windows laptop."
+## 1. Scenario Description
 
-This is difficult because it requires the agent to speak two languages (Linux Bash & Windows PowerShell) and coordinate file transfers.
+This test simulates a real-world IT Admin task:
+**"Collect `/var/log/syslog` from three Linux servers and compile a summary Excel report on the Admin's Windows workstation."**
 
-## The Simulation
+This requires:
+1.  **Orchestration**: Splitting the task into 4 sub-tasks (3 downloads + 1 compile).
+2.  **Cross-Platform Control**: SSH into Linux, Excel automation on Windows.
+3.  **Data Transfer**: Moving files between nodes.
 
-Instead of needing real servers, we use a simulation:
-*   **Agents**: 2 Virtual Linux Servers + 1 Virtual Windows PC.
-*   **Task**: Collect 5 log files.
-*   **Outcome**: A collaborative Excel report.
+---
 
-## Executing the Mission
+## 2. Simulated Environment
 
-Run this command to watch the agents collaborate:
+Instead of physical machines, we use `docker` containers and `mock` interfaces.
 
-```bash
-python -m pytest tests/test_linux_log_collection_excel_generation.py
-```
+*   `Agent_Linux_1` (Mock SSH)
+*   `Agent_Linux_2` (Mock SSH)
+*   `Agent_Windows_Admin` (Local Machine)
+
+---
+
+## 3. Success Criteria
+
+The test passes if and only if:
+1.  `report.xlsx` is created on the Windows Desktop.
+2.  The Excel file contains 3 generic log entries.
+3.  Total token cost is under $0.50.
 
 ---
 *© 2026 Deeven Seru. All Rights Reserved.*
