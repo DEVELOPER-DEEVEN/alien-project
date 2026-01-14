@@ -49,11 +49,11 @@ def check_adb():
     adb_path = find_adb()
 
     if not adb_path:
-        print("   ❌ ADB not found")
+        print("   [FAIL] ADB not found")
         print("   Please install Android SDK platform-tools")
         return False, None
 
-    print(f"   ✅ ADB found: {adb_path}")
+    print(f"   [OK] ADB found: {adb_path}")
 
     try:
         result = subprocess.run(
@@ -65,14 +65,14 @@ def check_adb():
 
         if result.returncode == 0:
             version = result.stdout.split("\n")[0]
-            print(f"   ✅ ADB version: {version}")
+            print(f"   [OK] ADB version: {version}")
             return True, adb_path
         else:
-            print(f"   ❌ ADB error: {result.stderr}")
+            print(f"   [FAIL] ADB error: {result.stderr}")
             return False, adb_path
 
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"   [FAIL] Error: {e}")
         return False, adb_path
 
 
@@ -81,7 +81,7 @@ def check_device(adb_path):
     print("\n2️⃣ Checking device connection...")
 
     if not adb_path:
-        print("   ❌ ADB not available")
+        print("   [FAIL] ADB not available")
         return False
 
     try:
@@ -93,21 +93,21 @@ def check_device(adb_path):
         )
 
         if result.returncode != 0:
-            print(f"   ❌ ADB devices command failed")
+            print(f"   [FAIL] ADB devices command failed")
             return False
 
         lines = result.stdout.strip().split("\n")
         devices = [line for line in lines if "\tdevice" in line]
 
         if not devices:
-            print("   ❌ No devices connected")
+            print("   [FAIL] No devices connected")
             print("   Please start an Android emulator or connect a device")
             print("\n   Commands to start emulator:")
             print("     emulator -list-avds              # List available emulators")
             print("     emulator -avd <name>             # Start specific emulator")
             return False
 
-        print(f"   ✅ Found {len(devices)} connected device(s):")
+        print(f"   [OK] Found {len(devices)} connected device(s):")
         for device_line in devices:
             device_id = device_line.split("\t")[0]
             print(f"      - {device_id}")
@@ -115,7 +115,7 @@ def check_device(adb_path):
         return True
 
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"   [FAIL] Error: {e}")
         return False
 
 
@@ -124,7 +124,7 @@ def check_device_info(adb_path):
     print("\n3️⃣ Getting device information...")
 
     if not adb_path:
-        print("   ❌ ADB not available")
+        print("   [FAIL] ADB not available")
         return False
 
     try:
@@ -155,7 +155,7 @@ def check_device_info(adb_path):
         )
         screen_size = result.stdout.strip() if result.returncode == 0 else "Unknown"
 
-        print(f"   ✅ Device Information:")
+        print(f"   [OK] Device Information:")
         print(f"      Model: {model}")
         print(f"      Android Version: {android_version}")
         print(f"      Screen Size: {screen_size}")
@@ -163,7 +163,7 @@ def check_device_info(adb_path):
         return True
 
     except Exception as e:
-        print(f"   ⚠️  Could not get device info: {e}")
+        print(f"   ️  Could not get device info: {e}")
         return True  # Non-critical
 
 
@@ -177,9 +177,9 @@ def check_python_packages():
     for package in required:
         try:
             __import__(package)
-            print(f"   ✅ {package} installed")
+            print(f"   [OK] {package} installed")
         except ImportError:
-            print(f"   ❌ {package} NOT installed")
+            print(f"   [FAIL] {package} NOT installed")
             missing.append(package)
 
     if missing:
@@ -195,7 +195,7 @@ def print_next_steps(all_ok):
     print("\n" + "=" * 70)
 
     if all_ok:
-        print("✅ ALL CHECKS PASSED - Ready to test Mobile MCP Servers!")
+        print("[OK] ALL CHECKS PASSED - Ready to test Mobile MCP Servers!")
         print("=" * 70)
         print("\nNext steps:")
         print("\n1. Start Mobile MCP Servers:")
@@ -207,7 +207,7 @@ def print_next_steps(all_ok):
         print("\n3. Or run full integration test:")
         print("   pytest tests/integration/test_mobile_mcp_server.py -v")
     else:
-        print("❌ SOME CHECKS FAILED - Please fix the issues above")
+        print("[FAIL] SOME CHECKS FAILED - Please fix the issues above")
         print("=" * 70)
         print("\nCommon fixes:")
         print("- Install Android SDK platform-tools")

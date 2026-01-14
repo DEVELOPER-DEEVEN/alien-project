@@ -62,14 +62,14 @@ class MockTaskEvent:
 def test_session_visualization_integration():
     """Test that session observers properly integrate with visualization module."""
 
-    print("🧪 Testing Session-Visualization Integration")
+    print(" Testing Session-Visualization Integration")
     print("=" * 50)
 
     # Create test orion
     orion = MockOrion()
 
     # Test 1: DAGVisualizationObserver can be created
-    print("✅ Test 1: Creating DAGVisualizationObserver...")
+    print("[OK] Test 1: Creating DAGVisualizationObserver...")
 
     output = StringIO()
     console = Console(file=output, force_terminal=True, width=80)
@@ -78,7 +78,7 @@ def test_session_visualization_integration():
     print("   DAGVisualizationObserver created successfully")
 
     # Test 2: Direct visualization component usage
-    print("✅ Test 2: Testing direct visualization components...")
+    print("[OK] Test 2: Testing direct visualization components...")
 
     task_display = TaskDisplay(console)
     orion_display = OrionDisplay(console)
@@ -95,7 +95,7 @@ def test_session_visualization_integration():
     print("   VisualizationChangeDetector works correctly")
 
     # Test 3: Mock event handling
-    print("✅ Test 3: Testing event handling...")
+    print("[OK] Test 3: Testing event handling...")
 
     # Mock orion started event
     orion_event = MockOrionEvent("orion_started", orion)
@@ -111,7 +111,7 @@ def test_session_visualization_integration():
     print("   Task event created")
 
     # Test 4: Integration architecture
-    print("✅ Test 4: Verifying integration architecture...")
+    print("[OK] Test 4: Verifying integration architecture...")
 
     # Verify that observers use visualization module components
     assert hasattr(dag_observer, "_orion_display") or True  # May not be exposed
@@ -121,10 +121,10 @@ def test_session_visualization_integration():
     output_text = output.getvalue()
     print(f"   Generated {len(output_text)} characters of visualization output")
 
-    print("\n🎉 All integration tests passed!")
-    print("✅ Session observers properly integrate with visualization module")
-    print("✅ Visualization components work independently")
-    print("✅ Event handling architecture is compatible")
+    print("\n All integration tests passed!")
+    print("[OK] Session observers properly integrate with visualization module")
+    print("[OK] Visualization components work independently")
+    print("[OK] Event handling architecture is compatible")
 
     return True
 
@@ -132,6 +132,6 @@ def test_session_visualization_integration():
 if __name__ == "__main__":
     success = test_session_visualization_integration()
     if success:
-        print("\n🚀 Session-Visualization integration is working correctly!")
+        print("\n[START] Session-Visualization integration is working correctly!")
     else:
-        print("\n❌ Integration tests failed!")
+        print("\n[FAIL] Integration tests failed!")

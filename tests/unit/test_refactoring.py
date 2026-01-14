@@ -36,7 +36,7 @@ def test_strategy_factory():
     assert "llm_interaction" in creation_strategies
     assert "action_execution" in creation_strategies
     assert "memory_update" in creation_strategies
-    print(f"    ✓ Created {len(creation_strategies)} strategies for CREATION mode")
+    print(f"     Created {len(creation_strategies)} strategies for CREATION mode")
 
     # Test editing mode strategies
     print("  Testing EDITING mode strategies...")
@@ -47,15 +47,15 @@ def test_strategy_factory():
     assert "llm_interaction" in editing_strategies
     assert "action_execution" in editing_strategies
     assert "memory_update" in editing_strategies
-    print(f"    ✓ Created {len(editing_strategies)} strategies for EDITING mode")
+    print(f"     Created {len(editing_strategies)} strategies for EDITING mode")
 
     # Test supported modes
     supported_modes = OrionStrategyFactory.get_supported_weaving_modes()
     assert WeavingMode.CREATION in supported_modes
     assert WeavingMode.EDITING in supported_modes
-    print(f"    ✓ Supported modes: {[mode.value for mode in supported_modes]}")
+    print(f"     Supported modes: {[mode.value for mode in supported_modes]}")
 
-    print("  ✓ OrionStrategyFactory tests passed!")
+    print("   OrionStrategyFactory tests passed!")
 
 
 def test_prompter_factory():
@@ -80,7 +80,7 @@ def test_prompter_factory():
 
     assert creation_prompter is not None
     assert creation_prompter.weaving_mode == WeavingMode.CREATION
-    print("    ✓ Created CREATION mode prompter successfully")
+    print("     Created CREATION mode prompter successfully")
 
     # Test editing mode prompter
     print("  Testing EDITING mode prompter...")
@@ -94,15 +94,15 @@ def test_prompter_factory():
 
     assert editing_prompter is not None
     assert editing_prompter.weaving_mode == WeavingMode.EDITING
-    print("    ✓ Created EDITING mode prompter successfully")
+    print("     Created EDITING mode prompter successfully")
 
     # Test supported modes
     supported_modes = OrionPrompterFactory.get_supported_weaving_modes()
     assert WeavingMode.CREATION in supported_modes
     assert WeavingMode.EDITING in supported_modes
-    print(f"    ✓ Supported modes: {[mode.value for mode in supported_modes]}")
+    print(f"     Supported modes: {[mode.value for mode in supported_modes]}")
 
-    print("  ✓ OrionPrompterFactory tests passed!")
+    print("   OrionPrompterFactory tests passed!")
 
 
 def test_strategy_types():
@@ -134,8 +134,8 @@ def test_strategy_types():
     assert creation_action.weaving_mode == WeavingMode.CREATION
     assert editing_action.weaving_mode == WeavingMode.EDITING
 
-    print("  ✓ Different strategy types created for different modes")
-    print("  ✓ Strategy type differentiation tests passed!")
+    print("   Different strategy types created for different modes")
+    print("   Strategy type differentiation tests passed!")
 
 
 def main():
@@ -155,19 +155,19 @@ def main():
         print()
 
         print("=" * 60)
-        print("✅ All tests passed! Refactoring successful!")
+        print("[OK] All tests passed! Refactoring successful!")
         print("=" * 60)
 
         print("\nRefactoring Summary:")
-        print("- ✓ Base strategy classes with shared logic")
-        print("- ✓ Mode-specific strategy implementations")
-        print("- ✓ Factory pattern for strategy/prompter creation")
-        print("- ✓ Clean separation of concerns")
-        print("- ✓ Type-safe mode selection")
-        print("- ✓ Extensible architecture")
+        print("-  Base strategy classes with shared logic")
+        print("-  Mode-specific strategy implementations")
+        print("-  Factory pattern for strategy/prompter creation")
+        print("-  Clean separation of concerns")
+        print("-  Type-safe mode selection")
+        print("-  Extensible architecture")
 
     except Exception as e:
-        print(f"❌ Test failed: {e}")
+        print(f"[FAIL] Test failed: {e}")
         import traceback
 
         traceback.print_exc()

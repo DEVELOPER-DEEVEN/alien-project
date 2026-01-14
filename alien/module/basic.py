@@ -285,7 +285,7 @@ class BaseRound(ABC):
         if isinstance(total_cost, float):
             formatted_cost = "${:.2f}".format(total_cost)
             console.print(
-                f"💰 Request total cost for current round is {formatted_cost}",
+                f" Request total cost for current round is {formatted_cost}",
                 style="yellow",
             )
 
@@ -719,7 +719,7 @@ class BaseSession(ABC):
         Save the current trajectory as agent experience.
         """
         console.print(
-            "📚 Summarizing and saving the execution flow as experience...",
+            "[PLAN] Summarizing and saving the execution flow as experience...",
             style="yellow",
         )
 
@@ -752,12 +752,12 @@ class BaseSession(ABC):
         if isinstance(self.cost, float) and self.cost > 0:
             formatted_cost = "${:.2f}".format(self.cost)
             console.print(
-                f"💰 Total request cost of the session: {formatted_cost}",
+                f" Total request cost of the session: {formatted_cost}",
                 style="yellow",
             )
         else:
             console.print(
-                f"ℹ️  Cost is not available for the model {alien_config.host_agent.api_model} or {alien_config.app_agent.api_model}.",
+                f"[INFO]  Cost is not available for the model {alien_config.host_agent.api_model} or {alien_config.app_agent.api_model}.",
                 style="yellow",
             )
             self.logger.warning("Cost information is not available.")
@@ -807,7 +807,7 @@ class BaseSession(ABC):
         """
         Evaluate the session.
         """
-        console.print("📊 Evaluating the session...", style="yellow")
+        console.print("[STATUS] Evaluating the session...", style="yellow")
 
         is_visual = alien_config.evaluation_agent.visual_mode
 

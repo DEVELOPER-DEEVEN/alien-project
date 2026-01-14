@@ -112,7 +112,7 @@ class MockProcessor:
 async def test_network_session_with_proper_mocks():
     """Test NetworkSession using proper mocking techniques."""
 
-    logger.info("🚀 Starting Network Session Test with Proper Mocking")
+    logger.info("[START] Starting Network Session Test with Proper Mocking")
 
     # Set up mocks
     config = setup_minimal_config()
@@ -152,12 +152,12 @@ async def test_network_session_with_proper_mocks():
                     initial_request="Please help me analyze the sales data and provide insights",
                 )
 
-                logger.info("✅ Network Session created successfully")
-                logger.info(f"📋 Session ID: {session._id}")
-                logger.info(f"🎯 Task: {session.task}")
-                logger.info(f"🤖 Agent Type: {type(session.agent).__name__}")
+                logger.info("[OK] Network Session created successfully")
+                logger.info(f"[TASK] Session ID: {session._id}")
+                logger.info(f" Task: {session.task}")
+                logger.info(f" Agent Type: {type(session.agent).__name__}")
                 logger.info(
-                    f"🎪 Orchestrator Type: {type(session.orchestrator).__name__}"
+                    f" Orchestrator Type: {type(session.orchestrator).__name__}"
                 )
 
                 # Test session properties
@@ -167,7 +167,7 @@ async def test_network_session_with_proper_mocks():
                 ), "Orchestrator should be initialized"
                 assert len(session._observers) > 0, "Observers should be set up"
 
-                logger.info("✅ Session properties validated")
+                logger.info("[OK] Session properties validated")
 
                 # Test event system
                 event_bus = get_event_bus()
@@ -178,49 +178,49 @@ async def test_network_session_with_proper_mocks():
                 assert first_round is not None, "First round should be created"
                 assert first_round.id == 0, "First round should have ID 0"
 
-                logger.info("✅ Round creation validated")
+                logger.info("[OK] Round creation validated")
 
                 # Test session running (with timeout to prevent hanging)
-                logger.info("🔄 Running session...")
+                logger.info("[CONTINUE] Running session...")
 
                 try:
                     # Run with timeout
                     await asyncio.wait_for(session.run(), timeout=10.0)
-                    logger.info("✅ Session completed successfully")
+                    logger.info("[OK] Session completed successfully")
                 except asyncio.TimeoutError:
-                    logger.warning("⚠️ Session run timed out (expected for mock)")
+                    logger.warning("️ Session run timed out (expected for mock)")
                     await session.force_finish("Test timeout")
                 except Exception as e:
-                    logger.error(f"❌ Session run failed: {e}")
+                    logger.error(f"[FAIL] Session run failed: {e}")
                     import traceback
 
                     traceback.print_exc()
 
                 # Test session results
                 results = session.session_results
-                logger.info(f"📊 Session Results: {results}")
+                logger.info(f"[STATUS] Session Results: {results}")
 
                 # Test agent status
-                logger.info(f"🎭 Agent Status: {session.agent.status}")
+                logger.info(f" Agent Status: {session.agent.status}")
 
                 # Test orion access
                 if session.current_orion:
                     logger.info(
-                        f"🌟 Current Orion: {session.current_orion.orion_id}"
+                        f" Current Orion: {session.current_orion.orion_id}"
                     )
                     logger.info(
-                        f"📈 Task Count: {session.current_orion.task_count}"
+                        f" Task Count: {session.current_orion.task_count}"
                     )
                     stats = session.current_orion.get_statistics()
-                    logger.info(f"📊 Statistics: {stats}")
+                    logger.info(f"[STATUS] Statistics: {stats}")
                 else:
-                    logger.info("🌟 No current orion (expected for this test)")
+                    logger.info(" No current orion (expected for this test)")
 
 
 async def test_agent_mocking_specifically():
     """Test OrionAgent with specific method mocking."""
 
-    logger.info("\n🔧 Testing OrionAgent with Method-Level Mocking")
+    logger.info("\n[CONFIG] Testing OrionAgent with Method-Level Mocking")
 
     from network.agents.orion_agent import OrionAgent
     from alien.module.context import Context, ContextNames
@@ -246,7 +246,7 @@ async def test_agent_mocking_specifically():
             assert agent.status == "START"
             assert agent.orchestrator == mock_orchestrator
 
-            logger.info("✅ Agent initialization validated")
+            logger.info("[OK] Agent initialization validated")
 
             # Test status updates
             agent.status = "CONTINUE"
@@ -255,7 +255,7 @@ async def test_agent_mocking_specifically():
             agent.status = "FINISH"
             assert agent.status == "FINISH"
 
-            logger.info("✅ Agent status management validated")
+            logger.info("[OK] Agent status management validated")
 
             # Test state management
             from network.agents.orion_agent_states import (
@@ -266,13 +266,13 @@ async def test_agent_mocking_specifically():
             agent.set_state(start_state)
 
             assert agent.state is not None
-            logger.info("✅ Agent state management validated")
+            logger.info("[OK] Agent state management validated")
 
 
 async def test_event_system_with_mocks():
     """Test event system integration with mocks."""
 
-    logger.info("\n📡 Testing Event System Integration")
+    logger.info("\n Testing Event System Integration")
 
     from network.core.events import get_event_bus, OrionEvent, EventType
 
@@ -285,7 +285,7 @@ async def test_event_system_with_mocks():
     class MockObserver:
         async def on_event(self, event):
             events_received.append(event)
-            logger.info(f"📨 Mock observer received event: {event.event_type}")
+            logger.info(f" Mock observer received event: {event.event_type}")
 
     observer = MockObserver()
     event_bus.subscribe(observer)
@@ -311,13 +311,13 @@ async def test_event_system_with_mocks():
     assert received_event.event_type == EventType.ORION_STARTED
     assert received_event.source_id == "test_agent"
 
-    logger.info("✅ Event system integration validated")
+    logger.info("[OK] Event system integration validated")
 
 
 async def main():
     """Main test function."""
 
-    logger.info("🧪 Network Session Proper Mocking Test Suite")
+    logger.info(" Network Session Proper Mocking Test Suite")
     logger.info("=" * 60)
 
     try:
@@ -331,14 +331,14 @@ async def main():
         await test_event_system_with_mocks()
 
         logger.info("\n" + "=" * 60)
-        logger.info("🎉 All tests completed successfully!")
-        logger.info("✅ NetworkSession works correctly with proper mocking")
-        logger.info("✅ OrionAgent handles mocking appropriately")
-        logger.info("✅ Event system functions properly")
-        logger.info("✅ Production code remains unchanged")
+        logger.info(" All tests completed successfully!")
+        logger.info("[OK] NetworkSession works correctly with proper mocking")
+        logger.info("[OK] OrionAgent handles mocking appropriately")
+        logger.info("[OK] Event system functions properly")
+        logger.info("[OK] Production code remains unchanged")
 
     except Exception as e:
-        logger.error(f"❌ Test failed with error: {e}")
+        logger.error(f"[FAIL] Test failed with error: {e}")
         import traceback
 
         traceback.print_exc()

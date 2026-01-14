@@ -21,7 +21,7 @@ class SimulatedOrionAgent:
 
     async def simulate_process_editing(self, before_orion, after_orion):
         """Simulate the process_editing method with event publishing."""
-        print(f"🔄 {self.name} processing orion changes...")
+        print(f"[CONTINUE] {self.name} processing orion changes...")
 
         self._current_orion = after_orion
 
@@ -45,14 +45,14 @@ class SimulatedOrionAgent:
             )
         )
 
-        print(f"✅ {self.name} published orion modified event")
+        print(f"[OK] {self.name} published orion modified event")
         return after_orion
 
 
 @pytest.mark.asyncio
 async def test_orion_agent_integration():
     """Integration test demonstrating full OrionAgent event flow."""
-    print("🧪 OrionAgent Event Publishing Integration Test\n")
+    print(" OrionAgent Event Publishing Integration Test\n")
 
     # Create DAG visualization observer
     dag_observer = DAGVisualizationObserver()
@@ -133,8 +133,8 @@ async def test_orion_agent_integration():
     await agent.simulate_process_editing(updated, final)
     await asyncio.sleep(0.1)
 
-    print("\n✅ All OrionAgent integration tests completed!")
-    print("🎉 Features successfully demonstrated:")
+    print("\n[OK] All OrionAgent integration tests completed!")
+    print(" Features successfully demonstrated:")
     print("   • OrionAgent event publishing")
     print("   • DAG change detection and visualization")
     print("   • Rich terminal beautification")

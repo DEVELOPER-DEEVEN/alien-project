@@ -4,7 +4,7 @@ The Orion Agent's finite-state machine provides deterministic lifecycle manageme
 
 For an overview of the Orion Agent architecture, see [Overview](overview.md).
 
-## 📐 State Machine Overview
+##  State Machine Overview
 
 ![Agent State Transitions](../../img/agent_state.png)
 **Figure:** Lifecycle state transitions of the Orion Agent showing the 4-state FSM.
@@ -28,7 +28,7 @@ stateDiagram-v2
     FAIL --> [*]: Abort
 ```
 
-## 🎯 State Definitions
+##  State Definitions
 
 ### State Enumeration
 
@@ -48,7 +48,7 @@ class OrionAgentStatus(Enum):
 | **FINISH** | Terminal | Successful termination | All tasks completed, no edits needed |
 | **FAIL** | Terminal | Error termination | Irrecoverable errors, validation failures |
 
-## 🚀 START State
+## [START] START State
 
 ### Purpose
 
@@ -161,7 +161,7 @@ except Exception as e:
     agent.status = OrionAgentStatus.FAIL.value
 ```
 
-## 🔄 CONTINUE State
+## [CONTINUE] CONTINUE State
 
 ### Purpose
 
@@ -320,7 +320,7 @@ else:
     agent.status = OrionAgentStatus.CONTINUE.value  # Keep monitoring
 ```
 
-## ✅ FINISH State
+## [OK] FINISH State
 
 ### Purpose
 
@@ -383,7 +383,7 @@ The FINISH state ensures graceful shutdown with:
 - Memory logs persisted
 - Success metrics recorded
 
-## ❌ FAIL State
+## [FAIL] FAIL State
 
 ### Purpose
 
@@ -436,16 +436,16 @@ except Exception as e:
 
 > **Important:** Both FINISH and FAIL states are **terminal** — they have no outgoing transitions. This ensures the agent cannot accidentally resume execution after completion or failure.
 
-## 🔀 State Transitions
+##  State Transitions
 
 ### Transition Matrix
 
 | From ↓ / To → | START | CONTINUE | FINISH | FAIL |
 |---------------|-------|----------|--------|------|
-| **START** | ❌ | ✅ (success) | ❌ | ✅ (error) |
-| **CONTINUE** | ✅ (restart) | ✅ (loop) | ✅ (done) | ✅ (error) |
-| **FINISH** | ❌ | ❌ | ✅ (stay) | ❌ |
-| **FAIL** | ❌ | ❌ | ❌ | ✅ (stay) |
+| **START** | [FAIL] | [OK] (success) | [FAIL] | [OK] (error) |
+| **CONTINUE** | [OK] (restart) | [OK] (loop) | [OK] (done) | [OK] (error) |
+| **FINISH** | [FAIL] | [FAIL] | [OK] (stay) | [FAIL] |
+| **FAIL** | [FAIL] | [FAIL] | [FAIL] | [OK] (stay) |
 
 ### Transition Rules
 
@@ -483,7 +483,7 @@ class StartOrionAgentState(OrionAgentState):
         return OrionAgentStatus.START.value
 ```
 
-## 📊 State Metrics
+## [STATUS] State Metrics
 
 ### Execution Timeline
 
@@ -508,7 +508,7 @@ gantt
 | **FINISH** | < 1 second | Logging and cleanup |
 | **FAIL** | < 1 second | Error logging |
 
-## 🛡️ Error Handling
+## ️ Error Handling
 
 ### Exception Hierarchy
 
@@ -540,7 +540,7 @@ except Exception as e:
 | **Task Execution Timeout** | CONTINUE | Mark task failed, continue orion |
 | **Critical System Error** | Any | Transition to FAIL immediately |
 
-## 🔍 State Inspection
+##  State Inspection
 
 ### Agent State Query
 
@@ -571,7 +571,7 @@ The agent maintains state transition history in memory logs:
 }
 ```
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 **State Machine Design:**
 
@@ -596,7 +596,7 @@ agent.logger.info(
 )
 ```
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 - **[Overview](overview.md)** — Orion Agent architecture
 - **[Prompter Details](strategy.md)** — Prompter implementation
@@ -604,7 +604,7 @@ agent.logger.info(
 - **[Task Orion](../orion/overview.md)** — DAG model
 - **[Orion Orchestrator](../orion_orchestrator/overview.md)** — Task execution engine
 
-## 📋 State Interface Reference
+## [TASK] State Interface Reference
 
 ### AgentState Base Class
 

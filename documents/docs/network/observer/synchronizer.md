@@ -350,7 +350,7 @@ async def monitor_synchronization(synchronizer):
             pending = synchronizer.get_pending_task_ids()
             print(f"⏳ Waiting for {count} modifications: {pending}")
         else:
-            print("✅ No pending modifications")
+            print("[OK] No pending modifications")
         
         # Check statistics
         stats = synchronizer.get_statistics()
@@ -368,7 +368,7 @@ synchronizer.set_modification_timeout(300.0)  # 5 minutes
 success = await synchronizer.wait_for_pending_modifications(timeout=120.0)
 
 if not success:
-    print("⚠️ Modifications timed out, proceeding anyway")
+    print("️ Modifications timed out, proceeding anyway")
     # Handle timeout scenario
     synchronizer.clear_pending_modifications()  # Emergency cleanup
 ```
@@ -392,7 +392,7 @@ async def _auto_complete_on_timeout(
     if not future.done():
         self._stats["timeout_modifications"] += 1
         self.logger.warning(
-            f"⚠️ Modification for task '{task_id}' timed out after "
+            f"️ Modification for task '{task_id}' timed out after "
             f"{self._modification_timeout}s. Auto-completing to prevent deadlock."
         )
         future.set_result(False)
@@ -494,10 +494,10 @@ synchronizer.set_modification_timeout(1800.0)  # 30 minutes
 The orchestrator needs to call `wait_for_pending_modifications()`:
 
 ```python
-# ✅ Good: Orchestrator can access synchronizer
+# [OK] Good: Orchestrator can access synchronizer
 orchestrator.set_modification_synchronizer(synchronizer)
 
-# ❌ Bad: No way for orchestrator to wait
+# [FAIL] Bad: No way for orchestrator to wait
 # synchronizer exists but orchestrator doesn't use it
 ```
 

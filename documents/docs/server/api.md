@@ -2,7 +2,7 @@
 
 The ALIEN Server provides a RESTful HTTP API for external systems to dispatch tasks, monitor client connections, retrieve results, and perform health checks. All endpoints are prefixed with `/api`.
 
-## 🎯 Overview
+##  Overview
 
 ```mermaid
 graph LR
@@ -64,7 +64,7 @@ graph LR
 
 ---
 
-## 📡 Endpoints
+##  Endpoints
 
 ### POST /api/dispatch
 
@@ -86,9 +86,9 @@ Send a task to a connected device without establishing a WebSocket connection. I
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `client_id` | `string` | ✅ **Yes** | - | Target client identifier (device or orion) |
-| `request` | `string` | ✅ **Yes** | - | Natural language task description (user request) |
-| `task_name` | `string` | ⚠️ No | Auto-generated UUID | Human-readable task identifier |
+| `client_id` | `string` | [OK] **Yes** | - | Target client identifier (device or orion) |
+| `request` | `string` | [OK] **Yes** | - | Natural language task description (user request) |
+| `task_name` | `string` | ️ No | Auto-generated UUID | Human-readable task identifier |
 
 **Important:** The correct parameter names (verified from source code) are:
 - `client_id` (not `device_id`)
@@ -310,10 +310,10 @@ clients = response.json()["online_clients"]
 target_device = "device_windows_001"
     
 if target_device in clients:
-    print(f"✅ {target_device} is online")
+    print(f"[OK] {target_device} is online")
     # Dispatch task
 else:
-    print(f"❌ {target_device} is offline")
+    print(f"[FAIL] {target_device} is offline")
 ```
 
 **Filter by Client Type:**
@@ -468,7 +468,7 @@ Results are stored in memory and may be cleared after:
             data = response.json()
             
             if data["status"] == "done":
-                print(f"✅ Task completed in {elapsed:.1f}s")
+                print(f"[OK] Task completed in {elapsed:.1f}s")
                 return data["result"]
             
             print(f"⏳ Waiting for task... ({elapsed:.0f}s)")
@@ -479,7 +479,7 @@ Results are stored in memory and may be cleared after:
         result = wait_for_result("github_navigation_task", timeout=60)
         print("Result:", result)
     except TimeoutError as e:
-        print(f"❌ {e}")
+        print(f"[FAIL] {e}")
     ```
 
 ---
@@ -577,19 +577,19 @@ def monitor_server_health(url="http://localhost:5000/api/health"):
                 client_count = len(data.get("online_clients", []))
                     
                 print(
-                    f"✅ Server healthy - {client_count} clients connected"
+                    f"[OK] Server healthy - {client_count} clients connected"
                 )
                 consecutive_failures = 0
             else:
                 consecutive_failures += 1
                 print(
-                    f"⚠️  Server returned {response.status_code} "
+                    f"️  Server returned {response.status_code} "
                     f"(failures: {consecutive_failures})"
                 )
         except requests.RequestException as e:
             consecutive_failures += 1
             print(
-                f"❌ Server unreachable: {e} "
+                f"[FAIL] Server unreachable: {e} "
                 f"(failures: {consecutive_failures})"
             )
             
@@ -614,7 +614,7 @@ upstream alien_backend {
 
 ---
 
-## 💻 Usage Examples
+##  Usage Examples
 
 ### Python (requests)
 
@@ -633,10 +633,10 @@ upstream alien_backend {
     target_client = "device_windows_001"
     
     if target_client not in clients:
-        print(f"❌ {target_client} is not online")
+        print(f"[FAIL] {target_client} is not online")
         exit(1)
     
-    print(f"✅ {target_client} is online")
+    print(f"[OK] {target_client} is online")
     
     # Step 2: Dispatch task
     dispatch_response = requests.post(
@@ -649,7 +649,7 @@ upstream alien_backend {
     )
     
     if dispatch_response.status_code != 200:
-        print(f"❌ Dispatch failed: {dispatch_response.json()}")
+        print(f"[FAIL] Dispatch failed: {dispatch_response.json()}")
         exit(1)
     
     dispatch_data = dispatch_response.json()
@@ -672,7 +672,7 @@ upstream alien_backend {
         result_data = result_response.json()
         
         if result_data["status"] == "done":
-            print(f"✅ Task completed!")
+            print(f"[OK] Task completed!")
             print(f"Result: {result_data['result']}")
             break
         
@@ -680,7 +680,7 @@ upstream alien_backend {
         waited += poll_interval
         print(f"⏳ Still waiting... ({waited}s)")
     else:
-        print(f"⚠️ Timeout: Task did not complete in {max_wait}s")
+        print(f"️ Timeout: Task did not complete in {max_wait}s")
     ```
 
 ### cURL
@@ -754,7 +754,7 @@ upstream alien_backend {
       const BASE_URL = 'http://localhost:5000';
       
       // Step 1: Dispatch
-      console.log(`📤 Dispatching task to ${clientId}...`);
+      console.log(` Dispatching task to ${clientId}...`);
       
       const dispatchResponse = await fetch(`${BASE_URL}/api/dispatch`, {
         method: 'POST',
@@ -772,7 +772,7 @@ upstream alien_backend {
       }
       
       const {session_id, task_name} = await dispatchResponse.json();
-      console.log(`✅ Dispatched: ${task_name} (session: ${session_id})`);
+      console.log(`[OK] Dispatched: ${task_name} (session: ${session_id})`);
       
       // Step 2: Poll for result
       console.log('⏳ Waiting for result...');
@@ -794,7 +794,7 @@ upstream alien_backend {
         const resultData = await resultResponse.json();
         
         if (resultData.status === 'done') {
-          console.log('✅ Task completed!');
+          console.log('[OK] Task completed!');
           return resultData.result;
         }
         
@@ -818,7 +818,7 @@ upstream alien_backend {
 
 ---
 
-## ⚠️ Error Handling
+## ️ Error Handling
 
 ### Standard Error Format
 
@@ -911,14 +911,14 @@ All API errors follow FastAPI's standard format:
     )
     
     if result:
-        print(f"✅ Dispatched successfully: {result['session_id']}")
+        print(f"[OK] Dispatched successfully: {result['session_id']}")
     else:
-        print("❌ Dispatch failed, check errors above")
+        print("[FAIL] Dispatch failed, check errors above")
     ```
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 ### 1. Validate Client Availability
 
@@ -1138,7 +1138,7 @@ for task in tasks:
 
 ---
 
-## 🔗 Integration Points
+## [DEP] Integration Points
 
 ### API Router Architecture
 
@@ -1240,7 +1240,7 @@ await task_protocol.send_task_assignment(
 
 ---
 
-## 📚 Complete API Reference
+## [PLAN] Complete API Reference
 
 ### Endpoints Summary
 
@@ -1317,7 +1317,7 @@ The current API implementation does **not** include authentication. For producti
 
 ---
 
-## 🎓 Summary
+##  Summary
 
 The HTTP API provides a **stateless, RESTful interface** for external systems to interact with the ALIEN server without maintaining WebSocket connections.
 

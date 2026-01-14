@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** HTTP (remote Linux server)  
 **Default Port:** 8010  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -29,7 +29,7 @@ Execute a shell command on Linux and return stdout/stderr with exit code.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `command` | `str` | ✅ Yes | - | Shell command to execute (valid bash/sh command) |
+| `command` | `str` | [OK] Yes | - | Shell command to execute (valid bash/sh command) |
 | `timeout` | `int` | No | `30` | Maximum execution time in seconds (default: 30, max: any) |
 | `cwd` | `str` | No | `None` | Working directory path (absolute path recommended) |
 
@@ -267,7 +267,7 @@ sudo systemctl status alien-bash-mcp
 ### 1. Use Absolute Paths
 
 ```python
-# ✅ Good: Absolute paths
+# [OK] Good: Absolute paths
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::execute_command",
@@ -278,7 +278,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Relative paths may fail
+# [FAIL] Bad: Relative paths may fail
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::execute_command",
@@ -426,12 +426,12 @@ else:
 | Feature | CommandLineExecutor | BashExecutor |
 |---------|---------------------|--------------|
 | **Platform** | Windows/Cross-platform | Linux only |
-| **Output Capture** | ❌ No | ✅ Yes (stdout/stderr) |
-| **Exit Code** | ❌ No | ✅ Yes |
-| **Timeout** | Fixed 5s | ✅ Configurable |
-| **Working Directory** | ❌ No | ✅ Yes |
+| **Output Capture** | [FAIL] No | [OK] Yes (stdout/stderr) |
+| **Exit Code** | [FAIL] No | [OK] Yes |
+| **Timeout** | Fixed 5s | [OK] Configurable |
+| **Working Directory** | [FAIL] No | [OK] Yes |
 | **Deployment** | Local | HTTP (remote) |
-| **Security** | ⚠️ No blocklist | ✅ Dangerous commands blocked |
+| **Security** | ️ No blocklist | [OK] Dangerous commands blocked |
 
 ## Security Considerations
 

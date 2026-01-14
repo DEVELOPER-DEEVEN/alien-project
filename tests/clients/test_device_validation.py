@@ -25,7 +25,7 @@ async def test_device_validation():
     """测试设备验证机制"""
 
     print("=" * 80)
-    print("🔍 测试 Orion Client 设备验证机制")
+    print(" 测试 Orion Client 设备验证机制")
     print("=" * 80)
 
     # 测试1: 尝试连接到不存在的设备
@@ -49,18 +49,18 @@ async def test_device_validation():
         # 尝试创建并初始化客户端
         orion_client = OrionClient(invalid_config)
 
-        print("🚀 正在尝试初始化并连接到不存在的设备...")
+        print("[START] 正在尝试初始化并连接到不存在的设备...")
 
         try:
             await orion_client.initialize()
-            print("❌ 意外成功：客户端应该无法连接到不存在的设备")
+            print("[FAIL] 意外成功：客户端应该无法连接到不存在的设备")
         except Exception as e:
-            print(f"✅ 预期失败：无法连接到不存在的设备 - {e}")
+            print(f"[OK] 预期失败：无法连接到不存在的设备 - {e}")
 
         await orion_client.shutdown()
 
     except Exception as e:
-        print(f"✅ 测试按预期失败：{e}")
+        print(f"[OK] 测试按预期失败：{e}")
 
     # 测试2: 先连接一个真实设备，再测试 orion
     print("\n[2] 测试完整的设备验证流程...")
@@ -69,38 +69,38 @@ async def test_device_validation():
         # 加载正确的配置
         valid_config = OrionConfig.from_yaml("config/orion_sample.yaml")
 
-        print(f"📋 加载配置成功，设备数量: {len(valid_config.devices)}")
+        print(f"[TASK] 加载配置成功，设备数量: {len(valid_config.devices)}")
         for device_id in valid_config.devices:
             print(f"   设备: {device_id}")
 
         # 创建客户端
         orion_client = OrionClient(valid_config)
 
-        print("🚀 正在初始化 orion client...")
+        print("[START] 正在初始化 orion client...")
         await orion_client.initialize()
 
         # 检查连接状态
         connected_devices = orion_client.get_connected_devices()
-        print(f"✅ 成功连接的设备: {connected_devices}")
+        print(f"[OK] 成功连接的设备: {connected_devices}")
 
         # 测试连接稳定性
         print("⏳ 等待 5 秒测试连接稳定性...")
         await asyncio.sleep(5)
 
         final_devices = orion_client.get_connected_devices()
-        print(f"📊 最终连接状态: {final_devices}")
+        print(f"[STATUS] 最终连接状态: {final_devices}")
 
         await orion_client.shutdown()
-        print("✅ 客户端已正常关闭")
+        print("[OK] 客户端已正常关闭")
 
     except Exception as e:
-        print(f"❌ 有效配置测试失败: {e}")
+        print(f"[FAIL] 有效配置测试失败: {e}")
         import traceback
 
         traceback.print_exc()
 
     print("\n" + "=" * 80)
-    print("🎯 设备验证机制测试完成")
+    print(" 设备验证机制测试完成")
     print("   请检查服务器日志确认验证逻辑是否正确执行")
     print("=" * 80)
 

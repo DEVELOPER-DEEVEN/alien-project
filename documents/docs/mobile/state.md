@@ -2,7 +2,7 @@
 
 MobileAgent uses a **3-state finite state machine (FSM)** to manage Android device task execution flow. The minimal state set captures essential execution progression while maintaining simplicity and predictability. States transition based on LLM decisions and action execution results.
 
-> **📖 Related Documentation:**
+> **[LANG] Related Documentation:**
 > 
 > - [Mobile Agent Overview](overview.md) - Architecture and core responsibilities
 > - [Processing Strategy](strategy.md) - 4-phase pipeline execution in CONTINUE state
@@ -104,7 +104,7 @@ class ContinueMobileAgentState(MobileAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Active |
-| **Processor Executed** | ✓ Yes (4 phases) |
+| **Processor Executed** |  Yes (4 phases) |
 | **Round Ends** | No |
 | **Subtask Ends** | No |
 | **Duration** | Single round |
@@ -169,7 +169,7 @@ class FinishMobileAgentState(MobileAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Subtask Ends** | Yes |
 | **Duration** | Permanent |
@@ -218,7 +218,7 @@ class FailMobileAgentState(MobileAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal (Error) |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Subtask Ends** | Yes |
 | **Duration** | Transitions to FINISH |
@@ -342,10 +342,10 @@ The 3-state design ensures deterministic, traceable execution:
 
 | Agent | States | Complexity | Visual | Use Case |
 |-------|--------|------------|--------|----------|
-| **MobileAgent** | 3 | Minimal | ✓ Screenshots | Android mobile automation |
-| **LinuxAgent** | 3 | Minimal | ✗ Text-only | Linux CLI task execution |
-| **AppAgent** | 6 | Moderate | ✓ Screenshots | Windows app automation |
-| **HostAgent** | 7 | High | ✓ Screenshots | Desktop orchestration |
+| **MobileAgent** | 3 | Minimal |  Screenshots | Android mobile automation |
+| **LinuxAgent** | 3 | Minimal |  Text-only | Linux CLI task execution |
+| **AppAgent** | 6 | Moderate |  Screenshots | Windows app automation |
+| **HostAgent** | 7 | High |  Screenshots | Desktop orchestration |
 
 MobileAgent's minimal 3-state design reflects its focused scope: execute mobile UI actions to fulfill user requests. The simplified state machine eliminates unnecessary complexity while maintaining robust error handling and completion detection, similar to LinuxAgent but with visual context support.
 

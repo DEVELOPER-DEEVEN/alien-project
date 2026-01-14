@@ -576,7 +576,7 @@ results = await orchestrator.orchestrate_orion(
 class ProgressTracker(IEventObserver):
     async def on_event(self, event: Event):
         if event.event_type == EventType.TASK_COMPLETED:
-            print(f"✓ Task {event.task_id} completed")
+            print(f" Task {event.task_id} completed")
 
 event_bus.subscribe(ProgressTracker())
 

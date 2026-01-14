@@ -68,7 +68,7 @@ graph TB
 
 ---
 
-## 🏗️ Computer Manager Architecture
+## ️ Computer Manager Architecture
 
 ### Computer Instance Management
 
@@ -110,7 +110,7 @@ Data collection tools are designed for non-invasive information gathering, while
 
 ## Computer Manager Architecture
 
-## 🖥️ Computer (Instance) Architecture
+## ️ Computer (Instance) Architecture
 
 ### Internal Structure
 
@@ -262,7 +262,7 @@ action_servers:
 
 ---
 
-## 🔀 Command Routing
+##  Command Routing
 
 ### CommandRouter
 
@@ -315,7 +315,7 @@ graph TD
 
 ---
 
-## 🔧 Tool Execution
+## [CONFIG] Tool Execution
 
 ### Tool Execution Pipeline
 
@@ -396,7 +396,7 @@ result = await asyncio.wait_for(
 
 ---
 
-## 🛠️ Tool Registry
+## ️ Tool Registry
 
 ### Tool Registration
 
@@ -498,7 +498,7 @@ for attr in dir(self):
 
 ---
 
-## 🔄 Lifecycle Management
+## [CONTINUE] Lifecycle Management
 
 ### Reset
 
@@ -550,10 +550,10 @@ action_tools = await computer.list_tools(tool_type="action")
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
-👉 [Device Info Provider](./device_info.md) - System profiling  
-👉 [MCP Integration](./mcp_integration.md) - MCP server details  
-👉 [ALIEN Client](./alien_client.md) - Execution orchestration  
-👉 [Quick Start](./quick_start.md) - Get started with client  
-👉 [Configuration](../configuration/system/overview.md) - ALIEN configuration
+ [Device Info Provider](./device_info.md) - System profiling  
+ [MCP Integration](./mcp_integration.md) - MCP server details  
+ [ALIEN Client](./alien_client.md) - Execution orchestration  
+ [Quick Start](./quick_start.md) - Get started with client  
+ [Configuration](../configuration/system/overview.md) - ALIEN configuration

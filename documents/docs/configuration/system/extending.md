@@ -225,24 +225,24 @@ For production features requiring type safety and validation, define typed schem
 
 **DO - Recommended Practices**
 
-- ✅ **Group related settings** in dedicated files
-- ✅ **Use typed schemas** for production features
-- ✅ **Provide sensible defaults** for all optional fields
-- ✅ **Add validation** in `__post_init__` methods
-- ✅ **Document all fields** with docstrings
-- ✅ **Use environment overrides** for deployment-specific settings
-- ✅ **Version your config schemas** when making breaking changes
-- ✅ **Test configuration loading** in CI/CD pipelines
+- [OK] **Group related settings** in dedicated files
+- [OK] **Use typed schemas** for production features
+- [OK] **Provide sensible defaults** for all optional fields
+- [OK] **Add validation** in `__post_init__` methods
+- [OK] **Document all fields** with docstrings
+- [OK] **Use environment overrides** for deployment-specific settings
+- [OK] **Version your config schemas** when making breaking changes
+- [OK] **Test configuration loading** in CI/CD pipelines
 
 **DON'T - Anti-Patterns**
 
-- ❌ **Don't hardcode secrets** - use environment variables
-- ❌ **Don't duplicate settings** across multiple files
-- ❌ **Don't use dynamic field names** - breaks type safety
-- ❌ **Don't skip validation** - catch errors early
-- ❌ **Don't mix concerns** - keep configs focused
-- ❌ **Don't ignore warnings** from config loader
-- ❌ **Don't commit sensitive data** - use .env files
+- [FAIL] **Don't hardcode secrets** - use environment variables
+- [FAIL] **Don't duplicate settings** across multiple files
+- [FAIL] **Don't use dynamic field names** - breaks type safety
+- [FAIL] **Don't skip validation** - catch errors early
+- [FAIL] **Don't mix concerns** - keep configs focused
+- [FAIL] **Don't ignore warnings** from config loader
+- [FAIL] **Don't commit sensitive data** - use .env files
 
 ---
 

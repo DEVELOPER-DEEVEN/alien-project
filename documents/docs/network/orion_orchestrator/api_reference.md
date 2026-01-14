@@ -689,7 +689,7 @@ def get_statistics(self) -> Dict[str, int]
 
 #### clear_pending_modifications()
 
-⚠️ **Emergency use only**: Forcefully clear all pending modifications.
+️ **Emergency use only**: Forcefully clear all pending modifications.
 
 ```python
 def clear_pending_modifications(self) -> None
@@ -756,9 +756,9 @@ from network.core.events import IEventObserver, Event, EventType
 class ProgressTracker(IEventObserver):
     async def on_event(self, event: Event):
         if event.event_type == EventType.TASK_COMPLETED:
-            print(f"✓ {event.task_id} completed")
+            print(f" {event.task_id} completed")
         elif event.event_type == EventType.TASK_FAILED:
-            print(f"✗ {event.task_id} failed")
+            print(f" {event.task_id} failed")
 
 # Subscribe
 tracker = ProgressTracker()

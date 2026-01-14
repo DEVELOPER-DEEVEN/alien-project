@@ -184,22 +184,22 @@ AppAgent supports multiple control detection backends for comprehensive UI under
 **UIA (UI Automation):**  
 Native Windows UI Automation API for standard controls
 
-- ✅ Fast and accurate
-- ✅ Works with most Windows applications
-- ❌ May miss custom controls
+- [OK] Fast and accurate
+- [OK] Works with most Windows applications
+- [FAIL] May miss custom controls
 
 **OmniParser (Visual Detection):**  
 Vision-based grounding model for visual elements
 
-- ✅ Detects icons, images, custom controls
-- ✅ Works with web content
-- ❌ Requires external service
+- [OK] Detects icons, images, custom controls
+- [OK] Works with web content
+- [FAIL] Requires external service
 
 **Hybrid (UIA + OmniParser):**  
 Best of both worlds - maximum coverage
 
-- ✅ Native controls + visual elements
-- ✅ Comprehensive UI understanding
+- [OK] Native controls + visual elements
+- [OK] Comprehensive UI understanding
 
 **Control Detection Details**: See [Control Detection Overview](../core_features/control_detection/overview.md).
 
@@ -278,13 +278,13 @@ Best of both worlds - maximum coverage
 
 **AppAgent Key Characteristics:**
 
-✅ **Application-Specialized Worker**: Dedicated to single Windows application  
-✅ **ReAct Control Loop**: Iterative observe → think → act execution  
-✅ **Hybrid Execution**: GUI automation + API calls via MCP commands  
-✅ **7-State FSM**: Robust state management for execution control  
-✅ **4-Phase Pipeline**: Structured data collection → reasoning → action → memory  
-✅ **Knowledge-Enhanced**: RAG from docs, demos, and search  
-✅ **Orchestrated by HostAgent**: Child agent in hierarchical architecture
+[OK] **Application-Specialized Worker**: Dedicated to single Windows application  
+[OK] **ReAct Control Loop**: Iterative observe → think → act execution  
+[OK] **Hybrid Execution**: GUI automation + API calls via MCP commands  
+[OK] **7-State FSM**: Robust state management for execution control  
+[OK] **4-Phase Pipeline**: Structured data collection → reasoning → action → memory  
+[OK] **Knowledge-Enhanced**: RAG from docs, demos, and search  
+[OK] **Orchestrated by HostAgent**: Child agent in hierarchical architecture
 
 **Next Steps:**
 

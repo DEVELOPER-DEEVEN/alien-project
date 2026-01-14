@@ -1,8 +1,8 @@
-# 🔌 WebSocket Client
+#  WebSocket Client
 
 The **WebSocket Client** implements the **AIP (Agent Interaction Protocol)** for reliable, bidirectional communication between device clients and the Agent Server. It provides the low-level communication infrastructure for ALIEN device clients.
 
-## 📋 Overview
+## [TASK] Overview
 
 The WebSocket client handles all network communication aspects, allowing the ALIEN Client to focus on task execution.
 
@@ -45,7 +45,7 @@ graph LR
     style Server fill:#ffe0b2
 ```
 
-## 🏗️ Architecture
+## ️ Architecture
 
 The WebSocket client is organized into distinct layers for connection management, protocol handling, and message routing.
 
@@ -111,7 +111,7 @@ graph TB
 
 ---
 
-## 🔄 Connection Lifecycle
+## [CONTINUE] Connection Lifecycle
 
 ### Initialization & Connection Flow
 
@@ -225,7 +225,7 @@ async with websockets.connect(
 
 **Note:** The 180-second `ping_timeout` ensures the connection stays alive during lengthy tool executions (up to 100 minutes per tool).
 
-## 📝 Registration Flow
+##  Registration Flow
 
 ### Device Information Collection
 
@@ -340,9 +340,9 @@ async def register_client(self):
     
     if success:
         self.connected_event.set()  # Signal successful registration
-        self.logger.info(f"[WS] \[AIP] ✅ Successfully registered as {self.alien_client.client_id}")
+        self.logger.info(f"[WS] \[AIP] [OK] Successfully registered as {self.alien_client.client_id}")
     else:
-        self.logger.error(f"[WS] \[AIP] ❌ Failed to register as {self.alien_client.client_id}")
+        self.logger.error(f"[WS] \[AIP] [FAIL] Failed to register as {self.alien_client.client_id}")
         raise RuntimeError(f"Registration failed for {self.alien_client.client_id}")
 ```
 
@@ -353,7 +353,7 @@ async def register_client(self):
 ```log
 INFO - [WS] \[AIP] Collected device info: platform=windows, cpu=8, memory=16.0GB
 INFO - [WS] \[AIP] Attempting to register as device_windows_001
-INFO - [WS] \[AIP] ✅ Successfully registered as device_windows_001
+INFO - [WS] \[AIP] [OK] Successfully registered as device_windows_001
 ```
 
 - `connected_event` is set (allows task requests)
@@ -362,7 +362,7 @@ INFO - [WS] \[AIP] ✅ Successfully registered as device_windows_001
 **Failure Scenario:**
 
 ```log
-ERROR - [WS] \[AIP] ❌ Failed to register as device_windows_001
+ERROR - [WS] \[AIP] [FAIL] Failed to register as device_windows_001
 RuntimeError: Registration failed for device_windows_001
 ```
 
@@ -380,7 +380,7 @@ RuntimeError: Registration failed for device_windows_001
 
 ---
 
-## 💓 Heartbeat Mechanism
+##  Heartbeat Mechanism
 
 Heartbeats prove the client is still alive and responsive, allowing the server to detect disconnected clients quickly.
 
@@ -390,7 +390,7 @@ Heartbeats prove the client is still alive and responsive, allowing the server t
 
 | Parameter | Value | Configurable |
 |-----------|-------|--------------|
-| **Interval** | 30 seconds | ✅ Yes (function parameter) |
+| **Interval** | 30 seconds | [OK] Yes (function parameter) |
 | **Protocol** | AIP HeartbeatProtocol | No |
 | **Error Handling** | Break loop on failure | No |
 
@@ -475,7 +475,7 @@ stateDiagram-v2
 
 ---
 
-## 📨 Message Handling
+##  Message Handling
 
 ### Message Router
 
@@ -540,7 +540,7 @@ sequenceDiagram
     
     alt Current Task Running
         WSC->>WSC: Check current_task.done()
-        WSC->>Server: ⚠️ Ignore (log warning)
+        WSC->>Server: ️ Ignore (log warning)
     else No Task Running
         WSC->>Task: Create task_loop() coroutine
         Task->>UFC: Reset session state
@@ -669,7 +669,7 @@ async def handle_task_end(self, server_response: ServerMessage):
 
 ---
 
-## ⚠️ Error Handling
+## ️ Error Handling
 
 ### Connection Error Recovery
 
@@ -773,7 +773,7 @@ If device info collection fails, registration still proceeds with minimal metada
 
 ---
 
-## 🔌 AIP Protocol Integration
+##  AIP Protocol Integration
 
 The WebSocket client uses three specialized AIP protocols for different communication patterns.
 
@@ -862,7 +862,7 @@ See [AIP Task Execution Protocol](../aip/protocols.md#task-execution-protocol) f
 
 ---
 
-## 🔍 Connection State Management
+##  Connection State Management
 
 ### State Checking
 
@@ -909,10 +909,10 @@ await ws_client.start_task("Open Notepad", "task_notepad")
 |-------|--------------|---------|
 | Initial | Not set | Client not connected |
 | Connecting | Not set | WebSocket connecting, registering |
-| Registered | **Set** | ✅ Ready to send/receive messages |
+| Registered | **Set** | [OK] Ready to send/receive messages |
 | Disconnected | Cleared | Connection lost, will retry |
 
-## ✅ Best Practices
+## [OK] Best Practices
 
 ### Development Best Practices
 
@@ -970,10 +970,10 @@ Log heartbeat success/failure for alerting:
 # In heartbeat_loop (add custom monitoring):
 try:
     await self.heartbeat_protocol.send_heartbeat(...)
-    self.logger.debug("[WS] ✅ Heartbeat sent successfully")
+    self.logger.debug("[WS] [OK] Heartbeat sent successfully")
     # Update metrics: heartbeat_success_count++
 except Exception as e:
-    self.logger.error(f"[WS] ❌ Heartbeat failed: {e}")
+    self.logger.error(f"[WS] [FAIL] Heartbeat failed: {e}")
     # Trigger alert: connection_health_alert()
 ```
 
@@ -1030,7 +1030,7 @@ async with self.alien_client.task_lock:
 
 ---
 
-## 🔗 Integration Points
+## [DEP] Integration Points
 
 ### ALIEN Client Integration
 
@@ -1090,7 +1090,7 @@ self.transport = WebSocketTransport(ws)
 
 See [AIP Transport Layer](../aip/transport.md) for transport details.
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 **Continue Learning**
 

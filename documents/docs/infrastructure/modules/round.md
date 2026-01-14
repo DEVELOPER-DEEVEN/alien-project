@@ -581,7 +581,7 @@ def print_cost(self) -> None:
     if isinstance(total_cost, float):
         formatted_cost = "${:.2f}".format(total_cost)
         console.print(
-            f"💰 Request total cost for current round is {formatted_cost}",
+            f" Request total cost for current round is {formatted_cost}",
             style="yellow",
         )
 ```
@@ -589,7 +589,7 @@ def print_cost(self) -> None:
 **Output Example:**
 
 ```
-💰 Request total cost for current round is $0.42
+ Request total cost for current round is $0.42
 ```
 
 **Cost Components:**
@@ -663,22 +663,22 @@ system:
 ### Efficient Round Execution
 
 !!!tip "Performance Tips"
-    - ✅ Keep agent prompts concise
-    - ✅ Use appropriate timeouts for commands
-    - ✅ Disable full desktop screenshots unless needed
-    - ✅ Capture UI trees only for debugging
-    - ❌ Don't set SLEEP_TIME too high
-    - ❌ Don't enable all logging in production
+    - [OK] Keep agent prompts concise
+    - [OK] Use appropriate timeouts for commands
+    - [OK] Disable full desktop screenshots unless needed
+    - [OK] Capture UI trees only for debugging
+    - [FAIL] Don't set SLEEP_TIME too high
+    - [FAIL] Don't enable all logging in production
 
 ### State Machine Design
 
 !!!success "Clean State Management"
-    - ✅ Each state should have clear purpose
-    - ✅ Transitions should be deterministic
-    - ✅ Error states should be terminal
-    - ✅ Subtask boundaries should be meaningful
-    - ❌ Don't create circular state loops
-    - ❌ Don't mix state logic with business logic
+    - [OK] Each state should have clear purpose
+    - [OK] Transitions should be deterministic
+    - [OK] Error states should be terminal
+    - [OK] Subtask boundaries should be meaningful
+    - [FAIL] Don't create circular state loops
+    - [FAIL] Don't mix state logic with business logic
 
 ---
 

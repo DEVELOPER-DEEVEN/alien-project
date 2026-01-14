@@ -77,12 +77,12 @@ stateDiagram-v2
 
 | Status | Description | Terminal |
 |--------|-------------|----------|
-| **PENDING** | Task is ready to execute (no pending dependencies) | ❌ |
-| **WAITING_DEPENDENCY** | Task is waiting for prerequisite tasks | ❌ |
-| **RUNNING** | Task is currently executing on device | ❌ |
-| **COMPLETED** | Task finished successfully | ✅ |
-| **FAILED** | Task encountered an error | ✅ |
-| **CANCELLED** | Task was cancelled by user | ✅ |
+| **PENDING** | Task is ready to execute (no pending dependencies) | [FAIL] |
+| **WAITING_DEPENDENCY** | Task is waiting for prerequisite tasks | [FAIL] |
+| **RUNNING** | Task is currently executing on device | [FAIL] |
+| **COMPLETED** | Task finished successfully | [OK] |
+| **FAILED** | Task encountered an error | [OK] |
+| **CANCELLED** | Task was cancelled by user | [OK] |
 
 **Note:** Terminal states (COMPLETED, FAILED, CANCELLED) are final—tasks in these states cannot transition to other states without explicit retry.
 
@@ -394,13 +394,13 @@ task = TaskStar(
 
 if not task.validate():
     for error in task.get_validation_errors():
-        print(f"❌ {error}")
+        print(f"[FAIL] {error}")
 
 # Output:
-# ❌ Task ID must be a non-empty string
-# ❌ Task name must be a non-empty string
-# ❌ Task description must be a non-empty string
-# ❌ Timeout must be a positive number
+# [FAIL] Task ID must be a non-empty string
+# [FAIL] Task name must be a non-empty string
+# [FAIL] Task description must be a non-empty string
+# [FAIL] Timeout must be a positive number
 ```
 
 ### Execution Errors
@@ -444,9 +444,9 @@ except Exception as e:
 
 # Check result
 if task.status == TaskStatus.COMPLETED:
-    print(f"✅ Success: {task.result}")
+    print(f"[OK] Success: {task.result}")
 else:
-    print(f"❌ Failed: {task.error}")
+    print(f"[FAIL] Failed: {task.error}")
 ```
 
 ### Retry on Failure
@@ -488,13 +488,13 @@ while attempt < max_attempts:
 
 ### Good vs. Bad Task Descriptions
 
-✅ **Good**: "Build the Docker image from the Dockerfile in /app directory and tag it as 'myapp:v1.2.3'"
+[OK] **Good**: "Build the Docker image from the Dockerfile in /app directory and tag it as 'myapp:v1.2.3'"
 
-❌ **Bad**: "Build stuff"
+[FAIL] **Bad**: "Build stuff"
 
-✅ **Good**: "Run pytest on the test/ directory and generate a coverage report in HTML format"
+[OK] **Good**: "Run pytest on the test/ directory and generate a coverage report in HTML format"
 
-❌ **Bad**: "Test the code"
+[FAIL] **Bad**: "Test the code"
 
 !!! warning "Common Pitfalls"
     - **Don't modify running tasks**: Attempting to change properties during execution raises `ValueError`

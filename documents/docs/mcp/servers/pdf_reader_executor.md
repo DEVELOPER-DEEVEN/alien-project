@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** Local (in-process)  
 **Agent:** AppAgent, HostAgent  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -29,7 +29,7 @@ Extract text content from a single PDF file with optional human simulation.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `pdf_path` | `str` | ✅ Yes | - | Full path to PDF file |
+| `pdf_path` | `str` | [OK] Yes | - | Full path to PDF file |
 | `simulate_human` | `bool` | No | `True` | Simulate human-like document review |
 
 #### Returns
@@ -106,7 +106,7 @@ List all PDF files in a specified directory.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `directory_path` | `str` | ✅ Yes | Directory path to scan |
+| `directory_path` | `str` | [OK] Yes | Directory path to scan |
 
 #### Returns
 
@@ -147,7 +147,7 @@ Extract text from all PDF files in a directory with human simulation.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `directory_path` | `str` | ✅ Yes | - | Directory containing PDFs |
+| `directory_path` | `str` | [OK] Yes | - | Directory containing PDFs |
 | `simulate_human` | `bool` | No | `True` | Simulate human review for each PDF |
 
 #### Returns
@@ -210,7 +210,7 @@ HostAgent:
 ### 1. Disable Simulation for Batch Processing
 
 ```python
-# ✅ Good: Fast batch processing
+# [OK] Good: Fast batch processing
 result = await computer.run_actions([
     MCPToolCall(
         tool_key="action::extract_all_pdfs_text",
@@ -222,7 +222,7 @@ result = await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Slow with simulation
+# [FAIL] Bad: Slow with simulation
 result = await computer.run_actions([
     MCPToolCall(
         tool_key="action::extract_all_pdfs_text",

@@ -12,11 +12,11 @@ The Agent Server is a **FastAPI-based asynchronous WebSocket server** that serve
 
 | Capability | Description | Key Benefit |
 |------------|-------------|-------------|
-| **🔌 Connection Management** | Tracks device & orion client lifecycles | Real-time device availability awareness |
-| **🎯 Task Orchestration** | Coordinates execution across distributed devices | Centralized workflow control |
-| **💾 State Management** | Maintains session lifecycles & execution contexts | Stateful multi-turn task execution |
-| **🌐 Dual API Interface** | WebSocket (AIP) + HTTP (REST) endpoints | Flexible integration options |
-| **🛡️ Resilience** | Handles disconnections, timeouts, failures gracefully | Production-grade reliability |
+| ** Connection Management** | Tracks device & orion client lifecycles | Real-time device availability awareness |
+| ** Task Orchestration** | Coordinates execution across distributed devices | Centralized workflow control |
+| ** State Management** | Maintains session lifecycles & execution contexts | Stateful multi-turn task execution |
+| **[WEB] Dual API Interface** | WebSocket (AIP) + HTTP (REST) endpoints | Flexible integration options |
+| **️ Resilience** | Handles disconnections, timeouts, failures gracefully | Production-grade reliability |
 
 **Why Use the Agent Server?**
 
@@ -81,10 +81,10 @@ This layered design ensures each component has a single, well-defined responsibi
 
 | Component | Responsibility | Key Operations |
 |-----------|---------------|----------------|
-| **FastAPI Application** | Web service layer | ✅ HTTP endpoint routing<br>✅ WebSocket connection acceptance<br>✅ Request/response handling<br>✅ CORS and middleware |
-| **Client Connection Manager** | Connection registry | ✅ Client identity tracking<br>✅ Session ↔ client mapping<br>✅ Device info caching<br>✅ Connection lifecycle hooks |
-| **Session Manager** | Execution lifecycle | ✅ Platform-specific session creation<br>✅ Background async task execution<br>✅ Result callback delivery<br>✅ Session cancellation |
-| **WebSocket Handler** | Protocol implementation | ✅ AIP message parsing/routing<br>✅ Client registration<br>✅ Heartbeat monitoring<br>✅ Task/command dispatch |
+| **FastAPI Application** | Web service layer | [OK] HTTP endpoint routing<br>[OK] WebSocket connection acceptance<br>[OK] Request/response handling<br>[OK] CORS and middleware |
+| **Client Connection Manager** | Connection registry | [OK] Client identity tracking<br>[OK] Session ↔ client mapping<br>[OK] Device info caching<br>[OK] Connection lifecycle hooks |
+| **Session Manager** | Execution lifecycle | [OK] Platform-specific session creation<br>[OK] Background async task execution<br>[OK] Result callback delivery<br>[OK] Session cancellation |
+| **WebSocket Handler** | Protocol implementation | [OK] AIP message parsing/routing<br>[OK] Client registration<br>[OK] Heartbeat monitoring<br>[OK] Task/command dispatch |
 
 **Component Documentation:**
 - [Session Manager](./session_manager.md) - Session lifecycle and background execution
@@ -172,11 +172,11 @@ stateDiagram-v2
 
 **Session Manager Responsibilities:**
 
-- ✅ **Platform abstraction**: Hides Windows/Linux differences
-- ✅ **Background execution**: Non-blocking async task execution
-- ✅ **Callback routing**: Delivers results via WebSocket
-- ✅ **Resource cleanup**: Cancels tasks on disconnect
-- ✅ **Result caching**: Stores results for HTTP retrieval
+- [OK] **Platform abstraction**: Hides Windows/Linux differences
+- [OK] **Background execution**: Non-blocking async task execution
+- [OK] **Callback routing**: Delivers results via WebSocket
+- [OK] **Resource cleanup**: Cancels tasks on disconnect
+- [OK] **Result caching**: Stores results for HTTP retrieval
 
 ---
 
@@ -379,7 +379,7 @@ The server automatically detects client platforms and creates appropriate sessio
 |----------|--------------|--------------|--------|
 | **Windows** | `WindowsSession` | UI automation (UIA)<br>COM API integration<br>Native app control<br>Screenshot capture | Full support |
 | **Linux** | `LinuxSession` | Bash automation<br>GUI tools (xdotool)<br>Package management<br>Process control | Full support |
-| **macOS** | (Planned) | AppleScript<br>UI automation<br>Native app control | 🚧 In development |
+| **macOS** | (Planned) | AppleScript<br>UI automation<br>Native app control |  In development |
 
 **Platform Auto-Detection:**
 

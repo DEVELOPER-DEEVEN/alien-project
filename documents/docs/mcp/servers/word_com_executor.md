@@ -8,7 +8,7 @@
 **Deployment:** Local (in-process)  
 **Agent:** AppAgent  
 **Target Application:** Microsoft Word (`WINWORD.EXE`)  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -41,8 +41,8 @@ Insert a table into the Word document at the current cursor position.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `rows` | `int` | ✅ Yes | Number of rows in the table |
-| `columns` | `int` | ✅ Yes | Number of columns in the table |
+| `rows` | `int` | [OK] Yes | Number of rows in the table |
+| `columns` | `int` | [OK] Yes | Number of columns in the table |
 
 #### Returns
 
@@ -71,7 +71,7 @@ Select exact text in the document for further operations (formatting, deletion, 
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `text` | `str` | ✅ Yes | Exact text to select |
+| `text` | `str` | [OK] Yes | Exact text to select |
 
 #### Returns
 
@@ -109,7 +109,7 @@ Select a table in the document by its index (1-based).
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `number` | `int` | ✅ Yes | Table index (1-based) |
+| `number` | `int` | [OK] Yes | Table index (1-based) |
 
 #### Returns
 
@@ -138,8 +138,8 @@ Select a range of paragraphs in the document.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `start_index` | `int` | ✅ Yes | - | Start paragraph index |
-| `end_index` | `int` | ✅ Yes | - | End paragraph index (`-1` = end of document) |
+| `start_index` | `int` | [OK] Yes | - | Start paragraph index |
+| `end_index` | `int` | [OK] Yes | - | End paragraph index (`-1` = end of document) |
 | `non_empty` | `bool` | No | `True` | Select only non-empty paragraphs |
 
 #### Returns
@@ -304,12 +304,12 @@ AppAgent:
 ### 1. Use COM for Bulk Operations
 
 ```python
-# ✅ Good: Fast COM API
+# [OK] Good: Fast COM API
 await computer.run_actions([
     MCPToolCall(tool_key="action::insert_table", parameters={"rows": 10, "columns": 5})
 ])
 
-# ❌ Bad: Slow UI automation
+# [FAIL] Bad: Slow UI automation
 for i in range(10):
     await computer.run_actions([
         MCPToolCall(tool_key="action::click_input", ...)  # Click Insert Table
@@ -319,7 +319,7 @@ for i in range(10):
 ### 2. Prefer save_as Over Manual Saving
 
 ```python
-# ✅ Good: One command
+# [OK] Good: One command
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::save_as",
@@ -327,7 +327,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Multiple UI steps
+# [FAIL] Bad: Multiple UI steps
 await computer.run_actions([
     MCPToolCall(tool_key="action::keyboard_input", parameters={"keys": "{VK_CONTROL}s"})
 ])
@@ -337,7 +337,7 @@ await computer.run_actions([
 ### 3. Select Before Formatting
 
 ```python
-# ✅ Good: Select then format
+# [OK] Good: Select then format
 await computer.run_actions([
     MCPToolCall(tool_key="action::select_text", parameters={"text": "Title"})
 ])
@@ -345,7 +345,7 @@ await computer.run_actions([
     MCPToolCall(tool_key="action::set_font", parameters={"font_size": 24})
 ])
 
-# ❌ Bad: Format without selection
+# [FAIL] Bad: Format without selection
 await computer.run_actions([
     MCPToolCall(tool_key="action::set_font", parameters={"font_size": 24})
 ])  # Fails: "no text selected"

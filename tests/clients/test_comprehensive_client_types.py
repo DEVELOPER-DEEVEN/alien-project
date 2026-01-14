@@ -23,7 +23,7 @@ async def comprehensive_client_type_test():
     """综合客户端类型测试"""
 
     print("=" * 80)
-    print("🧪 综合客户端类型区分功能测试")
+    print(" 综合客户端类型区分功能测试")
     print("=" * 80)
 
     server_url = "ws://localhost:5000/ws"
@@ -48,7 +48,7 @@ async def comprehensive_client_type_test():
             },
         )
         await device1_ws.send(device1_reg.model_dump_json())
-        print("📱 设备客户端 device_001 已连接")
+        print(" 设备客户端 device_001 已连接")
 
         # 设备客户端2
         device2_ws = await websockets.connect(server_url)
@@ -65,7 +65,7 @@ async def comprehensive_client_type_test():
             },
         )
         await device2_ws.send(device2_reg.model_dump_json())
-        print("📱 设备客户端 device_002 已连接")
+        print(" 设备客户端 device_002 已连接")
 
         # 星座客户端1
         orion1_ws = await websockets.connect(server_url)
@@ -84,7 +84,7 @@ async def comprehensive_client_type_test():
             },
         )
         await orion1_ws.send(orion1_reg.model_dump_json())
-        print("🌟 星座客户端 orion_alpha@client_001 已连接")
+        print(" 星座客户端 orion_alpha@client_001 已连接")
 
         # 星座客户端2
         orion2_ws = await websockets.connect(server_url)
@@ -103,7 +103,7 @@ async def comprehensive_client_type_test():
             },
         )
         await orion2_ws.send(orion2_reg.model_dump_json())
-        print("🌟 星座客户端 orion_beta@client_001 已连接")
+        print(" 星座客户端 orion_beta@client_001 已连接")
 
         # 2. 等待连接稳定
         print("\n[2] 等待连接稳定...")
@@ -120,7 +120,7 @@ async def comprehensive_client_type_test():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await device1_ws.send(device_heartbeat.model_dump_json())
-        print("💓 设备客户端心跳已发送")
+        print(" 设备客户端心跳已发送")
 
         # 星座心跳
         orion_heartbeat = ClientMessage(
@@ -130,7 +130,7 @@ async def comprehensive_client_type_test():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await orion1_ws.send(orion_heartbeat.model_dump_json())
-        print("💓 星座客户端心跳已发送")
+        print(" 星座客户端心跳已发送")
 
         # 设备信息请求
         device_info_request = ClientMessage(
@@ -141,16 +141,16 @@ async def comprehensive_client_type_test():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await orion1_ws.send(device_info_request.model_dump_json())
-        print("📊 星座客户端请求设备信息")
+        print("[STATUS] 星座客户端请求设备信息")
 
         # 4. 等待处理完成
         print("\n[4] 等待消息处理完成...")
         await asyncio.sleep(3)
 
-        print("\n✅ 综合测试完成")
+        print("\n[OK] 综合测试完成")
 
     except Exception as e:
-        print(f"❌ 测试过程中出错: {e}")
+        print(f"[FAIL] 测试过程中出错: {e}")
         import traceback
 
         traceback.print_exc()
@@ -163,14 +163,14 @@ async def comprehensive_client_type_test():
                 await ws.close()
             except:
                 pass
-        print("🧹 连接已清理")
+        print(" 连接已清理")
 
     print("\n" + "=" * 80)
-    print("🎯 请检查服务器日志确认客户端类型被正确识别:")
-    print("   📱 设备客户端应该有 'Device client' 标识")
-    print("   🌟 星座客户端应该有 'Orion client' 标识")
-    print("   💓 心跳消息应该有相应的客户端类型标识")
-    print("   📊 设备信息请求应该正确处理")
+    print(" 请检查服务器日志确认客户端类型被正确识别:")
+    print("    设备客户端应该有 'Device client' 标识")
+    print("    星座客户端应该有 'Orion client' 标识")
+    print("    心跳消息应该有相应的客户端类型标识")
+    print("   [STATUS] 设备信息请求应该正确处理")
     print("=" * 80)
 
 

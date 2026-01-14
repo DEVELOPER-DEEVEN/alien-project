@@ -322,7 +322,7 @@ class SystemConfig:
 The system provides clear warnings when using legacy paths:
 
 ```
-⚠️  LEGACY CONFIG PATH DETECTED: ALIEN
+️  LEGACY CONFIG PATH DETECTED: ALIEN
 
 Using legacy config: alien/config/
 Please migrate to:   config/alien/

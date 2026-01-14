@@ -75,12 +75,12 @@ def create_sample_orion() -> TaskOrion:
     ]
 
     # Add tasks to orion (this will trigger visualization for each task)
-    print("📊 Adding tasks to orion...")
+    print("[STATUS] Adding tasks to orion...")
     for task in tasks:
         orion.add_task(task)
 
     # Create dependencies (this will also trigger visualization)
-    print("\n🔗 Adding dependencies...")
+    print("\n[DEP] Adding dependencies...")
     dependencies = [
         TaskStarLine.create_unconditional(
             "task_1", "task_2", "Initialize before loading"
@@ -106,7 +106,7 @@ def create_sample_orion() -> TaskOrion:
 
 def simulate_execution(orion: TaskOrion):
     """Simulate task execution with progress updates."""
-    print("\n🚀 Starting orion execution simulation...")
+    print("\n[START] Starting orion execution simulation...")
 
     # Start execution
     orion.start_execution()
@@ -123,7 +123,7 @@ def simulate_execution(orion: TaskOrion):
 
     for task_id, success, result in tasks_to_complete:
         print(
-            f"\n📋 Completing task: {task_id} ({'✅ Success' if success else '❌ Failed'})"
+            f"\n[TASK] Completing task: {task_id} ({'[OK] Success' if success else '[FAIL] Failed'})"
         )
         orion.mark_task_completed(
             task_id,
@@ -146,7 +146,7 @@ def demonstrate_visualization_modes(orion: TaskOrion):
     visualizer = DAGVisualizer()
 
     print("\n" + "=" * 60)
-    print("🎨 VISUALIZATION MODES DEMONSTRATION")
+    print(" VISUALIZATION MODES DEMONSTRATION")
     print("=" * 60)
 
     # Overview mode
@@ -180,16 +180,16 @@ def demonstrate_visualization_modes(orion: TaskOrion):
 
 def main():
     """Main demonstration function."""
-    print("🌌 DAG Visualization Demo")
+    print("[ORION] DAG Visualization Demo")
     print("=" * 50)
 
     try:
         # Create sample orion
         orion = create_sample_orion()
 
-        print(f"\n✅ Created orion: {orion.name}")
-        print(f"📊 Tasks: {orion.task_count}")
-        print(f"🔗 Dependencies: {len(orion.dependencies)}")
+        print(f"\n[OK] Created orion: {orion.name}")
+        print(f"[STATUS] Tasks: {orion.task_count}")
+        print(f"[DEP] Dependencies: {len(orion.dependencies)}")
 
         # Show initial state
         print("\nShowing different visualization modes...")
@@ -199,11 +199,11 @@ def main():
         print("\nSimulating task execution...")
         simulate_execution(orion)
 
-        print("\n🎉 Demo completed!")
+        print("\n Demo completed!")
         print(f"Final orion state: {orion.state.value}")
 
     except Exception as e:
-        print(f"❌ Error during demo: {e}")
+        print(f"[FAIL] Error during demo: {e}")
         import traceback
 
         traceback.print_exc()

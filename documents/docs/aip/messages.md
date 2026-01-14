@@ -193,9 +193,9 @@ cmd = Command(
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `tool_name` | str | ✅ | Name of tool to execute |
+| `tool_name` | str | [OK] | Name of tool to execute |
 | `parameters` | dict | | Tool parameters |
-| `tool_type` | str | ✅ | `"data_collection"` or `"action"` |
+| `tool_type` | str | [OK] | `"data_collection"` or `"action"` |
 | `call_id` | str | | Unique identifier for correlation |
 
 **Call ID Correlation:**
@@ -208,10 +208,10 @@ Execution outcome enumeration.
 
 | Status | Meaning | When to Use |
 |--------|---------|-------------|
-| `SUCCESS` | ✅ Completed successfully | Command executed without errors |
-| `FAILURE` | ❌ Failed with error | Execution encountered an error |
+| `SUCCESS` | [OK] Completed successfully | Command executed without errors |
+| `FAILURE` | [FAIL] Failed with error | Execution encountered an error |
 | `SKIPPED` | ⏭️ Skipped execution | Conditional execution, not run |
-| `NONE` | ⚪ No status | Initial/unknown state |
+| `NONE` |  No status | Initial/unknown state |
 
 ### Result
 
@@ -274,11 +274,11 @@ The `CONTINUE → CONTINUE` self-loop represents multi-turn execution where task
 
 | Status | Meaning | Usage |
 |--------|---------|-------|
-| `CONTINUE` | 🔄 Task ongoing | Multi-turn execution, more steps needed |
-| `COMPLETED` | ✅ Task done | Successful completion |
-| `FAILED` | ❌ Task failed | Error encountered |
-| `OK` | ✓ Acknowledgment | Heartbeat, health check passed |
-| `ERROR` | ⚠️ Protocol error | Protocol-level error |
+| `CONTINUE` | [CONTINUE] Task ongoing | Multi-turn execution, more steps needed |
+| `COMPLETED` | [OK] Task done | Successful completion |
+| `FAILED` | [FAIL] Task failed | Error encountered |
+| `OK` |  Acknowledgment | Heartbeat, health check passed |
+| `ERROR` | ️ Protocol error | Protocol-level error |
 
 **Multi-Turn Execution:**
 

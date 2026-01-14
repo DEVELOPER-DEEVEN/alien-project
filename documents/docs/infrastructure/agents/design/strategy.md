@@ -784,8 +784,8 @@ self.strategies[ProcessingPhase.DATA_COLLECTION] = data_collection
 
 **1. Single Responsibility:** Each strategy should do one thing well.
 
-- ✅ Good: `ScreenshotCaptureStrategy` (captures screenshot)
-- ❌ Bad: `ScreenshotAndLLMStrategy` (mixed concerns)
+- [OK] Good: `ScreenshotCaptureStrategy` (captures screenshot)
+- [FAIL] Bad: `ScreenshotAndLLMStrategy` (mixed concerns)
 
 **2. Explicit Dependencies:** Always declare what you need.
 
@@ -812,12 +812,12 @@ def get_provides(self) -> List[str]:
 **5. Platform Agnostic:** Strategies shouldn't assume specific agent types.
 
 ```python
-# ❌ BAD: Type-checking agent
+# [FAIL] BAD: Type-checking agent
 async def execute(self, agent, context):
     if isinstance(agent, AppAgent):  # Tight coupling
         ...
 
-# ✅ GOOD: Use context data
+# [OK] GOOD: Use context data
 async def execute(self, agent, context):
     control_info = context.require_local("control_info")  # Generic
     ...
@@ -829,7 +829,7 @@ async def execute(self, agent, context):
     Strategies should be stateless (no instance variables modified during execution):
     
     ```python
-    # ❌ BAD: Stateful
+    # [FAIL] BAD: Stateful
     class BadStrategy(BaseProcessingStrategy):
         def __init__(self):
             super().__init__()
@@ -839,7 +839,7 @@ async def execute(self, agent, context):
             self.counter += 1  # Modifying state
             ...
     
-    # ✅ GOOD: Stateless
+    # [OK] GOOD: Stateless
     class GoodStrategy(BaseProcessingStrategy):
         async def execute(self, agent, context):
             counter = context.get_local("counter", 0)  # Read from context
@@ -851,7 +851,7 @@ async def execute(self, agent, context):
     Don't access context data without declaring dependencies:
     
     ```python
-    # ❌ BAD: Hidden dependency
+    # [FAIL] BAD: Hidden dependency
     class BadStrategy(BaseProcessingStrategy):
         def get_dependencies(self):
             return []  # Claims no dependencies
@@ -860,7 +860,7 @@ async def execute(self, agent, context):
             screenshot = context.get_local("screenshot")  # But uses screenshot!
             ...
     
-    # ✅ GOOD: Explicit dependency
+    # [OK] GOOD: Explicit dependency
     class GoodStrategy(BaseProcessingStrategy):
         def get_dependencies(self):
             return [StrategyDependency("screenshot", required=True)]
@@ -874,13 +874,13 @@ async def execute(self, agent, context):
     Strategies shouldn't modify global state or agent attributes directly:
     
     ```python
-    # ❌ BAD: Side effects
+    # [FAIL] BAD: Side effects
     async def execute(self, agent, context):
         agent.custom_attribute = "value"  # Modifying agent
         global_config["setting"] = "new"  # Modifying global
         ...
     
-    # ✅ GOOD: Update through proper channels
+    # [OK] GOOD: Update through proper channels
     async def execute(self, agent, context):
         context.update_local({"custom_value": "value"})  # Context
         agent.memory.add_memory_item(...)  # Memory system

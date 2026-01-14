@@ -2,7 +2,7 @@
 
 MobileAgent executes a **4-phase processing pipeline** in the **CONTINUE** state. Each phase handles a specific aspect of mobile task execution: data collection (screenshots and controls), LLM decision making, action execution, and memory recording. This design separates visual context gathering from prompt construction, LLM reasoning, mobile action execution, and state updates, enhancing modularity and traceability.
 
-> **📖 Related Documentation:**
+> **[LANG] Related Documentation:**
 > 
 > - [Mobile Agent Overview](overview.md) - Architecture and core responsibilities
 > - [State Machine](state.md) - FSM states (this strategy runs in CONTINUE state)
@@ -58,10 +58,10 @@ class MobileAgentProcessor(CustomizedProcessor):
 
 | Phase | Strategy Class | fail_fast | Rationale |
 |-------|---------------|-----------|-----------|
-| **DATA_COLLECTION** | `ComposedStrategy` (3 sub-strategies) | ✓ True | Visual context is critical for mobile interaction |
-| **LLM_INTERACTION** | `MobileLLMInteractionStrategy` | ✓ True | LLM failure requires immediate recovery |
-| **ACTION_EXECUTION** | `MobileActionExecutionStrategy` | ✗ False | Action failures can be handled gracefully |
-| **MEMORY_UPDATE** | `AppMemoryUpdateStrategy` | ✗ False | Memory failures shouldn't block execution |
+| **DATA_COLLECTION** | `ComposedStrategy` (3 sub-strategies) |  True | Visual context is critical for mobile interaction |
+| **LLM_INTERACTION** | `MobileLLMInteractionStrategy` |  True | LLM failure requires immediate recovery |
+| **ACTION_EXECUTION** | `MobileActionExecutionStrategy` |  False | Action failures can be handled gracefully |
+| **MEMORY_UPDATE** | `AppMemoryUpdateStrategy` |  False | Memory failures shouldn't block execution |
 
 **Fail-Fast vs Graceful:**
 
@@ -838,10 +838,10 @@ The 4-phase strategy design provides:
 
 | Agent | Phases | Data Collection | Visual | LLM | Action | Memory |
 |-------|--------|----------------|--------|-----|--------|--------|
-| **MobileAgent** | 4 | ✓ Screenshots + Controls + Apps | ✓ Multimodal | ✓ Mobile actions | ✓ Touch/swipe | ✓ Results + Screenshots |
-| **LinuxAgent** | 3 | ✗ On-demand | ✗ Text-only | ✓ CLI commands | ✓ Shell | ✓ Results |
-| **AppAgent** | 4 | ✓ Screenshots + UI | ✓ Multimodal | ✓ UI actions | ✓ GUI + API | ✓ Results + Screenshots |
-| **HostAgent** | 4 | ✓ Desktop snapshot | ✓ Multimodal | ✓ App selection | ✓ Orchestration | ✓ Results |
+| **MobileAgent** | 4 |  Screenshots + Controls + Apps |  Multimodal |  Mobile actions |  Touch/swipe |  Results + Screenshots |
+| **LinuxAgent** | 3 |  On-demand |  Text-only |  CLI commands |  Shell |  Results |
+| **AppAgent** | 4 |  Screenshots + UI |  Multimodal |  UI actions |  GUI + API |  Results + Screenshots |
+| **HostAgent** | 4 |  Desktop snapshot |  Multimodal |  App selection |  Orchestration |  Results |
 
 MobileAgent's 4-phase pipeline includes **DATA_COLLECTION** phase because:
 

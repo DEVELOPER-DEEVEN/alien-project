@@ -17,7 +17,7 @@ from network.agents.schema import (
 
 def test_optional_fields():
     """Test that created_at and updated_at fields are optional."""
-    print("🧪 Testing optional fields...")
+    print(" Testing optional fields...")
 
     # Test TaskStarSchema with minimal required fields
     minimal_task_data = {
@@ -28,13 +28,13 @@ def test_optional_fields():
 
     try:
         task_schema = TaskStarSchema(**minimal_task_data)
-        print("✅ TaskStarSchema with minimal fields created successfully")
+        print("[OK] TaskStarSchema with minimal fields created successfully")
         print(f"   - created_at: {task_schema.created_at}")
         print(f"   - updated_at: {task_schema.updated_at}")
         assert task_schema.created_at is None
         assert task_schema.updated_at is None
     except Exception as e:
-        print(f"❌ Failed to create TaskStarSchema with minimal fields: {e}")
+        print(f"[FAIL] Failed to create TaskStarSchema with minimal fields: {e}")
         return False
 
     # Test TaskStarLineSchema with minimal required fields
@@ -46,13 +46,13 @@ def test_optional_fields():
 
     try:
         line_schema = TaskStarLineSchema(**minimal_line_data)
-        print("✅ TaskStarLineSchema with minimal fields created successfully")
+        print("[OK] TaskStarLineSchema with minimal fields created successfully")
         print(f"   - created_at: {line_schema.created_at}")
         print(f"   - updated_at: {line_schema.updated_at}")
         assert line_schema.created_at is None
         assert line_schema.updated_at is None
     except Exception as e:
-        print(f"❌ Failed to create TaskStarLineSchema with minimal fields: {e}")
+        print(f"[FAIL] Failed to create TaskStarLineSchema with minimal fields: {e}")
         return False
 
     # Test TaskOrionSchema with minimal required fields
@@ -63,13 +63,13 @@ def test_optional_fields():
 
     try:
         orion_schema = TaskOrionSchema(**minimal_orion_data)
-        print("✅ TaskOrionSchema with minimal fields created successfully")
+        print("[OK] TaskOrionSchema with minimal fields created successfully")
         print(f"   - created_at: {orion_schema.created_at}")
         print(f"   - updated_at: {orion_schema.updated_at}")
         assert orion_schema.created_at is None
         assert orion_schema.updated_at is None
     except Exception as e:
-        print(f"❌ Failed to create TaskOrionSchema with minimal fields: {e}")
+        print(f"[FAIL] Failed to create TaskOrionSchema with minimal fields: {e}")
         return False
 
     return True
@@ -77,16 +77,16 @@ def test_optional_fields():
 
 def test_task_description_removed():
     """Test that task_description field has been removed from TaskStarSchema."""
-    print("\n🧪 Testing task_description field removal...")
+    print("\n Testing task_description field removal...")
 
     # Check that task_description is not in the model fields
     task_schema_fields = set(TaskStarSchema.model_fields.keys())
 
     if "task_description" in task_schema_fields:
-        print("❌ task_description field still exists in TaskStarSchema")
+        print("[FAIL] task_description field still exists in TaskStarSchema")
         return False
     else:
-        print("✅ task_description field has been successfully removed")
+        print("[OK] task_description field has been successfully removed")
 
     # Test creating a schema with task_description should work (it will be ignored)
     try:
@@ -101,13 +101,13 @@ def test_task_description_removed():
 
         # Check that task_description is not accessible
         if hasattr(task_schema, "task_description"):
-            print("❌ task_description attribute still accessible")
+            print("[FAIL] task_description attribute still accessible")
             return False
         else:
-            print("✅ task_description attribute not accessible (as expected)")
+            print("[OK] task_description attribute not accessible (as expected)")
 
     except Exception as e:
-        print(f"❌ Unexpected error when testing task_description: {e}")
+        print(f"[FAIL] Unexpected error when testing task_description: {e}")
         return False
 
     return True
@@ -115,7 +115,7 @@ def test_task_description_removed():
 
 def test_backwards_compatibility():
     """Test that the changes don't break backwards compatibility."""
-    print("\n🧪 Testing backwards compatibility...")
+    print("\n Testing backwards compatibility...")
 
     # Test with full data including timestamps
     full_task_data = {
@@ -130,20 +130,20 @@ def test_backwards_compatibility():
 
     try:
         task_schema = TaskStarSchema(**full_task_data)
-        print("✅ TaskStarSchema with timestamps works correctly")
+        print("[OK] TaskStarSchema with timestamps works correctly")
         assert task_schema.created_at == "2025-09-29T06:44:00.951923+00:00"
         assert task_schema.updated_at == "2025-09-29T06:44:00.951923+00:00"
     except Exception as e:
-        print(f"❌ Failed with timestamps: {e}")
+        print(f"[FAIL] Failed with timestamps: {e}")
         return False
 
     # Test JSON serialization
     try:
         json_data = task_schema.model_dump_json()
         restored_schema = TaskStarSchema.model_validate_json(json_data)
-        print("✅ JSON serialization/deserialization works correctly")
+        print("[OK] JSON serialization/deserialization works correctly")
     except Exception as e:
-        print(f"❌ JSON processing failed: {e}")
+        print(f"[FAIL] JSON processing failed: {e}")
         return False
 
     return True
@@ -151,7 +151,7 @@ def test_backwards_compatibility():
 
 def main():
     """Run all tests."""
-    print("🚀 Testing BaseModel Schema Modifications\n")
+    print("[START] Testing BaseModel Schema Modifications\n")
 
     success = True
 
@@ -160,13 +160,13 @@ def main():
     success &= test_backwards_compatibility()
 
     if success:
-        print("\n🎉 All tests passed successfully!")
-        print("\n📊 Test Summary:")
-        print("   ✅ created_at and updated_at are now optional")
-        print("   ✅ task_description field has been removed")
-        print("   ✅ Backwards compatibility maintained")
+        print("\n All tests passed successfully!")
+        print("\n[STATUS] Test Summary:")
+        print("   [OK] created_at and updated_at are now optional")
+        print("   [OK] task_description field has been removed")
+        print("   [OK] Backwards compatibility maintained")
     else:
-        print("\n❌ Some tests failed!")
+        print("\n[FAIL] Some tests failed!")
 
     return success
 

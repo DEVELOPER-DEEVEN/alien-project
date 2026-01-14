@@ -130,10 +130,10 @@ Visualizes DAG state changes with interactive topology graphs:
 
 **Topology Visualization Features:**
 - **Color-coded nodes** by task status:
-  - 🟢 Green: Completed
-  - 🔵 Cyan: Running
-  - ⚫ Gray: Pending
-  - 🔴 Red: Failed/Error
+  -  Green: Completed
+  -  Cyan: Running
+  -  Gray: Pending
+  -  Red: Failed/Error
 - **Edge styles** for dependencies:
   - Solid green: Satisfied dependencies
   - Dashed orange: Pending dependencies
@@ -463,7 +463,7 @@ for step in trajectory.step_log:
     tasks = orion.get("tasks", {})
     for task_id, task in tasks.items():
         if task.get("status") == "failed":
-            print(f"❌ Task {task_id}: {task.get('name')}")
+            print(f"[FAIL] Task {task_id}: {task.get('name')}")
             print(f"   Device: {task.get('target_device_id')}")
             print(f"   Error: {task.get('error')}")
 ```
@@ -777,13 +777,13 @@ for step in trajectory.step_log:
 
 ### Parse Errors in Report
 
-**Problem:** `⚠️ Parse Error` warnings in report
+**Problem:** `️ Parse Error` warnings in report
 
 **Cause:** Legacy log format with serialization bugs (tasks as Python strings instead of JSON)
 
 **Solution:** This is a known issue fixed in current versions. Reports will display:
 ```markdown
-##### ⚠️ Parse Error
+##### ️ Parse Error
 
 **Error Type**: `legacy_serialization_bug`
 **Message**: Tasks field contains Python object representations (not pure JSON). 

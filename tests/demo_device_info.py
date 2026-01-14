@@ -21,7 +21,7 @@ def demo_device_info_collection():
     print("=" * 80)
 
     # Collect system information
-    print("\n📊 Collecting device system information...")
+    print("\n[STATUS] Collecting device system information...")
 
     try:
         device_info = DeviceInfoProvider.collect_system_info(
@@ -29,7 +29,7 @@ def demo_device_info_collection():
             custom_metadata={"demo": True, "purpose": "testing"},
         )
 
-        print("\n✅ System information collected successfully!")
+        print("\n[OK] System information collected successfully!")
         print("\n" + "-" * 80)
         print("Device System Information:")
         print("-" * 80)
@@ -63,11 +63,11 @@ def demo_device_info_collection():
         print(json.dumps(info_dict, indent=2))
 
         print("\n" + "=" * 80)
-        print("✅ Demo completed successfully!")
+        print("[OK] Demo completed successfully!")
         print("=" * 80)
 
     except Exception as e:
-        print(f"\n❌ Error collecting device info: {e}")
+        print(f"\n[FAIL] Error collecting device info: {e}")
         import traceback
 
         traceback.print_exc()

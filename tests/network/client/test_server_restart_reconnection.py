@@ -349,7 +349,7 @@ async def test_full_server_restart_scenario_integration(device_manager):
     assert (
         device_manager.device_registry.get_device(device_id).status == DeviceStatus.IDLE
     )
-    print(f"✅ Step 1: Device {device_id} initially connected")
+    print(f"[OK] Step 1: Device {device_id} initially connected")
 
     # Step 2: Simulate server killed
     server_online = False
@@ -379,7 +379,7 @@ async def test_full_server_restart_scenario_integration(device_manager):
             return_value={"os": "Linux", "hostname": "linux-server"},
         ):
             # Trigger disconnection
-            print(f"🔌 Step 2: Simulating server killed")
+            print(f" Step 2: Simulating server killed")
             disconnect_task = asyncio.create_task(
                 device_manager._handle_device_disconnection(device_id)
             )
@@ -392,16 +392,16 @@ async def test_full_server_restart_scenario_integration(device_manager):
                 device_manager.device_registry.get_device(device_id).status
                 == DeviceStatus.DISCONNECTED
             )
-            print(f"✅ Step 3: Device status → DISCONNECTED")
+            print(f"[OK] Step 3: Device status → DISCONNECTED")
 
             # Step 3: Wait for first 2 reconnection attempts to fail
             await asyncio.sleep(2.5)  # 2 attempts × 1 second delay
-            print(f"⚠️ Step 4: Reconnection attempts 1-2 failed (server still down)")
+            print(f"️ Step 4: Reconnection attempts 1-2 failed (server still down)")
             print(f"   Attempts made so far: {connection_attempt_count}")
 
             # Step 4: Bring server back online
             server_online = True
-            print(f"🔄 Step 5: Server restarted (online)")
+            print(f"[CONTINUE] Step 5: Server restarted (online)")
 
             # Step 5: Wait for reconnection to succeed
             await asyncio.sleep(2.0)  # Wait for next retry
@@ -412,7 +412,7 @@ async def test_full_server_restart_scenario_integration(device_manager):
     device_info = device_manager.device_registry.get_device(device_id)
     assert device_info.status == DeviceStatus.IDLE
     assert device_info.connection_attempts == 0  # Reset after success
-    print(f"✅ Step 6: Device {device_id} auto-reconnected successfully!")
+    print(f"[OK] Step 6: Device {device_id} auto-reconnected successfully!")
     print(f"   Final status: {device_info.status.value}")
     print(f"   Total connection attempts made: {connection_attempt_count}")
     print(f"   Connection attempts counter (reset): {device_info.connection_attempts}")
@@ -459,7 +459,7 @@ async def test_reconnection_stops_after_max_retries(device_manager):
     device_info = device_manager.device_registry.get_device(device_id)
     assert device_info.status == DeviceStatus.FAILED
 
-    print(f"✅ Test passed: Stopped after {connection_attempt_count} attempts")
+    print(f"[OK] Test passed: Stopped after {connection_attempt_count} attempts")
     print(f"   Device status: {device_info.status.value}")
 
 

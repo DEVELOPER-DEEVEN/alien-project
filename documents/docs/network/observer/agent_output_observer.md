@@ -162,7 +162,7 @@ When the agent generates a response, the Rich presenter displays:
 
 ```
 ╭─────────────────────────────────────────────────────────────╮
-│ 🤖 Agent Response                                           │
+│  Agent Response                                           │
 ├─────────────────────────────────────────────────────────────┤
 │ Thought:                                                    │
 │ Task 'fetch_emails' has completed successfully. I need to  │
@@ -186,7 +186,7 @@ When the agent performs orion editing:
 
 ```
 ╭─────────────────────────────────────────────────────────────╮
-│ 🛠️ Agent Actions: Orion Editing                     │
+│ ️ Agent Actions: Orion Editing                     │
 ├─────────────────────────────────────────────────────────────┤
 │ Action 1: add_task                                          │
 │   ├─ task_id: parse_email_1                                │
@@ -417,7 +417,7 @@ async def _handle_agent_action(self, event: AgentEvent) -> None:
 ### 1. Match Presenter to Environment
 
 ```python
-# ✅ Good: Choose presenter based on context
+# [OK] Good: Choose presenter based on context
 if running_in_jupyter:
     presenter_type = "rich"  # Good for notebooks
 elif running_in_ci:

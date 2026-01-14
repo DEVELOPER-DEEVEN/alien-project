@@ -326,7 +326,7 @@ ORION_AGENT:
 !!!danger "Never Commit Credentials"
     **DO NOT commit `agent.yaml` with real credentials to version control!**
     
-    ✅ **Recommended Workflow:**
+    [OK] **Recommended Workflow:**
     ```bash
     # 1. Copy template
     cp config/network/agent.yaml.template config/network/agent.yaml
@@ -400,7 +400,7 @@ with open(device_config_path, "r") as f:
 for device in devices_config["devices"]:
     await device_manager.register_device(**device)
 
-print("✅ Network Orion System Initialized")
+print("[OK] Network Orion System Initialized")
 print(f"   Agent Model: {network_config.orion_agent.api_model}")
 print(f"   Orion ID: {orion_config['ORION_ID']}")
 print(f"   Devices: {len(devices_config['devices'])}")
@@ -415,8 +415,8 @@ print(f"   Devices: {len(devices_config['devices'])}")
 1. **Use Templates for Team Collaboration**
    ```bash
    # Share template, not credentials
-   config/network/agent.yaml.template  # ✅ Commit this
-   config/network/agent.yaml           # ❌ Never commit this
+   config/network/agent.yaml.template  # [OK] Commit this
+   config/network/agent.yaml           # [FAIL] Never commit this
    ```
 
 2. **Test with OpenAI, Deploy with Azure**

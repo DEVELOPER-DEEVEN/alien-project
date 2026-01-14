@@ -333,10 +333,10 @@ async def execute_command(
 ```
 
 **Benefits**:
-- ✅ LLM understands parameter types and descriptions
-- ✅ Runtime validation via Pydantic
-- ✅ Auto-generated API documentation
-- ✅ Clear contracts for consumers
+- [OK] LLM understands parameter types and descriptions
+- [OK] Runtime validation via Pydantic
+- [OK] Auto-generated API documentation
+- [OK] Clear contracts for consumers
 
 #### 2. Security-First Validation
 
@@ -348,11 +348,11 @@ if any(d in command.lower() for d in dangerous):
 ```
 
 **Best Practices**:
-- ✅ Whitelist safe operations when possible
-- ✅ Blacklist known dangerous patterns
-- ✅ Validate paths (prevent directory traversal)
-- ✅ Limit command complexity
-- ❌ Don't rely on sanitization alone
+- [OK] Whitelist safe operations when possible
+- [OK] Blacklist known dangerous patterns
+- [OK] Validate paths (prevent directory traversal)
+- [OK] Limit command complexity
+- [FAIL] Don't rely on sanitization alone
 
 #### 3. Async Execution with Timeout
 
@@ -808,7 +808,7 @@ if __name__ == "__main__":
 
 ### 1. Descriptive Tool Names
 
-| ❌ Bad | ✅ Good | Why |
+| [FAIL] Bad | [OK] Good | Why |
 |--------|---------|-----|
 | `do_thing` | `tap_screen` | Clear action |
 | `cmd` | `execute_command` | Self-documenting |
@@ -817,7 +817,7 @@ if __name__ == "__main__":
 ### 2. Rich Type Annotations
 
 ```python
-# ✅ Excellent: Full type hints with descriptions
+# [OK] Excellent: Full type hints with descriptions
 @mcp.tool()
 async def tap_screen(
     x: Annotated[int, Field(description="X coordinate in pixels from left edge")],
@@ -829,7 +829,7 @@ async def tap_screen(
 ### 3. Consistent Return Format
 
 ```python
-# ✅ Always return structured dict
+# [OK] Always return structured dict
 {
     "success": bool,      # Required: operation status
     "message": str,       # Optional: human-readable result
@@ -837,7 +837,7 @@ async def tap_screen(
     "data": Any,          # Optional: additional result data
 }
 
-# ❌ Don't mix return types
+# [FAIL] Don't mix return types
 return True  # Bad: not structured
 raise Exception("Error")  # Bad: exceptions not handled by LLM
 ```
@@ -1096,11 +1096,11 @@ curl -X POST http://localhost:8020/mcp \
 
 **What You've Built**:
 
-- ✅ Platform-specific MCP server with FastMCP
-- ✅ Type-safe tool definitions with Pydantic
-- ✅ Async execution with timeout handling
-- ✅ Security validation and error handling
-- ✅ Comprehensive testing strategy
+- [OK] Platform-specific MCP server with FastMCP
+- [OK] Type-safe tool definitions with Pydantic
+- [OK] Async execution with timeout handling
+- [OK] Security validation and error handling
+- [OK] Comprehensive testing strategy
 
 **Key Takeaways**:
 

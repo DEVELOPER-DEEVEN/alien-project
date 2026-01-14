@@ -59,15 +59,15 @@ class NetworkService:
         task_name = f"request_{timestamp}_{counter}"
         network_client.task_name = task_name
 
-        self.logger.info(f"🚀 Processing request #{counter}: {request_text}")
+        self.logger.info(f"[START] Processing request #{counter}: {request_text}")
 
         try:
             result = await network_client.process_request(request_text)
-            self.logger.info(f"✅ Request processing completed for #{counter}")
+            self.logger.info(f"[OK] Request processing completed for #{counter}")
             return result
         except Exception as e:
             self.logger.error(
-                f"❌ Error processing request #{counter}: {e}", exc_info=True
+                f"[FAIL] Error processing request #{counter}: {e}", exc_info=True
             )
             raise
 
@@ -92,7 +92,7 @@ class NetworkService:
             # Reset request counter on session reset
             self.app_state.reset_request_counter()
 
-            self.logger.info(f"✅ Session reset completed: {result.get('message')}")
+            self.logger.info(f"[OK] Session reset completed: {result.get('message')}")
             return result
         except Exception as e:
             self.logger.error(f"Failed to reset session: {e}", exc_info=True)
@@ -116,7 +116,7 @@ class NetworkService:
 
         try:
             result = await network_client.create_next_session()
-            self.logger.info(f"✅ Next session created: {result.get('session_name')}")
+            self.logger.info(f"[OK] Next session created: {result.get('session_name')}")
             return result
         except Exception as e:
             self.logger.error(f"Failed to create next session: {e}", exc_info=True)
@@ -137,22 +137,22 @@ class NetworkService:
             raise ValueError("Network client not initialized")
 
         try:
-            # 🟢 Use force=True to immediately cancel any running tasks
-            self.logger.info("🛑 Shutting down Network client with force=True...")
+            #  Use force=True to immediately cancel any running tasks
+            self.logger.info(" Shutting down Network client with force=True...")
             await network_client.shutdown(force=True)
-            self.logger.info("✅ Network client shutdown completed")
+            self.logger.info("[OK] Network client shutdown completed")
 
             # Reinitialize the client to restore device connections
-            self.logger.info("🔄 Reinitializing Network client...")
+            self.logger.info("[CONTINUE] Reinitializing Network client...")
             await network_client.initialize()
-            self.logger.info("✅ Network client reinitialized")
+            self.logger.info("[OK] Network client reinitialized")
 
             # Reset request counter on stop
             self.app_state.reset_request_counter()
 
             # Create a new session
             new_session_result = await network_client.create_next_session()
-            self.logger.info(f"✅ New session created: {new_session_result}")
+            self.logger.info(f"[OK] New session created: {new_session_result}")
 
             return new_session_result
 

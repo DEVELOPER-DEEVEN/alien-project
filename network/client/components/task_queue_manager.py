@@ -54,7 +54,7 @@ class TaskQueueManager:
 
         queue_size = len(self._task_queues[device_id])
         self.logger.info(
-            f"📥 Task {task_request.task_id} enqueued for device {device_id} "
+            f" Task {task_request.task_id} enqueued for device {device_id} "
             f"(Queue size: {queue_size})"
         )
 
@@ -72,7 +72,7 @@ class TaskQueueManager:
 
         task = self._task_queues[device_id].popleft()
         self.logger.info(
-            f"📤 Task {task.task_id} dequeued for device {device_id} "
+            f" Task {task.task_id} dequeued for device {device_id} "
             f"(Remaining: {len(self._task_queues[device_id])})"
         )
         return task
@@ -114,7 +114,7 @@ class TaskQueueManager:
             if not future.done():
                 future.set_result(result)
             del self._pending_tasks[device_id][task_id]
-            self.logger.info(f"✅ Task {task_id} completed on device {device_id}")
+            self.logger.info(f"[OK] Task {task_id} completed on device {device_id}")
 
     def fail_task(self, device_id: str, task_id: str, exception: Exception) -> None:
         """
@@ -133,7 +133,7 @@ class TaskQueueManager:
                 future.set_exception(exception)
             del self._pending_tasks[device_id][task_id]
             self.logger.error(
-                f"❌ Task {task_id} failed on device {device_id}: {exception}"
+                f"[FAIL] Task {task_id} failed on device {device_id}: {exception}"
             )
 
     def cancel_all_tasks(self, device_id: str) -> None:
@@ -147,7 +147,7 @@ class TaskQueueManager:
             queue_size = len(self._task_queues[device_id])
             self._task_queues[device_id].clear()
             self.logger.info(
-                f"🗑️  Cancelled {queue_size} queued tasks for device {device_id}"
+                f"️  Cancelled {queue_size} queued tasks for device {device_id}"
             )
 
         # Cancel all pending futures

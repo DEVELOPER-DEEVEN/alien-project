@@ -110,13 +110,13 @@ async def wait_for_pending_modifications(
             # Small delay to allow new registrations to settle
             await asyncio.sleep(0.01)
         
-        self.logger.info("✅ All pending modifications completed")
+        self.logger.info("[OK] All pending modifications completed")
         return True
         
     except asyncio.TimeoutError:
         pending = list(self._pending_modifications.keys())
         self.logger.warning(
-            f"⚠️ Timeout waiting for modifications after {timeout}s. "
+            f"️ Timeout waiting for modifications after {timeout}s. "
             f"Proceeding anyway. Pending: {pending}"
         )
         # Clear all pending modifications to prevent permanent deadlock
@@ -215,7 +215,7 @@ async def _handle_task_event(self, event: TaskEvent) -> None:
         self._stats["total_modifications"] += 1
         
         self.logger.info(
-            f"🔒 Registered pending modification for task '{event.task_id}'"
+            f" Registered pending modification for task '{event.task_id}'"
         )
         
         # Set timeout to auto-complete if modification takes too long
@@ -260,7 +260,7 @@ async def _handle_orion_event(self, event: OrionEvent) -> None:
                 future.set_result(True)  # Unblocks wait_for_pending_modifications
                 self._stats["completed_modifications"] += 1
                 self.logger.info(
-                    f"✅ Completed modification for task '{task_id}'"
+                    f"[OK] Completed modification for task '{task_id}'"
                 )
             del self._pending_modifications[task_id]
 ```
@@ -281,7 +281,7 @@ async def _auto_complete_on_timeout(
         if not future.done():
             self._stats["timeout_modifications"] += 1
             self.logger.warning(
-                f"⚠️ Modification for task '{task_id}' timed out. "
+                f"️ Modification for task '{task_id}' timed out. "
                 f"Auto-completing to prevent deadlock."
             )
             future.set_result(False)

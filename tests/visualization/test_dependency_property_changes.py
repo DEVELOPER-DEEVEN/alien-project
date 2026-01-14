@@ -13,7 +13,7 @@ from network.core.events import OrionEvent, EventType
 @pytest.mark.asyncio
 async def test_dependency_property_changes():
     """Test dependency property change detection."""
-    print("🧪 Testing Dependency Property Change Detection\n")
+    print(" Testing Dependency Property Change Detection\n")
 
     # Create observer (no context needed for this test)
     observer = DAGVisualizationObserver()
@@ -125,7 +125,7 @@ async def test_dependency_property_changes():
 
     await observer.on_event(event2)
 
-    print("✅ All dependency property change tests completed!")
+    print("[OK] All dependency property change tests completed!")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** Local (in-process)  
 **Agent:** NetworkAgent  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -40,9 +40,9 @@ Add a new task to the orion.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `task_id` | `str` | ✅ Yes | - | Unique task identifier (e.g., `"open_browser"`, `"login_system"`) |
-| `name` | `str` | ✅ Yes | - | Human-readable task name (e.g., `"Open Browser"`) |
-| `description` | `str` | ✅ Yes | - | Detailed task description with steps and expected outcomes |
+| `task_id` | `str` | [OK] Yes | - | Unique task identifier (e.g., `"open_browser"`, `"login_system"`) |
+| `name` | `str` | [OK] Yes | - | Human-readable task name (e.g., `"Open Browser"`) |
+| `description` | `str` | [OK] Yes | - | Detailed task description with steps and expected outcomes |
 | `target_device_id` | `str` | No | `None` | Device ID where task should execute (from Device Info List) |
 | `tips` | `List[str]` | No | `None` | List of tips and best practices for task execution |
 
@@ -82,7 +82,7 @@ Remove a task from the orion (also removes all dependencies involving this task)
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `task_id` | `str` | ✅ Yes | Unique task identifier to remove |
+| `task_id` | `str` | [OK] Yes | Unique task identifier to remove |
 
 #### Returns
 
@@ -110,7 +110,7 @@ Update specific fields of an existing task.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `task_id` | `str` | ✅ Yes | - | Task to update |
+| `task_id` | `str` | [OK] Yes | - | Task to update |
 | `name` | `str` | No | `None` | New task name (leave empty to keep current) |
 | `description` | `str` | No | `None` | New description |
 | `target_device_id` | `str` | No | `None` | New target device |
@@ -153,9 +153,9 @@ Create a dependency relationship between two tasks (source task must complete be
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `dependency_id` | `str` | ✅ Yes | **MUST generate unique ID** (e.g., `"login->extract_data"`) |
-| `from_task_id` | `str` | ✅ Yes | Source/prerequisite task ID |
-| `to_task_id` | `str` | ✅ Yes | Target/dependent task ID |
+| `dependency_id` | `str` | [OK] Yes | **MUST generate unique ID** (e.g., `"login->extract_data"`) |
+| `from_task_id` | `str` | [OK] Yes | Source/prerequisite task ID |
+| `to_task_id` | `str` | [OK] Yes | Target/dependent task ID |
 | `condition_description` | `str` | No | `None` | Human-readable description of dependency condition |
 
 !!!warning "dependency_id Required"
@@ -192,7 +192,7 @@ Remove a dependency relationship without affecting the tasks themselves.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `dependency_id` | `str` | ✅ Yes | Dependency ID (line_id) to remove |
+| `dependency_id` | `str` | [OK] Yes | Dependency ID (line_id) to remove |
 
 #### Returns
 
@@ -220,8 +220,8 @@ Update the condition description of an existing dependency.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `dependency_id` | `str` | ✅ Yes | Dependency to update |
-| `condition_description` | `str` | ✅ Yes | New condition description |
+| `dependency_id` | `str` | [OK] Yes | Dependency to update |
+| `condition_description` | `str` | [OK] Yes | New condition description |
 
 #### Returns
 
@@ -252,7 +252,7 @@ Build a complete orion from configuration data (batch creation).
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `config` | `TaskOrionSchema` | ✅ Yes | - | Complete orion configuration |
+| `config` | `TaskOrionSchema` | [OK] Yes | - | Complete orion configuration |
 | `clear_existing` | `bool` | No | `True` | Clear existing tasks/dependencies before building |
 
 #### Configuration Schema
@@ -351,12 +351,12 @@ NetworkAgent:
 ### 1. Use Descriptive Task IDs
 
 ```python
-# ✅ Good: Clear task IDs
+# [OK] Good: Clear task IDs
 "task_id": "extract_sales_data_from_excel"
 "task_id": "send_email_notification"
 "task_id": "process_user_input"
 
-# ❌ Bad: Unclear IDs
+# [FAIL] Bad: Unclear IDs
 "task_id": "task1"
 "task_id": "do_stuff"
 "task_id": "process"
@@ -365,7 +365,7 @@ NetworkAgent:
 ### 2. Always Provide dependency_id
 
 ```python
-# ✅ Good: Generate unique dependency_id
+# [OK] Good: Generate unique dependency_id
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::add_dependency",
@@ -377,7 +377,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Omit dependency_id
+# [FAIL] Bad: Omit dependency_id
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::add_dependency",
@@ -393,12 +393,12 @@ await computer.run_actions([
 ### 3. Provide Detailed Descriptions
 
 ```python
-# ✅ Good: Detailed description
+# [OK] Good: Detailed description
 {
     "description": "Open Chrome browser, navigate to https://example.com/login, wait for page to fully load, then take a screenshot and save it to C:\\screenshots\\login_page.png"
 }
 
-# ❌ Bad: Vague description
+# [FAIL] Bad: Vague description
 {
     "description": "Open browser"
 }

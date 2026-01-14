@@ -88,24 +88,24 @@ Stdio MCP servers run as child processes, communicating via stdin/stdout.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `namespace` | String | ✅ Yes | Unique server identifier |
-| `type` | String | ✅ Yes | Must be `"http"` |
-| `host` | String | ✅ Yes | Server hostname or IP |
-| `port` | Integer | ✅ Yes | Server port number |
-| `path` | String | ✅ Yes | HTTP endpoint path |
-| `reset` | Boolean | ❌ No | Reset on context switch (default: `false`) |
+| `namespace` | String | [OK] Yes | Unique server identifier |
+| `type` | String | [OK] Yes | Must be `"http"` |
+| `host` | String | [OK] Yes | Server hostname or IP |
+| `port` | Integer | [OK] Yes | Server port number |
+| `path` | String | [OK] Yes | HTTP endpoint path |
+| `reset` | Boolean | [FAIL] No | Reset on context switch (default: `false`) |
 
 ### Stdio Server Fields
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `namespace` | String | ✅ Yes | Unique server identifier |
-| `type` | String | ✅ Yes | Must be `"stdio"` |
-| `command` | String | ✅ Yes | Executable command |
-| `start_args` | List[String] | ❌ No | Command-line arguments |
-| `env` | Dict | ❌ No | Environment variables |
-| `cwd` | String | ❌ No | Working directory |
-| `reset` | Boolean | ❌ No | Reset on context switch (default: `false`) |
+| `namespace` | String | [OK] Yes | Unique server identifier |
+| `type` | String | [OK] Yes | Must be `"stdio"` |
+| `command` | String | [OK] Yes | Executable command |
+| `start_args` | List[String] | [FAIL] No | Command-line arguments |
+| `env` | Dict | [FAIL] No | Environment variables |
+| `cwd` | String | [FAIL] No | Working directory |
+| `reset` | Boolean | [FAIL] No | Reset on context switch (default: `false`) |
 
 ---
 
@@ -199,17 +199,17 @@ CustomAgent:
 
 **Recommended Practices:**
 
-- ✅ **Use HTTP for cross-platform automation**
-- ✅ **Use stdio for process isolation**
-- ✅ **Validate remote server connectivity** before deployment
-- ✅ **Set appropriate timeouts** for long-running commands
-- ✅ **Use environment variables** for sensitive credentials
+- [OK] **Use HTTP for cross-platform automation**
+- [OK] **Use stdio for process isolation**
+- [OK] **Validate remote server connectivity** before deployment
+- [OK] **Set appropriate timeouts** for long-running commands
+- [OK] **Use environment variables** for sensitive credentials
 
 **Anti-Patterns to Avoid:**
 
-- ❌ **Don't expose HTTP servers to public internet** without authentication
-- ❌ **Don't hardcode credentials** in configuration files
-- ❌ **Don't forget to start remote servers** before client connection
+- [FAIL] **Don't expose HTTP servers to public internet** without authentication
+- [FAIL] **Don't hardcode credentials** in configuration files
+- [FAIL] **Don't forget to start remote servers** before client connection
 
 ---
 

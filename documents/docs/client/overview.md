@@ -6,7 +6,7 @@ The **ALIEN Client** runs on target devices and serves as the **execution layer*
 
 ---
 
-## 🎯 What is the ALIEN Client?
+##  What is the ALIEN Client?
 
 ```mermaid
 graph LR
@@ -48,11 +48,11 @@ graph LR
 
 | Capability | Description | Benefit |
 |------------|-------------|---------|
-| **🔧 Executes Commands** | Translates server directives into concrete actions | Deterministic, reliable execution |
-| **🛠️ Manages MCP Servers** | Orchestrates local and remote tool interfaces | Extensible tool ecosystem |
-| **📊 Reports Device Info** | Provides hardware and software profile to server | Intelligent task assignment |
-| **📡 Communicates via AIP** | Maintains persistent WebSocket connection | Real-time bidirectional communication |
-| **🚫 Remains Stateless** | Executes directives without high-level reasoning | Independent updates, simple architecture |
+| **[CONFIG] Executes Commands** | Translates server directives into concrete actions | Deterministic, reliable execution |
+| **️ Manages MCP Servers** | Orchestrates local and remote tool interfaces | Extensible tool ecosystem |
+| **[STATUS] Reports Device Info** | Provides hardware and software profile to server | Intelligent task assignment |
+| ** Communicates via AIP** | Maintains persistent WebSocket connection | Real-time bidirectional communication |
+| ** Remains Stateless** | Executes directives without high-level reasoning | Independent updates, simple architecture |
 
 **Stateless Design Philosophy:** The client focuses purely on execution. All reasoning and decision-making happens on the server, allowing independent updates to server logic and client tools, simple client architecture, intelligent orchestration of multiple clients, and resource-efficient operation.
 
@@ -60,7 +60,7 @@ graph LR
 
 ---
 
-## 🏗️ Architecture
+## ️ Architecture
 
 The client implements a **layered architecture** separating communication, execution, and tool management for maximum flexibility and maintainability.
 
@@ -119,7 +119,7 @@ For detailed component documentation:
 
 ---
 
-## 🚀 Key Capabilities
+## [START] Key Capabilities
 
 ### 1. Deterministic Command Execution
 
@@ -340,7 +340,7 @@ See [WebSocket Client](./websocket_client.md) and [AIP Protocol](../aip/overview
 
 ---
 
-## 📋 Workflow Examples
+## [TASK] Workflow Examples
 
 ### Client Initialization & Registration
 
@@ -412,16 +412,16 @@ sequenceDiagram
 
 ---
 
-## 🖥️ Platform Support
+## ️ Platform Support
 
 The client supports multiple platforms with platform-specific tool implementations.
 
 | Platform | Status | Features | Native Tools |
 |----------|--------|----------|--------------|
-| **Windows** | ✅ **Full Support** | • UI Automation (UIAutomation API)<br/>• COM API integration<br/>• Office automation<br/>• Windows-specific apps | PowerShell, Registry, WMI, Win32 API |
-| **Linux** | ✅ **Full Support** | • Bash automation<br/>• X11/Wayland GUI tools<br/>• Package managers<br/>• Linux applications | bash, apt/yum, systemd, xdotool |
-| **macOS** | 🚧 **In Development** | • macOS applications<br/>• Automator integration<br/>• AppleScript support | osascript, Automator, launchctl |
-| **Mobile** | 🔮 **Planned** | • Touch interface<br/>• Mobile apps<br/>• Gesture control | ADB (Android), XCTest (iOS) |
+| **Windows** | [OK] **Full Support** | • UI Automation (UIAutomation API)<br/>• COM API integration<br/>• Office automation<br/>• Windows-specific apps | PowerShell, Registry, WMI, Win32 API |
+| **Linux** | [OK] **Full Support** | • Bash automation<br/>• X11/Wayland GUI tools<br/>• Package managers<br/>• Linux applications | bash, apt/yum, systemd, xdotool |
+| **macOS** |  **In Development** | • macOS applications<br/>• Automator integration<br/>• AppleScript support | osascript, Automator, launchctl |
+| **Mobile** |  **Planned** | • Touch interface<br/>• Mobile apps<br/>• Gesture control | ADB (Android), XCTest (iOS) |
 
 **Platform Detection:**
 
@@ -453,7 +453,7 @@ tools = [
 
 ---
 
-## ⚙️ Configuration
+## ️ Configuration
 
 ### Command-Line Arguments
 
@@ -533,7 +533,7 @@ See [Configuration Guide](../configuration/system/overview.md) for comprehensive
 
 ---
 
-## ⚠️ Error Handling
+## ️ Error Handling
 
 The client is designed to handle various failure scenarios gracefully without crashing.
 
@@ -605,7 +605,7 @@ except Exception as e:
 
 ---
 
-## ✅ Best Practices
+## [OK] Best Practices
 
 ### Development Best Practices
 
@@ -716,7 +716,7 @@ tail -f logs/client.log | grep -E "Connected|Disconnected|ERROR"
 
 ---
 
-## 🎓 Documentation Map
+##  Documentation Map
 
 ### Getting Started
 
@@ -746,7 +746,7 @@ tail -f logs/client.log | grep -E "Connected|Disconnected|ERROR"
 
 ---
 
-## 🔄 Client vs. Server
+## [CONTINUE] Client vs. Server
 
 Understanding the **clear division** between client and server responsibilities is crucial for effective system design.
 
@@ -809,7 +809,7 @@ graph TB
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 **1. Run Your First Client**
 
@@ -820,28 +820,28 @@ python -m alien.client.client \
   --client-id my_first_device \
   --ws-server ws://localhost:5000/ws
 ```
-👉 [Quick Start Guide](./quick_start.md)
+ [Quick Start Guide](./quick_start.md)
 
 **2. Understand Registration Process**
 
 Learn how clients register with the server, device profile structure, and registration acknowledgment.
 
-👉 [Server Quick Start](../server/quick_start.md) - Start server and connect clients
+ [Server Quick Start](../server/quick_start.md) - Start server and connect clients
 
 **3. Explore MCP Integration**
 
 Learn about MCP servers, configure custom tools, and create your own MCP servers.
 
-👉 [MCP Integration](../mcp/overview.md)
+ [MCP Integration](../mcp/overview.md)
 
 **4. Configure for Your Environment**
 
 Customize MCP servers, adjust timeouts and retries, and configure platform-specific settings.
 
-👉 [Configuration Guide](../configuration/system/overview.md)
+ [Configuration Guide](../configuration/system/overview.md)
 
 **5. Master the Protocol**
 
 Deep dive into AIP messages, understand message flow, and error handling patterns.
 
-👉 [AIP Protocol](../aip/overview.md)
+ [AIP Protocol](../aip/overview.md)

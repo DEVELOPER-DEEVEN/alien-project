@@ -78,9 +78,9 @@ classDiagram
 
 | Phase | Strategy | Purpose | Mode-Specific |
 |-------|----------|---------|---------------|
-| **LLM Interaction** | `OrionLLMInteractionStrategy` | Prompt construction, LLM response parsing | ❌ Shared |
-| **Action Execution** | `OrionCreation/EditingActionExecutionStrategy` | Action generation and execution | ✅ Mode-specific |
-| **Memory Update** | `OrionMemoryUpdateStrategy` | Memory logging and state tracking | ❌ Shared |
+| **LLM Interaction** | `OrionLLMInteractionStrategy` | Prompt construction, LLM response parsing | [FAIL] Shared |
+| **Action Execution** | `OrionCreation/EditingActionExecutionStrategy` | Action generation and execution | [OK] Mode-specific |
+| **Memory Update** | `OrionMemoryUpdateStrategy` | Memory logging and state tracking | [FAIL] Shared |
 
 ---
 

@@ -217,7 +217,7 @@ class ConfigValidator:
             Panel.fit(
                 f"[bold]Configuration Validation Report[/bold]\n"
                 f"Module: [cyan]{self.module}[/cyan]",
-                title="🔍 Validation",
+                title=" Validation",
                 border_style="blue",
             )
         )
@@ -227,14 +227,14 @@ class ConfigValidator:
         new_exists, legacy_exists = self.check_paths()
 
         if new_exists:
-            console.print(f"  [green]✓[/green] {self.new_path}/ (active)")
+            console.print(f"  [green][/green] {self.new_path}/ (active)")
             self.show_tree(self.new_path)
         else:
-            console.print(f"  [red]✗[/red] {self.new_path}/ (not found)")
+            console.print(f"  [red][/red] {self.new_path}/ (not found)")
 
         if self.legacy_path:
             if legacy_exists:
-                console.print(f"  [yellow]⚠[/yellow] {self.legacy_path}/ (legacy)")
+                console.print(f"  [yellow][/yellow] {self.legacy_path}/ (legacy)")
                 self.show_tree(self.legacy_path)
             else:
                 console.print(f"  [dim]  {self.legacy_path}/ (not found)[/dim]")
@@ -243,7 +243,7 @@ class ConfigValidator:
         if self.errors:
             console.print(f"\n[bold red]Errors ({len(self.errors)}):[/bold red]")
             for error in self.errors:
-                console.print(f"  [red]✗[/red] {error}")
+                console.print(f"  [red][/red] {error}")
 
         # Warnings
         if self.warnings:
@@ -251,7 +251,7 @@ class ConfigValidator:
                 f"\n[bold yellow]Warnings ({len(self.warnings)}):[/bold yellow]"
             )
             for warning in self.warnings:
-                console.print(f"  [yellow]⚠[/yellow] {warning}")
+                console.print(f"  [yellow][/yellow] {warning}")
 
         # Info
         if self.info:
@@ -264,7 +264,7 @@ class ConfigValidator:
         if not self.errors:
             console.print(
                 Panel.fit(
-                    "[bold green]✓ Configuration is valid![/bold green]"
+                    "[bold green] Configuration is valid![/bold green]"
                     + (
                         "\n\nConsider addressing warnings for best practices."
                         if self.warnings
@@ -276,7 +276,7 @@ class ConfigValidator:
         else:
             console.print(
                 Panel.fit(
-                    f"[bold red]✗ Configuration has {len(self.errors)} error(s)[/bold red]\n\n"
+                    f"[bold red] Configuration has {len(self.errors)} error(s)[/bold red]\n\n"
                     "Please fix errors before running ALIEN³.",
                     border_style="red",
                 )

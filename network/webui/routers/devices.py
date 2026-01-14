@@ -98,5 +98,5 @@ async def add_device(device: DeviceAddRequest) -> Dict[str, Any]:
         raise HTTPException(status_code=409, detail=str(e))
     except Exception as e:
         # Handle unexpected errors
-        logger.error(f"❌ Error adding device: {e}", exc_info=True)
+        logger.error(f"[FAIL] Error adding device: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Failed to add device: {str(e)}")

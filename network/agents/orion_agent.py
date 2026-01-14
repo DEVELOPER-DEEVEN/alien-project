@@ -229,7 +229,7 @@ class OrionAgent(BasicAgent, IRequestProcessor, IResultProcessor):
         for tid in task_ids:
             task = orion.get_task(tid)
             if task:
-                self.logger.info(f"📊 Status for task {stage} {tid}: {task.status}")
+                self.logger.info(f"[STATUS] Status for task {stage} {tid}: {task.status}")
 
     async def _publish_orion_modified_event(
         self,

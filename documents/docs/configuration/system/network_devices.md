@@ -37,7 +37,7 @@ graph LR
 
 ---
 
-## 📁 File Location
+##  File Location
 
 **Standard Location:**
 
@@ -45,9 +45,9 @@ graph LR
 ALIEN2/
 ├── config/
     └── network/
-        ├── devices.yaml           # 📄 Device definitions (this file)
-        ├── orion.yaml     # ⚙️ Runtime settings
-        └── agent.yaml.template    # 🤖 Agent LLM configuration template
+        ├── devices.yaml           # [DOC] Device definitions (this file)
+        ├── orion.yaml     # ️ Runtime settings
+        └── agent.yaml.template    #  Agent LLM configuration template
 ```
 
 **Loading in Code:**
@@ -86,7 +86,7 @@ for device_config in devices_config["devices"]:
 
 ---
 
-## 📝 Configuration Schema
+##  Configuration Schema
 
 ### File Structure
 
@@ -178,7 +178,7 @@ metadata:
 
 ---
 
-## 📚 Complete Example
+## [PLAN] Complete Example
 
 ### Example 1: Multi-Device Orion
 
@@ -325,7 +325,7 @@ devices:
 
 ---
 
-## 🔄 Multi-Source Metadata Merging
+## [CONTINUE] Multi-Source Metadata Merging
 
 The `metadata` field in configuration is **Source 1** in the multi-source profiling architecture. It will be merged with:
 
@@ -399,7 +399,7 @@ See [AgentProfile Documentation](../../network/agent_registration/agent_profile.
 
 ---
 
-## 🎯 Use Cases and Patterns
+##  Use Cases and Patterns
 
 ### Pattern 1: Office Automation
 
@@ -513,7 +513,7 @@ for device_id, profile in devices.items():
 
 ---
 
-## ⚠️ Validation and Best Practices
+## ️ Validation and Best Practices
 
 ### Required Field Validation
 
@@ -545,12 +545,12 @@ def validate_device_config(device: dict) -> bool:
     
     **1. Use Meaningful device_id**
     ```yaml
-    # ✅ Good: Descriptive and unique
+    # [OK] Good: Descriptive and unique
     device_id: "windows_office_pc_01"
     device_id: "linux_prod_server_us_west_01"
     device_id: "gpu_ml_workstation_lab_a"
     
-    # ❌ Bad: Generic or ambiguous
+    # [FAIL] Bad: Generic or ambiguous
     device_id: "device1"
     device_id: "test"
     device_id: "agent"
@@ -558,13 +558,13 @@ def validate_device_config(device: dict) -> bool:
     
     **2. Specify Granular Capabilities**
     ```yaml
-    # ✅ Good: Specific capabilities
+    # [OK] Good: Specific capabilities
     capabilities:
       - "web_browsing_chrome"
       - "office_excel_automation"
       - "email_outlook"
     
-    # ❌ Bad: Vague capabilities
+    # [FAIL] Bad: Vague capabilities
     capabilities:
       - "office"
       - "internet"
@@ -572,7 +572,7 @@ def validate_device_config(device: dict) -> bool:
     
     **3. Include Rich Metadata**
     ```yaml
-    # ✅ Good: Comprehensive metadata
+    # [OK] Good: Comprehensive metadata
     metadata:
       location: "datacenter_us_west_rack_a42"
       performance: "very_high"
@@ -582,7 +582,7 @@ def validate_device_config(device: dict) -> bool:
       gpu_type: "NVIDIA A100"
       gpu_count: 4
     
-    # ❌ Bad: Minimal metadata
+    # [FAIL] Bad: Minimal metadata
     metadata:
       location: "server room"
     ```
@@ -607,7 +607,7 @@ def validate_device_config(device: dict) -> bool:
 
 ---
 
-## 🔧 Loading and Parsing
+## [CONFIG] Loading and Parsing
 
 ### Basic Loading
 
@@ -707,7 +707,7 @@ async def register_devices_from_config(
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 | Topic | Document | Description |
 |-------|----------|-------------|
@@ -719,7 +719,7 @@ async def register_devices_from_config(
 
 ---
 
-## 💡 Tips and Tricks
+## [THOUGHT] Tips and Tricks
 
 !!!tip "Advanced Configuration Tips"
     
@@ -763,7 +763,7 @@ async def register_devices_from_config(
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 1. **Create Your Configuration**: Copy example and customize
 2. **Validate Configuration**: Use validation function
@@ -772,7 +772,7 @@ async def register_devices_from_config(
 
 ---
 
-## 📚 Source Code References
+## [PLAN] Source Code References
 
 - **Example Config**: `config/network/devices.yaml`
 - **Loading Logic**: `network/client/device_manager.py`

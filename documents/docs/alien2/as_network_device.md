@@ -188,10 +188,10 @@ python -m alien.client.client `
 
 | Parameter | Required | Description | Example |
 |-----------|----------|-------------|---------|
-| `--ws` | ✅ Yes | Enable WebSocket mode | `--ws` |
-| `--ws-server` | ✅ Yes | Server WebSocket URL | `ws://192.168.1.100:5000/ws` |
-| `--client-id` | ✅ Yes | **Unique** device identifier | `alien2_desktop_1` |
-| `--platform` | ✅ Yes | Platform type (must be `windows` for ALIEN²) | `--platform windows` |
+| `--ws` | [OK] Yes | Enable WebSocket mode | `--ws` |
+| `--ws-server` | [OK] Yes | Server WebSocket URL | `ws://192.168.1.100:5000/ws` |
+| `--client-id` | [OK] Yes | **Unique** device identifier | `alien2_desktop_1` |
+| `--platform` | [OK] Yes | Platform type (must be `windows` for ALIEN²) | `--platform windows` |
 
 **Important:**
 - `--client-id` must be globally unique - No two devices can share the same ID
@@ -229,7 +229,7 @@ INFO - [WS] Heartbeat loop started (interval: 30s)
 **Server Logs:**
 
 ```log
-INFO - [WS] ✅ Registered device client: alien2_desktop_1
+INFO - [WS] [OK] Registered device client: alien2_desktop_1
 INFO - [WS] Device alien2_desktop_1 platform: windows
 ```
 
@@ -334,13 +334,13 @@ devices:
 
 | Field | Required | Type | Description | Example |
 |-------|----------|------|-------------|---------|
-| `device_id` | ✅ Yes | string | **Must match client `--client-id`** | `"alien2_desktop_1"` |
-| `server_url` | ✅ Yes | string | **Must match server WebSocket URL** | `"ws://192.168.1.100:5000/ws"` |
-| `os` | ✅ Yes | string | Operating system | `"windows"` |
-| `capabilities` | ❌ Optional | list | Device capabilities (for task routing) | `["desktop_automation", "office"]` |
-| `metadata` | ❌ Optional | dict | Custom metadata for task context | See below |
-| `auto_connect` | ❌ Optional | boolean | Auto-connect on Network startup | `true` |
-| `max_retries` | ❌ Optional | integer | Connection retry attempts | `5` |
+| `device_id` | [OK] Yes | string | **Must match client `--client-id`** | `"alien2_desktop_1"` |
+| `server_url` | [OK] Yes | string | **Must match server WebSocket URL** | `"ws://192.168.1.100:5000/ws"` |
+| `os` | [OK] Yes | string | Operating system | `"windows"` |
+| `capabilities` | [FAIL] Optional | list | Device capabilities (for task routing) | `["desktop_automation", "office"]` |
+| `metadata` | [FAIL] Optional | dict | Custom metadata for task context | See below |
+| `auto_connect` | [FAIL] Optional | boolean | Auto-connect on Network startup | `true` |
+| `max_retries` | [FAIL] Optional | integer | Connection retry attempts | `5` |
 
 ### Capabilities-Based Task Routing
 
@@ -556,11 +556,11 @@ Once all components are configured, launch Network to begin orchestrating multi-
 
 Ensure all components are running **before** starting Network:
 
-1. ✅ **ALIEN² Server(s)** running on configured ports
-2. ✅ **ALIEN² Client(s)** connected to their respective servers
-3. ✅ **MCP Services** initialized (automatic with ALIEN² client)
-4. ✅ **LLM configured** in `config/alien/agents.yaml`
-5. ✅ **Network connectivity** between all components
+1. [OK] **ALIEN² Server(s)** running on configured ports
+2. [OK] **ALIEN² Client(s)** connected to their respective servers
+3. [OK] **MCP Services** initialized (automatic with ALIEN² client)
+4. [OK] **LLM configured** in `config/alien/agents.yaml`
+5. [OK] **Network connectivity** between all components
 
 ### Launch Sequence
 

@@ -38,7 +38,7 @@ class ClientConfigManager:
         :return: Dictionary mapping device_id to registration success status
         """
         self.logger.info(
-            f"🚀 Initializing orion from config: {config.task_name}"
+            f"[START] Initializing orion from config: {config.task_name}"
         )
 
         registration_results = {}
@@ -49,10 +49,10 @@ class ClientConfigManager:
             registration_results[device_config.device_id] = success
 
             if success:
-                self.logger.info(f"✅ Registered device {device_config.device_id}")
+                self.logger.info(f"[OK] Registered device {device_config.device_id}")
             else:
                 self.logger.error(
-                    f"❌ Failed to register device {device_config.device_id}"
+                    f"[FAIL] Failed to register device {device_config.device_id}"
                 )
 
         # Summary
@@ -62,7 +62,7 @@ class ClientConfigManager:
         total_devices = len(registration_results)
 
         self.logger.info(
-            f"📊 Device registration complete: {successful_registrations}/{total_devices} successful"
+            f"[STATUS] Device registration complete: {successful_registrations}/{total_devices} successful"
         )
 
         return registration_results
@@ -85,7 +85,7 @@ class ClientConfigManager:
             )
         except Exception as e:
             self.logger.error(
-                f"❌ Failed to register device {device_config.device_id}: {e}"
+                f"[FAIL] Failed to register device {device_config.device_id}: {e}"
             )
             return False
 
@@ -124,7 +124,7 @@ class ClientConfigManager:
                 auto_connect=auto_connect,
             )
 
-            self.logger.info(f"📝 Added device {device_id} to configuration")
+            self.logger.info(f" Added device {device_id} to configuration")
 
             # Register immediately if requested
             if register_immediately:
@@ -140,11 +140,11 @@ class ClientConfigManager:
                 success = await self.register_device_from_config(device_config)
                 if success:
                     self.logger.info(
-                        f"✅ Device {device_id} added and registered successfully"
+                        f"[OK] Device {device_id} added and registered successfully"
                     )
                 else:
                     self.logger.error(
-                        f"❌ Device {device_id} added to config but registration failed"
+                        f"[FAIL] Device {device_id} added to config but registration failed"
                     )
                 return success
 
@@ -152,7 +152,7 @@ class ClientConfigManager:
 
         except Exception as e:
             self.logger.error(
-                f"❌ Failed to add device {device_id} to configuration: {e}"
+                f"[FAIL] Failed to add device {device_id} to configuration: {e}"
             )
             return False
 

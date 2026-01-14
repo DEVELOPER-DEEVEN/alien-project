@@ -26,18 +26,18 @@ This tutorial teaches you how to create, register, and deploy custom third-party
 Third-party agents are specialized agents that extend ALIEN²'s capabilities to handle tasks beyond standard Windows GUI automation. They work alongside the core agents (HostAgent and AppAgent) to provide domain-specific functionality.
 
 **Key Characteristics**:
-- ✅ Independent agent implementation with custom logic
-- ✅ Registered and managed by HostAgent
-- ✅ Selectable as execution targets by the LLM
-- ✅ Can use MCP servers and custom tools
-- ✅ Configurable via YAML files
+- [OK] Independent agent implementation with custom logic
+- [OK] Registered and managed by HostAgent
+- [OK] Selectable as execution targets by the LLM
+- [OK] Can use MCP servers and custom tools
+- [OK] Configurable via YAML files
 
 **Common Use Cases**:
-- 🔧 **Hardware Control**: Physical device manipulation (HardwareAgent)
-- 🐧 **Linux CLI**: Server and CLI command execution (LinuxAgent)
-- 🌐 **Web Automation**: Browser-based tasks without GUI
-- 📡 **IoT Integration**: Smart device control
-- 🤖 **Robotic Process Automation**: Custom automation workflows
+- [CONFIG] **Hardware Control**: Physical device manipulation (HardwareAgent)
+-  **Linux CLI**: Server and CLI command execution (LinuxAgent)
+- [WEB] **Web Automation**: Browser-based tasks without GUI
+-  **IoT Integration**: Smart device control
+-  **Robotic Process Automation**: Custom automation workflows
 
 ---
 
@@ -163,10 +163,10 @@ class YourAgent(CustomizedAgent):
 ```
 
 **Key Points**:
-- ✅ **Inherit from `CustomizedAgent`**: Provides base functionality
-- ✅ **Use `@AgentRegistry.register()`**: Enables dynamic loading
-- ✅ **Set `third_party=True`**: Triggers configuration filtering
-- ✅ **Specify `processor_cls`**: Links to your processing logic
+- [OK] **Inherit from `CustomizedAgent`**: Provides base functionality
+- [OK] **Use `@AgentRegistry.register()`**: Enables dynamic loading
+- [OK] **Set `third_party=True`**: Triggers configuration filtering
+- [OK] **Specify `processor_cls`**: Links to your processing logic
 
 ---
 
@@ -362,10 +362,10 @@ class YourActionExecutionStrategy(BaseProcessingStrategy):
 ```
 
 **When to Create Custom Strategies**:
-- ✅ Need domain-specific action execution (e.g., hardware APIs)
-- ✅ Special LLM interaction patterns (e.g., multi-turn dialogs)
-- ✅ Custom data collection (e.g., sensor readings, external APIs)
-- ❌ Standard GUI automation (use default strategies)
+- [OK] Need domain-specific action execution (e.g., hardware APIs)
+- [OK] Special LLM interaction patterns (e.g., multi-turn dialogs)
+- [OK] Custom data collection (e.g., sensor readings, external APIs)
+- [FAIL] Standard GUI automation (use default strategies)
 
 ---
 
@@ -442,11 +442,11 @@ example_2: |
 ```
 
 **Prompt Design Best Practices**:
-- ✅ **Clear role definition**: Explain what your agent does
-- ✅ **Tool descriptions**: List available actions with usage
-- ✅ **Examples**: Provide concrete examples of interactions
-- ✅ **Error handling**: Include guidance for error scenarios
-- ✅ **Output format**: Specify expected response structure
+- [OK] **Clear role definition**: Explain what your agent does
+- [OK] **Tool descriptions**: List available actions with usage
+- [OK] **Examples**: Provide concrete examples of interactions
+- [OK] **Error handling**: Include guidance for error scenarios
+- [OK] **Output format**: Specify expected response structure
 
 ---
 
@@ -479,9 +479,9 @@ class HardwareAgent(CustomizedAgent):
 ```
 
 **Why so simple?**
-- ✅ **Inheritance**: Gets all functionality from `CustomizedAgent`
-- ✅ **Composition**: Custom logic goes in the Processor
-- ✅ **Separation of Concerns**: Agent defines "what", Processor defines "how"
+- [OK] **Inheritance**: Gets all functionality from `CustomizedAgent`
+- [OK] **Composition**: Custom logic goes in the Processor
+- [OK] **Separation of Concerns**: Agent defines "what", Processor defines "how"
 
 ---
 
@@ -720,11 +720,11 @@ THIRD_PARTY_AGENT_CONFIG:
 ```
 
 **Configuration Checklist**:
-- ✅ Add agent name to `ENABLED_THIRD_PARTY_AGENTS`
-- ✅ Create config block under `THIRD_PARTY_AGENT_CONFIG`
-- ✅ Set `AGENT_NAME` to match registry name
-- ✅ Provide paths to prompt templates
-- ✅ Write clear `INTRODUCTION` for LLM context
+- [OK] Add agent name to `ENABLED_THIRD_PARTY_AGENTS`
+- [OK] Create config block under `THIRD_PARTY_AGENT_CONFIG`
+- [OK] Set `AGENT_NAME` to match registry name
+- [OK] Provide paths to prompt templates
+- [OK] Write clear `INTRODUCTION` for LLM context
 
 ---
 
@@ -739,11 +739,11 @@ alien/prompts/third_party/
 ```
 
 **Template Requirements**:
-- ✅ Define agent role and capabilities
-- ✅ List available actions/tools
-- ✅ Provide clear output format
-- ✅ Include error handling guidance
-- ✅ Add concrete examples
+- [OK] Define agent role and capabilities
+- [OK] List available actions/tools
+- [OK] Provide clear output format
+- [OK] Include error handling guidance
+- [OK] Add concrete examples
 
 ---
 
@@ -763,12 +763,12 @@ def test_agent_registration():
     
     # Check if agent is enabled
     assert "YourAgent" in config.system.enabled_third_party_agents
-    print("✅ Agent is enabled in config")
+    print("[OK] Agent is enabled in config")
     
     # Check if agent is registered
     registered_agents = AgentRegistry.list_agents()
     assert "YourAgent" in registered_agents
-    print("✅ Agent is registered in AgentRegistry")
+    print("[OK] Agent is registered in AgentRegistry")
     
     # Test agent instantiation
     agent_cls = AgentRegistry.get("YourAgent")
@@ -779,11 +779,11 @@ def test_agent_registration():
         main_prompt=agent_config["APPAGENT_PROMPT"],
         example_prompt=agent_config["APPAGENT_EXAMPLE_PROMPT"],
     )
-    print(f"✅ Agent instantiated: {agent}")
+    print(f"[OK] Agent instantiated: {agent}")
     
     # Check processor
     assert hasattr(agent, "_processor_cls")
-    print(f"✅ Processor registered: {agent._processor_cls}")
+    print(f"[OK] Processor registered: {agent._processor_cls}")
 
 if __name__ == "__main__":
     test_agent_registration()
@@ -821,7 +821,7 @@ def test_agent_selection():
     
     # Verify third-party agents are in target registry
     # (This happens during HostAgent processing)
-    print("✅ HostAgent created successfully")
+    print("[OK] HostAgent created successfully")
     print(f"Enabled third-party agents: {config.system.enabled_third_party_agents}")
 
 if __name__ == "__main__":
@@ -854,11 +854,11 @@ config/
 ```
 
 **Organization Guidelines**:
-- ✅ **Agent classes** → `alien/agents/agent/customized_agent.py`
-- ✅ **Processors** → `alien/agents/processors/customized/`
-- ✅ **Custom strategies** → `alien/agents/processors/strategies/`
-- ✅ **Prompts** → `alien/prompts/third_party/`
-- ✅ **Configuration** → `config/alien/third_party.yaml`
+- [OK] **Agent classes** → `alien/agents/agent/customized_agent.py`
+- [OK] **Processors** → `alien/agents/processors/customized/`
+- [OK] **Custom strategies** → `alien/agents/processors/strategies/`
+- [OK] **Prompts** → `alien/prompts/third_party/`
+- [OK] **Configuration** → `config/alien/third_party.yaml`
 
 ---
 
@@ -914,11 +914,11 @@ async def execute(self, agent, context) -> ProcessingResult:
 ```
 
 **Error Handling Guidelines**:
-- ✅ Use `ProcessingResult` to communicate outcomes
-- ✅ Log errors at appropriate levels (warning/error)
-- ✅ Respect `fail_fast` setting
-- ✅ Provide actionable error messages
-- ✅ Return partial results when possible
+- [OK] Use `ProcessingResult` to communicate outcomes
+- [OK] Log errors at appropriate levels (warning/error)
+- [OK] Respect `fail_fast` setting
+- [OK] Provide actionable error messages
+- [OK] Return partial results when possible
 
 ---
 
@@ -949,11 +949,11 @@ class YourAgentProcessor(CustomizedProcessor):
 ```
 
 **Logging Best Practices**:
-- ✅ Use `self.logger` from base class
-- ✅ Log at appropriate levels (debug/info/warning/error)
-- ✅ Include context in log messages
-- ✅ Use `exc_info=True` for exceptions
-- ✅ Avoid logging sensitive data
+- [OK] Use `self.logger` from base class
+- [OK] Log at appropriate levels (debug/info/warning/error)
+- [OK] Include context in log messages
+- [OK] Use `exc_info=True` for exceptions
+- [OK] Avoid logging sensitive data
 
 ---
 
@@ -1003,12 +1003,12 @@ class TestYourAgent:
 ```
 
 **Test Coverage Checklist**:
-- ✅ Agent initialization
-- ✅ Processor registration
-- ✅ Strategy execution
-- ✅ Error handling
-- ✅ Configuration loading
-- ✅ Integration with HostAgent
+- [OK] Agent initialization
+- [OK] Processor registration
+- [OK] Strategy execution
+- [OK] Error handling
+- [OK] Configuration loading
+- [OK] Integration with HostAgent
 
 ---
 
@@ -1331,15 +1331,15 @@ class YourAgent(CustomizedAgent):
 
 **Key Takeaways:**
 
-✅ **Third-party agents extend ALIEN²** with specialized capabilities  
-✅ **Use `@AgentRegistry.register()`** to register your agent  
-✅ **Create processor classes** to define processing logic  
-✅ **Configure in third_party.yaml** to enable your agent  
-✅ **HostAgent automatically discovers** enabled third-party agents  
-✅ **LLM selects agents** based on task requirements  
-✅ **Follow HardwareAgent** as a reference implementation  
+[OK] **Third-party agents extend ALIEN²** with specialized capabilities  
+[OK] **Use `@AgentRegistry.register()`** to register your agent  
+[OK] **Create processor classes** to define processing logic  
+[OK] **Configure in third_party.yaml** to enable your agent  
+[OK] **HostAgent automatically discovers** enabled third-party agents  
+[OK] **LLM selects agents** based on task requirements  
+[OK] **Follow HardwareAgent** as a reference implementation  
 
-**Build powerful third-party agents to extend ALIEN²!** 🚀
+**Build powerful third-party agents to extend ALIEN²!** [START]
 
 ---
 
@@ -1374,4 +1374,4 @@ THIRD_PARTY_AGENT_CONFIG:
 # Create: alien/prompts/third_party/my_agent_example.yaml
 ```
 
-**That's all you need to get started!** 🎉
+**That's all you need to get started!** 

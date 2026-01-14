@@ -253,7 +253,7 @@ class NetworkSession(BaseSession):
         all_devices = self._client.device_manager.get_all_devices(connected=False)
 
         self.logger.info(
-            f"🔍 DEBUG: Retrieved {len(all_devices)} devices from registry: {list(all_devices.keys())}"
+            f" DEBUG: Retrieved {len(all_devices)} devices from registry: {list(all_devices.keys())}"
         )
 
         self.context.set(
@@ -497,7 +497,7 @@ class NetworkSession(BaseSession):
         This method sets the cancellation flag and attempts to cancel
         the orchestrator's orion execution.
         """
-        self.logger.info("🛑 Cancellation requested for session")
+        self.logger.info(" Cancellation requested for session")
         self._cancellation_requested = True
         self._finish = True
 
@@ -509,7 +509,7 @@ class NetworkSession(BaseSession):
         if self._current_orion:
             orion_id = self._current_orion.orion_id
             self.logger.info(
-                f"🛑 Requesting cancellation for orion {orion_id}"
+                f" Requesting cancellation for orion {orion_id}"
             )
             await self._orchestrator.cancel_execution(orion_id)
 

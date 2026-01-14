@@ -34,11 +34,11 @@ python -m alien.tools.migrate_config --backup --validate
 ```
 
 **What it does**:
-1. ✅ Reads your legacy `alien/config/config.yaml`
-2. ✅ Splits into modular files by domain
-3. ✅ Creates backup of original file
-4. ✅ Validates the new configuration
-5. ✅ Provides migration report
+1. [OK] Reads your legacy `alien/config/config.yaml`
+2. [OK] Splits into modular files by domain
+3. [OK] Creates backup of original file
+4. [OK] Validates the new configuration
+5. [OK] Provides migration report
 
 !!!warning "Backup Reminder"
     Always backup your configuration before migration! The tool creates a backup automatically, but it's good practice to keep your own copy.
@@ -293,7 +293,7 @@ assert config.system.max_step > 0
 assert config.host_agent.api_key != ""
 assert config.app_agent.api_model != ""
 
-print("✅ Configuration loaded successfully!")
+print("[OK] Configuration loaded successfully!")
 ```
 
 ### 2. Test Backward Compatibility
@@ -310,7 +310,7 @@ host_agent_old = config["HOST_AGENT"]
 assert max_step_old == config.system.max_step
 assert host_agent_old["API_MODEL"] == config.host_agent.api_model
 
-print("✅ Backward compatibility verified!")
+print("[OK] Backward compatibility verified!")
 ```
 
 ### 3. Run Application Tests

@@ -50,7 +50,7 @@ class OrionDisplay:
         """
         # Create orion info
         info_panel = self._create_basic_info_panel(
-            orion, "🚀 Orion Started", additional_info
+            orion, "[START] Orion Started", additional_info
         )
 
         # Create basic stats
@@ -58,7 +58,7 @@ class OrionDisplay:
 
         # Display side by side
         self.console.print()
-        self.console.rule("[bold cyan]🚀 Orion Started[/bold cyan]")
+        self.console.rule("[bold cyan][START] Orion Started[/bold cyan]")
         self.console.print(Columns([info_panel, stats_panel], equal=True))
 
     def display_orion_completed(
@@ -149,7 +149,7 @@ class OrionDisplay:
 
         # Create failure info
         info_panel = self._create_basic_info_panel(
-            orion, "❌ Orion Failed", enhanced_info
+            orion, "[FAIL] Orion Failed", enhanced_info
         )
 
         # Create stats with failure emphasis
@@ -157,7 +157,7 @@ class OrionDisplay:
 
         # Display with error styling
         self.console.print()
-        self.console.rule("[bold red]❌ Orion Failed[/bold red]")
+        self.console.rule("[bold red][FAIL] Orion Failed[/bold red]")
         self.console.print(Columns([info_panel, stats_panel], equal=True))
 
     def display_orion_modified(
@@ -175,7 +175,7 @@ class OrionDisplay:
         """
         # Create modification message
         mod_text = Text()
-        mod_text.append("🔄 ", style="bold blue")
+        mod_text.append("[CONTINUE] ", style="bold blue")
         mod_text.append(f"Orion Modified: ", style="bold blue")
         mod_text.append(f"{orion.name}", style="bold yellow")
         mod_text.append(f" ({orion.orion_id[:8]}...)", style="dim")
@@ -190,7 +190,7 @@ class OrionDisplay:
         # Add calculated modification details
         if changes.get("modification_type"):
             mod_type = changes["modification_type"].replace("_", " ").title()
-            table.add_row("🔧 Change Type:", f"[bold blue]{mod_type}[/bold blue]")
+            table.add_row("[CONFIG] Change Type:", f"[bold blue]{mod_type}[/bold blue]")
 
         self._add_change_details_to_table(table, changes)
         self._add_orion_stats_to_table(table, orion)
@@ -199,14 +199,14 @@ class OrionDisplay:
         if additional_info:
             for key, value in additional_info.items():
                 if value is not None:
-                    table.add_row(f"ℹ️ {key.title()}:", f"[cyan]{value}[/cyan]")
+                    table.add_row(f"[INFO] {key.title()}:", f"[cyan]{value}[/cyan]")
 
         # Create panel with proper Rich composition
         content = Group(mod_text, "", table)
 
         panel = Panel(
             content,
-            title="[bold blue]⚙️ Orion Structure Updated[/bold blue]",
+            title="[bold blue]️ Orion Structure Updated[/bold blue]",
             border_style="blue",
             width=80,
         )
@@ -262,7 +262,7 @@ class OrionDisplay:
                     formatted_key = key.replace("_", " ").title()
                     info_lines.append(f"[bold]{formatted_key}:[/bold] {value}")
 
-        return Panel("\n".join(info_lines), title=f"📊 {title}", border_style="cyan")
+        return Panel("\n".join(info_lines), title=f"[STATUS] {title}", border_style="cyan")
 
     def _create_basic_stats_panel(self, orion: "TaskOrion") -> Panel:
         """
@@ -276,10 +276,10 @@ class OrionDisplay:
         stats_lines = [
             f"[bold]Total Tasks:[/bold] {stats['total_tasks']}",
             f"[bold]Dependencies:[/bold] {stats['total_dependencies']}",
-            f"[green]✅ Completed:[/green] {stats['completed_tasks']}",
-            f"[blue]🔵 Running:[/blue] {stats['running_tasks']}",
-            f"[yellow]🟡 Ready:[/yellow] {stats['ready_tasks']}",
-            f"[red]❌ Failed:[/red] {stats['failed_tasks']}",
+            f"[green][OK] Completed:[/green] {stats['completed_tasks']}",
+            f"[blue] Running:[/blue] {stats['running_tasks']}",
+            f"[yellow] Ready:[/yellow] {stats['ready_tasks']}",
+            f"[red][FAIL] Failed:[/red] {stats['failed_tasks']}",
         ]
 
         if stats.get("success_rate") is not None:
@@ -288,7 +288,7 @@ class OrionDisplay:
             )
 
         return Panel(
-            "\n".join(stats_lines), title="📈 Statistics", border_style="green"
+            "\n".join(stats_lines), title=" Statistics", border_style="green"
         )
 
     def _add_change_details_to_table(
@@ -302,7 +302,7 @@ class OrionDisplay:
         """
         if changes.get("added_tasks"):
             count = len(changes["added_tasks"])
-            table.add_row("➕ Tasks Added:", f"[green]{count} new tasks[/green]")
+            table.add_row(" Tasks Added:", f"[green]{count} new tasks[/green]")
             # Show task names if not too many
             if count <= 3:
                 task_names = ", ".join(
@@ -315,7 +315,7 @@ class OrionDisplay:
 
         if changes.get("removed_tasks"):
             count = len(changes["removed_tasks"])
-            table.add_row("➖ Tasks Removed:", f"[red]{count} tasks[/red]")
+            table.add_row(" Tasks Removed:", f"[red]{count} tasks[/red]")
             # Show task names if not too many
             if count <= 3:
                 task_names = ", ".join(
@@ -328,19 +328,19 @@ class OrionDisplay:
 
         if changes.get("added_dependencies"):
             table.add_row(
-                "🔗 Deps Added:",
+                "[DEP] Deps Added:",
                 f"[green]{len(changes['added_dependencies'])} links[/green]",
             )
 
         if changes.get("removed_dependencies"):
             table.add_row(
-                "🔗 Deps Removed:",
+                "[DEP] Deps Removed:",
                 f"[red]{len(changes['removed_dependencies'])} links[/red]",
             )
 
         if changes.get("modified_tasks"):
             table.add_row(
-                "📝 Tasks Modified:",
+                " Tasks Modified:",
                 f"[yellow]{len(changes['modified_tasks'])} tasks updated[/yellow]",
             )
 
@@ -356,25 +356,25 @@ class OrionDisplay:
         stats = self._get_orion_statistics(orion)
 
         table.add_row(
-            "📊 Total Tasks:", f"[bold white]{stats['total_tasks']}[/bold white]"
+            "[STATUS] Total Tasks:", f"[bold white]{stats['total_tasks']}[/bold white]"
         )
         table.add_row(
-            "🔗 Total Deps:", f"[bold white]{stats['total_dependencies']}[/bold white]"
+            "[DEP] Total Deps:", f"[bold white]{stats['total_dependencies']}[/bold white]"
         )
 
         # Task status breakdown
         status_summary = []
         if stats["completed_tasks"] > 0:
-            status_summary.append(f"[green]✅ {stats['completed_tasks']}[/green]")
+            status_summary.append(f"[green][OK] {stats['completed_tasks']}[/green]")
         if stats["running_tasks"] > 0:
-            status_summary.append(f"[blue]🔵 {stats['running_tasks']}[/blue]")
+            status_summary.append(f"[blue] {stats['running_tasks']}[/blue]")
         if stats["ready_tasks"] > 0:
-            status_summary.append(f"[yellow]🟡 {stats['ready_tasks']}[/yellow]")
+            status_summary.append(f"[yellow] {stats['ready_tasks']}[/yellow]")
         if stats["failed_tasks"] > 0:
-            status_summary.append(f"[red]❌ {stats['failed_tasks']}[/red]")
+            status_summary.append(f"[red][FAIL] {stats['failed_tasks']}[/red]")
 
         if status_summary:
-            table.add_row("📈 Task Status:", " | ".join(status_summary))
+            table.add_row(" Task Status:", " | ".join(status_summary))
 
     def _get_orion_statistics(
         self, orion: "TaskOrion"

@@ -6,7 +6,7 @@ The system implements the classic **Observer Pattern** (also known as Publish-Su
 
 ---
 
-## 🎯 Purpose and Design Goals
+##  Purpose and Design Goals
 
 The observer system serves several critical functions in the Network framework:
 
@@ -18,7 +18,7 @@ The observer system serves several critical functions in the Network framework:
 
 ---
 
-## 🏗️ Architecture Overview
+## ️ Architecture Overview
 
 The observer system consists of three main layers:
 
@@ -79,7 +79,7 @@ graph TB
 
 ---
 
-## 📊 Core Components
+## [STATUS] Core Components
 
 ### Event System Core
 
@@ -108,7 +108,7 @@ Five specialized observers handle different aspects of system monitoring:
 
 ---
 
-## 🔄 Event Flow
+## [CONTINUE] Event Flow
 
 The following diagram illustrates how events flow through the system:
 
@@ -149,7 +149,7 @@ The event flow demonstrates how a single action (task completion) triggers multi
 
 ---
 
-## 📋 Event Types
+## [TASK] Event Types
 
 The system defines the following event types:
 
@@ -195,7 +195,7 @@ Monitor device status (used by client):
 
 ---
 
-## 🚀 Usage Example
+## [START] Usage Example
 
 Here's a complete example showing how observers are initialized and used in a Network session:
 
@@ -250,7 +250,7 @@ print(f"Modifications: {metrics['orion_modifications']}")
 
 ---
 
-## 🔑 Key Benefits
+##  Key Benefits
 
 ### 1. Decoupling
 
@@ -318,7 +318,7 @@ async def on_event(self, event: Event) -> None:
 
 ---
 
-## 📚 Component Documentation
+## [PLAN] Component Documentation
 
 Explore detailed documentation for each observer:
 
@@ -330,7 +330,7 @@ Explore detailed documentation for each observer:
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 - **[Orion Orchestrator](../orion_orchestrator/overview.md)** — Event publishers for task execution
 - **[Orion Agent](../orion_agent/overview.md)** — Event publishers for agent operations
@@ -339,7 +339,7 @@ Explore detailed documentation for each observer:
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 ### Observer Lifecycle Management
 
@@ -392,7 +392,7 @@ async def on_event(self, event: Event) -> None:
 
 ---
 
-## 🎓 Summary
+##  Summary
 
 The Observer System provides a robust, event-driven foundation for monitoring and coordinating Network's orion execution:
 

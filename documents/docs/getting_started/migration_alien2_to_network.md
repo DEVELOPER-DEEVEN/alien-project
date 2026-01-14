@@ -4,7 +4,7 @@ This guide helps you understand the evolution from **ALIEN²** (Desktop AgentOS)
 
 ---
 
-## 🌟 Understanding the ALIEN Evolution
+##  Understanding the ALIEN Evolution
 
 ### The ALIEN Journey
 
@@ -21,7 +21,7 @@ graph LR
 ```
 
 #### **ALIEN (v1.0)** — The Beginning
-📅 *Released: February 2024*
+[DATE] *Released: February 2024*
 
 - **Vision**: Screenshot-based Windows automation
 - **Architecture**: Multi-agent (HostAgent + AppAgents)
@@ -34,17 +34,17 @@ graph LR
 ---
 
 #### **ALIEN² (v2.0)** — Desktop AgentOS
-📅 *Released: April 2025*  
-📄 *Paper:* [ALIEN²: A Windows Agent for Seamless OS Interaction](https://arxiv.org/abs/2504.14603)
+[DATE] *Released: April 2025*  
+[DOC] *Paper:* [ALIEN²: A Windows Agent for Seamless OS Interaction](https://arxiv.org/abs/2504.14603)
 
 - **Vision**: Deep OS integration for robust automation
 - **Architecture**: Two-tier hierarchy (HostAgent + AppAgents)
 - **Innovations**:
-  - ✅ **Hybrid GUI–API execution** (51% fewer LLM calls)
-  - ✅ **Windows UIA + Win32 + WinCOM APIs**
-  - ✅ **Continuous knowledge learning** from docs & experience
-  - ✅ **Picture-in-Picture desktop** (non-disruptive automation)
-  - ✅ **MCP server integration** for tool augmentation
+  - [OK] **Hybrid GUI–API execution** (51% fewer LLM calls)
+  - [OK] **Windows UIA + Win32 + WinCOM APIs**
+  - [OK] **Continuous knowledge learning** from docs & experience
+  - [OK] **Picture-in-Picture desktop** (non-disruptive automation)
+  - [OK] **MCP server integration** for tool augmentation
 - **Scope**: Single Windows desktop
 - **Success**: 10%+ better than state-of-the-art CUAs
 
@@ -53,18 +53,18 @@ graph LR
 ---
 
 #### **ALIEN³ Network** — Multi-Device AgentOS
-📅 *Released: November 2025*  
-📄 *Paper:* ALIEN³: Weaving the Digital Agent Network *(Coming Soon)*
+[DATE] *Released: November 2025*  
+[DOC] *Paper:* ALIEN³: Weaving the Digital Agent Network *(Coming Soon)*
 
 - **Vision**: Cross-device orchestration at scale
 - **Architecture**: Orion-based distributed DAG orchestration
 - **Innovations**:
-  - ✅ **Task Orion** (dynamic DAG decomposition)
-  - ✅ **Asynchronous parallel execution** across devices
-  - ✅ **Event-driven coordination** with formal safety guarantees
-  - ✅ **Dual-mode DAG evolution** (creation + editing)
-  - ✅ **Agent Interaction Protocol** (persistent WebSocket)
-  - ✅ **Heterogeneous device support** (Windows, Linux, macOS)
+  - [OK] **Task Orion** (dynamic DAG decomposition)
+  - [OK] **Asynchronous parallel execution** across devices
+  - [OK] **Event-driven coordination** with formal safety guarantees
+  - [OK] **Dual-mode DAG evolution** (creation + editing)
+  - [OK] **Agent Interaction Protocol** (persistent WebSocket)
+  - [OK] **Heterogeneous device support** (Windows, Linux, macOS)
 - **Scope**: Multi-device workflows across platforms
 - **Capability**: Orchestrate 10+ devices simultaneously
 
@@ -142,15 +142,15 @@ Cross-Platform Apps
 
 ---
 
-## 🎯 When to Use Which?
+##  When to Use Which?
 
 ### Use **ALIEN²** (Desktop AgentOS) When:
 
-✅ You're automating tasks on a **single Windows desktop**  
-✅ You need **deep Windows integration** (Office, File Explorer, etc.)  
-✅ You want **fast, simple execution** without network overhead  
-✅ You're learning agent automation basics  
-✅ Your workflow is entirely **local** (no cross-device dependencies)
+[OK] You're automating tasks on a **single Windows desktop**  
+[OK] You need **deep Windows integration** (Office, File Explorer, etc.)  
+[OK] You want **fast, simple execution** without network overhead  
+[OK] You're learning agent automation basics  
+[OK] Your workflow is entirely **local** (no cross-device dependencies)
 
 **Examples:**
 - "Create a PowerPoint presentation from this Excel data"
@@ -161,12 +161,12 @@ Cross-Platform Apps
 
 ### Use **ALIEN³ Network** When:
 
-✅ Your workflow spans **multiple devices** (Windows, Linux, servers)  
-✅ You need **parallel task execution** for performance  
-✅ You have **complex dependencies** between subtasks  
-✅ You want **dynamic workflow adaptation** based on results  
-✅ You need **fault tolerance** and automatic recovery  
-✅ You're orchestrating **heterogeneous systems** (desktop + server + cloud)
+[OK] Your workflow spans **multiple devices** (Windows, Linux, servers)  
+[OK] You need **parallel task execution** for performance  
+[OK] You have **complex dependencies** between subtasks  
+[OK] You want **dynamic workflow adaptation** based on results  
+[OK] You need **fault tolerance** and automatic recovery  
+[OK] You're orchestrating **heterogeneous systems** (desktop + server + cloud)
 
 **Examples:**
 - "Clone repo on my laptop, build Docker image on GPU server, deploy to staging, run tests on CI cluster"
@@ -190,7 +190,7 @@ This is the **recommended hybrid approach** for complex workflows.
 
 ---
 
-## 🔄 Key Concept Mapping
+## [CONTINUE] Key Concept Mapping
 
 Understanding how ALIEN² concepts map to Network:
 
@@ -234,7 +234,7 @@ OrionAgent
 
 ---
 
-## ⚙️ Configuration Migration
+## ️ Configuration Migration
 
 ### Step 1: Preserve ALIEN² Configuration
 
@@ -362,7 +362,7 @@ LOG_TO_MARKDOWN: true         # Generate trajectory reports
 
 ---
 
-## 🚀 Migration Steps
+## [START] Migration Steps
 
 ### Option 1: Keep ALIEN² for Local, Add Network for Multi-Device
 
@@ -489,7 +489,7 @@ asyncio.run(main())
 
 ---
 
-## 📊 Feature Comparison
+## [STATUS] Feature Comparison
 
 ### Preserved ALIEN² Features in Network
 
@@ -497,12 +497,12 @@ When running ALIEN² as a Network device, you **keep all ALIEN² capabilities**:
 
 | ALIEN² Feature | Available in Network Device? | Notes |
 |--------------|----------------------------|-------|
-| ✅ Hybrid GUI–API execution | ✅ Yes | Each device uses its native ALIEN² agent |
-| ✅ Windows UIA/Win32/COM | ✅ Yes | Full OS integration preserved |
-| ✅ MCP server integration | ✅ Yes | Devices can use custom MCP servers |
-| ✅ Continuous learning | ✅ Yes | Each device maintains its own RAG |
-| ✅ Picture-in-Picture | ✅ Yes | Non-disruptive execution on each device |
-| ✅ AppAgent specialization | ✅ Yes | HostAgent manages local AppAgents |
+| [OK] Hybrid GUI–API execution | [OK] Yes | Each device uses its native ALIEN² agent |
+| [OK] Windows UIA/Win32/COM | [OK] Yes | Full OS integration preserved |
+| [OK] MCP server integration | [OK] Yes | Devices can use custom MCP servers |
+| [OK] Continuous learning | [OK] Yes | Each device maintains its own RAG |
+| [OK] Picture-in-Picture | [OK] Yes | Non-disruptive execution on each device |
+| [OK] AppAgent specialization | [OK] Yes | HostAgent manages local AppAgents |
 
 ---
 
@@ -520,7 +520,7 @@ When running ALIEN² as a Network device, you **keep all ALIEN² capabilities**:
 
 ---
 
-## 🛠️ Practical Examples
+## ️ Practical Examples
 
 ### Example 1: Simple Local Task
 
@@ -551,7 +551,7 @@ python -m network --request "Create a presentation from data.xlsx on my desktop"
 
 **ALIEN² (Before):**
 ```bash
-# ❌ Not possible — ALIEN² is single-device only
+# [FAIL] Not possible — ALIEN² is single-device only
 # You'd need to manually:
 # 1. SSH to server
 # 2. Run build command
@@ -647,7 +647,7 @@ asyncio.run(main())
 
 ---
 
-## 🎓 Learning Path
+##  Learning Path
 
 ### For ALIEN² Users
 
@@ -673,7 +673,7 @@ asyncio.run(main())
 
 ---
 
-## 📚 Related Documentation
+## [PLAN] Related Documentation
 
 ### Migration Resources
 
@@ -697,7 +697,7 @@ asyncio.run(main())
 
 ---
 
-## 🤝 Getting Help
+##  Getting Help
 
 ### Common Questions
 
@@ -718,7 +718,7 @@ A: Check `logs/network/<session>/output.md` for step-by-step execution details a
 
 ---
 
-## 🚦 Migration Checklist
+##  Migration Checklist
 
 Use this checklist to track your migration progress:
 
@@ -736,6 +736,6 @@ Use this checklist to track your migration progress:
 
 ---
 
-**🎉 Congratulations!** You're now ready to leverage the full power of ALIEN³ Network's multi-device orchestration while preserving your existing ALIEN² workflows.
+** Congratulations!** You're now ready to leverage the full power of ALIEN³ Network's multi-device orchestration while preserving your existing ALIEN² workflows.
 
 For questions or issues, please open an issue on [GitHub](https://github.com/DEVELOPER-DEEVEN/alien-project) or check the [documentation](https://github.com/DEVELOPER-DEEVEN/alien-project).

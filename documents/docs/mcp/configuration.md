@@ -55,10 +55,10 @@ All MCP servers share these fields:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `namespace` | `string` | ✅ Yes | Unique identifier for the server |
-| `type` | `string` | ✅ Yes | Server type: `local`, `http`, or `stdio` |
-| `reset` | `boolean` | ❌ No | Whether to reset server state (default: `false`) |
-| `start_args` | `array` | ❌ No | Arguments passed to server initialization |
+| `namespace` | `string` | [OK] Yes | Unique identifier for the server |
+| `type` | `string` | [OK] Yes | Server type: `local`, `http`, or `stdio` |
+| `reset` | `boolean` | [FAIL] No | Whether to reset server state (default: `false`) |
+| `start_args` | `array` | [FAIL] No | Arguments passed to server initialization |
 
 ### Local Server Fields
 
@@ -92,9 +92,9 @@ For `type: http`:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `host` | `string` | ✅ Yes | Server hostname or IP |
-| `port` | `integer` | ✅ Yes | Server port number |
-| `path` | `string` | ✅ Yes | URL path to MCP endpoint |
+| `host` | `string` | [OK] Yes | Server hostname or IP |
+| `port` | `integer` | [OK] Yes | Server port number |
+| `path` | `string` | [OK] Yes | URL path to MCP endpoint |
 
 HTTP servers run on remote machines and are accessed via REST API.
 
@@ -114,10 +114,10 @@ For `type: stdio`:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `command` | `string` | ✅ Yes | Executable command |
-| `start_args` | `array` | ❌ No | Command-line arguments |
-| `env` | `object` | ❌ No | Environment variables |
-| `cwd` | `string` | ❌ No | Working directory |
+| `command` | `string` | [OK] Yes | Executable command |
+| `start_args` | `array` | [FAIL] No | Command-line arguments |
+| `env` | `object` | [FAIL] No | Environment variables |
+| `cwd` | `string` | [FAIL] No | Working directory |
 
 Stdio servers run as child processes and communicate via stdin/stdout.
 
@@ -419,12 +419,12 @@ MultiContextAgent:
 ### 1. Use Descriptive Namespaces
 
 ```yaml
-# ✅ Good: Clear and descriptive
+# [OK] Good: Clear and descriptive
 namespace: WindowsUICollector
 namespace: ExcelCOMExecutor
 namespace: LinuxBashExecutor
 
-# ❌ Bad: Generic and unclear
+# [FAIL] Bad: Generic and unclear
 namespace: Collector1
 namespace: Server
 namespace: Tools
@@ -433,7 +433,7 @@ namespace: Tools
 ### 2. Group Related Servers
 
 ```yaml
-# ✅ Good: Logical grouping
+# [OK] Good: Logical grouping
 HostAgent:
   default:
     data_collection:
@@ -443,7 +443,7 @@ HostAgent:
       - namespace: UIExecutor       # All UI actions
       - namespace: WindowManager
 
-# ❌ Bad: Mixed purposes
+# [FAIL] Bad: Mixed purposes
 HostAgent:
   default:
     data_collection:
@@ -454,12 +454,12 @@ HostAgent:
 ### 3. Reset Stateful Servers
 
 ```yaml
-# ✅ Good: Reset COM servers
+# [OK] Good: Reset COM servers
 WordCOMExecutor:
   type: local
   reset: true  # Prevents state leakage
 
-# ❌ Bad: Not resetting can cause issues
+# [FAIL] Bad: Not resetting can cause issues
 WordCOMExecutor:
   type: local
   reset: false  # May retain state from previous document
@@ -471,15 +471,15 @@ WordCOMExecutor:
 # When using remote servers, ensure they're accessible
 HardwareCollector:
   type: http
-  host: "192.168.1.100"  # ✅ Verify this host is reachable
-  port: 8006             # ✅ Verify port is open
-  path: "/mcp"           # ✅ Verify endpoint exists
+  host: "192.168.1.100"  # [OK] Verify this host is reachable
+  port: 8006             # [OK] Verify port is open
+  path: "/mcp"           # [OK] Verify endpoint exists
 ```
 
 ### 5. Use Environment Variables for Secrets
 
 ```yaml
-# ✅ Good: Use environment variables
+# [OK] Good: Use environment variables
 - namespace: SecureAPI
   type: http
   host: "${API_HOST}"
@@ -487,7 +487,7 @@ HardwareCollector:
   auth:
     token: "${API_TOKEN}"
 
-# ❌ Bad: Hardcoded secrets
+# [FAIL] Bad: Hardcoded secrets
 - namespace: SecureAPI
   type: http
   host: "api.example.com"
@@ -539,9 +539,9 @@ from alien.config.config_schemas import MCPConfigSchema
 # Validate configuration
 try:
     MCPConfigSchema.validate(mcp_config)
-    print("✅ Configuration is valid")
+    print("[OK] Configuration is valid")
 except ValidationError as e:
-    print(f"❌ Configuration error: {e}")
+    print(f"[FAIL] Configuration error: {e}")
 ```
 
 ### Common Validation Errors
@@ -586,7 +586,7 @@ async def test_server(config):
     """Test if MCP server is accessible."""
     try:
         server = MCPServerManager.create_mcp_server(config)
-        print(f"✅ Server '{config['namespace']}' is accessible")
+        print(f"[OK] Server '{config['namespace']}' is accessible")
         
         # List tools
         if hasattr(server, 'server'):
@@ -595,7 +595,7 @@ async def test_server(config):
                 tools = await client.list_tools()
                 print(f"   Tools: {[tool.name for tool in tools]}")
     except Exception as e:
-        print(f"❌ Server '{config['namespace']}' failed: {e}")
+        print(f"[FAIL] Server '{config['namespace']}' failed: {e}")
 ```
 
 ## Migration Guide

@@ -53,7 +53,7 @@ def create_test_orion():
 
 async def test_observer_with_old_handlers():
     """Test the observer with old handlers and debug output."""
-    print("🔍 Testing DAGVisualizationObserver with Old Handlers")
+    print(" Testing DAGVisualizationObserver with Old Handlers")
     print("=" * 60)
 
     # Create observer with string output capture
@@ -73,14 +73,14 @@ async def test_observer_with_old_handlers():
     orion = create_test_orion()
 
     print(
-        f"\n🌟 Test orion created with {len(orion.get_all_tasks())} tasks"
+        f"\n Test orion created with {len(orion.get_all_tasks())} tasks"
     )
 
     # Register orion first for all tests
     observer.register_orion(orion.orion_id, orion)
 
     # Test orion started event
-    print("\n📤 Testing ORION_STARTED event...")
+    print("\n Testing ORION_STARTED event...")
     started_event = OrionEvent(
         event_type=EventType.ORION_STARTED,
         source_id="test_source",
@@ -109,14 +109,14 @@ async def test_observer_with_old_handlers():
         if len(lines) > 5:
             print(f"     ... ({len(lines)-5} more lines)")
     else:
-        print("   ❌ No output generated!")
+        print("   [FAIL] No output generated!")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test task event
-    print("\n📤 Testing TASK_STARTED event...")
+    print("\n Testing TASK_STARTED event...")
     task_event = TaskEvent(
         event_type=EventType.TASK_STARTED,
         source_id="test_source",
@@ -139,14 +139,14 @@ async def test_observer_with_old_handlers():
             if line.strip():
                 print(f"     {line}")
     else:
-        print("   ❌ No output generated!")
+        print("   [FAIL] No output generated!")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test orion modified event
-    print("\n📤 Testing ORION_MODIFIED event...")
+    print("\n Testing ORION_MODIFIED event...")
 
     # Add a new task to simulate modification
     new_task = TaskStar(
@@ -186,10 +186,10 @@ async def test_observer_with_old_handlers():
             if line.strip():
                 print(f"     {line}")
     else:
-        print("   ❌ No output generated!")
+        print("   [FAIL] No output generated!")
 
     # Debug: Check handler methods
-    print("\n🔍 Handler Debug Information:")
+    print("\n Handler Debug Information:")
     if observer._task_handler:
         print(f"   Task handler type: {type(observer._task_handler)}")
         print(
@@ -203,7 +203,7 @@ async def test_observer_with_old_handlers():
         )
 
     # Test direct handler calls
-    print("\n🔧 Testing Direct Handler Calls:")
+    print("\n[CONFIG] Testing Direct Handler Calls:")
     if observer._task_handler and hasattr(observer._task_handler, "handle_task_event"):
         print("   Testing task handler directly...")
         output.seek(0)

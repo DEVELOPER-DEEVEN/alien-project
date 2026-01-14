@@ -8,7 +8,7 @@
 **Deployment:** Local (in-process)  
 **Agent:** AppAgent  
 **Target Application:** Microsoft Excel (`EXCEL.EXE`)  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -40,7 +40,7 @@ Convert an Excel sheet to Markdown format table.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `sheet_name` | `str` or `int` | ✅ Yes | Sheet name or index (1-based) |
+| `sheet_name` | `str` or `int` | [OK] Yes | Sheet name or index (1-based) |
 
 #### Returns
 
@@ -74,10 +74,10 @@ Insert a table (2D list) into an Excel sheet at a specified position.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `table` | `List[List[Any]]` | ✅ Yes | 2D list of values (strings/numbers) |
-| `sheet_name` | `str` | ✅ Yes | Target sheet name |
-| `start_row` | `int` | ✅ Yes | Start row (1-based) |
-| `start_col` | `int` | ✅ Yes | Start column (1-based) |
+| `table` | `List[List[Any]]` | [OK] Yes | 2D list of values (strings/numbers) |
+| `sheet_name` | `str` | [OK] Yes | Target sheet name |
+| `start_row` | `int` | [OK] Yes | Start row (1-based) |
+| `start_col` | `int` | [OK] Yes | Start column (1-based) |
 
 #### Returns
 
@@ -119,11 +119,11 @@ Select a range of cells in a sheet (faster than dragging).
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `sheet_name` | `str` | ✅ Yes | Sheet name |
-| `start_row` | `int` | ✅ Yes | Start row (1-based) |
-| `start_col` | `int` | ✅ Yes | Start column (1=A, 2=B, etc.) |
-| `end_row` | `int` | ✅ Yes | End row (`-1` = last row with content) |
-| `end_col` | `int` | ✅ Yes | End column (`-1` = last column with content) |
+| `sheet_name` | `str` | [OK] Yes | Sheet name |
+| `start_row` | `int` | [OK] Yes | Start row (1-based) |
+| `start_col` | `int` | [OK] Yes | Start column (1=A, 2=B, etc.) |
+| `end_row` | `int` | [OK] Yes | End row (`-1` = last row with content) |
+| `end_col` | `int` | [OK] Yes | End column (`-1` = last column with content) |
 
 #### Returns
 
@@ -212,8 +212,8 @@ Reorder columns in a sheet based on desired column name order.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `sheet_name` | `str` | ✅ Yes | Sheet name |
-| `desired_order` | `List[str]` | ✅ Yes | List of column names in new order |
+| `sheet_name` | `str` | [OK] Yes | Sheet name |
+| `desired_order` | `List[str]` | [OK] Yes | List of column names in new order |
 
 #### Returns
 
@@ -247,11 +247,11 @@ Get values from a specified cell range.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `sheet_name` | `str` | ✅ Yes | Sheet name |
-| `start_row` | `int` | ✅ Yes | Start row |
-| `start_col` | `int` | ✅ Yes | Start column |
-| `end_row` | `int` | ✅ Yes | End row |
-| `end_col` | `int` | ✅ Yes | End column |
+| `sheet_name` | `str` | [OK] Yes | Sheet name |
+| `start_row` | `int` | [OK] Yes | Start row |
+| `start_col` | `int` | [OK] Yes | Start column |
+| `end_row` | `int` | [OK] Yes | End row |
+| `end_col` | `int` | [OK] Yes | End column |
 
 #### Returns
 
@@ -315,7 +315,7 @@ await computer.run_actions([
 ### 2. Insert Data Efficiently
 
 ```python
-# ✅ Good: Insert entire table at once
+# [OK] Good: Insert entire table at once
 data = [["Header1", "Header2"], ["Val1", "Val2"]]
 await computer.run_actions([
     MCPToolCall(tool_key="action::insert_excel_table", parameters={
@@ -323,7 +323,7 @@ await computer.run_actions([
     })
 ])
 
-# ❌ Bad: Insert cell by cell
+# [FAIL] Bad: Insert cell by cell
 for row in data:
     for col in row:
         # Multiple calls...

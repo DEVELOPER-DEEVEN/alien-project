@@ -12,7 +12,7 @@ def test_network_config_basic_loading():
     """Test that Network config loads successfully"""
     config = get_network_config()
     assert config is not None
-    print("✅ Network config loaded successfully")
+    print("[OK] Network config loaded successfully")
 
 
 def test_network_agent_config_access():
@@ -30,9 +30,9 @@ def test_network_agent_config_access():
     assert hasattr(orion_agent, "API_TYPE")
     assert hasattr(orion_agent, "API_BASE")
 
-    print(f"✅ Agent API Model: {orion_agent.API_MODEL}")
-    print(f"✅ Agent API Type: {orion_agent.API_TYPE}")
-    print(f"✅ Agent API Base: {orion_agent.API_BASE}")
+    print(f"[OK] Agent API Model: {orion_agent.API_MODEL}")
+    print(f"[OK] Agent API Type: {orion_agent.API_TYPE}")
+    print(f"[OK] Agent API Base: {orion_agent.API_BASE}")
 
     # Test prompt configurations
     assert hasattr(orion_agent, "ORION_CREATION_PROMPT")
@@ -40,8 +40,8 @@ def test_network_agent_config_access():
     assert hasattr(orion_agent, "ORION_CREATION_EXAMPLE_PROMPT")
     assert hasattr(orion_agent, "ORION_EDITING_EXAMPLE_PROMPT")
 
-    print(f"✅ Creation Prompt: {orion_agent.ORION_CREATION_PROMPT}")
-    print(f"✅ Editing Prompt: {orion_agent.ORION_EDITING_PROMPT}")
+    print(f"[OK] Creation Prompt: {orion_agent.ORION_CREATION_PROMPT}")
+    print(f"[OK] Editing Prompt: {orion_agent.ORION_EDITING_PROMPT}")
 
 
 def test_network_orion_config_access():
@@ -59,12 +59,12 @@ def test_network_orion_config_access():
     assert hasattr(config.orion, "MAX_STEP")
     assert hasattr(config.orion, "DEVICE_INFO")
 
-    print(f"✅ Orion ID: {config.orion.ORION_ID}")
-    print(f"✅ Heartbeat Interval: {config.orion.HEARTBEAT_INTERVAL}")
-    print(f"✅ Reconnect Delay: {config.orion.RECONNECT_DELAY}")
-    print(f"✅ Max Concurrent Tasks: {config.orion.MAX_CONCURRENT_TASKS}")
-    print(f"✅ Max Step: {config.orion.MAX_STEP}")
-    print(f"✅ Device Info: {config.orion.DEVICE_INFO}")
+    print(f"[OK] Orion ID: {config.orion.ORION_ID}")
+    print(f"[OK] Heartbeat Interval: {config.orion.HEARTBEAT_INTERVAL}")
+    print(f"[OK] Reconnect Delay: {config.orion.RECONNECT_DELAY}")
+    print(f"[OK] Max Concurrent Tasks: {config.orion.MAX_CONCURRENT_TASKS}")
+    print(f"[OK] Max Step: {config.orion.MAX_STEP}")
+    print(f"[OK] Device Info: {config.orion.DEVICE_INFO}")
 
 
 def test_network_lowercase_attribute_access():
@@ -87,7 +87,7 @@ def test_network_lowercase_attribute_access():
     assert config.orion.max_step == config.orion.MAX_STEP
     assert config.orion.device_info == config.orion.DEVICE_INFO
 
-    print("✅ Lowercase attribute access works correctly")
+    print("[OK] Lowercase attribute access works correctly")
 
 
 def test_network_backward_compatible_dict_access():
@@ -107,7 +107,7 @@ def test_network_backward_compatible_dict_access():
     assert "DEVICE_INFO" in config
     assert config["DEVICE_INFO"] == config.orion.DEVICE_INFO
 
-    print("✅ Backward compatible dict access works")
+    print("[OK] Backward compatible dict access works")
 
 
 def test_network_config_usage_in_code():
@@ -118,13 +118,13 @@ def test_network_config_usage_in_code():
     device_info_path = config.orion.DEVICE_INFO
     assert device_info_path is not None
     assert isinstance(device_info_path, str)
-    print(f"✅ Device info path retrieval: {device_info_path}")
+    print(f"[OK] Device info path retrieval: {device_info_path}")
 
     # Pattern 2: Access MAX_STEP (like in network_session.py)
     max_step = config.orion.MAX_STEP
     assert max_step is not None
     assert isinstance(max_step, int)
-    print(f"✅ Max step retrieval: {max_step}")
+    print(f"[OK] Max step retrieval: {max_step}")
 
     # Pattern 3: Access agent config (like in base_orion_prompter.py)
     agent_config = config.agent.ORION_AGENT
@@ -138,7 +138,7 @@ def test_network_config_usage_in_code():
     assert creation_example is not None
     assert editing_example is not None
 
-    print(f"✅ Prompt templates retrieval successful")
+    print(f"[OK] Prompt templates retrieval successful")
 
 
 def test_network_config_types():
@@ -159,7 +159,7 @@ def test_network_config_types():
     assert isinstance(agent.API_TYPE, str)
     assert isinstance(agent.VISUAL_MODE, bool)
 
-    print("✅ All config values have correct types")
+    print("[OK] All config values have correct types")
 
 
 def test_network_config_caching():
@@ -169,7 +169,7 @@ def test_network_config_caching():
 
     # Should return the same instance
     assert config1 is config2
-    print("✅ Config caching works correctly")
+    print("[OK] Config caching works correctly")
 
 
 def test_network_config_reload():
@@ -187,7 +187,7 @@ def test_network_config_reload():
         == config2.agent.ORION_AGENT.API_MODEL
     )
 
-    print("✅ Config reload works correctly")
+    print("[OK] Config reload works correctly")
 
 
 if __name__ == "__main__":
@@ -224,11 +224,11 @@ if __name__ == "__main__":
         print()
 
         print("=" * 70)
-        print("✅ All Network Configuration Tests Passed!")
+        print("[OK] All Network Configuration Tests Passed!")
         print("=" * 70)
 
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
         import traceback
 
         traceback.print_exc()

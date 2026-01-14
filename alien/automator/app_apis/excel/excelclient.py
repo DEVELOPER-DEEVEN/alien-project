@@ -177,8 +177,8 @@ class ExcelWinCOMReceiver(WinCOMReceiverBasic):
                 else:
                     empty_columns.append(col)
 
-            print("📌 Non-empty columns:", [x[0] for x in non_empty_columns])
-            print("📌 Empty columns at:", empty_columns)
+            print(" Non-empty columns:", [x[0] for x in non_empty_columns])
+            print(" Empty columns at:", empty_columns)
 
             name_to_col = {name: col for name, col in non_empty_columns}
 
@@ -196,7 +196,7 @@ class ExcelWinCOMReceiver(WinCOMReceiverBasic):
                         row += 1
                     column_data.append((name, data))
                 else:
-                    print(f"⚠️ Column '{name}' not found, skipping.")
+                    print(f"️ Column '{name}' not found, skipping.")
 
             for _, col_index in sorted(non_empty_columns, key=lambda x: -x[1]):
                 ws.Columns(col_index).Delete()
@@ -206,7 +206,7 @@ class ExcelWinCOMReceiver(WinCOMReceiverBasic):
                 insert_pos = self.get_nth_non_empty_position(
                     insert_offset, empty_columns
                 )
-                print(f"✅ Inserting '{name}' at position {insert_pos}")
+                print(f"[OK] Inserting '{name}' at position {insert_pos}")
                 for row_index, value in enumerate(data, start=1):
                     ws.Cells(row_index, insert_pos).Value = value
                 insert_offset += 1

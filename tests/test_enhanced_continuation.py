@@ -82,7 +82,7 @@ class TestEnhancedOrionContinuation:
                 timeout=10.0  # 10秒超时
             )
         except asyncio.TimeoutError:
-            print("⚠️ Test timed out - this indicates either infinite loop or very slow processing")
+            print("️ Test timed out - this indicates either infinite loop or very slow processing")
             # 即使超时，我们也检查是否有一些预期的调用发生了
         
         # 验证continuation被调用
@@ -144,21 +144,21 @@ if __name__ == "__main__":
     async def run_tests():
         test_case = TestEnhancedOrionContinuation()
         
-        print("🧪 Testing enhanced orion continuation...")
+        print(" Testing enhanced orion continuation...")
         
         try:
             await test_case.test_continuation_with_handle_continuation()
-            print("✅ Enhanced continuation test completed")
+            print("[OK] Enhanced continuation test completed")
         except Exception as e:
-            print(f"❌ Enhanced continuation test failed: {e}")
+            print(f"[FAIL] Enhanced continuation test failed: {e}")
             import traceback
             traceback.print_exc()
         
         try:
             await test_case.test_multiple_continuation_cycles()
-            print("✅ Multiple continuation cycles test completed")
+            print("[OK] Multiple continuation cycles test completed")
         except Exception as e:
-            print(f"❌ Multiple continuation cycles test failed: {e}")
+            print(f"[FAIL] Multiple continuation cycles test failed: {e}")
             import traceback
             traceback.print_exc()
     

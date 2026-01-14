@@ -53,10 +53,10 @@ def test_basic_operations():
             tips="Complete this task carefully and verify results",
         )
         task = json.loads(result)
-        print(f"   ✓ Added task: {task['task_id']} - {task['name']}")
+        print(f"    Added task: {task['task_id']} - {task['name']}")
         success_count += 1
     except Exception as e:
-        print(f"   ✗ Failed to add task: {e}")
+        print(f"    Failed to add task: {e}")
 
     # Test 2: Update Task
     print("\n2. Testing update_task...")
@@ -71,10 +71,10 @@ def test_basic_operations():
             tips="Updated tips with enhanced guidance",
         )
         task = json.loads(result)
-        print(f"   ✓ Updated task: {task['name']}")
+        print(f"    Updated task: {task['name']}")
         success_count += 1
     except Exception as e:
-        print(f"   ✗ Failed to update task: {e}")
+        print(f"    Failed to update task: {e}")
 
     # Test 3: Add Second Task for Dependency
     print("\n3. Testing add second task...")
@@ -88,10 +88,10 @@ def test_basic_operations():
             tips="This will depend on the first task",
         )
         task = json.loads(result)
-        print(f"   ✓ Added second task: {task['task_id']}")
+        print(f"    Added second task: {task['task_id']}")
         success_count += 1
     except Exception as e:
-        print(f"   ✗ Failed to add second task: {e}")
+        print(f"    Failed to add second task: {e}")
 
     # Test 4: Add Dependency
     print("\n4. Testing add_dependency...")
@@ -104,11 +104,11 @@ def test_basic_operations():
             condition_description="Second task waits for first task to complete successfully",
         )
         dep = json.loads(result)
-        print(f"   ✓ Added dependency: {dep['from_task_id']} -> {dep['to_task_id']}")
+        print(f"    Added dependency: {dep['from_task_id']} -> {dep['to_task_id']}")
         dep_id = dep["line_id"]
         success_count += 1
     except Exception as e:
-        print(f"   ✗ Failed to add dependency: {e}")
+        print(f"    Failed to add dependency: {e}")
         dep_id = None
 
     # Test 5: Update Dependency
@@ -122,12 +122,12 @@ def test_basic_operations():
                 condition_description="Updated: Second task must wait for first task with validation",
             )
             dep = json.loads(result)
-            print(f"   ✓ Updated dependency description")
+            print(f"    Updated dependency description")
             success_count += 1
         except Exception as e:
-            print(f"   ✗ Failed to update dependency: {e}")
+            print(f"    Failed to update dependency: {e}")
     else:
-        print(f"   ⚠ Skipped (no dependency ID)")
+        print(f"    Skipped (no dependency ID)")
 
     # Test 6: Build Orion
     print("\n6. Testing build_orion...")
@@ -148,11 +148,11 @@ def test_basic_operations():
         result = call_tool("build_orion", config)
         orion = json.loads(result)
         print(
-            f"   ✓ Built orion with {len(orion['tasks'])} total tasks"
+            f"    Built orion with {len(orion['tasks'])} total tasks"
         )
         success_count += 1
     except Exception as e:
-        print(f"   ✗ Failed to build orion: {e}")
+        print(f"    Failed to build orion: {e}")
 
     return success_count, total_tests
 
@@ -169,14 +169,14 @@ def main():
         print(f"Test Results: {success}/{total} tests passed")
 
         if success == total:
-            print("✓ All basic operations working correctly!")
+            print(" All basic operations working correctly!")
             return 0
         else:
-            print(f"⚠ {total - success} tests failed")
+            print(f" {total - success} tests failed")
             return 1
 
     except Exception as e:
-        print(f"\n✗ Test suite failed with error: {e}")
+        print(f"\n Test suite failed with error: {e}")
         import traceback
 
         traceback.print_exc()

@@ -52,13 +52,13 @@ class AppAgentStatus(Enum):
 
 | State | Purpose | Processor Executed | Subtask Ends | Returns to HostAgent |
 |-------|---------|-------------------|--------------|---------------------|
-| **CONTINUE** | Main execution - interact with app controls | ✅ Yes (4 phases) | ❌ No | ❌ No |
-| **SCREENSHOT** | Re-capture and re-annotate UI after changes | ✅ Yes (4 phases) | ❌ No | ❌ No |
-| **FINISH** | Subtask completed successfully | ❌ No | ✅ Yes | ✅ Yes |
-| **FAIL** | Subtask failed but can be retried | ❌ No | ✅ Yes | ✅ Yes |
-| **PENDING** | Await user input for clarification | ✅ Yes (ask user) | ❌ No | ❌ No |
-| **CONFIRM** | Request user approval for safety-critical action | ✅ Yes (present dialog) | ❌ No | ❌ No |
-| **ERROR** | Unhandled exception or critical failure | ❌ No | ✅ Yes | ✅ Yes |
+| **CONTINUE** | Main execution - interact with app controls | [OK] Yes (4 phases) | [FAIL] No | [FAIL] No |
+| **SCREENSHOT** | Re-capture and re-annotate UI after changes | [OK] Yes (4 phases) | [FAIL] No | [FAIL] No |
+| **FINISH** | Subtask completed successfully | [FAIL] No | [OK] Yes | [OK] Yes |
+| **FAIL** | Subtask failed but can be retried | [FAIL] No | [OK] Yes | [OK] Yes |
+| **PENDING** | Await user input for clarification | [OK] Yes (ask user) | [FAIL] No | [FAIL] No |
+| **CONFIRM** | Request user approval for safety-critical action | [OK] Yes (present dialog) | [FAIL] No | [FAIL] No |
+| **ERROR** | Unhandled exception or critical failure | [FAIL] No | [OK] Yes | [OK] Yes |
 
 ---
 
@@ -96,7 +96,7 @@ class ContinueAppAgentState(AppAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Execution |
-| **Processor Executed** | ✓ Yes (4-phase pipeline) |
+| **Processor Executed** |  Yes (4-phase pipeline) |
 | **Subtask Ends** | No |
 | **Round Ends** | No |
 | **Next States** | CONTINUE / SCREENSHOT / FINISH / PENDING / CONFIRM / ERROR |
@@ -157,7 +157,7 @@ class ScreenshotAppAgentState(ContinueAppAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Execution |
-| **Processor Executed** | ✓ Yes (same as CONTINUE) |
+| **Processor Executed** |  Yes (same as CONTINUE) |
 | **Subtask Ends** | No |
 | **Duration** | Single re-annotation cycle |
 | **Next States** | SCREENSHOT (if controls need re-annotation) / CONTINUE (if complete) |
@@ -238,8 +238,8 @@ FINISH indicates successful completion. The subtask result is available in the B
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
-| **Subtask Ends** | ✓ Yes |
+| **Processor Executed** |  No |
+| **Subtask Ends** |  Yes |
 | **Round Ends** | No (HostAgent continues) |
 | **Next Agent** | HostAgent |
 | **Next States** | HostAgent.CONTINUE (normal) / HostAgent.FINISH (follower mode) |
@@ -303,7 +303,7 @@ class PendingAppAgentState(AppAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Interaction |
-| **Processor Executed** | ✓ Yes (ask user) |
+| **Processor Executed** |  Yes (ask user) |
 | **Subtask Ends** | No |
 | **Duration** | Until user responds |
 | **Next States** | CONTINUE (user provided input) |
@@ -378,7 +378,7 @@ class ConfirmAppAgentState(AppAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Interaction |
-| **Processor Executed** | ✓ Yes (present confirmation) |
+| **Processor Executed** |  Yes (present confirmation) |
 | **Subtask Ends** | No |
 | **Duration** | Until user approves/rejects |
 | **Next States** | CONTINUE (approved) / FINISH (rejected) |
@@ -447,9 +447,9 @@ class ErrorAppAgentState(AppAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
-| **Subtask Ends** | ✓ Yes |
-| **Round Ends** | ✓ Yes |
+| **Processor Executed** |  No |
+| **Subtask Ends** |  Yes |
+| **Round Ends** |  Yes |
 | **Next Agent** | HostAgent |
 | **Next States** | HostAgent.FINISH (terminate round) |
 
@@ -517,9 +517,9 @@ class FailAppAgentState(AppAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
-| **Subtask Ends** | ✓ Yes |
-| **Round Ends** | ✗ No (unlike ERROR) |
+| **Processor Executed** |  No |
+| **Subtask Ends** |  Yes |
+| **Round Ends** |  No (unlike ERROR) |
 | **Next Agent** | HostAgent |
 | **Next States** | HostAgent.FINISH (but round doesn't end) |
 
@@ -827,13 +827,13 @@ sequenceDiagram
 
 **AppAgent State Machine Key Features:**
 
-✅ **7-State FSM**: CONTINUE, SCREENSHOT, FINISH, FAIL, PENDING, CONFIRM, ERROR  
-✅ **LLM-Driven**: Most transitions controlled by LLM's `Status` field  
-✅ **UI Re-annotation**: SCREENSHOT state handles dynamic UI changes  
-✅ **User Interaction**: PENDING and CONFIRM states for human input  
-✅ **Error Handling**: ERROR and FAIL states for graceful failure recovery  
-✅ **HostAgent Integration**: FINISH/FAIL/ERROR return control to parent agent  
-✅ **Subtask Archiving**: Execution history tracked in `previous_subtasks`
+[OK] **7-State FSM**: CONTINUE, SCREENSHOT, FINISH, FAIL, PENDING, CONFIRM, ERROR  
+[OK] **LLM-Driven**: Most transitions controlled by LLM's `Status` field  
+[OK] **UI Re-annotation**: SCREENSHOT state handles dynamic UI changes  
+[OK] **User Interaction**: PENDING and CONFIRM states for human input  
+[OK] **Error Handling**: ERROR and FAIL states for graceful failure recovery  
+[OK] **HostAgent Integration**: FINISH/FAIL/ERROR return control to parent agent  
+[OK] **Subtask Archiving**: Execution history tracked in `previous_subtasks`
 
 **Next Steps:**
 

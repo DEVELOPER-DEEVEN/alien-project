@@ -9,33 +9,33 @@ Application environments typically expose two complementary classes of interface
 ### GUI Frontends (Traditional Approach)
 
 **Characteristics:**  
-✅ **Universally Available** — Works with any application, even without API documentation  
-✅ **Visual Compatibility** — Follows actual UI layout users see  
-✅ **No Integration Required** — Works out-of-the-box with UI Automation
+[OK] **Universally Available** — Works with any application, even without API documentation  
+[OK] **Visual Compatibility** — Follows actual UI layout users see  
+[OK] **No Integration Required** — Works out-of-the-box with UI Automation
 
 **Limitations:**  
-❌ **Brittle to UI Changes** — Layout modifications break automation  
-❌ **Slow Execution** — Requires screenshot capture, OCR, and simulated input  
-❌ **Limited Precision** — Pixel-based targeting prone to errors  
-❌ **High Cognitive Load** — LLMs must interpret visual information at each step
+[FAIL] **Brittle to UI Changes** — Layout modifications break automation  
+[FAIL] **Slow Execution** — Requires screenshot capture, OCR, and simulated input  
+[FAIL] **Limited Precision** — Pixel-based targeting prone to errors  
+[FAIL] **High Cognitive Load** — LLMs must interpret visual information at each step
 
 ### Native APIs (Preferred Approach)
 
 **Characteristics:**  
-✅ **High-Fidelity Control** — Direct manipulation of application state  
-✅ **Fast Execution** — No screenshot analysis or UI rendering delays  
-✅ **Precise Operations** — Programmatic access to exact data structures  
-✅ **Robust to UI Changes** — API contracts remain stable across versions
+[OK] **High-Fidelity Control** — Direct manipulation of application state  
+[OK] **Fast Execution** — No screenshot analysis or UI rendering delays  
+[OK] **Precise Operations** — Programmatic access to exact data structures  
+[OK] **Robust to UI Changes** — API contracts remain stable across versions
 
 **Limitations:**  
-❌ **Requires Explicit Integration** — Must implement API wrappers for each app  
-❌ **Limited Availability** — Not all applications expose comprehensive APIs  
-❌ **Maintenance Overhead** — API changes require code updates  
-❌ **Documentation Dependency** — Requires accurate API references
+[FAIL] **Requires Explicit Integration** — Must implement API wrappers for each app  
+[FAIL] **Limited Availability** — Not all applications expose comprehensive APIs  
+[FAIL] **Maintenance Overhead** — API changes require code updates  
+[FAIL] **Documentation Dependency** — Requires accurate API references
 
 !!! info "Research Finding"
     Studies show that **API-based agents outperform GUI-only agents** by 15–30% on tasks where APIs are available, but **GUI fallback is essential** for broad application coverage and handling edge cases where APIs are insufficient.  
-    📄 Reference: [API Agents vs. GUI Agents](https://arxiv.org/abs/2501.05446)
+    [DOC] Reference: [API Agents vs. GUI Agents](https://arxiv.org/abs/2501.05446)
 
 ## ALIEN²'s Hybrid Solution
 
@@ -307,24 +307,24 @@ For complete MCP documentation, see:
 
 ### When to Use API
 
-✅ **Bulk data operations** — Filling cells, processing records  
-✅ **Precise calculations** — Formula application, data transformations  
-✅ **Programmatic workflows** — Email automation, calendar scheduling  
-✅ **Time-critical tasks** — High-volume operations with strict SLAs
+[OK] **Bulk data operations** — Filling cells, processing records  
+[OK] **Precise calculations** — Formula application, data transformations  
+[OK] **Programmatic workflows** — Email automation, calendar scheduling  
+[OK] **Time-critical tasks** — High-volume operations with strict SLAs
 
 ### When to Use GUI
 
-✅ **Visual verification** — Layout checking, color validation  
-✅ **Custom UI elements** — Application-specific dialogs, unlabeled controls  
-✅ **Exploratory tasks** — Navigating unfamiliar applications  
-✅ **Legacy applications** — Apps without accessible APIs
+[OK] **Visual verification** — Layout checking, color validation  
+[OK] **Custom UI elements** — Application-specific dialogs, unlabeled controls  
+[OK] **Exploratory tasks** — Navigating unfamiliar applications  
+[OK] **Legacy applications** — Apps without accessible APIs
 
 ### When to Use Hybrid
 
-✅ **Complex workflows** — Combine API efficiency with GUI verification  
-✅ **Partial API coverage** — Use API where available, GUI for gaps  
-✅ **User-facing demos** — API for backend, GUI for visible interactions  
-✅ **Debugging** — API for state setup, GUI for manual inspection
+[OK] **Complex workflows** — Combine API efficiency with GUI verification  
+[OK] **Partial API coverage** — Use API where available, GUI for gaps  
+[OK] **User-facing demos** — API for backend, GUI for visible interactions  
+[OK] **Debugging** — API for state setup, GUI for manual inspection
 
 !!! warning "Common Pitfalls"
     - **Over-relying on APIs** — Some UI states only visible through screenshots  

@@ -6,7 +6,7 @@ The Event System Core provides the foundational infrastructure for event-driven 
 
 ---
 
-## 📦 Core Components
+##  Core Components
 
 ### EventBus — Central Message Broker
 
@@ -80,7 +80,7 @@ Five specialized event types provide type-safe event handling:
 
 ---
 
-## 🔌 Interfaces
+##  Interfaces
 
 ### IEventObserver
 
@@ -156,7 +156,7 @@ class IEventPublisher(ABC):
 
 ---
 
-## 📖 EventBus API Reference
+## [LANG] EventBus API Reference
 
 ### Subscription Management
 
@@ -266,7 +266,7 @@ await event_bus.publish_event(event)
 
 ---
 
-## 🔄 Event Flow Patterns
+## [CONTINUE] Event Flow Patterns
 
 ### Pattern 1: Task Execution Flow
 
@@ -335,7 +335,7 @@ sequenceDiagram
 
 ---
 
-## 💻 Usage Examples
+##  Usage Examples
 
 ### Example 1: Basic Event Publishing
 
@@ -463,7 +463,7 @@ class CustomMetricsCollector(IEventObserver):
 
 ---
 
-## ⚙️ Implementation Details
+## ️ Implementation Details
 
 ### Internal Observer Storage
 
@@ -514,17 +514,17 @@ async def publish_event(self, event: Event) -> None:
 
 ---
 
-## 🎯 Best Practices
+##  Best Practices
 
 ### 1. Use Type-Specific Subscriptions
 
 Subscribe only to events you care about:
 
 ```python
-# ❌ Bad: Receives all events, must filter manually
+# [FAIL] Bad: Receives all events, must filter manually
 event_bus.subscribe(observer)
 
-# ✅ Good: Receives only relevant events
+# [OK] Good: Receives only relevant events
 event_bus.subscribe(observer, {
     EventType.TASK_COMPLETED,
     EventType.ORION_MODIFIED
@@ -585,7 +585,7 @@ async def on_event(self, event: Event) -> None:
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 - **[Observer System Overview](overview.md)** — High-level architecture and design
 - **[Session Metrics Observer](metrics_observer.md)** — Performance metrics collection
@@ -595,7 +595,7 @@ async def on_event(self, event: Event) -> None:
 
 ---
 
-## 📋 Summary
+## [TASK] Summary
 
 The Event System Core provides:
 

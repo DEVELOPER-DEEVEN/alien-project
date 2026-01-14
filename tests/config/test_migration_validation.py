@@ -38,17 +38,17 @@ class ConfigValidator:
         try:
             legacy_instance = LegacyConfig.get_instance()
             self.legacy_config = legacy_instance.config_data
-            console.print("✓ 旧配置加载成功", style="green")
+            console.print(" 旧配置加载成功", style="green")
         except Exception as e:
-            console.print(f"✗ 旧配置加载失败: {e}", style="red")
+            console.print(f" 旧配置加载失败: {e}", style="red")
             raise
 
         # 加载新配置
         try:
             self.new_config = get_alien_config()
-            console.print("✓ 新配置加载成功", style="green")
+            console.print(" 新配置加载成功", style="green")
         except Exception as e:
-            console.print(f"✗ 新配置加载失败: {e}", style="red")
+            console.print(f" 新配置加载失败: {e}", style="red")
             raise
 
     def get_nested_value(self, config, path: str):
@@ -398,7 +398,7 @@ class ConfigValidator:
 
         # 不匹配项详情
         if self.mismatches:
-            console.print("\n[red]⚠️  发现不匹配的配置项：[/red]")
+            console.print("\n[red]️  发现不匹配的配置项：[/red]")
 
             mismatch_table = Table(title="不匹配配置详情", box=box.ROUNDED)
             mismatch_table.add_column("配置路径", style="cyan", no_wrap=True)
@@ -415,16 +415,16 @@ class ConfigValidator:
             if len(self.mismatches) > 20:
                 console.print(f"\n... 还有 {len(self.mismatches) - 20} 项不匹配")
         else:
-            console.print("\n[bold green]✅ 所有配置项完全匹配！[/bold green]")
+            console.print("\n[bold green][OK] 所有配置项完全匹配！[/bold green]")
 
         # 成功率判断
         console.print("\n" + "=" * 80)
         if match_rate >= 95:
-            console.print("[bold green]✅ 验证通过！配置迁移成功率 >= 95%[/bold green]")
+            console.print("[bold green][OK] 验证通过！配置迁移成功率 >= 95%[/bold green]")
             return True
         else:
             console.print(
-                f"[bold red]❌ 验证失败！配置迁移成功率: {match_rate:.2f}% < 95%[/bold red]"
+                f"[bold red][FAIL] 验证失败！配置迁移成功率: {match_rate:.2f}% < 95%[/bold red]"
             )
             return False
 

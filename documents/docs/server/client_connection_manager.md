@@ -6,7 +6,7 @@ For more context on how this component fits into the server architecture, see th
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 The Client Connection Manager serves as the "address book" and "session tracker" for the entire server:
 
@@ -68,7 +68,7 @@ graph TB
 
 ---
 
-## 📦 Core Data Structures
+##  Core Data Structures
 
 ### ClientInfo Dataclass
 
@@ -124,7 +124,7 @@ class ClientInfo:
 
 ---
 
-## 👥 Client Registry Management
+##  Client Registry Management
 
 The client registry (`online_clients`) is the authoritative source of truth for all connected clients.
 
@@ -328,7 +328,7 @@ def remove_client(self, client_id: str):
 
 ---
 
-## 🔍 Connection State Checking
+##  Connection State Checking
 
 Always check if the target device is connected before attempting to dispatch tasks. This prevents errors and improves user experience.
 
@@ -386,7 +386,7 @@ def is_online(self, client_id: str) -> bool:
 
 ---
 
-## 📋 Session Mapping
+## [TASK] Session Mapping
 
 The ClientConnectionManager tracks sessions from **two perspectives**:
 
@@ -623,7 +623,7 @@ sequenceDiagram
 
 ---
 
-## 💻 System Information Management
+##  System Information Management
 
 The ClientConnectionManager caches device system information to enable intelligent task routing by orions without repeatedly querying devices.
 
@@ -795,7 +795,7 @@ def _merge_device_info(
 
 ---
 
-## 📊 Client Statistics and Monitoring
+## [STATUS] Client Statistics and Monitoring
 
 The `get_stats()` method provides basic metrics for monitoring connected clients.
 
@@ -829,13 +829,13 @@ def get_stats(self) -> Dict[str, int]:
 # Get current statistics
 stats = client_manager.get_stats()
 
-print(f"📊 Server Statistics:")
+print(f"[STATUS] Server Statistics:")
 print(f"  Total Clients: {stats['total']}")
 print(f"  Devices: {stats['device_clients']}")
 print(f"  Orions: {stats['orion_clients']}")
 
 # Output:
-# 📊 Server Statistics:
+# [STATUS] Server Statistics:
 #   Total Clients: 5
 #   Devices: 3
 #   Orions: 2
@@ -908,7 +908,7 @@ docker_devices = client_manager.find_devices_with_capability("docker_support")
 
 ---
 
-## 🎯 Usage Patterns
+##  Usage Patterns
 
 ### Safe Task Dispatch
 
@@ -1081,7 +1081,7 @@ async def handle_task_completion(
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 ### Thread Safety
 
@@ -1230,7 +1230,7 @@ async def on_task_complete(session_id, orion_id, device_id):
 
 ---
 
-## 🔗 Integration Points
+## [DEP] Integration Points
 
 ### With WebSocket Handler
 
@@ -1320,7 +1320,7 @@ async def get_server_stats():
 
 ---
 
-## 📚 Complete API Reference
+## [PLAN] Complete API Reference
 
 ### Client Management
 
@@ -1389,7 +1389,7 @@ class ClientType(Enum):
 
 ---
 
-## 🎓 Summary
+##  Summary
 
 The ClientConnectionManager is the **central registry** for all client connections and session mappings in the ALIEN server. It provides thread-safe operations for tracking clients, validating connectivity, mapping sessions, and caching device information.
 

@@ -6,36 +6,36 @@ This repository implements **ALIEN³**, a multi-tier AgentOS architecture spanni
 
 **Architecture Overview:**
 
-- **🌌 Network**: Multi-device DAG-based orchestration framework that coordinates agents across different platforms
-- **🎯 ALIEN²**: Single-device Windows desktop agent system that can serve as Network's sub-agent
-- **🔌 AIP**: Agent Integration Protocol for cross-device communication
-- **⚙️ Modular Configuration**: Type-safe configs in `config/network/` and `config/alien/`
+- **[ORION] Network**: Multi-device DAG-based orchestration framework that coordinates agents across different platforms
+- ** ALIEN²**: Single-device Windows desktop agent system that can serve as Network's sub-agent
+- ** AIP**: Agent Integration Protocol for cross-device communication
+- **️ Modular Configuration**: Type-safe configs in `config/network/` and `config/alien/`
 
 ---
 
-## 📦 Root Directory Structure
+##  Root Directory Structure
 
 ```
 ALIEN/
-├── network/                 # 🌌 Multi-device orchestration framework
-├── alien/                    # 🎯 Desktop AgentOS (can be Network sub-agent)
-├── config/                 # ⚙️ Modular configuration system
-├── aip/                    # 🔌 Agent Integration Protocol
-├── documents/              # 📖 MkDocs documentation site
-├── vectordb/               # 🗄️ Vector database for RAG
-├── learner/                # 📚 Help document indexing tools
-├── record_processor/       # 🎥 Human demonstration parser
-├── dataflow/               # 📊 Data collection pipeline
-├── model_worker/           # 🤖 Custom LLM deployment tools
-├── logs/                   # 📝 Execution logs (auto-generated)
-├── scripts/                # 🛠️ Utility scripts
-├── tests/                  # 🧪 Unit and integration tests
-└── requirements.txt        # 📦 Python dependencies
+├── network/                 # [ORION] Multi-device orchestration framework
+├── alien/                    #  Desktop AgentOS (can be Network sub-agent)
+├── config/                 # ️ Modular configuration system
+├── aip/                    #  Agent Integration Protocol
+├── documents/              # [LANG] MkDocs documentation site
+├── vectordb/               # ️ Vector database for RAG
+├── learner/                # [PLAN] Help document indexing tools
+├── record_processor/       #  Human demonstration parser
+├── dataflow/               # [STATUS] Data collection pipeline
+├── model_worker/           #  Custom LLM deployment tools
+├── logs/                   #  Execution logs (auto-generated)
+├── scripts/                # ️ Utility scripts
+├── tests/                  #  Unit and integration tests
+└── requirements.txt        #  Python dependencies
 ```
 
 ---
 
-## 🌌 Network Framework (`network/`)
+## [ORION] Network Framework (`network/`)
 
 The cross-device orchestration framework that transforms natural language requests into executable DAG workflows distributed across heterogeneous devices.
 
@@ -43,13 +43,13 @@ The cross-device orchestration framework that transforms natural language reques
 
 ```
 network/
-├── agents/                 # 🤖 Orion orchestration agents
+├── agents/                 #  Orion orchestration agents
 │   ├── agent/              # OrionAgent and basic agent classes
 │   ├── states/             # Agent state machines
 │   ├── processors/         # Request/result processing
 │   └── presenters/         # Response formatting
 │
-├── orion/          # 🌟 Core DAG management system
+├── orion/          #  Core DAG management system
 │   ├── task_orion.py    # TaskOrion - DAG container
 │   ├── task_star.py        # TaskStar - Task nodes
 │   ├── task_star_line.py   # TaskStarLine - Dependency edges
@@ -57,35 +57,35 @@ network/
 │   ├── editor/             # Interactive DAG editing with undo/redo
 │   └── orchestrator/       # Event-driven execution coordination
 │
-├── session/                # 📊 Session lifecycle management
+├── session/                # [STATUS] Session lifecycle management
 │   ├── network_session.py   # NetworkSession implementation
 │   └── observers/          # Event-driven observers
 │
-├── client/                 # 📡 Device management
+├── client/                 #  Device management
 │   ├── orion_client.py              # Device registration interface
 │   ├── device_manager.py                    # Device management coordinator
 │   ├── config_loader.py                     # Configuration loading
 │   ├── components/         # Device registry, connection manager, etc.
 │   └── support/            # Client support utilities
 │
-├── core/                   # ⚡ Foundational components
+├── core/                   #  Foundational components
 │   ├── types.py            # Type system (protocols, dataclasses, enums)
 │   ├── interfaces.py       # Interface definitions
 │   ├── di_container.py     # Dependency injection container
 │   └── events.py           # Event system
 │
-├── visualization/          # 🎨 Rich console visualization
+├── visualization/          #  Rich console visualization
 │   ├── dag_visualizer.py   # DAG topology visualization
 │   ├── task_display.py     # Task status displays
 │   └── components/         # Visualization components
 │
-├── prompts/                # 💬 Prompt templates
+├── prompts/                # [COMMENT] Prompt templates
 │   ├── orion_agent/ # OrionAgent prompts
 │   └── share/              # Shared examples
 │
-├── trajectory/             # 📈 Execution trajectory parsing
+├── trajectory/             #  Execution trajectory parsing
 │
-├── __main__.py             # 🚀 Entry point: python -m network
+├── __main__.py             # [START] Entry point: python -m network
 ├── network.py               # Main Network orchestrator
 ├── network_client.py        # Network client interface
 ├── README.md               # Network overview
@@ -112,7 +112,7 @@ network/
 
 ---
 
-## 🎯 ALIEN² Desktop AgentOS (`alien/`)
+##  ALIEN² Desktop AgentOS (`alien/`)
 
 Single-device desktop automation system implementing a two-tier agent architecture (HostAgent + AppAgent) with hybrid GUI-API automation.
 
@@ -184,7 +184,7 @@ alien/
 
 ---
 
-## 🔌 Agent Integration Protocol (`aip/`)
+##  Agent Integration Protocol (`aip/`)
 
 Standardized message passing protocol for cross-device communication between Network and ALIEN² agents.
 
@@ -204,7 +204,7 @@ aip/
 
 ---
 
-## 🐧 Linux Agent
+##  Linux Agent
 
 Lightweight CLI-based agent for Linux devices that integrates with Network as a third-party device agent.
 
@@ -224,7 +224,7 @@ Lightweight CLI-based agent for Linux devices that integrates with Network as a 
 
 ---
 
-## 📱 Mobile Agent
+##  Mobile Agent
 
 Android device automation agent that enables UI automation, app control, and mobile-specific operations through ADB integration.
 
@@ -245,7 +245,7 @@ Android device automation agent that enables UI automation, app control, and mob
 
 ---
 
-## ⚙️ Configuration (`config/`)
+## ️ Configuration (`config/`)
 
 Modular configuration system with type-safe schemas and auto-discovery.
 
@@ -292,7 +292,7 @@ config/
 
 ---
 
-## 📖 Documentation (`documents/`)
+## [LANG] Documentation (`documents/`)
 
 MkDocs documentation site with comprehensive guides and API references.
 
@@ -333,7 +333,7 @@ documents/
 
 ---
 
-## 🗄️ Supporting Modules
+## ️ Supporting Modules
 
 ### VectorDB (`vectordb/`)
 Vector database storage for RAG knowledge sources (help documents, execution traces, user demonstrations). See [RAG Configuration](configuration/system/rag_config.md) for setup details.
@@ -355,7 +355,7 @@ Auto-generated execution logs organized by task and timestamp, including screens
 
 ---
 
-## 🎯 Network vs ALIEN² vs Linux Agent vs Mobile Agent: When to Use What?
+##  Network vs ALIEN² vs Linux Agent vs Mobile Agent: When to Use What?
 
 | Aspect | Network | ALIEN² | Linux Agent | Mobile Agent |
 |--------|--------|------|-------------|--------------|
@@ -377,7 +377,7 @@ Auto-generated execution logs organized by task and timestamp, including screens
 
 ---
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### Network Multi-Device Orchestration
 
@@ -405,7 +405,7 @@ python -m alien --task <task_name> --config_path config/alien/
 
 ---
 
-## 📚 Key Documentation Links
+## [PLAN] Key Documentation Links
 
 ### Getting Started
 - [Installation & Setup](getting_started/quick_start_network.md)
@@ -456,7 +456,7 @@ python -m alien --task <task_name> --config_path config/alien/
 
 ---
 
-## 🏗️ Architecture Principles
+## ️ Architecture Principles
 
 ALIEN³ follows **SOLID principles** and established software engineering patterns:
 
@@ -470,7 +470,7 @@ ALIEN³ follows **SOLID principles** and established software engineering patter
 
 ---
 
-## 📝 Additional Resources
+##  Additional Resources
 
 - **[GitHub Repository](https://github.com/DEVELOPER-DEEVEN/alien-project)** - Source code and issues
 - **[Research Paper](https://arxiv.org/abs/2504.14603)** - ALIEN³ technical details

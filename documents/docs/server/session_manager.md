@@ -6,7 +6,7 @@ For context on how this component fits into the server architecture, see the [Se
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 The SessionManager is a critical server component that bridges task dispatch and actual execution:
 
@@ -64,7 +64,7 @@ Background execution solves this by using Python's `asyncio.create_task()` to ru
 
 ---
 
-## 🏗 Core Functionality
+##  Core Functionality
 
 ### Session Creation
 
@@ -378,7 +378,7 @@ This prevents orphaned sessions from consuming resources.
 
 ---
 
-## 🔄 Session Lifecycle
+## [CONTINUE] Session Lifecycle
 
 Sessions follow a predictable lifecycle from initial dispatch through execution to final cleanup. Understanding this flow is essential for debugging and monitoring.```mermaid
 stateDiagram-v2
@@ -468,7 +468,7 @@ However, this means **sessions consume memory** until cleaned up. Implement peri
 
 ---
 
-## 💾 State Management
+##  State Management
 
 The SessionManager maintains three separate dictionaries for different aspects of session state:
 
@@ -506,9 +506,9 @@ with self.lock:
 
 **Considerations:**
 
-- ⚠️ Memory grows with active sessions
-- ⚠️ Manual cleanup required (`remove_session()`)
-- ⚠️ No automatic expiration
+- ️ Memory grows with active sessions
+- ️ Manual cleanup required (`remove_session()`)
+- ️ No automatic expiration
 
 ### 2. Result Caching
 
@@ -678,7 +678,7 @@ Lock contention is minimal because:
 
 ---
 
-## 🖥 Platform Support
+##  Platform Support
 
 The SessionManager supports both Windows and Linux platforms through the **SessionFactory** abstraction layer. Platform-specific implementations handle OS-specific UI automation and tool execution.
 
@@ -692,7 +692,7 @@ graph TD
     D --> E{OS Detected}
     E -->|"Windows"| F[platform = 'windows']
     E -->|"Linux"| G[platform = 'linux']
-    E -->|"Darwin" macOS| H[platform = 'linux'<br/>⚠️ Treated as Linux]
+    E -->|"Darwin" macOS| H[platform = 'linux'<br/>️ Treated as Linux]
     
     C --> I[SessionFactory.create_service_session]
     F --> I
@@ -723,7 +723,7 @@ def __init__(self, platform_override: Optional[str] = None):
 |----------|---------------|---------------|-----------|--------|
 | **Windows** | `ServiceSession` | Win32 API, UI Automation | Windows MCP servers (filesystem, browser, etc.) | Fully Supported |
 | **Linux** | `LinuxServiceSession` | X11/Wayland, AT-SPI | Linux MCP servers | Fully Supported |
-| **macOS (Darwin)** | `LinuxServiceSession` | Currently treated as Linux | Linux MCP servers | ⚠️ Experimental |
+| **macOS (Darwin)** | `LinuxServiceSession` | Currently treated as Linux | Linux MCP servers | ️ Experimental |
 
 **Windows Session Creation:**
 
@@ -773,13 +773,13 @@ macOS (Darwin) is currently treated as Linux, which may result in:
 
 - Incorrect UI automation commands
 - Missing macOS-specific tool integrations
-- ⚠️ Limited functionality
+- ️ Limited functionality
 
 **Recommendation:** Use explicit `platform_override="linux"` for Linux-like behavior, or wait for dedicated macOS session implementation.
 
 ---
 
-## 🐛 Error Handling
+##  Error Handling
 
 The SessionManager implements comprehensive error handling to prevent task failures from breaking the server.
 
@@ -890,7 +890,7 @@ The SessionManager marks this as **FAILED** to prevent silent failures.
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 Follow these best practices to ensure reliable, scalable session management:
 
@@ -943,7 +943,7 @@ async def execute_task_safe(session_manager, ...):
 
 ### 3. Clean Up Completed Sessions
 
-⚠️ **Memory Leak Prevention:**
+️ **Memory Leak Prevention:**
 
 Sessions persist in `sessions` dict until explicitly removed. Implement cleanup:
     
@@ -1014,7 +1014,7 @@ Log key lifecycle events for debugging and monitoring:    ```python
     self.logger.info(f"Created {platform} session: {session_id} (type: {session_type})")
     
     # Background task start
-    self.logger.info(f"🚀 Started background task {session_id}")
+    self.logger.info(f"[START] Started background task {session_id}")
     
     # Execution timing
     elapsed = loop.time() - start_time
@@ -1022,10 +1022,10 @@ Log key lifecycle events for debugging and monitoring:    ```python
     
     # Status determination
     self.logger.info(f"Session {session_id} finished successfully")
-    self.logger.warning(f"⚠️ Session {session_id} ended with error")
+    self.logger.warning(f"️ Session {session_id} ended with error")
     
     # Cancellation
-    self.logger.warning(f"🛑 Session {session_id} was cancelled (reason: {reason})")
+    self.logger.warning(f" Session {session_id} was cancelled (reason: {reason})")
     
     # Cleanup
     self.logger.info(f"Session {session_id} completed with status {status}")
@@ -1086,14 +1086,14 @@ Monitor background tasks for unexpectedly long execution:
                     age = current_time - session.start_time
                     if age > threshold:
                         logger.warning(
-                            f"⚠️ Long-running task detected: {session_id} "
+                            f"️ Long-running task detected: {session_id} "
                             f"(running for {age:.1f}s)"
                         )
     ```
 
 ---
 
-## 🔗 Integration with Server Components
+## [DEP] Integration with Server Components
 
 The SessionManager doesn't operate in isolation—it's deeply integrated with other server components.
 
@@ -1234,7 +1234,7 @@ async def get_task_result(task_name: str):
 
 ---
 
-## 📖 API Reference
+## [LANG] API Reference
 
 Complete SessionManager API reference:### Initialization
 
@@ -1413,7 +1413,7 @@ manager.remove_session("abc123")
 
 ---
 
-## 📚 Related Documentation
+## [PLAN] Related Documentation
 
 Explore related components to understand the full server architecture:
 
@@ -1429,7 +1429,7 @@ Explore related components to understand the full server architecture:
 
 ---
 
-## 🎓 Key Takeaways
+##  Key Takeaways
 
 After reading this guide, you should understand:
 

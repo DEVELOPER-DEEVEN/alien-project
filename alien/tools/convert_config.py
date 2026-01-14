@@ -320,7 +320,7 @@ class ConfigConverter:
         import shutil
 
         shutil.copytree(self.new_path, backup_path)
-        console.print("[green]✓[/green] Backup created successfully")
+        console.print("[green][/green] Backup created successfully")
 
         self.backup_path = backup_path
         return backup_path
@@ -359,7 +359,7 @@ class ConfigConverter:
             else:
                 self.save_yaml(data, output_path, headers.get(filename))
                 console.print(
-                    f"[green]✓[/green] Wrote: {output_path} ({len(data)} keys)"
+                    f"[green][/green] Wrote: {output_path} ({len(data)} keys)"
                 )
 
             written_files.append((filename, output_path))
@@ -409,7 +409,7 @@ class ConfigConverter:
                 else ""
             )
             + "[green]Your ALIEN² configuration is now using the modern modular structure![/green]",
-            title="✨ Success",
+            title="[NEW] Success",
             border_style="green",
         )
         console.print(panel)
@@ -431,7 +431,7 @@ class ConfigConverter:
                 "• config.yaml → agents.yaml + rag.yaml + system.yaml\n"
                 "• agent_mcp.yaml → mcp.yaml\n"
                 "• config_prices.yaml → prices.yaml",
-                title="🔧 Config Conversion",
+                title="[CONFIG] Config Conversion",
                 border_style="blue",
             )
         )
@@ -446,7 +446,7 @@ class ConfigConverter:
         # Check if new already exists
         if self.new_path.exists() and not force:
             console.print(
-                f"\n[yellow]⚠️  Warning:[/yellow] Target directory already exists: {self.new_path}/"
+                f"\n[yellow]️  Warning:[/yellow] Target directory already exists: {self.new_path}/"
             )
             if not dry_run:
                 if not Confirm.ask(
@@ -484,7 +484,7 @@ class ConfigConverter:
                     "[yellow]This was a dry run - no files were modified.[/yellow]\n\n"
                     "Run without --dry-run to perform the actual conversion:\n"
                     "[cyan]python -m alien.tools.convert_config[/cyan]",
-                    title="ℹ️  Dry Run Complete",
+                    title="[INFO]  Dry Run Complete",
                     border_style="yellow",
                 )
             )

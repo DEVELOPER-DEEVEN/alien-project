@@ -4,7 +4,7 @@ Not sure which ALIEN framework to use? This guide will help you make the right c
 
 ---
 
-## 🗺️ Quick Decision Tree
+## ️ Quick Decision Tree
 
 Use this interactive flowchart to find the best solution for your use case:
 
@@ -16,7 +16,7 @@ graph TD
     Q1 -->|Yes| Q2{Need parallel<br/>execution across<br/>devices?}
     Q1 -->|No| Q3{Complex multi-app<br/>workflow on Windows?}
     
-    Q2 -->|Yes| Network[✨ Use ALIEN³ Network]
+    Q2 -->|Yes| Network[[NEW] Use ALIEN³ Network]
     Q2 -->|No, sequential| Q4{Can tasks run<br/>independently?}
     
     Q4 -->|Yes, independent| ALIEN2_Multi[Use ALIEN² on each device<br/>separately]
@@ -27,10 +27,10 @@ graph TD
     
     Q3 -->|Might scale later| Hybrid[Use ALIEN² now,<br/>Network-ready setup]
     
-    Network --> NetworkDoc[📖 See Network Quick Start]
-    ALIEN2 --> ALIEN2Doc[📖 See ALIEN² Quick Start]
+    Network --> NetworkDoc[[LANG] See Network Quick Start]
+    ALIEN2 --> ALIEN2Doc[[LANG] See ALIEN² Quick Start]
     ALIEN2_Multi --> ALIEN2Doc
-    Hybrid --> MigrationDoc[📖 See Migration Guide]
+    Hybrid --> MigrationDoc[[LANG] See Migration Guide]
     
     style Network fill:#fff9c4
     style ALIEN2 fill:#c8e6c9
@@ -44,7 +44,7 @@ graph TD
 
 ---
 
-## 📊 Quick Comparison Matrix
+## [STATUS] Quick Comparison Matrix
 
 | Dimension | ALIEN² Desktop AgentOS | ALIEN³ Network |
 |-----------|---------------------|-------------|
@@ -53,7 +53,7 @@ graph TD
 | **Setup Complexity** | ⭐ Simple | ⭐⭐⭐ Moderate (requires device pool) |
 | **Learning Curve** | ⭐⭐ Easy | ⭐⭐⭐⭐ Advanced |
 | **Execution Model** | Sequential multi-app | Parallel DAG orchestration |
-| **Network Required** | ❌ No | ✅ Yes (WebSocket between devices) |
+| **Network Required** | [FAIL] No | [OK] Yes (WebSocket between devices) |
 | **Parallelism** | Within single device | Across multiple devices |
 | **Fault Tolerance** | Retry on same device | Retry + task migration |
 | **Typical Latency** | 10-30s (local) | 20-60s (includes orchestration) |
@@ -66,13 +66,13 @@ graph TD
 
 ---
 
-## 🎯 Scenario-Based Recommendations
+##  Scenario-Based Recommendations
 
 ### Scenario 1: Desktop Productivity Automation
 
 **Task:** "Create a weekly report: extract data from Excel, generate charts in PowerPoint, send via Outlook"
 
-**Recommendation:** ✅ **ALIEN²**
+**Recommendation:** [OK] **ALIEN²**
 
 **Why:**
 - All applications on one Windows desktop
@@ -87,7 +87,7 @@ graph TD
 
 **Task:** "Clone repo on my laptop, build Docker image on GPU server, run tests on CI cluster, open results on my desktop"
 
-**Recommendation:** ✅ **ALIEN³ Network**
+**Recommendation:** [OK] **ALIEN³ Network**
 
 **Why:**
 - Spans 3+ devices (laptop, GPU server, CI cluster, desktop)
@@ -106,9 +106,9 @@ graph TD
 
 | Setup | Recommendation | Why |
 |-------|---------------|-----|
-| **Single powerful workstation** | ✅ ALIEN² | All processing on one machine, simpler |
-| **Distributed cluster** | ✅ Network | Parallel processing across nodes, faster |
-| **Mix (local + cloud GPU)** | ✅ Network | Heterogeneous resources |
+| **Single powerful workstation** | [OK] ALIEN² | All processing on one machine, simpler |
+| **Distributed cluster** | [OK] Network | Parallel processing across nodes, faster |
+| **Mix (local + cloud GPU)** | [OK] Network | Heterogeneous resources |
 
 **Learn More:** 
 - [ALIEN² for Single Device](./getting_started/quick_start_alien2.md)
@@ -120,7 +120,7 @@ graph TD
 
 **Task:** "Test web app on Windows Chrome, Linux Firefox, and macOS Safari"
 
-**Recommendation:** ✅ **ALIEN³ Network**
+**Recommendation:** [OK] **ALIEN³ Network**
 
 **Why:**
 - Requires 3 different OS platforms
@@ -135,7 +135,7 @@ graph TD
 
 **Task:** "Organize Downloads folder by file type, compress old files, upload to cloud"
 
-**Recommendation:** ✅ **ALIEN²**
+**Recommendation:** [OK] **ALIEN²**
 
 **Why:**
 - Single-device local file operations
@@ -150,7 +150,7 @@ graph TD
 
 **Task:** "Collect logs from 5 Linux servers, aggregate on central server, analyze, generate dashboard on Windows"
 
-**Recommendation:** ✅ **ALIEN³ Network**
+**Recommendation:** [OK] **ALIEN³ Network**
 
 **Why:**
 - Multiple source devices (5 Linux servers)
@@ -166,7 +166,7 @@ graph TD
 
 **Task:** "I'm new to agent development and want to learn by building simple automation"
 
-**Recommendation:** ✅ **ALIEN²**
+**Recommendation:** [OK] **ALIEN²**
 
 **Why:**
 - Simpler architecture (easier to understand)
@@ -182,7 +182,7 @@ graph TD
 
 **Task:** "Integrate with existing CI/CD pipeline across dev laptops, build servers, and test farms"
 
-**Recommendation:** ✅ **ALIEN³ Network**
+**Recommendation:** [OK] **ALIEN³ Network**
 
 **Why:**
 - Enterprise-scale device coordination
@@ -194,7 +194,7 @@ graph TD
 
 ---
 
-## 🔀 Hybrid Approaches
+##  Hybrid Approaches
 
 You don't have to choose just one! Here are common hybrid patterns:
 
@@ -269,7 +269,7 @@ python -m network --request "Cross-device workflow"
 
 ---
 
-## 🚫 Common Misconceptions
+##  Common Misconceptions
 
 ### Misconception 1: "Network is always better because it's newer"
 
@@ -324,7 +324,7 @@ devices:
 
 ---
 
-## 🎓 Learning Paths
+##  Learning Paths
 
 ### For Beginners
 
@@ -355,34 +355,34 @@ devices:
 
 ---
 
-## 📋 Decision Checklist
+## [TASK] Decision Checklist
 
 Still unsure? Answer these questions:
 
 **Q1: Does your workflow involve 2+ physical devices?**
 
-- ✅ Yes → **Network**
-- ❌ No → Continue to Q2
+- [OK] Yes → **Network**
+- [FAIL] No → Continue to Q2
 
 **Q2: Do you need parallel execution across different machines?**
 
-- ✅ Yes → **Network**
-- ❌ No → Continue to Q3
+- [OK] Yes → **Network**
+- [FAIL] No → Continue to Q3
 
 **Q3: Does your workflow have complex dependencies (DAG structure)?**
 
-- ✅ Yes, complex DAG → **Network**
-- ❌ No, simple sequence → Continue to Q4
+- [OK] Yes, complex DAG → **Network**
+- [FAIL] No, simple sequence → Continue to Q4
 
 **Q4: Are you comfortable with distributed systems concepts?**
 
-- ✅ Yes → **Network** (if any of Q1-Q3 is yes)
-- ❌ No → **ALIEN²** (learn basics first)
+- [OK] Yes → **Network** (if any of Q1-Q3 is yes)
+- [FAIL] No → **ALIEN²** (learn basics first)
 
 **Q5: Do you need cross-platform support (Windows + Linux)?**
 
-- ✅ Yes → **Network**
-- ❌ No, Windows only → **ALIEN²**
+- [OK] Yes → **Network**
+- [FAIL] No, Windows only → **ALIEN²**
 
 ---
 
@@ -394,26 +394,26 @@ Still unsure? Answer these questions:
 
 ---
 
-## 🔗 Next Steps
+## [DEP] Next Steps
 
 ### If you chose ALIEN²:
-1. 📖 [ALIEN² Quick Start Guide](./getting_started/quick_start_alien2.md)
-2. 🎯 [ALIEN² Overview & Architecture](./alien2/overview.md)
-3. 🛠️ [Configuration Guide](./configuration/system/overview.md)
+1. [LANG] [ALIEN² Quick Start Guide](./getting_started/quick_start_alien2.md)
+2.  [ALIEN² Overview & Architecture](./alien2/overview.md)
+3. ️ [Configuration Guide](./configuration/system/overview.md)
 
 ### If you chose Network:
-1. 📖 [Network Quick Start Guide](./getting_started/quick_start_network.md)
-2. 🎯 [Network Overview & Architecture](./network/overview.md)
-3. 🌟 [Task Orion Concepts](./network/orion/overview.md)
+1. [LANG] [Network Quick Start Guide](./getting_started/quick_start_network.md)
+2.  [Network Overview & Architecture](./network/overview.md)
+3.  [Task Orion Concepts](./network/orion/overview.md)
 
 ### If you're still exploring:
-1. 📊 [Detailed Comparison](./getting_started/migration_alien2_to_network.md#when-to-use-which)
-2. 🎬 [Demo Video](https://www.youtube.com/watch?v=QT_OhygMVXU)
-3. 📄 [Research Paper](https://arxiv.org/abs/2504.14603)
+1. [STATUS] [Detailed Comparison](./getting_started/migration_alien2_to_network.md#when-to-use-which)
+2.  [Demo Video](https://www.youtube.com/watch?v=QT_OhygMVXU)
+3. [DOC] [Research Paper](https://arxiv.org/abs/2504.14603)
 
 ---
 
-## 💡 Pro Tips
+## [THOUGHT] Pro Tips
 
 !!! tip "Start Simple"
     When in doubt, start with **ALIEN²**. It's easier to scale up to Network later than to debug a complex Network setup when you don't need it.
@@ -436,7 +436,7 @@ Still unsure? Answer these questions:
 
 ---
 
-## 🤝 Getting Help
+##  Getting Help
 
 - **Documentation:** [https://github.com/DEVELOPER-DEEVEN/alien-project](https://github.com/DEVELOPER-DEEVEN/alien-project)
 - **GitHub Issues:** [https://github.com/DEVELOPER-DEEVEN/alien-project/issues](https://github.com/DEVELOPER-DEEVEN/alien-project/issues)

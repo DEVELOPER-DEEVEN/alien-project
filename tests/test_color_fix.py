@@ -58,7 +58,7 @@ def test_color_display():
     display.display_orion_modified(orion, changes, additional_info)
 
     print("\n" + "=" * 60)
-    print("✅ Color test completed!")
+    print("[OK] Color test completed!")
 
 
 if __name__ == "__main__":

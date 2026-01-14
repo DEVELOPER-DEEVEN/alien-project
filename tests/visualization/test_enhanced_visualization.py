@@ -94,7 +94,7 @@ class MockDeviceManager(OrionDeviceManager):
 @pytest.mark.asyncio
 async def test_enhanced_visualization():
     """Test enhanced DAG visualization."""
-    print("🎨 Testing Enhanced DAGVisualizationObserver...")
+    print(" Testing Enhanced DAGVisualizationObserver...")
 
     # Create event bus and visualization observer
     event_bus = get_event_bus()
@@ -171,10 +171,10 @@ async def test_enhanced_visualization():
     orion.add_dependency(dep1)
     orion.add_dependency(dep2)
 
-    print(f"✅ Created orion with {len(orion.tasks)} tasks")
+    print(f"[OK] Created orion with {len(orion.tasks)} tasks")
 
     # Test orion modification event
-    print("\n🔄 Testing ORION_MODIFIED event...")
+    print("\n[CONTINUE] Testing ORION_MODIFIED event...")
     modification_event = OrionEvent(
         event_type=EventType.ORION_MODIFIED,
         source_id="test_script",
@@ -199,7 +199,7 @@ async def test_enhanced_visualization():
     await asyncio.sleep(1)
 
     # Execute orion to see task events
-    print("\n🚀 Starting orion execution...")
+    print("\n[START] Starting orion execution...")
     try:
         device_assignments = {
             "data_prep": "device_1",
@@ -213,13 +213,13 @@ async def test_enhanced_visualization():
             assignment_strategy="round_robin",
         )
 
-        print(f"\n✅ Orion execution completed: {result['status']}")
-        print(f"📊 Statistics: {result.get('statistics', {})}")
+        print(f"\n[OK] Orion execution completed: {result['status']}")
+        print(f"[STATUS] Statistics: {result.get('statistics', {})}")
 
         return True
 
     except Exception as e:
-        print(f"❌ Test failed: {e}")
+        print(f"[FAIL] Test failed: {e}")
         import traceback
 
         traceback.print_exc()
@@ -228,13 +228,13 @@ async def test_enhanced_visualization():
 
 async def main():
     """Run the enhanced visualization test."""
-    print("🎨 Starting Enhanced Visualization Test...")
+    print(" Starting Enhanced Visualization Test...")
     success = await test_enhanced_visualization()
 
     if success:
-        print("\n🎉 All visualization tests passed!")
+        print("\n All visualization tests passed!")
     else:
-        print("\n💥 Visualization tests failed!")
+        print("\n Visualization tests failed!")
 
     return success
 

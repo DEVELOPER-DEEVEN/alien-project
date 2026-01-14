@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** Local (in-process)  
 **Agent:** HostAgent  
-**LLM-Selectable:** ✅ Yes (LLM chooses when to execute)
+**LLM-Selectable:** [OK] Yes (LLM chooses when to execute)
 
 ## Server Information
 
@@ -42,8 +42,8 @@ This is the primary tool for window selection in HostAgent workflows. It:
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `id` | `str` | ✅ Yes | The precise annotated ID of the application window to select. Must match an ID from `get_desktop_app_info` |
-| `name` | `str` | ✅ Yes | The precise name of the application window. Must match the name of the selected ID |
+| `id` | `str` | [OK] Yes | The precise annotated ID of the application window to select. Must match an ID from `get_desktop_app_info` |
+| `name` | `str` | [OK] Yes | The precise name of the application window. Must match the name of the selected ID |
 
 #### Returns
 
@@ -165,10 +165,10 @@ SHOW_VISUAL_OUTLINE_ON_SCREEN: true  # Red outline drawn around window
 #### Side Effects
 
 !!!warning "Side Effects"
-    - ✅ **Changes focus**: Brings target window to foreground
-    - ✅ **May maximize**: If `MAXIMIZE_WINDOW` is enabled
-    - ✅ **Visual feedback**: Red outline if `SHOW_VISUAL_OUTLINE_ON_SCREEN` is enabled
-    - ✅ **State initialization**: Sets up AppPuppeteer for the window
+    - [OK] **Changes focus**: Brings target window to foreground
+    - [OK] **May maximize**: If `MAXIMIZE_WINDOW` is enabled
+    - [OK] **Visual feedback**: Red outline if `SHOW_VISUAL_OUTLINE_ON_SCREEN` is enabled
+    - [OK] **State initialization**: Sets up AppPuppeteer for the window
 
 #### Internal State Changes
 
@@ -276,7 +276,7 @@ else:
 ### 1. Always Validate ID and Name
 
 ```python
-# ✅ Good: Use exact ID and name from get_desktop_app_info
+# [OK] Good: Use exact ID and name from get_desktop_app_info
 windows = await computer.run_actions([
     MCPToolCall(tool_key="data_collection::get_desktop_app_info", ...)
 ])
@@ -292,7 +292,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Hardcode or guess IDs
+# [FAIL] Bad: Hardcode or guess IDs
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::select_application_window",

@@ -200,7 +200,7 @@ async def test_task_returns_immediately_when_device_disconnects(device_manager):
     assert result.metadata["disconnected"] is True
     assert "disconnected" in result.result["message"].lower()
 
-    print(f"✅ Task returned in {elapsed_time:.3f}s (expected < 1s)")
+    print(f"[OK] Task returned in {elapsed_time:.3f}s (expected < 1s)")
 
 
 @pytest.mark.asyncio

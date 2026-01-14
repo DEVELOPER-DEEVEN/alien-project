@@ -71,10 +71,10 @@ THIRD_PARTY_AGENT_CONFIG:
 | `INTRODUCTION` | String | Agent description for LLM context |
 
 **When to Enable**:
-- ✅ Using ALIEN³ Network with Linux devices
-- ✅ Need to execute Linux CLI commands
-- ✅ Managing Linux servers from Windows
-- ✅ Cross-platform automation workflows
+- [OK] Using ALIEN³ Network with Linux devices
+- [OK] Need to execute Linux CLI commands
+- [OK] Managing Linux servers from Windows
+- [OK] Cross-platform automation workflows
 
 **Related Documentation**:
 - [Linux Agent as Network Device](../../linux/as_network_device.md)
@@ -113,10 +113,10 @@ THIRD_PARTY_AGENT_CONFIG:
 | `INTRODUCTION` | String | Agent description for LLM context |
 
 **When to Enable**:
-- ✅ Using robotic arms for physical input
-- ✅ Automated USB device management
-- ✅ Physical hardware testing/automation
-- ✅ Research projects with hardware control
+- [OK] Using robotic arms for physical input
+- [OK] Automated USB device management
+- [OK] Physical hardware testing/automation
+- [OK] Research projects with hardware control
 
 **Related Documentation**:
 - [Creating Custom Third-Party Agents](../../tutorials/creating_third_party_agents.md) - Tutorial using HardwareAgent as example
@@ -354,16 +354,16 @@ Add your agent to the third-party agent registry in ALIEN²'s agent loader.
 ## Best Practices
 
 !!!tip "Recommendations"
-    - ✅ **Enable only what you need** - Don't enable agents you're not using
-    - ✅ **For ALIEN³ Network** - Always enable LinuxAgent when using Linux devices
-    - ✅ **Keep prompts up to date** - Ensure prompt files exist and are current
-    - ✅ **Document custom agents** - Add clear introduction text for LLM context
-    - ✅ **Test configurations** - Verify agents load correctly after configuration changes
+    - [OK] **Enable only what you need** - Don't enable agents you're not using
+    - [OK] **For ALIEN³ Network** - Always enable LinuxAgent when using Linux devices
+    - [OK] **Keep prompts up to date** - Ensure prompt files exist and are current
+    - [OK] **Document custom agents** - Add clear introduction text for LLM context
+    - [OK] **Test configurations** - Verify agents load correctly after configuration changes
 
 !!!danger "Warnings"
-    - ❌ **Don't enable HardwareAgent** without proper hardware setup
-    - ❌ **Don't modify AGENT_NAME** - Must match the agent class name
-    - ❌ **Don't delete prompt files** - Agents will fail to initialize
+    - [FAIL] **Don't enable HardwareAgent** without proper hardware setup
+    - [FAIL] **Don't modify AGENT_NAME** - Must match the agent class name
+    - [FAIL] **Don't delete prompt files** - Agents will fail to initialize
 
 ---
 
@@ -380,10 +380,10 @@ Add your agent to the third-party agent registry in ALIEN²'s agent loader.
 ## Summary
 
 !!!success "Key Takeaways"
-    ✅ **third_party.yaml is optional** - Only needed for specialized agents  
-    ✅ **LinuxAgent for ALIEN³** - Required when using Linux devices in Network  
-    ✅ **HardwareAgent is experimental** - For physical hardware control  
-    ✅ **Enable selectively** - Only enable agents you actually use  
-    ✅ **Configuration is simple** - Just add agent names to enabled list  
+    [OK] **third_party.yaml is optional** - Only needed for specialized agents  
+    [OK] **LinuxAgent for ALIEN³** - Required when using Linux devices in Network  
+    [OK] **HardwareAgent is experimental** - For physical hardware control  
+    [OK] **Enable selectively** - Only enable agents you actually use  
+    [OK] **Configuration is simple** - Just add agent names to enabled list  
     
-    **Extend ALIEN² with specialized capabilities!** 🔧
+    **Extend ALIEN² with specialized capabilities!** [CONFIG]

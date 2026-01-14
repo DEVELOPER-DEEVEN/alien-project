@@ -47,8 +47,8 @@ def demo_serializable_parameters():
     task1 = editor.add_task(task1_data)
     task2 = editor.add_task(task2_data)
 
-    print(f"   ✓ 添加任务1: {task1.task_id} - {task1.name}")
-    print(f"   ✓ 添加任务2: {task2.task_id} - {task2.name}")
+    print(f"    添加任务1: {task1.task_id} - {task1.name}")
+    print(f"    添加任务2: {task2.task_id} - {task2.name}")
 
     # 使用字典参数添加依赖关系 (Using dict parameters to add dependencies)
     print("\n使用字典参数添加依赖关系:")
@@ -60,7 +60,7 @@ def demo_serializable_parameters():
     }
 
     dependency = editor.add_dependency(dependency_data)
-    print(f"   ✓ 添加依赖: {dependency.from_task_id} -> {dependency.to_task_id}")
+    print(f"    添加依赖: {dependency.from_task_id} -> {dependency.to_task_id}")
 
     return editor
 
@@ -98,7 +98,7 @@ def demo_command_registry():
 
     # 使用 execute_command_by_name 方法
     result = editor.execute_command_by_name("add_task", task_data)
-    print(f"   ✓ 通过注册器创建任务: {result.task_id}")
+    print(f"    通过注册器创建任务: {result.task_id}")
 
     # 获取命令元数据 (Get command metadata)
     metadata = editor.get_command_metadata("add_task")
@@ -132,7 +132,7 @@ def demo_validation_rollback():
 
     for task_data in valid_tasks:
         task = editor.add_task(task_data)
-        print(f"   ✓ 添加: {task.task_id}")
+        print(f"    添加: {task.task_id}")
 
     print(
         f"\n当前状态: {len(orion.tasks)} 个任务, {len(orion.dependencies)} 个依赖"
@@ -150,9 +150,9 @@ def demo_validation_rollback():
         }
 
         editor.add_dependency(invalid_dependency)
-        print("   ✗ 意外成功")
+        print("    意外成功")
     except Exception as e:
-        print(f"   ✓ 预期失败: {e}")
+        print(f"    预期失败: {e}")
 
     print(
         f"\n失败操作后: {len(orion.tasks)} 个任务, {len(orion.dependencies)} 个依赖"
@@ -170,9 +170,9 @@ def demo_validation_rollback():
         }
 
         dependency = editor.add_dependency(valid_dependency)
-        print(f"   ✓ 成功添加: {dependency.from_task_id} -> {dependency.to_task_id}")
+        print(f"    成功添加: {dependency.from_task_id} -> {dependency.to_task_id}")
     except Exception as e:
-        print(f"   ✗ 意外失败: {e}")
+        print(f"    意外失败: {e}")
 
     print(
         f"\n最终状态: {len(orion.tasks)} 个任务, {len(orion.dependencies)} 个依赖"
@@ -234,15 +234,15 @@ def demo_advanced_features():
             "build_orion", orion_config
         )
         print(
-            f"   ✓ 批量构建成功: {len(result.tasks)} 个任务, {len(result.dependencies)} 个依赖"
+            f"    批量构建成功: {len(result.tasks)} 个任务, {len(result.dependencies)} 个依赖"
         )
 
         # 验证构建结果
         is_valid, errors = orion.validate_dag()
-        print(f"   ✓ 构建结果: {'有效' if is_valid else '无效'}")
+        print(f"    构建结果: {'有效' if is_valid else '无效'}")
 
     except Exception as e:
-        print(f"   ✗ 批量构建失败: {e}")
+        print(f"    批量构建失败: {e}")
 
     # 测试撤销/重做 (Test undo/redo)
     print("\n测试撤销/重做:")
@@ -274,12 +274,12 @@ def main():
         editor4 = demo_advanced_features()
 
         print("\n" + "=" * 60)
-        print("✓ 所有演示完成! 主要更新包括:")
-        print("  1. ✓ 命令参数支持可序列化 (dict 格式)")
-        print("  2. ✓ 命令注册器和装饰器系统")
-        print("  3. ✓ 自动验证和撤回机制")
-        print("  4. ✓ 完整的撤销/重做支持")
-        print("  5. ✓ 批量操作和文件操作")
+        print(" 所有演示完成! 主要更新包括:")
+        print("  1.  命令参数支持可序列化 (dict 格式)")
+        print("  2.  命令注册器和装饰器系统")
+        print("  3.  自动验证和撤回机制")
+        print("  4.  完整的撤销/重做支持")
+        print("  5.  批量操作和文件操作")
 
         # 显示注册器统计信息
         print(f"\n注册器统计:")
@@ -289,7 +289,7 @@ def main():
         return 0
 
     except Exception as e:
-        print(f"\n✗ 演示失败: {e}")
+        print(f"\n 演示失败: {e}")
         import traceback
 
         traceback.print_exc()

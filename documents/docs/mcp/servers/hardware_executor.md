@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** HTTP (remote server)  
 **Default Port:** 8006  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 

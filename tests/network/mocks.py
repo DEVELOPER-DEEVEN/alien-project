@@ -320,7 +320,7 @@ class MockTaskOrionOrchestrator:
         """Mock execution of orion."""
         if self.enable_logging:
             print(
-                f"🎭 Mock orchestrator executing orion: {orion.orion_id}"
+                f" Mock orchestrator executing orion: {orion.orion_id}"
             )
 
         # Mock execution by just returning success

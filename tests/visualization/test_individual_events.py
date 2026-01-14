@@ -39,7 +39,7 @@ from network.session.observers import DAGVisualizationObserver
 @pytest.mark.asyncio
 async def test_individual_events():
     """Test individual event visualizations."""
-    print("🎯 Testing Individual Event Visualizations...")
+    print(" Testing Individual Event Visualizations...")
 
     # Create event bus and visualization observer
     event_bus = get_event_bus()
@@ -73,7 +73,7 @@ async def test_individual_events():
     # Store orion in viz observer for event handling
     viz_observer._orions[orion.orion_id] = orion
 
-    print("\n🚀 Testing TASK_STARTED event...")
+    print("\n[START] Testing TASK_STARTED event...")
     task_started_event = TaskEvent(
         event_type=EventType.TASK_STARTED,
         source_id="test_script",
@@ -85,7 +85,7 @@ async def test_individual_events():
     await event_bus.publish_event(task_started_event)
     await asyncio.sleep(1)
 
-    print("\n✅ Testing TASK_COMPLETED event...")
+    print("\n[OK] Testing TASK_COMPLETED event...")
     task_completed_event = TaskEvent(
         event_type=EventType.TASK_COMPLETED,
         source_id="test_script",
@@ -101,7 +101,7 @@ async def test_individual_events():
     await event_bus.publish_event(task_completed_event)
     await asyncio.sleep(1)
 
-    print("\n❌ Testing TASK_FAILED event...")
+    print("\n[FAIL] Testing TASK_FAILED event...")
     task_failed_event = TaskEvent(
         event_type=EventType.TASK_FAILED,
         source_id="test_script",
@@ -117,7 +117,7 @@ async def test_individual_events():
     await event_bus.publish_event(task_failed_event)
     await asyncio.sleep(1)
 
-    print("\n🔄 Testing ORION_MODIFIED event...")
+    print("\n[CONTINUE] Testing ORION_MODIFIED event...")
     modification_event = OrionEvent(
         event_type=EventType.ORION_MODIFIED,
         source_id="test_script",
@@ -137,7 +137,7 @@ async def test_individual_events():
     await event_bus.publish_event(modification_event)
     await asyncio.sleep(1)
 
-    print("\n🎉 Individual event visualization tests completed!")
+    print("\n Individual event visualization tests completed!")
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
-# 📊 AgentProfile - Comprehensive Agent Representation
+# [STATUS] AgentProfile - Comprehensive Agent Representation
 
 The **AgentProfile** is a multi-source data structure that consolidates administrator configuration, service-level capabilities, and real-time client telemetry into a unified, dynamically updated representation of each orion agent.
 
 ---
 
-## 📋 Overview
+## [TASK] Overview
 
 The **AgentProfile** is the primary data structure representing a registered orion agent. It aggregates information from **three distinct sources** to provide a comprehensive view of each agent's identity, capabilities, operational status, and hardware characteristics.
 
@@ -23,7 +23,7 @@ For a complete understanding of how agents work in the orion system, see:
 
 ---
 
-## 🏗️ Structure Definition
+## ️ Structure Definition
 
 ### Core Dataclass
 
@@ -77,7 +77,7 @@ class AgentProfile:
 
 ---
 
-## 🔍 Field Reference
+##  Field Reference
 
 ### Identity Fields
 
@@ -154,7 +154,7 @@ profile.current_task_id = None
 
 ---
 
-## 🗂️ Metadata Structure
+## ️ Metadata Structure
 
 The `metadata` dictionary is a flexible container that aggregates information from all three profiling sources:
 
@@ -231,7 +231,7 @@ metadata = {
 
 ---
 
-## 🔄 Multi-Source Construction
+## [CONTINUE] Multi-Source Construction
 
 ### Three-Source Architecture
 
@@ -335,7 +335,7 @@ profile.metadata["system_info"] = system_info
 
 ---
 
-## 📊 Example Profiles
+## [STATUS] Example Profiles
 
 ### Example 1: Windows GPU Workstation
 
@@ -487,7 +487,7 @@ AgentProfile(
 
 ---
 
-## 🔄 Lifecycle Operations
+## [CONTINUE] Lifecycle Operations
 
 ### Creation
 
@@ -586,7 +586,7 @@ print(f"Attempts: {profile.connection_attempts}")  # 0
 
 ---
 
-## 🎯 Usage Patterns
+##  Usage Patterns
 
 The following patterns demonstrate how AgentProfile is used for intelligent task routing and device management. For more details on task orion concepts, see [Orion Overview](../orion/overview.md).
 
@@ -729,7 +729,7 @@ print(f"Errors: {health['errors']}")
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 | Topic | Document | Description |
 |-------|----------|-------------|
@@ -744,22 +744,22 @@ print(f"Errors: {health['errors']}")
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 ### 1. Meaningful Capabilities
 
 ```python
-# ✅ Good: Specific, actionable capabilities
+# [OK] Good: Specific, actionable capabilities
 capabilities = ["web_browsing", "office_excel", "file_management", "email_sending"]
 
-# ❌ Bad: Vague capabilities
+# [FAIL] Bad: Vague capabilities
 capabilities = ["desktop", "general"]
 ```
 
 ### 2. Rich Metadata
 
 ```python
-# ✅ Good: Comprehensive metadata for smart routing
+# [OK] Good: Comprehensive metadata for smart routing
 metadata = {
     "location": "datacenter_us_west",
     "performance": "high",
@@ -791,7 +791,7 @@ if system_info.get("memory_total_gb", 0) >= 16:
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 1. **Learn Registration Process**: Read [Registration Flow](./registration_flow.md)
 2. **Configure Devices**: See [Network Devices Configuration](../../configuration/system/network_devices.md)
@@ -800,7 +800,7 @@ if system_info.get("memory_total_gb", 0) >= 16:
 
 ---
 
-## 📚 Source Code References
+## [PLAN] Source Code References
 
 - **AgentProfile Definition**: `network/client/components/types.py`
 - **DeviceRegistry**: `network/client/components/device_registry.py`

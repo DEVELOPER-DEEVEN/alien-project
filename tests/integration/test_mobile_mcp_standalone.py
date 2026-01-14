@@ -65,26 +65,26 @@ async def check_adb_connection() -> bool:
         )
 
         if result.returncode != 0:
-            print(f"❌ ADB not found or not working properly")
+            print(f"[FAIL] ADB not found or not working properly")
             print(f"   Tried: {adb_path}")
             return False
 
         devices = [line for line in result.stdout.split("\n") if "\tdevice" in line]
         if not devices:
-            print("❌ No Android device/emulator connected")
+            print("[FAIL] No Android device/emulator connected")
             print("   Please connect a device and run 'adb devices'")
             return False
 
-        print(f"✅ Found {len(devices)} connected device(s)")
+        print(f"[OK] Found {len(devices)} connected device(s)")
         print(result.stdout)
         return True
 
     except FileNotFoundError:
-        print(f"❌ ADB not found: {adb_path}")
+        print(f"[FAIL] ADB not found: {adb_path}")
         print("   Please install Android SDK platform-tools")
         return False
     except Exception as e:
-        print(f"❌ Error checking ADB: {e}")
+        print(f"[FAIL] Error checking ADB: {e}")
         return False
 
 
@@ -100,71 +100,71 @@ async def test_data_collection_server():
         # FastMCP Client automatically detects HTTP from URL
         async with Client(server_url) as client:
             # Test 1: List available tools
-            print("\n📋 Listing available data collection tools...")
+            print("\n[TASK] Listing available data collection tools...")
             tools = await client.list_tools()
-            print(f"✅ Found {len(tools)} tools:")
+            print(f"[OK] Found {len(tools)} tools:")
             for tool in tools:
                 print(f"   - {tool.name}: {tool.description}")
 
             # Test 2: Get device info
-            print("\n📱 Getting device information...")
+            print("\n Getting device information...")
             result = await client.call_tool("get_device_info", {})
             device_info = result.data
             if device_info and device_info.get("success"):
                 info = device_info["device_info"]
-                print(f"✅ Device Info:")
+                print(f"[OK] Device Info:")
                 print(f"   Model: {info.get('model', 'N/A')}")
                 print(f"   Android Version: {info.get('android_version', 'N/A')}")
                 print(f"   Screen: {info.get('screen_size', 'N/A')}")
                 print(f"   Battery: {info.get('battery_level', 'N/A')}")
             else:
-                print(f"❌ Failed to get device info: {device_info}")
+                print(f"[FAIL] Failed to get device info: {device_info}")
 
             # Test 3: Capture screenshot
-            print("\n📸 Capturing screenshot...")
+            print("\n[SCREENSHOT] Capturing screenshot...")
             result = await client.call_tool("capture_screenshot", {"format": "base64"})
             screenshot = result.data
             if screenshot and screenshot.get("success"):
-                print(f"✅ Screenshot captured:")
+                print(f"[OK] Screenshot captured:")
                 print(f"   Size: {screenshot['width']}x{screenshot['height']}")
                 print(f"   Format: {screenshot['format']}")
                 print(f"   Data length: {len(screenshot['image'])} chars")
             else:
-                print(f"❌ Failed to capture screenshot: {screenshot}")
+                print(f"[FAIL] Failed to capture screenshot: {screenshot}")
 
             # Test 4: Get UI tree
-            print("\n🌲 Getting UI hierarchy tree...")
+            print("\n Getting UI hierarchy tree...")
             result = await client.call_tool("get_ui_tree", {})
             ui_tree = result.data
             if ui_tree and ui_tree.get("success"):
-                print(f"✅ UI tree retrieved:")
+                print(f"[OK] UI tree retrieved:")
                 print(f"   Length: {len(ui_tree['ui_tree'])} characters")
                 print(f"   Format: {ui_tree['format']}")
             else:
-                print(f"❌ Failed to get UI tree: {ui_tree}")
+                print(f"[FAIL] Failed to get UI tree: {ui_tree}")
 
             # Test 5: Get installed apps
-            print("\n📱 Getting installed apps...")
+            print("\n Getting installed apps...")
             result = await client.call_tool(
                 "get_mobile_app_target_info",
                 {"include_system_apps": False, "force_refresh": True},
             )
             apps = result.data
             if apps and isinstance(apps, list):
-                print(f"✅ Found {len(apps)} user-installed apps")
+                print(f"[OK] Found {len(apps)} user-installed apps")
                 if apps:
                     print(f"   Sample app: {apps[0].get('name', 'N/A')}")
             else:
-                print(f"❌ Failed to get apps: {apps}")
+                print(f"[FAIL] Failed to get apps: {apps}")
 
             # Test 6: Get UI controls
-            print("\n🎮 Getting current screen controls...")
+            print("\n Getting current screen controls...")
             result = await client.call_tool(
                 "get_app_window_controls_target_info", {"force_refresh": True}
             )
             controls = result.data
             if controls and isinstance(controls, list):
-                print(f"✅ Found {len(controls)} controls on current screen")
+                print(f"[OK] Found {len(controls)} controls on current screen")
                 if controls:
                     sample = controls[0]
                     print(f"   Sample control:")
@@ -172,13 +172,13 @@ async def test_data_collection_server():
                     print(f"     Name: {sample.get('name', 'N/A')}")
                     print(f"     Type: {sample.get('type', 'N/A')}")
             else:
-                print(f"❌ Failed to get controls: {controls}")
+                print(f"[FAIL] Failed to get controls: {controls}")
 
-            print("\n✅ Data Collection Server: ALL TESTS PASSED")
+            print("\n[OK] Data Collection Server: ALL TESTS PASSED")
             return True
 
     except Exception as e:
-        print(f"\n❌ Error testing data collection server: {e}")
+        print(f"\n[FAIL] Error testing data collection server: {e}")
         import traceback
 
         traceback.print_exc()
@@ -196,36 +196,36 @@ async def test_action_server():
     try:
         async with Client(server_url) as client:
             # Test 1: List available tools
-            print("\n📋 Listing available action tools...")
+            print("\n[TASK] Listing available action tools...")
             tools = await client.list_tools()
-            print(f"✅ Found {len(tools)} tools:")
+            print(f"[OK] Found {len(tools)} tools:")
             for tool in tools:
                 print(f"   - {tool.name}: {tool.description}")
 
             # Test 2: Press HOME key
-            print("\n🏠 Pressing HOME key...")
+            print("\n Pressing HOME key...")
             result = await client.call_tool("press_key", {"key_code": "KEYCODE_HOME"})
             key_result = result.data
             if key_result and key_result.get("success"):
-                print(f"✅ HOME key pressed: {key_result['action']}")
+                print(f"[OK] HOME key pressed: {key_result['action']}")
             else:
-                print(f"❌ Failed to press HOME key: {key_result}")
+                print(f"[FAIL] Failed to press HOME key: {key_result}")
 
             await asyncio.sleep(1)
 
             # Test 3: Tap at screen center
-            print("\n👆 Tapping at screen center (540, 960)...")
+            print("\n Tapping at screen center (540, 960)...")
             result = await client.call_tool("tap", {"x": 540, "y": 960})
             tap_result = result.data
             if tap_result and tap_result.get("success"):
-                print(f"✅ Tap executed: {tap_result['action']}")
+                print(f"[OK] Tap executed: {tap_result['action']}")
             else:
-                print(f"❌ Failed to tap: {tap_result}")
+                print(f"[FAIL] Failed to tap: {tap_result}")
 
             await asyncio.sleep(0.5)
 
             # Test 4: Swipe gesture
-            print("\n👇 Performing swipe gesture (scroll down)...")
+            print("\n Performing swipe gesture (scroll down)...")
             result = await client.call_tool(
                 "swipe",
                 {
@@ -238,26 +238,26 @@ async def test_action_server():
             )
             swipe_result = result.data
             if swipe_result and swipe_result.get("success"):
-                print(f"✅ Swipe executed: {swipe_result['action']}")
+                print(f"[OK] Swipe executed: {swipe_result['action']}")
             else:
-                print(f"❌ Failed to swipe: {swipe_result}")
+                print(f"[FAIL] Failed to swipe: {swipe_result}")
 
             await asyncio.sleep(0.5)
 
             # Test 5: Invalidate cache
-            print("\n🗑️ Invalidating all caches...")
+            print("\n️ Invalidating all caches...")
             result = await client.call_tool("invalidate_cache", {"cache_type": "all"})
             cache_result = result.data
             if cache_result and cache_result.get("success"):
-                print(f"✅ Cache invalidated: {cache_result['message']}")
+                print(f"[OK] Cache invalidated: {cache_result['message']}")
             else:
-                print(f"❌ Failed to invalidate cache: {cache_result}")
+                print(f"[FAIL] Failed to invalidate cache: {cache_result}")
 
-            print("\n✅ Action Server: ALL TESTS PASSED")
+            print("\n[OK] Action Server: ALL TESTS PASSED")
             return True
 
     except Exception as e:
-        print(f"\n❌ Error testing action server: {e}")
+        print(f"\n[FAIL] Error testing action server: {e}")
         import traceback
 
         traceback.print_exc()
@@ -282,9 +282,9 @@ async def test_shared_state():
             )
             controls = result.data
             if controls and isinstance(controls, list):
-                print(f"✅ Retrieved {len(controls)} controls (cache populated)")
+                print(f"[OK] Retrieved {len(controls)} controls (cache populated)")
             else:
-                print(f"❌ Failed to get controls")
+                print(f"[FAIL] Failed to get controls")
                 return False
 
         # Step 2: Invalidate cache from action server
@@ -296,10 +296,10 @@ async def test_shared_state():
             cache_result = result.data
             if cache_result and cache_result.get("success"):
                 print(
-                    f"✅ Cache invalidated from action server: {cache_result['message']}"
+                    f"[OK] Cache invalidated from action server: {cache_result['message']}"
                 )
             else:
-                print(f"❌ Failed to invalidate cache")
+                print(f"[FAIL] Failed to invalidate cache")
                 return False
 
         # Step 3: Get controls again from data server
@@ -312,17 +312,17 @@ async def test_shared_state():
             )
             controls = result.data
             if controls and isinstance(controls, list):
-                print(f"✅ Retrieved {len(controls)} controls")
-                print("✅ Shared state verified - cache was properly invalidated!")
+                print(f"[OK] Retrieved {len(controls)} controls")
+                print("[OK] Shared state verified - cache was properly invalidated!")
             else:
-                print(f"❌ Failed to get controls")
+                print(f"[FAIL] Failed to get controls")
                 return False
 
-        print("\n✅ Shared State: TEST PASSED")
+        print("\n[OK] Shared State: TEST PASSED")
         return True
 
     except Exception as e:
-        print(f"\n❌ Error testing shared state: {e}")
+        print(f"\n[FAIL] Error testing shared state: {e}")
         import traceback
 
         traceback.print_exc()
@@ -336,10 +336,10 @@ async def main():
     print("=" * 70)
 
     # Check prerequisites
-    print("\n📋 Checking prerequisites...")
+    print("\n[TASK] Checking prerequisites...")
 
     if not await check_adb_connection():
-        print("\n❌ ADB connection check failed!")
+        print("\n[FAIL] ADB connection check failed!")
         print("\nPlease ensure:")
         print("  1. Android SDK platform-tools is installed")
         print("  2. ADB is in your PATH")
@@ -347,7 +347,7 @@ async def main():
         print("  4. Run 'adb devices' to verify connection")
         return 1
 
-    print("\n⚠️  Make sure Mobile MCP servers are running:")
+    print("\n️  Make sure Mobile MCP servers are running:")
     print("     python -m alien.client.mcp.http_servers.mobile_mcp_server --server both")
     print("\nWaiting 3 seconds before starting tests...")
     await asyncio.sleep(3)
@@ -358,19 +358,19 @@ async def main():
     try:
         results.append(await test_data_collection_server())
     except Exception as e:
-        print(f"❌ Data collection server test crashed: {e}")
+        print(f"[FAIL] Data collection server test crashed: {e}")
         results.append(False)
 
     try:
         results.append(await test_action_server())
     except Exception as e:
-        print(f"❌ Action server test crashed: {e}")
+        print(f"[FAIL] Action server test crashed: {e}")
         results.append(False)
 
     try:
         results.append(await test_shared_state())
     except Exception as e:
-        print(f"❌ Shared state test crashed: {e}")
+        print(f"[FAIL] Shared state test crashed: {e}")
         results.append(False)
 
     # Summary
@@ -382,10 +382,10 @@ async def main():
     print(f"\nPassed: {passed}/{total}")
 
     if all(results):
-        print("\n🎉 ALL TESTS PASSED! 🎉")
+        print("\n ALL TESTS PASSED! ")
         return 0
     else:
-        print("\n❌ SOME TESTS FAILED")
+        print("\n[FAIL] SOME TESTS FAILED")
         return 1
 
 

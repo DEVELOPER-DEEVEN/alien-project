@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** Local (in-process)  
 **Agent:** HostAgent, AppAgent  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -28,7 +28,7 @@ Execute a shell command to launch applications or perform system operations.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `bash_command` | `str` | ✅ Yes | Command to execute in shell |
+| `bash_command` | `str` | [OK] Yes | Command to execute in shell |
 
 #### Returns
 

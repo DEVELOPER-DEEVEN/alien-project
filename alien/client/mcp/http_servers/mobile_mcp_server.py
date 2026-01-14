@@ -1390,7 +1390,7 @@ def _run_both_servers_sync(host: str, data_port: int, action_port: int, adb_path
     import threading
     import time
 
-    print(f"\n✅ Starting both servers in same process (shared MobileServerState)")
+    print(f"\n[OK] Starting both servers in same process (shared MobileServerState)")
     print(f"   - Data Collection Server: {host}:{data_port}")
     print(f"   - Action Server: {host}:{action_port}")
     print("\n" + "=" * 70)
@@ -1414,12 +1414,12 @@ def _run_both_servers_sync(host: str, data_port: int, action_port: int, adb_path
 
     # Start both server threads
     data_thread.start()
-    print(f"✅ Data Collection Server thread started")
+    print(f"[OK] Data Collection Server thread started")
 
     time.sleep(0.5)  # Small delay between starts
 
     action_thread.start()
-    print(f"✅ Action Server thread started")
+    print(f"[OK] Action Server thread started")
 
     print("\n" + "=" * 70)
     print("Both servers are running. Press Ctrl+C to stop.")
@@ -1434,7 +1434,7 @@ def _run_both_servers_sync(host: str, data_port: int, action_port: int, adb_path
         # FastMCP servers should handle shutdown gracefully
         data_thread.join(timeout=5)
         action_thread.join(timeout=5)
-        print("✅ Servers stopped")
+        print("[OK] Servers stopped")
 
 
 def main():
@@ -1479,15 +1479,15 @@ def main():
         if "device" in result.stdout and "List of devices" in result.stdout:
             devices = [line for line in result.stdout.split("\n") if "\tdevice" in line]
             if devices:
-                print(f"✅ Found {len(devices)} connected device(s)")
+                print(f"[OK] Found {len(devices)} connected device(s)")
             else:
                 print(
-                    "⚠️  No devices connected. Please connect an Android device or emulator."
+                    "️  No devices connected. Please connect an Android device or emulator."
                 )
         else:
-            print("⚠️  ADB not working properly. Please check ADB installation.")
+            print("️  ADB not working properly. Please check ADB installation.")
     except Exception as e:
-        print(f"❌ Error checking ADB: {e}")
+        print(f"[FAIL] Error checking ADB: {e}")
         print("   Servers will start but may not function properly.")
 
     print("=" * 70)
@@ -1496,7 +1496,7 @@ def main():
         # Run both servers in the same process/event loop to share MobileServerState
         import uvicorn
 
-        print(f"\n🚀 Starting both servers on {args.host} (shared state)")
+        print(f"\n[START] Starting both servers on {args.host} (shared state)")
         print(f"   - Data Collection Server: port {args.data_port}")
         print(f"   - Action Server: port {args.action_port}")
         print("\nNote: Both servers share the same MobileServerState for caching")
@@ -1505,13 +1505,13 @@ def main():
         _run_both_servers_sync(args.host, args.data_port, args.action_port, adb)
 
     elif args.server == "data":
-        print(f"\n🚀 Starting Data Collection Server on {args.host}:{args.data_port}")
+        print(f"\n[START] Starting Data Collection Server on {args.host}:{args.data_port}")
         create_mobile_data_collection_server(
             host=args.host, port=args.data_port, adb_path=adb
         )
 
     elif args.server == "action":
-        print(f"🚀 Starting Action Server on {args.host}:{args.action_port}")
+        print(f"[START] Starting Action Server on {args.host}:{args.action_port}")
         create_mobile_action_server(host=args.host, port=args.action_port, adb_path=adb)
 
 

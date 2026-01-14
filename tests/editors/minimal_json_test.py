@@ -187,19 +187,19 @@ def test_minimal_task_star():
         # Test to_json
         print("\n1. Testing to_json()...")
         json_str = task.to_json()
-        print(f"✓ JSON string generated ({len(json_str)} characters)")
+        print(f" JSON string generated ({len(json_str)} characters)")
 
         # Verify it's valid JSON
         parsed = json.loads(json_str)
-        print(f"✓ Valid JSON with {len(parsed)} fields")
+        print(f" Valid JSON with {len(parsed)} fields")
 
         # Test from_json with string
         print("\n2. Testing from_json() with string...")
         restored_task = MinimalTaskStar.from_json(json_data=json_str)
-        print(f"✓ Task restored from JSON string")
-        print(f"✓ Original ID: {task.task_id}")
-        print(f"✓ Restored ID: {restored_task.task_id}")
-        print(f"✓ Names match: {task.name == restored_task.name}")
+        print(f" Task restored from JSON string")
+        print(f" Original ID: {task.task_id}")
+        print(f" Restored ID: {restored_task.task_id}")
+        print(f" Names match: {task.name == restored_task.name}")
 
         # Test file operations
         print("\n3. Testing file operations...")
@@ -207,20 +207,20 @@ def test_minimal_task_star():
             temp_file = f.name
 
         task.to_json(save_path=temp_file)
-        print(f"✓ Saved to file: {temp_file}")
+        print(f" Saved to file: {temp_file}")
 
         file_task = MinimalTaskStar.from_json(file_path=temp_file)
-        print(f"✓ Loaded from file")
-        print(f"✓ File task matches: {file_task.task_id == task.task_id}")
+        print(f" Loaded from file")
+        print(f" File task matches: {file_task.task_id == task.task_id}")
 
         # Clean up
         os.unlink(temp_file)
-        print("✓ Temporary file cleaned up")
+        print(" Temporary file cleaned up")
 
         return True
 
     except Exception as e:
-        print(f"✗ Error: {e}")
+        print(f" Error: {e}")
         import traceback
 
         traceback.print_exc()
@@ -246,20 +246,20 @@ def test_minimal_task_star_line():
         # Test to_json
         print("\n1. Testing to_json()...")
         json_str = line.to_json()
-        print(f"✓ JSON string generated ({len(json_str)} characters)")
+        print(f" JSON string generated ({len(json_str)} characters)")
 
         # Verify it's valid JSON
         parsed = json.loads(json_str)
-        print(f"✓ Valid JSON with {len(parsed)} fields")
+        print(f" Valid JSON with {len(parsed)} fields")
 
         # Test from_json with string
         print("\n2. Testing from_json() with string...")
         restored_line = MinimalTaskStarLine.from_json(json_data=json_str)
-        print(f"✓ Line restored from JSON string")
-        print(f"✓ Original ID: {line.line_id}")
-        print(f"✓ Restored ID: {restored_line.line_id}")
-        print(f"✓ From tasks match: {line.from_task_id == restored_line.from_task_id}")
-        print(f"✓ To tasks match: {line.to_task_id == restored_line.to_task_id}")
+        print(f" Line restored from JSON string")
+        print(f" Original ID: {line.line_id}")
+        print(f" Restored ID: {restored_line.line_id}")
+        print(f" From tasks match: {line.from_task_id == restored_line.from_task_id}")
+        print(f" To tasks match: {line.to_task_id == restored_line.to_task_id}")
 
         # Test file operations
         print("\n3. Testing file operations...")
@@ -267,20 +267,20 @@ def test_minimal_task_star_line():
             temp_file = f.name
 
         line.to_json(save_path=temp_file)
-        print(f"✓ Saved to file: {temp_file}")
+        print(f" Saved to file: {temp_file}")
 
         file_line = MinimalTaskStarLine.from_json(file_path=temp_file)
-        print(f"✓ Loaded from file")
-        print(f"✓ File line matches: {file_line.line_id == line.line_id}")
+        print(f" Loaded from file")
+        print(f" File line matches: {file_line.line_id == line.line_id}")
 
         # Clean up
         os.unlink(temp_file)
-        print("✓ Temporary file cleaned up")
+        print(" Temporary file cleaned up")
 
         return True
 
     except Exception as e:
-        print(f"✗ Error: {e}")
+        print(f" Error: {e}")
         import traceback
 
         traceback.print_exc()
@@ -298,19 +298,19 @@ def test_error_handling():
         print("1. Testing invalid JSON...")
         try:
             MinimalTaskStar.from_json(json_data="invalid json")
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except json.JSONDecodeError:
-            print("✓ Correctly handled invalid JSON")
+            print(" Correctly handled invalid JSON")
 
         # Test missing parameters
         print("\n2. Testing missing parameters...")
         try:
             MinimalTaskStar.from_json()
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except ValueError as e:
-            print(f"✓ Correctly handled missing parameters: {e}")
+            print(f" Correctly handled missing parameters: {e}")
 
         # Test both parameters
         print("\n3. Testing both parameters provided...")
@@ -318,15 +318,15 @@ def test_error_handling():
             MinimalTaskStar.from_json(
                 json_data='{"test": "data"}', file_path="test.json"
             )
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except ValueError as e:
-            print(f"✓ Correctly handled both parameters: {e}")
+            print(f" Correctly handled both parameters: {e}")
 
         return True
 
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f" Unexpected error: {e}")
         return False
 
 
@@ -349,12 +349,12 @@ def main():
     # Final results
     print("\n" + "=" * 60)
     if all_passed:
-        print("🎉 ALL TESTS PASSED! 🎉")
+        print(" ALL TESTS PASSED! ")
         print("JSON functionality is working correctly!")
         print("\nThis confirms that the JSON methods in TaskStar and TaskStarLine")
         print("should work properly when the classes can be imported correctly.")
     else:
-        print("❌ SOME TESTS FAILED ❌")
+        print("[FAIL] SOME TESTS FAILED [FAIL]")
         print("Please check the error messages above.")
     print("=" * 60)
 

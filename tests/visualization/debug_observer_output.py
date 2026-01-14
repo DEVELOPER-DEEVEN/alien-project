@@ -21,7 +21,7 @@ async def test_observer_output():
     """Test that the observer actually produces visible output."""
 
     console = Console()
-    console.print("[bold blue]🔍 Testing Observer Visualization Output[/bold blue]\n")
+    console.print("[bold blue] Testing Observer Visualization Output[/bold blue]\n")
 
     # Initialize observer with explicit console
     observer = DAGVisualizationObserver(enable_visualization=True, console=console)
@@ -45,7 +45,7 @@ async def test_observer_output():
             test_orion, "Direct Test"
         )
 
-        console.print("\n[green]✅ Direct visualizer test completed[/green]")
+        console.print("\n[green][OK] Direct visualizer test completed[/green]")
 
         # Test through observer event
         console.print("\n[yellow]Testing observer event handling...[/yellow]")
@@ -62,9 +62,9 @@ async def test_observer_output():
         console.print("Calling observer.on_event()...")
         await observer.on_event(event)
 
-        console.print("\n[green]✅ Observer event test completed[/green]")
+        console.print("\n[green][OK] Observer event test completed[/green]")
     else:
-        console.print("[red]❌ Visualizer not initialized[/red]")
+        console.print("[red][FAIL] Visualizer not initialized[/red]")
 
 
 if __name__ == "__main__":

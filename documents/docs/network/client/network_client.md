@@ -375,7 +375,7 @@ Type 'quit' or 'exit' to stop.
 [TaskOrchestrator] Executing task 3 on windows_pc...
 [TaskOrchestrator] Task 3 completed successfully
 
-✓ Request completed successfully (3 tasks, 15.3s)
+ Request completed successfully (3 tasks, 15.3s)
 Output: Created presentation "AI_Overview.pptx" with 5 slides
 
 > Send the presentation via email to john@example.com
@@ -386,7 +386,7 @@ Output: Created presentation "AI_Overview.pptx" with 5 slides
 [TaskOrchestrator] Executing task 1 on windows_pc...
 [TaskOrchestrator] Task 1 completed successfully
 
-✓ Request completed successfully (1 task, 3.2s)
+ Request completed successfully (1 task, 3.2s)
 Output: Email sent to john@example.com with attachment AI_Overview.pptx
 
 > quit

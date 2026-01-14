@@ -1033,12 +1033,12 @@ def create_session_safely(task, mode, plan, request):
 ### Session Creation
 
 !!!tip "Efficient Session Management"
-    - ✅ Use `create_service_session()` for service sessions (cleaner API)
-    - ✅ Let platform auto-detect unless testing
-    - ✅ Use batch modes for multiple similar tasks
-    - ✅ Enable task status tracking for long-running batches
-    - ❌ Don't create sessions in tight loops (use batch modes)
-    - ❌ Don't mix session types in same pool without reason
+    - [OK] Use `create_service_session()` for service sessions (cleaner API)
+    - [OK] Let platform auto-detect unless testing
+    - [OK] Use batch modes for multiple similar tasks
+    - [OK] Enable task status tracking for long-running batches
+    - [FAIL] Don't create sessions in tight loops (use batch modes)
+    - [FAIL] Don't mix session types in same pool without reason
 
 ### Batch Processing
 

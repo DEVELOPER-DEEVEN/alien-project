@@ -279,7 +279,7 @@ class BasicAgent(ABC):
 
             if ask_user:
                 console.print(
-                    f"❓ {_ask_message}",
+                    f" {_ask_message}",
                     style="yellow",
                 )
 

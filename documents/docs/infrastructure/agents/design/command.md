@@ -781,23 +781,23 @@ async def execute(self, agent, context):
 
 **1. Atomic Operations**: Each command should perform one well-defined operation
 
-- ✅ Good: `click_element(control_id="Button_123")`
-- ❌ Bad: `click_and_wait_and_validate(...)` (too many responsibilities)
+- [OK] Good: `click_element(control_id="Button_123")`
+- [FAIL] Bad: `click_and_wait_and_validate(...)` (too many responsibilities)
 
 **2. Idempotency**: Commands should be safe to retry
 
-- ✅ Good: `read_file(path="/data.csv")` (idempotent)
-- ⚠️ Caution: `append_to_file(path="/log.txt", text="...")` (not idempotent)
+- [OK] Good: `read_file(path="/data.csv")` (idempotent)
+- ️ Caution: `append_to_file(path="/log.txt", text="...")` (not idempotent)
 
 **3. Clear Arguments**: Use descriptive argument names
 
-- ✅ Good: `{"file_path": "...", "encoding": "utf-8"}`
-- ❌ Bad: `{"p": "...", "e": "utf-8"}` (unclear)
+- [OK] Good: `{"file_path": "...", "encoding": "utf-8"}`
+- [FAIL] Bad: `{"p": "...", "e": "utf-8"}` (unclear)
 
 **4. Structured Results**: Return structured data, not just strings
 
-- ✅ Good: `{"stdout": "...", "stderr": "...", "exit_code": 0}`
-- ❌ Bad: `"output: ... error: ... code: 0"` (unstructured)
+- [OK] Good: `{"stdout": "...", "stderr": "...", "exit_code": 0}`
+- [FAIL] Bad: `"output: ... error: ... code: 0"` (unstructured)
 
 ### Security Considerations
 

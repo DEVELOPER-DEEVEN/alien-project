@@ -59,13 +59,13 @@ class AgentStatus(Enum):
 
 | State | Type | Description | Typical Next States | Processor Executed |
 |-------|------|-------------|---------------------|-------------------|
-| **CONTINUE** | Active | Normal execution flow, agent processes next step | CONTINUE, FINISH, FAIL, ERROR, PENDING, CONFIRM | Yes ✅ |
-| **FINISH** | Terminal | Task completed successfully, agent stops | (none - end state) | No ❌ |
-| **FAIL** | Terminal | Task failed, agent stops with error | (none - end state) | No ❌ |
-| **ERROR** | Terminal | Critical error, agent stops immediately | (none - end state) | No ❌ |
-| **PENDING** | Waiting | Waiting for external event (user input, callback) | CONTINUE, FAIL | No ❌ |
-| **CONFIRM** | Waiting | Awaiting user confirmation (safety check) | CONTINUE, FAIL | Yes ✅ (collect confirmation) |
-| **SCREENSHOT** | Data Collection | Capture observation without action | CONTINUE | Yes ✅ (capture only) |
+| **CONTINUE** | Active | Normal execution flow, agent processes next step | CONTINUE, FINISH, FAIL, ERROR, PENDING, CONFIRM | Yes [OK] |
+| **FINISH** | Terminal | Task completed successfully, agent stops | (none - end state) | No [FAIL] |
+| **FAIL** | Terminal | Task failed, agent stops with error | (none - end state) | No [FAIL] |
+| **ERROR** | Terminal | Critical error, agent stops immediately | (none - end state) | No [FAIL] |
+| **PENDING** | Waiting | Waiting for external event (user input, callback) | CONTINUE, FAIL | No [FAIL] |
+| **CONFIRM** | Waiting | Awaiting user confirmation (safety check) | CONTINUE, FAIL | Yes [OK] (collect confirmation) |
+| **SCREENSHOT** | Data Collection | Capture observation without action | CONTINUE | Yes [OK] (capture only) |
 
 ### State Categories
 
@@ -509,11 +509,11 @@ async def handle(self, agent, context):
 
 | State Type | Executes Processor? | Which Phases? | Purpose |
 |------------|---------------------|---------------|---------|
-| CONTINUE | ✅ Yes | All phases | Full execution cycle |
-| SCREENSHOT | ✅ Yes | DATA_COLLECTION only | Observation without action |
-| CONFIRM | ✅ Yes | DATA_COLLECTION + custom | Show state, request confirmation |
-| PENDING | ❌ No | None | Wait for external event |
-| FINISH/FAIL/ERROR | ❌ No | None | Terminal states |
+| CONTINUE | [OK] Yes | All phases | Full execution cycle |
+| SCREENSHOT | [OK] Yes | DATA_COLLECTION only | Observation without action |
+| CONFIRM | [OK] Yes | DATA_COLLECTION + custom | Show state, request confirmation |
+| PENDING | [FAIL] No | None | Wait for external event |
+| FINISH/FAIL/ERROR | [FAIL] No | None | Terminal states |
 
 ## Multi-Agent Coordination
 
@@ -591,18 +591,18 @@ class FinishAppAgentState(AgentState):
 
 **1. Single Responsibility**: Each state should have one clear purpose
 
-- ✅ Good: `ContinueState` (normal execution), `ErrorState` (error handling)
-- ❌ Bad: `ContinueOrErrorState` (mixed responsibilities)
+- [OK] Good: `ContinueState` (normal execution), `ErrorState` (error handling)
+- [FAIL] Bad: `ContinueOrErrorState` (mixed responsibilities)
 
 **2. Minimal State Logic**: Keep `handle()` simple, delegate to processor
 
-- ✅ Good: `await processor.process(agent, context)`
-- ❌ Bad: Implementing strategy logic directly in state
+- [OK] Good: `await processor.process(agent, context)`
+- [FAIL] Bad: Implementing strategy logic directly in state
 
 **3. Predictable Transitions**: Make `next_state()` deterministic when possible
 
-- ✅ Good: Map status string to state instance
-- ❌ Bad: Complex conditional logic in `next_state()`
+- [OK] Good: Map status string to state instance
+- [FAIL] Bad: Complex conditional logic in `next_state()`
 
 **4. Document Invariants**: Clearly state what conditions trigger state
 
@@ -617,12 +617,12 @@ class FinishAppAgentState(AgentState):
     # BAD: Storing state-specific data in state class
     class ContinueState(AgentState):
         def __init__(self):
-            self.step_count = 0  # ❌ Don't do this
+            self.step_count = 0  # [FAIL] Don't do this
     
     # GOOD: Store data in agent or context
     class ContinueState(AgentState):
         async def handle(self, agent, context):
-            step_count = context.get("step_count", 0)  # ✅ Store in context
+            step_count = context.get("step_count", 0)  # [OK] Store in context
     ```
 
 !!! warning "Tight Coupling"
@@ -631,12 +631,12 @@ class FinishAppAgentState(AgentState):
     ```python
     # BAD: Directly calling strategy methods
     async def handle(self, agent, context):
-        strategy = AppScreenshotCaptureStrategy()  # ❌
+        strategy = AppScreenshotCaptureStrategy()  # [FAIL]
         await strategy.execute(agent, context)
     
     # GOOD: Use processor abstraction
     async def handle(self, agent, context):
-        await agent.processor.process(agent, context)  # ✅
+        await agent.processor.process(agent, context)  # [OK]
     ```
 
 ## Platform-Specific States

@@ -71,10 +71,10 @@ def _setup_strategies(self) -> None:
 
 | Phase | Strategy Class | fail_fast | Rationale |
 |-------|---------------|-----------|-----------|
-| **DATA_COLLECTION** | `DesktopDataCollectionStrategy` | ✓ True | Desktop screenshot and window info are critical for LLM context |
-| **LLM_INTERACTION** | `HostLLMInteractionStrategy` | ✓ True | LLM response failure requires immediate recovery mechanism |
-| **ACTION_EXECUTION** | `HostActionExecutionStrategy` | ✗ False | Action failures can be gracefully handled and reported |
-| **MEMORY_UPDATE** | `HostMemoryUpdateStrategy` | ✗ False | Memory failures shouldn't block the main execution flow |
+| **DATA_COLLECTION** | `DesktopDataCollectionStrategy` |  True | Desktop screenshot and window info are critical for LLM context |
+| **LLM_INTERACTION** | `HostLLMInteractionStrategy` |  True | LLM response failure requires immediate recovery mechanism |
+| **ACTION_EXECUTION** | `HostActionExecutionStrategy` |  False | Action failures can be gracefully handled and reported |
+| **MEMORY_UPDATE** | `HostMemoryUpdateStrategy` |  False | Memory failures shouldn't block the main execution flow |
 
 **Fail-Fast vs Graceful:**
 

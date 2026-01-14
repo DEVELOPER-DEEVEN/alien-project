@@ -76,7 +76,7 @@ class WebSocketConnectionManager:
         """
         try:
             self.logger.info(
-                f"🔌 Connecting to device {device_info.device_id} at {device_info.server_url}"
+                f" Connecting to device {device_info.device_id} at {device_info.server_url}"
             )
 
             # Create AIP WebSocket transport and connect
@@ -103,13 +103,13 @@ class WebSocketConnectionManager:
                 transport
             )
 
-            # ⚠️ CRITICAL: Start message handler BEFORE sending registration
+            # ️ CRITICAL: Start message handler BEFORE sending registration
             # This ensures we don't miss the server's registration response
             # Pass the transport instead of raw websocket
             message_processor.start_message_handler(device_info.device_id, transport)
             # Small delay to ensure handler is listening
             await asyncio.sleep(0.05)
-            self.logger.debug(f"📨 Message handler started for {device_info.device_id}")
+            self.logger.debug(f" Message handler started for {device_info.device_id}")
 
             # Register as orion client using AIP RegistrationProtocol
             success = await self._register_orion_client(device_info)
@@ -120,31 +120,31 @@ class WebSocketConnectionManager:
 
         except websockets.InvalidURI as e:
             self.logger.error(
-                f"❌ Invalid WebSocket URI for device {device_info.device_id}: {e}"
+                f"[FAIL] Invalid WebSocket URI for device {device_info.device_id}: {e}"
             )
             self._cleanup_device_protocols(device_info.device_id)
             raise ConnectionError(f"Invalid WebSocket URI: {e}") from e
         except websockets.WebSocketException as e:
             self.logger.warning(
-                f"⚠️ WebSocket error connecting to device {device_info.device_id}: {e}"
+                f"️ WebSocket error connecting to device {device_info.device_id}: {e}"
             )
             self._cleanup_device_protocols(device_info.device_id)
             raise
         except OSError as e:
             self.logger.warning(
-                f"⚠️ Network error connecting to device {device_info.device_id}: {e}"
+                f"️ Network error connecting to device {device_info.device_id}: {e}"
             )
             self._cleanup_device_protocols(device_info.device_id)
             raise ConnectionError(f"Network error: {e}") from e
         except asyncio.TimeoutError as e:
             self.logger.warning(
-                f"⚠️ Connection timeout for device {device_info.device_id}: {e}"
+                f"️ Connection timeout for device {device_info.device_id}: {e}"
             )
             self._cleanup_device_protocols(device_info.device_id)
             raise
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error connecting to device {device_info.device_id}: {e}"
+                f"[FAIL] Unexpected error connecting to device {device_info.device_id}: {e}"
             )
             self._cleanup_device_protocols(device_info.device_id)
             raise
@@ -175,7 +175,7 @@ class WebSocketConnectionManager:
             transport = self._transports.get(device_info.device_id)
 
             if not transport:
-                self.logger.error(f"❌ No transport for device {device_info.device_id}")
+                self.logger.error(f"[FAIL] No transport for device {device_info.device_id}")
                 return False
 
             # Prepare metadata for orion registration
@@ -192,7 +192,7 @@ class WebSocketConnectionManager:
             }
 
             self.logger.info(
-                f"📝 Registering orion client: {orion_client_id}"
+                f" Registering orion client: {orion_client_id}"
             )
 
             # Create a Future to wait for registration response
@@ -222,7 +222,7 @@ class WebSocketConnectionManager:
             # Send registration message via transport
             await transport.send(reg_msg.model_dump_json().encode())
             self.logger.info(
-                f"📤 Sent orion registration for {orion_client_id} → {device_info.device_id}"
+                f" Sent orion registration for {orion_client_id} → {device_info.device_id}"
             )
 
             # Wait for MessageProcessor to complete the registration via Future
@@ -230,34 +230,34 @@ class WebSocketConnectionManager:
             try:
                 success = await asyncio.wait_for(registration_future, timeout=30.0)
             except asyncio.TimeoutError:
-                self.logger.error("❌ Registration timeout")
+                self.logger.error("[FAIL] Registration timeout")
                 self._pending_registration.pop(device_info.device_id, None)
                 return False
 
             if not success:
                 self.logger.error(
-                    f"❌ Registration failed for {orion_client_id}"
+                    f"[FAIL] Registration failed for {orion_client_id}"
                 )
                 return False
 
             self.logger.info(
-                f"✅ Registration successful for {orion_client_id}"
+                f"[OK] Registration successful for {orion_client_id}"
             )
             return True
 
         except (ConnectionError, IOError) as e:
             self.logger.warning(
-                f"⚠️ Connection error during registration for device {device_info.device_id}: {e}"
+                f"️ Connection error during registration for device {device_info.device_id}: {e}"
             )
             return False
         except asyncio.TimeoutError as e:
             self.logger.warning(
-                f"⚠️ Registration timeout for device {device_info.device_id}: {e}"
+                f"️ Registration timeout for device {device_info.device_id}: {e}"
             )
             return False
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error during registration for device {device_info.device_id}: {e}"
+                f"[FAIL] Unexpected error during registration for device {device_info.device_id}: {e}"
             )
             return False
 
@@ -298,7 +298,7 @@ class WebSocketConnectionManager:
             )
 
             self.logger.info(
-                f"📤 Sending task {task_request.task_id} to device {device_id}"
+                f" Sending task {task_request.task_id} to device {device_id}"
             )
 
             # Send via AIP transport instead of raw WebSocket
@@ -310,7 +310,7 @@ class WebSocketConnectionManager:
                 timeout=task_request.timeout,
             )
 
-            self.logger.info(f"✅ Received task response: status={response.status}")
+            self.logger.info(f"[OK] Received task response: status={response.status}")
 
             task_result = ExecutionResult(
                 task_id=task_request.task_id,
@@ -333,7 +333,7 @@ class WebSocketConnectionManager:
             # Clean up the pending future for this task
             self._pending_tasks.pop(orion_task_id, None)
             self.logger.error(
-                f"🔌 Device {device_id} connection error during task {task_request.task_id}: {e}"
+                f" Device {device_id} connection error during task {task_request.task_id}: {e}"
             )
             raise ConnectionError(
                 f"Device {device_id} connection error during task execution: {e}"
@@ -342,7 +342,7 @@ class WebSocketConnectionManager:
             # Clean up the pending future for this task
             self._pending_tasks.pop(orion_task_id, None)
             self.logger.error(
-                f"❌ Failed to send task {task_request.task_id} to device {device_id}: {e}"
+                f"[FAIL] Failed to send task {task_request.task_id} to device {device_id}: {e}"
             )
             # Check if it's a connection-related error
             if isinstance(e, (ConnectionError, ConnectionResetError)):
@@ -387,7 +387,7 @@ class WebSocketConnectionManager:
             # Wait for Future to be completed by MessageProcessor
             response = await task_future
             self.logger.debug(
-                f"✅ Received response for task {task_id} from device {device_id}"
+                f"[OK] Received response for task {task_id} from device {device_id}"
             )
             return response
         finally:
@@ -422,7 +422,7 @@ class WebSocketConnectionManager:
 
         if task_entry is None:
             self.logger.warning(
-                f"⚠️ Received task completion for unknown task: {task_id} "
+                f"️ Received task completion for unknown task: {task_id} "
                 f"(task may have timed out or was already completed)"
             )
             return
@@ -431,14 +431,14 @@ class WebSocketConnectionManager:
 
         if task_future.done():
             self.logger.warning(
-                f"⚠️ Received duplicate task completion for already completed task: {task_id}"
+                f"️ Received duplicate task completion for already completed task: {task_id}"
             )
             return
 
         # Resolve the Future with the server response
         task_future.set_result(response)
         self.logger.debug(
-            f"✅ Completed task response for {task_id} (status: {response.status})"
+            f"[OK] Completed task response for {task_id} (status: {response.status})"
         )
 
     def is_connected(self, device_id: str) -> bool:
@@ -467,7 +467,7 @@ class WebSocketConnectionManager:
             # Clean up all protocol instances and connections
             self._cleanup_device_protocols(device_id)
 
-            self.logger.warning(f"🔌 Disconnected from device {device_id}")
+            self.logger.warning(f" Disconnected from device {device_id}")
 
     def _cancel_pending_tasks_for_device(self, device_id: str) -> None:
         """
@@ -496,13 +496,13 @@ class WebSocketConnectionManager:
                 if not task_future.done():
                     task_future.set_exception(error)
                     self.logger.warning(
-                        f"⚠️ Cancelled pending task {task_id} due to device {device_id} disconnection"
+                        f"️ Cancelled pending task {task_id} due to device {device_id} disconnection"
                     )
             self._pending_tasks.pop(task_id, None)
 
         if tasks_to_cancel:
             self.logger.info(
-                f"🔄 Cancelled {len(tasks_to_cancel)} pending tasks for device {device_id}"
+                f"[CONTINUE] Cancelled {len(tasks_to_cancel)} pending tasks for device {device_id}"
             )
 
     async def disconnect_all(self) -> None:
@@ -526,7 +526,7 @@ class WebSocketConnectionManager:
 
         if not device_info_protocol or not transport or not transport.is_connected:
             self.logger.warning(
-                f"⚠️ Device {device_id} not connected, cannot request info"
+                f"️ Device {device_id} not connected, cannot request info"
             )
             return None
 
@@ -554,12 +554,12 @@ class WebSocketConnectionManager:
             )
 
             await transport.send(request_message.model_dump_json().encode("utf-8"))
-            self.logger.debug(f"📤 Sent device info request for {device_id}")
+            self.logger.debug(f" Sent device info request for {device_id}")
 
             # Wait for MessageProcessor to complete the Future (timeout: 10s)
             try:
                 device_info = await asyncio.wait_for(info_future, timeout=10.0)
-                self.logger.info(f"📊 Retrieved device info for {device_id}")
+                self.logger.info(f"[STATUS] Retrieved device info for {device_id}")
                 return device_info
             except asyncio.TimeoutError:
                 self.logger.error(f"⏰ Timeout requesting device info for {device_id}")
@@ -570,12 +570,12 @@ class WebSocketConnectionManager:
 
         except (ConnectionError, IOError) as e:
             self.logger.error(
-                f"❌ Connection error requesting device info for {device_id}: {e}"
+                f"[FAIL] Connection error requesting device info for {device_id}: {e}"
             )
             self._pending_device_info.pop(request_id, None)
             return None
         except Exception as e:
-            self.logger.error(f"❌ Error requesting device info for {device_id}: {e}")
+            self.logger.error(f"[FAIL] Error requesting device info for {device_id}: {e}")
             self._pending_device_info.pop(request_id, None)
             return None
 
@@ -595,19 +595,19 @@ class WebSocketConnectionManager:
 
         if info_future is None:
             self.logger.warning(
-                f"⚠️ Received device info response for unknown request: {request_id}"
+                f"️ Received device info response for unknown request: {request_id}"
             )
             return
 
         if info_future.done():
             self.logger.warning(
-                f"⚠️ Received duplicate device info response for: {request_id}"
+                f"️ Received duplicate device info response for: {request_id}"
             )
             return
 
         # Resolve the Future with the device info
         info_future.set_result(device_info)
-        self.logger.debug(f"✅ Completed device info response for {request_id}")
+        self.logger.debug(f"[OK] Completed device info response for {request_id}")
 
     def complete_registration_response(
         self, device_id: str, success: bool, error_message: Optional[str] = None
@@ -631,7 +631,7 @@ class WebSocketConnectionManager:
 
         if registration_future.done():
             self.logger.warning(
-                f"⚠️ Received duplicate registration response for device: {device_id}"
+                f"️ Received duplicate registration response for device: {device_id}"
             )
             return
 
@@ -642,8 +642,8 @@ class WebSocketConnectionManager:
         self._pending_registration.pop(device_id, None)
 
         if success:
-            self.logger.debug(f"✅ Registration accepted for device {device_id}")
+            self.logger.debug(f"[OK] Registration accepted for device {device_id}")
         else:
             self.logger.warning(
-                f"⚠️ Registration rejected for device {device_id}: {error_message}"
+                f"️ Registration rejected for device {device_id}: {error_message}"
             )

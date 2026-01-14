@@ -129,9 +129,9 @@ class BaseOrionPrompter(BasicPrompter, ABC):
 
                 # Modifiable indicator
                 modifiable_indicator = (
-                    "✏️ [MODIFIABLE]"
+                    "️ [MODIFIABLE]"
                     if task_id in modifiable_task_ids
-                    else "🔒 [READ-ONLY]"
+                    else " [READ-ONLY]"
                 )
 
                 lines.append(f"  [{task_id}] {task_name} {modifiable_indicator}")
@@ -164,7 +164,7 @@ class BaseOrionPrompter(BasicPrompter, ABC):
                 # Add modification hint
                 if task_id in modifiable_task_ids:
                     lines.append(
-                        f"    💡 Hint: This task can be modified (description, tips, device assignment, etc.)"
+                        f"    [THOUGHT] Hint: This task can be modified (description, tips, device assignment, etc.)"
                     )
 
                 lines.append("")  # Empty line between tasks
@@ -182,9 +182,9 @@ class BaseOrionPrompter(BasicPrompter, ABC):
 
                 # Modifiable indicator
                 modifiable_indicator = (
-                    "✏️ [MODIFIABLE]"
+                    "️ [MODIFIABLE]"
                     if dep_id in modifiable_dep_ids
-                    else "🔒 [READ-ONLY]"
+                    else " [READ-ONLY]"
                 )
 
                 dependency_line = (
@@ -193,7 +193,7 @@ class BaseOrionPrompter(BasicPrompter, ABC):
                 if condition_desc:
                     dependency_line += f" - {condition_desc}"
                 # dependency_line += (
-                #     f" [{'✓ Satisfied' if is_satisfied else '✗ Not Satisfied'}]"
+                #     f" [{' Satisfied' if is_satisfied else ' Not Satisfied'}]"
                 # )
 
                 lines.append(dependency_line)
@@ -201,7 +201,7 @@ class BaseOrionPrompter(BasicPrompter, ABC):
                 # Add modification hint
                 if dep_id in modifiable_dep_ids:
                     lines.append(
-                        f"    💡 Hint: This dependency can be modified (condition, type, etc.)"
+                        f"    [THOUGHT] Hint: This dependency can be modified (condition, type, etc.)"
                     )
 
             lines.append("")
@@ -212,7 +212,7 @@ class BaseOrionPrompter(BasicPrompter, ABC):
         modifiable_tasks_count = len(modifiable_task_ids)
         modifiable_deps_count = len(modifiable_dep_ids)
 
-        lines.append("📊 Modification Summary:")
+        lines.append("[STATUS] Modification Summary:")
         lines.append(
             f"   Tasks: {total_tasks} total, {modifiable_tasks_count} modifiable"
         )
@@ -221,7 +221,7 @@ class BaseOrionPrompter(BasicPrompter, ABC):
         )
         lines.append("")
         lines.append(
-            "💡 Note: Only PENDING or WAITING_DEPENDENCY items can be modified."
+            "[THOUGHT] Note: Only PENDING or WAITING_DEPENDENCY items can be modified."
         )
         lines.append("   RUNNING, COMPLETED, or FAILED items are read-only.")
 

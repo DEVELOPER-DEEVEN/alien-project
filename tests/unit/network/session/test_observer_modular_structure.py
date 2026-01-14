@@ -29,9 +29,9 @@ def test_modular_imports():
             DAGVisualizationObserver,
         )
 
-        print("✓ Main observer imports successful")
+        print(" Main observer imports successful")
     except ImportError as e:
-        print(f"✗ Main observer import failed: {e}")
+        print(f" Main observer import failed: {e}")
         return False
 
     # Test individual module imports
@@ -41,9 +41,9 @@ def test_modular_imports():
             SessionMetricsObserver as DirectMetricsObserver,
         )
 
-        print("✓ Direct base_observer imports successful")
+        print(" Direct base_observer imports successful")
     except ImportError as e:
-        print(f"✗ Direct base_observer import failed: {e}")
+        print(f" Direct base_observer import failed: {e}")
         return False
 
     try:
@@ -51,16 +51,16 @@ def test_modular_imports():
             DAGVisualizationObserver as DirectDAGObserver,
         )
 
-        print("✓ Direct dag_visualization_observer import successful")
+        print(" Direct dag_visualization_observer import successful")
     except ImportError as e:
-        print(f"✗ Direct dag_visualization_observer import failed: {e}")
+        print(f" Direct dag_visualization_observer import failed: {e}")
         return False
 
     # Test that imports are the same objects
     assert OrionProgressObserver is DirectProgressObserver
     assert SessionMetricsObserver is DirectMetricsObserver
     assert DAGVisualizationObserver is DirectDAGObserver
-    print("✓ Import consistency verified")
+    print(" Import consistency verified")
 
     return True
 
@@ -86,10 +86,10 @@ def test_observer_modules():
     for observer_class, expected_module in expected_modules.items():
         actual_module = observer_class.__module__
         if actual_module == expected_module:
-            print(f"✓ {observer_class.__name__} in correct module: {actual_module}")
+            print(f" {observer_class.__name__} in correct module: {actual_module}")
         else:
             print(
-                f"✗ {observer_class.__name__} in wrong module: {actual_module} (expected: {expected_module})"
+                f" {observer_class.__name__} in wrong module: {actual_module} (expected: {expected_module})"
             )
             return False
 
@@ -117,22 +117,22 @@ def test_observer_instantiation():
         )
         assert progress_observer.agent == mock_agent
         assert progress_observer.context == mock_context
-        print("✓ OrionProgressObserver instantiation successful")
+        print(" OrionProgressObserver instantiation successful")
 
         # Test SessionMetricsObserver
         metrics_observer = SessionMetricsObserver(session_id="test_session")
         assert metrics_observer.metrics["session_id"] == "test_session"
-        print("✓ SessionMetricsObserver instantiation successful")
+        print(" SessionMetricsObserver instantiation successful")
 
         # Test DAGVisualizationObserver
         dag_observer = DAGVisualizationObserver(enable_visualization=False)
         assert dag_observer.enable_visualization == False
-        print("✓ DAGVisualizationObserver instantiation successful")
+        print(" DAGVisualizationObserver instantiation successful")
 
         return True
 
     except Exception as e:
-        print(f"✗ Observer instantiation failed: {e}")
+        print(f" Observer instantiation failed: {e}")
         return False
 
 
@@ -154,11 +154,11 @@ def test_backward_compatibility():
         assert hasattr(gs_module, "SessionMetricsObserver")
         assert hasattr(gs_module, "DAGVisualizationObserver")
 
-        print("✓ Backward compatibility maintained")
+        print(" Backward compatibility maintained")
         return True
 
     except Exception as e:
-        print(f"✗ Backward compatibility test failed: {e}")
+        print(f" Backward compatibility test failed: {e}")
         return False
 
 
@@ -193,10 +193,10 @@ def main():
     print("=" * 60)
 
     if passed == total:
-        print("🎉 All modular observer tests passed! The refactoring was successful.")
+        print(" All modular observer tests passed! The refactoring was successful.")
         return True
     else:
-        print("❌ Some tests failed. Please check the modular structure.")
+        print("[FAIL] Some tests failed. Please check the modular structure.")
         return False
 
 

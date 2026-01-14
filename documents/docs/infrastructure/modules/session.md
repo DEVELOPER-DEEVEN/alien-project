@@ -725,42 +725,42 @@ except AgentError as e:
 ### Session Creation
 
 !!!tip "Efficient Sessions"
-    - ✅ Use `SessionFactory.create_session()` for platform-aware creation
-    - ✅ Enable evaluation for quality tracking
-    - ✅ Choose appropriate mode for use case
-    - ✅ Set meaningful task names for logging
-    - ❌ Don't create sessions directly (use factory)
-    - ❌ Don't mix modes (each session has one mode)
+    - [OK] Use `SessionFactory.create_session()` for platform-aware creation
+    - [OK] Enable evaluation for quality tracking
+    - [OK] Choose appropriate mode for use case
+    - [OK] Set meaningful task names for logging
+    - [FAIL] Don't create sessions directly (use factory)
+    - [FAIL] Don't mix modes (each session has one mode)
 
 ### Interactive Sessions
 
 !!!success "User Experience"
-    - ✅ Provide clear initial requests
-    - ✅ Allow users to exit gracefully ("N" option)
-    - ✅ Show progress and confirmations
-    - ✅ Handle sensitive actions with confirmation
-    - ❌ Don't prompt excessively
-    - ❌ Don't hide errors from users
+    - [OK] Provide clear initial requests
+    - [OK] Allow users to exit gracefully ("N" option)
+    - [OK] Show progress and confirmations
+    - [OK] Handle sensitive actions with confirmation
+    - [FAIL] Don't prompt excessively
+    - [FAIL] Don't hide errors from users
 
 ### Service Sessions
 
 !!!warning "WebSocket Considerations"
-    - ✅ Always provide `task_protocol`
-    - ✅ Handle connection loss gracefully
-    - ✅ Set appropriate timeouts
-    - ✅ Validate requests before execution
-    - ❌ Don't assume connection is stable
-    - ❌ Don't block waiting for results indefinitely
+    - [OK] Always provide `task_protocol`
+    - [OK] Handle connection loss gracefully
+    - [OK] Set appropriate timeouts
+    - [OK] Validate requests before execution
+    - [FAIL] Don't assume connection is stable
+    - [FAIL] Don't block waiting for results indefinitely
 
 ### Batch Sessions
 
 !!!tip "Batch Processing"
-    - ✅ Enable task status tracking
-    - ✅ Use descriptive file names
-    - ✅ Group similar tasks
-    - ✅ Log failures for retry
-    - ❌ Don't stop batch on first failure
-    - ❌ Don't run too many sessions in parallel
+    - [OK] Enable task status tracking
+    - [OK] Use descriptive file names
+    - [OK] Group similar tasks
+    - [OK] Log failures for retry
+    - [FAIL] Don't stop batch on first failure
+    - [FAIL] Don't run too many sessions in parallel
 
 ---
 

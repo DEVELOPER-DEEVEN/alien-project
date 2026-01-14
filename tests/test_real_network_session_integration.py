@@ -337,7 +337,7 @@ class TestRealNetworkSessionWithMockDevices:
     ):
         """Test real NetworkSession.run() with mock devices to identify bugs."""
 
-        print("\n🔍 Starting REAL NetworkSession execution test...")
+        print("\n Starting REAL NetworkSession execution test...")
 
         # Real log collection request
         log_collection_request = (
@@ -351,7 +351,7 @@ class TestRealNetworkSessionWithMockDevices:
             "with log analysis, error statistics, and performance charts."
         )
 
-        print(f"📝 Request: {log_collection_request[:100]}...")
+        print(f" Request: {log_collection_request[:100]}...")
 
         # Create real NetworkSession (not mocked)
         session = NetworkSession(
@@ -362,7 +362,7 @@ class TestRealNetworkSessionWithMockDevices:
             initial_request=log_collection_request,
         )
 
-        print("🚀 Created real NetworkSession instance")
+        print("[START] Created real NetworkSession instance")
         print(f"   Session ID: {session._id}")
         print(f"   Task: {session.task}")
         print(f"   Client: {type(session._client)}")
@@ -371,10 +371,10 @@ class TestRealNetworkSessionWithMockDevices:
         console_handler, configured_loggers, original_level = (
             self._setup_comprehensive_logging()
         )
-        print(f"📋 Configured {len(configured_loggers)} loggers for detailed output")
+        print(f"[TASK] Configured {len(configured_loggers)} loggers for detailed output")
 
         try:
-            print("\n🎬 Starting real session execution...")
+            print("\n Starting real session execution...")
             print("=" * 60)
 
             # This is the REAL session.run() - no mocking!
@@ -384,17 +384,17 @@ class TestRealNetworkSessionWithMockDevices:
 
             execution_time = (end_time - start_time).total_seconds()
             print("=" * 60)
-            print(f"✅ Session completed in {execution_time:.2f} seconds")
+            print(f"[OK] Session completed in {execution_time:.2f} seconds")
 
         except Exception as e:
-            print(f"❌ Session execution failed: {e}")
+            print(f"[FAIL] Session execution failed: {e}")
             print(f"Exception type: {type(e).__name__}")
             import traceback
 
             traceback.print_exc()
 
             # Still collect what we can for analysis
-            print("\n🔍 Session state at failure:")
+            print("\n Session state at failure:")
             print(f"   Rounds completed: {len(getattr(session, '_rounds', []))}")
             print(
                 f"   Current orion: {getattr(session, '_current_orion', None)}"
@@ -405,18 +405,18 @@ class TestRealNetworkSessionWithMockDevices:
 
         finally:
             # Clean up all configured loggers to avoid duplicate logs in subsequent tests
-            print(f"\n🧹 Cleaning up {len(configured_loggers)} loggers")
+            print(f"\n Cleaning up {len(configured_loggers)} loggers")
             self._cleanup_logging(console_handler, configured_loggers, original_level)
 
         # Analyze session results
-        print("\n📊 Session Analysis:")
+        print("\n[STATUS] Session Analysis:")
         print(f"   Total rounds: {len(getattr(session, '_rounds', []))}")
         print(f"   Session state: {getattr(session, 'state', 'unknown')}")
 
         # Check if orion was created
         orion = getattr(session, "_current_orion", None)
         if orion:
-            print(f"   Orion created: ✅")
+            print(f"   Orion created: [OK]")
             print(
                 f"   Orion ID: {getattr(orion, 'orion_id', 'unknown')}"
             )
@@ -425,12 +425,12 @@ class TestRealNetworkSessionWithMockDevices:
                 f"   Dependency count: {len(getattr(orion, 'dependencies', []))}"
             )
         else:
-            print(f"   Orion created: ❌")
+            print(f"   Orion created: [FAIL]")
 
         # Check rounds for issues
         rounds = getattr(session, "_rounds", [])
         if rounds:
-            print(f"\n🔄 Round Details:")
+            print(f"\n[CONTINUE] Round Details:")
             for i, round_info in enumerate(rounds, 1):
                 round_type = (
                     type(round_info).__name__
@@ -441,19 +441,19 @@ class TestRealNetworkSessionWithMockDevices:
 
                 # Check for errors in round
                 if hasattr(round_info, "error") and round_info.error:
-                    print(f"     ❌ Error: {round_info.error}")
+                    print(f"     [FAIL] Error: {round_info.error}")
                 if hasattr(round_info, "status"):
-                    print(f"     📊 Status: {round_info.status}")
+                    print(f"     [STATUS] Status: {round_info.status}")
 
         # Verify device interactions
-        print(f"\n🔧 Device Interaction Analysis:")
+        print(f"\n[CONFIG] Device Interaction Analysis:")
         assign_task_calls = (
             mock_orion_client.device_manager.assign_task_to_device.call_count
         )
         print(f"   Total device task executions: {assign_task_calls}")
 
         if assign_task_calls > 0:
-            print(f"   Device tasks executed: ✅")
+            print(f"   Device tasks executed: [OK]")
             # Analyze call arguments
             for (
                 call
@@ -471,10 +471,10 @@ class TestRealNetworkSessionWithMockDevices:
                 )
                 print(f"     • {device_id}: {task_description}")
         else:
-            print(f"   Device tasks executed: ❌ (No device interactions detected)")
+            print(f"   Device tasks executed: [FAIL] (No device interactions detected)")
 
         # Check for common issues
-        print(f"\n🐛 Bug Detection:")
+        print(f"\n Bug Detection:")
 
         issues_found = []
 
@@ -514,24 +514,24 @@ class TestRealNetworkSessionWithMockDevices:
 
         # Report results
         if issues_found:
-            print(f"   ❌ Issues detected:")
+            print(f"   [FAIL] Issues detected:")
             for issue in issues_found:
                 print(f"     • {issue}")
         else:
-            print(f"   ✅ No obvious issues detected")
+            print(f"   [OK] No obvious issues detected")
 
         # Performance analysis
-        print(f"\n⚡ Performance Analysis:")
+        print(f"\n Performance Analysis:")
         print(f"   Execution time: {execution_time:.2f}s")
         if execution_time > 30:
-            print(f"   ⚠️  Slow execution (>30s)")
+            print(f"   ️  Slow execution (>30s)")
         elif execution_time > 10:
-            print(f"   ⚠️  Moderate execution time (>10s)")
+            print(f"   ️  Moderate execution time (>10s)")
         else:
-            print(f"   ✅ Fast execution (<10s)")
+            print(f"   [OK] Fast execution (<10s)")
 
-        print(f"\n🎯 Test Summary:")
-        print(f"   Real session execution: ✅ Completed")
+        print(f"\n Test Summary:")
+        print(f"   Real session execution: [OK] Completed")
         print(f"   Issues found: {len(issues_found)}")
         print(f"   Device interactions: {assign_task_calls}")
         print(f"   Execution time: {execution_time:.2f}s")
@@ -580,7 +580,7 @@ class TestRealNetworkSessionWithMockDevices:
 
         try:
             for i, request in enumerate(test_requests, 1):
-                print(f"\n🧪 Test {i}/{len(test_requests)}: {request[:50]}...")
+                print(f"\n Test {i}/{len(test_requests)}: {request[:50]}...")
 
                 session = NetworkSession(
                     task=f"test_request_{i}",
@@ -599,7 +599,7 @@ class TestRealNetworkSessionWithMockDevices:
                         "rounds": len(getattr(session, "_rounds", [])),
                         "error": None,
                     }
-                    print(f"   ✅ Success: {result['rounds']} rounds")
+                    print(f"   [OK] Success: {result['rounds']} rounds")
 
                 except Exception as e:
                     result = {
@@ -608,19 +608,19 @@ class TestRealNetworkSessionWithMockDevices:
                         "rounds": len(getattr(session, "_rounds", [])),
                         "error": str(e),
                     }
-                    print(f"   ❌ Failed: {e}")
+                    print(f"   [FAIL] Failed: {e}")
 
                 results.append(result)
 
             # Analyze results
-            print(f"\n📈 Request Type Analysis:")
+            print(f"\n Request Type Analysis:")
             success_count = sum(1 for r in results if r["success"])
             print(
                 f"   Success rate: {success_count}/{len(results)} ({success_count/len(results)*100:.1f}%)"
             )
 
             for i, result in enumerate(results, 1):
-                status = "✅" if result["success"] else "❌"
+                status = "[OK]" if result["success"] else "[FAIL]"
                 print(
                     f"   {i}. {status} {result['request']} (rounds: {result['rounds']})"
                 )
@@ -687,16 +687,16 @@ class TestRealNetworkSessionWithMockDevices:
                 initial_request=error_request,
             )
 
-            print(f"\n🚨 Testing error handling with failing task...")
+            print(f"\n Testing error handling with failing task...")
 
             try:
                 await session.run()
                 print(
-                    f"   ⚠️  Session completed despite errors (error recovery working)"
+                    f"   ️  Session completed despite errors (error recovery working)"
                 )
 
             except Exception as e:
-                print(f"   ❌ Session failed with error: {e}")
+                print(f"   [FAIL] Session failed with error: {e}")
                 print(f"   Error type: {type(e).__name__}")
 
             # Check if session handled errors gracefully

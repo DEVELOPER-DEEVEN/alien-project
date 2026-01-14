@@ -23,7 +23,7 @@ import json
 
 def test_tasks_and_dependencies_as_lists():
     """测试使用 List 格式的 tasks 和 dependencies"""
-    print("🧪 测试 List 格式的 tasks 和 dependencies")
+    print(" 测试 List 格式的 tasks 和 dependencies")
 
     # 准备测试数据 - 使用 List 格式
     task_list = [
@@ -68,7 +68,7 @@ def test_tasks_and_dependencies_as_lists():
 
     orion = TaskOrionSchema(**orion_data)
 
-    print(f"✅ 星座创建成功: {orion.name}")
+    print(f"[OK] 星座创建成功: {orion.name}")
     print(f"   - 星座 ID: {orion.orion_id}")
     print(f"   - 任务数量: {len(orion.tasks)}")
     print(f"   - 依赖数量: {len(orion.dependencies)}")
@@ -101,7 +101,7 @@ def test_tasks_and_dependencies_as_lists():
 
 def test_tasks_and_dependencies_as_dicts():
     """测试使用 Dict 格式的 tasks 和 dependencies（传统格式）"""
-    print("\n🧪 测试 Dict 格式的 tasks 和 dependencies")
+    print("\n 测试 Dict 格式的 tasks 和 dependencies")
 
     # 准备测试数据 - 使用 Dict 格式
     task_dict = {
@@ -131,7 +131,7 @@ def test_tasks_and_dependencies_as_dicts():
         name="Dict格式测试星座", tasks=task_dict, dependencies=dependency_dict
     )
 
-    print(f"✅ 星座创建成功: {orion.name}")
+    print(f"[OK] 星座创建成功: {orion.name}")
     print(f"   - 星座 ID: {orion.orion_id}")
     print(f"   - 任务数量: {len(orion.tasks)}")
     print(f"   - 依赖数量: {len(orion.dependencies)}")
@@ -147,7 +147,7 @@ def test_tasks_and_dependencies_as_dicts():
 
 def test_mixed_format_compatibility():
     """测试混合格式兼容性"""
-    print("\n🧪 测试混合格式兼容性")
+    print("\n 测试混合格式兼容性")
 
     # List 格式的 tasks，Dict 格式的 dependencies
     orion1 = TaskOrionSchema(
@@ -164,7 +164,7 @@ def test_mixed_format_compatibility():
     )
 
     print(
-        f"✅ 混合格式1创建成功: tasks={type(orion1.tasks).__name__}, dependencies={type(orion1.dependencies).__name__}"
+        f"[OK] 混合格式1创建成功: tasks={type(orion1.tasks).__name__}, dependencies={type(orion1.dependencies).__name__}"
     )
 
     # Dict 格式的 tasks，List 格式的 dependencies
@@ -185,7 +185,7 @@ def test_mixed_format_compatibility():
     )
 
     print(
-        f"✅ 混合格式2创建成功: tasks={type(orion2.tasks).__name__}, dependencies={type(orion2.dependencies).__name__}"
+        f"[OK] 混合格式2创建成功: tasks={type(orion2.tasks).__name__}, dependencies={type(orion2.dependencies).__name__}"
     )
 
     return orion1, orion2
@@ -193,7 +193,7 @@ def test_mixed_format_compatibility():
 
 def test_conversion_methods():
     """测试转换方法"""
-    print("\n🧪 测试转换方法")
+    print("\n 测试转换方法")
 
     # 创建一个星座
     orion = TaskOrionSchema(
@@ -211,7 +211,7 @@ def test_conversion_methods():
 
     # 测试 get_tasks_as_list
     tasks_list = orion.get_tasks_as_list()
-    print(f"✅ 获取任务列表: {len(tasks_list)} 个任务")
+    print(f"[OK] 获取任务列表: {len(tasks_list)} 个任务")
     assert len(tasks_list) == 3, "应该有3个任务"
     assert all(
         isinstance(task, TaskStarSchema) for task in tasks_list
@@ -219,7 +219,7 @@ def test_conversion_methods():
 
     # 测试 get_dependencies_as_list
     deps_list = orion.get_dependencies_as_list()
-    print(f"✅ 获取依赖列表: {len(deps_list)} 个依赖")
+    print(f"[OK] 获取依赖列表: {len(deps_list)} 个依赖")
     assert len(deps_list) == 2, "应该有2个依赖"
     assert all(
         isinstance(dep, TaskStarLineSchema) for dep in deps_list
@@ -228,7 +228,7 @@ def test_conversion_methods():
     # 测试 to_dict_with_lists
     data_with_lists = orion.to_dict_with_lists()
     print(
-        f"✅ 导出为列表格式: tasks={type(data_with_lists['tasks']).__name__}, dependencies={type(data_with_lists['dependencies']).__name__}"
+        f"[OK] 导出为列表格式: tasks={type(data_with_lists['tasks']).__name__}, dependencies={type(data_with_lists['dependencies']).__name__}"
     )
     assert isinstance(data_with_lists["tasks"], list), "导出的tasks应该是list"
     assert isinstance(
@@ -240,7 +240,7 @@ def test_conversion_methods():
 
 def test_json_serialization():
     """测试 JSON 序列化兼容性"""
-    print("\n🧪 测试 JSON 序列化兼容性")
+    print("\n 测试 JSON 序列化兼容性")
 
     # 创建星座（使用List格式输入）
     orion = TaskOrionSchema(
@@ -260,21 +260,21 @@ def test_json_serialization():
 
     # 序列化为 JSON（默认Dict格式）
     json_dict_format = orion.model_dump_json(indent=2)
-    print(f"✅ Dict格式JSON长度: {len(json_dict_format)} 字符")
+    print(f"[OK] Dict格式JSON长度: {len(json_dict_format)} 字符")
 
     # 序列化为 JSON（List格式）
     json_list_format = json.dumps(orion.to_dict_with_lists(), indent=2)
-    print(f"✅ List格式JSON长度: {len(json_list_format)} 字符")
+    print(f"[OK] List格式JSON长度: {len(json_list_format)} 字符")
 
     # 验证两种格式都能正确反序列化
     # Dict格式反序列化
     restored_from_dict = TaskOrionSchema.model_validate_json(json_dict_format)
-    print(f"✅ 从Dict格式JSON恢复: {restored_from_dict.name}")
+    print(f"[OK] 从Dict格式JSON恢复: {restored_from_dict.name}")
 
     # List格式反序列化
     list_data = json.loads(json_list_format)
     restored_from_list = TaskOrionSchema(**list_data)
-    print(f"✅ 从List格式JSON恢复: {restored_from_list.name}")
+    print(f"[OK] 从List格式JSON恢复: {restored_from_list.name}")
 
     # 验证内容一致性
     assert restored_from_dict.name == restored_from_list.name, "名称应该一致"
@@ -290,7 +290,7 @@ def test_json_serialization():
 
 def main():
     """运行所有测试"""
-    print("🎯 TaskOrionSchema List/Dict 兼容性测试")
+    print(" TaskOrionSchema List/Dict 兼容性测试")
     print("=" * 60)
 
     try:
@@ -302,17 +302,17 @@ def main():
         orion4 = test_json_serialization()
 
         print("\n" + "=" * 60)
-        print("🎉 所有测试通过！")
+        print(" 所有测试通过！")
 
-        print("\n💡 主要特性验证:")
-        print("   ✅ List 格式的 tasks 和 dependencies 自动转换为 Dict")
-        print("   ✅ Dict 格式保持不变")
-        print("   ✅ 混合格式正确处理")
-        print("   ✅ 自动 ID 生成在 List 格式中正常工作")
-        print("   ✅ 转换方法正确工作")
-        print("   ✅ JSON 序列化/反序列化兼容")
+        print("\n[THOUGHT] 主要特性验证:")
+        print("   [OK] List 格式的 tasks 和 dependencies 自动转换为 Dict")
+        print("   [OK] Dict 格式保持不变")
+        print("   [OK] 混合格式正确处理")
+        print("   [OK] 自动 ID 生成在 List 格式中正常工作")
+        print("   [OK] 转换方法正确工作")
+        print("   [OK] JSON 序列化/反序列化兼容")
 
-        print("\n📊 测试统计:")
+        print("\n[STATUS] 测试统计:")
         print(
             f"   • 创建了 {len([orion1, orion2, mixed1, mixed2, orion3, orion4])} 个测试星座"
         )
@@ -321,7 +321,7 @@ def main():
         print("   • 验证了 JSON 序列化兼容性")
 
     except Exception as e:
-        print(f"\n❌ 测试失败: {e}")
+        print(f"\n[FAIL] 测试失败: {e}")
         import traceback
 
         traceback.print_exc()

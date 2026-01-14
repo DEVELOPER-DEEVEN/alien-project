@@ -22,7 +22,7 @@ class TestEventObserver:
     async def on_event(self, event):
         """Capture events for testing."""
         self.received_events.append(event)
-        print(f"📨 Received event: {event.event_type.value}")
+        print(f" Received event: {event.event_type.value}")
         print(f"   Source: {event.source_id}")
         print(f"   Orion ID: {event.orion_id}")
         print(f"   Data keys: {list(event.data.keys())}")
@@ -50,13 +50,13 @@ class TestEventObserver:
 
     async def on_event(self, event):
         self.events_received.append(event)
-        print(f"📧 Received event: {event.event_type.value} - {event.data}")
+        print(f" Received event: {event.event_type.value} - {event.data}")
 
 
 @pytest.mark.asyncio
 async def test_manual_orion_event_publishing():
     """Test manual OrionEvent publishing and DAG visualization."""
-    print("🧪 Testing Manual OrionEvent Publishing and Visualization\n")
+    print(" Testing Manual OrionEvent Publishing and Visualization\n")
 
     # Create event bus
     event_bus = EventBus()
@@ -104,26 +104,26 @@ async def test_manual_orion_event_publishing():
     # Give a small delay to ensure event processing
     await asyncio.sleep(0.1)
 
-    print(f"\n📊 Event Publishing Results:")
+    print(f"\n[STATUS] Event Publishing Results:")
     print(f"   Events captured by test observer: {len(test_observer.events_received)}")
 
     if test_observer.events_received:
         event = test_observer.events_received[0]
-        print(f"   ✅ Event type: {event.event_type.value}")
-        print(f"   ✅ Source ID: {event.source_id}")
-        print(f"   ✅ Orion ID: {event.orion_id}")
-        print(f"   ✅ Has old orion: {'old_orion' in event.data}")
-        print(f"   ✅ Has new orion: {'new_orion' in event.data}")
-        print(f"   ✅ Modification type: {event.data.get('modification_type')}")
+        print(f"   [OK] Event type: {event.event_type.value}")
+        print(f"   [OK] Source ID: {event.source_id}")
+        print(f"   [OK] Orion ID: {event.orion_id}")
+        print(f"   [OK] Has old orion: {'old_orion' in event.data}")
+        print(f"   [OK] Has new orion: {'new_orion' in event.data}")
+        print(f"   [OK] Modification type: {event.data.get('modification_type')}")
 
         # Verify event data
         if "old_orion" in event.data and "new_orion" in event.data:
             old_const = event.data["old_orion"]
             new_const = event.data["new_orion"]
-            print(f"   📊 Old orion tasks: {len(old_const.tasks)}")
-            print(f"   📊 New orion tasks: {len(new_const.tasks)}")
+            print(f"   [STATUS] Old orion tasks: {len(old_const.tasks)}")
+            print(f"   [STATUS] New orion tasks: {len(new_const.tasks)}")
     else:
-        print("   ❌ No events were captured!")
+        print("   [FAIL] No events were captured!")
 
     print("\n" + "=" * 80)
 
@@ -138,7 +138,7 @@ async def test_manual_orion_event_publishing():
     ]
 
     for mod_type, description in test_cases:
-        print(f"\n🔄 Testing {mod_type}: {description}")
+        print(f"\n[CONTINUE] Testing {mod_type}: {description}")
 
         event = OrionEvent(
             event_type=EventType.ORION_MODIFIED,
@@ -156,10 +156,10 @@ async def test_manual_orion_event_publishing():
         await event_bus.publish_event(event)
         await asyncio.sleep(0.05)  # Small delay for processing
 
-    print(f"\n📈 Total events processed: {len(test_observer.events_received)}")
+    print(f"\n Total events processed: {len(test_observer.events_received)}")
 
-    print("\n✅ All OrionEvent publishing tests completed!")
-    print("🎉 Event publishing and DAG visualization integration successful!")
+    print("\n[OK] All OrionEvent publishing tests completed!")
+    print(" Event publishing and DAG visualization integration successful!")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
-# 🔄 Registration Flow - Complete Process Guide
+# [CONTINUE] Registration Flow - Complete Process Guide
 
-## 📋 Overview
+## [TASK] Overview
 
 The registration flow transforms a device configuration entry into a fully profiled, connected, and task-ready orion agent through a coordinated **5-phase process**:
 
@@ -15,7 +15,7 @@ See [Agent Registration Overview](./overview.md) for architecture context and [D
 ![Agent Registration Flow](../../img/agent_registry.png)
 *Multi-source AgentProfile construction and registration flow.*
 
-## 🎯 Registration Phases
+##  Registration Phases
 
 ### Phase Overview
 
@@ -51,7 +51,7 @@ graph TB
 | **4. Telemetry Collection** | 1-3s | No (graceful degradation) | No | System info merged |
 | **5. Agent Activation** | < 1s | No | No | Status = IDLE |
 
-## 📝 Phase 1: User Configuration
+##  Phase 1: User Configuration
 
 ### Purpose
 
@@ -156,7 +156,7 @@ AgentProfile(
 
 > **Phase 1 Complete:** Device registered in local registry with user-specified configuration. Status: `DISCONNECTED`
 
-## 🌐 Phase 2: WebSocket Connection
+## [WEB] Phase 2: WebSocket Connection
 
 ### Purpose
 
@@ -292,7 +292,7 @@ graph TB
 
 > **Phase 2 Complete:** WebSocket connection established. Message handler and heartbeat monitoring active.
 
-## 📡 Phase 3: Service Registration (AIP)
+##  Phase 3: Service Registration (AIP)
 
 ### Purpose
 
@@ -449,7 +449,7 @@ ClientMessage(
 
 > **Phase 3 Complete:** AIP registration protocol completed. Client type and platform recorded on server.
 
-## 📊 Phase 4: Telemetry Collection
+## [STATUS] Phase 4: Telemetry Collection
 
 ### Purpose
 
@@ -640,7 +640,7 @@ AgentProfile(
 
 > **Phase 4 Complete:** System information collected and merged into AgentProfile. Capabilities expanded with auto-detected features.
 
-## ✅ Phase 5: Agent Activation
+## [OK] Phase 5: Agent Activation
 
 ### Purpose
 
@@ -664,7 +664,7 @@ sequenceDiagram
     HB-->>Manager: Heartbeat OK
     
     Manager->>Manager: Log successful registration
-    Note over Manager: ✅ Device ready for tasks
+    Note over Manager: [OK] Device ready for tasks
 ```
 
 ### Code
@@ -673,7 +673,7 @@ sequenceDiagram
 # Set device to IDLE (ready to accept tasks)
 self.device_registry.set_device_idle(device_id)
 
-self.logger.info(f"✅ Successfully connected to device {device_id}")
+self.logger.info(f"[OK] Successfully connected to device {device_id}")
 ```
 
 ### Final AgentProfile State
@@ -708,7 +708,7 @@ AgentProfile(
     },
     
     # Status
-    status=DeviceStatus.IDLE,  # ✅ Ready for tasks!
+    status=DeviceStatus.IDLE,  # [OK] Ready for tasks!
     last_heartbeat=datetime(2025, 11, 6, 10, 30, 45),
     
     # Connection
@@ -722,7 +722,7 @@ AgentProfile(
 
 > **Phase 5 Complete:** Agent fully registered, profiled, and activated. Status: `IDLE` - Ready to accept task assignments.
 
-## 🎯 Complete End-to-End Example
+##  Complete End-to-End Example
 
 ### Scenario: Register Windows Workstation
 
@@ -740,7 +740,7 @@ async def register_windows_workstation():
         reconnect_delay=5.0
     )
     
-    print("📝 Phase 1: User Configuration")
+    print(" Phase 1: User Configuration")
     # Register device from user config
     success = await manager.register_device(
         device_id="windowsagent",
@@ -758,12 +758,12 @@ async def register_windows_workstation():
     )
     
     if success:
-        print("✅ Registration successful!")
+        print("[OK] Registration successful!")
         
         # Get complete profile
         profile = manager.get_device_info("windowsagent")
         
-        print(f"\n📊 AgentProfile:")
+        print(f"\n[STATUS] AgentProfile:")
         print(f"  Device ID: {profile.device_id}")
         print(f"  Status: {profile.status.value}")
         print(f"  OS: {profile.os}")
@@ -776,10 +776,10 @@ async def register_windows_workstation():
         print(f"    - IP: {system_info.get('ip_address')}")
         
         # Device is now ready for tasks
-        print(f"\n🚀 Device is ready to receive tasks!")
+        print(f"\n[START] Device is ready to receive tasks!")
         
     else:
-        print("❌ Registration failed")
+        print("[FAIL] Registration failed")
 
 # Run the example
 asyncio.run(register_windows_workstation())
@@ -788,22 +788,22 @@ asyncio.run(register_windows_workstation())
 **Output:**
 
 ```
-📝 Phase 1: User Configuration
-🌐 Phase 2: WebSocket Connection
+ Phase 1: User Configuration
+[WEB] Phase 2: WebSocket Connection
   Connecting to ws://localhost:5005/ws...
   Connection established
-📡 Phase 3: Service Registration
+ Phase 3: Service Registration
   Sending REGISTER message...
   Registration confirmed
-📊 Phase 4: Telemetry Collection
+[STATUS] Phase 4: Telemetry Collection
   Collecting system information...
   System info merged
-✅ Phase 5: Agent Activation
+[OK] Phase 5: Agent Activation
   Device set to IDLE
 
-✅ Registration successful!
+[OK] Registration successful!
 
-📊 AgentProfile:
+[STATUS] AgentProfile:
   Device ID: windowsagent
   Status: idle
   OS: windows
@@ -814,12 +814,12 @@ asyncio.run(register_windows_workstation())
     - Hostname: DESKTOP-DEV01
     - IP: 192.168.1.100
 
-🚀 Device is ready to receive tasks!
+[START] Device is ready to receive tasks!
 ```
 
 ---
 
-## 🔧 Error Handling
+## [CONFIG] Error Handling
 
 ### Connection Failures
 
@@ -872,7 +872,7 @@ except Exception as e:
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 | Topic | Document | Description |
 |-------|----------|-------------|
@@ -883,7 +883,7 @@ except Exception as e:
 | **Device Info** | [Device Info Provider](../../client/device_info.md) | Telemetry collection |
 | **AIP Protocol** | [AIP Overview](../../aip/overview.md) | Protocol fundamentals |
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 **1. Use auto_connect for Production**
 
@@ -922,14 +922,14 @@ metadata={
 }
 ```
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 1. **Configure Devices**: Read [Network Devices Configuration](../../configuration/system/network_devices.md)
 2. **Understand DeviceRegistry**: Check [Device Registry](./device_registry.md)
 3. **Learn Task Assignment**: See [Task Execution Documentation](../orion_orchestrator/overview.md)
 4. **Study AIP Messages**: Read [AIP Messages](../../aip/messages.md)
 
-## 📚 Source Code References
+## [PLAN] Source Code References
 
 - **OrionDeviceManager**: `network/client/device_manager.py`
 - **DeviceRegistry**: `network/client/components/device_registry.py`

@@ -102,7 +102,7 @@ class EventCollector(IEventObserver):
 @pytest.mark.asyncio
 async def test_orion_events():
     """Test orion event publishing."""
-    print("🧪 Testing Orion Events...")
+    print(" Testing Orion Events...")
 
     # Create event collector
     event_collector = EventCollector()
@@ -154,7 +154,7 @@ async def test_orion_events():
     )
     orion.add_dependency(dependency)
 
-    print(f"✅ Created orion with {len(orion.tasks)} tasks")
+    print(f"[OK] Created orion with {len(orion.tasks)} tasks")
 
     # Execute orion with manual device assignments
     try:
@@ -166,11 +166,11 @@ async def test_orion_events():
             assignment_strategy="round_robin",
         )
 
-        print(f"✅ Orion execution completed: {result['status']}")
-        print(f"📊 Statistics: {result.get('statistics', {})}")
+        print(f"[OK] Orion execution completed: {result['status']}")
+        print(f"[STATUS] Statistics: {result.get('statistics', {})}")
 
         # Check collected events
-        print(f"\n📋 Collected Events ({len(event_collector.events)}):")
+        print(f"\n[TASK] Collected Events ({len(event_collector.events)}):")
         for i, event in enumerate(event_collector.events, 1):
             print(f"  {i}. {event.event_type}")
             print(f"     Data: {event.data}")
@@ -185,14 +185,14 @@ async def test_orion_events():
 
         missing_events = [e for e in expected_events if e not in event_types]
         if missing_events:
-            print(f"❌ Missing events: {missing_events}")
+            print(f"[FAIL] Missing events: {missing_events}")
             return False
         else:
-            print("✅ All expected orion events were published!")
+            print("[OK] All expected orion events were published!")
             return True
 
     except Exception as e:
-        print(f"❌ Test failed: {e}")
+        print(f"[FAIL] Test failed: {e}")
         import traceback
 
         traceback.print_exc()
@@ -201,13 +201,13 @@ async def test_orion_events():
 
 async def main():
     """Run the test."""
-    print("🚀 Starting Orion Events Test...")
+    print("[START] Starting Orion Events Test...")
     success = await test_orion_events()
 
     if success:
-        print("\n🎉 All tests passed!")
+        print("\n All tests passed!")
     else:
-        print("\n💥 Tests failed!")
+        print("\n Tests failed!")
 
     return success
 

@@ -49,8 +49,8 @@ MCP servers in ALIEN² are categorized into two types based on their purpose:
 
 | Type | Purpose | Examples | Side Effects | LLM Selectable? |
 |------|---------|----------|--------------|-----------------|
-| **Data Collection** | Retrieve system state<br>Read-only operations | UI detection, Screenshot, System info | ❌ None | ❌ **No** - Auto-invoked |
-| **Action** | Modify system state<br>State-changing operations | Click, Type text, Run command | ✅ Yes | ✅ **Yes** - LLM chooses |
+| **Data Collection** | Retrieve system state<br>Read-only operations | UI detection, Screenshot, System info | [FAIL] None | [FAIL] **No** - Auto-invoked |
+| **Action** | Modify system state<br>State-changing operations | Click, Type text, Run command | [OK] Yes | [OK] **Yes** - LLM chooses |
 
 **Server Selection Model:**
 

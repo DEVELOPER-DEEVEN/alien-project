@@ -4,7 +4,7 @@ This comprehensive tutorial teaches you how to create a new device agent (like `
 
 ---
 
-## 📋 Table of Contents
+## [TASK] Table of Contents
 
 1. [Introduction](#introduction)
 2. [Prerequisites](#prerequisites)
@@ -60,21 +60,21 @@ Before starting this tutorial, ensure you have:
 
 ### Knowledge Requirements
 
-- ✅ **Python 3.10+**: Intermediate Python programming skills
-- ✅ **Async Programming**: Understanding of `async`/`await` patterns
-- ✅ **ALIEN³ Basics**: Familiarity with [Agent Architecture](../../infrastructure/agents/overview.md)
-- ✅ **MCP Protocol**: Understanding of [Model Context Protocol](../../mcp/overview.md)
-- ✅ **WebSocket**: Basic knowledge of WebSocket communication
+- [OK] **Python 3.10+**: Intermediate Python programming skills
+- [OK] **Async Programming**: Understanding of `async`/`await` patterns
+- [OK] **ALIEN³ Basics**: Familiarity with [Agent Architecture](../../infrastructure/agents/overview.md)
+- [OK] **MCP Protocol**: Understanding of [Model Context Protocol](../../mcp/overview.md)
+- [OK] **WebSocket**: Basic knowledge of WebSocket communication
 
 ### Recommended Reading
 
 | Priority | Topic | Link | Time |
 |----------|-------|------|------|
-| 🥇 | **Agent Architecture Overview** | [Infrastructure/Agents](../../infrastructure/agents/overview.md) | 20 min |
-| 🥇 | **LinuxAgent Quick Start** | [Quick Start: Linux](../../getting_started/quick_start_linux.md) | 15 min |
-| 🥈 | **Server-Client Architecture** | [Server Overview](../../server/overview.md), [Client Overview](../../client/overview.md) | 30 min |
-| 🥈 | **MCP Integration** | [MCP Overview](../../mcp/overview.md) | 20 min |
-| 🥉 | **AIP Protocol** | [AIP Protocol](../../aip/overview.md) | 15 min |
+|  | **Agent Architecture Overview** | [Infrastructure/Agents](../../infrastructure/agents/overview.md) | 20 min |
+|  | **LinuxAgent Quick Start** | [Quick Start: Linux](../../getting_started/quick_start_linux.md) | 15 min |
+|  | **Server-Client Architecture** | [Server Overview](../../server/overview.md), [Client Overview](../../client/overview.md) | 30 min |
+|  | **MCP Integration** | [MCP Overview](../../mcp/overview.md) | 20 min |
+|  | **AIP Protocol** | [AIP Protocol](../../aip/overview.md) | 15 min |
 
 ### Development Environment
 
@@ -206,11 +206,11 @@ graph LR
 
 **LinuxAgent** is the ideal reference for creating new device agents because:
 
-- ✅ **Simple Architecture**: Single-tier agent (no HostAgent delegation)
-- ✅ **Clear Separation**: Clean server-client boundary
-- ✅ **Well-Documented**: Comprehensive code and documentation
-- ✅ **Production-Ready**: Battle-tested in real deployments
-- ✅ **Minimal Complexity**: Focuses on core device agent patterns
+- [OK] **Simple Architecture**: Single-tier agent (no HostAgent delegation)
+- [OK] **Clear Separation**: Clean server-client boundary
+- [OK] **Well-Documented**: Comprehensive code and documentation
+- [OK] **Production-Ready**: Battle-tested in real deployments
+- [OK] **Minimal Complexity**: Focuses on core device agent patterns
 
 ### LinuxAgent Components
 
@@ -393,7 +393,7 @@ graph TB
 
 This tutorial is split into **6 detailed guides**:
 
-### 📘 Part 1: [Core Components](core_components.md)
+###  Part 1: [Core Components](core_components.md)
 
 Learn to implement the **server-side components**:
 
@@ -407,7 +407,7 @@ Learn to implement the **server-side components**:
 
 ---
 
-### 📘 Part 2: [MCP Server Development](mcp_server.md)
+###  Part 2: [MCP Server Development](mcp_server.md)
 
 Create a **platform-specific MCP server**:
 
@@ -421,7 +421,7 @@ Create a **platform-specific MCP server**:
 
 ---
 
-### 📘 Part 3: [Client Configuration](client_setup.md)
+###  Part 3: [Client Configuration](client_setup.md)
 
 Set up the **device client**:
 
@@ -435,7 +435,7 @@ Set up the **device client**:
 
 ---
 
-### 📘 Part 4: [Configuration & Deployment](configuration.md)
+###  Part 4: [Configuration & Deployment](configuration.md)
 
 Configure and deploy your agent:
 
@@ -449,7 +449,7 @@ Configure and deploy your agent:
 
 ---
 
-### 📘 Part 5: [Testing & Debugging](testing.md)
+###  Part 5: [Testing & Debugging](testing.md)
 
 Test and debug your implementation:
 
@@ -463,7 +463,7 @@ Test and debug your implementation:
 
 ---
 
-### 📘 Part 6: [Complete Example: MobileAgent](example_mobile_agent.md)
+###  Part 6: [Complete Example: MobileAgent](example_mobile_agent.md)
 
 **Hands-on walkthrough** creating `MobileAgent`:
 
@@ -638,5 +638,5 @@ Or jump to a specific topic:
 - **MCP Integration** enables platform-specific command execution
 - **Network Integration** supports multi-device orchestration
 
-**Ready to build your first device agent? Let's get started!** 🚀
+**Ready to build your first device agent? Let's get started!** [START]
 

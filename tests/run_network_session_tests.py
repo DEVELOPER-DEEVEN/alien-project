@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 def run_test(test_file, description):
     """Run a single test file and report results."""
     print(f"\n{'=' * 60}")
-    print(f"🧪 Running: {description}")
-    print(f"📁 File: {test_file}")
+    print(f" Running: {description}")
+    print(f" File: {test_file}")
     print("=" * 60)
 
     try:
@@ -30,20 +30,20 @@ def run_test(test_file, description):
         )
 
         if result.returncode == 0:
-            print(f"✅ {description} - PASSED")
+            print(f"[OK] {description} - PASSED")
             return True
         else:
-            print(f"❌ {description} - FAILED (exit code: {result.returncode})")
+            print(f"[FAIL] {description} - FAILED (exit code: {result.returncode})")
             return False
 
     except Exception as e:
-        print(f"❌ {description} - ERROR: {e}")
+        print(f"[FAIL] {description} - ERROR: {e}")
         return False
 
 
 def main():
     """Run all Network Session tests."""
-    print("🚀 Network Session Test Suite Runner")
+    print("[START] Network Session Test Suite Runner")
     print("=" * 60)
 
     tests = [
@@ -81,16 +81,16 @@ def main():
             if run_test(test_file, description):
                 passed += 1
         else:
-            print(f"⚠️  Test file not found: {test_file}")
+            print(f"️  Test file not found: {test_file}")
 
     print(f"\n{'=' * 60}")
-    print(f"📊 Test Results: {passed}/{total} tests passed")
+    print(f"[STATUS] Test Results: {passed}/{total} tests passed")
 
     if passed == total:
-        print("🎉 All tests passed!")
+        print(" All tests passed!")
         return 0
     else:
-        print("❌ Some tests failed!")
+        print("[FAIL] Some tests failed!")
         return 1
 
 

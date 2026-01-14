@@ -238,11 +238,11 @@ print(f"Estimated cost: ${total_cost:.4f}")
 ## Notes
 
 !!!info "Important Notes"
-    - ✅ Pricing is for **cost estimation only**, not billing
-    - ✅ Actual costs may vary based on your provider contract
-    - ✅ Different Azure regions may have different pricing
-    - ✅ Some models have tiered pricing based on volume
-    - ✅ Prices change frequently - update regularly
+    - [OK] Pricing is for **cost estimation only**, not billing
+    - [OK] Actual costs may vary based on your provider contract
+    - [OK] Different Azure regions may have different pricing
+    - [OK] Some models have tiered pricing based on volume
+    - [OK] Prices change frequently - update regularly
 
 ---
 
@@ -256,10 +256,10 @@ print(f"Estimated cost: ${total_cost:.4f}")
 ## Summary
 
 !!!success "Key Takeaways"
-    ✅ **prices.yaml tracks LLM costs** - Estimates API spending  
-    ✅ **Pricing may be outdated** - Always verify current rates  
-    ✅ **Update regularly** - Providers change pricing frequently  
-    ✅ **Add new models** - Include pricing for any custom models  
-    ✅ **Cost tracking is automatic** - ALIEN² calculates costs during execution  
+    [OK] **prices.yaml tracks LLM costs** - Estimates API spending  
+    [OK] **Pricing may be outdated** - Always verify current rates  
+    [OK] **Update regularly** - Providers change pricing frequently  
+    [OK] **Add new models** - Include pricing for any custom models  
+    [OK] **Cost tracking is automatic** - ALIEN² calculates costs during execution  
     
-    **Keep pricing updated for accurate cost tracking!** 💰
+    **Keep pricing updated for accurate cost tracking!** 

@@ -2,7 +2,7 @@
 
 MobileAgent interacts with Android devices through MCP (Model Context Protocol) tools provided by two specialized MCP servers. These tools provide atomic building blocks for mobile task execution, isolating device-specific operations within the MCP server layer.
 
-> **📖 Related Documentation:**
+> **[LANG] Related Documentation:**
 > 
 > - [Mobile Agent Overview](overview.md) - Architecture and core responsibilities
 > - [State Machine](state.md) - FSM states and transitions
@@ -829,10 +829,10 @@ parameters = {
 
 | Cache Type | Description | Auto-Invalidated |
 |------------|-------------|------------------|
-| `controls` | UI controls list | ✓ After actions |
-| `apps` | Installed apps list | ✗ Never |
-| `ui_tree` | UI hierarchy XML | ✗ Never |
-| `device_info` | Device information | ✗ Never |
+| `controls` | UI controls list |  After actions |
+| `apps` | Installed apps list |  Never |
+| `ui_tree` | UI hierarchy XML |  Never |
+| `device_info` | Device information |  Never |
 | `all` | All caches | Varies |
 
 #### Result Format
@@ -984,9 +984,9 @@ Key components:
 
 | Agent | Command Types | Execution Layer | Visual Context | Result Format |
 |-------|--------------|-----------------|----------------|---------------|
-| **MobileAgent** | UI + Apps + Touch | MCP (ADB) | ✓ Screenshots + Controls | success/message/control_info |
-| **LinuxAgent** | CLI + SysInfo | MCP (SSH) | ✗ Text-only | success/exit_code/stdout/stderr |
-| **AppAgent** | UI + API | Automator + MCP | ✓ Screenshots + Controls | UI state + API responses |
+| **MobileAgent** | UI + Apps + Touch | MCP (ADB) |  Screenshots + Controls | success/message/control_info |
+| **LinuxAgent** | CLI + SysInfo | MCP (SSH) |  Text-only | success/exit_code/stdout/stderr |
+| **AppAgent** | UI + API | Automator + MCP |  Screenshots + Controls | UI state + API responses |
 
 MobileAgent's command set reflects the mobile environment:
 

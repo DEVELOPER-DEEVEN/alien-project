@@ -105,17 +105,17 @@ Think → [Open Outlook, Click New, Enter recipient, Enter subject, Type body, S
 
 **Best for:**
 
-✅ Predictable workflows with clear action sequences  
-✅ Repetitive tasks (data entry, form filling)  
-✅ Applications with stable UI structures  
-✅ Cost-sensitive deployments requiring fewer LLM calls
+[OK] Predictable workflows with clear action sequences  
+[OK] Repetitive tasks (data entry, form filling)  
+[OK] Applications with stable UI structures  
+[OK] Cost-sensitive deployments requiring fewer LLM calls
 
 **Not recommended for:**
 
-❌ Highly dynamic UIs with frequent state changes  
-❌ Exploratory tasks requiring frequent observation  
-❌ Error-prone applications where validation is critical per step  
-❌ Tasks requiring user confirmation between actions
+[FAIL] Highly dynamic UIs with frequent state changes  
+[FAIL] Exploratory tasks requiring frequent observation  
+[FAIL] Error-prone applications where validation is critical per step  
+[FAIL] Tasks requiring user confirmation between actions
 
 ## Related Documentation
 

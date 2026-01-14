@@ -55,7 +55,7 @@ class DeviceRegistry:
 
         self._devices[device_id] = device_info
         self.logger.info(
-            f"📝 Registered device {device_id} with capabilities: {capabilities}"
+            f" Registered device {device_id} with capabilities: {capabilities}"
         )
         return device_info
 
@@ -93,7 +93,7 @@ class DeviceRegistry:
         if device_id in self._devices:
             self._devices[device_id].status = DeviceStatus.BUSY
             self._devices[device_id].current_task_id = task_id
-            self.logger.info(f"🔄 Device {device_id} set to BUSY (task: {task_id})")
+            self.logger.info(f"[CONTINUE] Device {device_id} set to BUSY (task: {task_id})")
 
     def set_device_idle(self, device_id: str) -> None:
         """
@@ -104,7 +104,7 @@ class DeviceRegistry:
         if device_id in self._devices:
             self._devices[device_id].status = DeviceStatus.IDLE
             self._devices[device_id].current_task_id = None
-            self.logger.info(f"✅ Device {device_id} set to IDLE")
+            self.logger.info(f"[OK] Device {device_id} set to IDLE")
 
     def is_device_busy(self, device_id: str) -> bool:
         """
@@ -139,7 +139,7 @@ class DeviceRegistry:
         """Reset connection attempts counter to 0"""
         if device_id in self._devices:
             self._devices[device_id].connection_attempts = 0
-            self.logger.info(f"🔄 Reset connection attempts for device {device_id}")
+            self.logger.info(f"[CONTINUE] Reset connection attempts for device {device_id}")
 
     def update_heartbeat(self, device_id: str) -> None:
         """Update last heartbeat timestamp"""
@@ -245,7 +245,7 @@ class DeviceRegistry:
             device_info.metadata["tags"] = system_info["tags"]
 
         self.logger.info(
-            f"📊 Updated system info for {device_id}: "
+            f"[STATUS] Updated system info for {device_id}: "
             f"platform={system_info.get('platform')}, "
             f"cpu={system_info.get('cpu_count')}, "
             f"memory={system_info.get('memory_total_gb')}GB"

@@ -23,7 +23,7 @@ import json
 
 def example_basic_auto_id():
     """示例：基本自动 ID 分配"""
-    print("🚀 基本自动 ID 分配示例")
+    print("[START] 基本自动 ID 分配示例")
     print("=" * 60)
 
     # 创建任务时不提供 task_id，系统自动分配
@@ -35,7 +35,7 @@ def example_basic_auto_id():
         name="数据分析任务", description="分析处理后的数据并生成报告"
     )
 
-    print(f"✅ 自动生成的任务 ID:")
+    print(f"[OK] 自动生成的任务 ID:")
     print(f"   - 任务1: {task1.task_id}")
     print(f"   - 任务2: {task2.task_id}")
     print(f"   - 任务3: {task3.task_id}")
@@ -53,7 +53,7 @@ def example_basic_auto_id():
         dependency_type="UNCONDITIONAL",
     )
 
-    print(f"\n✅ 自动生成的依赖 ID:")
+    print(f"\n[OK] 自动生成的依赖 ID:")
     print(f"   - 依赖1: {dep1.line_id}")
     print(f"   - 依赖2: {dep2.line_id}")
 
@@ -64,14 +64,14 @@ def example_basic_auto_id():
         dependencies={dep1.line_id: dep1, dep2.line_id: dep2},
     )
 
-    print(f"\n✅ 自动生成的星座 ID: {orion.orion_id}")
+    print(f"\n[OK] 自动生成的星座 ID: {orion.orion_id}")
 
     return orion
 
 
 def example_mixed_ids():
     """示例：混合 ID 模式（部分手动，部分自动）"""
-    print("\n🎯 混合 ID 分配示例")
+    print("\n 混合 ID 分配示例")
     print("=" * 60)
 
     # 手动指定一些 ID，自动生成其他 ID
@@ -87,7 +87,7 @@ def example_mixed_ids():
         description="这个任务使用自动生成的 ID",
     )
 
-    print(f"✅ 混合 ID 模式:")
+    print(f"[OK] 混合 ID 模式:")
     print(f"   - 手动任务 ID: {manual_task.task_id}")
     print(f"   - 自动任务 ID: {auto_task.task_id}")
 
@@ -123,7 +123,7 @@ def example_mixed_ids():
 
 def example_sequential_generation():
     """示例：序列化 ID 生成"""
-    print("\n🔢 序列化 ID 生成示例")
+    print("\n 序列化 ID 生成示例")
     print("=" * 60)
 
     from network.agents.schema import IDManager
@@ -143,8 +143,8 @@ def example_sequential_generation():
         line_id = id_manager.generate_line_id(orion_id)
         line_ids.append(line_id)
 
-    print(f"✅ 序列化任务 ID: {task_ids}")
-    print(f"✅ 序列化依赖 ID: {line_ids}")
+    print(f"[OK] 序列化任务 ID: {task_ids}")
+    print(f"[OK] 序列化依赖 ID: {line_ids}")
 
     # 创建任务
     tasks = {}
@@ -175,14 +175,14 @@ def example_sequential_generation():
         dependencies=dependencies,
     )
 
-    print(f"✅ 创建了包含 {len(tasks)} 个任务和 {len(dependencies)} 个依赖的星座")
+    print(f"[OK] 创建了包含 {len(tasks)} 个任务和 {len(dependencies)} 个依赖的星座")
 
     return orion
 
 
 def example_error_handling():
     """示例：错误处理和重复检测"""
-    print("\n⚠️ 错误处理示例")
+    print("\n️ 错误处理示例")
     print("=" * 60)
 
     # 创建有重复 ID 的任务
@@ -196,7 +196,7 @@ def example_error_handling():
         description="第二个任务（重复ID）",
     )
 
-    print(f"✅ 创建了两个任务:")
+    print(f"[OK] 创建了两个任务:")
     print(f"   - 任务1 ID: {task1.task_id}")
     print(f"   - 任务2 ID: {task2.task_id}")
 
@@ -206,9 +206,9 @@ def example_error_handling():
             name="错误测试星座",
             tasks={"task1": task1, "task2": task2},  # 这会触发重复 ID 验证错误
         )
-        print("❌ 错误：重复 ID 检测失败")
+        print("[FAIL] 错误：重复 ID 检测失败")
     except ValueError as e:
-        print(f"✅ 正确捕获重复 ID 错误: {str(e)[:50]}...")
+        print(f"[OK] 正确捕获重复 ID 错误: {str(e)[:50]}...")
 
     # 正确的做法：让系统自动生成唯一 ID
     correct_task1 = TaskStarSchema(
@@ -227,7 +227,7 @@ def example_error_handling():
         },
     )
 
-    print(f"✅ 正确创建星座，任务 ID:")
+    print(f"[OK] 正确创建星座，任务 ID:")
     print(f"   - 任务1: {correct_task1.task_id}")
     print(f"   - 任务2: {correct_task2.task_id}")
 
@@ -236,7 +236,7 @@ def example_error_handling():
 
 def example_json_serialization():
     """示例：JSON 序列化带自动 ID"""
-    print("\n💾 JSON 序列化示例")
+    print("\n JSON 序列化示例")
     print("=" * 60)
 
     # 创建包含自动生成 ID 的星座
@@ -252,7 +252,7 @@ def example_json_serialization():
     # 序列化为 JSON
     json_data = orion.model_dump_json(indent=2)
 
-    print(f"✅ 序列化为 JSON:")
+    print(f"[OK] 序列化为 JSON:")
     print(f"   - 星座 ID: {orion.orion_id}")
     print(f"   - 任务数量: {len(orion.tasks)}")
     print(f"   - JSON 大小: {len(json_data)} 字符")
@@ -260,7 +260,7 @@ def example_json_serialization():
     # 从 JSON 恢复
     loaded_orion = TaskOrionSchema.model_validate_json(json_data)
 
-    print(f"✅ 从 JSON 恢复:")
+    print(f"[OK] 从 JSON 恢复:")
     print(f"   - 星座 ID: {loaded_orion.orion_id}")
     print(f"   - 任务数量: {len(loaded_orion.tasks)}")
 
@@ -268,14 +268,14 @@ def example_json_serialization():
     filename = "auto_id_orion.json"
     with open(filename, "w", encoding="utf-8") as f:
         f.write(json_data)
-    print(f"✅ 已保存到: {filename}")
+    print(f"[OK] 已保存到: {filename}")
 
     return loaded_orion
 
 
 def main():
     """运行所有示例"""
-    print("🎯 自动 ID 分配功能演示")
+    print(" 自动 ID 分配功能演示")
     print("本演示展示了系统如何自动分配 orion_id、task_id 和 line_id\n")
 
     # 运行各种示例
@@ -285,8 +285,8 @@ def main():
     orion4 = example_error_handling()
     orion5 = example_json_serialization()
 
-    print("\n🎉 所有示例执行完成！")
-    print("\n💡 主要特性:")
+    print("\n 所有示例执行完成！")
+    print("\n[THOUGHT] 主要特性:")
     print("   • 自动生成唯一 ID（orion_id, task_id, line_id）")
     print("   • 支持手动指定和自动生成的混合模式")
     print("   • 在星座上下文中保证 ID 唯一性")
@@ -294,7 +294,7 @@ def main():
     print("   • 重复 ID 检测和错误处理")
     print("   • 完全兼容 JSON 序列化/反序列化")
 
-    print(f"\n📊 统计信息:")
+    print(f"\n[STATUS] 统计信息:")
     print(f"   • 总共创建了 5 个示例星座")
     print(f"   • 演示了自动 ID 分配的各种场景")
     print(f"   • 验证了错误处理和唯一性检查")

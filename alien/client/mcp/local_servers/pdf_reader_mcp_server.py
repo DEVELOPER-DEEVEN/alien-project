@@ -55,7 +55,7 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
         try:
             if simulate_human:
                 # 模拟人工操作：打开PDF文件
-                print(f"🔍 Opening PDF file: {os.path.basename(pdf_path)}")
+                print(f" Opening PDF file: {os.path.basename(pdf_path)}")
                 try:
                     # 尝试用默认程序打开PDF（通常是Adobe Reader或浏览器）
                     pdf_process = subprocess.Popen(["start", "", pdf_path], shell=True)
@@ -63,16 +63,16 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
                     # 模拟人工查看时间：随机等待2-5秒
                     wait_time = random.uniform(2.0, 5.0)
                     print(
-                        f"👁️  Simulating human reading... waiting {wait_time:.1f} seconds"
+                        f"️  Simulating human reading... waiting {wait_time:.1f} seconds"
                     )
                     time.sleep(wait_time)
 
                 except Exception as e:
-                    print(f"⚠️  Could not open PDF with default application: {e}")
-                    print("📄 Proceeding with text extraction...")
+                    print(f"️  Could not open PDF with default application: {e}")
+                    print("[DOC] Proceeding with text extraction...")
 
             # 提取文本内容
-            print(f"📝 Extracting text from: {os.path.basename(pdf_path)}")
+            print(f" Extracting text from: {os.path.basename(pdf_path)}")
             with open(pdf_path, "rb") as file:
                 pdf_reader = PyPDF2.PdfReader(file)
                 text_content = ""
@@ -87,12 +87,12 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
                         # 模拟人工翻页等待时间
                         page_wait = random.uniform(0.5, 1.5)
                         print(
-                            f"📖 Processing page {page_num + 1}... waiting {page_wait:.1f}s"
+                            f"[LANG] Processing page {page_num + 1}... waiting {page_wait:.1f}s"
                         )
                         time.sleep(page_wait)
 
             if simulate_human:
-                print(f"✅ Text extraction completed for: {os.path.basename(pdf_path)}")
+                print(f"[OK] Text extraction completed for: {os.path.basename(pdf_path)}")
 
             return text_content.strip()
 
@@ -102,13 +102,13 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
             if simulate_human and pdf_process:
                 try:
 
-                    print(f"🔒 Closing PDF file: {os.path.basename(pdf_path)}")
+                    print(f" Closing PDF file: {os.path.basename(pdf_path)}")
 
                     time.sleep(0.5)
-                    print(f"📄 PDF closed: {os.path.basename(pdf_path)}")
+                    print(f"[DOC] PDF closed: {os.path.basename(pdf_path)}")
 
                 except Exception as e:
-                    print(f"⚠️  Could not close PDF application: {e}")
+                    print(f"️  Could not close PDF application: {e}")
 
     def _extract_text_from_pdf_batch(
         pdf_paths: List[str], simulate_human: bool = True
@@ -123,14 +123,14 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
         total_files = len(pdf_paths)
 
         if simulate_human:
-            print(f"📚 Starting batch processing of {total_files} PDF files...")
-            print("🤖 Simulating human-like document review process...")
+            print(f"[PLAN] Starting batch processing of {total_files} PDF files...")
+            print(" Simulating human-like document review process...")
 
         for i, pdf_path in enumerate(pdf_paths, 1):
             file_name = os.path.basename(pdf_path)
 
             if simulate_human:
-                print(f"\n📂 Processing file {i}/{total_files}: {file_name}")
+                print(f"\n Processing file {i}/{total_files}: {file_name}")
 
                 # 模拟人工在文件间的停顿
                 if i > 1:
@@ -144,10 +144,10 @@ def create_pdf_reader_mcp_server(*args, **kwargs) -> FastMCP:
             results[file_name] = text_content
 
             if simulate_human:
-                print(f"✅ Completed: {file_name}")
+                print(f"[OK] Completed: {file_name}")
 
         if simulate_human:
-            print(f"\n🎉 Batch processing completed! Processed {total_files} files.")
+            print(f"\n Batch processing completed! Processed {total_files} files.")
 
         return results
 
@@ -300,10 +300,10 @@ async def main():
             if not os.path.exists(test_directory):
                 test_directory = os.path.abspath("test_pdfs")
             print(
-                f"⚠️  Original directory not accessible, using test directory: {test_directory}"
+                f"️  Original directory not accessible, using test directory: {test_directory}"
             )
 
-        print(f"\n🔍 Testing with directory: {test_directory}")
+        print(f"\n Testing with directory: {test_directory}")
 
         # Test 1: List PDF files in the directory
         print("\n1. Listing PDF files in directory...")
@@ -324,7 +324,7 @@ async def main():
                 content_preview = (
                     content[:200] + "..." if len(content) > 200 else content
                 )
-                print(f"  📄 {filename}: {content_preview}")
+                print(f"  [DOC] {filename}: {content_preview}")
         else:
             print(f"Result: {result.data}")
 

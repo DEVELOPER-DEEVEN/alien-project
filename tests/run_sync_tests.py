@@ -55,7 +55,7 @@ def run_tests():
     
     all_passed = True
     for test_file, returncode in results.items():
-        status = "✅ PASSED" if returncode == 0 else "❌ FAILED"
+        status = "[OK] PASSED" if returncode == 0 else "[FAIL] FAILED"
         print(f"{status} - {test_file}")
         if returncode != 0:
             all_passed = False
@@ -63,10 +63,10 @@ def run_tests():
     print("=" * 80)
     
     if all_passed:
-        print("\n✅ All tests passed!")
+        print("\n[OK] All tests passed!")
         return 0
     else:
-        print("\n❌ Some tests failed. Please review the output above.")
+        print("\n[FAIL] Some tests failed. Please review the output above.")
         return 1
 
 

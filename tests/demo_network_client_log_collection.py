@@ -215,27 +215,27 @@ def create_mock_network_session():
 
     # Mock run method with realistic execution simulation
     async def mock_run_side_effect():
-        print("  🔄 Analyzing user request...")
+        print("  [CONTINUE] Analyzing user request...")
         mock_session._rounds.append(
             {"round": 1, "action": "analyze_request", "duration": 2.1}
         )
 
-        print("  🏗️  Creating task orion...")
+        print("  ️  Creating task orion...")
         mock_session._rounds.append(
             {"round": 2, "action": "create_orion", "duration": 1.8}
         )
 
-        print("  📋 Planning device assignments...")
+        print("  [TASK] Planning device assignments...")
         mock_session._rounds.append(
             {"round": 3, "action": "plan_assignments", "duration": 1.5}
         )
 
-        print("  🚀 Executing tasks across devices...")
+        print("  [START] Executing tasks across devices...")
         mock_session._rounds.append(
             {"round": 4, "action": "execute_tasks", "duration": 15.3}
         )
 
-        print("  📊 Generating final report...")
+        print("  [STATUS] Generating final report...")
         mock_session._rounds.append(
             {"round": 5, "action": "generate_report", "duration": 3.2}
         )
@@ -249,25 +249,25 @@ def create_mock_network_session():
 async def demo_network_client_log_collection():
     """Demonstrate NetworkClient with mock devices for log collection."""
 
-    print("🌟 Network Client Log Collection Demo")
+    print(" Network Client Log Collection Demo")
     print("=" * 50)
 
     # Create mock devices
-    print("\n📱 Creating mock devices...")
+    print("\n Creating mock devices...")
     devices = create_mock_devices()
     linux1, linux2, windows = devices
 
-    print(f"  ✅ Linux Server 1: {linux1.metadata['hostname']} ({linux1.device_id})")
-    print(f"  ✅ Linux Server 2: {linux2.metadata['hostname']} ({linux2.device_id})")
+    print(f"  [OK] Linux Server 1: {linux1.metadata['hostname']} ({linux1.device_id})")
+    print(f"  [OK] Linux Server 2: {linux2.metadata['hostname']} ({linux2.device_id})")
     print(
-        f"  ✅ Windows Workstation: {windows.metadata['hostname']} ({windows.device_id})"
+        f"  [OK] Windows Workstation: {windows.metadata['hostname']} ({windows.device_id})"
     )
 
     # Create orion config
     orion_config = create_mock_orion_config(devices)
-    print(f"\n🏛️  Created orion: {orion_config.orion_id}")
-    print(f"    📊 Total devices: {len(orion_config.devices)}")
-    print(f"    ⚡ Max concurrent tasks: {orion_config.max_concurrent_tasks}")
+    print(f"\n️  Created orion: {orion_config.orion_id}")
+    print(f"    [STATUS] Total devices: {len(orion_config.devices)}")
+    print(f"     Max concurrent tasks: {orion_config.max_concurrent_tasks}")
 
     # Create mocks for dependencies
     mock_orion_client = create_mock_orion_client(devices)
@@ -287,7 +287,7 @@ async def demo_network_client_log_collection():
         mock_session_class.return_value = mock_network_session
 
         # Initialize NetworkClient
-        print("\n🚀 Initializing Network Client...")
+        print("\n[START] Initializing Network Client...")
         with tempfile.TemporaryDirectory() as temp_dir:
             client = NetworkClient(
                 session_name="demo_log_collection_session",
@@ -297,12 +297,12 @@ async def demo_network_client_log_collection():
             )
 
             await client.initialize()
-            print("    ✅ Network Client initialized successfully")
+            print("    [OK] Network Client initialized successfully")
 
             # Verify device availability
-            print("\n🔍 Checking device availability...")
+            print("\n Checking device availability...")
             connected_devices = client._client.device_manager.get_connected_devices()
-            print(f"    📡 Connected devices: {len(connected_devices)}")
+            print(f"     Connected devices: {len(connected_devices)}")
 
             all_devices = (
                 client._client.device_manager.device_registry.get_all_devices()
@@ -314,7 +314,7 @@ async def demo_network_client_log_collection():
                 print(f"      • {device_id}: {device.os} - {capabilities_summary}")
 
             # Process log collection request
-            print("\n📝 Processing log collection request...")
+            print("\n Processing log collection request...")
 
             log_collection_request = (
                 "Collect comprehensive logs from both Linux servers (web-server-01 and api-server-01). "
@@ -327,67 +327,67 @@ async def demo_network_client_log_collection():
 
             print(f"    Request: {log_collection_request[:100]}...")
 
-            print("\n🔄 Executing session...")
+            print("\n[CONTINUE] Executing session...")
             result = await client.process_request(
                 request=log_collection_request,
                 task_name="comprehensive_log_collection_and_reporting",
             )
 
             # Display results
-            print("\n📊 Session Results:")
-            print(f"    ✅ Status: {result['status']}")
+            print("\n[STATUS] Session Results:")
+            print(f"    [OK] Status: {result['status']}")
             print(f"    ⏱️  Execution time: {result['execution_time']:.2f} seconds")
-            print(f"    🔄 Total rounds: {result['rounds']}")
-            print(f"    📅 Start time: {result['start_time']}")
+            print(f"    [CONTINUE] Total rounds: {result['rounds']}")
+            print(f"    [DATE] Start time: {result['start_time']}")
 
             if "orion" in result:
                 orion_info = result["orion"]
-                print(f"\n🏛️  Orion Details:")
-                print(f"    🆔 ID: {orion_info['id']}")
-                print(f"    📛 Name: {orion_info['name']}")
-                print(f"    📋 Tasks: {orion_info['task_count']}")
-                print(f"    🔗 Dependencies: {orion_info['dependency_count']}")
-                print(f"    📊 State: {orion_info['state']}")
+                print(f"\n️  Orion Details:")
+                print(f"     ID: {orion_info['id']}")
+                print(f"     Name: {orion_info['name']}")
+                print(f"    [TASK] Tasks: {orion_info['task_count']}")
+                print(f"    [DEP] Dependencies: {orion_info['dependency_count']}")
+                print(f"    [STATUS] State: {orion_info['state']}")
 
             # Show mock task execution details
-            print(f"\n📋 Task Execution Summary:")
+            print(f"\n[TASK] Task Execution Summary:")
             tasks = mock_network_session._current_orion.tasks
             for i, task in enumerate(tasks, 1):
                 print(f"    {i}. {task}")
 
-            print(f"\n🔗 Dependency Chain:")
+            print(f"\n[DEP] Dependency Chain:")
             dependencies = mock_network_session._current_orion.dependencies
             for dep in dependencies:
                 print(f"    • {dep}")
 
             # Cleanup
-            print("\n🛑 Shutting down...")
+            print("\n Shutting down...")
             await client.shutdown()
-            print("    ✅ Network Client shutdown complete")
+            print("    [OK] Network Client shutdown complete")
 
-    print("\n🎉 Demo completed successfully!")
+    print("\n Demo completed successfully!")
     print("\nKey Behaviors Demonstrated:")
-    print("  ✅ Mock AgentProfile creation and configuration")
-    print("  ✅ OrionConfig setup with multiple devices")
-    print("  ✅ NetworkClient initialization and request processing")
-    print("  ✅ Cross-platform task orchestration simulation")
-    print("  ✅ Session lifecycle management")
-    print("  ✅ Error handling and resource cleanup")
+    print("  [OK] Mock AgentProfile creation and configuration")
+    print("  [OK] OrionConfig setup with multiple devices")
+    print("  [OK] NetworkClient initialization and request processing")
+    print("  [OK] Cross-platform task orchestration simulation")
+    print("  [OK] Session lifecycle management")
+    print("  [OK] Error handling and resource cleanup")
 
 
 if __name__ == "__main__":
-    print("🌌 Starting Network Client Demo with Mock AgentProfile")
+    print("[ORION] Starting Network Client Demo with Mock AgentProfile")
     print(
-        "🎯 Scenario: Log Collection from Linux Servers + Excel Generation on Windows"
+        " Scenario: Log Collection from Linux Servers + Excel Generation on Windows"
     )
     print()
 
     try:
         asyncio.run(demo_network_client_log_collection())
     except KeyboardInterrupt:
-        print("\n👋 Demo interrupted by user")
+        print("\n Demo interrupted by user")
     except Exception as e:
-        print(f"\n❌ Demo failed: {e}")
+        print(f"\n[FAIL] Demo failed: {e}")
         import traceback
 
         traceback.print_exc()

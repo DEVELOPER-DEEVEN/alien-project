@@ -22,7 +22,7 @@ async def test_orion_modified_handling():
 
     console = Console()
     console.print(
-        "[bold blue]🔍 Testing Orion Modified Event Handling[/bold blue]\n"
+        "[bold blue] Testing Orion Modified Event Handling[/bold blue]\n"
     )
 
     # Initialize observer with explicit console
@@ -86,7 +86,7 @@ async def test_orion_modified_handling():
 
     await observer.on_event(event)
 
-    console.print("\n[green]✅ Event handling test completed[/green]")
+    console.print("\n[green][OK] Event handling test completed[/green]")
 
 
 if __name__ == "__main__":

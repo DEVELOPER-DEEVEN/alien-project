@@ -191,7 +191,7 @@ class SessionManager:
         )
         self._running_tasks[session_id] = task
 
-        self.logger.info(f"[SessionManager] 🚀 Started background task {session_id}")
+        self.logger.info(f"[SessionManager] [START] Started background task {session_id}")
         return session_id
 
     async def cancel_task(
@@ -209,7 +209,7 @@ class SessionManager:
         task = self._running_tasks.get(session_id)
         if task and not task.done():
             self.logger.info(
-                f"[SessionManager] 🛑 Cancelling session {session_id} (reason: {reason})"
+                f"[SessionManager]  Cancelling session {session_id} (reason: {reason})"
             )
 
             # Store cancellation reason for use in _run_session_background
@@ -226,11 +226,11 @@ class SessionManager:
             self._running_tasks.pop(session_id, None)
             self._cancellation_reasons.pop(session_id, None)  # Clean up reason
             self.remove_session(session_id)
-            self.logger.info(f"[SessionManager] ✅ Session {session_id} cancelled")
+            self.logger.info(f"[SessionManager] [OK] Session {session_id} cancelled")
             return True
 
         self.logger.warning(
-            f"[SessionManager] ⚠️ No running task found for {session_id}"
+            f"[SessionManager] ️ No running task found for {session_id}"
         )
         return False
 
@@ -255,7 +255,7 @@ class SessionManager:
         was_cancelled = False
 
         try:
-            self.logger.info(f"[SessionManager] 🚀 Executing session {session_id}")
+            self.logger.info(f"[SessionManager] [START] Executing session {session_id}")
             start_time = asyncio.get_event_loop().time()
 
             # Run the session (this may contain sync LLM calls that need fixing)
@@ -273,18 +273,18 @@ class SessionManager:
                     "failure": "session ended with an error"
                 }
                 self.logger.info(
-                    f"[SessionManager] ⚠️ Session {session_id} ended with error"
+                    f"[SessionManager] ️ Session {session_id} ended with error"
                 )
             elif session.is_finished():
                 status = TaskStatus.COMPLETED
                 self.logger.info(
-                    f"[SessionManager] ✅ Session {session_id} finished successfully"
+                    f"[SessionManager] [OK] Session {session_id} finished successfully"
                 )
             else:
                 status = TaskStatus.FAILED
                 error = "Session ended in unknown state"
                 self.logger.warning(
-                    f"[SessionManager] ⚠️ Session {session_id} ended in unknown state"
+                    f"[SessionManager] ️ Session {session_id} ended in unknown state"
                 )
 
             session.reset()
@@ -296,7 +296,7 @@ class SessionManager:
             )
 
             self.logger.warning(
-                f"[SessionManager] 🛑 Session {session_id} was cancelled (reason: {cancellation_reason})"
+                f"[SessionManager]  Session {session_id} was cancelled (reason: {cancellation_reason})"
             )
             status = TaskStatus.FAILED
 
@@ -314,7 +314,7 @@ class SessionManager:
             import traceback
 
             traceback.print_exc()
-            self.logger.error(f"[SessionManager] ❌ Error in session {session_id}: {e}")
+            self.logger.error(f"[SessionManager] [FAIL] Error in session {session_id}: {e}")
             status = TaskStatus.FAILED
             error = str(e)
 
@@ -322,13 +322,13 @@ class SessionManager:
             # Don't send callback if task was cancelled (client already disconnected)
             if was_cancelled:
                 self.logger.info(
-                    f"[SessionManager] 🛑 Session {session_id} cancelled, skipping callback"
+                    f"[SessionManager]  Session {session_id} cancelled, skipping callback"
                 )
                 self._running_tasks.pop(session_id, None)
                 return
 
             self.logger.info(
-                f"[SessionManager] 📦 Building result message for session {session_id} (status={status})"
+                f"[SessionManager]  Building result message for session {session_id} (status={status})"
             )
 
             # Build result message
@@ -345,32 +345,32 @@ class SessionManager:
             # Save results
             self.set_results(session_id)
             self.logger.info(
-                f"[SessionManager] 💾 Saved results for session {session_id}"
+                f"[SessionManager]  Saved results for session {session_id}"
             )
 
             # Notify callback
             if callback:
                 self.logger.info(
-                    f"[SessionManager] 📞 Calling callback for session {session_id}"
+                    f"[SessionManager]  Calling callback for session {session_id}"
                 )
                 try:
                     await callback(session_id, result_message)
                     self.logger.info(
-                        f"[SessionManager] ✅ Callback completed for session {session_id}"
+                        f"[SessionManager] [OK] Callback completed for session {session_id}"
                     )
                 except Exception as e:
                     import traceback
 
                     self.logger.error(
-                        f"[SessionManager] ❌ Callback error for session {session_id}: {e}\n{traceback.format_exc()}"
+                        f"[SessionManager] [FAIL] Callback error for session {session_id}: {e}\n{traceback.format_exc()}"
                     )
             else:
                 self.logger.warning(
-                    f"[SessionManager] ⚠️ No callback registered for session {session_id}"
+                    f"[SessionManager] ️ No callback registered for session {session_id}"
                 )
 
             # Cleanup
             self._running_tasks.pop(session_id, None)
             self.logger.info(
-                f"[SessionManager] ✅ Session {session_id} completed with status {status}"
+                f"[SessionManager] [OK] Session {session_id} completed with status {status}"
             )

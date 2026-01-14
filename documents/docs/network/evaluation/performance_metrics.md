@@ -290,19 +290,19 @@ def analyze_session_performance(result_path: str):
     
     # Task performance
     task_stats = metrics["task_statistics"]
-    print(f"✅ Tasks completed: {task_stats['completed_tasks']}/{task_stats['total_tasks']}")
+    print(f"[OK] Tasks completed: {task_stats['completed_tasks']}/{task_stats['total_tasks']}")
     print(f"⏱️  Average task duration: {task_stats['average_task_duration']:.2f}s")
-    print(f"📊 Success rate: {task_stats['success_rate'] * 100:.1f}%")
+    print(f"[STATUS] Success rate: {task_stats['success_rate'] * 100:.1f}%")
     
     # Orion performance
     const_stats = metrics["orion_statistics"]
-    print(f"\n🌌 Orions: {const_stats['completed_orions']}/{const_stats['total_orions']}")
+    print(f"\n[ORION] Orions: {const_stats['completed_orions']}/{const_stats['total_orions']}")
     print(f"⏱️  Average orion duration: {const_stats['average_orion_duration']:.2f}s")
     
     # Parallelism analysis
     final_stats = result["session_results"]["final_orion_stats"]
     parallelism = final_stats.get("parallelism_ratio", 1.0)
-    print(f"\n🔀 Parallelism ratio: {parallelism:.2f}")
+    print(f"\n Parallelism ratio: {parallelism:.2f}")
     
     if parallelism > 1.5:
         print("   → High parallelism: tasks executed concurrently")
@@ -313,7 +313,7 @@ def analyze_session_performance(result_path: str):
     
     # Modification analysis
     mod_stats = metrics["modification_statistics"]
-    print(f"\n✏️  Total modifications: {mod_stats['total_modifications']}")
+    print(f"\n️  Total modifications: {mod_stats['total_modifications']}")
     print(f"   Average per orion: {mod_stats['average_modifications_per_orion']:.1f}")
     
     return metrics
@@ -325,17 +325,17 @@ metrics = analyze_session_performance("logs/network/task_32/result.json")
 **Expected Output:**
 
 ```
-✅ Tasks completed: 5/5
+[OK] Tasks completed: 5/5
 ⏱️  Average task duration: 134.91s
-📊 Success rate: 100.0%
+[STATUS] Success rate: 100.0%
 
-🌌 Orions: 1/1
+[ORION] Orions: 1/1
 ⏱️  Average orion duration: 659.98s
 
-🔀 Parallelism ratio: 1.06
+ Parallelism ratio: 1.06
    → Sequential execution: limited parallelism
 
-✏️  Total modifications: 4
+️  Total modifications: 4
    Average per orion: 4.0
 ```
 
@@ -369,11 +369,11 @@ def identify_bottlenecks(result_path: str):
             })
     
     if bottlenecks:
-        print("⚠️  Performance Bottlenecks Detected:")
+        print("️  Performance Bottlenecks Detected:")
         for task in sorted(bottlenecks, key=lambda x: x["duration"], reverse=True):
             print(f"   • {task['task_id']}: {task['duration']:.2f}s ({task['factor']:.1f}x average)")
     else:
-        print("✅ No significant bottlenecks detected")
+        print("[OK] No significant bottlenecks detected")
     
     return bottlenecks
 
@@ -384,7 +384,7 @@ bottlenecks = identify_bottlenecks("logs/network/task_32/result.json")
 **Example Output:**
 
 ```
-⚠️  Performance Bottlenecks Detected:
+️  Performance Bottlenecks Detected:
    • t5: 369.05s (2.7x average)
    • t4: 269.11s (2.0x average)
 ```
@@ -439,7 +439,7 @@ def visualize_task_timeline(result_path: str):
     
     plt.tight_layout()
     plt.savefig("task_timeline.png")
-    print("📊 Timeline saved to task_timeline.png")
+    print("[STATUS] Timeline saved to task_timeline.png")
 
 # Example usage
 visualize_task_timeline("logs/network/task_32/result.json")
@@ -469,7 +469,7 @@ def analyze_dependencies(result_path: str):
     print(f"Max concurrent tasks: {max_width}/{total_tasks}")
     
     if parallelism < 1.5:
-        print("\n💡 Recommendations:")
+        print("\n[THOUGHT] Recommendations:")
             print("   • Reduce task dependencies where possible")
             print("   • Break large sequential tasks into parallel subtasks")
             print("   • Use more device agents for concurrent execution")
@@ -494,7 +494,7 @@ def generate_optimization_report(result_path: str):
     
     potential_savings = max_duration - avg_duration
     
-    print(f"📈 Optimization Potential:")
+    print(f" Optimization Potential:")
     print(f"   Current slowest task: {max_duration:.2f}s")
     print(f"   Average task duration: {avg_duration:.2f}s")
     print(f"   Potential time savings: {potential_savings:.2f}s ({potential_savings/max_duration*100:.1f}%)")
@@ -527,13 +527,13 @@ def analyze_modification_overhead(result_path: str):
     
     if modification_count > 0:
         avg_overhead = total_processing_time / modification_count
-        print(f"✏️  Modification Overhead:")
+        print(f"️  Modification Overhead:")
         print(f"   Total modifications: {modification_count}")
         print(f"   Total overhead: {total_processing_time:.2f}s")
         print(f"   Average per modification: {avg_overhead:.2f}s")
         
         if modification_count > 10:
-            print("\n💡 Recommendations:")
+            print("\n[THOUGHT] Recommendations:")
             print("   • Provide more detailed initial request")
             print("   • Use device capabilities metadata for better planning")
 

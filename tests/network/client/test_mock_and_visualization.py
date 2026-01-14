@@ -38,7 +38,7 @@ class MockNetworkClientTester:
 
     async def test_mock_client_integration(self):
         """Test NetworkClient with mock components."""
-        print("\n🧪 Testing Mock Client Integration")
+        print("\n Testing Mock Client Integration")
         print("=" * 50)
 
         try:
@@ -82,28 +82,28 @@ class MockNetworkClientTester:
             client._client = mock_client
             client._session = mock_session
 
-            print("✅ Mock client created successfully")
+            print("[OK] Mock client created successfully")
             
             # Test process request with mock
             result = await client.process_request("Test mock request", "mock_task")
             
-            print(f"✅ Request processed with mock: {result['status']}")
+            print(f"[OK] Request processed with mock: {result['status']}")
             print(f"   - Execution time: {result.get('execution_time', 'N/A')}")
             print(f"   - Orion: {result.get('orion', {}).get('name', 'N/A')}")
             
             # Test shutdown
             await client.shutdown()
-            print("✅ Mock client shutdown completed")
+            print("[OK] Mock client shutdown completed")
             
             return True
             
         except Exception as e:
-            print(f"❌ Mock client test failed: {e}")
+            print(f"[FAIL] Mock client test failed: {e}")
             return False
 
     def test_visualization_display_functions(self):
         """Test all visualization display functions."""
-        print("\n🎨 Testing Visualization Display Functions")
+        print("\n Testing Visualization Display Functions")
         print("=" * 50)
 
         try:
@@ -158,16 +158,16 @@ class MockNetworkClientTester:
             }
             self.display.display_result(error_result)
             
-            print("\n✅ All visualization functions tested successfully")
+            print("\n[OK] All visualization functions tested successfully")
             return True
             
         except Exception as e:
-            print(f"❌ Visualization test failed: {e}")
+            print(f"[FAIL] Visualization test failed: {e}")
             return False
 
     def test_display_formatting(self):
         """Test display formatting with various data."""
-        print("\n📊 Testing Display Formatting")
+        print("\n[STATUS] Testing Display Formatting")
         print("=" * 50)
 
         try:
@@ -196,16 +196,16 @@ class MockNetworkClientTester:
             
             progress.stop()
             
-            print("\n✅ Display formatting tests completed")
+            print("\n[OK] Display formatting tests completed")
             return True
             
         except Exception as e:
-            print(f"❌ Display formatting test failed: {e}")
+            print(f"[FAIL] Display formatting test failed: {e}")
             return False
 
     async def test_mock_orion_agent(self):
         """Test the MockOrionAgent functionality."""
-        print("\n🤖 Testing Mock Orion Agent")
+        print("\n Testing Mock Orion Agent")
         print("=" * 50)
 
         try:
@@ -225,24 +225,24 @@ class MockNetworkClientTester:
             
             print("1. Testing orion creation...")
             orion = await mock_agent.process_creation(context)
-            print(f"   ✅ Created orion: {orion.name}")
-            print(f"   ✅ Task count: {orion.task_count}")
-            print(f"   ✅ Tasks: {[task.description for task in orion.tasks.values()][:3]}...")
+            print(f"   [OK] Created orion: {orion.name}")
+            print(f"   [OK] Task count: {orion.task_count}")
+            print(f"   [OK] Tasks: {[task.description for task in orion.tasks.values()][:3]}...")
             
             print("2. Testing orion editing...")
             edited_orion = await mock_agent.process_editing(context)
-            print(f"   ✅ Edited orion: {edited_orion.name}")
-            print(f"   ✅ Updated task count: {edited_orion.task_count}")
+            print(f"   [OK] Edited orion: {edited_orion.name}")
+            print(f"   [OK] Updated task count: {edited_orion.task_count}")
             
             return True
             
         except Exception as e:
-            print(f"❌ Mock orion agent test failed: {e}")
+            print(f"[FAIL] Mock orion agent test failed: {e}")
             return False
 
     async def run_all_tests(self):
         """Run all mock and visualization tests."""
-        print("🚀 Starting Mock Client and Visualization Tests")
+        print("[START] Starting Mock Client and Visualization Tests")
         print("=" * 80)
 
         results = []
@@ -261,7 +261,7 @@ class MockNetworkClientTester:
         
         # Summary
         print("\n" + "=" * 80)
-        print("🏁 Test Results Summary")
+        print(" Test Results Summary")
         print("=" * 80)
         
         test_names = [
@@ -275,15 +275,15 @@ class MockNetworkClientTester:
         total = len(results)
         
         for i, (test_name, result) in enumerate(zip(test_names, results)):
-            status = "✅ PASSED" if result else "❌ FAILED"
+            status = "[OK] PASSED" if result else "[FAIL] FAILED"
             print(f"{i+1}. {test_name}: {status}")
         
         print(f"\nOverall: {passed}/{total} tests passed")
         
         if passed == total:
-            print("🎉 All tests passed! Mock client and visualization are working correctly.")
+            print(" All tests passed! Mock client and visualization are working correctly.")
         else:
-            print("⚠️  Some tests failed. Please check the output above.")
+            print("️  Some tests failed. Please check the output above.")
         
         return passed == total
 

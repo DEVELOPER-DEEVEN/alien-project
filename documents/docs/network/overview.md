@@ -7,29 +7,29 @@
 
 ---
 
-## 🚀 What is ALIEN³ Network?
+## [START] What is ALIEN³ Network?
 
 **ALIEN³ Network** is a revolutionary **cross-device orchestration framework** that transforms isolated device agents into a unified digital ecosystem. It models complex user requests as **Task Orions** (星座) — dynamic distributed DAGs where nodes represent executable subtasks and edges capture dependencies across heterogeneous devices.
 
-### 🎯 The Vision
+###  The Vision
 
 Building truly ubiquitous intelligent agents requires moving beyond single-device automation. ALIEN³ Network addresses four fundamental challenges in cross-device agent orchestration:
 
-**🔄 Asynchronous Parallelism**  
+**[CONTINUE] Asynchronous Parallelism**  
 Enabling concurrent task execution across multiple devices while maintaining correctness through event-driven coordination and safe concurrency control
 
-**⚡ Dynamic Adaptation**  
+** Dynamic Adaptation**  
 Real-time workflow evolution in response to intermediate results, transient failures, and runtime observations without workflow abortion
 
-**🌐 Distributed Coordination**  
+**[WEB] Distributed Coordination**  
 Reliable, low-latency communication across heterogeneous devices via WebSocket-based Agent Interaction Protocol with fault tolerance
 
-**🛡️ Safety Guarantees**  
+**️ Safety Guarantees**  
 Formal invariants ensuring DAG consistency during concurrent modifications and parallel execution, verified through rigorous proofs
 
 ---
 
-## 🏗️ Architecture
+## ️ Architecture
 
 <div align="center">
   <img src="/img/overview2.png" alt="ALIEN³ Network Layered Architecture" style="max-width: 100%; height: auto; margin: 20px 0;">
@@ -41,7 +41,7 @@ Formal invariants ensuring DAG consistency during concurrent modifications and p
 
 ALIEN³ Network follows a **hierarchical orchestration model** that separates global coordination from local execution. This architecture enables scalable cross-device orchestration while maintaining consistent control and responsiveness across diverse operating systems and network environments.
 
-#### 🎛️ Hierarchical Control Plane
+#### ️ Hierarchical Control Plane
 
 **OrionClient** serves as the **global control plane**, maintaining a live registry of all connected device agents with their:
 - Capability profiles and system specifications
@@ -57,7 +57,7 @@ Each device hosts a **device agent server** that manages local orchestration thr
 
 **Clean separation**: Global orchestration policies are decoupled from device-specific heterogeneity, providing consistent abstraction across endpoints with different OS, hardware, or network conditions.
 
-#### 🔄 Orchestration Flow
+#### [CONTINUE] Orchestration Flow
 
 1. **DAG Synthesis**: OrionClient invokes the **Orion Agent** to construct a TaskOrion—a dynamic DAG encoding task decomposition, dependencies, and device mappings
 2. **Device Assignment**: Each TaskStar (DAG node) is assigned to suitable device agents based on capability profiles and system load
@@ -68,7 +68,7 @@ Each device hosts a **device agent server** that manages local orchestration thr
 
 **Result**: Highly parallel and resilient execution that sustains workflow completion even as subsets of devices fail or reconnect.
 
-#### 🔌 Cross-Agent Communication
+####  Cross-Agent Communication
 
 The **Agent Interaction Protocol (AIP)** handles all cross-agent interactions:
 - Agent registration and capability synchronization
@@ -86,19 +86,19 @@ Together, these design elements form a cohesive foundation for orchestrating lar
 
 ---
 
-## ✨ Core Design Principles
+## [NEW] Core Design Principles
 
 ALIEN³ Network realizes cross-device orchestration through **five tightly integrated design principles**:
 
-### 1. 🌟 Declarative Decomposition into Dynamic DAG (Task Orion)
+### 1.  Declarative Decomposition into Dynamic DAG (Task Orion)
 
 Natural-language or programmatic requests are decomposed by the **Orion Agent** into a structured DAG of **TaskStars** (nodes) and **TaskStarLines** (edges) that encode workflow logic, dependencies, and device assignments. This declarative structure is amenable to automated scheduling, introspection, and dynamic modification throughout execution.
 
 **Key Benefits:**
-- 📋 **Declarative structure** for automated scheduling
-- 🔍 **Runtime introspection** for workflow visibility
-- ✏️ **Dynamic rewriting** throughout execution
-- 🔄 **Automated orchestration** across heterogeneous devices
+- [TASK] **Declarative structure** for automated scheduling
+-  **Runtime introspection** for workflow visibility
+- ️ **Dynamic rewriting** throughout execution
+- [CONTINUE] **Automated orchestration** across heterogeneous devices
 
 ```mermaid
 graph LR
@@ -115,15 +115,15 @@ graph LR
 
 [Learn more →](orion/overview.md)
 
-### 2. 🔄 Continuous, Result-Driven Graph Evolution
+### 2. [CONTINUE] Continuous, Result-Driven Graph Evolution
 
 The **Task Orion** is a **living data structure** that evolves in response to execution feedback. Intermediate outputs, transient failures, and new observations trigger controlled rewrites—adding diagnostic TaskStars, creating fallbacks, rewiring dependencies, or pruning completed nodes—so the system adapts dynamically instead of aborting on errors.
 
 **Adaptation Mechanisms:**
 - 🩺 **Diagnostic TaskStars** added for debugging
-- 🛡️ **Fallback creation** for error recovery
-- 🔗 **Dependency rewiring** for workflow optimization
-- ✂️ **Node pruning** after completion
+- ️ **Fallback creation** for error recovery
+- [DEP] **Dependency rewiring** for workflow optimization
+- ️ **Node pruning** after completion
 
 The **Orion Agent** operates in two modes:
 - **Creation Mode**: Synthesizes initial DAG from user request with device-aware task decomposition
@@ -131,74 +131,74 @@ The **Orion Agent** operates in two modes:
 
 [Learn more →](orion_agent/overview.md)
 
-### 3. 🎯 Heterogeneous, Asynchronous, and Safe Orchestration
+### 3.  Heterogeneous, Asynchronous, and Safe Orchestration
 
 Each **Task Star** is matched to the most suitable device agent via rich **Agent Profiles** reflecting OS, hardware capabilities, and installed tools. The **Orion Orchestrator** executes tasks asynchronously, allowing multiple TaskStars to progress in parallel.
 
 **Safety Guarantees:**
-- 🔒 **Safe assignment locking** prevents race conditions
-- 📅 **Event-driven scheduling** monitors DAG readiness
-- ✅ **DAG consistency checks** maintain structural integrity
-- 🔄 **Batched edits** ensure atomicity
-- 📐 **Formal verification** reinforces correctness
+-  **Safe assignment locking** prevents race conditions
+- [DATE] **Event-driven scheduling** monitors DAG readiness
+- [OK] **DAG consistency checks** maintain structural integrity
+- [CONTINUE] **Batched edits** ensure atomicity
+-  **Formal verification** reinforces correctness
 - ⏱️ **Timeout protection** prevents deadlocks
 
 These mechanisms collectively ensure **high efficiency without compromising reliability**.
 
 [Learn more →](orion_orchestrator/overview.md)
 
-### 4. 🔌 Unified Agent Interaction Protocol (AIP)
+### 4.  Unified Agent Interaction Protocol (AIP)
 
 Built atop persistent **WebSocket channels**, AIP provides a unified, secure, and fault-tolerant layer for the entire agent ecosystem.
 
 **Core Capabilities:**
-- 📝 **Agent registry** with capability profiles
-- 🔐 **Session management** for secure communication
-- 📤 **Task dispatch** with intelligent routing
-- 🎯 **Coordination primitives** for distributed workflows
-- 💓 **Heartbeat monitoring** for health tracking
-- 🔌 **Automatic reconnection** under network fluctuations
-- 🔄 **Retry mechanisms** for reliability
+-  **Agent registry** with capability profiles
+-  **Session management** for secure communication
+-  **Task dispatch** with intelligent routing
+-  **Coordination primitives** for distributed workflows
+-  **Heartbeat monitoring** for health tracking
+-  **Automatic reconnection** under network fluctuations
+- [CONTINUE] **Retry mechanisms** for reliability
 
 **Architecture Benefits:**
 - 🪶 **Lightweight interface** for easy integration
-- 🧩 **Extensible design** supports new agent types
-- 🛡️ **Fault tolerance** ensures continuous operation
+-  **Extensible design** supports new agent types
+- ️ **Fault tolerance** ensures continuous operation
 
 This protocol **abstracts OS and network heterogeneity**, enabling seamless collaboration among agents across desktops, servers, and edge devices, while allowing new agents to integrate seamlessly into the ALIEN³ ecosystem.
 
 [Learn more →](../aip/overview.md)
 
-### 5. 🛠️ Template-Driven Framework for Device Agents
+### 5. ️ Template-Driven Framework for Device Agents
 
 To **democratize agent creation**, ALIEN³ provides a **lightweight development template and toolkit** for rapidly building new device agents.
 
 **Development Framework:**
-- 📄 **Capability declaration** defines agent profiles
-- 🔗 **Environment binding** connects to local systems
-- 🧩 **MCP server integration** for tool augmentation
-- 🔧 **Modular design** accelerates development
+- [DOC] **Capability declaration** defines agent profiles
+- [DEP] **Environment binding** connects to local systems
+-  **MCP server integration** for tool augmentation
+- [CONFIG] **Modular design** accelerates development
 
 **Model Context Protocol (MCP) Integration:**
-- 🎁 **Tool packages** via MCP servers
-- 🔌 **Plug-and-play** capability extension
-- 🌐 **Cross-platform** tool standardization
-- 🚀 **Rapid prototyping** of new agents
+-  **Tool packages** via MCP servers
+-  **Plug-and-play** capability extension
+- [WEB] **Cross-platform** tool standardization
+- [START] **Rapid prototyping** of new agents
 
 This modular architecture maintains consistency across the orion while enabling developers to extend ALIEN³ to new platforms (mobile, web, IoT, embedded systems, etc.) with minimal effort.
 
-**🔌 Extensibility:** ALIEN³ is designed as a **universal framework** that supports developing new device agents for different platforms (mobile, web, IoT, embedded systems, etc.) and applications. Through the **Agent Interaction Protocol (AIP)**, custom device agents can seamlessly integrate into ALIEN³ Network for coordinated multi-device automation. **Want to build your own device agent?** See our [Creating Custom Device Agents tutorial](../tutorials/creating_device_agent/overview.md) to learn how to extend ALIEN³ to new platforms.
+** Extensibility:** ALIEN³ is designed as a **universal framework** that supports developing new device agents for different platforms (mobile, web, IoT, embedded systems, etc.) and applications. Through the **Agent Interaction Protocol (AIP)**, custom device agents can seamlessly integrate into ALIEN³ Network for coordinated multi-device automation. **Want to build your own device agent?** See our [Creating Custom Device Agents tutorial](../tutorials/creating_device_agent/overview.md) to learn how to extend ALIEN³ to new platforms.
 
 [Learn more →](agent_registration/overview.md) | [MCP Integration →](../mcp/overview.md)
 
 ---
 
-## 🎯 Key Capabilities
+##  Key Capabilities
 
-### 🌐 Cross-Device Collaboration
+### [WEB] Cross-Device Collaboration
 Execute workflows that span Windows desktops, Linux servers, GPU clusters, mobile devices, and edge nodes—all from a single natural language request.
 
-### ⚡ Asynchronous Parallelism
+###  Asynchronous Parallelism
 Automatically identify parallelizable subtasks and execute them concurrently across devices through:
 - **Event-driven scheduling** that continuously monitors DAG topology for ready tasks
 - **Non-blocking execution** with Python `asyncio` for maximum concurrency
@@ -206,20 +206,20 @@ Automatically identify parallelizable subtasks and execute them concurrently acr
 
 Result: Dramatically reduced end-to-end latency compared to sequential execution.
 
-### 🛡️ Safety & Consistency
+### ️ Safety & Consistency
 - **Three formal invariants** (I1-I3) enforced at runtime for DAG correctness
 - **Safe assignment locking** prevents race conditions during concurrent modifications
 - **Acyclicity validation** ensures no circular dependencies
 - **State merging** algorithm preserves execution progress during dynamic edits
 - **Timeout protection** prevents deadlocks from agent failures
 
-### 🔄 Dynamic Workflow Evolution
+### [CONTINUE] Dynamic Workflow Evolution
 - **Dual-mode operation**: Separate creation and editing phases with controlled transitions
 - **Feedback-driven adaptation**: Task completion events trigger intelligent orion refinement
 - **LLM-powered reasoning**: ReAct architecture for context-aware DAG modifications
 - **Undo/redo support**: OrionEditor with command pattern for safe interactive editing
 
-### 👁️ Rich Observability
+### ️ Rich Observability
 - Real-time orion visualization with DAG topology updates
 - Event bus with publish-subscribe pattern for monitoring task progress
 - Detailed execution logs with markdown trajectory support
@@ -228,9 +228,9 @@ Result: Dramatically reduced end-to-end latency compared to sequential execution
 
 ---
 
-## 🎨 Use Cases
+##  Use Cases
 
-### 🖥️ Software Development & Deployment
+### ️ Software Development & Deployment
 *"Clone the repo on my laptop, build the Docker image on the GPU server, deploy to staging, and run the test suite on the CI cluster."*
 
 **Workflow DAG:**
@@ -241,7 +241,7 @@ graph LR
     C --> D[Test<br/>Linux CI]
 ```
 
-### 📊 Data Science Workflows
+### [STATUS] Data Science Workflows
 *"Fetch the dataset from cloud storage, preprocess on the Linux workstation, train the model on the A100 node, and generate a visualization dashboard on my Windows machine."*
 
 **Workflow DAG:**
@@ -252,7 +252,7 @@ graph LR
     C --> D[Visualize<br/>Windows]
 ```
 
-### 📝 Cross-Platform Document Processing
+###  Cross-Platform Document Processing
 *"Extract data from Excel on Windows, process with Python scripts on Linux, generate PDF reports, and send summary emails."*
 
 **Workflow DAG:**
@@ -263,7 +263,7 @@ graph LR
     B --> D[Send Email<br/>Windows]
 ```
 
-### 🔬 Distributed System Monitoring
+###  Distributed System Monitoring
 *"Collect server logs from all Linux machines, analyze for errors, generate alerts, and create a consolidated report."*
 
 **Workflow DAG:**
@@ -275,7 +275,7 @@ graph LR
     D --> E[Generate Report<br/>Windows]
 ```
 
-### 🏢 Enterprise Automation
+###  Enterprise Automation
 *"Query the database on the server, process the results, update Excel spreadsheets on Windows, and generate PowerPoint presentations."*
 
 **Workflow DAG:**
@@ -288,35 +288,35 @@ graph LR
 
 ---
 
-## 🗺️ Documentation Structure
+## ️ Documentation Structure
 
-### 🚀 [Quick Start](../getting_started/quick_start_network.md)
+### [START] [Quick Start](../getting_started/quick_start_network.md)
 Get ALIEN³ Network up and running in minutes with our step-by-step guide
 
-### 👥 [Network Client](client/overview.md)
+###  [Network Client](client/overview.md)
 Device coordination, connection management, and OrionClient API
 
-### 🧠 [Orion Agent](orion_agent/overview.md)
+### [BRAIN] [Orion Agent](orion_agent/overview.md)
 LLM-driven task decomposition, DAG creation, and dynamic workflow evolution
 
-### ⚙️ [Orion Orchestrator](orion_orchestrator/overview.md)
+### ️ [Orion Orchestrator](orion_orchestrator/overview.md)
 Asynchronous execution engine, event-driven coordination, and safety guarantees
 
-### 📊 [Task Orion](orion/overview.md)
+### [STATUS] [Task Orion](orion/overview.md)
 DAG structure, TaskStar nodes, TaskStarLine edges, and orion editor
 
-### 🆔 [Agent Registration](agent_registration/overview.md)
+###  [Agent Registration](agent_registration/overview.md)
 Device registry, agent profiles, and registration flow
 
-### 🌐 [Agent Interaction Protocol](../aip/overview.md)
+### [WEB] [Agent Interaction Protocol](../aip/overview.md)
 WebSocket messaging, protocol specification, and communication patterns
 
-### ⚙️ [Configuration](../configuration/system/network_devices.md)
+### ️ [Configuration](../configuration/system/network_devices.md)
 Device pools, capabilities, and orchestration policies
 
 ---
 
-## 🚦 Getting Started
+##  Getting Started
 
 Ready to build your Digital Agent Network? Follow these steps:
 
@@ -442,7 +442,7 @@ For detailed instructions, see the [Quick Start Guide](../getting_started/quick_
 
 ---
 
-## 🔧 System Components
+## [CONFIG] System Components
 
 ALIEN³ Network consists of several integrated components working together:
 
@@ -483,7 +483,7 @@ For detailed component documentation, see the respective sections in [Documentat
 
 ---
 
-## 🌟 From Devices to Orions to Network
+##  From Devices to Orions to Network
 
 ALIEN³ represents a paradigm shift in intelligent automation:
 
@@ -495,7 +495,7 @@ Over time, multiple orions can interconnect, weaving together agents, devices, a
 
 ---
 
-## 📊 Performance Monitoring & Evaluation
+## [STATUS] Performance Monitoring & Evaluation
 
 ALIEN³ Network provides comprehensive performance monitoring and evaluation tools to analyze multi-device workflow execution:
 
@@ -565,9 +565,9 @@ metrics = result["session_results"]["metrics"]
 task_stats = metrics["task_statistics"]
 const_stats = result["session_results"]["final_orion_stats"]
 
-print(f"✅ Success Rate: {task_stats['success_rate'] * 100:.1f}%")
+print(f"[OK] Success Rate: {task_stats['success_rate'] * 100:.1f}%")
 print(f"⏱️  Avg Task Duration: {task_stats['average_task_duration']:.2f}s")
-print(f"🔀 Parallelism Ratio: {const_stats['parallelism_ratio']:.2f}")
+print(f" Parallelism Ratio: {const_stats['parallelism_ratio']:.2f}")
 ```
 
 **Documentation:**
@@ -578,7 +578,7 @@ print(f"🔀 Parallelism Ratio: {const_stats['parallelism_ratio']:.2f}")
 
 ---
 
-## 📚 Learn More
+## [PLAN] Learn More
 
 - **Research Paper**: [ALIEN³: Weaving the Digital Agent Network](https://arxiv.org/) *(Coming Soon)*
 - **ALIEN² (Desktop AgentOS)**: [Documentation](../alien2/overview.md)
@@ -586,13 +586,13 @@ print(f"🔀 Parallelism Ratio: {const_stats['parallelism_ratio']:.2f}")
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Whether you're building new device agents, improving orchestration algorithms, or enhancing the protocol, check out our Contributing Guide on GitHub.
 
 ---
 
-## 📄 License
+## [DOC] License
 
 ALIEN³ Network is released under the MIT License.
 

@@ -281,12 +281,12 @@ See **[Configuration Overview](../../configuration/system/overview.md)** and **[
 
 **Key Takeaways:**
 
-✅ **MCP-Based**: All commands provided by MCP servers configured in `mcp.yaml`  
-✅ **Dynamic Discovery**: Commands discovered at runtime via `list_tools`  
-✅ **Application-Specific**: COM executors auto-loaded for Word, Excel, PowerPoint  
-✅ **Hybrid Approach**: UI automation + native API commands  
-✅ **Configurable**: Extensive MCP server configuration options  
-✅ **Documented**: Each server has detailed command reference
+[OK] **MCP-Based**: All commands provided by MCP servers configured in `mcp.yaml`  
+[OK] **Dynamic Discovery**: Commands discovered at runtime via `list_tools`  
+[OK] **Application-Specific**: COM executors auto-loaded for Word, Excel, PowerPoint  
+[OK] **Hybrid Approach**: UI automation + native API commands  
+[OK] **Configurable**: Extensive MCP server configuration options  
+[OK] **Documented**: Each server has detailed command reference
 
 !!!warning "Command Details Subject to Change"
     Specific command parameters, names, and behaviors may change as MCP servers evolve. Always refer to the **server-specific documentation** for the most up-to-date command reference.

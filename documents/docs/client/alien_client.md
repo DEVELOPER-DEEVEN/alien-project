@@ -1,8 +1,8 @@
-# 🎯 ALIEN Client
+#  ALIEN Client
 
 The **ALIEN Client** is the execution engine that receives commands from the server, routes them to appropriate tools via the CommandRouter, and aggregates results. It focuses on stateless command execution, delegating all decision-making to the server.
 
-## 📋 Overview
+## [TASK] Overview
 
 The ALIEN Client bridges network communication and local tool execution.
 
@@ -61,7 +61,7 @@ graph LR
     style Tools fill:#c8e6c9
 ```
 
-## 🏗️ Architecture
+## ️ Architecture
 
 The ALIEN Client has a minimal API surface—just initialization, execution, and reset.
 
@@ -134,7 +134,7 @@ graph TB
 | `process_name` | `Optional[str]` | Process context (e.g., `"notepad.exe"`) |
 | `root_name` | `Optional[str]` | Root operation name |
 
-## 🚀 Initialization
+## [START] Initialization
 
 Creating a ALIEN Client requires two manager instances: MCPServerManager and ComputerManager.
 
@@ -166,8 +166,8 @@ client = ALIENClient(
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `mcp_server_manager` | `MCPServerManager` | ✅ Yes | - | MCP server lifecycle manager |
-| `computer_manager` | `ComputerManager` | ✅ Yes | - | Computer instance manager |
+| `mcp_server_manager` | `MCPServerManager` | [OK] Yes | - | MCP server lifecycle manager |
+| `computer_manager` | `ComputerManager` | [OK] Yes | - | Computer instance manager |
 | `client_id` | `str` | No | `"client_001"` | Unique client identifier |
 | `platform` | `str` | No | Auto-detected | Platform type: `"windows"` or `"linux"` |
 
@@ -177,7 +177,7 @@ client = ALIENClient(
 2. Initializes `task_lock` (`asyncio.Lock()`)
 3. Sets session state to `None` (session_id, agent_name, process_name, root_name)
 
-## 📊 Session State Management
+## [STATUS] Session State Management
 
 The ALIEN Client maintains contextual metadata for the current execution session.
 
@@ -199,11 +199,11 @@ client.reset()  # Sets session_id to None
 **Validation:**
 
 ```python
-# ✅ Valid
+# [OK] Valid
 client.session_id = "session_123"
 client.session_id = None
 
-# ❌ Invalid - raises ValueError
+# [FAIL] Invalid - raises ValueError
 client.session_id = 12345  # Not a string
 ```
 
@@ -273,7 +273,7 @@ except ValueError as e:
 | `process_name` | `str`, `None` | `ValueError` |
 | `root_name` | `str`, `None` | `ValueError` |
 
-## ⚙️ Command Execution
+## ️ Command Execution
 
 ### Execute Step (Main Entry Point)
 
@@ -428,7 +428,7 @@ results = await client.execute_actions(commands)
 
 See [Computer Manager](./computer_manager.md) for command routing details.
 
-## 🔄 State Reset
+## [CONTINUE] State Reset
 
 !!!warning "Critical for Multi-Task Execution"
     Always reset state between tasks to prevent data leakage between sessions.
@@ -498,7 +498,7 @@ async with self.alien_client.task_lock:
     await self.task_protocol.send_task_request(...)
 ```
 
-## 🔒 Thread Safety
+##  Thread Safety
 
 The ALIEN Client uses `asyncio.Lock` to prevent concurrent state modifications.
 
@@ -529,7 +529,7 @@ async with client.task_lock:
 !!!warning "Single Task Execution"
     The lock ensures only **one task executes at a time**. Attempting concurrent execution will block until the lock is released.
 
-## 📋 Complete Execution Pipeline
+## [TASK] Complete Execution Pipeline
 
 ```mermaid
 sequenceDiagram
@@ -567,7 +567,7 @@ sequenceDiagram
     WSC->>Server: COMMAND_RESULTS (via AIP)
 ```
 
-## ⚠️ Error Handling
+## ️ Error Handling
 
 ### Command Execution Errors
 
@@ -622,7 +622,7 @@ except ValueError as e:
 | Property validation error | Property setters | `ValueError` exception |
 | Unexpected errors | Any component | Logged, may propagate |
 
-## 📝 Logging
+##  Logging
 
 The ALIEN Client logs all major events for debugging and monitoring.
 
@@ -664,7 +664,7 @@ INFO - Client state has been reset.
 | Production | `INFO` | Monitor without spam |
 | Troubleshooting | `DEBUG` | Diagnose issues |
 
-## 💡 Usage Example
+## [THOUGHT] Usage Example
 
 ### Complete Workflow
 
@@ -717,7 +717,7 @@ async def main():
 asyncio.run(main())
 ```
 
-## ✅ Best Practices
+## [OK] Best Practices
 
 ### Development Best Practices
 
@@ -732,10 +732,10 @@ async with client.task_lock:
 **2. Use Property Setters (Not Direct Assignment)**
 
 ```python
-# ✅ Good - validates input
+# [OK] Good - validates input
 client.session_id = "session_123"
 
-# ❌ Bad - bypasses validation
+# [FAIL] Bad - bypasses validation
 client._session_id = "session_123"
 ```
 
@@ -789,7 +789,7 @@ if failed_actions:
     # Report to monitoring system
 ```
 
-## 🔗 Integration Points
+## [DEP] Integration Points
 
 ### WebSocket Client Integration
 
@@ -847,7 +847,7 @@ self.mcp_server_manager.reset()
 
 See [MCP Integration](./mcp_integration.md) for MCP details.
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 **Continue Learning**
 

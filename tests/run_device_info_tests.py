@@ -35,7 +35,7 @@ def run_tests():
         test_path = project_root / test_file
 
         if not test_path.exists():
-            print(f"\n❌ Test file not found: {test_file}")
+            print(f"\n[FAIL] Test file not found: {test_file}")
             all_passed = False
             continue
 
@@ -55,16 +55,16 @@ def run_tests():
         )
 
         if result.returncode != 0:
-            print(f"\n❌ Tests failed in {test_file}")
+            print(f"\n[FAIL] Tests failed in {test_file}")
             all_passed = False
         else:
-            print(f"\n✅ Tests passed in {test_file}")
+            print(f"\n[OK] Tests passed in {test_file}")
 
     print("\n" + "=" * 80)
     if all_passed:
-        print("✅ All device info tests passed!")
+        print("[OK] All device info tests passed!")
     else:
-        print("❌ Some tests failed. Please check the output above.")
+        print("[FAIL] Some tests failed. Please check the output above.")
     print("=" * 80)
 
     return 0 if all_passed else 1

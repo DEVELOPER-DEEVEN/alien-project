@@ -44,7 +44,7 @@ class OrionFormatter:
     def create_overview_table(self, data: Dict[str, Any]) -> Table:
         """Create overview information table."""
         table = Table(
-            title="📊 Orion Overview",
+            title="[STATUS] Orion Overview",
             box=box.ROUNDED,
             show_header=False,
             title_style="bold cyan",
@@ -57,7 +57,7 @@ class OrionFormatter:
         table.add_row("ID", data.get("id", "N/A"))
         table.add_row("Name", data.get("name", "N/A"))
         table.add_row(
-            "State", f"[bold green]✅ {data.get('state', 'N/A').upper()}[/bold green]"
+            "State", f"[bold green][OK] {data.get('state', 'N/A').upper()}[/bold green]"
         )
 
         # Timeline
@@ -80,7 +80,7 @@ class OrionFormatter:
     def create_statistics_table(self, stats: Dict[str, Any]) -> Table:
         """Create detailed statistics table."""
         table = Table(
-            title="📈 Performance Metrics", box=box.ROUNDED, title_style="bold magenta"
+            title=" Performance Metrics", box=box.ROUNDED, title_style="bold magenta"
         )
 
         table.add_column("Metric", style="bold cyan", width=30)
@@ -134,7 +134,7 @@ class OrionFormatter:
             return None
 
         content = Text()
-        content.append("🎯 Critical Path Tasks:\n", style="bold")
+        content.append(" Critical Path Tasks:\n", style="bold")
         for task in critical_tasks:
             content.append(f"  • {task}\n", style="cyan")
 
@@ -157,7 +157,7 @@ class OrionFormatter:
         # Header
         header = Panel(
             Text(
-                "✅ Orion Execution Completed",
+                "[OK] Orion Execution Completed",
                 justify="center",
                 style="bold green",
             ),
@@ -189,7 +189,7 @@ class OrionFormatter:
         if "orion" in orion_data:
             summary = Panel(
                 Text(orion_data["orion"], style="cyan"),
-                title="📦 Orion Summary",
+                title=" Orion Summary",
                 border_style="blue",
                 box=box.ROUNDED,
             )

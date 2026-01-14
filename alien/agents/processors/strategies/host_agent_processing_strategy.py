@@ -539,7 +539,7 @@ class HostLLMInteractionStrategy(BaseProcessingStrategy):
 
         for retry_count in range(max_retries):
             try:
-                # 🔧 FIX: Run synchronous LLM call in thread executor to avoid blocking event loop
+                # [CONFIG] FIX: Run synchronous LLM call in thread executor to avoid blocking event loop
                 # This prevents WebSocket ping/pong timeout during long LLM responses
                 loop = asyncio.get_event_loop()
                 response_text, cost = await loop.run_in_executor(

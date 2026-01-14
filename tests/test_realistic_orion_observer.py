@@ -105,9 +105,9 @@ class TestRealisticsOrionObserverLogger:
         print(f"Agent logs: {len(agent_logs)}")
 
         if len(agent_logs) == 0:
-            print("❌ Agent log still missing with INFO level!")
+            print("[FAIL] Agent log still missing with INFO level!")
         else:
-            print("✅ Agent log appears with INFO level")
+            print("[OK] Agent log appears with INFO level")
 
     @pytest.mark.asyncio
     async def test_with_method_wrapping_to_check_calls(
@@ -130,15 +130,15 @@ class TestRealisticsOrionObserverLogger:
         async def wrapped_add_task_completion_event(event):
             nonlocal call_count
             call_count += 1
-            print(f"🔍 add_task_completion_event called! Count: {call_count}")
-            print(f"🔍 Event type: {event.event_type}")
-            print(f"🔍 Task ID: {event.task_id}")
-            print(f"🔍 Status: {event.status}")
+            print(f" add_task_completion_event called! Count: {call_count}")
+            print(f" Event type: {event.event_type}")
+            print(f" Task ID: {event.task_id}")
+            print(f" Status: {event.status}")
 
             # Call original method
             result = await original_method(event)
 
-            print(f"🔍 Original method completed")
+            print(f" Original method completed")
             return result
 
         orion_agent.add_task_completion_event = (
@@ -155,12 +155,12 @@ class TestRealisticsOrionObserverLogger:
         print(f"Method called {call_count} times")
 
         if call_count == 0:
-            print("❌ CRITICAL: add_task_completion_event was never called!")
+            print("[FAIL] CRITICAL: add_task_completion_event was never called!")
             print(
                 "This means the issue is in the observer logic, not the agent logging"
             )
         else:
-            print("✅ add_task_completion_event was called correctly")
+            print("[OK] add_task_completion_event was called correctly")
 
         # Check the logs regardless
         agent_logs = [
@@ -195,13 +195,13 @@ class TestRealisticsOrionObserverLogger:
         # Test the flow - should not raise exception
         try:
             await observer.on_event(task_event)
-            print("✅ Observer handled exception gracefully")
+            print("[OK] Observer handled exception gracefully")
         except Exception as e:
-            print(f"❌ Observer did not handle exception: {e}")
+            print(f"[FAIL] Observer did not handle exception: {e}")
 
         # Check if the method was called
         orion_agent.add_task_completion_event.assert_called_once()
-        print("✅ add_task_completion_event was called despite exception")
+        print("[OK] add_task_completion_event was called despite exception")
 
     @pytest.mark.asyncio
     async def test_event_type_filtering(self, mock_orchestrator, caplog):
@@ -233,7 +233,7 @@ class TestRealisticsOrionObserverLogger:
 
         # Should not be called for TASK_STARTED
         orion_agent.add_task_completion_event.assert_not_called()
-        print("✅ TASK_STARTED correctly does not call add_task_completion_event")
+        print("[OK] TASK_STARTED correctly does not call add_task_completion_event")
 
         # Test with TASK_COMPLETED (should call add_task_completion_event)
         task_completed_event = TaskEvent(
@@ -249,7 +249,7 @@ class TestRealisticsOrionObserverLogger:
 
         # Should be called once for TASK_COMPLETED
         orion_agent.add_task_completion_event.assert_called_once()
-        print("✅ TASK_COMPLETED correctly calls add_task_completion_event")
+        print("[OK] TASK_COMPLETED correctly calls add_task_completion_event")
 
 
 if __name__ == "__main__":

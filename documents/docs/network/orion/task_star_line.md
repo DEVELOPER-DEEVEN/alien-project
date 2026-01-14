@@ -257,10 +257,10 @@ prerequisite_result = {
 is_satisfied = dep.evaluate_condition(prerequisite_result)
 
 if is_satisfied:
-    print("✅ Dependency satisfied, dependent task can run")
+    print("[OK] Dependency satisfied, dependent task can run")
     print(f"Evaluated at: {dep.last_evaluation_time}")
 else:
-    print("❌ Dependency not satisfied, dependent task blocked")
+    print("[FAIL] Dependency not satisfied, dependent task blocked")
 
 # Check evaluation history
 print(f"Last result: {dep.last_evaluation_result}")
@@ -409,9 +409,9 @@ orion.add_task(task_b)
 # Add dependency
 try:
     orion.add_dependency(dep)
-    print("✅ Dependency added successfully")
+    print("[OK] Dependency added successfully")
 except ValueError as e:
-    print(f"❌ Failed to add dependency: {e}")
+    print(f"[FAIL] Failed to add dependency: {e}")
 ```
 
 ### Dependency Validation
@@ -429,7 +429,7 @@ except ValueError as e:
 is_valid, errors = orion.validate_dag()
 if not is_valid:
     for error in errors:
-        print(f"❌ {error}")
+        print(f"[FAIL] {error}")
 ```
 
 ---
@@ -608,14 +608,14 @@ dep3 = TaskStarLine.create_success_only("task_c", "aggregate")
 
 ### Good vs. Bad Condition Evaluators
 
-✅ **Good**: Simple, fast, defensive
+[OK] **Good**: Simple, fast, defensive
 
 ```python
 def check_success(result):
     return result is not None and result.get("status") == "success"
 ```
 
-❌ **Bad**: Complex, slow, error-prone
+[FAIL] **Bad**: Complex, slow, error-prone
 
 ```python
 def check_success(result):

@@ -36,8 +36,8 @@ All MCP servers fall into two categories:
 
 | Category | Purpose | LLM Selectable? | Auto-Invoked? |
 |----------|---------|-----------------|---------------|
-| **Data Collection** | Read-only observation | ❌ No | ✅ Yes |
-| **Action** | State-changing execution | ✅ Yes | ❌ No |
+| **Data Collection** | Read-only observation | [FAIL] No | [OK] Yes |
+| **Action** | State-changing execution | [OK] Yes | [FAIL] No |
 
 **Tool Selection:**
 - **Data Collection tools**: Automatically invoked by the framework to build observation prompts
@@ -957,7 +957,7 @@ Your docstrings are **directly converted to LLM prompts**. The LLM uses them to 
 ```python
 @mcp.tool()
 def process(data: str) -> str:
-    """Process data."""  # ❌ Too vague
+    """Process data."""  # [FAIL] Too vague
     return data.upper()
 ```
 
@@ -976,19 +976,19 @@ def process_text_to_uppercase(
     Examples:
     - "hello world" → "HELLO WORLD"
     - "Café" → "CAFÉ"
-    """  # ✅ Clear, detailed, with examples
+    """  # [OK] Clear, detailed, with examples
     return text.upper()
 ```
 
 ### 2. Use Descriptive Parameter Names
 
 ```python
-# ❌ Bad: Unclear parameter names
+# [FAIL] Bad: Unclear parameter names
 @mcp.tool()
 def func(a: str, b: int, c: bool) -> str:
     ...
 
-# ✅ Good: Self-documenting parameter names
+# [OK] Good: Self-documenting parameter names
 @mcp.tool()
 def send_email(
     recipient_address: str,
@@ -1006,10 +1006,10 @@ def search_files(
     query: Annotated[str, Field(description="Search query.")],
     case_sensitive: Annotated[
         bool, Field(description="Case-sensitive search?")
-    ] = False,  # ✅ Sensible default
+    ] = False,  # [OK] Sensible default
     max_results: Annotated[
         int, Field(description="Maximum results to return.")
-    ] = 10,  # ✅ Sensible default
+    ] = 10,  # [OK] Sensible default
 ) -> list[str]:
     """Search for files matching the query."""
     ...
@@ -1049,7 +1049,7 @@ def divide_numbers(
 ### 5. Use Reset for Stateful Servers
 
 ```yaml
-# ✅ Good: Reset COM servers when switching contexts
+# [OK] Good: Reset COM servers when switching contexts
 AppAgent:
   WINWORD.EXE:
     action:
@@ -1057,7 +1057,7 @@ AppAgent:
         type: local
         reset: true  # Prevents state leakage between documents
 
-# ❌ Bad: Not resetting can cause issues
+# [FAIL] Bad: Not resetting can cause issues
 AppAgent:
   WINWORD.EXE:
     action:
@@ -1080,11 +1080,11 @@ async def validate_server(url: str):
     try:
         async with Client(url) as client:
             tools = await client.list_tools()
-            print(f"✅ Server {url} is accessible")
+            print(f"[OK] Server {url} is accessible")
             print(f"   Tools: {[t.name for t in tools]}")
             return True
     except Exception as e:
-        print(f"❌ Server {url} is NOT accessible: {e}")
+        print(f"[FAIL] Server {url} is NOT accessible: {e}")
         return False
 
 
@@ -1095,7 +1095,7 @@ asyncio.run(validate_server("http://192.168.1.100:8020/mcp"))
 ### 7. Use Environment Variables for Secrets
 
 ```yaml
-# ❌ Bad: Hardcoded secrets
+# [FAIL] Bad: Hardcoded secrets
 CustomAgent:
   default:
     action:
@@ -1105,7 +1105,7 @@ CustomAgent:
         port: 443
         auth_token: "sk-1234567890"  # Don't commit this!
 
-# ✅ Good: Use environment variables
+# [OK] Good: Use environment variables
 CustomAgent:
   default:
     action:
@@ -1171,14 +1171,14 @@ sudo ufw allow 8020/tcp
 # For LLM-selectable tools, use 'action'
 CustomAgent:
   default:
-    action:  # ✅ Correct for LLM-selectable tools
+    action:  # [OK] Correct for LLM-selectable tools
       - namespace: MyExecutor
         type: local
 
 # For auto-invoked observation, use 'data_collection'
 CustomAgent:
   default:
-    data_collection:  # ✅ Correct for automatic observation
+    data_collection:  # [OK] Correct for automatic observation
       - namespace: MyCollector
         type: local
 ```
@@ -1195,7 +1195,7 @@ AppAgent:
     action:
       - namespace: WordCOMExecutor
         type: local
-        reset: true  # ✅ Reset COM state when switching documents
+        reset: true  # [OK] Reset COM state when switching documents
 ```
 
 #### 5. Timeout Errors for Long-Running Tools
@@ -1276,9 +1276,9 @@ Now that you've learned to create MCP servers, explore these related topics:
 
 ## Best Practices Summary
 
-- ✅ **Write clear docstrings** - they become LLM instructions
-- ✅ **Use descriptive names** - for tools, parameters, and namespaces
-- ✅ **Handle errors gracefully** - return structured error messages
-- ✅ **Test in isolation** - before integrating with agents
-- ✅ **Use `reset: true`** - for stateful servers (COM, API clients)
-- ✅ **Validate connectivity** - for HTTP/Stdio servers before deployment
+- [OK] **Write clear docstrings** - they become LLM instructions
+- [OK] **Use descriptive names** - for tools, parameters, and namespaces
+- [OK] **Handle errors gracefully** - return structured error messages
+- [OK] **Test in isolation** - before integrating with agents
+- [OK] **Use `reset: true`** - for stateful servers (COM, API clients)
+- [OK] **Validate connectivity** - for HTTP/Stdio servers before deployment

@@ -6,14 +6,14 @@ ALIEN supports a wide variety of LLM models and APIs. You can configure differen
 
 | Provider | Documentation | Visual Support | Authentication |
 | --- | --- | --- | --- |
-| **OpenAI** | [OpenAI API](./openai.md) | ✅ | API Key |
-| **Azure OpenAI (AOAI)** | [Azure OpenAI API](./azure_openai.md) | ✅ | API Key / Azure AD |
-| **Google Gemini** | [Gemini API](./gemini.md) | ✅ | API Key |
-| **Anthropic Claude** | [Claude API](./claude.md) | ✅ | API Key |
-| **Qwen (Alibaba)** | [Qwen API](./qwen.md) | ✅ | API Key |
-| **DeepSeek** | [DeepSeek API](./deepseek.md) | ❌ | API Key |
-| **Ollama** | [Ollama API](./ollama.md) | ⚠️ Limited | Local |
-| **OpenAI Operator** | [Operator (CUA)](./operator.md) | ✅ | Azure AD |
+| **OpenAI** | [OpenAI API](./openai.md) | [OK] | API Key |
+| **Azure OpenAI (AOAI)** | [Azure OpenAI API](./azure_openai.md) | [OK] | API Key / Azure AD |
+| **Google Gemini** | [Gemini API](./gemini.md) | [OK] | API Key |
+| **Anthropic Claude** | [Claude API](./claude.md) | [OK] | API Key |
+| **Qwen (Alibaba)** | [Qwen API](./qwen.md) | [OK] | API Key |
+| **DeepSeek** | [DeepSeek API](./deepseek.md) | [FAIL] | API Key |
+| **Ollama** | [Ollama API](./ollama.md) | ️ Limited | Local |
+| **OpenAI Operator** | [Operator (CUA)](./operator.md) | [OK] | Azure AD |
 | **Custom Models** | [Custom API](./custom_model.md) | Depends | Varies |
 
 ## Model Selection Guide
@@ -38,18 +38,18 @@ ALIEN supports a wide variety of LLM models and APIs. You can configure differen
 ### By Capability
 
 **Vision Support (Screenshot Understanding):**
-- ✅ OpenAI GPT-4o, GPT-4-turbo
-- ✅ Azure OpenAI (vision-enabled deployments)
-- ✅ Google Gemini (all 1.5+ models)
-- ✅ Claude 3+ (all variants)
-- ✅ Qwen-VL models
-- ⚠️ Ollama (llava models only)
-- ❌ DeepSeek (text-only)
+- [OK] OpenAI GPT-4o, GPT-4-turbo
+- [OK] Azure OpenAI (vision-enabled deployments)
+- [OK] Google Gemini (all 1.5+ models)
+- [OK] Claude 3+ (all variants)
+- [OK] Qwen-VL models
+- ️ Ollama (llava models only)
+- [FAIL] DeepSeek (text-only)
 
 **JSON Schema Support:**
-- ✅ OpenAI / Azure OpenAI
-- ✅ Google Gemini
-- ⚠️ Limited: Claude, Qwen, Ollama
+- [OK] OpenAI / Azure OpenAI
+- [OK] Google Gemini
+- ️ Limited: Claude, Qwen, Ollama
 
 ## Configuration Architecture
 

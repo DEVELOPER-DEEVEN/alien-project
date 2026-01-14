@@ -24,7 +24,7 @@ async def test_orion_comparison():
 
     console = Console()
     console.print(
-        "[bold blue]🧪 Testing Orion Modification Comparison[/bold blue]\n"
+        "[bold blue] Testing Orion Modification Comparison[/bold blue]\n"
     )
 
     # Initialize observer
@@ -179,7 +179,7 @@ async def test_orion_comparison():
 
     await observer.on_event(event3)
 
-    console.print("\n[green]✅ All orion comparison tests completed![/green]")
+    console.print("\n[green][OK] All orion comparison tests completed![/green]")
 
 
 if __name__ == "__main__":

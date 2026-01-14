@@ -736,14 +736,14 @@ async def execute_action(self, context: Context) -> None:
 ```
 
 !!!tip "Error Handling Best Practices"
-    - ✅ Always check `result.status` before using `result.result`
-    - ✅ Log errors with context (command, parameters, error message)
-    - ✅ Implement retry logic for transient errors
-    - ✅ Provide fallback strategies for permanent failures
-    - ✅ Include helpful error messages for users
-    - ❌ Don't ignore error results
-    - ❌ Don't assume all commands succeed
-    - ❌ Don't retry indefinitely without backoff
+    - [OK] Always check `result.status` before using `result.result`
+    - [OK] Log errors with context (command, parameters, error message)
+    - [OK] Implement retry logic for transient errors
+    - [OK] Provide fallback strategies for permanent failures
+    - [OK] Include helpful error messages for users
+    - [FAIL] Don't ignore error results
+    - [FAIL] Don't assume all commands succeed
+    - [FAIL] Don't retry indefinitely without backoff
 
 ---
 
@@ -868,14 +868,14 @@ Choose timeouts based on operation type:
 ### Command Batching
 
 **When to batch:**
-- ✅ Related actions in same context (e.g., fill form fields)
-- ✅ Commands with no dependencies between them
-- ✅ All commands target same application
+- [OK] Related actions in same context (e.g., fill form fields)
+- [OK] Commands with no dependencies between them
+- [OK] All commands target same application
 
 **When not to batch:**
-- ❌ Commands with dependencies (need sequential execution)
-- ❌ Mix of fast and slow operations (one timeout for all)
-- ❌ Need intermediate results to decide next action
+- [FAIL] Commands with dependencies (need sequential execution)
+- [FAIL] Mix of fast and slow operations (one timeout for all)
+- [FAIL] Need intermediate results to decide next action
 
 ### Resource Management
 

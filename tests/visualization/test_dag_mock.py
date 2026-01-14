@@ -95,9 +95,9 @@ class SimpleTaskOrion:
                 from network.visualization.dag_visualizer import DAGVisualizer
 
                 self._visualizer = DAGVisualizer()
-                print("✅ DAG visualizer loaded successfully")
+                print("[OK] DAG visualizer loaded successfully")
             except ImportError as e:
-                print(f"❌ Could not import DAGVisualizer: {e}")
+                print(f"[FAIL] Could not import DAGVisualizer: {e}")
                 self._enable_visualization = False
 
     @property
@@ -144,11 +144,11 @@ class SimpleTaskOrion:
         """Visualize the DAG if visualization is enabled."""
         if self._enable_visualization and self._visualizer:
             try:
-                print(f"\n🎨 Visualizing DAG after {action}:")
+                print(f"\n Visualizing DAG after {action}:")
                 self._visualizer.display_orion_overview(self)
                 return True
             except Exception as e:
-                print(f"❌ Visualization error: {e}")
+                print(f"[FAIL] Visualization error: {e}")
                 return False
         return False
 
@@ -159,7 +159,7 @@ class SimpleTaskOrion:
         self._tasks[task.task_id] = task
         self._updated_at = datetime.now()
 
-        print(f"➕ Added task: {task.task_id} - {task.description}")
+        print(f" Added task: {task.task_id} - {task.description}")
         self._visualize_dag("add_task")
         return True
 
@@ -177,7 +177,7 @@ class SimpleTaskOrion:
         self._updated_at = datetime.now()
 
         print(
-            f"🔗 Added dependency: {dependency.source_task_id} → {dependency.target_task_id}"
+            f"[DEP] Added dependency: {dependency.source_task_id} → {dependency.target_task_id}"
         )
         self._visualize_dag("add_dependency")
         return True
@@ -189,10 +189,10 @@ class SimpleTaskOrion:
         task = self._tasks[task_id]
         if success:
             task.mark_completed()
-            print(f"✅ Task completed: {task_id}")
+            print(f"[OK] Task completed: {task_id}")
         else:
             task.mark_failed()
-            print(f"❌ Task failed: {task_id}")
+            print(f"[FAIL] Task failed: {task_id}")
 
         self._updated_at = datetime.now()
         self._visualize_dag("task_completed")
@@ -201,7 +201,7 @@ class SimpleTaskOrion:
     def start_execution(self):
         self.state = OrionState.EXECUTING
         self._execution_start_time = datetime.now()
-        print(f"🚀 Starting execution of orion: {self.name}")
+        print(f"[START] Starting execution of orion: {self.name}")
         self._visualize_dag("start_execution")
 
     def complete_execution(self, success: bool = True):
@@ -209,7 +209,7 @@ class SimpleTaskOrion:
         self._execution_end_time = datetime.now()
 
         status = "successfully" if success else "with failures"
-        print(f"🏁 Completed execution {status}")
+        print(f" Completed execution {status}")
         self._visualize_dag("complete_execution")
 
     def get_all_tasks(self):
@@ -292,7 +292,7 @@ class SimpleTaskOrion:
 
 def test_dag_visualization():
     """Test the DAG visualization functionality."""
-    print("🧪 Testing DAG Visualization")
+    print(" Testing DAG Visualization")
     print("=" * 50)
 
     # Create orion
@@ -301,7 +301,7 @@ def test_dag_visualization():
     )
 
     if not orion._visualizer:
-        print("❌ Visualization not available, skipping test")
+        print("[FAIL] Visualization not available, skipping test")
         return
 
     # Create tasks
@@ -315,12 +315,12 @@ def test_dag_visualization():
     ]
 
     # Add tasks to orion
-    print("\n📋 Adding tasks...")
+    print("\n[TASK] Adding tasks...")
     for task in tasks:
         orion.add_task(task)
 
     # Add dependencies to create a pipeline
-    print("\n🔗 Adding dependencies...")
+    print("\n[DEP] Adding dependencies...")
     dependencies = [
         TaskStarLine("extract", "validate"),
         TaskStarLine("validate", "transform"),
@@ -333,11 +333,11 @@ def test_dag_visualization():
         orion.add_dependency(dep)
 
     # Start execution
-    print("\n🚀 Starting execution...")
+    print("\n[START] Starting execution...")
     orion.start_execution()
 
     # Simulate task completion
-    print("\n⚙️ Simulating task execution...")
+    print("\n️ Simulating task execution...")
     for task_id in [
         "extract",
         "validate",
@@ -351,7 +351,7 @@ def test_dag_visualization():
     orion.mark_task_completed("load_prod", success=True)
     orion.complete_execution(success=True)
 
-    print("\n✅ DAG visualization test completed!")
+    print("\n[OK] DAG visualization test completed!")
 
 
 if __name__ == "__main__":

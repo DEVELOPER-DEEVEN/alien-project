@@ -66,7 +66,7 @@ class ContinueLinuxAgentState(LinuxAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Active |
-| **Processor Executed** | ✓ Yes (3 phases) |
+| **Processor Executed** |  Yes (3 phases) |
 | **Round Ends** | No |
 | **Subtask Ends** | No |
 | **Duration** | Single round |
@@ -115,7 +115,7 @@ class FinishLinuxAgentState(LinuxAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Subtask Ends** | Yes |
 | **Duration** | Permanent |
@@ -158,7 +158,7 @@ class FailLinuxAgentState(LinuxAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal (Error) |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Subtask Ends** | Yes |
 | **Duration** | Transitions to FINISH |

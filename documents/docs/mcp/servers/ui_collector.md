@@ -7,7 +7,7 @@
 **Server Type:** Data Collection  
 **Deployment:** Local (in-process)  
 **Agent:** HostAgent, AppAgent  
-**LLM-Selectable:** ❌ No (automatically invoked by framework)
+**LLM-Selectable:** [FAIL] No (automatically invoked by framework)
 
 ## Server Information
 
@@ -525,7 +525,7 @@ windows = await computer.run_actions([
 ### 2. Selective Field Retrieval
 
 ```python
-# ✅ Good: Only request needed fields
+# [OK] Good: Only request needed fields
 controls = await computer.run_actions([
     MCPToolCall(
         tool_key="data_collection::get_app_window_controls_info",
@@ -533,7 +533,7 @@ controls = await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Don't request unnecessary fields
+# [FAIL] Bad: Don't request unnecessary fields
 controls = await computer.run_actions([
     MCPToolCall(
         tool_key="data_collection::get_app_window_controls_info",

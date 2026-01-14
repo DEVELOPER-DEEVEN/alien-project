@@ -402,7 +402,7 @@ sequenceDiagram
     
     U->>I: Start ALIEN
     I->>I: first_request()
-    I-->>U: 🛸 Welcome Panel
+    I-->>U: [UFO] Welcome Panel
     U->>I: "Open Notepad"
     I->>S: Initial request
     
@@ -411,7 +411,7 @@ sequenceDiagram
     R-->>S: Round complete
     
     S->>I: new_request()
-    I-->>U: 🛸 Next Request Panel
+    I-->>U: [UFO] Next Request Panel
     U->>I: "Type hello"
     I->>S: Next request
     
@@ -420,14 +420,14 @@ sequenceDiagram
     R-->>S: Round complete
     
     S->>I: new_request()
-    I-->>U: 🛸 Next Request Panel
+    I-->>U: [UFO] Next Request Panel
     U->>I: "N"
-    I-->>U: 👋 Goodbye Panel
+    I-->>U:  Goodbye Panel
     I->>S: complete=True
     S->>S: Terminate
     
     S->>I: experience_asker()
-    I-->>U: 💾 Save Experience Panel
+    I-->>U:  Save Experience Panel
     U->>I: Yes
     I->>S: Save experience
 ```
@@ -436,11 +436,11 @@ sequenceDiagram
 
 | Function | Purpose | Returns | Example UI |
 |----------|---------|---------|-----------|
-| `first_request()` | Initial request prompt | `str` | 🛸 Welcome Panel with examples |
-| `new_request()` | Subsequent requests | `Tuple[str, bool]` | 🛸 Next Request Panel |
-| `experience_asker()` | Save experience prompt | `bool` | 💾 Learning & Memory Panel |
-| `question_asker()` | Collect information | `str` | 🤔 Numbered Question Panel |
-| `sensitive_step_asker()` | Security confirmation | `bool` | 🔒 Security Check Panel |
+| `first_request()` | Initial request prompt | `str` | [UFO] Welcome Panel with examples |
+| `new_request()` | Subsequent requests | `Tuple[str, bool]` | [UFO] Next Request Panel |
+| `experience_asker()` | Save experience prompt | `bool` |  Learning & Memory Panel |
+| `question_asker()` | Collect information | `str` | [REASON] Numbered Question Panel |
+| `sensitive_step_asker()` | Security confirmation | `bool` |  Security Check Panel |
 
 !!!example "Styled User Prompts"
     ```python
@@ -450,8 +450,8 @@ sequenceDiagram
     request = interactor.first_request()
     # Shows:
     # ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    # ┃ 🛸 ALIEN Assistant                      ┃
-    # ┃ 🚀 Welcome to ALIEN - Your AI Assistant ┃
+    # ┃ [UFO] ALIEN Assistant                      ┃
+    # ┃ [START] Welcome to ALIEN - Your AI Assistant ┃
     # ┃ ...examples...                        ┃
     # ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
     
@@ -562,12 +562,12 @@ The module system provides a unified API while allowing platform-specific behavi
 | Aspect | Windows | Linux |
 |--------|---------|-------|
 | **Agent Architecture** | HostAgent → AppAgent (two-tier) | LinuxAgent (single-tier) |
-| **HostAgent** | ✅ Used for planning | ❌ Not used |
+| **HostAgent** | [OK] Used for planning | [FAIL] Not used |
 | **Session Base** | `WindowsBaseSession` | `LinuxBaseSession` |
 | **UI Automation** | UIA (pywinauto) | Custom automation |
 | **Service Mode** | `ServiceSession` | `LinuxServiceSession` |
-| **Evaluation** | ✅ Full support | ⚠️ Limited |
-| **Markdown Logs** | ✅ Supported | ⚠️ Planned |
+| **Evaluation** | [OK] Full support | ️ Limited |
+| **Markdown Logs** | [OK] Supported | ️ Planned |
 
 !!!example "Platform Detection"
     ```python
@@ -700,32 +700,32 @@ Context changes notify dependent components (implicit through shared state).
 ## Best Practices
 
 !!!tip "Session Management"
-    - ✅ Always initialize context before creating rounds
-    - ✅ Use `SessionFactory` for session creation (handles platform differences)
-    - ✅ Attach command dispatcher to context early
-    - ✅ Call `context._sync_round_values()` before accessing round-specific data
-    - ❌ Don't access round context before round initialization
+    - [OK] Always initialize context before creating rounds
+    - [OK] Use `SessionFactory` for session creation (handles platform differences)
+    - [OK] Attach command dispatcher to context early
+    - [OK] Call `context._sync_round_values()` before accessing round-specific data
+    - [FAIL] Don't access round context before round initialization
 
 !!!tip "Round Execution"
-    - ✅ Let the state machine control agent transitions
-    - ✅ Capture snapshots at subtask boundaries
-    - ✅ Check `is_finished()` before each iteration
-    - ❌ Don't bypass state transitions
-    - ❌ Don't manually manipulate agent states
+    - [OK] Let the state machine control agent transitions
+    - [OK] Capture snapshots at subtask boundaries
+    - [OK] Check `is_finished()` before each iteration
+    - [FAIL] Don't bypass state transitions
+    - [FAIL] Don't manually manipulate agent states
 
 !!!tip "Context Usage"
-    - ✅ Use `ContextNames` enum for type-safe access
-    - ✅ Update dictionaries with `update_dict()` for merging
-    - ✅ Use properties (`current_round_cost`) for auto-synced values
-    - ❌ Don't directly access `_context` dictionary
-    - ❌ Don't store non-serializable objects without marking them
+    - [OK] Use `ContextNames` enum for type-safe access
+    - [OK] Update dictionaries with `update_dict()` for merging
+    - [OK] Use properties (`current_round_cost`) for auto-synced values
+    - [FAIL] Don't directly access `_context` dictionary
+    - [FAIL] Don't store non-serializable objects without marking them
 
 !!!tip "Command Dispatch"
-    - ✅ Always await `execute_commands()` (async)
-    - ✅ Handle timeout exceptions gracefully
-    - ✅ Check `ResultStatus` before using results
-    - ❌ Don't ignore error results
-    - ❌ Don't assume commands succeed
+    - [OK] Always await `execute_commands()` (async)
+    - [OK] Handle timeout exceptions gracefully
+    - [OK] Check `ResultStatus` before using results
+    - [FAIL] Don't ignore error results
+    - [FAIL] Don't assume commands succeed
 
 ---
 

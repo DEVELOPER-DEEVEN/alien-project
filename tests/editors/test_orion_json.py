@@ -371,18 +371,18 @@ def test_task_orion_json():
         # Test 1: to_json() - JSON string generation
         print("\n1. Testing to_json()...")
         json_str = orion.to_json()
-        print(f"✓ JSON string generated ({len(json_str)} characters)")
+        print(f" JSON string generated ({len(json_str)} characters)")
 
         # Verify it's valid JSON
         parsed = json.loads(json_str)
-        print(f"✓ Valid JSON with {len(parsed)} top-level fields")
-        print(f"✓ Contains {len(parsed['tasks'])} tasks")
-        print(f"✓ Contains {len(parsed['dependencies'])} dependencies")
+        print(f" Valid JSON with {len(parsed)} top-level fields")
+        print(f" Contains {len(parsed['tasks'])} tasks")
+        print(f" Contains {len(parsed['dependencies'])} dependencies")
 
         # Test 2: from_json() - JSON string parsing
         print("\n2. Testing from_json() with string...")
         restored_orion = MinimalTaskOrion.from_json(json_data=json_str)
-        print(f"✓ TaskOrion restored from JSON string")
+        print(f" TaskOrion restored from JSON string")
 
         # Verify data integrity
         assert (
@@ -394,7 +394,7 @@ def test_task_orion_json():
         assert len(restored_orion._dependencies) == len(
             orion._dependencies
         )
-        print("✓ Basic data integrity verified")
+        print(" Basic data integrity verified")
 
         # Verify task data integrity
         for task_id, original_task in orion._tasks.items():
@@ -402,7 +402,7 @@ def test_task_orion_json():
             assert restored_task.name == original_task.name
             assert restored_task.description == original_task.description
             assert restored_task.device_type == original_task.device_type
-        print("✓ Task data integrity verified")
+        print(" Task data integrity verified")
 
         # Verify dependency data integrity
         for dep_id, original_dep in orion._dependencies.items():
@@ -410,7 +410,7 @@ def test_task_orion_json():
             assert restored_dep.from_task_id == original_dep.from_task_id
             assert restored_dep.to_task_id == original_dep.to_task_id
             assert restored_dep.dependency_type == original_dep.dependency_type
-        print("✓ Dependency data integrity verified")
+        print(" Dependency data integrity verified")
 
         # Test 3: File-based serialization
         print("\n3. Testing file-based JSON serialization...")
@@ -418,20 +418,20 @@ def test_task_orion_json():
             temp_file = f.name
 
         orion.to_json(save_path=temp_file)
-        print(f"✓ TaskOrion saved to file: {temp_file}")
+        print(f" TaskOrion saved to file: {temp_file}")
 
         file_orion = MinimalTaskOrion.from_json(file_path=temp_file)
-        print("✓ TaskOrion loaded from file")
+        print(" TaskOrion loaded from file")
 
         # Verify file-based data integrity
         assert file_orion._orion_id == orion._orion_id
         assert len(file_orion._tasks) == len(orion._tasks)
         assert len(file_orion._dependencies) == len(orion._dependencies)
-        print("✓ File-based data integrity verified")
+        print(" File-based data integrity verified")
 
         # Clean up
         os.unlink(temp_file)
-        print("✓ Temporary file cleaned up")
+        print(" Temporary file cleaned up")
 
         # Test 4: Complex data structures
         print("\n4. Testing complex data structures...")
@@ -457,12 +457,12 @@ def test_task_orion_json():
 
         assert complex_restored._metadata["nested_data"]["list_value"] == [1, 2, 3]
         assert complex_restored._metadata["execution_history"][0]["event"] == "created"
-        print("✓ Complex data structures handled correctly")
+        print(" Complex data structures handled correctly")
 
         return True
 
     except Exception as e:
-        print(f"✗ Error: {e}")
+        print(f" Error: {e}")
         import traceback
 
         traceback.print_exc()
@@ -480,19 +480,19 @@ def test_error_handling():
         print("1. Testing invalid JSON...")
         try:
             MinimalTaskOrion.from_json(json_data="invalid json")
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except json.JSONDecodeError:
-            print("✓ Correctly handled invalid JSON")
+            print(" Correctly handled invalid JSON")
 
         # Test missing parameters
         print("\n2. Testing missing parameters...")
         try:
             MinimalTaskOrion.from_json()
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except ValueError as e:
-            print(f"✓ Correctly handled missing parameters: {e}")
+            print(f" Correctly handled missing parameters: {e}")
 
         # Test both parameters provided
         print("\n3. Testing both parameters provided...")
@@ -500,15 +500,15 @@ def test_error_handling():
             MinimalTaskOrion.from_json(
                 json_data='{"test": "data"}', file_path="test.json"
             )
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except ValueError as e:
-            print(f"✓ Correctly handled both parameters: {e}")
+            print(f" Correctly handled both parameters: {e}")
 
         return True
 
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f" Unexpected error: {e}")
         return False
 
 
@@ -528,14 +528,14 @@ def main():
     # Final results
     print("\n" + "=" * 70)
     if all_passed:
-        print("🎉 ALL TASKCONSTELLTION JSON TESTS PASSED! 🎉")
+        print(" ALL TASKCONSTELLTION JSON TESTS PASSED! ")
         print(
             "TaskOrion JSON serialization/deserialization is working correctly!"
         )
         print("\nThe implementation successfully leverages the existing JSON methods")
         print("from TaskStar and TaskStarLine to handle complex orion data.")
     else:
-        print("❌ SOME TESTS FAILED ❌")
+        print("[FAIL] SOME TESTS FAILED [FAIL]")
         print("Please check the error messages above.")
     print("=" * 70)
 

@@ -289,10 +289,10 @@ async def monitor_task_progress(observer: OrionProgressObserver):
         timestamp = result["timestamp"]
         
         if status == "COMPLETED":
-            print(f"✅ Task {task_id} completed at {timestamp}")
+            print(f"[OK] Task {task_id} completed at {timestamp}")
             print(f"   Result: {result['result']}")
         elif status == "FAILED":
-            print(f"❌ Task {task_id} failed at {timestamp}")
+            print(f"[FAIL] Task {task_id} failed at {timestamp}")
             print(f"   Error: {result['error']}")
 ```
 

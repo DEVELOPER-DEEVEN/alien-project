@@ -1,11 +1,11 @@
-# 🧩 Setting up ALIEN with OSWorld (Windows)
+#  Setting up ALIEN with OSWorld (Windows)
 
 
 OSWorld is a benchmark suite designed to evaluate the performance of AI agents in real-world scenarios. We select the 49 cases from the original OSWorld benchmark that are compatible with the Windows platform, renamed as OSWorld-W. The tasks cover a wide range of functionalities and interactions that users typically perform on their computers, including Office 365 and browser.
 
 ---
 
-## 💻 Deployment Guide (WSL Recommended)
+##  Deployment Guide (WSL Recommended)
 
 > We strongly recommend reviewing the [original WAA deployment guide](https://github.com/microsoft/WindowsAgentArena) beforehand. The instructions below assume you are familiar with the original setup.
 
@@ -17,7 +17,7 @@ OSWorld is a benchmark suite designed to evaluate the performance of AI agents i
 git clone https://github.com/nice-mee/WindowsAgentArena.git
 ```
 
-> 💡 *To run OSWorld cases, switch to the dedicated development branch:*
+> [THOUGHT] *To run OSWorld cases, switch to the dedicated development branch:*
 ```bash
 git checkout osworld
 ```
@@ -55,7 +55,7 @@ This will generate the `windowsarena/winarena:latest` image using the latest cod
 cp -r src/win-arena-container/vm/setup/mm_agents/ALIEN/alien src/win-arena-container/client/
 ```
 
-> ⚠️ Python 3.9 Compatibility Fix  
+> ️ Python 3.9 Compatibility Fix  
 > In `alien/llm/openai.py`, swap the order of `@staticmethod` and `@functools.lru_cache()` to prevent issues due to a known Python 3.9 bug.
 
 ---
@@ -81,7 +81,7 @@ cd ./scripts
 ./run-local.sh --mode dev --prepare-image true
 ```
 
-> ⚠️ **Do not interact with the VM during preparation.** It will shut down automatically when complete.
+> ️ **Do not interact with the VM during preparation.** It will shut down automatically when complete.
 
 The golden image will be saved in:
 
@@ -115,7 +115,7 @@ After setup:
 
 ---
 
-## 🧪 Running Experiments
+##  Running Experiments
 
 Before each experiment:
 

@@ -29,9 +29,9 @@ try:
     from network.orion.task_star import TaskStar
     from network.orion.task_star_line import TaskStarLine
 
-    print("✓ Successfully imported required modules")
+    print(" Successfully imported required modules")
 except ImportError as e:
-    print(f"✗ Import error: {e}")
+    print(f" Import error: {e}")
     print("Let's try to test basic functionality without full imports...")
 
 
@@ -57,19 +57,19 @@ def test_basic_json_operations():
         # Test to_json
         print("\n1. Testing TaskStar.to_json()...")
         json_str = task.to_json()
-        print(f"✓ JSON string generated ({len(json_str)} characters)")
+        print(f" JSON string generated ({len(json_str)} characters)")
 
         # Verify it's valid JSON
         parsed_data = json.loads(json_str)
-        print(f"✓ Valid JSON with {len(parsed_data)} fields")
+        print(f" Valid JSON with {len(parsed_data)} fields")
 
         # Test from_json
         print("\n2. Testing TaskStar.from_json()...")
         restored_task = TaskStar.from_json(json_data=json_str)
-        print(f"✓ TaskStar restored from JSON")
-        print(f"✓ Original ID: {task.task_id}")
-        print(f"✓ Restored ID: {restored_task.task_id}")
-        print(f"✓ Names match: {task.name == restored_task.name}")
+        print(f" TaskStar restored from JSON")
+        print(f" Original ID: {task.task_id}")
+        print(f" Restored ID: {restored_task.task_id}")
+        print(f" Names match: {task.name == restored_task.name}")
 
         # Test file operations
         print("\n3. Testing file operations...")
@@ -77,20 +77,20 @@ def test_basic_json_operations():
             temp_file = f.name
 
         task.to_json(save_path=temp_file)
-        print(f"✓ Saved to file: {temp_file}")
+        print(f" Saved to file: {temp_file}")
 
         file_task = TaskStar.from_json(file_path=temp_file)
-        print(f"✓ Loaded from file")
-        print(f"✓ File task ID: {file_task.task_id}")
+        print(f" Loaded from file")
+        print(f" File task ID: {file_task.task_id}")
 
         # Clean up
         os.unlink(temp_file)
-        print("✓ Temporary file cleaned up")
+        print(" Temporary file cleaned up")
 
         return True
 
     except Exception as e:
-        print(f"✗ Error in TaskStar JSON operations: {e}")
+        print(f" Error in TaskStar JSON operations: {e}")
         import traceback
 
         traceback.print_exc()
@@ -118,20 +118,20 @@ def test_task_star_line_basic():
         # Test to_json
         print("\n1. Testing TaskStarLine.to_json()...")
         json_str = line.to_json()
-        print(f"✓ JSON string generated ({len(json_str)} characters)")
+        print(f" JSON string generated ({len(json_str)} characters)")
 
         # Verify it's valid JSON
         parsed_data = json.loads(json_str)
-        print(f"✓ Valid JSON with {len(parsed_data)} fields")
+        print(f" Valid JSON with {len(parsed_data)} fields")
 
         # Test from_json
         print("\n2. Testing TaskStarLine.from_json()...")
         restored_line = TaskStarLine.from_json(json_data=json_str)
-        print(f"✓ TaskStarLine restored from JSON")
-        print(f"✓ Original ID: {line.line_id}")
-        print(f"✓ Restored ID: {restored_line.line_id}")
-        print(f"✓ From tasks match: {line.from_task_id == restored_line.from_task_id}")
-        print(f"✓ To tasks match: {line.to_task_id == restored_line.to_task_id}")
+        print(f" TaskStarLine restored from JSON")
+        print(f" Original ID: {line.line_id}")
+        print(f" Restored ID: {restored_line.line_id}")
+        print(f" From tasks match: {line.from_task_id == restored_line.from_task_id}")
+        print(f" To tasks match: {line.to_task_id == restored_line.to_task_id}")
 
         # Test file operations
         print("\n3. Testing file operations...")
@@ -139,20 +139,20 @@ def test_task_star_line_basic():
             temp_file = f.name
 
         line.to_json(save_path=temp_file)
-        print(f"✓ Saved to file: {temp_file}")
+        print(f" Saved to file: {temp_file}")
 
         file_line = TaskStarLine.from_json(file_path=temp_file)
-        print(f"✓ Loaded from file")
-        print(f"✓ File line ID: {file_line.line_id}")
+        print(f" Loaded from file")
+        print(f" File line ID: {file_line.line_id}")
 
         # Clean up
         os.unlink(temp_file)
-        print("✓ Temporary file cleaned up")
+        print(" Temporary file cleaned up")
 
         return True
 
     except Exception as e:
-        print(f"✗ Error in TaskStarLine JSON operations: {e}")
+        print(f" Error in TaskStarLine JSON operations: {e}")
         import traceback
 
         traceback.print_exc()
@@ -170,33 +170,33 @@ def test_error_handling():
         print("1. Testing invalid JSON...")
         try:
             TaskStar.from_json(json_data="invalid json")
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except json.JSONDecodeError:
-            print("✓ Correctly handled invalid JSON")
+            print(" Correctly handled invalid JSON")
 
         # Test missing parameters
         print("\n2. Testing missing parameters...")
         try:
             TaskStar.from_json()
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except ValueError:
-            print("✓ Correctly handled missing parameters")
+            print(" Correctly handled missing parameters")
 
         # Test non-existent file
         print("\n3. Testing non-existent file...")
         try:
             TaskStar.from_json(file_path="non_existent_file.json")
-            print("✗ Should have raised an exception")
+            print(" Should have raised an exception")
             return False
         except FileNotFoundError:
-            print("✓ Correctly handled non-existent file")
+            print(" Correctly handled non-existent file")
 
         return True
 
     except Exception as e:
-        print(f"✗ Unexpected error in error handling tests: {e}")
+        print(f" Unexpected error in error handling tests: {e}")
         return False
 
 
@@ -222,10 +222,10 @@ def main():
     # Final results
     print("\n" + "=" * 60)
     if all_passed:
-        print("🎉 ALL TESTS PASSED! 🎉")
+        print(" ALL TESTS PASSED! ")
         print("JSON serialization/deserialization is working correctly.")
     else:
-        print("❌ SOME TESTS FAILED ❌")
+        print("[FAIL] SOME TESTS FAILED [FAIL]")
         print("Please check the error messages above.")
     print("=" * 60)
 

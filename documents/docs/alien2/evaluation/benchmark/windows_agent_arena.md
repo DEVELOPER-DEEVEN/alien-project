@@ -1,4 +1,4 @@
-# 🧩 Setting up ALIEN with Windows Agent Arena (WAA)
+#  Setting up ALIEN with Windows Agent Arena (WAA)
 
 Windows Agent Arena (WAA) is a benchmark suite designed to evaluate the performance of AI agents in executing real-world tasks on Windows operating systems. It consists of 154 tasks across 15 applications, including Microsoft Office, Edge, File Explorer, and VS Code. The tasks are designed to cover a wide range of functionalities and interactions that users typically perform on their computers.
 
@@ -6,7 +6,7 @@ This repository provides a modified version of [**Windows Agent Arena (WAA) 🪟
 
 ---
 
-## 💻 Deployment Guide (WSL Recommended)
+##  Deployment Guide (WSL Recommended)
 
 > We strongly recommend reviewing the [original WAA deployment guide](https://github.com/microsoft/WindowsAgentArena) beforehand. The instructions below assume you are familiar with the original setup.
 
@@ -18,7 +18,7 @@ This repository provides a modified version of [**Windows Agent Arena (WAA) 🪟
 git clone https://github.com/nice-mee/WindowsAgentArena.git
 ```
 
-> 💡 *To run OSWorld cases, switch to the dedicated development branch:*
+> [THOUGHT] *To run OSWorld cases, switch to the dedicated development branch:*
 ```bash
 git checkout 2020-qqtcg/dev
 ```
@@ -56,7 +56,7 @@ This will generate the `windowsarena/winarena:latest` image using the latest cod
 cp -r src/win-arena-container/vm/setup/mm_agents/ALIEN/alien src/win-arena-container/client/
 ```
 
-> ⚠️ Python 3.9 Compatibility Fix  
+> ️ Python 3.9 Compatibility Fix  
 > In `alien/llm/openai.py`, swap the order of `@staticmethod` and `@functools.lru_cache()` to prevent issues due to a known Python 3.9 bug.
 
 ---
@@ -82,7 +82,7 @@ cd ./scripts
 ./run-local.sh --mode dev --prepare-image true
 ```
 
-> ⚠️ **Do not interact with the VM during preparation.** It will shut down automatically when complete.
+> ️ **Do not interact with the VM during preparation.** It will shut down automatically when complete.
 
 The golden image will be saved in:
 
@@ -115,7 +115,7 @@ After setup:
 
 ---
 
-## 🧪 Running Experiments
+##  Running Experiments
 
 Before each experiment:
 

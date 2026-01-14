@@ -18,7 +18,7 @@ from network.client.orion_client import OrionClient
 
 async def test_network_session_workflow():
     """Test NetworkSession with a complete workflow."""
-    print("🚀 Testing NetworkSession Full Workflow\n")
+    print("[START] Testing NetworkSession Full Workflow\n")
 
     # Set up logging
     logging.basicConfig(level=logging.INFO)
@@ -38,7 +38,7 @@ async def test_network_session_workflow():
         initial_request="Create a comprehensive software development workflow with testing and deployment",
     )
 
-    print("✅ Session created")
+    print("[OK] Session created")
     print(f"   Task: {session.task}")
     print(f"   Initial request: {session._initial_request}")
     print(f"   Agent: {type(session.agent).__name__}")
@@ -51,7 +51,7 @@ async def test_network_session_workflow():
         round1 = session.create_new_round()
 
         if round1:
-            print("✅ First round created")
+            print("[OK] First round created")
             print(f"   Round ID: {round1._id}")
             print(f"   Request: {round1._request}")
 
@@ -62,12 +62,12 @@ async def test_network_session_workflow():
         # Try to create second round (should be None since only one request)
         round2 = session.create_new_round()
         if round2 is None:
-            print("✅ Second round correctly not created (no more requests)")
+            print("[OK] Second round correctly not created (no more requests)")
         else:
-            print(f"ℹ️ Second round created: {round2._id}")
+            print(f"[INFO] Second round created: {round2._id}")
 
     except Exception as e:
-        print(f"❌ Error in round creation: {e}")
+        print(f"[FAIL] Error in round creation: {e}")
         import traceback
 
         traceback.print_exc()
@@ -76,34 +76,34 @@ async def test_network_session_workflow():
 
     try:
         # Test various session states
-        print(f"✅ Session finished: {session.is_finished()}")
-        print(f"✅ Session error: {session.is_error()}")
-        print(f"✅ Current step: {session.step}")
-        print(f"✅ Total rounds: {session.total_rounds}")
-        print(f"✅ Current orion: {session.current_orion}")
+        print(f"[OK] Session finished: {session.is_finished()}")
+        print(f"[OK] Session error: {session.is_error()}")
+        print(f"[OK] Current step: {session.step}")
+        print(f"[OK] Total rounds: {session.total_rounds}")
+        print(f"[OK] Current orion: {session.current_orion}")
 
         # Test session results
         results = session.session_results
-        print(f"✅ Session results keys: {list(results.keys())}")
+        print(f"[OK] Session results keys: {list(results.keys())}")
 
     except Exception as e:
-        print(f"❌ Error in state management: {e}")
+        print(f"[FAIL] Error in state management: {e}")
         return
 
     print("\n=== Test 4: Agent Integration ===")
 
     try:
         agent = session.agent
-        print(f"✅ Agent name: {agent.name}")
-        print(f"✅ Agent status: {agent.status}")
-        print(f"✅ Agent orchestrator: {type(agent.orchestrator).__name__}")
+        print(f"[OK] Agent name: {agent.name}")
+        print(f"[OK] Agent status: {agent.status}")
+        print(f"[OK] Agent orchestrator: {type(agent.orchestrator).__name__}")
 
         # Test agent orion access
         orion = agent.current_orion
-        print(f"✅ Agent orion: {orion}")
+        print(f"[OK] Agent orion: {orion}")
 
     except Exception as e:
-        print(f"❌ Error in agent integration: {e}")
+        print(f"[FAIL] Error in agent integration: {e}")
         return
 
     print("\n=== Test 5: Event System Integration ===")
@@ -113,15 +113,15 @@ async def test_network_session_workflow():
         event_bus = session._event_bus
         observers = session._observers
 
-        print(f"✅ Event bus: {type(event_bus).__name__}")
-        print(f"✅ Observer count: {len(observers)}")
+        print(f"[OK] Event bus: {type(event_bus).__name__}")
+        print(f"[OK] Observer count: {len(observers)}")
 
         for i, observer in enumerate(observers):
             observer_type = type(observer).__name__
             print(f"   Observer {i+1}: {observer_type}")
 
     except Exception as e:
-        print(f"❌ Error in event system: {e}")
+        print(f"[FAIL] Error in event system: {e}")
         return
 
     print("\n=== Test 6: Session Cleanup ===")
@@ -130,7 +130,7 @@ async def test_network_session_workflow():
         # Force finish the session
         await session.force_finish("Integration test completed")
 
-        print("✅ Session force finished")
+        print("[OK] Session force finished")
         print(f"   Final status: {session.agent.status}")
         print(f"   Session finished: {session.is_finished()}")
         print(
@@ -138,15 +138,15 @@ async def test_network_session_workflow():
         )
 
     except Exception as e:
-        print(f"❌ Error in session cleanup: {e}")
+        print(f"[FAIL] Error in session cleanup: {e}")
         return
 
-    print("\n✅ NetworkSession workflow test completed successfully!")
+    print("\n[OK] NetworkSession workflow test completed successfully!")
 
 
 async def test_network_session_error_scenarios():
     """Test NetworkSession error handling scenarios."""
-    print("\n🔍 Testing NetworkSession Error Scenarios\n")
+    print("\n Testing NetworkSession Error Scenarios\n")
 
     print("=== Test 1: Invalid Client Scenario ===")
 
@@ -159,10 +159,10 @@ async def test_network_session_error_scenarios():
             client=None,
             initial_request="Test request",
         )
-        print("❌ Should have failed with None client")
+        print("[FAIL] Should have failed with None client")
 
     except Exception as e:
-        print(f"✅ Correctly failed with None client: {type(e).__name__}")
+        print(f"[OK] Correctly failed with None client: {type(e).__name__}")
 
     print("\n=== Test 2: Long Task Name Scenario ===")
 
@@ -180,11 +180,11 @@ async def test_network_session_error_scenarios():
             initial_request="Test long task",
         )
 
-        print("✅ Handled long task name successfully")
+        print("[OK] Handled long task name successfully")
         print(f"   Task length: {len(session.task)}")
 
     except Exception as e:
-        print(f"❌ Failed with long task name: {e}")
+        print(f"[FAIL] Failed with long task name: {e}")
 
     print("\n=== Test 3: Empty Request Scenario ===")
 
@@ -201,19 +201,19 @@ async def test_network_session_error_scenarios():
             initial_request="",
         )
 
-        print("✅ Handled empty request successfully")
+        print("[OK] Handled empty request successfully")
         print(f"   Next request: '{session.next_request()}'")
         print(f"   Eval request: '{session.request_to_evaluate()}'")
 
     except Exception as e:
-        print(f"❌ Failed with empty request: {e}")
+        print(f"[FAIL] Failed with empty request: {e}")
 
-    print("\n✅ Error scenario testing completed!")
+    print("\n[OK] Error scenario testing completed!")
 
 
 async def main():
     """Run all NetworkSession integration tests."""
-    print("🧪 NetworkSession Integration Testing Suite\n")
+    print(" NetworkSession Integration Testing Suite\n")
     print("=" * 60)
 
     try:
@@ -224,13 +224,13 @@ async def main():
         await test_network_session_error_scenarios()
 
         print("\n" + "=" * 60)
-        print("🎯 Integration Testing Summary")
+        print(" Integration Testing Summary")
         print("=" * 60)
-        print("✅ All NetworkSession integration tests passed!")
-        print("🎉 NetworkSession is ready for production use!")
+        print("[OK] All NetworkSession integration tests passed!")
+        print(" NetworkSession is ready for production use!")
 
     except Exception as e:
-        print(f"\n💥 Critical error during integration testing: {e}")
+        print(f"\n Critical error during integration testing: {e}")
         import traceback
 
         traceback.print_exc()

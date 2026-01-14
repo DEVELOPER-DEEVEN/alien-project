@@ -19,7 +19,7 @@ def run_test_suite():
     root_dir = Path(__file__).parent.parent.parent.parent
     os.chdir(root_dir)
 
-    print("🚀 Running Network Agent State Machine Test Suite")
+    print("[START] Running Network Agent State Machine Test Suite")
     print("=" * 60)
 
     # Test files to run
@@ -36,7 +36,7 @@ def run_test_suite():
     passed_tests = []
 
     for test_file in test_files:
-        print(f"\n📋 Running: {test_file}")
+        print(f"\n[TASK] Running: {test_file}")
         print("-" * 40)
 
         try:
@@ -57,18 +57,18 @@ def run_test_suite():
             )
 
             if result.returncode == 0:
-                print(f"✅ PASSED: {test_file}")
+                print(f"[OK] PASSED: {test_file}")
                 passed_tests.append(test_file)
 
                 # Show summary of passed tests
                 lines = result.stdout.split("\n")
                 for line in lines:
                     if "passed" in line and ("failed" in line or "error" in line):
-                        print(f"   📊 {line.strip()}")
+                        print(f"   [STATUS] {line.strip()}")
                         break
 
             else:
-                print(f"❌ FAILED: {test_file}")
+                print(f"[FAIL] FAILED: {test_file}")
                 failed_tests.append(test_file)
 
                 # Show error details
@@ -83,40 +83,40 @@ def run_test_suite():
             failed_tests.append(test_file)
 
         except Exception as e:
-            print(f"💥 EXCEPTION: {test_file} - {e}")
+            print(f" EXCEPTION: {test_file} - {e}")
             failed_tests.append(test_file)
 
     # Final summary
     print("\n" + "=" * 60)
-    print("🏁 TEST SUITE SUMMARY")
+    print(" TEST SUITE SUMMARY")
     print("=" * 60)
 
-    print(f"✅ Passed: {len(passed_tests)}")
+    print(f"[OK] Passed: {len(passed_tests)}")
     for test in passed_tests:
         print(f"   • {test}")
 
     if failed_tests:
-        print(f"\n❌ Failed: {len(failed_tests)}")
+        print(f"\n[FAIL] Failed: {len(failed_tests)}")
         for test in failed_tests:
             print(f"   • {test}")
 
     total_tests = len(test_files)
     success_rate = (len(passed_tests) / total_tests) * 100 if total_tests > 0 else 0
 
-    print(f"\n📊 Success Rate: {success_rate:.1f}% ({len(passed_tests)}/{total_tests})")
+    print(f"\n[STATUS] Success Rate: {success_rate:.1f}% ({len(passed_tests)}/{total_tests})")
 
     if failed_tests:
-        print("\n⚠️  Some tests failed. Please review the errors above.")
+        print("\n️  Some tests failed. Please review the errors above.")
         return False
     else:
-        print("\n🎉 All tests passed! Network Agent State Machine refactoring is ready.")
+        print("\n All tests passed! Network Agent State Machine refactoring is ready.")
         return True
 
 
 def run_specific_test_scenarios():
     """Run specific test scenarios mentioned in the requirements."""
 
-    print("\n🎯 Running Specific Scenario Tests")
+    print("\n Running Specific Scenario Tests")
     print("=" * 60)
 
     scenarios = [
@@ -146,7 +146,7 @@ def run_specific_test_scenarios():
     failed_scenarios = []
 
     for scenario in scenarios:
-        print(f"\n🔬 Testing: {scenario['name']}")
+        print(f"\n Testing: {scenario['name']}")
         print("-" * 40)
 
         try:
@@ -158,10 +158,10 @@ def run_specific_test_scenarios():
             )
 
             if result.returncode == 0:
-                print(f"✅ PASSED: {scenario['name']}")
+                print(f"[OK] PASSED: {scenario['name']}")
                 passed_scenarios.append(scenario["name"])
             else:
-                print(f"❌ FAILED: {scenario['name']}")
+                print(f"[FAIL] FAILED: {scenario['name']}")
                 failed_scenarios.append(scenario["name"])
                 print("Error details:")
                 print(
@@ -172,12 +172,12 @@ def run_specific_test_scenarios():
             print(f"⏰ TIMEOUT: {scenario['name']}")
             failed_scenarios.append(scenario["name"])
         except Exception as e:
-            print(f"💥 EXCEPTION: {scenario['name']} - {e}")
+            print(f" EXCEPTION: {scenario['name']} - {e}")
             failed_scenarios.append(scenario["name"])
 
-    print(f"\n📊 Scenario Test Results:")
-    print(f"   ✅ Passed: {len(passed_scenarios)}")
-    print(f"   ❌ Failed: {len(failed_scenarios)}")
+    print(f"\n[STATUS] Scenario Test Results:")
+    print(f"   [OK] Passed: {len(passed_scenarios)}")
+    print(f"   [FAIL] Failed: {len(failed_scenarios)}")
 
     return len(failed_scenarios) == 0
 
@@ -185,7 +185,7 @@ def run_specific_test_scenarios():
 def check_test_coverage():
     """Check test coverage for the refactored components."""
 
-    print("\n📈 Checking Test Coverage")
+    print("\n Checking Test Coverage")
     print("=" * 60)
 
     components_to_test = [
@@ -218,18 +218,18 @@ def check_test_coverage():
         print(result.stdout)
 
         if "html" in result.stdout:
-            print("\n📄 HTML coverage report generated in htmlcov/")
+            print("\n[DOC] HTML coverage report generated in htmlcov/")
 
     except subprocess.TimeoutExpired:
         print("⏰ Coverage analysis timed out")
     except Exception as e:
-        print(f"💥 Coverage analysis failed: {e}")
+        print(f" Coverage analysis failed: {e}")
 
 
 def main():
     """Main test runner."""
 
-    print("🧪 Network Agent State Machine Test Runner")
+    print(" Network Agent State Machine Test Runner")
     print("Testing the refactored state machine implementation")
     print("=" * 60)
 
@@ -245,10 +245,10 @@ def main():
     # Final status
     print("\n" + "=" * 60)
     if suite_success and scenario_success:
-        print("🎉 ALL TESTS PASSED! Refactoring is complete and ready for deployment.")
+        print(" ALL TESTS PASSED! Refactoring is complete and ready for deployment.")
         return 0
     else:
-        print("⚠️  Some tests failed. Please review and fix issues before deployment.")
+        print("️  Some tests failed. Please review and fix issues before deployment.")
         return 1
 
 

@@ -148,7 +148,7 @@ async def wait_for_pending_modifications(
             # Small delay to allow new registrations to settle
             await asyncio.sleep(0.01)
         
-        self.logger.info("✅ All pending modifications completed")
+        self.logger.info("[OK] All pending modifications completed")
         return True
         
     except asyncio.TimeoutError:
@@ -479,7 +479,7 @@ class BatchMetricsObserver(IEventObserver):
             self.batch_sizes.append(batch_size)
             
             if batch_size > 1:
-                print(f"✓ Batched {batch_size} modifications")
+                print(f" Batched {batch_size} modifications")
 ```
 
 ## Comparison with Alternatives

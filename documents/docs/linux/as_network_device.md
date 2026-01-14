@@ -77,13 +77,13 @@ devices:
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
-| `device_id` | ✅ Yes | string | **Unique identifier** - must match client `--client-id` |
-| `server_url` | ✅ Yes | string | WebSocket URL - must match server endpoint |
-| `os` | ✅ Yes | string | Operating system - set to `"linux"` |
-| `capabilities` | ❌ Optional | list | Skills/capabilities for task routing |
-| `metadata` | ❌ Optional | dict | Custom context for LLM-based task execution |
-| `auto_connect` | ❌ Optional | boolean | Auto-connect on Network startup (default: `true`) |
-| `max_retries` | ❌ Optional | integer | Connection retry attempts (default: `5`) |
+| `device_id` | [OK] Yes | string | **Unique identifier** - must match client `--client-id` |
+| `server_url` | [OK] Yes | string | WebSocket URL - must match server endpoint |
+| `os` | [OK] Yes | string | Operating system - set to `"linux"` |
+| `capabilities` | [FAIL] Optional | list | Skills/capabilities for task routing |
+| `metadata` | [FAIL] Optional | dict | Custom context for LLM-based task execution |
+| `auto_connect` | [FAIL] Optional | boolean | Auto-connect on Network startup (default: `true`) |
+| `max_retries` | [FAIL] Optional | integer | Connection retry attempts (default: `5`) |
 
 ### Step 3: Capabilities-Based Task Routing
 

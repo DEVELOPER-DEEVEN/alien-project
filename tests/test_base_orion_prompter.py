@@ -145,7 +145,7 @@ class TestBaseOrionPrompter:
         # Check dependency information
         assert "Task Dependencies:" in result
         assert "task_001 → task_002 (unconditional)" in result
-        assert "✗ Not Satisfied" in result
+        assert " Not Satisfied" in result
 
         # Check execution info
         assert "Execution Info:" in result
@@ -261,7 +261,7 @@ class TestBaseOrionPrompter:
 
         assert "task_001 → task_002 (conditional)" in result
         assert "Only if data quality is acceptable" in result
-        assert "✓ Satisfied" in result
+        assert " Satisfied" in result
 
     def test_format_orion_exception_handling(self):
         """Test handling of orion formatting exceptions."""

@@ -166,19 +166,19 @@ class ALIENWebSocketHandler:
         :param client_type: The client type.
         """
         if client_type == ClientType.ORION:
-            self.logger.info(f"[WS] 🌟 Orion client {client_id} connected")
+            self.logger.info(f"[WS]  Orion client {client_id} connected")
         else:
             # Log device connection with system info if available
             system_info = self.client_manager.get_device_system_info(client_id)
             if system_info:
                 self.logger.info(
-                    f"[WS] 📱 Device client {client_id} connected - "
+                    f"[WS]  Device client {client_id} connected - "
                     f"Platform: {system_info.get('platform', 'unknown')}, "
                     f"CPU: {system_info.get('cpu_count', 'N/A')}, "
                     f"Memory: {system_info.get('memory_total_gb', 'N/A')}GB"
                 )
             else:
-                self.logger.info(f"[WS] 📱 Device client {client_id} connected")
+                self.logger.info(f"[WS]  Device client {client_id} connected")
 
     async def disconnect(self, client_id: str) -> None:
         """
@@ -194,7 +194,7 @@ class ALIENWebSocketHandler:
 
             if session_ids:
                 self.logger.info(
-                    f"[WS] 🌟 Orion {client_id} disconnected, "
+                    f"[WS]  Orion {client_id} disconnected, "
                     f"cancelling {len(session_ids)} active session(s)"
                 )
 
@@ -216,7 +216,7 @@ class ALIENWebSocketHandler:
 
             if session_ids:
                 self.logger.info(
-                    f"[WS] 📱 Device {client_id} disconnected, "
+                    f"[WS]  Device {client_id} disconnected, "
                     f"cancelling {len(session_ids)} active session(s)"
                 )
 
@@ -275,11 +275,11 @@ class ALIENWebSocketHandler:
             # Log message with client type context
             if client_type == ClientType.ORION:
                 self.logger.debug(
-                    f"[WS] 🌟 Handling orion message from {client_id}, type: {data.type}"
+                    f"[WS]  Handling orion message from {client_id}, type: {data.type}"
                 )
             else:
                 self.logger.debug(
-                    f"[WS] 📱 Received device message from {client_id}, type: {data.type}"
+                    f"[WS]  Received device message from {client_id}, type: {data.type}"
                 )
 
             msg_type = data.type
@@ -363,12 +363,12 @@ class ALIENWebSocketHandler:
         if client_type == ClientType.ORION:
             target_device_id = data.target_id
             self.logger.info(
-                f"[WS] 🌟 Handling orion task request: {data.request} from {data.target_id}"
+                f"[WS]  Handling orion task request: {data.request} from {data.target_id}"
             )
             platform = self.client_manager.get_client_info(data.target_id).platform
         else:
             self.logger.info(
-                f"[WS] 📱 Handling device task request: {data.request} from {data.client_id}"
+                f"[WS]  Handling device task request: {data.request} from {data.client_id}"
             )
             platform = self.client_manager.get_client_info(data.client_id).platform
 
@@ -376,7 +376,7 @@ class ALIENWebSocketHandler:
         task_name = data.task_name if data.task_name else str(uuid.uuid4())
 
         self.logger.info(
-            f"[WS] 🎯 Prepared task: session_id={session_id}, task_name={task_name}, "
+            f"[WS]  Prepared task: session_id={session_id}, task_name={task_name}, "
             f"client_type={client_type}, target_device={target_device_id}"
         )
 
@@ -391,7 +391,7 @@ class ALIENWebSocketHandler:
         async def send_result(sid: str, result_msg: ServerMessage):
             """Send task result to client when session completes using AIP."""
             self.logger.info(
-                f"[WS] 📬 CALLBACK INVOKED! session={sid}, status={result_msg.status}, "
+                f"[WS]  CALLBACK INVOKED! session={sid}, status={result_msg.status}, "
                 f"client_type={client_type}, target_device={target_device_id}"
             )
 
@@ -400,7 +400,7 @@ class ALIENWebSocketHandler:
 
             if not requester_protocol:
                 self.logger.warning(
-                    f"[WS] ⚠️ Client {client_id} disconnected, "
+                    f"[WS] ️ Client {client_id} disconnected, "
                     f"skipping result callback for session {sid}"
                 )
                 return
@@ -408,7 +408,7 @@ class ALIENWebSocketHandler:
             try:
                 # Send to requesting client (orion or device) using AIP
                 self.logger.info(
-                    f"[WS] 📤 Sending result to client {client_id} via AIP..."
+                    f"[WS]  Sending result to client {client_id} via AIP..."
                 )
 
                 # Use AIP TaskExecutionProtocol.send_task_end()
@@ -419,7 +419,7 @@ class ALIENWebSocketHandler:
                     error=result_msg.error,
                     response_id=result_msg.response_id,
                 )
-                self.logger.info(f"[WS] ✅ Sent to client {client_id} successfully")
+                self.logger.info(f"[WS] [OK] Sent to client {client_id} successfully")
 
                 # If orion client, also notify the target device
                 if client_type == ClientType.ORION and target_device_id:
@@ -429,7 +429,7 @@ class ALIENWebSocketHandler:
 
                     if target_protocol:
                         self.logger.info(
-                            f"[WS] 📤 Sending result to target device {target_device_id} via AIP..."
+                            f"[WS]  Sending result to target device {target_device_id} via AIP..."
                         )
                         try:
                             await target_protocol.send_task_end(
@@ -440,31 +440,31 @@ class ALIENWebSocketHandler:
                                 response_id=result_msg.response_id,
                             )
                             self.logger.info(
-                                f"[WS] ✅ Sent to target device {target_device_id} successfully"
+                                f"[WS] [OK] Sent to target device {target_device_id} successfully"
                             )
                         except (ConnectionError, IOError) as target_error:
                             self.logger.warning(
-                                f"[WS] ⚠️ Target device {target_device_id} disconnected: {target_error}"
+                                f"[WS] ️ Target device {target_device_id} disconnected: {target_error}"
                             )
                     else:
                         self.logger.warning(
-                            f"[WS] ⚠️ Target device {target_device_id} disconnected, skipping send"
+                            f"[WS] ️ Target device {target_device_id} disconnected, skipping send"
                         )
 
-                self.logger.info(f"[WS] ✅ All results sent for session {sid}")
+                self.logger.info(f"[WS] [OK] All results sent for session {sid}")
             except (ConnectionError, IOError) as e:
                 self.logger.warning(
-                    f"[WS] ⚠️ Connection error sending result for {sid}: {e}"
+                    f"[WS] ️ Connection error sending result for {sid}: {e}"
                 )
             except Exception as e:
                 import traceback
 
                 self.logger.error(
-                    f"[WS] ❌ Failed to send result for {sid}: {e}\n{traceback.format_exc()}"
+                    f"[WS] [FAIL] Failed to send result for {sid}: {e}\n{traceback.format_exc()}"
                 )
 
         self.logger.info(
-            f"[WS] 🎯 About to call execute_task_async for session {session_id}"
+            f"[WS]  About to call execute_task_async for session {session_id}"
         )
 
         # Get task protocol for target device
@@ -483,14 +483,14 @@ class ALIENWebSocketHandler:
         )
 
         self.logger.info(
-            f"[WS] 🎯 execute_task_async returned for session {session_id}"
+            f"[WS]  execute_task_async returned for session {session_id}"
         )
 
         # Send immediate acknowledgment that task was accepted
         await self.task_protocol.send_ack(session_id=session_id)
 
         self.logger.info(
-            f"[WS] 📝 Task {session_id} accepted and running in background"
+            f"[WS]  Task {session_id} accepted and running in background"
         )
 
     async def handle_command_result(self, data: ClientMessage) -> None:
@@ -532,7 +532,7 @@ class ALIENWebSocketHandler:
         request_id = data.request_id
 
         self.logger.info(
-            f"[WS] [AIP] 🌟 Orion requesting device info for {device_id}"
+            f"[WS] [AIP]  Orion requesting device info for {device_id}"
         )
 
         # Get device info from WSManager
@@ -544,7 +544,7 @@ class ALIENWebSocketHandler:
         )
 
         self.logger.info(
-            f"[WS] [AIP] 📤 Sent device info response for {device_id} to orion"
+            f"[WS] [AIP]  Sent device info response for {device_id} to orion"
         )
 
     async def get_device_info(self, device_id: str) -> dict:

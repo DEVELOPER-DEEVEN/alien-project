@@ -6,7 +6,7 @@ For context on how this component fits into the server architecture, see the [Se
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 The WebSocket Handler acts as the protocol orchestrator, managing all aspects of client communication:
 
@@ -74,7 +74,7 @@ graph TB
 
 ---
 
-## 🔌 AIP Protocol Integration
+##  AIP Protocol Integration
 
 The handler uses **four specialized AIP protocols**, each handling a specific aspect of communication. This separation of concerns makes the code maintainable and testable. For detailed protocol specifications, see the [AIP Protocol Documentation](../aip/overview.md).
 
@@ -117,7 +117,7 @@ Each WebSocket connection gets its **own set of protocol instances**, ensuring m
 
 ---
 
-## 📝 Client Registration
+##  Client Registration
 
 Registration is the critical first step when a client connects. The handler validates client identity, checks permissions, and establishes the communication session.
 
@@ -306,7 +306,7 @@ def _log_client_connection(self, client_id: str, client_type: ClientType) -> Non
     if client_type == ClientType.DEVICE:
         self.logger.info(f"[WS] Registered device client: {client_id}")
     elif client_type == ClientType.ORION:
-        self.logger.info(f"[WS] 🌟 Registered orion client: {client_id}")
+        self.logger.info(f"[WS]  Registered orion client: {client_id}")
 ```
 
 ### Validation Rules
@@ -334,7 +334,7 @@ Orions **must** specify a valid `target_id` that refers to an already-connected 
 
 ---
 
-## 📨 Message Handling
+##  Message Handling
 
 After registration, the handler enters a message loop, routing incoming client messages to specialized handlers based on message type.
 
@@ -740,7 +740,7 @@ async def handle_device_info_request(
 
 ---
 
-## 🔌 Client Disconnection
+##  Client Disconnection
 
 **Critical Cleanup Process:**
 
@@ -817,7 +817,7 @@ async def disconnect(self, client_id: str) -> None:
         
         if session_ids:
             self.logger.info(
-                f"[WS] 📱 Device {client_id} disconnected, "
+                f"[WS]  Device {client_id} disconnected, "
                 f"cancelling {len(session_ids)} active session(s)"
             )
         
@@ -844,7 +844,7 @@ if client_info and client_info.client_type == ClientType.ORION:
     
     if session_ids:
         self.logger.info(
-            f"[WS] 🌟 Orion {client_id} disconnected, "
+            f"[WS]  Orion {client_id} disconnected, "
             f"cancelling {len(session_ids)} active session(s)"
         )
     
@@ -888,7 +888,7 @@ Failing to clean up disconnected clients leads to:
 
 ---
 
-## 🚨 Error Handling
+##  Error Handling
 
 The handler implements comprehensive error handling to prevent failures from cascading and breaking the entire server.
 
@@ -1060,11 +1060,11 @@ async def disconnect(self, client_id: str):
 # Good: Include client type and context
 if client_type == ClientType.ORION:
     self.logger.info(
-        f"[WS] 🌟 Orion {client_id} requesting task on {target_id}"
+        f"[WS]  Orion {client_id} requesting task on {target_id}"
     )
 else:
     self.logger.debug(
-        f"[WS] 📱 Received device message from {client_id}, type: {data.type}"
+        f"[WS]  Received device message from {client_id}, type: {data.type}"
     )
 ```
 
@@ -1098,7 +1098,7 @@ Background tasks allow **concurrent message processing** while keeping the recei
 
 ---
 
-## 📚 Related Documentation
+## [PLAN] Related Documentation
 
 Explore related components to understand the full server architecture:
 
@@ -1113,7 +1113,7 @@ Explore related components to understand the full server architecture:
 
 ---
 
-## 🎓 What You Learned
+##  What You Learned
 
 After reading this guide, you should understand:
 

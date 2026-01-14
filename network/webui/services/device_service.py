@@ -139,19 +139,19 @@ class DeviceService:
                 metadata=metadata or {},
                 max_retries=max_retries,
             )
-            self.logger.info(f"✅ Device '{device_id}' registered with device manager")
+            self.logger.info(f"[OK] Device '{device_id}' registered with device manager")
 
             # If auto_connect is enabled, try to connect
             if auto_connect:
                 import asyncio
 
                 asyncio.create_task(device_manager.connect_device(device_id))
-                self.logger.info(f"🔄 Initiated connection for device '{device_id}'")
+                self.logger.info(f"[CONTINUE] Initiated connection for device '{device_id}'")
 
             return True
 
         except Exception as e:
             self.logger.warning(
-                f"⚠️ Failed to register/connect device with manager: {e}"
+                f"️ Failed to register/connect device with manager: {e}"
             )
             return False

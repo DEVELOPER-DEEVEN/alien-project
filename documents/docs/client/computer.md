@@ -168,7 +168,7 @@ computer = Computer(
 await computer.async_init()
 ```
 
-> **⚠️ Important:** You **must** call `await computer.async_init()` after creating a `Computer` instance. This registers all MCP servers and their tools asynchronously.
+> **️ Important:** You **must** call `await computer.async_init()` after creating a `Computer` instance. This registers all MCP servers and their tools asynchronously.
 
 ### ComputerManager Initialization
 
@@ -447,7 +447,7 @@ results = await router.execute(
 )
 ```
 
-> **⚠️ Warning:** When `early_exit=True`, if a command fails, subsequent commands will **not** be executed, and their results will be set to `ResultStatus.SKIPPED`.
+> **️ Warning:** When `early_exit=True`, if a command fails, subsequent commands will **not** be executed, and their results will be set to `ResultStatus.SKIPPED`.
 
 ## Tool Registry
 
@@ -497,7 +497,7 @@ print(tool_info.mcp_server)     # Reference to MCP server
 
 ### Common Pitfalls
 
-> **⚠️ Important:** Avoid these common mistakes:
+> **️ Important:** Avoid these common mistakes:
 > - **Forgetting `async_init()`**: Always call after creating a `Computer` instance
 > - **Tool key collisions**: Ensure tool names are unique within each `tool_type`
 > - **Timeout too short**: Some operations (e.g., file downloads) may need longer timeouts

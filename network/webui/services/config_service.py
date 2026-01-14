@@ -163,5 +163,5 @@ class ConfigService:
         # Save updated configuration
         self.save_devices_config(config_data)
 
-        self.logger.info(f"✅ Device '{device_id}' added to configuration")
+        self.logger.info(f"[OK] Device '{device_id}' added to configuration")
         return new_device

@@ -31,7 +31,7 @@ async def context_provision(
     # Load the offline document indexer for the app agent if available.
     if alien_config.rag.offline_docs:
         console.print(
-            f"📚 Loading offline help document indexer for {self._process_name}...",
+            f"[PLAN] Loading offline help document indexer for {self._process_name}...",
             style="magenta",
         )
         self.build_offline_docs_retriever()
@@ -39,21 +39,21 @@ async def context_provision(
     # Load the online search indexer for the app agent if available.
 
     if alien_config.rag.online_search and request:
-        console.print("🔍 Creating a Bing search indexer...", style="magenta")
+        console.print(" Creating a Bing search indexer...", style="magenta")
         self.build_online_search_retriever(
             request, alien_config.rag.online_search_topk
         )
 
     # Load the experience indexer for the app agent if available.
     if alien_config.rag.experience:
-        console.print("📖 Creating an experience indexer...", style="magenta")
+        console.print("[LANG] Creating an experience indexer...", style="magenta")
         experience_path = alien_config.rag.experience_saved_path
         db_path = os.path.join(experience_path, "experience_db")
         self.build_experience_retriever(db_path)
 
     # Load the demonstration indexer for the app agent if available.
     if alien_config.rag.demonstration:
-        console.print("🎬 Creating an demonstration indexer...", style="magenta")
+        console.print(" Creating an demonstration indexer...", style="magenta")
         demonstration_path = alien_config.rag.demonstration_saved_path
         db_path = os.path.join(demonstration_path, "demonstration_db")
         self.build_human_demonstration_retriever(db_path)

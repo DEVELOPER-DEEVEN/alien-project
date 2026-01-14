@@ -36,40 +36,40 @@ class RichPresenter(BasePresenter):
 
     # Style configuration - centralized for easy maintenance
     STYLES = {
-        "thought": {"title": "💡 Thoughts", "style": "green"},
-        "observation": {"title": "👀 Observations", "style": "bright_cyan"},
-        "action": {"title": "⚒️ Actions", "style": "blue"},
-        "action_applied": {"title": "⚒️ Action applied", "style": "blue"},
-        "plan": {"title": "📚 Plans", "style": "cyan"},
-        "next_plan": {"title": "📚 Next Plan", "style": "cyan"},
-        "comment": {"title": "💬 Agent Comment", "style": "yellow"},
-        "message": {"title": "📩 Messages to AppAgent", "style": "cyan"},
-        "results": {"title": "📊 Current Task Results", "style": "bright_magenta"},
+        "thought": {"title": "[THOUGHT] Thoughts", "style": "green"},
+        "observation": {"title": "[OBSERVATION] Observations", "style": "bright_cyan"},
+        "action": {"title": "[ACTION] Actions", "style": "blue"},
+        "action_applied": {"title": "[ACTION] Action applied", "style": "blue"},
+        "plan": {"title": "[PLAN] Plans", "style": "cyan"},
+        "next_plan": {"title": "[PLAN] Next Plan", "style": "cyan"},
+        "comment": {"title": "[COMMENT] Agent Comment", "style": "yellow"},
+        "message": {"title": "[MSG] Messages to AppAgent", "style": "cyan"},
+        "results": {"title": "[STATUS] Current Task Results", "style": "bright_magenta"},
         "orion_info": {
-            "title": "🌌 Orion Information",
+            "title": "[ORION] Orion Information",
             "style": "cyan",
         },
-        "task_details": {"title": "📋 Task Details", "style": "yellow"},
-        "dependencies": {"title": "🔗 Dependencies", "style": "blue"},
+        "task_details": {"title": "[TASK] Task Details", "style": "yellow"},
+        "dependencies": {"title": "[DEP] Dependencies", "style": "blue"},
         "notice": {"title": "Notice", "style": "yellow"},
         "next_application": {
-            "title": "📲 Next Selected Application/Agent",
+            "title": "[NEXT] Next Selected Application/Agent",
             "style": "yellow",
         },
-        "status_default": {"title": "📊 Status", "style": "blue"},
-        "status_processing": {"title": "📊 Processing Status", "style": "blue"},
-        "final_status": {"title": "📊 Final Status", "style": "yellow"},
+        "status_default": {"title": "[STATUS] Status", "style": "blue"},
+        "status_processing": {"title": "[STATUS] Processing Status", "style": "blue"},
+        "final_status": {"title": "[STATUS] Final Status", "style": "yellow"},
         "status": {
-            "FINISH": {"style": "green", "emoji": "✅"},
-            "FAIL": {"style": "red", "emoji": "❌"},
-            "CONTINUE": {"style": "yellow", "emoji": "🔄"},
-            "START": {"style": "blue", "emoji": "🚀"},
+            "FINISH": {"style": "green", "emoji": "[OK]"},
+            "FAIL": {"style": "red", "emoji": "[FAIL]"},
+            "CONTINUE": {"style": "yellow", "emoji": "[CONTINUE]"},
+            "START": {"style": "blue", "emoji": "[START]"},
         },
         # Evaluation-specific styles
         "evaluation": {
-            "sub_scores": {"title": "📊 Sub-scores", "style": "green"},
-            "task_complete": {"title": "💯 Task is complete", "style": "cyan"},
-            "reason": {"title": "🤔 Reason", "style": "blue"},
+            "sub_scores": {"title": "[STATUS] Sub-scores", "style": "green"},
+            "task_complete": {"title": "[COMPLETE] Task is complete", "style": "cyan"},
+            "reason": {"title": "[REASON] Reason", "style": "blue"},
         },
         # Response separator styles
         "separator": {
@@ -137,7 +137,7 @@ class RichPresenter(BasePresenter):
         """
         status_upper = status.upper()
         style_config = self.STYLES["status"].get(status_upper, {})
-        emoji = style_config.get("emoji", "📊")
+        emoji = style_config.get("emoji", "[STATUS]")
         style = style_config.get("style", "blue")
 
         title_style = kwargs.get("title_style", "processing")
@@ -227,7 +227,7 @@ class RichPresenter(BasePresenter):
         self.console.print()
         self.console.print(
             Rule(
-                f"🤖 {agent_type} Response",
+                f" {agent_type} Response",
                 style=self.STYLES["separator"]["start"]["style"],
                 characters=self.STYLES["separator"]["start"]["char"],
             )
@@ -297,7 +297,7 @@ class RichPresenter(BasePresenter):
             reason = screenshot_saving.get("reason")
             self.console.print(
                 Panel(
-                    f"📸 Screenshot saved to the blackboard.\nReason: {reason}",
+                    f"[SCREENSHOT] Screenshot saved to the blackboard.\nReason: {reason}",
                     title=self.STYLES["notice"]["title"],
                     style=self.STYLES["notice"]["style"],
                 )
@@ -471,23 +471,23 @@ class RichPresenter(BasePresenter):
             self.console.print(
                 Panel(
                     response.thought,
-                    title="🧠 Orion Agent Thoughts",
+                    title="[BRAIN] Orion Agent Thoughts",
                     style="green",
                 )
             )
 
         # Status display with appropriate styling
         status_style = "blue"
-        status_emoji = "📊"
+        status_emoji = "[STATUS]"
         if response.status.upper() == "FINISH":
             status_style = "green"
-            status_emoji = "✅"
+            status_emoji = "[OK]"
         elif response.status.upper() == "FAIL":
             status_style = "red"
-            status_emoji = "❌"
+            status_emoji = "[FAIL]"
         elif response.status.upper() == "CONTINUE":
             status_style = "yellow"
-            status_emoji = "🔄"
+            status_emoji = "[CONTINUE]"
 
         self.console.print(
             Panel(
@@ -513,7 +513,7 @@ class RichPresenter(BasePresenter):
                 self.console.print(
                     Panel(
                         actions_text,
-                        title="⚒️ Planned Actions",
+                        title="[ACTION] Planned Actions",
                         style="blue",
                     )
                 )
@@ -539,15 +539,15 @@ class RichPresenter(BasePresenter):
         orion_state = orion.state
 
         orion_info = Text()
-        orion_info.append(f"🆔 ID: ", style="bold cyan")
+        orion_info.append(f" ID: ", style="bold cyan")
         orion_info.append(f"{orion.orion_id}\n", style="white")
-        orion_info.append(f"🌟 Name: ", style="bold cyan")
+        orion_info.append(f" Name: ", style="bold cyan")
         orion_info.append(f"{orion_name}\n", style="white")
-        orion_info.append(f"📊 State: ", style="bold cyan")
+        orion_info.append(f"[STATUS] State: ", style="bold cyan")
         orion_info.append(f"{orion_state}\n", style="white")
-        orion_info.append(f"📋 Tasks: ", style="bold cyan")
+        orion_info.append(f"[TASK] Tasks: ", style="bold cyan")
         orion_info.append(f"{task_count}\n", style="white")
-        orion_info.append(f"🔗 Dependencies: ", style="bold cyan")
+        orion_info.append(f"[DEP] Dependencies: ", style="bold cyan")
         orion_info.append(f"{dependency_count}", style="white")
 
         self.console.print(
@@ -576,7 +576,7 @@ class RichPresenter(BasePresenter):
                 # Show tips if available
                 if task.tips:
                     for tip in task.tips:
-                        tasks_text.append(f"  💡 {tip}\n", style="green")
+                        tasks_text.append(f"  [THOUGHT] {tip}\n", style="green")
 
             self.console.print(
                 Panel(
@@ -621,7 +621,7 @@ class RichPresenter(BasePresenter):
         from aip.messages import ResultStatus
 
         if not actions or not actions.actions:
-            self.console.print("ℹ️  No actions to display", style="dim")
+            self.console.print("[INFO]  No actions to display", style="dim")
             return
 
         # Filter actions based on success_only
@@ -632,7 +632,7 @@ class RichPresenter(BasePresenter):
         ]
 
         if not filtered_actions:
-            self.console.print("ℹ️  No actions to display", style="dim")
+            self.console.print("[INFO]  No actions to display", style="dim")
             return
 
         # Count successful and failed actions
@@ -643,7 +643,7 @@ class RichPresenter(BasePresenter):
 
         # Print header
         self.console.print()
-        header_text = f"⚒️  Action Execution Results ({len(filtered_actions)} action{'s' if len(filtered_actions) != 1 else ''})"
+        header_text = f"[ACTION]  Action Execution Results ({len(filtered_actions)} action{'s' if len(filtered_actions) != 1 else ''})"
         self.console.print(
             Rule(
                 header_text,
@@ -677,7 +677,7 @@ class RichPresenter(BasePresenter):
         from aip.messages import ResultStatus
 
         if not actions or not actions.actions:
-            self.console.print("ℹ️  No actions to display", style="dim")
+            self.console.print("[INFO]  No actions to display", style="dim")
             return
 
         # Count successful and failed actions
@@ -688,7 +688,7 @@ class RichPresenter(BasePresenter):
 
         # Create header
         header = Text()
-        header.append("🔧 Orion Editing Operations", style="bold cyan")
+        header.append("[CONFIG] Orion Editing Operations", style="bold cyan")
         header.append(
             f" ({len(actions.actions)} action{'s' if len(actions.actions) > 1 else ''})",
             style="dim",
@@ -713,13 +713,13 @@ class RichPresenter(BasePresenter):
 
         # Determine status icon and color
         if action.result.status == ResultStatus.SUCCESS:
-            status_icon = "✅"
+            status_icon = "[OK]"
             status_color = "green"
         elif action.result.status == ResultStatus.FAILURE:
-            status_icon = "❌"
+            status_icon = "[FAIL]"
             status_color = "red"
         else:
-            status_icon = "⏸️"
+            status_icon = "[PAUSE]"
             status_color = "yellow"
 
         # Extract operation details
@@ -840,19 +840,19 @@ class RichPresenter(BasePresenter):
         success_text = Text()
         success_text.append(str(success_count), style="green bold")
         success_text.append(" succeeded", style="green")
-        summary.add_row("✅ Successful:", success_text)
+        summary.add_row("[OK] Successful:", success_text)
 
         # Failed count
         if failed_count > 0:
             failed_text = Text()
             failed_text.append(str(failed_count), style="red bold")
             failed_text.append(" failed", style="red")
-            summary.add_row("❌ Failed:", failed_text)
+            summary.add_row("[FAIL] Failed:", failed_text)
 
         # Final status
         status_style = "green" if status in ["CONTINUE", "COMPLETED"] else "yellow"
         status_text = Text(status, style=f"{status_style} bold")
-        summary.add_row("📊 Status:", status_text)
+        summary.add_row("[STATUS] Status:", status_text)
 
         self.console.print()
         self.console.print(
@@ -890,15 +890,15 @@ class RichPresenter(BasePresenter):
 
         # Determine status icon and color
         if action.result.status == ResultStatus.SUCCESS:
-            status_icon = "✅"
+            status_icon = "[OK]"
             status_color = "green"
             border_style = "green"
         elif action.result.status == ResultStatus.FAILURE:
-            status_icon = "❌"
+            status_icon = "[FAIL]"
             status_color = "red"
             border_style = "red"
         else:
-            status_icon = "⏸️"
+            status_icon = "[PAUSE]"
             status_color = "yellow"
             border_style = "yellow"
 
@@ -989,20 +989,20 @@ class RichPresenter(BasePresenter):
             success_text = Text()
             success_text.append(str(success_count), style="green bold")
             success_text.append(" succeeded", style="green")
-            summary.add_row("✅ Successful:", success_text)
+            summary.add_row("[OK] Successful:", success_text)
 
         # Failed count
         if failed_count > 0:
             failed_text = Text()
             failed_text.append(str(failed_count), style="red bold")
             failed_text.append(" failed", style="red")
-            summary.add_row("❌ Failed:", failed_text)
+            summary.add_row("[FAIL] Failed:", failed_text)
 
         # Final status
         status_style = "green" if status in ["FINISH", "COMPLETED"] else "yellow"
-        status_emoji = "🏁" if status == "FINISH" else "🔄"
+        status_emoji = "" if status == "FINISH" else "[CONTINUE]"
         status_text = Text(f"{status_emoji} {status}", style=f"{status_style} bold")
-        summary.add_row("📊 Status:", status_text)
+        summary.add_row("[STATUS] Status:", status_text)
 
         self.console.print()
         self.console.print(
@@ -1027,9 +1027,9 @@ class RichPresenter(BasePresenter):
         self._print_response_header("EvaluationAgent")
 
         emoji_map = {
-            "yes": "✅",
-            "no": "❌",
-            "unsure": "❓",
+            "yes": "[OK]",
+            "no": "[FAIL]",
+            "unsure": "",
         }
 
         complete = emoji_map.get(response.complete, response.complete)

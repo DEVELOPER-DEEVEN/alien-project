@@ -123,7 +123,7 @@ class WebSocketMessageHandler:
                     }
                 )
             except Exception as e:
-                self.logger.error(f"❌ Error processing request: {e}", exc_info=True)
+                self.logger.error(f"[FAIL] Error processing request: {e}", exc_info=True)
                 await websocket.send_json(
                     {
                         "type": WebSocketMessageType.REQUEST_FAILED,

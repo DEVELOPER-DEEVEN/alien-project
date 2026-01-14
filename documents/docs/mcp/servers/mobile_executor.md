@@ -10,7 +10,7 @@
 **Server Type:** Action + Data Collection  
 **Deployment:** HTTP (remote server, runs on machine with ADB)  
 **Default Ports:** 8020 (data), 8021 (action)  
-**LLM-Selectable:** ✅ Yes (action tools only)  
+**LLM-Selectable:** [OK] Yes (action tools only)  
 **Platform:** Android devices via ADB
 
 ## Server Information
@@ -364,8 +364,8 @@ Tap/click at specified coordinates on the screen.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `x` | `int` | ✅ Yes | X coordinate in pixels (from left) |
-| `y` | `int` | ✅ Yes | Y coordinate in pixels (from top) |
+| `x` | `int` | [OK] Yes | X coordinate in pixels (from left) |
+| `y` | `int` | [OK] Yes | Y coordinate in pixels (from top) |
 
 #### Returns
 
@@ -407,10 +407,10 @@ Perform swipe gesture from start to end coordinates.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `start_x` | `int` | ✅ Yes | - | Starting X coordinate |
-| `start_y` | `int` | ✅ Yes | - | Starting Y coordinate |
-| `end_x` | `int` | ✅ Yes | - | Ending X coordinate |
-| `end_y` | `int` | ✅ Yes | - | Ending Y coordinate |
+| `start_x` | `int` | [OK] Yes | - | Starting X coordinate |
+| `start_y` | `int` | [OK] Yes | - | Starting Y coordinate |
+| `end_x` | `int` | [OK] Yes | - | Ending X coordinate |
+| `end_y` | `int` | [OK] Yes | - | Ending Y coordinate |
 | `duration` | `int` | No | `300` | Duration in milliseconds |
 
 #### Returns
@@ -474,9 +474,9 @@ Type text into a specific input field control.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `text` | `str` | ✅ Yes | - | Text to input (spaces/special chars auto-escaped) |
-| `control_id` | `str` | ✅ Yes | - | Precise annotated ID from `get_app_window_controls_target_info` |
-| `control_name` | `str` | ✅ Yes | - | Precise name of control (must match `control_id`) |
+| `text` | `str` | [OK] Yes | - | Text to input (spaces/special chars auto-escaped) |
+| `control_id` | `str` | [OK] Yes | - | Precise annotated ID from `get_app_window_controls_target_info` |
+| `control_name` | `str` | [OK] Yes | - | Precise name of control (must match `control_id`) |
 | `clear_current_text` | `bool` | No | `False` | Clear existing text before typing |
 
 #### Returns
@@ -552,7 +552,7 @@ Launch an application by package name or app ID.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `package_name` | `str` | ✅ Yes | - | Package name (e.g., `"com.android.settings"`) or app name |
+| `package_name` | `str` | [OK] Yes | - | Package name (e.g., `"com.android.settings"`) or app name |
 | `id` | `str` | No | `None` | Optional: Precise annotated ID from `get_mobile_app_target_info` |
 
 #### Returns
@@ -641,7 +641,7 @@ Press a hardware or software key.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `key_code` | `str` | ✅ Yes | Key code (e.g., `"KEYCODE_HOME"`, `"KEYCODE_BACK"`) |
+| `key_code` | `str` | [OK] Yes | Key code (e.g., `"KEYCODE_HOME"`, `"KEYCODE_BACK"`) |
 
 #### Returns
 
@@ -711,8 +711,8 @@ Click a UI control by its ID and name.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `control_id` | `str` | ✅ Yes | Precise annotated ID from `get_app_window_controls_target_info` |
-| `control_name` | `str` | ✅ Yes | Precise name of control (must match `control_id`) |
+| `control_id` | `str` | [OK] Yes | Precise annotated ID from `get_app_window_controls_target_info` |
+| `control_name` | `str` | [OK] Yes | Precise name of control (must match `control_id`) |
 
 #### Returns
 
@@ -988,7 +988,7 @@ python -m alien.client.mcp.http_servers.mobile_mcp_server --server both --host 0
 # ==================================================
 # Using ADB: C:\...\adb.exe
 # Found 1 connected device(s)
-# ✅ Starting both servers in same process (shared MobileServerState)
+# [OK] Starting both servers in same process (shared MobileServerState)
 #    - Data Collection Server: 0.0.0.0:8020
 #    - Action Server: 0.0.0.0:8021
 # Both servers share MobileServerState cache. Press Ctrl+C to stop.
@@ -1049,10 +1049,10 @@ python -m alien.client.mcp.http_servers.mobile_mcp_server --adb-path "C:\custom\
 ### 1. Always Run Both Servers Together
 
 ```bash
-# ✅ Good: Both servers in same process (shared state)
+# [OK] Good: Both servers in same process (shared state)
 python -m alien.client.mcp.http_servers.mobile_mcp_server --server both
 
-# ❌ Bad: Separate processes (no shared state)
+# [FAIL] Bad: Separate processes (no shared state)
 python -m alien.client.mcp.http_servers.mobile_mcp_server --server data &
 python -m alien.client.mcp.http_servers.mobile_mcp_server --server action &
 ```
@@ -1062,7 +1062,7 @@ python -m alien.client.mcp.http_servers.mobile_mcp_server --server action &
 ### 2. Get Controls Before Interaction
 
 ```python
-# ✅ Good: Get controls first
+# [OK] Good: Get controls first
 controls = await computer.run_data_collection([
     MCPToolCall(tool_key="data_collection::get_app_window_controls_target_info", ...)
 ])
@@ -1072,7 +1072,7 @@ await computer.run_actions([
     MCPToolCall(tool_key="action::click_control", parameters={"control_id": "5", ...})
 ])
 
-# ❌ Bad: Click without getting controls
+# [FAIL] Bad: Click without getting controls
 await computer.run_actions([
     MCPToolCall(tool_key="action::click_control", parameters={"control_id": "5", ...})
 ])
@@ -1082,7 +1082,7 @@ await computer.run_actions([
 ### 3. Use Control IDs, Not Coordinates
 
 ```python
-# ✅ Good: Use click_control (reliable)
+# [OK] Good: Use click_control (reliable)
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::click_control",
@@ -1090,7 +1090,7 @@ await computer.run_actions([
     )
 ])
 
-# ⚠️ OK: Use tap only when control not available
+# ️ OK: Use tap only when control not available
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::tap",
@@ -1122,7 +1122,7 @@ controls = await computer.run_data_collection([
 ### 5. Wait After Actions
 
 ```python
-# ✅ Good: Wait for UI to settle
+# [OK] Good: Wait for UI to settle
 await computer.run_actions([
     MCPToolCall(tool_key="action::tap", parameters={"x": 500, "y": 1200})
 ])
@@ -1319,13 +1319,13 @@ screenshot_after = await computer.run_data_collection([
 | Feature | MobileExecutor | HardwareExecutor (Robot Arm) | AppUIExecutor (Windows) |
 |---------|----------------|------------------------------|-------------------------|
 | **Platform** | Android (ADB) | Cross-platform (Hardware) | Windows (UIA) |
-| **Controls** | ✅ XML-based | ❌ Coordinate-based | ✅ UIA-based |
-| **Screenshots** | ✅ ADB screencap | ✅ Hardware camera | ✅ Windows API |
+| **Controls** | [OK] XML-based | [FAIL] Coordinate-based | [OK] UIA-based |
+| **Screenshots** | [OK] ADB screencap | [OK] Hardware camera | [OK] Windows API |
 | **Deployment** | HTTP (dual-server) | HTTP (single-server) | Local (in-process) |
-| **State Management** | ✅ Shared singleton | ❌ Stateless | ❌ No caching |
-| **App Launch** | ✅ Package manager | ❌ Manual | ✅ Process spawn |
-| **Text Input** | ✅ ADB input | ✅ HID keyboard | ✅ UIA SetValue |
-| **Cache** | ✅ 5s-5min TTL | ❌ No cache | ❌ No cache |
+| **State Management** | [OK] Shared singleton | [FAIL] Stateless | [FAIL] No caching |
+| **App Launch** | [OK] Package manager | [FAIL] Manual | [OK] Process spawn |
+| **Text Input** | [OK] ADB input | [OK] HID keyboard | [OK] UIA SetValue |
+| **Cache** | [OK] 5s-5min TTL | [FAIL] No cache | [FAIL] No cache |
 
 ---
 

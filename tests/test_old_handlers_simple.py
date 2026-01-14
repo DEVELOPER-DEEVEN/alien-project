@@ -64,7 +64,7 @@ def create_test_orion():
 
 async def test_all_event_types():
     """测试观察者是否对所有事件类型都产生输出"""
-    print("🔍 测试所有事件类型的输出")
+    print(" 测试所有事件类型的输出")
     print("=" * 60)
 
     # Create observer with visible console output
@@ -85,7 +85,7 @@ async def test_all_event_types():
     ]
 
     for event_type in event_types_to_test:
-        print(f"\n📤 测试 {event_type.name}:")
+        print(f"\n 测试 {event_type.name}:")
         print("-" * 40)
 
         try:
@@ -139,10 +139,10 @@ async def test_all_event_types():
 
             # Test the event
             await observer.on_event(event)
-            print("✅ 输出正常")
+            print("[OK] 输出正常")
 
         except Exception as e:
-            print(f"❌ 错误: {e}")
+            print(f"[FAIL] 错误: {e}")
 
 
 if __name__ == "__main__":

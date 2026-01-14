@@ -152,7 +152,7 @@ class WebSocketTransport(Transport):
             # Use adapter to send (abstracts away FastAPI vs websockets library)
             await self._adapter.send(text_data)
 
-            self.logger.debug(f"✅ Sent {len(text_data)} chars successfully")
+            self.logger.debug(f"[OK] Sent {len(text_data)} chars successfully")
         except ConnectionClosed as e:
             self._state = TransportState.DISCONNECTED
             self.logger.debug(f"Connection closed during send: {e}")
@@ -186,13 +186,13 @@ class WebSocketTransport(Transport):
 
         try:
             adapter_type = type(self._adapter).__name__
-            self.logger.debug(f"🔍 Attempting to receive data via {adapter_type}...")
+            self.logger.debug(f" Attempting to receive data via {adapter_type}...")
 
             # Use adapter to receive (abstracts away FastAPI vs websockets library)
             text_data = await self._adapter.receive()
             data = text_data.encode("utf-8")
 
-            self.logger.debug(f"✅ Received {len(data)} bytes successfully")
+            self.logger.debug(f"[OK] Received {len(data)} bytes successfully")
             return data
         except ConnectionClosed as e:
             self._state = TransportState.DISCONNECTED
@@ -275,7 +275,7 @@ class WebSocketTransport(Transport):
 
             await self._adapter.send_bytes(data)
 
-            self.logger.debug(f"✅ Sent {len(data)} bytes successfully")
+            self.logger.debug(f"[OK] Sent {len(data)} bytes successfully")
         except ConnectionClosed as e:
             self._state = TransportState.DISCONNECTED
             self.logger.debug(f"Connection closed during binary send: {e}")
@@ -317,12 +317,12 @@ class WebSocketTransport(Transport):
         try:
             adapter_type = type(self._adapter).__name__
             self.logger.debug(
-                f"🔍 Attempting to receive binary data via {adapter_type}..."
+                f" Attempting to receive binary data via {adapter_type}..."
             )
 
             data = await self._adapter.receive_bytes()
 
-            self.logger.debug(f"✅ Received {len(data)} bytes successfully")
+            self.logger.debug(f"[OK] Received {len(data)} bytes successfully")
             return data
         except ConnectionClosed as e:
             self._state = TransportState.DISCONNECTED
@@ -372,18 +372,18 @@ class WebSocketTransport(Transport):
         try:
             adapter_type = type(self._adapter).__name__
             self.logger.debug(
-                f"🔍 Attempting to receive data (auto-detect) via {adapter_type}..."
+                f" Attempting to receive data (auto-detect) via {adapter_type}..."
             )
 
             data = await self._adapter.receive_auto()
 
             if isinstance(data, bytes):
                 self.logger.debug(
-                    f"✅ Received {len(data)} bytes (binary frame) successfully"
+                    f"[OK] Received {len(data)} bytes (binary frame) successfully"
                 )
             else:
                 self.logger.debug(
-                    f"✅ Received {len(data)} chars (text frame) successfully"
+                    f"[OK] Received {len(data)} chars (text frame) successfully"
                 )
 
             return data

@@ -118,10 +118,10 @@ class TestOrionObserverLogger:
         print(f"\nAgent logs count: {len(agent_logs)}")
         if len(agent_logs) == 0:
             print(
-                "❌ PROBLEM FOUND: Agent's add_task_completion_event logger did not produce any logs!"
+                "[FAIL] PROBLEM FOUND: Agent's add_task_completion_event logger did not produce any logs!"
             )
         else:
-            print("✅ Agent's add_task_completion_event logger works correctly")
+            print("[OK] Agent's add_task_completion_event logger works correctly")
 
     @pytest.mark.asyncio
     async def test_direct_agent_add_task_completion_event_logging(
@@ -161,13 +161,13 @@ class TestOrionObserverLogger:
         print(f"\nDirect agent logs count: {len(agent_logs)}")
         if len(agent_logs) == 0:
             print(
-                "❌ PROBLEM CONFIRMED: Direct call to add_task_completion_event doesn't log either!"
+                "[FAIL] PROBLEM CONFIRMED: Direct call to add_task_completion_event doesn't log either!"
             )
             print(
                 "This suggests the issue is with the logger configuration in OrionAgent"
             )
         else:
-            print("✅ Direct call works - issue might be elsewhere")
+            print("[OK] Direct call works - issue might be elsewhere")
 
     @pytest.mark.asyncio
     async def test_logger_configuration_comparison(
@@ -215,12 +215,12 @@ class TestOrionObserverLogger:
 
         if len(observer_test_logs) > 0 and len(agent_test_logs) == 0:
             print(
-                "❌ ISSUE FOUND: Agent logger is not properly configured for capturing logs!"
+                "[FAIL] ISSUE FOUND: Agent logger is not properly configured for capturing logs!"
             )
         elif len(observer_test_logs) == 0 and len(agent_test_logs) == 0:
-            print("❌ ISSUE: Both loggers are not capturing - might be caplog issue")
+            print("[FAIL] ISSUE: Both loggers are not capturing - might be caplog issue")
         else:
-            print("✅ Both loggers work for test messages")
+            print("[OK] Both loggers work for test messages")
 
 
 if __name__ == "__main__":

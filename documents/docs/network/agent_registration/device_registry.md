@@ -1,6 +1,6 @@
-# 🗄️ DeviceRegistry - Device Data Management
+# ️ DeviceRegistry - Device Data Management
 
-## 📋 Overview
+## [TASK] Overview
 
 The **DeviceRegistry** is a focused component that manages device registration and information storage, providing a clean separation of concerns in the orion architecture. It is responsible for **device data management only** - storing, retrieving, and updating AgentProfile instances without handling networking, task execution, or protocol logic.
 
@@ -23,7 +23,7 @@ The **DeviceRegistry** is a focused component that manages device registration a
 - Task execution → [`TaskQueueManager`](../client/components.md#taskqueuemanager-task-scheduling-and-queuing)
 - Heartbeat monitoring → [`HeartbeatManager`](../client/components.md#heartbeatmanager-connection-health-monitor)
 
-## 🏗️ Architecture
+## ️ Architecture
 
 ### Class Structure
 
@@ -124,7 +124,7 @@ _devices = {
 
 ---
 
-## 🔧 Core Operations
+## [CONFIG] Core Operations
 
 ### 1. Device Registration
 
@@ -345,7 +345,7 @@ def set_device_busy(self, device_id: str, task_id: str) -> None:
     if device_id in self._devices:
         self._devices[device_id].status = DeviceStatus.BUSY
         self._devices[device_id].current_task_id = task_id
-        self.logger.info(f"🔄 Device {device_id} set to BUSY (task: {task_id})")
+        self.logger.info(f"[CONTINUE] Device {device_id} set to BUSY (task: {task_id})")
 ```
 
 **Example:**
@@ -371,7 +371,7 @@ def set_device_idle(self, device_id: str) -> None:
     if device_id in self._devices:
         self._devices[device_id].status = DeviceStatus.IDLE
         self._devices[device_id].current_task_id = None
-        self.logger.info(f"✅ Device {device_id} set to IDLE")
+        self.logger.info(f"[OK] Device {device_id} set to IDLE")
 ```
 
 **Example:**
@@ -467,7 +467,7 @@ def reset_connection_attempts(self, device_id: str) -> None:
     """Reset connection attempts counter to 0"""
     if device_id in self._devices:
         self._devices[device_id].connection_attempts = 0
-        self.logger.info(f"🔄 Reset connection attempts for device {device_id}")
+        self.logger.info(f"[CONTINUE] Reset connection attempts for device {device_id}")
 ```
 
 **Example:**
@@ -507,7 +507,7 @@ print(f"Last heartbeat: {profile.last_heartbeat}")
 # Check heartbeat freshness
 age = datetime.now(timezone.utc) - profile.last_heartbeat
 if age > timedelta(minutes=5):
-    print("⚠️ Heartbeat stale!")
+    print("️ Heartbeat stale!")
 ```
 
 ---
@@ -736,7 +736,7 @@ else:
 
 ---
 
-## 💡 Usage Patterns
+## [THOUGHT] Usage Patterns
 
 ### Pattern 1: Complete Registration Flow
 
@@ -841,9 +841,9 @@ def check_all_devices_health(registry: DeviceRegistry):
             print(f"  Heartbeat age: {age.total_seconds():.0f}s")
             
             if age > timedelta(minutes=5):
-                print(f"  ⚠️ WARNING: Stale heartbeat!")
+                print(f"  ️ WARNING: Stale heartbeat!")
         else:
-            print(f"  ⚠️ WARNING: No heartbeat recorded")
+            print(f"  ️ WARNING: No heartbeat recorded")
         
         # Check connection attempts
         if profile.connection_attempts > 0:
@@ -856,7 +856,7 @@ def check_all_devices_health(registry: DeviceRegistry):
 
 ---
 
-## 🔗 Integration with Other Components
+## [DEP] Integration with Other Components
 
 DeviceRegistry is used internally by other components in the orion system. See [Components Overview](../client/components.md) for details on the component architecture.
 
@@ -905,7 +905,7 @@ class TaskQueueManager:
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 | Topic | Document | Description |
 |-------|----------|-------------|
@@ -917,7 +917,7 @@ class TaskQueueManager:
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 **1. Always Check Device Exists**
 
@@ -960,7 +960,7 @@ registry.set_device_idle(device_id)
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 1. **Understand AgentProfile**: Read [AgentProfile Documentation](./agent_profile.md)
 2. **Learn Configuration**: See [Network Devices Configuration](../../configuration/system/network_devices.md)
@@ -969,7 +969,7 @@ registry.set_device_idle(device_id)
 
 ---
 
-## 📚 Source Code Reference
+## [PLAN] Source Code Reference
 
 - **DeviceRegistry**: `network/client/components/device_registry.py`
 - **AgentProfile**: `network/client/components/types.py`

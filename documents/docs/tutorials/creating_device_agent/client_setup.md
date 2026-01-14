@@ -441,7 +441,7 @@ class ALIENWebSocketClient:
         )
 
         if response.status == "success":
-            self.logger.info(f"✅ Client registered: {self.alien_client.client_id}")
+            self.logger.info(f"[OK] Client registered: {self.alien_client.client_id}")
             self.connected_event.set()  # Signal connection ready
         else:
             raise ConnectionError(f"Registration failed: {response.message}")
@@ -481,7 +481,7 @@ class ALIENWebSocketClient:
 
     async def _handle_task_request(self, message: ServerMessage):
         """Handle task request from server."""
-        self.logger.info(f"📨 Task request received: {message.task_id}")
+        self.logger.info(f" Task request received: {message.task_id}")
 
         # Execute task via ALIEN client
         results = await self.alien_client.execute_step(message)
@@ -492,7 +492,7 @@ class ALIENWebSocketClient:
             results=results,
         )
 
-        self.logger.info(f"✅ Task completed: {message.task_id}")
+        self.logger.info(f"[OK] Task completed: {message.task_id}")
 
     async def _handle_heartbeat(self, message: ServerMessage):
         """Handle heartbeat from server."""
@@ -502,7 +502,7 @@ class ALIENWebSocketClient:
 
     async def _handle_result_ack(self, message: ServerMessage):
         """Handle result acknowledgment from server."""
-        self.logger.info(f"✅ Result acknowledged: {message.task_id}")
+        self.logger.info(f"[OK] Result acknowledged: {message.task_id}")
 
     async def _maybe_retry(self):
         """Wait before retrying connection."""
@@ -1070,11 +1070,11 @@ tail -f logs/client.log
 
 **What You've Built**:
 
-- ✅ ALIEN Client for command execution
-- ✅ WebSocket client for server communication
-- ✅ MCP Server Manager for MCP integration
-- ✅ Platform detection and configuration
-- ✅ Complete deployment setup
+- [OK] ALIEN Client for command execution
+- [OK] WebSocket client for server communication
+- [OK] MCP Server Manager for MCP integration
+- [OK] Platform detection and configuration
+- [OK] Complete deployment setup
 
 **Key Takeaways**:
 

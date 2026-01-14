@@ -212,7 +212,7 @@ class HostAgentLoggingMiddleware(EnhancedLoggingMiddleware):
         # Display colored progress message for user feedback (maintaining original UX)
         # This has been replaced with Rich Panel display below
 
-        panel_title = f"🚀 Round {round_num + 1}, Step {round_step + 1}, Agent: {processor.agent.name}"
+        panel_title = f"[START] Round {round_num + 1}, Step {round_step + 1}, Agent: {processor.agent.name}"
         panel_content = (
             f"Analyzing user intent and decomposing request of `{request}`..."
         )
@@ -259,7 +259,7 @@ class HostAgentLoggingMiddleware(EnhancedLoggingMiddleware):
                 console.print(
                     Panel(
                         f"Successfully selected target '{target_name}'",
-                        title="✅ HostAgent",
+                        title="[OK] HostAgent",
                         style="green",
                     )
                 )
@@ -274,7 +274,7 @@ class HostAgentLoggingMiddleware(EnhancedLoggingMiddleware):
             console.print(
                 Panel(
                     f"Processing failed - {result.error}",
-                    title="❌ HostAgent",
+                    title="[FAIL] HostAgent",
                     style="red",
                 )
             )
@@ -291,7 +291,7 @@ class HostAgentLoggingMiddleware(EnhancedLoggingMiddleware):
         console.print(
             Panel(
                 f"Encountered error - {str(error)}",
-                title="❌ HostAgent",
+                title="[FAIL] HostAgent",
                 style="red",
             )
         )

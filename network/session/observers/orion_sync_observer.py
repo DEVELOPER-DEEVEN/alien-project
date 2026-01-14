@@ -125,7 +125,7 @@ class OrionModificationSynchronizer(IEventObserver):
                 self._stats["total_modifications"] += 1
 
                 self.logger.info(
-                    f"🔒 Registered pending modification for task '{event.task_id}' "
+                    f" Registered pending modification for task '{event.task_id}' "
                     f"(orion: {orion_id})"
                 )
 
@@ -179,7 +179,7 @@ class OrionModificationSynchronizer(IEventObserver):
                 self._current_orion = new_orion
 
                 self.logger.info(
-                    f"🔄 Updated orion reference for '{event.orion_id}'"
+                    f"[CONTINUE] Updated orion reference for '{event.orion_id}'"
                 )
 
             # Mark the modification as complete
@@ -190,7 +190,7 @@ class OrionModificationSynchronizer(IEventObserver):
                         future.set_result(True)
                         self._stats["completed_modifications"] += 1
                         self.logger.info(
-                            f"✅ Completed modification for task '{task_id}' "
+                            f"[OK] Completed modification for task '{task_id}' "
                             f"(orion: {event.orion_id})"
                         )
                     del self._pending_modifications[task_id]
@@ -228,7 +228,7 @@ class OrionModificationSynchronizer(IEventObserver):
             if not future.done():
                 self._stats["timeout_modifications"] += 1
                 self.logger.warning(
-                    f"⚠️ Modification for task '{task_id}' timed out after "
+                    f"️ Modification for task '{task_id}' timed out after "
                     f"{self._modification_timeout}s. Auto-completing to prevent deadlock."
                 )
                 future.set_result(False)
@@ -295,13 +295,13 @@ class OrionModificationSynchronizer(IEventObserver):
                 # Small delay to allow new registrations to settle
                 await asyncio.sleep(0.01)
 
-            self.logger.info("✅ All pending modifications completed")
+            self.logger.info("[OK] All pending modifications completed")
             return True
 
         except asyncio.TimeoutError:
             pending = list(self._pending_modifications.keys())
             self.logger.warning(
-                f"⚠️ Timeout waiting for modifications after {timeout}s. "
+                f"️ Timeout waiting for modifications after {timeout}s. "
                 f"Proceeding anyway. Pending: {pending}"
             )
             # Clear all pending modifications to prevent permanent deadlock
@@ -358,7 +358,7 @@ class OrionModificationSynchronizer(IEventObserver):
         count = len(self._pending_modifications)
         if count > 0:
             self.logger.warning(
-                f"⚠️ Forcefully clearing {count} pending modification(s)"
+                f"️ Forcefully clearing {count} pending modification(s)"
             )
 
             # Complete all pending futures
@@ -399,12 +399,12 @@ class OrionModificationSynchronizer(IEventObserver):
         if not self._current_orion:
             if self.logger:
                 self.logger.warning(
-                    "⚠️ No agent orion available, returning orchestrator orion"
+                    "️ No agent orion available, returning orchestrator orion"
                 )
             return orchestrator_orion
 
         if self.logger:
-            self.logger.info("🔄 Merging orion states...")
+            self.logger.info("[CONTINUE] Merging orion states...")
 
         # Use agent's orion as base (has structural modifications)
         merged = self._current_orion
@@ -414,14 +414,14 @@ class OrionModificationSynchronizer(IEventObserver):
             if task_id in merged.tasks:
                 agent_task = merged.tasks[task_id]
 
-                # ✅ Key: If orchestrator's task state is more advanced, preserve it
+                # [OK] Key: If orchestrator's task state is more advanced, preserve it
                 # State priority: COMPLETED/FAILED > RUNNING > WAITING_DEPENDENCY > PENDING
                 if self._is_state_more_advanced(
                     orchestrator_task.status, agent_task.status
                 ):
                     if self.logger:
                         self.logger.debug(
-                            f"  📌 Preserving advanced state for task '{task_id}': "
+                            f"   Preserving advanced state for task '{task_id}': "
                             f"{orchestrator_task.status} (orchestrator) vs "
                             f"{agent_task.status} (agent)"
                         )
@@ -444,7 +444,7 @@ class OrionModificationSynchronizer(IEventObserver):
         self._current_orion = merged
 
         if self.logger:
-            self.logger.info("✅ Orion states merged successfully")
+            self.logger.info("[OK] Orion states merged successfully")
 
         return merged
 

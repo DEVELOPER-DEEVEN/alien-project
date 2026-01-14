@@ -163,9 +163,9 @@ class DependencyValidationResult:
         lines = []
 
         if self.is_valid:
-            lines.append("✓ Dependency validation passed")
+            lines.append(" Dependency validation passed")
         else:
-            lines.append("✗ Dependency validation failed")
+            lines.append(" Dependency validation failed")
 
         if self.errors:
             lines.append("Errors:")
@@ -390,9 +390,9 @@ class StrategyDependencyValidator:
         print("=" * 60)
 
         if report["valid"]:
-            print("✅ All strategy dependencies are satisfied")
+            print("[OK] All strategy dependencies are satisfied")
         else:
-            print("❌ Dependency issues found:")
+            print("[FAIL] Dependency issues found:")
             for issue in report["issues"]:
                 if issue["type"] == "missing_required_fields":
                     print(
@@ -411,11 +411,11 @@ class StrategyDependencyValidator:
             consumers = [f"{c['phase']}({c['strategy']})" for c in flow["consumers"]]
 
             if not providers:
-                print(f"  ⚠️  {field}: No providers -> {', '.join(consumers)}")
+                print(f"  ️  {field}: No providers -> {', '.join(consumers)}")
             elif not consumers:
-                print(f"  ℹ️  {field}: {', '.join(providers)} -> No consumers")
+                print(f"  [INFO]  {field}: {', '.join(providers)} -> No consumers")
             else:
-                print(f"  ✅ {field}: {', '.join(providers)} -> {', '.join(consumers)}")
+                print(f"  [OK] {field}: {', '.join(providers)} -> {', '.join(consumers)}")
 
         print("\nDetailed dependency graph:")
         for phase, info in report["dependency_graph"].items():

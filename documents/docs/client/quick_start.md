@@ -1,24 +1,24 @@
-# ⚡ Quick Start
+#  Quick Start
 
 Get your device connected to the ALIEN Agent Server and start executing tasks in minutes. No complex setup—just run a single command.
 
 ---
 
-## 📋 Prerequisites
+## [TASK] Prerequisites
 
 Before connecting a client device, ensure these requirements are met:
 
 | Requirement | Version/Details | Verification Command |
 |-------------|-----------------|----------------------|
 | **Python** | 3.10 or higher | `python --version` |
-| **ALIEN Installation** | Latest version with dependencies | `python -c "import alien; print('✅ Installed')"` |
+| **ALIEN Installation** | Latest version with dependencies | `python -c "import alien; print('[OK] Installed')"` |
 | **Running Server** | Agent server accessible on network | `curl http://server:5000/api/health` |
 | **Network Access** | Client can reach server WebSocket endpoint | Test connectivity to server |
 
 !!! tip "Server First!"
     **Always start the Agent Server before connecting clients.** The server must be running and accessible for clients to register successfully.
     
-    👉 [Server Quick Start Guide](../server/quick_start.md)
+     [Server Quick Start Guide](../server/quick_start.md)
 
 **Verify Server Status:**
 
@@ -42,7 +42,7 @@ wscat -c ws://localhost:5000/ws
 
 ---
 
-## 🚀 Starting a Device Client
+## [START] Starting a Device Client
 
 ### Minimal Command (Local Server)
 
@@ -75,9 +75,9 @@ python -m alien.client.client \
 
 **Network Requirements:**
 
-- ✅ Client can ping the server: `ping 192.168.1.100`
-- ✅ Port **5000** is accessible (firewall allows)
-- ✅ Server is running and listening on correct port
+- [OK] Client can ping the server: `ping 192.168.1.100`
+- [OK] Port **5000** is accessible (firewall allows)
+- [OK] Server is running and listening on correct port
 
 ### Override Platform Detection
 
@@ -112,13 +112,13 @@ python -m alien.client.client \
 
 **Enhancements:**
 
-- 🔁 **10 retries**: Resilient to temporary network issues
-- 📋 **WARNING logging**: Default level (less verbose than INFO)
-- 🏷️ **Descriptive ID**: `device_windows_prod_01` clearly identifies environment
+-  **10 retries**: Resilient to temporary network issues
+- [TASK] **WARNING logging**: Default level (less verbose than INFO)
+- ️ **Descriptive ID**: `device_windows_prod_01` clearly identifies environment
 
 ---
 
-## 📝 Connection Parameters Reference
+##  Connection Parameters Reference
 
 All available command-line options for the ALIEN client.
 
@@ -151,21 +151,21 @@ All available command-line options for the ALIEN client.
 !!! warning "Unique Client IDs - Critical!"
     **Each device MUST have a unique `--client-id`.** Duplicate IDs will cause:
     
-    - ❌ Connection conflicts (devices disconnecting each other)
-    - ❌ Task routing failures (tasks sent to wrong device)
-    - ❌ Session corruption (server state confusion)
+    - [FAIL] Connection conflicts (devices disconnecting each other)
+    - [FAIL] Task routing failures (tasks sent to wrong device)
+    - [FAIL] Session corruption (server state confusion)
     
     **Best Practice:** Use descriptive IDs:
     ```
-    ✅ device_windows_prod_datacenter1_rack3
-    ✅ device_linux_staging_jenkins_worker2
-    ❌ client_001
-    ❌ device1
+    [OK] device_windows_prod_datacenter1_rack3
+    [OK] device_linux_staging_jenkins_worker2
+    [FAIL] client_001
+    [FAIL] device1
     ```
 
 ---
 
-## ✅ Successful Connection
+## [OK] Successful Connection
 
 ### Client Logs
 
@@ -177,7 +177,7 @@ INFO - ALIEN Client initialized for platform: windows
 INFO - [WS] Connecting to ws://127.0.0.1:5000/ws (attempt 1/5)
 INFO - [WS] [AIP] Collected device info: platform=windows, cpu=8, memory=16.0GB
 INFO - [WS] [AIP] Attempting to register as device_windows_001
-INFO - [WS] [AIP] ✅ Successfully registered as device_windows_001
+INFO - [WS] [AIP] [OK] Successfully registered as device_windows_001
 INFO - [WS] Heartbeat loop started (interval: 30s)
 ```
 
@@ -210,7 +210,7 @@ sequenceDiagram
 On the server side, you'll see:
 
 ```log
-INFO - [WS] ✅ Registered device client: device_windows_001
+INFO - [WS] [OK] Registered device client: device_windows_001
 INFO - [WS] Device device_windows_001 capabilities: {
   "platform": "windows",
   "cpu_count": 8,
@@ -221,7 +221,7 @@ INFO - [WS] Device device_windows_001 capabilities: {
 
 ---
 
-## 🔍 Verify Connection
+##  Verify Connection
 
 ### Check Connected Clients (HTTP API)
 
@@ -297,7 +297,7 @@ DEBUG - [WS] Heartbeat acknowledged for device_windows_001
 
 ---
 
-## 🎯 Running Your First Task
+##  Running Your First Task
 
 Once the client is connected, dispatch a simple task from the server to verify end-to-end functionality.
 
@@ -391,7 +391,7 @@ sequenceDiagram
 
 ---
 
-## ⚠️ Common Issues
+## ️ Common Issues
 
 ### 1. Connection Refused
 
@@ -441,7 +441,7 @@ netstat -tuln | grep :5000
 
 **Symptom:**
 ```log
-ERROR - [WS] [AIP] ❌ Failed to register as device_windows_001
+ERROR - [WS] [AIP] [FAIL] Failed to register as device_windows_001
 RuntimeError: Registration failed for device_windows_001
 ```
 
@@ -543,7 +543,7 @@ curl http://server:5000/api/health
 
 ---
 
-## 🌐 Multiple Devices
+## [WEB] Multiple Devices
 
 Connect multiple devices to the same server for **fleet management** and **task distribution**.
 
@@ -624,7 +624,7 @@ Examples:
 
 ---
 
-## 🔧 Running as Background Service
+## [CONFIG] Running as Background Service
 
 !!! tip "Production Deployment"
     For production use, run the client as a **system service** that starts automatically and restarts on failure.
@@ -846,18 +846,18 @@ pm2 logs alien-client
 
 ---
 
-## 🏭 Production Deployment Best Practices
+##  Production Deployment Best Practices
 
 Follow these best practices for reliable production deployments.
 
 ### 1. Descriptive Client IDs
 
 ```bash
-# ❌ Bad: Generic, non-unique
+# [FAIL] Bad: Generic, non-unique
 --client-id client_001
 --client-id device1
 
-# ✅ Good: Descriptive, environment, location
+# [OK] Good: Descriptive, environment, location
 --client-id production_windows_datacenter1_rack3_slot1
 --client-id staging_linux_cloud_aws_us-east-1_worker2
 --client-id dev_windows_office_john_laptop
@@ -981,7 +981,7 @@ python -m alien.server.app \
 
 ---
 
-## 🔧 Troubleshooting Commands
+## [CONFIG] Troubleshooting Commands
 
 Use these commands to diagnose connection and execution issues.
 
@@ -1061,7 +1061,7 @@ curl -X POST http://localhost:5000/api/dispatch \
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 !!! tip "Continue Learning"
     Now that your client is connected and running tasks:
@@ -1070,34 +1070,34 @@ curl -X POST http://localhost:5000/api/dispatch \
 
 Learn how clients register with the server and exchange device profiles:
 
-👉 [ALIEN Client Overview](./overview.md)
+ [ALIEN Client Overview](./overview.md)
 
 **2. Explore Device Information**
 
 Deep dive into what device information is collected and how it's used for task assignment:
 
-👉 [Device Info Provider](./device_info.md)
+ [Device Info Provider](./device_info.md)
 
 **3. Master WebSocket Communication**
 
 Understand the AIP protocol and WebSocket message flow:
 
-👉 [WebSocket Client](./websocket_client.md)
+ [WebSocket Client](./websocket_client.md)
 
 **4. Configure MCP Servers**
 
 Learn how to add custom tools and configure MCP servers:
 
-👉 [MCP Integration](../mcp/overview.md)
+ [MCP Integration](../mcp/overview.md)
 
 **5. Study the AIP Protocol**
 
 Deep dive into message types, flow control, and error handling:
 
-👉 [AIP Protocol](../aip/overview.md)
+ [AIP Protocol](../aip/overview.md)
 
 **6. Production Deployment**
 
 Best practices for running clients in production environments:
 
-👉 [Configuration Guide](../configuration/system/overview.md)
+ [Configuration Guide](../configuration/system/overview.md)

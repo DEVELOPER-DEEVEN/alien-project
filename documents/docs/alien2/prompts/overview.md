@@ -3,19 +3,19 @@
 All prompts used in ALIEN are stored in the `alien/prompts` directory. The folder structure is as follows:
 
 ```
-📦prompts
- ┣ 📂demonstration       # Prompts for summarizing human demonstrations
- ┣ 📂evaluation          # Prompts for the EvaluationAgent
- ┣ 📂examples            # Demonstration examples for in-context learning
-   ┣ 📂nonvisual        # Examples for non-visual LLMs
-   ┗ 📂visual           # Examples for visual LLMs
- ┣ 📂experience          # Prompts for summarizing agent self-experience
- ┣ 📂share               # Shared prompt templates
-   ┗ 📂base             # Basic version of shared prompts
-     ┣ 📜api.yaml       # Basic API prompt
-     ┣ 📜app_agent.yaml # Basic AppAgent prompt template
-     ┗ 📜host_agent.yaml # Basic HostAgent prompt template
- ┗ 📂third_party         # Third-party integration prompts (e.g., Linux agents)
+prompts
+ ┣ demonstration       # Prompts for summarizing human demonstrations
+ ┣ evaluation          # Prompts for the EvaluationAgent
+ ┣ examples            # Demonstration examples for in-context learning
+   ┣ nonvisual        # Examples for non-visual LLMs
+   ┗ visual           # Examples for visual LLMs
+ ┣ experience          # Prompts for summarizing agent self-experience
+ ┣ share               # Shared prompt templates
+   ┗ base             # Basic version of shared prompts
+     ┣ api.yaml       # Basic API prompt
+     ┣ app_agent.yaml # Basic AppAgent prompt template
+     ┗ host_agent.yaml # Basic HostAgent prompt template
+ ┗ third_party         # Third-party integration prompts (e.g., Linux agents)
 ```
 
 Visual LLMs can process screenshots while non-visual LLMs rely on text-only control information.

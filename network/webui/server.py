@@ -45,8 +45,8 @@ async def lifespan(app: FastAPI):
     """
     # Startup phase
     logger: logging.Logger = logging.getLogger(__name__)
-    logger.info("🚀 Starting Network Web UI Server")
-    print("🚀 Starting Network Web UI Server")
+    logger.info("[START] Starting Network Web UI Server")
+    print("[START] Starting Network Web UI Server")
 
     # Get application state
     app_state = get_app_state()
@@ -59,16 +59,16 @@ async def lifespan(app: FastAPI):
     event_bus.subscribe(websocket_observer)
 
     logger.info(
-        f"✅ WebSocket observer registered with event bus (observer: {websocket_observer})"
+        f"[OK] WebSocket observer registered with event bus (observer: {websocket_observer})"
     )
-    print(f"✅ WebSocket observer registered with event bus")
-    print(f"📊 Event bus has {len(event_bus._observers)} observers")
+    print(f"[OK] WebSocket observer registered with event bus")
+    print(f"[STATUS] Event bus has {len(event_bus._observers)} observers")
 
     yield
 
     # Shutdown phase
-    logger.info("👋 Shutting down Network Web UI Server")
-    print("👋 Shutting down Network Web UI Server")
+    logger.info(" Shutting down Network Web UI Server")
+    print(" Shutting down Network Web UI Server")
     event_bus.unsubscribe(websocket_observer)
 
 

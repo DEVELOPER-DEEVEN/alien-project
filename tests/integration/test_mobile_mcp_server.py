@@ -57,7 +57,7 @@ class TestMobileMCPServers:
                     "No Android device/emulator connected. Please connect a device and run 'adb devices'"
                 )
 
-            print(f"\n✅ Found {len(devices)} connected device(s)")
+            print(f"\n[OK] Found {len(devices)} connected device(s)")
             return True
 
         except FileNotFoundError:
@@ -121,7 +121,7 @@ class TestMobileMCPServers:
         print("\n=== Testing Mobile Data Collection Server ===")
 
         # Test 1: Get device info
-        print("\n📱 Test 1: Getting device information...")
+        print("\n Test 1: Getting device information...")
         commands = [
             Command(
                 tool_name="get_device_info",
@@ -146,10 +146,10 @@ class TestMobileMCPServers:
         assert device_info["success"] is True
         assert "device_info" in device_info
 
-        print(f"✅ Device Info: {device_info['device_info']}")
+        print(f"[OK] Device Info: {device_info['device_info']}")
 
         # Test 2: Capture screenshot
-        print("\n📸 Test 2: Capturing screenshot...")
+        print("\n[SCREENSHOT] Test 2: Capturing screenshot...")
         commands = [
             Command(
                 tool_name="capture_screenshot",
@@ -175,11 +175,11 @@ class TestMobileMCPServers:
         assert screenshot_result["image"].startswith("data:image/png;base64,")
 
         print(
-            f"✅ Screenshot captured: {screenshot_result['width']}x{screenshot_result['height']}"
+            f"[OK] Screenshot captured: {screenshot_result['width']}x{screenshot_result['height']}"
         )
 
         # Test 3: Get UI tree
-        print("\n🌲 Test 3: Getting UI hierarchy tree...")
+        print("\n Test 3: Getting UI hierarchy tree...")
         commands = [
             Command(
                 tool_name="get_ui_tree",
@@ -204,10 +204,10 @@ class TestMobileMCPServers:
         assert "ui_tree" in ui_tree_result
         assert ui_tree_result["format"] == "xml"
 
-        print(f"✅ UI tree retrieved: {len(ui_tree_result['ui_tree'])} characters")
+        print(f"[OK] UI tree retrieved: {len(ui_tree_result['ui_tree'])} characters")
 
         # Test 4: Get installed apps
-        print("\n📱 Test 4: Getting installed apps...")
+        print("\n Test 4: Getting installed apps...")
         commands = [
             Command(
                 tool_name="get_mobile_app_target_info",
@@ -230,12 +230,12 @@ class TestMobileMCPServers:
         assert apps is not None
         assert isinstance(apps, list)
 
-        print(f"✅ Found {len(apps)} user-installed apps")
+        print(f"[OK] Found {len(apps)} user-installed apps")
         if apps:
             print(f"   Sample app: {apps[0]}")
 
         # Test 5: Get UI controls
-        print("\n🎮 Test 5: Getting current screen controls...")
+        print("\n Test 5: Getting current screen controls...")
         commands = [
             Command(
                 tool_name="get_app_window_controls_target_info",
@@ -258,7 +258,7 @@ class TestMobileMCPServers:
         assert controls is not None
         assert isinstance(controls, list)
 
-        print(f"✅ Found {len(controls)} controls on current screen")
+        print(f"[OK] Found {len(controls)} controls on current screen")
         if controls:
             print(f"   Sample control: {controls[0]}")
 
@@ -269,7 +269,7 @@ class TestMobileMCPServers:
         print("\n=== Testing Mobile Action Server ===")
 
         # Test 1: Press HOME key
-        print("\n🏠 Test 1: Pressing HOME key...")
+        print("\n Test 1: Pressing HOME key...")
         commands = [
             Command(
                 tool_name="press_key",
@@ -292,13 +292,13 @@ class TestMobileMCPServers:
         assert result is not None
         assert result["success"] is True
 
-        print(f"✅ HOME key pressed successfully")
+        print(f"[OK] HOME key pressed successfully")
 
         # Wait for animation
         await asyncio.sleep(1)
 
         # Test 2: Tap at center of screen
-        print("\n👆 Test 2: Tapping at screen center...")
+        print("\n Test 2: Tapping at screen center...")
         commands = [
             Command(
                 tool_name="tap",
@@ -321,12 +321,12 @@ class TestMobileMCPServers:
         assert result is not None
         assert result["success"] is True
 
-        print(f"✅ Tap executed: {result['action']}")
+        print(f"[OK] Tap executed: {result['action']}")
 
         await asyncio.sleep(0.5)
 
         # Test 3: Swipe gesture (scroll down)
-        print("\n👇 Test 3: Performing swipe gesture...")
+        print("\n Test 3: Performing swipe gesture...")
         commands = [
             Command(
                 tool_name="swipe",
@@ -355,12 +355,12 @@ class TestMobileMCPServers:
         assert result is not None
         assert result["success"] is True
 
-        print(f"✅ Swipe executed: {result['action']}")
+        print(f"[OK] Swipe executed: {result['action']}")
 
         await asyncio.sleep(0.5)
 
         # Test 4: Invalidate cache
-        print("\n🗑️ Test 4: Invalidating cache...")
+        print("\n️ Test 4: Invalidating cache...")
         commands = [
             Command(
                 tool_name="invalidate_cache",
@@ -383,7 +383,7 @@ class TestMobileMCPServers:
         assert result is not None
         assert result["success"] is True
 
-        print(f"✅ Cache invalidated: {result['message']}")
+        print(f"[OK] Cache invalidated: {result['message']}")
 
     @pytest.mark.asyncio
     async def test_shared_state_between_servers(
@@ -413,7 +413,7 @@ class TestMobileMCPServers:
         assert results[0].status == ResultStatus.SUCCESS
         controls = results[0].result
 
-        print(f"✅ Retrieved {len(controls)} controls (cache populated)")
+        print(f"[OK] Retrieved {len(controls)} controls (cache populated)")
 
         # Step 2: Invalidate cache from action server
         print("\n2️⃣ Invalidating cache from action server...")
@@ -433,7 +433,7 @@ class TestMobileMCPServers:
         )
 
         assert results[0].status == ResultStatus.SUCCESS
-        print(f"✅ Cache invalidated from action server")
+        print(f"[OK] Cache invalidated from action server")
 
         # Step 3: Get controls again - should refresh from device
         print("\n3️⃣ Getting controls again from data collection server...")
@@ -453,7 +453,7 @@ class TestMobileMCPServers:
         )
 
         assert results[0].status == ResultStatus.SUCCESS
-        print(f"✅ Cache invalidation worked - data refreshed from device")
+        print(f"[OK] Cache invalidation worked - data refreshed from device")
 
     @pytest.mark.asyncio
     async def test_complete_workflow(self, check_adb_connection, command_router):
@@ -462,7 +462,7 @@ class TestMobileMCPServers:
         print("\n=== Testing Complete Workflow ===")
 
         # Navigate to home screen first
-        print("\n🏠 Navigating to home screen...")
+        print("\n Navigating to home screen...")
         commands = [
             Command(
                 tool_name="press_key",
@@ -481,7 +481,7 @@ class TestMobileMCPServers:
         await asyncio.sleep(1)
 
         # Get controls
-        print("\n📋 Getting current screen controls...")
+        print("\n[TASK] Getting current screen controls...")
         commands = [
             Command(
                 tool_name="get_app_window_controls_target_info",
@@ -498,7 +498,7 @@ class TestMobileMCPServers:
         )
 
         controls = results[0].result
-        print(f"✅ Found {len(controls)} controls")
+        print(f"[OK] Found {len(controls)} controls")
 
         # Find a clickable control
         clickable_control = None
@@ -509,7 +509,7 @@ class TestMobileMCPServers:
 
         if clickable_control:
             print(
-                f"\n👆 Clicking control: {clickable_control.get('name')} (ID: {clickable_control.get('id')})"
+                f"\n Clicking control: {clickable_control.get('name')} (ID: {clickable_control.get('id')})"
             )
 
             commands = [
@@ -531,11 +531,11 @@ class TestMobileMCPServers:
             )
 
             if results[0].status == ResultStatus.SUCCESS:
-                print(f"✅ Successfully clicked control")
+                print(f"[OK] Successfully clicked control")
             else:
-                print(f"⚠️ Click failed: {results[0].error}")
+                print(f"️ Click failed: {results[0].error}")
         else:
-            print("⚠️ No clickable controls with names found on current screen")
+            print("️ No clickable controls with names found on current screen")
 
 
 if __name__ == "__main__":
@@ -545,7 +545,7 @@ if __name__ == "__main__":
     print("=" * 70)
     print("Mobile MCP Server Integration Tests")
     print("=" * 70)
-    print("\n⚠️  Prerequisites:")
+    print("\n️  Prerequisites:")
     print("  1. Android emulator or device must be running")
     print("  2. Run 'adb devices' to verify connection")
     print("  3. Start mobile MCP servers:")

@@ -105,7 +105,7 @@ class TaskOrionOrchestrator:
         """
         if self._logger:
             self._logger.info(
-                f"🛑 Cancelling orion execution: {orion_id}"
+                f" Cancelling orion execution: {orion_id}"
             )
 
         # Mark this orion as cancelled
@@ -118,12 +118,12 @@ class TaskOrionOrchestrator:
             for task_id, task in list(self._execution_tasks.items()):
                 if not task.done():
                     if self._logger:
-                        self._logger.debug(f"🛑 Cancelling task {task_id}")
+                        self._logger.debug(f" Cancelling task {task_id}")
                     task.cancel()
                     cancelled_count += 1
 
             if self._logger:
-                self._logger.info(f"🛑 Cancelled {cancelled_count} running tasks")
+                self._logger.info(f" Cancelled {cancelled_count} running tasks")
 
             # Wait for all cancellations to complete
             await asyncio.gather(
@@ -133,7 +133,7 @@ class TaskOrionOrchestrator:
 
         if self._logger:
             self._logger.info(
-                f"✅ Orion {orion_id} cancellation completed"
+                f"[OK] Orion {orion_id} cancellation completed"
             )
 
         return True
@@ -405,7 +405,7 @@ class TaskOrionOrchestrator:
             ):
                 if self._logger:
                     self._logger.info(
-                        f"🛑 Execution loop cancelled for orion {orion.orion_id}"
+                        f" Execution loop cancelled for orion {orion.orion_id}"
                     )
                 # Mark orion as cancelled
                 from ..enums import OrionState
@@ -443,7 +443,7 @@ class TaskOrionOrchestrator:
         """
         if self._logger:
             old_ready = [t.task_id for t in orion.get_ready_tasks()]
-            self._logger.debug(f"⚠️ Old Ready tasks: {old_ready}")
+            self._logger.debug(f"️ Old Ready tasks: {old_ready}")
 
         if self._modification_synchronizer:
             await self._modification_synchronizer.wait_for_pending_modifications()
@@ -456,10 +456,10 @@ class TaskOrionOrchestrator:
 
         if self._logger:
             self._logger.debug(
-                f"🆕 Task ID for orion after editing: {list(orion.tasks.keys())}"
+                f" Task ID for orion after editing: {list(orion.tasks.keys())}"
             )
             new_ready = [t.task_id for t in orion.get_ready_tasks()]
-            self._logger.debug(f"🆕 New Ready tasks: {new_ready}")
+            self._logger.debug(f" New Ready tasks: {new_ready}")
 
         return orion
 

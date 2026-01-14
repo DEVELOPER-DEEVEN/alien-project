@@ -56,11 +56,11 @@ graph TB
 
 | File | Purpose | Required |
 |------|---------|----------|
-| `config/alien/third_party.yaml` | Register agent with ALIEN | ✅ Yes |
-| `config/network/devices.yaml` | Register device instances | ✅ Yes (for Network) |
+| `config/alien/third_party.yaml` | Register agent with ALIEN | [OK] Yes |
+| `config/network/devices.yaml` | Register device instances | [OK] Yes (for Network) |
 | `config/network/orion.yaml` | Multi-device orchestration | Optional |
-| `alien/prompts/third_party/<name>.yaml` | Main prompt template | ✅ Yes |
-| `alien/prompts/third_party/<name>_example.yaml` | Few-shot examples | ✅ Yes |
+| `alien/prompts/third_party/<name>.yaml` | Main prompt template | [OK] Yes |
+| `alien/prompts/third_party/<name>_example.yaml` | Few-shot examples | [OK] Yes |
 
 ---
 
@@ -134,20 +134,20 @@ THIRD_PARTY_AGENT_CONFIG:
 
 | Field | Type | Required | Description | Example |
 |-------|------|----------|-------------|---------|
-| `VISUAL_MODE` | boolean | ✅ Yes | Enable screenshot capture | `True` for mobile/GUI, `False` for CLI |
-| `AGENT_NAME` | string | ✅ Yes | Must match `@AgentRegistry.register` | `"MobileAgent"` |
-| `APPAGENT_PROMPT` | string | ✅ Yes | Path to main prompt template | `"alien/prompts/third_party/mobile_agent.yaml"` |
-| `APPAGENT_EXAMPLE_PROMPT` | string | ✅ Yes | Path to example prompt template | `"alien/prompts/third_party/mobile_agent_example.yaml"` |
+| `VISUAL_MODE` | boolean | [OK] Yes | Enable screenshot capture | `True` for mobile/GUI, `False` for CLI |
+| `AGENT_NAME` | string | [OK] Yes | Must match `@AgentRegistry.register` | `"MobileAgent"` |
+| `APPAGENT_PROMPT` | string | [OK] Yes | Path to main prompt template | `"alien/prompts/third_party/mobile_agent.yaml"` |
+| `APPAGENT_EXAMPLE_PROMPT` | string | [OK] Yes | Path to example prompt template | `"alien/prompts/third_party/mobile_agent_example.yaml"` |
 | `API_PROMPT` | string | Optional | Custom API descriptions | `"alien/prompts/third_party/mobile_agent_api.yaml"` |
-| `INTRODUCTION` | string | ✅ Yes | Agent description for HostAgent | Multi-line string describing capabilities |
+| `INTRODUCTION` | string | [OK] Yes | Agent description for HostAgent | Multi-line string describing capabilities |
 
 !!! warning "Configuration Checklist"
-    - ✅ Add your agent to `ENABLED_THIRD_PARTY_AGENTS` list
-    - ✅ Create a config section with agent name as key
-    - ✅ Set `AGENT_NAME` to match `@AgentRegistry.register(agent_name="...")`
-    - ✅ Set `VISUAL_MODE` based on whether agent uses screenshots
-    - ✅ Create prompt template files before starting ALIEN
-    - ✅ Write descriptive `INTRODUCTION` for Network orchestration
+    - [OK] Add your agent to `ENABLED_THIRD_PARTY_AGENTS` list
+    - [OK] Create a config section with agent name as key
+    - [OK] Set `AGENT_NAME` to match `@AgentRegistry.register(agent_name="...")`
+    - [OK] Set `VISUAL_MODE` based on whether agent uses screenshots
+    - [OK] Create prompt template files before starting ALIEN
+    - [OK] Write descriptive `INTRODUCTION` for Network orchestration
 
 ---
 
@@ -271,22 +271,22 @@ devices:
 
 | Field | Type | Required | Description | Example |
 |-------|------|----------|-------------|---------|
-| `device_id` | string | ✅ Yes | Unique device identifier | `"mobile_agent_1"` |
-| `server_url` | string | ✅ Yes | WebSocket server URL | `"ws://192.168.1.100:5010/ws"` |
-| `os` | string | ✅ Yes | Operating system | `"android"`, `"ios"`, `"linux"`, `"windows"` |
-| `capabilities` | list[string] | ✅ Yes | Device capabilities | `["ui_automation", "app_testing"]` |
+| `device_id` | string | [OK] Yes | Unique device identifier | `"mobile_agent_1"` |
+| `server_url` | string | [OK] Yes | WebSocket server URL | `"ws://192.168.1.100:5010/ws"` |
+| `os` | string | [OK] Yes | Operating system | `"android"`, `"ios"`, `"linux"`, `"windows"` |
+| `capabilities` | list[string] | [OK] Yes | Device capabilities | `["ui_automation", "app_testing"]` |
 | `metadata` | dict | Optional | Custom device metadata | `{device_model: "Pixel 6", ...}` |
 | `metadata.tips` | string | Recommended | Agent-specific instructions | Multi-line instructions |
 | `auto_connect` | boolean | Optional | Auto-connect on startup | `true` (default: `false`) |
 | `max_retries` | integer | Optional | Connection retry limit | `5` (default: `3`) |
 
 !!! tip "Device Configuration Best Practices"
-    - ✅ Use descriptive `device_id` (e.g., `mobile_android_pixel6_lab1`)
-    - ✅ Add comprehensive `capabilities` for Network task routing
-    - ✅ Include device-specific details in `metadata.tips`
-    - ✅ Set `auto_connect: true` for production devices
-    - ✅ Use higher `max_retries` for unstable networks
-    - ✅ Include log paths, dev paths, and patterns in `metadata`
+    - [OK] Use descriptive `device_id` (e.g., `mobile_android_pixel6_lab1`)
+    - [OK] Add comprehensive `capabilities` for Network task routing
+    - [OK] Include device-specific details in `metadata.tips`
+    - [OK] Set `auto_connect: true` for production devices
+    - [OK] Use higher `max_retries` for unstable networks
+    - [OK] Include log paths, dev paths, and patterns in `metadata`
 
 ---
 
@@ -485,13 +485,13 @@ example4:
 | **Examples** | Cover common scenarios | Launch app, tap, swipe, type, scroll |
 
 !!! tip "Prompt Template Tips"
-    - ✅ Use `{{variable}}` for template variables (double braces)
-    - ✅ Provide clear JSON structure with type annotations
-    - ✅ Include platform-specific guidance (Android vs iOS)
-    - ✅ Add examples covering success and failure cases
-    - ✅ Reference screenshots and UI trees in prompts
-    - ✅ Emphasize JSON-only output (no markdown)
-    - ❌ Don't hardcode API descriptions (use `{apis}` placeholder)
+    - [OK] Use `{{variable}}` for template variables (double braces)
+    - [OK] Provide clear JSON structure with type annotations
+    - [OK] Include platform-specific guidance (Android vs iOS)
+    - [OK] Add examples covering success and failure cases
+    - [OK] Reference screenshots and UI trees in prompts
+    - [OK] Emphasize JSON-only output (no markdown)
+    - [FAIL] Don't hardcode API descriptions (use `{apis}` placeholder)
 
 ---
 
@@ -666,7 +666,7 @@ Expected output:
 INFO: Platform: android
 INFO: ALIEN Client initialized: mobile_agent_1
 INFO: Connecting to ws://localhost:5010/ws (attempt 1/5)
-INFO: ✅ Client registered: mobile_agent_1
+INFO: [OK] Client registered: mobile_agent_1
 INFO: Starting message handling loop
 ```
 
@@ -677,7 +677,7 @@ INFO: Starting message handling loop
 # Should show: "Client mobile_agent_1 registered"
 
 # Check client logs
-# Should show: "✅ Client registered: mobile_agent_1"
+# Should show: "[OK] Client registered: mobile_agent_1"
 
 # Test basic command (optional)
 curl -X POST http://localhost:5010/api/v1/task \
@@ -842,11 +842,11 @@ devices:
 
 **What You've Configured**:
 
-- ✅ Third-party agent registration in `third_party.yaml`
-- ✅ Device registration in `devices.yaml`
-- ✅ Main and example prompt templates
-- ✅ Step-by-step deployment procedure
-- ✅ Network multi-device integration (optional)
+- [OK] Third-party agent registration in `third_party.yaml`
+- [OK] Device registration in `devices.yaml`
+- [OK] Main and example prompt templates
+- [OK] Step-by-step deployment procedure
+- [OK] Network multi-device integration (optional)
 
 **Key Takeaways**:
 

@@ -34,7 +34,7 @@ from network.agents.schema import (
 
 def example_basic_usage():
     """示例：基本用法"""
-    print("📚 基本用法示例")
+    print("[PLAN] 基本用法示例")
     print("=" * 50)
 
     # 创建 TaskStar 实例
@@ -48,20 +48,20 @@ def example_basic_usage():
 
     # 转换为 BaseModel
     schema = task.to_basemodel()
-    print(f"✅ TaskStar -> BaseModel: {schema.name}")
+    print(f"[OK] TaskStar -> BaseModel: {schema.name}")
 
     # 从 BaseModel 恢复
     task_restored = TaskStar.from_basemodel(schema)
-    print(f"✅ BaseModel -> TaskStar: {task_restored.name}")
+    print(f"[OK] BaseModel -> TaskStar: {task_restored.name}")
 
     # JSON 序列化
     json_str = schema.model_dump_json(indent=2)
-    print(f"✅ JSON 序列化长度: {len(json_str)} 字符")
+    print(f"[OK] JSON 序列化长度: {len(json_str)} 字符")
 
 
 def example_json_persistence():
     """示例：JSON 持久化"""
-    print("\n💾 JSON 持久化示例")
+    print("\n JSON 持久化示例")
     print("=" * 50)
 
     # 创建复杂的星座
@@ -107,7 +107,7 @@ def example_json_persistence():
     filename = "example_orion.json"
     with open(filename, "w", encoding="utf-8") as f:
         f.write(json_data)
-    print(f"✅ 星座已保存到: {filename}")
+    print(f"[OK] 星座已保存到: {filename}")
 
     # 从文件加载
     with open(filename, "r", encoding="utf-8") as f:
@@ -116,14 +116,14 @@ def example_json_persistence():
     loaded_schema = TaskOrionSchema.model_validate_json(loaded_json)
     loaded_orion = TaskOrion.from_basemodel(loaded_schema)
 
-    print(f"✅ 从文件加载星座: {loaded_orion.name}")
+    print(f"[OK] 从文件加载星座: {loaded_orion.name}")
     print(f"   - 任务数量: {len(loaded_orion.tasks)}")
     print(f"   - 依赖关系数量: {len(loaded_orion.dependencies)}")
 
 
 def example_data_validation():
     """示例：数据验证"""
-    print("\n🔍 数据验证示例")
+    print("\n 数据验证示例")
     print("=" * 50)
 
     # 创建有效的 schema 数据
@@ -144,14 +144,14 @@ def example_data_validation():
     try:
         # 验证并创建 schema
         schema = TaskStarSchema(**valid_data)
-        print("✅ 有效数据验证成功")
+        print("[OK] 有效数据验证成功")
 
         # 转换为 TaskStar
         task = TaskStar.from_basemodel(schema)
-        print(f"✅ 成功创建任务: {task.name}")
+        print(f"[OK] 成功创建任务: {task.name}")
 
     except Exception as e:
-        print(f"❌ 数据验证失败: {e}")
+        print(f"[FAIL] 数据验证失败: {e}")
 
     # 测试无效数据
     invalid_data = valid_data.copy()
@@ -160,14 +160,14 @@ def example_data_validation():
     try:
         schema = TaskStarSchema(**invalid_data)
         task = TaskStar.from_basemodel(schema)
-        print("⚠️ 空 task_id 被接受了")
+        print("️ 空 task_id 被接受了")
     except Exception as e:
-        print(f"✅ 正确捕获无效数据: {type(e).__name__}")
+        print(f"[OK] 正确捕获无效数据: {type(e).__name__}")
 
 
 def example_api_integration():
     """示例：API 集成"""
-    print("\n🌐 API 集成示例")
+    print("\n[WEB] API 集成示例")
     print("=" * 50)
 
     # 模拟 API 响应数据
@@ -200,11 +200,11 @@ def example_api_integration():
     try:
         # 从 API 数据创建 schema
         schema = TaskOrionSchema(**api_response)
-        print("✅ API 数据验证成功")
+        print("[OK] API 数据验证成功")
 
         # 转换为 TaskOrion
         orion = TaskOrion.from_basemodel(schema)
-        print(f"✅ 成功创建星座: {orion.name}")
+        print(f"[OK] 成功创建星座: {orion.name}")
         print(f"   - 状态: {orion.state.value}")
         print(f"   - 任务数: {len(orion.tasks)}")
 
@@ -214,12 +214,12 @@ def example_api_integration():
         print(f"   - 任务状态: {task.status.value}")
 
     except Exception as e:
-        print(f"❌ API 集成失败: {e}")
+        print(f"[FAIL] API 集成失败: {e}")
 
 
 def main():
     """运行所有示例"""
-    print("🚀 BaseModel 集成示例")
+    print("[START] BaseModel 集成示例")
     print("这些示例展示了如何在实际应用中使用 BaseModel 功能\n")
 
     example_basic_usage()
@@ -227,8 +227,8 @@ def main():
     example_data_validation()
     example_api_integration()
 
-    print("\n🎉 所有示例执行完成！")
-    print("\n💡 主要特性:")
+    print("\n 所有示例执行完成！")
+    print("\n[THOUGHT] 主要特性:")
     print("   • 自动类型转换（枚举 ↔ 字符串）")
     print("   • JSON 序列化/反序列化")
     print("   • 数据验证和错误处理")

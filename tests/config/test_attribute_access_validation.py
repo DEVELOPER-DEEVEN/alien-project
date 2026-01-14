@@ -44,7 +44,7 @@ class AttributeAccessValidator:
             "legacy": legacy_val,
             "new_upper": new_val_upper,
             "new_lower": new_val_lower,
-            "status": "✓",
+            "status": "",
         }
 
         # 处理 DynamicConfig 对象
@@ -58,7 +58,7 @@ class AttributeAccessValidator:
             # 如果提供了小写访问，检查是否与大写一致
             if new_val_lower is not None:
                 if not self._compare_values(new_val_upper, new_val_lower):
-                    result["status"] = "✗"
+                    result["status"] = ""
                     result["error"] = "大写和小写访问值不一致"
                     self.failed += 1
                 else:
@@ -66,12 +66,12 @@ class AttributeAccessValidator:
             else:
                 self.passed += 1
         else:
-            result["status"] = "✗"
+            result["status"] = ""
             result["error"] = "新旧配置值不一致"
             self.failed += 1
 
         self.test_results.append(result)
-        return result["status"] == "✓"
+        return result["status"] == ""
 
     def _compare_values(self, val1: Any, val2: Any) -> bool:
         """比较两个值是否相等"""
@@ -226,13 +226,13 @@ class AttributeAccessValidator:
                     "new_upper": new_val_upper,
                     "new_lower": new_val_lower,
                     "status": (
-                        "✓"
+                        ""
                         if self._compare_values(new_val_upper, new_val_lower)
-                        else "✗"
+                        else ""
                     ),
                 }
 
-                if result["status"] == "✓":
+                if result["status"] == "":
                     self.passed += 1
                 else:
                     self.failed += 1
@@ -271,13 +271,13 @@ class AttributeAccessValidator:
                     "new_upper": new_val_upper,
                     "new_lower": new_val_lower,
                     "status": (
-                        "✓"
+                        ""
                         if self._compare_values(new_val_upper, new_val_lower)
-                        else "✗"
+                        else ""
                     ),
                 }
 
-                if result["status"] == "✓":
+                if result["status"] == "":
                     self.passed += 1
                 else:
                     self.failed += 1
@@ -313,9 +313,9 @@ class AttributeAccessValidator:
         if self.failed > 0:
             console.print("\n[bold red]失败的测试项:[/bold red]")
             for result in self.test_results:
-                if result["status"] == "✗":
+                if result["status"] == "":
                     console.print(
-                        f"  ✗ {result['name']}: {result.get('error', '未知错误')}"
+                        f"   {result['name']}: {result.get('error', '未知错误')}"
                     )
                     if "legacy" in result:
                         console.print(f"    旧值: {result['legacy']}")
@@ -324,10 +324,10 @@ class AttributeAccessValidator:
 
         # 最终判断
         if self.failed == 0:
-            console.print("\n[bold green]✅ 所有属性访问测试通过！[/bold green]")
+            console.print("\n[bold green][OK] 所有属性访问测试通过！[/bold green]")
             return True
         else:
-            console.print(f"\n[bold red]❌ {self.failed} 项测试失败[/bold red]")
+            console.print(f"\n[bold red][FAIL] {self.failed} 项测试失败[/bold red]")
             return False
 
 

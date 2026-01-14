@@ -610,11 +610,11 @@ $env:BING_API_KEY = "your-key-here"
 ## Summary
 
 !!!success "Key Takeaways"
-    ✅ **RAG is optional** - ALIEN² works without it  
-    ✅ **Online Search** - Most useful for general tasks (needs Bing API key)  
-    ✅ **Experience** - Free, improves over time automatically  
-    ✅ **Offline Docs** - Great for domain-specific knowledge  
-    ✅ **Demonstration** - Best for complex, specific workflows  
-    ✅ **Start simple** - Enable Online Search first, add others as needed  
+    [OK] **RAG is optional** - ALIEN² works without it  
+    [OK] **Online Search** - Most useful for general tasks (needs Bing API key)  
+    [OK] **Experience** - Free, improves over time automatically  
+    [OK] **Offline Docs** - Great for domain-specific knowledge  
+    [OK] **Demonstration** - Best for complex, specific workflows  
+    [OK] **Start simple** - Enable Online Search first, add others as needed  
     
-    **Enhance ALIEN² with knowledge retrieval!** 🧠
+    **Enhance ALIEN² with knowledge retrieval!** [BRAIN]

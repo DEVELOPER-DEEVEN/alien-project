@@ -173,7 +173,7 @@ class AppAgent(BasicAgent):
         comment_text = Text()
 
         # Add agent identifier with app-specific styling
-        comment_text.append("📱 App Agent", style="bold magenta")
+        comment_text.append(" App Agent", style="bold magenta")
         comment_text.append(" says:\n\n", style="dim magenta")
 
         # Add the actual comment with proper formatting
@@ -182,7 +182,7 @@ class AppAgent(BasicAgent):
             if line.strip():
                 # Add bullet point for multiple lines
                 if len(comment_lines) > 1 and line.strip():
-                    comment_text.append("💭 ", style="cyan")
+                    comment_text.append(" ", style="cyan")
                 comment_text.append(line.strip(), style="white")
                 if i < len(comment_lines) - 1:
                     comment_text.append("\n")
@@ -190,7 +190,7 @@ class AppAgent(BasicAgent):
         # Create enhanced panel with conversation styling
         comment_panel = Panel(
             Align.left(comment_text),
-            title="💬 [bold magenta]App Agent Dialogue[/bold magenta]",
+            title="[COMMENT] [bold magenta]App Agent Dialogue[/bold magenta]",
             title_align="left",
             border_style="magenta",
             box=DOUBLE,
@@ -393,7 +393,7 @@ class AppAgent(BasicAgent):
         decision = interactor.sensitive_step_asker(action, control_text)
 
         if not decision:
-            console.print("❌ The user has canceled the action.", style="red")
+            console.print("[FAIL] The user has canceled the action.", style="red")
 
         return decision
 
@@ -462,7 +462,7 @@ class AppAgent(BasicAgent):
         # Load the offline document indexer for the app agent if available.
         if alien_config.rag.offline_docs:
             console.print(
-                f"📚 Loading offline help document indexer for {self._process_name}...",
+                f"[PLAN] Loading offline help document indexer for {self._process_name}...",
                 style="magenta",
             )
             self.build_offline_docs_retriever()
@@ -470,21 +470,21 @@ class AppAgent(BasicAgent):
         # Load the online search indexer for the app agent if available.
 
         if alien_config.rag.online_search and request:
-            console.print("🔍 Creating a Bing search indexer...", style="magenta")
+            console.print(" Creating a Bing search indexer...", style="magenta")
             self.build_online_search_retriever(
                 request, alien_config.rag.online_search_topk
             )
 
         # Load the experience indexer for the app agent if available.
         if alien_config.rag.experience:
-            console.print("📖 Creating an experience indexer...", style="magenta")
+            console.print("[LANG] Creating an experience indexer...", style="magenta")
             experience_path = alien_config.rag.experience_saved_path
             db_path = os.path.join(experience_path, "experience_db")
             self.build_experience_retriever(db_path)
 
         # Load the demonstration indexer for the app agent if available.
         if alien_config.rag.demonstration:
-            console.print("🎬 Creating an demonstration indexer...", style="magenta")
+            console.print(" Creating an demonstration indexer...", style="magenta")
             demonstration_path = alien_config.rag.demonstration_saved_path
             db_path = os.path.join(demonstration_path, "demonstration_db")
             self.build_human_demonstration_retriever(db_path)
@@ -681,17 +681,17 @@ class OpenAIOperatorAgent(AppAgent):
         thought = response_dict.get("thought", "")
 
         if message:
-            console.print(f"📝 Agent message: {message}", style="yellow")
+            console.print(f" Agent message: {message}", style="yellow")
 
         if thought:
-            console.print(f"💡 Thoughts: {thought}", style="green")
+            console.print(f"[THOUGHT] Thoughts: {thought}", style="green")
 
         function_call = response_dict.get("operation", "")
         args = response_dict.get("args", {})
 
         # Generate the function call string
         action = AppAgent.get_command_string(function_call, args)
-        console.print(f"⚒️  Action applied: {action}", style="blue")
+        console.print(f"[ACTION]  Action applied: {action}", style="blue")
 
     @property
     def default_state(self) -> ContinueOpenAIOperatorState:

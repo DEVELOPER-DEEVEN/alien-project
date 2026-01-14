@@ -177,18 +177,18 @@ dep = orion.get_dependency(dep1.line_id)
 has_cycles = orion.has_cycle()
 
 if has_cycles:
-    print("❌ Orion contains cycles!")
+    print("[FAIL] Orion contains cycles!")
 else:
-    print("✅ DAG is acyclic")
+    print("[OK] DAG is acyclic")
 
 # Comprehensive validation
 is_valid, errors = orion.validate_dag()
 
 if not is_valid:
     for error in errors:
-        print(f"❌ {error}")
+        print(f"[FAIL] {error}")
 else:
-    print("✅ Orion is valid")
+    print("[OK] Orion is valid")
 ```
 
 ### Topological Ordering
@@ -604,7 +604,7 @@ try:
         TaskStarLine.create_unconditional("c", "a")
     )
 except ValueError as e:
-    print(f"❌ {e}")
+    print(f"[FAIL] {e}")
     # Output: Adding dependency would create a cycle
 ```
 
@@ -619,7 +619,7 @@ try:
     )
     orion.add_dependency(dep)
 except ValueError as e:
-    print(f"❌ {e}")
+    print(f"[FAIL] {e}")
     # Output: Source task nonexistent_task not found
 ```
 
@@ -632,7 +632,7 @@ task.start_execution()
 try:
     orion.remove_task(task.task_id)
 except ValueError as e:
-    print(f"❌ {e}")
+    print(f"[FAIL] {e}")
     # Output: Cannot remove running task
 ```
 

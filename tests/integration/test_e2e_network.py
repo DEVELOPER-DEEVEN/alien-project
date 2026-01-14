@@ -415,34 +415,34 @@ class E2EOrionTester:
 
         try:
             # Step 1: Parse LLM response to create orion
-            logger.info("📝 Step 1: Parsing LLM response...")
+            logger.info(" Step 1: Parsing LLM response...")
             orion = await self.orchestrator.create_orion_from_llm(
                 llm_response, f"{dag_name}_orion"
             )
 
             logger.info(
-                f"✅ Created orion: {orion.task_count} tasks, {orion.dependency_count} dependencies"
+                f"[OK] Created orion: {orion.task_count} tasks, {orion.dependency_count} dependencies"
             )
 
             # Step 2: Validate DAG structure
-            logger.info("🔍 Step 2: Validating DAG structure...")
+            logger.info(" Step 2: Validating DAG structure...")
             is_valid, errors = orion.validate_dag()
             if not is_valid:
-                logger.error(f"❌ DAG validation failed: {errors}")
+                logger.error(f"[FAIL] DAG validation failed: {errors}")
                 return {
                     "status": "failed",
                     "error": "DAG validation failed",
                     "errors": errors,
                 }
 
-            logger.info("✅ DAG structure is valid")
+            logger.info("[OK] DAG structure is valid")
 
             # Step 3: Display orion structure
-            logger.info("📊 Step 3: Analyzing orion structure...")
+            logger.info("[STATUS] Step 3: Analyzing orion structure...")
             self._display_orion_info(orion)
 
             # Step 4: Assign devices automatically
-            logger.info("🎯 Step 4: Assigning devices to tasks...")
+            logger.info(" Step 4: Assigning devices to tasks...")
             await self.orchestrator.assign_devices_automatically(orion)
 
             # Display device assignments
@@ -453,7 +453,7 @@ class E2EOrionTester:
                 )
 
             # Step 5: Execute orion
-            logger.info("🚀 Step 5: Executing orion...")
+            logger.info("[START] Step 5: Executing orion...")
 
             progress_log = []
 
@@ -465,14 +465,14 @@ class E2EOrionTester:
                         "timestamp": datetime.now().isoformat(),
                     }
                 )
-                logger.info(f"📈 Progress: {task_id} → {status.value}")
+                logger.info(f" Progress: {task_id} → {status.value}")
 
             execution_result = await self.orchestrator.orchestrate_orion(
                 orion, progress_callback=progress_callback
             )
 
             # Step 6: Analyze results
-            logger.info("📊 Step 6: Analyzing execution results...")
+            logger.info("[STATUS] Step 6: Analyzing execution results...")
             end_time = time.time()
             total_time = end_time - start_time
 
@@ -502,7 +502,7 @@ class E2EOrionTester:
                     "result": task.result,
                 }
 
-            logger.info(f"✅ Test completed successfully in {total_time:.2f}s")
+            logger.info(f"[OK] Test completed successfully in {total_time:.2f}s")
             logger.info(f"   - Final status: {execution_result.get('status')}")
             logger.info(f"   - Tasks completed: {len(final_status['completed_tasks'])}")
             logger.info(f"   - Tasks failed: {len(final_status['failed_tasks'])}")
@@ -510,7 +510,7 @@ class E2EOrionTester:
             return test_result
 
         except Exception as e:
-            logger.error(f"❌ Test failed with error: {e}")
+            logger.error(f"[FAIL] Test failed with error: {e}")
             logger.error(traceback.format_exc())
 
             return {
@@ -643,13 +643,13 @@ class E2EOrionTester:
         """
         Test dynamic DAG modifications.
         """
-        logger.info("\n🔄 Testing DAG Modifications...")
+        logger.info("\n[CONTINUE] Testing DAG Modifications...")
 
         modification_results = {}
 
         try:
             # Test 1: Add new task
-            logger.info("📝 Test 1: Adding new task...")
+            logger.info(" Test 1: Adding new task...")
             new_task = TaskStar(
                 task_id="dynamic_task_1",
                 description="Dynamically added monitoring task",
@@ -673,10 +673,10 @@ class E2EOrionTester:
                 "new_task_count": orion.task_count,
                 "new_dependency_count": orion.dependency_count,
             }
-            logger.info("✅ Successfully added new task and dependency")
+            logger.info("[OK] Successfully added new task and dependency")
 
             # Test 2: Modify task properties
-            logger.info("📝 Test 2: Modifying task properties...")
+            logger.info(" Test 2: Modifying task properties...")
             if tasks:
                 first_task = tasks[0]
                 original_priority = first_task.priority
@@ -689,10 +689,10 @@ class E2EOrionTester:
                     "new_priority": first_task.priority.value,
                     "description_modified": True,
                 }
-                logger.info("✅ Successfully modified task properties")
+                logger.info("[OK] Successfully modified task properties")
 
             # Test 3: Export and import orion
-            logger.info("📝 Test 3: Testing export/import...")
+            logger.info(" Test 3: Testing export/import...")
 
             # Export to JSON
             json_export = self.orchestrator.export_orion(orion, "json")
@@ -717,10 +717,10 @@ class E2EOrionTester:
                     == orion.dependency_count
                 ),
             }
-            logger.info("✅ Successfully exported and imported orion")
+            logger.info("[OK] Successfully exported and imported orion")
 
             # Test 4: Validate modified DAG
-            logger.info("📝 Test 4: Validating modified DAG...")
+            logger.info(" Test 4: Validating modified DAG...")
             is_valid, errors = orion.validate_dag()
 
             modification_results["validation"] = {
@@ -730,14 +730,14 @@ class E2EOrionTester:
             }
 
             if is_valid:
-                logger.info("✅ Modified DAG is still valid")
+                logger.info("[OK] Modified DAG is still valid")
             else:
-                logger.warning(f"⚠️ Modified DAG has validation issues: {errors}")
+                logger.warning(f"️ Modified DAG has validation issues: {errors}")
 
             return modification_results
 
         except Exception as e:
-            logger.error(f"❌ DAG modification test failed: {e}")
+            logger.error(f"[FAIL] DAG modification test failed: {e}")
             return {
                 "status": "failed",
                 "error": str(e),
@@ -748,13 +748,13 @@ class E2EOrionTester:
         """
         Test error handling and recovery scenarios.
         """
-        logger.info("\n⚠️ Testing Error Scenarios...")
+        logger.info("\n️ Testing Error Scenarios...")
 
         error_test_results = {}
 
         try:
             # Test 1: Invalid LLM input
-            logger.info("📝 Test 1: Invalid LLM input...")
+            logger.info(" Test 1: Invalid LLM input...")
             try:
                 invalid_llm = "This is not a valid task description with no structure"
                 orion = await self.orchestrator.create_orion_from_llm(
@@ -769,10 +769,10 @@ class E2EOrionTester:
                     "status": "expected_failure",
                     "error": str(e),
                 }
-                logger.info("✅ Invalid LLM input correctly rejected")
+                logger.info("[OK] Invalid LLM input correctly rejected")
 
             # Test 2: Circular dependency
-            logger.info("📝 Test 2: Circular dependency detection...")
+            logger.info(" Test 2: Circular dependency detection...")
             try:
                 orion = TaskOrion(name="circular_test")
 
@@ -805,10 +805,10 @@ class E2EOrionTester:
                     "status": "expected_failure",
                     "error": str(e),
                 }
-                logger.info("✅ Circular dependency correctly detected and prevented")
+                logger.info("[OK] Circular dependency correctly detected and prevented")
 
             # Test 3: Device failure simulation
-            logger.info("📝 Test 3: Device failure handling...")
+            logger.info(" Test 3: Device failure handling...")
             # Create a simple orion for failure testing
             simple_orion = create_simple_orion(
                 ["Task that might fail", "Recovery task"],
@@ -843,12 +843,12 @@ class E2EOrionTester:
                 # Restore device state
                 self.mock_client.connected_devices = original_devices
 
-            logger.info("✅ Device failure scenario tested")
+            logger.info("[OK] Device failure scenario tested")
 
             return error_test_results
 
         except Exception as e:
-            logger.error(f"❌ Error scenario testing failed: {e}")
+            logger.error(f"[FAIL] Error scenario testing failed: {e}")
             return {
                 "status": "failed",
                 "error": str(e),
@@ -859,7 +859,7 @@ class E2EOrionTester:
         """
         Run the complete end-to-end test suite.
         """
-        logger.info("🚀 Starting Comprehensive E2E Test Suite")
+        logger.info("[START] Starting Comprehensive E2E Test Suite")
         logger.info("=" * 80)
 
         suite_start_time = time.time()
@@ -874,7 +874,7 @@ class E2EOrionTester:
 
         try:
             # Phase 1: Test different DAG structures
-            logger.info("\n🏗️ PHASE 1: DAG Structure Testing")
+            logger.info("\n️ PHASE 1: DAG Structure Testing")
             logger.info("-" * 50)
 
             llm_responses = self.create_mock_llm_responses()
@@ -897,7 +897,7 @@ class E2EOrionTester:
                     }
 
             # Phase 2: Test DAG modifications (using the last successful orion)
-            logger.info("\n🔄 PHASE 2: DAG Modification Testing")
+            logger.info("\n[CONTINUE] PHASE 2: DAG Modification Testing")
             logger.info("-" * 50)
 
             # Find a successful orion to modify
@@ -926,14 +926,14 @@ class E2EOrionTester:
                 }
 
             # Phase 3: Test error scenarios
-            logger.info("\n⚠️ PHASE 3: Error Scenario Testing")
+            logger.info("\n️ PHASE 3: Error Scenario Testing")
             logger.info("-" * 50)
 
             error_results = await self.test_error_scenarios()
             suite_results["error_scenario_tests"] = error_results
 
             # Phase 4: Generate performance summary
-            logger.info("\n📊 PHASE 4: Performance Analysis")
+            logger.info("\n[STATUS] PHASE 4: Performance Analysis")
             logger.info("-" * 50)
 
             suite_results["performance_summary"] = self._generate_performance_summary(
@@ -951,7 +951,7 @@ class E2EOrionTester:
             return suite_results
 
         except Exception as e:
-            logger.error(f"❌ Test suite failed: {e}")
+            logger.error(f"[FAIL] Test suite failed: {e}")
             logger.error(traceback.format_exc())
 
             suite_results["overall_status"] = "failed"
@@ -1038,19 +1038,19 @@ class E2EOrionTester:
 
     def _print_final_summary(self, suite_results: Dict[str, Any]):
         """Print comprehensive test suite summary."""
-        logger.info("\n" + "🎯" * 30)
+        logger.info("\n" + "" * 30)
         logger.info("  COMPREHENSIVE TEST SUITE SUMMARY")
-        logger.info("🎯" * 30)
+        logger.info("" * 30)
 
         # Overall statistics
         total_time = suite_results.get("total_execution_time", 0)
-        logger.info(f"\n📊 Overall Statistics:")
+        logger.info(f"\n[STATUS] Overall Statistics:")
         logger.info(f"   - Total execution time: {total_time:.2f}s")
         logger.info(f"   - Test suite status: {suite_results.get('overall_status')}")
 
         # DAG structure test results
         dag_tests = suite_results.get("dag_structure_tests", {})
-        logger.info(f"\n🏗️ DAG Structure Tests ({len(dag_tests)} total):")
+        logger.info(f"\n️ DAG Structure Tests ({len(dag_tests)} total):")
         for dag_name, result in dag_tests.items():
             status = result.get("status", "unknown")
             execution_time = result.get("total_execution_time", 0)
@@ -1060,7 +1060,7 @@ class E2EOrionTester:
         perf_summary = suite_results.get("performance_summary", {})
         if perf_summary.get("status") == "completed":
             metrics = perf_summary.get("performance_metrics", {})
-            logger.info(f"\n📈 Performance Metrics:")
+            logger.info(f"\n Performance Metrics:")
             logger.info(f"   - Success rate: {perf_summary.get('success_rate', 0):.1%}")
             logger.info(
                 f"   - Avg execution time: {metrics.get('avg_execution_time', 0):.2f}s"
@@ -1072,7 +1072,7 @@ class E2EOrionTester:
 
         # Device performance
         device_perf = perf_summary.get("device_performance", {})
-        logger.info(f"\n💻 Device Performance:")
+        logger.info(f"\n Device Performance:")
         logger.info(
             f"   - Total tasks executed: {device_perf.get('total_tasks_executed', 0)}"
         )
@@ -1082,15 +1082,15 @@ class E2EOrionTester:
 
         # Error scenarios
         error_tests = suite_results.get("error_scenario_tests", {})
-        logger.info(f"\n⚠️ Error Scenario Tests:")
+        logger.info(f"\n️ Error Scenario Tests:")
         if error_tests:
             for test_name, result in error_tests.items():
                 if isinstance(result, dict):
                     status = result.get("status", "unknown")
                     logger.info(f"   - {test_name}: {status}")
 
-        logger.info(f"\n✅ Test suite completed successfully!")
-        logger.info("🎯" * 30)
+        logger.info(f"\n[OK] Test suite completed successfully!")
+        logger.info("" * 30)
 
 
 class NetworkSessionTester:
@@ -1103,7 +1103,7 @@ class NetworkSessionTester:
 
     async def test_network_session_lifecycle(self) -> Dict[str, Any]:
         """Test complete NetworkSession lifecycle with NetworkWeaverAgent."""
-        self.logger.info("\n🌌 Testing NetworkSession Lifecycle...")
+        self.logger.info("\n[ORION] Testing NetworkSession Lifecycle...")
 
         results = {
             "test_name": "network_session_lifecycle",
@@ -1114,7 +1114,7 @@ class NetworkSessionTester:
 
         try:
             # Test 1: Session Creation
-            self.logger.info("📝 Test 1: Session creation and initialization...")
+            self.logger.info(" Test 1: Session creation and initialization...")
 
             # Create modular client
             config = OrionConfig()
@@ -1140,7 +1140,7 @@ class NetworkSessionTester:
             }
 
             # Test 2: Agent Initial Processing
-            self.logger.info("📝 Test 2: Agent initial request processing...")
+            self.logger.info(" Test 2: Agent initial request processing...")
 
             orion = await weaver_agent.process_initial_request(
                 "Create a machine learning pipeline with data preprocessing, training, and evaluation",
@@ -1155,7 +1155,7 @@ class NetworkSessionTester:
             }
 
             # Test 3: Session Execution
-            self.logger.info("📝 Test 3: Full session execution...")
+            self.logger.info(" Test 3: Full session execution...")
 
             # Run session (this will create rounds and execute orion)
             session_start = time.time()
@@ -1174,7 +1174,7 @@ class NetworkSessionTester:
             }
 
             # Test 4: Task Result Processing
-            self.logger.info("📝 Test 4: Task result processing and DAG updates...")
+            self.logger.info(" Test 4: Task result processing and DAG updates...")
 
             # Simulate task results for testing agent updates
             mock_task_result = {
@@ -1203,7 +1203,7 @@ class NetworkSessionTester:
                 }
 
             # Test 5: Error Handling
-            self.logger.info("📝 Test 5: Error handling and recovery...")
+            self.logger.info(" Test 5: Error handling and recovery...")
 
             # Simulate error scenario
             error_task_result = {
@@ -1235,13 +1235,13 @@ class NetworkSessionTester:
             results["status"] = "success"
             results["total_execution_time"] = time.time() - results["start_time"]
 
-            self.logger.info("✅ NetworkSession lifecycle test completed successfully")
+            self.logger.info("[OK] NetworkSession lifecycle test completed successfully")
 
         except Exception as e:
             results["status"] = "failed"
             results["error"] = str(e)
             results["total_execution_time"] = time.time() - results["start_time"]
-            self.logger.error(f"❌ NetworkSession lifecycle test failed: {e}")
+            self.logger.error(f"[FAIL] NetworkSession lifecycle test failed: {e}")
             import traceback
 
             traceback.print_exc()
@@ -1250,7 +1250,7 @@ class NetworkSessionTester:
 
     async def test_weaver_agent_scenarios(self) -> Dict[str, Any]:
         """Test various NetworkWeaverAgent scenarios."""
-        self.logger.info("\n🤖 Testing NetworkWeaverAgent Scenarios...")
+        self.logger.info("\n Testing NetworkWeaverAgent Scenarios...")
 
         results = {
             "test_name": "weaver_agent_scenarios",
@@ -1261,7 +1261,7 @@ class NetworkSessionTester:
 
         try:
             # Scenario 1: Complex Request Processing
-            self.logger.info("📝 Scenario 1: Complex request processing...")
+            self.logger.info(" Scenario 1: Complex request processing...")
 
             agent = MockNetworkWeaverAgent("scenario_agent_1")
             complex_request = "Build a complex distributed system with microservices, load balancing, monitoring, and CI/CD pipeline"
@@ -1277,7 +1277,7 @@ class NetworkSessionTester:
             }
 
             # Scenario 2: Parallel Processing Request
-            self.logger.info("📝 Scenario 2: Parallel processing request...")
+            self.logger.info(" Scenario 2: Parallel processing request...")
 
             agent2 = MockNetworkWeaverAgent("scenario_agent_2")
             parallel_request = "Create a parallel data processing system with multiple data streams and aggregation"
@@ -1292,7 +1292,7 @@ class NetworkSessionTester:
             }
 
             # Scenario 3: Agent State Management
-            self.logger.info("📝 Scenario 3: Agent state management...")
+            self.logger.info(" Scenario 3: Agent state management...")
 
             # Test status transitions
             initial_status = agent.agent_status
@@ -1316,7 +1316,7 @@ class NetworkSessionTester:
             }
 
             # Scenario 4: Concurrent Updates
-            self.logger.info("📝 Scenario 4: Concurrent update handling...")
+            self.logger.info(" Scenario 4: Concurrent update handling...")
 
             agent3 = MockNetworkWeaverAgent("scenario_agent_3")
             await agent3.process_initial_request("Simple linear workflow")
@@ -1344,14 +1344,14 @@ class NetworkSessionTester:
             results["total_execution_time"] = time.time() - results["start_time"]
 
             self.logger.info(
-                "✅ NetworkWeaverAgent scenarios test completed successfully"
+                "[OK] NetworkWeaverAgent scenarios test completed successfully"
             )
 
         except Exception as e:
             results["status"] = "failed"
             results["error"] = str(e)
             results["total_execution_time"] = time.time() - results["start_time"]
-            self.logger.error(f"❌ NetworkWeaverAgent scenarios test failed: {e}")
+            self.logger.error(f"[FAIL] NetworkWeaverAgent scenarios test failed: {e}")
             import traceback
 
             traceback.print_exc()
@@ -1360,7 +1360,7 @@ class NetworkSessionTester:
 
     async def test_session_agent_integration(self) -> Dict[str, Any]:
         """Test integration between NetworkSession and NetworkWeaverAgent."""
-        self.logger.info("\n🔗 Testing Session-Agent Integration...")
+        self.logger.info("\n[DEP] Testing Session-Agent Integration...")
 
         results = {
             "test_name": "session_agent_integration",
@@ -1371,7 +1371,7 @@ class NetworkSessionTester:
 
         try:
             # Integration Test 1: End-to-End Request Processing
-            self.logger.info("📝 Integration Test 1: End-to-end request processing...")
+            self.logger.info(" Integration Test 1: End-to-end request processing...")
 
             # Create session with custom agent
             agent = MockNetworkWeaverAgent("integration_agent")
@@ -1404,7 +1404,7 @@ class NetworkSessionTester:
 
             # Integration Test 2: Real-time DAG Updates
             self.logger.info(
-                "📝 Integration Test 2: Real-time DAG updates during execution..."
+                " Integration Test 2: Real-time DAG updates during execution..."
             )
 
             if session.current_orion:
@@ -1429,7 +1429,7 @@ class NetworkSessionTester:
                 }
 
             # Integration Test 3: Session Termination Scenarios
-            self.logger.info("📝 Integration Test 3: Session termination scenarios...")
+            self.logger.info(" Integration Test 3: Session termination scenarios...")
 
             # Test force finish
             await session.force_finish("Integration test completion")
@@ -1446,13 +1446,13 @@ class NetworkSessionTester:
             results["status"] = "success"
             results["total_execution_time"] = time.time() - results["start_time"]
 
-            self.logger.info("✅ Session-Agent integration test completed successfully")
+            self.logger.info("[OK] Session-Agent integration test completed successfully")
 
         except Exception as e:
             results["status"] = "failed"
             results["error"] = str(e)
             results["total_execution_time"] = time.time() - results["start_time"]
-            self.logger.error(f"❌ Session-Agent integration test failed: {e}")
+            self.logger.error(f"[FAIL] Session-Agent integration test failed: {e}")
             import traceback
 
             traceback.print_exc()
@@ -1468,7 +1468,7 @@ class NetworkSessionTester:
         4. Subsequent tasks are executed automatically
         5. Multi-round updates and execution
         """
-        self.logger.info("\n🔄 Testing Dynamic DAG Execution Flow...")
+        self.logger.info("\n[CONTINUE] Testing Dynamic DAG Execution Flow...")
 
         results = {
             "test_name": "dynamic_dag_execution_flow",
@@ -1480,7 +1480,7 @@ class NetworkSessionTester:
         try:
             # Phase 1: Initial DAG Creation and Execution
             self.logger.info(
-                "📝 Phase 1: Creating initial DAG with conditional logic..."
+                " Phase 1: Creating initial DAG with conditional logic..."
             )
 
             # Create a session with dynamic workflow
@@ -1516,7 +1516,7 @@ class NetworkSessionTester:
 
             # Phase 2: Simulate Multi-Round Task Execution with Dynamic Updates
             self.logger.info(
-                "📝 Phase 2: Simulating multi-round execution with dynamic updates..."
+                " Phase 2: Simulating multi-round execution with dynamic updates..."
             )
 
             execution_round = 1
@@ -1621,7 +1621,7 @@ class NetworkSessionTester:
 
                 # Phase 3: Agent Processes Result and Updates DAG
                 self.logger.info(
-                    "📝 Phase 3: Agent processing result and updating DAG..."
+                    " Phase 3: Agent processing result and updating DAG..."
                 )
 
                 previous_task_count = orion.task_count
@@ -1667,7 +1667,7 @@ class NetworkSessionTester:
                 # Phase 4: Simulate Execution of New Tasks (if any)
                 if tasks_added > 0:
                     self.logger.info(
-                        f"📝 Phase 4: Simulating execution of {tasks_added} new tasks..."
+                        f" Phase 4: Simulating execution of {tasks_added} new tasks..."
                     )
 
                     # Simulate execution of a couple of newly added tasks
@@ -1710,7 +1710,7 @@ class NetworkSessionTester:
                     break
 
             # Phase 5: Final State Analysis
-            self.logger.info("📝 Phase 5: Analyzing final DAG state...")
+            self.logger.info(" Phase 5: Analyzing final DAG state...")
 
             final_stats = orion.get_statistics() if orion else {}
             final_task_count = orion.task_count if orion else 0
@@ -1732,7 +1732,7 @@ class NetworkSessionTester:
             ]
             total_added = final_task_count - initial_count
 
-            self.logger.info(f"🎯 Dynamic DAG Execution Summary:")
+            self.logger.info(f" Dynamic DAG Execution Summary:")
             self.logger.info(f"   - Initial tasks: {initial_count}")
             self.logger.info(f"   - Final tasks: {final_task_count}")
             self.logger.info(f"   - Tasks dynamically added: {total_added}")
@@ -1751,13 +1751,13 @@ class NetworkSessionTester:
             }
 
             self.logger.info(
-                "✅ Dynamic DAG execution flow test completed successfully"
+                "[OK] Dynamic DAG execution flow test completed successfully"
             )
 
         except Exception as e:
             results["status"] = "failed"
             results["error"] = str(e)
-            self.logger.error(f"❌ Dynamic DAG execution flow test failed: {e}")
+            self.logger.error(f"[FAIL] Dynamic DAG execution flow test failed: {e}")
             import traceback
 
             traceback.print_exc()
@@ -1769,7 +1769,7 @@ class NetworkSessionTester:
 
     async def run_network_tests(self) -> Dict[str, Any]:
         """Run all Network framework tests."""
-        self.logger.info("\n🌌🌌🌌 NETWORK FRAMEWORK INTEGRATION TESTS 🌌🌌🌌")
+        self.logger.info("\n[ORION][ORION][ORION] NETWORK FRAMEWORK INTEGRATION TESTS [ORION][ORION][ORION]")
 
         network_results = {
             "network_test_suite": "complete",
@@ -1814,7 +1814,7 @@ class NetworkSessionTester:
             }
         )
 
-        self.logger.info(f"\n🌌 Network Framework Test Summary:")
+        self.logger.info(f"\n[ORION] Network Framework Test Summary:")
         self.logger.info(f"   - Total tests: {total_tests}")
         self.logger.info(f"   - Successful: {successful_tests}")
         self.logger.info(f"   - Success rate: {network_results['success_rate']:.1%}")
@@ -1827,15 +1827,15 @@ async def main():
     """
     Main function to run the comprehensive E2E test suite including Network framework tests.
     """
-    print("🌟" * 40)
+    print("" * 40)
     print("  End-to-End TaskOrion Test Suite")
     print("  Network Framework Integration Test")
-    print("🌟" * 40)
+    print("" * 40)
 
-    print(f"\n📅 Test Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("🔧 Test Environment: Mock Network Framework")
+    print(f"\n[DATE] Test Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("[CONFIG] Test Environment: Mock Network Framework")
     print(
-        "📋 Test Coverage: LLM Parsing → DAG Creation → Device Assignment → Execution → Updates → Network Sessions"
+        "[TASK] Test Coverage: LLM Parsing → DAG Creation → Device Assignment → Execution → Updates → Network Sessions"
     )
 
     try:
@@ -1873,15 +1873,15 @@ async def main():
         with open(results_file, "w", encoding="utf-8") as f:
             json.dump(combined_results, f, indent=2, default=str)
 
-        print(f"\n💾 Test results saved to: {results_file}")
+        print(f"\n Test results saved to: {results_file}")
 
         # Print combined summary
-        print(f"\n🎯 OVERALL TEST SUITE SUMMARY:")
+        print(f"\n OVERALL TEST SUITE SUMMARY:")
         print(
-            f"   - Orion Tests: {'✅ SUCCESS' if combined_results['overall_summary']['orion_success'] else '❌ FAILED'}"
+            f"   - Orion Tests: {'[OK] SUCCESS' if combined_results['overall_summary']['orion_success'] else '[FAIL] FAILED'}"
         )
         print(
-            f"   - Network Framework Tests: {'✅ SUCCESS' if combined_results['overall_summary']['network_success'] else '❌ FAILED'}"
+            f"   - Network Framework Tests: {'[OK] SUCCESS' if combined_results['overall_summary']['network_success'] else '[FAIL] FAILED'}"
         )
         print(
             f"   - Total Execution Time: {combined_results['overall_summary']['total_execution_time']:.2f}s"
@@ -1891,7 +1891,7 @@ async def main():
         return combined_results
 
     except Exception as e:
-        logger.error(f"❌ Test suite execution failed: {e}")
+        logger.error(f"[FAIL] Test suite execution failed: {e}")
         logger.error(traceback.format_exc())
         return {"status": "failed", "error": str(e)}
 

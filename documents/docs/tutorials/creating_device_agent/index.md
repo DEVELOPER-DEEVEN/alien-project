@@ -2,7 +2,7 @@
 
 This tutorial series teaches you how to create new device agents for ALIEN³, using **LinuxAgent** as a reference implementation.
 
-## 📚 Tutorial Structure
+## [PLAN] Tutorial Structure
 
 ### [Part 0: Overview](overview.md)
 **Introduction to device agents and architecture overview**
@@ -113,10 +113,10 @@ This tutorial series teaches you how to create new device agents for ALIEN³, us
 
 Before starting, ensure you have:
 
-- ✅ Python 3.10+
-- ✅ ALIEN³ repository cloned
-- ✅ Basic understanding of async programming
-- ✅ Familiarity with [Agent Architecture](../../infrastructure/agents/overview.md)
+- [OK] Python 3.10+
+- [OK] ALIEN³ repository cloned
+- [OK] Basic understanding of async programming
+- [OK] Familiarity with [Agent Architecture](../../infrastructure/agents/overview.md)
 
 ---
 
@@ -124,12 +124,12 @@ Before starting, ensure you have:
 
 ```mermaid
 graph LR
-    A[Overview<br/>✅ Complete] --> B[Core Components<br/>✅ Complete]
-    B --> C[MCP Server<br/>📝 Placeholder]
-    C --> D[Client Setup<br/>📝 Placeholder]
-    D --> E[Configuration<br/>📝 Placeholder]
-    E --> F[Testing<br/>📝 Placeholder]
-    F --> G[Complete Example<br/>📝 Placeholder]
+    A[Overview<br/>[OK] Complete] --> B[Core Components<br/>[OK] Complete]
+    B --> C[MCP Server<br/> Placeholder]
+    C --> D[Client Setup<br/> Placeholder]
+    D --> E[Configuration<br/> Placeholder]
+    E --> F[Testing<br/> Placeholder]
+    F --> G[Complete Example<br/> Placeholder]
     
     style A fill:#c8e6c9
     style B fill:#c8e6c9
@@ -141,13 +141,13 @@ graph LR
 ```
 
 **Recommended Path**:
-1. ✅ **Completed**: [Overview](overview.md) - Understand architecture
-2. ✅ **Completed**: [Core Components](core_components.md) - Build server-side components
-3. 📝 **Placeholder**: [MCP Server](mcp_server.md) - Create device commands
-4. 📝 **Placeholder**: [Client Setup](client_setup.md) - Setup device client
-5. 📝 **Placeholder**: [Configuration](configuration.md) - Configure and deploy
-6. 📝 **Placeholder**: [Testing](testing.md) - Test and debug
-7. 📝 **Placeholder**: [Complete Example](example_mobile_agent.md) - Full MobileAgent implementation
+1. [OK] **Completed**: [Overview](overview.md) - Understand architecture
+2. [OK] **Completed**: [Core Components](core_components.md) - Build server-side components
+3.  **Placeholder**: [MCP Server](mcp_server.md) - Create device commands
+4.  **Placeholder**: [Client Setup](client_setup.md) - Setup device client
+5.  **Placeholder**: [Configuration](configuration.md) - Configure and deploy
+6.  **Placeholder**: [Testing](testing.md) - Test and debug
+7.  **Placeholder**: [Complete Example](example_mobile_agent.md) - Full MobileAgent implementation
 
 ---
 
@@ -167,10 +167,10 @@ graph LR
 
 If you encounter issues:
 
-1. 📖 Review the [FAQ](../../faq.md)
-2. 🐛 Check [troubleshooting guides](core_components.md#testing-your-implementation)
-3. 💬 Ask in GitHub Discussions
-4. 🐞 Report bugs on GitHub Issues
+1. [LANG] Review the [FAQ](../../faq.md)
+2.  Check [troubleshooting guides](core_components.md#testing-your-implementation)
+3. [COMMENT] Ask in GitHub Discussions
+4.  Report bugs on GitHub Issues
 
 ---
 
@@ -178,9 +178,9 @@ If you encounter issues:
 
 Found an issue or want to improve these tutorials?
 
-- 📝 Submit a PR with improvements
-- 💡 Suggest new topics
-- 🔍 Report errors or unclear sections
+-  Submit a PR with improvements
+- [THOUGHT] Suggest new topics
+-  Report errors or unclear sections
 
 ---
 

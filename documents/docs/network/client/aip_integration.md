@@ -821,7 +821,7 @@ async def handle_task_request(self, data: ClientMessage) -> None:
     if client_type == ClientType.ORION:
         # Extract target device from orion request
         target_device_id = data.target_id
-        self.logger.info(f"🌟 Orion task for device {target_device_id}")
+        self.logger.info(f" Orion task for device {target_device_id}")
         
         # Track session mapping
         self.client_manager.add_orion_session(client_id, session_id)

@@ -65,7 +65,7 @@ class ContinueHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Active |
-| **Processor Executed** | ✓ Yes (4 phases) |
+| **Processor Executed** |  Yes (4 phases) |
 | **Round Ends** | No |
 | **Duration** | Single round |
 | **Next States** | CONTINUE, ASSIGN, FINISH, CONFIRM, ERROR |
@@ -127,7 +127,7 @@ class AssignHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Transition |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | No |
 | **Duration** | Immediate |
 | **Next States** | AppAgent.CONTINUE |
@@ -179,7 +179,7 @@ class FinishHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Duration** | Permanent |
 | **Next States** | None |
@@ -215,7 +215,7 @@ class FailHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Duration** | Permanent |
 | **Next States** | FINISH (for cleanup) |
@@ -251,7 +251,7 @@ class ErrorHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Terminal |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | Yes |
 | **Duration** | Permanent |
 | **Next States** | FINISH (for cleanup) |
@@ -295,7 +295,7 @@ class PendingHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Waiting |
-| **Processor Executed** | ✗ No |
+| **Processor Executed** |  No |
 | **Round Ends** | No |
 | **Duration** | Until event/timeout |
 | **Next States** | CONTINUE, FAIL |
@@ -331,7 +331,7 @@ class ConfirmHostAgentState(HostAgentState):
 | Property | Value |
 |----------|-------|
 | **Type** | Waiting |
-| **Processor Executed** | ✓ Yes (collect confirmation) |
+| **Processor Executed** |  Yes (collect confirmation) |
 | **Round Ends** | No |
 | **Duration** | Until user responds |
 | **Next States** | CONTINUE (approved), FAIL (rejected) |
@@ -544,21 +544,21 @@ while not state.is_round_end():
 
 | From \ To | CONTINUE | ASSIGN | FINISH | FAIL | ERROR | PENDING | CONFIRM | AppAgent.CONTINUE |
 |-----------|----------|--------|--------|------|-------|---------|---------|-------------------|
-| **CONTINUE** | ✓ LLM | ✓ LLM | ✓ LLM | ✗ | ✓ System | ✓ LLM | ✓ LLM | ✗ |
-| **ASSIGN** | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ System |
-| **FINISH** | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **FAIL** | ✗ | ✗ | ✓ System | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **ERROR** | ✗ | ✗ | ✓ System | ✗ | ✗ | ✗ | ✗ | ✗ |
-| **PENDING** | ✓ User | ✗ | ✗ | ✓ Timeout | ✗ | ✗ | ✗ | ✗ |
-| **CONFIRM** | ✓ User | ✗ | ✗ | ✓ User | ✗ | ✗ | ✗ | ✗ |
-| **AppAgent.CONTINUE** | ✓ System | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| **CONTINUE** |  LLM |  LLM |  LLM |  |  System |  LLM |  LLM |  |
+| **ASSIGN** |  |  |  |  |  |  |  |  System |
+| **FINISH** |  |  |  |  |  |  |  |  |
+| **FAIL** |  |  |  System |  |  |  |  |  |
+| **ERROR** |  |  |  System |  |  |  |  |  |
+| **PENDING** |  User |  |  |  Timeout |  |  |  |  |
+| **CONFIRM** |  User |  |  |  User |  |  |  |  |
+| **AppAgent.CONTINUE** |  System |  |  |  |  |  |  |  |
 
 **Legend**:
-- ✓ LLM: Transition controlled by LLM decision
-- ✓ System: Automatic system transition
-- ✓ User: User input required
-- ✓ Timeout: Timeout triggers transition
-- ✗: Transition not allowed
+-  LLM: Transition controlled by LLM decision
+-  System: Automatic system transition
+-  User: User input required
+-  Timeout: Timeout triggers transition
+- : Transition not allowed
 
 ---
 

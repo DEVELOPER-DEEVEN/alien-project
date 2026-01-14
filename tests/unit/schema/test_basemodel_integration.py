@@ -32,7 +32,7 @@ from network.agents.schema import (
 
 def test_task_star_basemodel():
     """Test TaskStar BaseModel integration."""
-    print("🧪 Testing TaskStar BaseModel integration...")
+    print(" Testing TaskStar BaseModel integration...")
 
     # Create a TaskStar instance
     task = TaskStar(
@@ -51,7 +51,7 @@ def test_task_star_basemodel():
 
     # Test to_basemodel
     schema = task.to_basemodel()
-    print(f"✅ TaskStar to BaseModel: {type(schema).__name__}")
+    print(f"[OK] TaskStar to BaseModel: {type(schema).__name__}")
     assert isinstance(schema, TaskStarSchema)
     assert schema.task_id == "test_task_001"
     assert schema.name == "Test Task"
@@ -59,7 +59,7 @@ def test_task_star_basemodel():
 
     # Test from_basemodel
     task_restored = TaskStar.from_basemodel(schema)
-    print(f"✅ TaskStar from BaseModel: {task_restored.task_id}")
+    print(f"[OK] TaskStar from BaseModel: {task_restored.task_id}")
     assert task_restored.task_id == task.task_id
     assert task_restored.name == task.name
     assert task_restored.description == task.description
@@ -72,12 +72,12 @@ def test_task_star_basemodel():
 
     assert task_final.task_id == task.task_id
     assert task_final.name == task.name
-    print("✅ TaskStar JSON roundtrip successful")
+    print("[OK] TaskStar JSON roundtrip successful")
 
 
 def test_task_star_line_basemodel():
     """Test TaskStarLine BaseModel integration."""
-    print("\n🧪 Testing TaskStarLine BaseModel integration...")
+    print("\n Testing TaskStarLine BaseModel integration...")
 
     # Create a TaskStarLine instance
     dependency = TaskStarLine(
@@ -90,7 +90,7 @@ def test_task_star_line_basemodel():
 
     # Test to_basemodel
     schema = dependency.to_basemodel()
-    print(f"✅ TaskStarLine to BaseModel: {type(schema).__name__}")
+    print(f"[OK] TaskStarLine to BaseModel: {type(schema).__name__}")
     assert isinstance(schema, TaskStarLineSchema)
     assert schema.from_task_id == "task_001"
     assert schema.to_task_id == "task_002"
@@ -98,7 +98,7 @@ def test_task_star_line_basemodel():
 
     # Test from_basemodel
     dependency_restored = TaskStarLine.from_basemodel(schema)
-    print(f"✅ TaskStarLine from BaseModel: {dependency_restored.line_id}")
+    print(f"[OK] TaskStarLine from BaseModel: {dependency_restored.line_id}")
     assert dependency_restored.from_task_id == dependency.from_task_id
     assert dependency_restored.to_task_id == dependency.to_task_id
     assert dependency_restored.dependency_type == dependency.dependency_type
@@ -110,12 +110,12 @@ def test_task_star_line_basemodel():
 
     assert dependency_final.from_task_id == dependency.from_task_id
     assert dependency_final.to_task_id == dependency.to_task_id
-    print("✅ TaskStarLine JSON roundtrip successful")
+    print("[OK] TaskStarLine JSON roundtrip successful")
 
 
 def test_task_orion_basemodel():
     """Test TaskOrion BaseModel integration."""
-    print("\n🧪 Testing TaskOrion BaseModel integration...")
+    print("\n Testing TaskOrion BaseModel integration...")
 
     # Create a TaskOrion with tasks and dependencies
     orion = TaskOrion(
@@ -157,7 +157,7 @@ def test_task_orion_basemodel():
 
     # Test to_basemodel
     schema = orion.to_basemodel()
-    print(f"✅ TaskOrion to BaseModel: {type(schema).__name__}")
+    print(f"[OK] TaskOrion to BaseModel: {type(schema).__name__}")
     assert isinstance(schema, TaskOrionSchema)
     assert schema.orion_id == "test_orion_001"
     assert schema.name == "Test Orion"
@@ -167,7 +167,7 @@ def test_task_orion_basemodel():
     # Test from_basemodel
     orion_restored = TaskOrion.from_basemodel(schema)
     print(
-        f"✅ TaskOrion from BaseModel: {orion_restored.orion_id}"
+        f"[OK] TaskOrion from BaseModel: {orion_restored.orion_id}"
     )
     assert orion_restored.orion_id == orion.orion_id
     assert orion_restored.name == orion.name
@@ -182,12 +182,12 @@ def test_task_orion_basemodel():
     assert orion_final.orion_id == orion.orion_id
     assert orion_final.name == orion.name
     assert len(orion_final.tasks) == len(orion.tasks)
-    print("✅ TaskOrion JSON roundtrip successful")
+    print("[OK] TaskOrion JSON roundtrip successful")
 
 
 def test_complex_scenario():
     """Test a complex scenario with all components together."""
-    print("\n🧪 Testing complex scenario with all components...")
+    print("\n Testing complex scenario with all components...")
 
     # Create a more complex orion
     orion = TaskOrion(
@@ -256,31 +256,31 @@ def test_complex_scenario():
     assert processing_task is not None
     assert processing_task.task_data.get("batch_size") == 1000
 
-    print("✅ Complex scenario test successful")
+    print("[OK] Complex scenario test successful")
 
 
 def test_validation_and_error_handling():
     """Test validation and error handling."""
-    print("\n🧪 Testing validation and error handling...")
+    print("\n Testing validation and error handling...")
 
     # Test invalid schema types
     try:
         TaskStar.from_basemodel("invalid_schema")
         assert False, "Should have raised ValueError"
     except ValueError as e:
-        print("✅ Correctly caught invalid schema type for TaskStar")
+        print("[OK] Correctly caught invalid schema type for TaskStar")
 
     try:
         TaskStarLine.from_basemodel(42)
         assert False, "Should have raised ValueError"
     except ValueError as e:
-        print("✅ Correctly caught invalid schema type for TaskStarLine")
+        print("[OK] Correctly caught invalid schema type for TaskStarLine")
 
     try:
         TaskOrion.from_basemodel({"invalid": "dict"})
         assert False, "Should have raised ValueError"
     except ValueError as e:
-        print("✅ Correctly caught invalid schema type for TaskOrion")
+        print("[OK] Correctly caught invalid schema type for TaskOrion")
 
     # Test BaseModel validation
     try:
@@ -292,14 +292,14 @@ def test_validation_and_error_handling():
             created_at="invalid_date",  # Invalid date format
             updated_at="invalid_date",
         )
-        print("⚠️ BaseModel validation may be lenient")
+        print("️ BaseModel validation may be lenient")
     except Exception as e:
-        print(f"✅ BaseModel validation caught error: {e}")
+        print(f"[OK] BaseModel validation caught error: {e}")
 
 
 def main():
     """Run all tests."""
-    print("🚀 Starting BaseModel Integration Tests\n")
+    print("[START] Starting BaseModel Integration Tests\n")
 
     try:
         test_task_star_basemodel()
@@ -308,16 +308,16 @@ def main():
         test_complex_scenario()
         test_validation_and_error_handling()
 
-        print("\n🎉 All tests passed successfully!")
-        print("\n📊 Test Summary:")
-        print("   ✅ TaskStar BaseModel integration")
-        print("   ✅ TaskStarLine BaseModel integration")
-        print("   ✅ TaskOrion BaseModel integration")
-        print("   ✅ Complex scenario testing")
-        print("   ✅ Validation and error handling")
+        print("\n All tests passed successfully!")
+        print("\n[STATUS] Test Summary:")
+        print("   [OK] TaskStar BaseModel integration")
+        print("   [OK] TaskStarLine BaseModel integration")
+        print("   [OK] TaskOrion BaseModel integration")
+        print("   [OK] Complex scenario testing")
+        print("   [OK] Validation and error handling")
 
     except Exception as e:
-        print(f"\n❌ Test failed with error: {e}")
+        print(f"\n[FAIL] Test failed with error: {e}")
         import traceback
 
         traceback.print_exc()

@@ -262,12 +262,12 @@ class MobileAgent(CustomizedAgent):
 | **Default State** | `ContinueLinuxAgentState` | `ContinueMobileAgentState` |
 
 !!! tip "Agent Class Best Practices"
-    - ✅ Always call `super().__init__()` first
-    - ✅ Initialize blackboard for multi-agent coordination
-    - ✅ Set `is_visual=True` if your agent uses screenshots
-    - ✅ Use meaningful logger messages for debugging
-    - ✅ Store platform-specific metadata as properties
-    - ✅ Keep initialization logic minimal (delegate to processor)
+    - [OK] Always call `super().__init__()` first
+    - [OK] Initialize blackboard for multi-agent coordination
+    - [OK] Set `is_visual=True` if your agent uses screenshots
+    - [OK] Use meaningful logger messages for debugging
+    - [OK] Store platform-specific metadata as properties
+    - [OK] Keep initialization logic minimal (delegate to processor)
 
 ---
 
@@ -481,12 +481,12 @@ class MobileAgentProcessor(CustomizedProcessor):
 | **MEMORY_UPDATE** | Recommended | Track agent history and context | `AppMemoryUpdateStrategy` |
 
 !!! warning "Common Processor Mistakes"
-    ❌ **Don't** skip `_setup_strategies()` - processor won't execute  
-    ❌ **Don't** use `fail_fast=True` for all strategies - agent becomes brittle  
-    ❌ **Don't** forget to call `super()._finalize_processing_context()` - context won't propagate  
-    ✅ **Do** use `fail_fast=True` for LLM_INTERACTION - ensures valid responses  
-    ✅ **Do** use `fail_fast=False` for ACTION_EXECUTION - allows retry logic  
-    ✅ **Do** add custom middleware for debugging and logging
+    [FAIL] **Don't** skip `_setup_strategies()` - processor won't execute  
+    [FAIL] **Don't** use `fail_fast=True` for all strategies - agent becomes brittle  
+    [FAIL] **Don't** forget to call `super()._finalize_processing_context()` - context won't propagate  
+    [OK] **Do** use `fail_fast=True` for LLM_INTERACTION - ensures valid responses  
+    [OK] **Do** use `fail_fast=False` for ACTION_EXECUTION - allows retry logic  
+    [OK] **Do** add custom middleware for debugging and logging
 
 ---
 
@@ -892,13 +892,13 @@ class NoneMobileAgentState(MobileAgentState):
 | **NONE** | Default/initial | `next_state()` → `FINISH` | Yes |
 
 !!! tip "State Design Best Practices"
-    - ✅ Always register states with `@StateManager.register`
-    - ✅ Implement `name()` to match status enum value
-    - ✅ Call `agent.process()` in `CONTINUE.handle()`
-    - ✅ Set `is_round_end()` = `True` for terminal states
-    - ✅ Transition `FAIL` → `FINISH` for graceful termination
-    - ❌ Don't create too many states - keep it simple
-    - ❌ Don't call processor directly - use `agent.process()`
+    - [OK] Always register states with `@StateManager.register`
+    - [OK] Implement `name()` to match status enum value
+    - [OK] Call `agent.process()` in `CONTINUE.handle()`
+    - [OK] Set `is_round_end()` = `True` for terminal states
+    - [OK] Transition `FAIL` → `FINISH` for graceful termination
+    - [FAIL] Don't create too many states - keep it simple
+    - [FAIL] Don't call processor directly - use `agent.process()`
 
 ---
 
@@ -1527,13 +1527,13 @@ class MobileAgentPrompter(AppAgentPrompter):
 
 ### Prompter Best Practices
 
-- ✅ Inherit from `AppAgentPrompter` for standard structure
-- ✅ Use `self.prompt_template` and `self.example_prompt_template`
-- ✅ Implement `system_prompt_construction()` and `user_prompt_construction()`
-- ✅ Use `user_content_construction()` for multi-modal content
-- ✅ Format examples with `examples_prompt_helper()`
-- ✅ Format APIs with `api_prompt_helper()`
-- ❌ Don't hardcode prompts - use YAML templates
+- [OK] Inherit from `AppAgentPrompter` for standard structure
+- [OK] Use `self.prompt_template` and `self.example_prompt_template`
+- [OK] Implement `system_prompt_construction()` and `user_prompt_construction()`
+- [OK] Use `user_content_construction()` for multi-modal content
+- [OK] Format examples with `examples_prompt_helper()`
+- [OK] Format APIs with `api_prompt_helper()`
+- [FAIL] Don't hardcode prompts - use YAML templates
 
 ---
 

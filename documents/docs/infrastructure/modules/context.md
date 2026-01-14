@@ -495,10 +495,10 @@ restored_context = Context.from_dict(data)
     Always use `ContextNames` enum instead of strings:
     
     ```python
-    # ✅ Good
+    # [OK] Good
     context.get(ContextNames.REQUEST)
     
-    # ❌ Bad
+    # [FAIL] Bad
     context.attributes["REQUEST"]
     ```
 
@@ -521,10 +521,10 @@ restored_context = Context.from_dict(data)
     For current round values, use auto-sync properties:
     
     ```python
-    # ✅ Good - auto-syncs both dicts
+    # [OK] Good - auto-syncs both dicts
     context.current_round_cost += 0.01
     
-    # ❌ Manual - must update both
+    # [FAIL] Manual - must update both
     round_id = context.get(ContextNames.CURRENT_ROUND_ID)
     context.attributes[ContextNames.ROUND_COST][round_id] += 0.01
     context.attributes[ContextNames.CURRENT_ROUND_COST] += 0.01

@@ -8,7 +8,7 @@ ALIEN³ Network is a multi-tier orchestration framework that coordinates distrib
 
 ---
 
-## 🛠️ Step 1: Installation
+## ️ Step 1: Installation
 
 ### Requirements
 
@@ -33,11 +33,11 @@ cd ALIEN
 pip install -r requirements.txt
 ```
 
-> **💡 Tip:** If you want to use Qwen as your LLM, uncomment the related libraries in `requirements.txt` before installing.
+> **[THOUGHT] Tip:** If you want to use Qwen as your LLM, uncomment the related libraries in `requirements.txt` before installing.
 
 ---
 
-## ⚙️ Step 2: Configure OrionAgent LLM
+## ️ Step 2: Configure OrionAgent LLM
 
 ALIEN³ Network uses a **OrionAgent** that orchestrates all device agents. You need to configure its LLM settings.
 
@@ -74,7 +74,7 @@ ORION_AGENT:
   API_DEPLOYMENT_ID: "YOUR_DEPLOYMENT_ID"
 ```
 
-> **ℹ️ More LLM Options:** Network supports various LLM providers including Qwen, Gemini, Claude, DeepSeek, and more. See the [Model Configuration Guide](../configuration/models/overview.md) for complete details.
+> **[INFO] More LLM Options:** Network supports various LLM providers including Qwen, Gemini, Claude, DeepSeek, and more. See the [Model Configuration Guide](../configuration/models/overview.md) for complete details.
 
 ---
   
@@ -108,7 +108,7 @@ ORION_AGENT:
 
 ---
 
-## 🖥️ Step 3: Set Up Device Agents
+## ️ Step 3: Set Up Device Agents
 
 Network orchestrates **device agents** that execute tasks on individual machines. You need to start the appropriate device agents based on your needs.
 
@@ -120,7 +120,7 @@ Network orchestrates **device agents** that execute tasks on individual machines
 | **LinuxAgent** | Linux | [Linux as Network Device](../linux/as_network_device.md) | Server management, CLI operations, log analysis |
 | **MobileAgent** | Android | [Mobile as Network Device](../mobile/as_network_device.md) | Mobile app automation, UI testing, device control |
 
-> **💡 Choose Your Devices:** You can use any combination of Windows, Linux, and Mobile agents. Network will intelligently route tasks based on device capabilities.
+> **[THOUGHT] Choose Your Devices:** You can use any combination of Windows, Linux, and Mobile agents. Network will intelligently route tasks based on device capabilities.
 
 ### Quick Setup Overview
 
@@ -152,7 +152,7 @@ python -m alien.client.client `
   --platform windows
 ```
 
-> **💡 Important:** Always include `--platform windows` for Windows devices and `--platform linux` for Linux devices!
+> **[THOUGHT] Important:** Always include `--platform windows` for Windows devices and `--platform linux` for Linux devices!
 
 ### Example: Quick Linux Device Setup
 
@@ -173,11 +173,11 @@ python -m alien.client.client \
 python -m alien.client.mcp.http_servers.linux_mcp_server
 ```
 
-> **💡 Note:** For detailed Mobile Agent setup with ADB and Android device configuration, see [Mobile Quick Start](quick_start_mobile.md).
+> **[THOUGHT] Note:** For detailed Mobile Agent setup with ADB and Android device configuration, see [Mobile Quick Start](quick_start_mobile.md).
 
 ---
 
-## 🔌 Step 4: Configure Device Pool
+##  Step 4: Configure Device Pool
 
 After starting your device agents, register them in Network's device pool configuration.
 
@@ -266,7 +266,7 @@ devices:
     max_retries: 5
 ```
 
-> **⚠️ Critical:** IDs and URLs must match exactly:
+> **️ Critical:** IDs and URLs must match exactly:
 > 
 > - `device_id` must exactly match the `--client-id` flag
 > - `server_url` must exactly match the server WebSocket URL
@@ -291,7 +291,7 @@ If you start Network with the `--webui` flag (see Step 5), you can add new devic
 
 <div align="center">
   <img src="../img/add_device.png" alt="Add Device Modal" width="70%">
-  <p><em>➕ Add Device Modal - Register new device agents through the WebUI</em></p>
+  <p><em> Add Device Modal - Register new device agents through the WebUI</em></p>
 </div>
 
 **Required Fields:**
@@ -306,11 +306,11 @@ If you start Network with the `--webui` flag (see Step 5), you can add new devic
 - **Metadata**: Add custom key-value pairs (e.g., `region: us-east-1`)
 
 **Benefits of WebUI Device Management:**
-- ✅ No need to manually edit YAML files
-- ✅ Real-time validation of device ID uniqueness
-- ✅ Automatic connection after registration
-- ✅ Immediate visual feedback on device status
-- ✅ Form validation prevents configuration errors
+- [OK] No need to manually edit YAML files
+- [OK] Real-time validation of device ID uniqueness
+- [OK] Automatic connection after registration
+- [OK] Immediate visual feedback on device status
+- [OK] Form validation prevents configuration errors
 
 **After Adding:**
 The device will be:
@@ -319,11 +319,11 @@ The device will be:
 3. Connected automatically (if auto-connect is enabled)
 4. Displayed in the Device Agent panel with real-time status
 
-> **💡 Tip:** You can add devices while Network is running! No need to restart the server.
+> **[THOUGHT] Tip:** You can add devices while Network is running! No need to restart the server.
 
 ---
 
-## 🎉 Step 5: Start ALIEN³ Network
+##  Step 5: Start ALIEN³ Network
 
 With all device agents running and configured, you can now launch Network!
 
@@ -331,14 +331,14 @@ With all device agents running and configured, you can now launch Network!
 
 Before starting Network, ensure:
 
-1. ✅ All Device Agent Servers are running
-2. ✅ All Device Agent Clients are connected
-3. ✅ MCP Services are running (for Linux devices)
-4. ✅ LLM configured in `config/network/agent.yaml`
-5. ✅ Devices configured in `config/network/devices.yaml`
-6. ✅ Network connectivity between all components
+1. [OK] All Device Agent Servers are running
+2. [OK] All Device Agent Clients are connected
+3. [OK] MCP Services are running (for Linux devices)
+4. [OK] LLM configured in `config/network/agent.yaml`
+5. [OK] Devices configured in `config/network/devices.yaml`
+6. [OK] Network connectivity between all components
 
-### 🎨 Launch Network - WebUI Mode (Recommended)
+###  Launch Network - WebUI Mode (Recommended)
 
 Start Network with an interactive web interface for real-time orion visualization and monitoring:
 
@@ -351,22 +351,22 @@ This will start the Network server with WebUI and automatically open your browse
 
 <div align="center">
   <img src="../img/webui.png" alt="ALIEN³ Network WebUI Interface" width="90%">
-  <p><em>🎨 Network WebUI - Interactive orion visualization and chat interface</em></p>
+  <p><em> Network WebUI - Interactive orion visualization and chat interface</em></p>
 </div>
 
 **WebUI Features:**
 
-- 🗣️ **Chat Interface**: Submit requests and interact with OrionAgent in real-time
-- 📊 **Live DAG Visualization**: Watch task orion formation and execution
-- 🎯 **Task Status Tracking**: Monitor each TaskStar's progress and completion
-- 🔄 **Dynamic Updates**: See orion evolution as tasks complete
-- 📱 **Responsive Design**: Works on desktop and tablet devices
+- ️ **Chat Interface**: Submit requests and interact with OrionAgent in real-time
+- [STATUS] **Live DAG Visualization**: Watch task orion formation and execution
+-  **Task Status Tracking**: Monitor each TaskStar's progress and completion
+- [CONTINUE] **Dynamic Updates**: See orion evolution as tasks complete
+-  **Responsive Design**: Works on desktop and tablet devices
 
 **Default URL:** `http://localhost:8000` (automatically finds next available port if 8000 is occupied)
 
 ---
 
-### 💬 Launch Network - Interactive Terminal Mode
+### [COMMENT] Launch Network - Interactive Terminal Mode
 
 Start Network in interactive mode where you can enter requests dynamically:
 
@@ -378,23 +378,23 @@ python -m network --interactive
 **Expected Output:**
 
 ```
-🌌 Welcome to ALIEN³ Network Framework
+[ORION] Welcome to ALIEN³ Network Framework
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Multi-Device AI Orchestration System
 
-📡 Initializing Network...
-✅ OrionAgent initialized
-✅ Connected to device: windows_device_1 (windows)
-✅ Connected to device: linux_device_1 (linux)
+ Initializing Network...
+[OK] OrionAgent initialized
+[OK] Connected to device: windows_device_1 (windows)
+[OK] Connected to device: linux_device_1 (linux)
 
-🌟 Network Ready - 2 devices online
+ Network Ready - 2 devices online
 
-Please enter your request 🛸:
+Please enter your request [UFO]:
 ```
 
 ---
 
-### ⚡ Launch Network - Direct Request Mode
+###  Launch Network - Direct Request Mode
 
 Invoke Network with a specific request directly:
 
@@ -410,7 +410,7 @@ python -m network --request "Generate a sales report from the database and creat
 
 ---
 
-### 🎬 Launch Network - Demo Mode
+###  Launch Network - Demo Mode
 
 Run Network in demo mode to see example workflows:
 
@@ -420,7 +420,7 @@ python -m network --demo
 
 ---
 
-## 🎯 Step 6: Try Your First Multi-Device Workflow
+##  Step 6: Try Your First Multi-Device Workflow
 
 ### Example 1: Simple Cross-Platform Task
 
@@ -470,7 +470,7 @@ python -m network --request "Export sales data from the database, create an Exce
 
 ---
 
-## 📔 Step 7: Understanding Device Routing
+##  Step 7: Understanding Device Routing
 
 Network uses **capability-based routing** to intelligently assign tasks to appropriate devices.
 
@@ -509,7 +509,7 @@ Subtask 3:
 
 ---
 
-## 🔄 Step 8: Execution Logs
+## [CONTINUE] Step 8: Execution Logs
 
 Network automatically saves execution logs, task graphs, and device traces for debugging and analysis.
 
@@ -533,7 +533,7 @@ Network automatically saves execution logs, task graphs, and device traces for d
 
 ---
 
-## 🔧 Advanced Configuration
+## [CONFIG] Advanced Configuration
 
 ### Custom Session Name
 
@@ -561,7 +561,7 @@ python -m network --interactive --max-rounds 20
 
 ---
 
-## ❓ Troubleshooting
+##  Troubleshooting
 
 ### Issue 1: Device Not Appearing in Network
 
@@ -650,7 +650,7 @@ capabilities:
 
 ---
 
-## 📚 Additional Resources
+## [PLAN] Additional Resources
 
 ### Core Documentation
 
@@ -691,15 +691,15 @@ capabilities:
 
 ---
 
-## ❓ Getting Help
+##  Getting Help
 
-- 📖 **Documentation**: [https://github.com/DEVELOPER-DEEVEN/alien-project](https://github.com/DEVELOPER-DEEVEN/alien-project)
-- 🐛 **GitHub Issues**: [https://github.com/DEVELOPER-DEEVEN/alien-project/issues](https://github.com/DEVELOPER-DEEVEN/alien-project/issues) (preferred)
-- 📧 **Email**: [alien-agent@microsoft.com](mailto:alien-agent@microsoft.com)
+- [LANG] **Documentation**: [https://github.com/DEVELOPER-DEEVEN/alien-project](https://github.com/DEVELOPER-DEEVEN/alien-project)
+-  **GitHub Issues**: [https://github.com/DEVELOPER-DEEVEN/alien-project/issues](https://github.com/DEVELOPER-DEEVEN/alien-project/issues) (preferred)
+-  **Email**: [alien-agent@microsoft.com](mailto:alien-agent@microsoft.com)
 
 ---
 
-## 🎯 Next Steps
+##  Next Steps
 
 Now that Network is set up, explore these guides to unlock its full potential:
 
@@ -708,4 +708,4 @@ Now that Network is set up, explore these guides to unlock its full potential:
 3. **[Orion Agent](../network/orion_agent/overview.md)** - Deep dive into orchestration agent
 4. **[Advanced Orchestration](../network/orion_orchestrator/overview.md)** - Deep dive into DAG planning
 
-Happy orchestrating with ALIEN³ Network! 🌌🚀
+Happy orchestrating with ALIEN³ Network! [ORION][START]

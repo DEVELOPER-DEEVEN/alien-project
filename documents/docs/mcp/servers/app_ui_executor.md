@@ -7,7 +7,7 @@
 **Server Type:** Action  
 **Deployment:** Local (in-process)  
 **Agent:** AppAgent  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -43,8 +43,8 @@ Click on a UI control element using the mouse.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `id` | `str` | ✅ Yes | - | Control ID from `get_app_window_controls_info` |
-| `name` | `str` | ✅ Yes | - | Control name matching the ID |
+| `id` | `str` | [OK] Yes | - | Control ID from `get_app_window_controls_info` |
+| `name` | `str` | [OK] Yes | - | Control name matching the ID |
 | `button` | `str` | No | `"left"` | Mouse button: `"left"`, `"right"`, `"middle"`, `"x"` |
 | `double` | `bool` | No | `False` | Perform double-click |
 
@@ -79,8 +79,8 @@ Click at specific fractional coordinates within the window (0.0-1.0).
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `x` | `float` | ✅ Yes | - | Relative x-coordinate (0.0-1.0) |
-| `y` | `float` | ✅ Yes | - | Relative y-coordinate (0.0-1.0) |
+| `x` | `float` | [OK] Yes | - | Relative x-coordinate (0.0-1.0) |
+| `y` | `float` | [OK] Yes | - | Relative y-coordinate (0.0-1.0) |
 | `button` | `str` | No | `"left"` | Mouse button |
 | `double` | `bool` | No | `False` | Double-click |
 
@@ -107,10 +107,10 @@ Drag from one fractional coordinate to another.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `start_x` | `float` | ✅ Yes | - | Start x-coordinate (0.0-1.0) |
-| `start_y` | `float` | ✅ Yes | - | Start y-coordinate (0.0-1.0) |
-| `end_x` | `float` | ✅ Yes | - | End x-coordinate (0.0-1.0) |
-| `end_y` | `float` | ✅ Yes | - | End y-coordinate (0.0-1.0) |
+| `start_x` | `float` | [OK] Yes | - | Start x-coordinate (0.0-1.0) |
+| `start_y` | `float` | [OK] Yes | - | Start y-coordinate (0.0-1.0) |
+| `end_x` | `float` | [OK] Yes | - | End x-coordinate (0.0-1.0) |
+| `end_y` | `float` | [OK] Yes | - | End y-coordinate (0.0-1.0) |
 | `button` | `str` | No | `"left"` | Mouse button |
 | `duration` | `float` | No | `1.0` | Drag duration in seconds |
 | `key_hold` | `str` | No | `None` | Key to hold (`"ctrl"`, `"shift"`) |
@@ -142,9 +142,9 @@ Set text in an edit control.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `id` | `str` | ✅ Yes | - | Control ID |
-| `name` | `str` | ✅ Yes | - | Control name |
-| `text` | `str` | ✅ Yes | - | Text to set |
+| `id` | `str` | [OK] Yes | - | Control ID |
+| `name` | `str` | [OK] Yes | - | Control name |
+| `text` | `str` | [OK] Yes | - | Text to set |
 | `clear_current_text` | `bool` | No | `False` | Clear existing text first |
 
 #### Example
@@ -174,9 +174,9 @@ Send keyboard input to a control or application.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `id` | `str` | ✅ Yes | - | Control ID |
-| `name` | `str` | ✅ Yes | - | Control name |
-| `keys` | `str` | ✅ Yes | - | Key sequence (e.g., `"{VK_CONTROL}c"`, `"{TAB 2}"`) |
+| `id` | `str` | [OK] Yes | - | Control ID |
+| `name` | `str` | [OK] Yes | - | Control name |
+| `keys` | `str` | [OK] Yes | - | Key sequence (e.g., `"{VK_CONTROL}c"`, `"{TAB 2}"`) |
 | `control_focus` | `bool` | No | `True` | Focus control before sending keys |
 
 #### Example
@@ -220,8 +220,8 @@ Scroll using mouse wheel on a control.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `id` | `str` | ✅ Yes | - | Control ID |
-| `name` | `str` | ✅ Yes | - | Control name |
+| `id` | `str` | [OK] Yes | - | Control ID |
+| `name` | `str` | [OK] Yes | - | Control name |
 | `wheel_dist` | `int` | No | `0` | Wheel notches (positive=up, negative=down) |
 
 #### Example
@@ -251,8 +251,8 @@ Retrieve all text content from a control.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `id` | `str` | ✅ Yes | - | Control ID |
-| `name` | `str` | ✅ Yes | - | Control name |
+| `id` | `str` | [OK] Yes | - | Control ID |
+| `name` | `str` | [OK] Yes | - | Control name |
 
 #### Returns
 
@@ -281,7 +281,7 @@ Wait for a specified duration (non-blocking).
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `seconds` | `float` | ✅ Yes | - | Wait duration (max 300s) |
+| `seconds` | `float` | [OK] Yes | - | Wait duration (max 300s) |
 
 #### Example
 
@@ -306,7 +306,7 @@ Provide a visual summary of observations.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `text` | `str` | ✅ Yes | - | Summary text based on visual observation |
+| `text` | `str` | [OK] Yes | - | Summary text based on visual observation |
 
 #### Returns
 
@@ -350,7 +350,7 @@ AppAgent:
 ### 1. Always Verify Control ID and Name
 
 ```python
-# ✅ Good
+# [OK] Good
 controls = await computer.run_actions([
     MCPToolCall(tool_key="data_collection::get_app_window_controls_info", ...)
 ])
@@ -366,7 +366,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Hardcode IDs
+# [FAIL] Bad: Hardcode IDs
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::click_input",

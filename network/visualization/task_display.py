@@ -47,7 +47,7 @@ class TaskDisplay:
         """
         # Create task info text
         task_info = Text()
-        task_info.append("🚀 ", style="bold green")
+        task_info.append("[START] ", style="bold green")
         task_info.append(f"Task Started: ", style="bold blue")
         task_info.append(f"{task.name}", style="bold yellow")
         task_info.append(f" ({task.task_id[:8]}...)", style="dim")
@@ -58,7 +58,7 @@ class TaskDisplay:
         # Create panel
         panel = Panel(
             f"{task_info}\n\n{details}",
-            title="[bold green]🎯 Task Execution Started[/bold green]",
+            title="[bold green] Task Execution Started[/bold green]",
             border_style="green",
             width=80,
         )
@@ -82,7 +82,7 @@ class TaskDisplay:
         """
         # Create success message
         success_text = Text()
-        success_text.append("✅ ", style="bold green")
+        success_text.append("[OK] ", style="bold green")
         success_text.append(f"Task Completed: ", style="bold green")
         success_text.append(f"{task.name}", style="bold yellow")
         success_text.append(f" ({task.task_id[:8]}...)", style="dim")
@@ -99,7 +99,7 @@ class TaskDisplay:
             table.add_row("⏱️ Duration:", f"{task.execution_duration:.2f}s")
 
         if task.target_device_id:
-            table.add_row("📱 Device:", task.target_device_id)
+            table.add_row(" Device:", task.target_device_id)
 
         if result is not None:
             if isinstance(result, ExecutionResult):
@@ -114,17 +114,17 @@ class TaskDisplay:
                 result_preview = (
                     str(result)[:100] + "..." if len(str(result)) > 100 else str(result)
                 )
-            table.add_row("📊 Result:", result_preview)
+            table.add_row("[STATUS] Result:", result_preview)
 
         if newly_ready_tasks is not None and newly_ready_tasks > 0:
-            table.add_row("🎯 Unlocked:", f"{newly_ready_tasks} new tasks ready")
+            table.add_row(" Unlocked:", f"{newly_ready_tasks} new tasks ready")
 
         # Create panel with proper Rich composition
         content = Group(success_text, "", table)
 
         panel = Panel(
             content,
-            title="[bold green]🎉 Task Execution Completed[/bold green]",
+            title="[bold green] Task Execution Completed[/bold green]",
             border_style="green",
             width=80,
         )
@@ -148,7 +148,7 @@ class TaskDisplay:
         """
         # Create failure message
         failure_text = Text()
-        failure_text.append("❌ ", style="bold red")
+        failure_text.append("[FAIL] ", style="bold red")
         failure_text.append(f"Task Failed: ", style="bold red")
         failure_text.append(f"{task.name}", style="bold yellow")
         failure_text.append(f" ({task.task_id[:8]}...)", style="dim")
@@ -160,33 +160,33 @@ class TaskDisplay:
 
         # Add task details
         if task.target_device_id:
-            table.add_row("📱 Device:", task.target_device_id)
+            table.add_row(" Device:", task.target_device_id)
 
         # Retry information
         if retry_info:
             current = retry_info.get("current_retry", 0)
             maximum = retry_info.get("max_retries", 0)
-            table.add_row("🔄 Retries:", f"{current}/{maximum}")
+            table.add_row("[CONTINUE] Retries:", f"{current}/{maximum}")
         elif hasattr(task, "current_retry") and hasattr(task, "retry_count"):
-            table.add_row("🔄 Retries:", f"{task.current_retry}/{task.retry_count}")
+            table.add_row("[CONTINUE] Retries:", f"{task.current_retry}/{task.retry_count}")
 
         # Show error information
         if error:
             error_msg = (
                 str(error)[:100] + "..." if len(str(error)) > 100 else str(error)
             )
-            table.add_row("⚠️ Error:", error_msg)
+            table.add_row("️ Error:", error_msg)
 
         # Show impact on ready tasks
         if newly_ready_tasks is not None and newly_ready_tasks > 0:
-            table.add_row("🎯 Still Ready:", f"{newly_ready_tasks} tasks")
+            table.add_row(" Still Ready:", f"{newly_ready_tasks} tasks")
 
         # Create panel with proper Rich composition
         content = Group(failure_text, "", table)
 
         panel = Panel(
             content,
-            title="[bold red]💥 Task Execution Failed[/bold red]",
+            title="[bold red] Task Execution Failed[/bold red]",
             border_style="red",
             width=80,
         )
@@ -206,7 +206,7 @@ class TaskDisplay:
         details = []
 
         if task.target_device_id:
-            details.append(f"📱 Device: {task.target_device_id}")
+            details.append(f" Device: {task.target_device_id}")
 
         if hasattr(task, "priority") and task.priority:
             priority_name = getattr(task.priority, "name", str(task.priority))
@@ -218,13 +218,13 @@ class TaskDisplay:
                 if len(task.description) > 50
                 else task.description
             )
-            details.append(f"📝 {description}")
+            details.append(f" {description}")
 
         # Add any additional information
         if additional_info:
             for key, value in additional_info.items():
                 if value is not None:
-                    details.append(f"ℹ️ {key}: {value}")
+                    details.append(f"[INFO] {key}: {value}")
 
         return "\n".join(details) if details else "No additional details"
 
@@ -238,12 +238,12 @@ class TaskDisplay:
         icons = {
             TaskStatus.PENDING: "⭕",
             TaskStatus.WAITING_DEPENDENCY: "⏳",
-            TaskStatus.RUNNING: "🔵",
-            TaskStatus.COMPLETED: "✅",
-            TaskStatus.FAILED: "❌",
+            TaskStatus.RUNNING: "",
+            TaskStatus.COMPLETED: "[OK]",
+            TaskStatus.FAILED: "[FAIL]",
             TaskStatus.CANCELLED: "⭕",
         }
-        return icons.get(status, "❓")
+        return icons.get(status, "")
 
     def format_task_summary(self, task: TaskStar, include_id: bool = True) -> str:
         """

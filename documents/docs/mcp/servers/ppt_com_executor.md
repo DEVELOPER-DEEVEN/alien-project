@@ -8,7 +8,7 @@
 **Deployment:** Local (in-process)  
 **Agent:** AppAgent  
 **Target Application:** Microsoft PowerPoint (`POWERPNT.EXE`)  
-**LLM-Selectable:** ✅ Yes
+**LLM-Selectable:** [OK] Yes
 
 ## Server Information
 
@@ -29,7 +29,7 @@ Set the background color for one or more slides in the presentation.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `color` | `str` | ✅ Yes | - | Hex color code (RGB format, e.g., `"FFFFFF"`) |
+| `color` | `str` | [OK] Yes | - | Hex color code (RGB format, e.g., `"FFFFFF"`) |
 | `slide_index` | `List[int]` | No | `None` | List of slide indices (1-based). `None` = all slides |
 
 #### Returns
@@ -202,7 +202,7 @@ AppAgent:
 ### 1. Bulk Background Setting
 
 ```python
-# ✅ Good: Set multiple slides at once
+# [OK] Good: Set multiple slides at once
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::set_background_color",
@@ -210,7 +210,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: One call per slide
+# [FAIL] Bad: One call per slide
 for i in range(1, 6):
     await computer.run_actions([
         MCPToolCall(
@@ -223,7 +223,7 @@ for i in range(1, 6):
 ### 2. Use save_as for Exports
 
 ```python
-# ✅ Good: Fast one-command export
+# [OK] Good: Fast one-command export
 await computer.run_actions([
     MCPToolCall(
         tool_key="action::save_as",
@@ -231,7 +231,7 @@ await computer.run_actions([
     )
 ])
 
-# ❌ Bad: Manual UI navigation
+# [FAIL] Bad: Manual UI navigation
 await computer.run_actions([
     MCPToolCall(tool_key="action::keyboard_input", parameters={"keys": "{VK_MENU}f"})  # Alt+F
 ])

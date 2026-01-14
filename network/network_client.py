@@ -98,9 +98,9 @@ class NetworkClient:
         # Display initialization
         self.display.show_network_banner()
         self.display.print_info(
-            f"[bold cyan]🌌 Network Client initialized:[/bold cyan] [green]{self.session_name}[/green]"
+            f"[bold cyan][ORION] Network Client initialized:[/bold cyan] [green]{self.session_name}[/green]"
         )
-        self.logger.info(f"🌌 Network Client initialized: {self.session_name}")
+        self.logger.info(f"[ORION] Network Client initialized: {self.session_name}")
 
     async def initialize(self) -> None:
         """
@@ -115,7 +115,7 @@ class NetworkClient:
                     "[cyan]Initializing ALIEN3 Framework...", total=None
                 )
 
-                self.logger.info("🚀 Initializing ALIEN3 Framework components...")
+                self.logger.info("[START] Initializing ALIEN3 Framework components...")
 
                 # Initialize orion client
                 progress.update(
@@ -125,23 +125,23 @@ class NetworkClient:
                     config=self._device_config, task_name=self.task_name
                 )
                 await self._client.initialize()
-                self.display.print_success("✅ OrionClient initialized")
-                self.logger.info("✅ OrionClient initialized")
+                self.display.print_success("[OK] OrionClient initialized")
+                self.logger.info("[OK] OrionClient initialized")
 
                 # Network session will be created per request
                 progress.update(
                     task, description="[cyan]Framework ready for requests..."
                 )
-                self.display.print_success("✅ Framework initialized and ready")
-                self.logger.info("✅ Framework initialized and ready")
+                self.display.print_success("[OK] Framework initialized and ready")
+                self.logger.info("[OK] Framework initialized and ready")
 
-            self.display.print_success("\n🌟 ALIEN3 Framework initialization complete!\n")
-            self.logger.info("🌟 ALIEN3 Framework initialization complete!")
+            self.display.print_success("\n ALIEN3 Framework initialization complete!\n")
+            self.logger.info(" ALIEN3 Framework initialization complete!")
 
         except Exception as e:
-            self.display.print_error(f"❌ Failed to initialize ALIEN3 Framework: {e}")
+            self.display.print_error(f"[FAIL] Failed to initialize ALIEN3 Framework: {e}")
             self.logger.error(
-                f"❌ Failed to initialize ALIEN3 Framework: {e}", exc_info=True
+                f"[FAIL] Failed to initialize ALIEN3 Framework: {e}", exc_info=True
             )
             raise
 
@@ -163,9 +163,9 @@ class NetworkClient:
 
         try:
             self.display.print_info(
-                f"[bold yellow]📝 Processing request:[/bold yellow] [white]{request[:100]}{'...' if len(request) > 100 else ''}[/white]"
+                f"[bold yellow] Processing request:[/bold yellow] [white]{request[:100]}{'...' if len(request) > 100 else ''}[/white]"
             )
-            self.logger.info(f"📝 Processing request: {request[:100]}...")
+            self.logger.info(f" Processing request: {request[:100]}...")
 
             # Quick check: count devices in connected states (CONNECTED, IDLE, or BUSY)
             from network.client.components.types import DeviceStatus
@@ -181,10 +181,10 @@ class NetworkClient:
 
             if connected_devices_count < total_devices_count:
                 self.logger.info(
-                    f"🔌 Detected {total_devices_count - connected_devices_count} disconnected devices, attempting reconnection..."
+                    f" Detected {total_devices_count - connected_devices_count} disconnected devices, attempting reconnection..."
                 )
                 self.display.print_info(
-                    "[cyan]🔌 Reconnecting disconnected devices...[/cyan]"
+                    "[cyan] Reconnecting disconnected devices...[/cyan]"
                 )
                 connection_results = await self._client.ensure_devices_connected()
                 connected_count = sum(
@@ -193,23 +193,23 @@ class NetworkClient:
 
                 if connected_count < total_devices_count:
                     self.display.print_warning(
-                        f"⚠️  Only {connected_count}/{total_devices_count} devices connected"
+                        f"️  Only {connected_count}/{total_devices_count} devices connected"
                     )
                     self.logger.warning(
-                        f"⚠️  Only {connected_count}/{total_devices_count} devices connected"
+                        f"️  Only {connected_count}/{total_devices_count} devices connected"
                     )
                 else:
                     self.display.print_success(
-                        f"✅ All {connected_count} devices reconnected"
+                        f"[OK] All {connected_count} devices reconnected"
                     )
-                    self.logger.info(f"✅ All devices reconnected")
+                    self.logger.info(f"[OK] All devices reconnected")
 
                 # DEBUG: Log device registry state after reconnection
                 all_devices_after = (
                     self._client.device_manager.device_registry.get_all_devices()
                 )
                 self.logger.info(
-                    f"🔍 DEBUG: After reconnection, device registry contains {len(all_devices_after)} devices: {list(all_devices_after.keys())}"
+                    f" DEBUG: After reconnection, device registry contains {len(all_devices_after)} devices: {list(all_devices_after.keys())}"
                 )
 
             # Use the task_name set during initialization or updated externally
@@ -217,9 +217,9 @@ class NetworkClient:
 
             # Clean up old session observers before creating new session
             if self._session:
-                self.logger.info("🧹 Cleaning up observers from previous session...")
+                self.logger.info(" Cleaning up observers from previous session...")
                 self._session._cleanup_observers()
-                self.logger.info("✅ Previous session observers cleaned up")
+                self.logger.info("[OK] Previous session observers cleaned up")
 
             # Create a new session for this request
             session_id = f"{self.session_name}_{task_name}"
@@ -287,10 +287,10 @@ class NetworkClient:
                 }
 
             self.display.print_success(
-                f"✅ Request processed successfully in {execution_time:.2f}s"
+                f"[OK] Request processed successfully in {execution_time:.2f}s"
             )
             self.logger.info(
-                f"✅ Request processed successfully in {execution_time:.2f}s"
+                f"[OK] Request processed successfully in {execution_time:.2f}s"
             )
 
             # Save result to file
@@ -299,8 +299,8 @@ class NetworkClient:
             return result
 
         except Exception as e:
-            self.display.print_error(f"❌ Failed to process request: {e}")
-            self.logger.error(f"❌ Failed to process request: {e}", exc_info=True)
+            self.display.print_error(f"[FAIL] Failed to process request: {e}")
+            self.logger.error(f"[FAIL] Failed to process request: {e}", exc_info=True)
             return {
                 "session_name": self.session_name,
                 "request": request,
@@ -319,7 +319,7 @@ class NetworkClient:
         Starts an interactive command-line interface that accepts
         user requests and processes them through the Network framework.
         """
-        self.logger.info("🎯 Starting interactive mode. Type 'quit' or 'exit' to stop.")
+        self.logger.info(" Starting interactive mode. Type 'quit' or 'exit' to stop.")
 
         # Display interactive banner
         self.display.show_interactive_banner()
@@ -338,7 +338,7 @@ class NetworkClient:
 
                 # Handle special commands
                 if user_input.lower() in ["quit", "exit", "q"]:
-                    self.display.print_warning("👋 Goodbye!")
+                    self.display.print_warning(" Goodbye!")
                     break
                 elif user_input.lower() in ["help", "h"]:
                     self.display.show_help()
@@ -351,7 +351,7 @@ class NetworkClient:
                     continue
 
                 # Process the request
-                self.display.show_processing_status("🚀 Processing your request...")
+                self.display.show_processing_status("[START] Processing your request...")
 
                 # Temporarily set task_name for this request
                 original_task_name = self.task_name
@@ -367,11 +367,11 @@ class NetworkClient:
                 request_count += 1
 
             except KeyboardInterrupt:
-                self.display.print_warning("\n👋 Interrupted. Goodbye!")
+                self.display.print_warning("\n Interrupted. Goodbye!")
                 break
             except Exception as e:
                 self.logger.error(f"Interactive mode error: {e}", exc_info=True)
-                self.display.print_error(f"❌ Error: {e}")
+                self.display.print_error(f"[FAIL] Error: {e}")
 
     def _show_status(self) -> None:
         """
@@ -414,13 +414,13 @@ class NetworkClient:
                 json.dump(result, f, indent=2, ensure_ascii=False)
 
             self.display.print_info(
-                f"[bold cyan]📁 Result saved to:[/bold cyan] [green]{output_path}[/green]"
+                f"[bold cyan] Result saved to:[/bold cyan] [green]{output_path}[/green]"
             )
-            self.logger.info(f"📁 Result saved to: {output_path}")
+            self.logger.info(f" Result saved to: {output_path}")
 
         except Exception as e:
             self.logger.error(f"Failed to save result: {e}", exc_info=True)
-            self.display.print_warning(f"⚠️ Failed to save result: {e}")
+            self.display.print_warning(f"️ Failed to save result: {e}")
 
     async def reset_session(self) -> Dict[str, Any]:
         """
@@ -432,12 +432,12 @@ class NetworkClient:
         :return: Dictionary with reset status information
         """
         try:
-            self.logger.info("🔄 Resetting current session...")
+            self.logger.info("[CONTINUE] Resetting current session...")
 
             if self._session:
                 # Reset session state
                 self._session.reset()
-                self.logger.info("✅ Session state reset")
+                self.logger.info("[OK] Session state reset")
 
                 return {
                     "status": "success",
@@ -446,7 +446,7 @@ class NetworkClient:
                     "timestamp": datetime.now().isoformat(),
                 }
             else:
-                self.logger.warning("⚠️ No active session to reset")
+                self.logger.warning("️ No active session to reset")
                 return {
                     "status": "warning",
                     "message": "No active session to reset",
@@ -473,20 +473,20 @@ class NetworkClient:
         :return: Dictionary with new session information
         """
         try:
-            self.logger.info("🔄 Creating next session...")
+            self.logger.info("[CONTINUE] Creating next session...")
 
             # Clean up current session if exists
             if self._session:
                 await self._session.force_finish("Starting next session")
                 old_session_name = self.session_name
-                self.logger.info(f"✅ Previous session {old_session_name} finished")
+                self.logger.info(f"[OK] Previous session {old_session_name} finished")
 
             # Ensure all devices are connected for the new session
             if self._client:
                 self.display.print_info(
-                    "[cyan]🔌 Checking device connections for new session...[/cyan]"
+                    "[cyan] Checking device connections for new session...[/cyan]"
                 )
-                self.logger.info("🔌 Ensuring devices connected for new session...")
+                self.logger.info(" Ensuring devices connected for new session...")
                 connection_results = await self._client.ensure_devices_connected()
                 connected_count = sum(
                     1 for connected in connection_results.values() if connected
@@ -495,16 +495,16 @@ class NetworkClient:
 
                 if connected_count < total_count:
                     self.display.print_warning(
-                        f"⚠️  Only {connected_count}/{total_count} devices connected for new session"
+                        f"️  Only {connected_count}/{total_count} devices connected for new session"
                     )
                     self.logger.warning(
-                        f"⚠️  Only {connected_count}/{total_count} devices connected"
+                        f"️  Only {connected_count}/{total_count} devices connected"
                     )
                 else:
                     self.display.print_success(
-                        f"✅ All {connected_count} devices ready for new session"
+                        f"[OK] All {connected_count} devices ready for new session"
                     )
-                    self.logger.info(f"✅ All {connected_count} devices connected")
+                    self.logger.info(f"[OK] All {connected_count} devices connected")
 
             # Generate new session name with timestamp
             self.session_name = (
@@ -515,7 +515,7 @@ class NetworkClient:
             # Clear session reference (new one will be created on next request)
             self._session = None
 
-            self.logger.info(f"✅ Next session ready: {self.session_name}")
+            self.logger.info(f"[OK] Next session ready: {self.session_name}")
 
             return {
                 "status": "success",
@@ -552,24 +552,24 @@ class NetworkClient:
         self._is_shutting_down = True
 
         try:
-            self.display.print_warning("🛑 Shutting down Network client...")
-            self.logger.info("🛑 Shutting down Network client...")
+            self.display.print_warning(" Shutting down Network client...")
+            self.logger.info(" Shutting down Network client...")
 
             # If force=True, cancel any running request task
             if force and self._current_request_task:
                 task = self._current_request_task
                 if task and not task.done():
-                    self.logger.info("🛑 Forcefully cancelling running request task...")
+                    self.logger.info(" Forcefully cancelling running request task...")
                     task.cancel()
                     try:
                         # Wait for cancellation to complete with timeout
                         await asyncio.wait_for(task, timeout=2.0)
-                        self.logger.info("✅ Task cancelled successfully")
+                        self.logger.info("[OK] Task cancelled successfully")
                     except asyncio.CancelledError:
-                        self.logger.info("✅ Task cancellation completed")
+                        self.logger.info("[OK] Task cancellation completed")
                     except asyncio.TimeoutError:
                         self.logger.warning(
-                            "⚠️ Task cancellation timed out, proceeding anyway"
+                            "️ Task cancellation timed out, proceeding anyway"
                         )
                     except Exception as e:
                         self.logger.error(f"Error during task cancellation: {e}")
@@ -588,8 +588,8 @@ class NetworkClient:
             if self._client:
                 await self._client.shutdown()
 
-            self.display.print_success("✅ Network client shutdown complete")
-            self.logger.info("✅ Network client shutdown complete")
+            self.display.print_success("[OK] Network client shutdown complete")
+            self.logger.info("[OK] Network client shutdown complete")
 
         except Exception as e:
             self.display.print_error(f"Error during shutdown: {e}")

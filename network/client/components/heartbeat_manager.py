@@ -42,7 +42,7 @@ class HeartbeatManager:
             self._heartbeat_tasks[device_id] = asyncio.create_task(
                 self._heartbeat_loop(device_id)
             )
-            self.logger.debug(f"💓 Started heartbeat for device {device_id}")
+            self.logger.debug(f" Started heartbeat for device {device_id}")
 
     def stop_heartbeat(self, device_id: str) -> None:
         """Stop heartbeat monitoring for a device"""
@@ -54,7 +54,7 @@ class HeartbeatManager:
             # Clean up protocol instance
             if device_id in self._heartbeat_protocols:
                 del self._heartbeat_protocols[device_id]
-            self.logger.debug(f"💓 Stopped heartbeat for device {device_id}")
+            self.logger.debug(f" Stopped heartbeat for device {device_id}")
 
     async def _heartbeat_loop(self, device_id: str) -> None:
         """Send periodic heartbeat messages to a device"""
@@ -79,7 +79,7 @@ class HeartbeatManager:
                 await asyncio.sleep(self.heartbeat_interval)
 
             except Exception as e:
-                self.logger.error(f"💓 Heartbeat error for device {device_id}: {e}")
+                self.logger.error(f" Heartbeat error for device {device_id}: {e}")
                 # Clean up protocol instance
                 if device_id in self._heartbeat_protocols:
                     del self._heartbeat_protocols[device_id]
@@ -88,7 +88,7 @@ class HeartbeatManager:
     def handle_heartbeat_response(self, device_id: str) -> None:
         """Handle heartbeat response from device"""
         self.device_registry.update_heartbeat(device_id)
-        self.logger.debug(f"💓 Heartbeat response from device {device_id}")
+        self.logger.debug(f" Heartbeat response from device {device_id}")
 
     def stop_all_heartbeats(self) -> None:
         """Stop all heartbeat monitoring"""

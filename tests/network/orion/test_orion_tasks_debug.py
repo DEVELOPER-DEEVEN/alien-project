@@ -56,7 +56,7 @@ def debug_tasks_field(log_file_path: str):
 
         tasks = const_after.get("tasks")
         if isinstance(tasks, str):
-            print(f"\n  ⚠️  Tasks is a STRING (should be dict)")
+            print(f"\n  ️  Tasks is a STRING (should be dict)")
             print(f"  Tasks value (first 500 chars):")
             print(f"  {tasks[:500]}")
         elif isinstance(tasks, dict):

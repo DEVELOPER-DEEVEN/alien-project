@@ -38,9 +38,9 @@ AgentName:              # e.g., "HostAgent", "AppAgent"
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `namespace` | String | ✅ Yes | Unique server identifier |
-| `type` | String | ✅ Yes | Server type: `local`, `http`, or `stdio` |
-| `reset` | Boolean | ❌ No | Reset on context switch (default: `false`) |
+| `namespace` | String | [OK] Yes | Unique server identifier |
+| `type` | String | [OK] Yes | Server type: `local`, `http`, or `stdio` |
+| `reset` | Boolean | [FAIL] No | Reset on context switch (default: `false`) |
 
 ### Local Server Example
 

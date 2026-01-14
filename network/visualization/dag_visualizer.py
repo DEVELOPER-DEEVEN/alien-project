@@ -106,7 +106,7 @@ class DAGVisualizer:
         :param orion: The TaskOrion to visualize
         """
         self.console.print()
-        self.console.print("[bold blue]📊 DAG Topology[/bold blue]")
+        self.console.print("[bold blue][STATUS] DAG Topology[/bold blue]")
 
         if orion.task_count == 0:
             self.console.print("[dim]No tasks in orion[/dim]")
@@ -117,12 +117,12 @@ class DAGVisualizer:
 
         if not layers:
             self.console.print(
-                "[yellow]⚠️ No clear topology structure (possible cycles)[/yellow]"
+                "[yellow]️ No clear topology structure (possible cycles)[/yellow]"
             )
             return
 
         # Create tree visualization
-        tree = Tree("🌌 [bold cyan]Task Orion[/bold cyan]")
+        tree = Tree("[ORION] [bold cyan]Task Orion[/bold cyan]")
 
         for layer_idx, layer_tasks in enumerate(layers):
             layer_branch = tree.add(f"[dim]Layer {layer_idx + 1}[/dim]")
@@ -167,7 +167,7 @@ class DAGVisualizer:
         :param orion: The TaskOrion to visualize
         """
         self.console.print()
-        self.console.print("[bold blue]📋 Task Details[/bold blue]")
+        self.console.print("[bold blue][TASK] Task Details[/bold blue]")
 
         table = Table(title="Task Information", box=box.ROUNDED)
         table.add_column("ID", style="cyan", no_wrap=True, width=12)
@@ -231,7 +231,7 @@ class DAGVisualizer:
         :param orion: The TaskOrion to visualize
         """
         self.console.print()
-        self.console.print("[bold blue]🔗 Dependency Relationships[/bold blue]")
+        self.console.print("[bold blue][DEP] Dependency Relationships[/bold blue]")
 
         dependencies = orion.get_all_dependencies()
         if not dependencies:
@@ -261,7 +261,7 @@ class DAGVisualizer:
                     to_status = self._get_status_icon(to_task.status)
 
                     # Satisfaction status
-                    satisfied = "✅" if dep.is_satisfied else "❌"
+                    satisfied = "[OK]" if dep.is_satisfied else "[FAIL]"
 
                     line = f"{from_status} {from_name} {symbol} {to_status} {to_name} {satisfied}"
                     panel_content.append(line)
@@ -286,7 +286,7 @@ class DAGVisualizer:
         :param orion: The TaskOrion to visualize
         """
         self.console.print()
-        self.console.print("[bold blue]⚡ Execution Flow[/bold blue]")
+        self.console.print("[bold blue] Execution Flow[/bold blue]")
 
         # Ready tasks
         ready_tasks = orion.get_ready_tasks()
@@ -300,7 +300,7 @@ class DAGVisualizer:
         if ready_tasks:
             ready_content = []
             for task in ready_tasks[:5]:  # Limit display
-                ready_content.append(f"🟡 {self._truncate_name(task.name, 20)}")
+                ready_content.append(f" {self._truncate_name(task.name, 20)}")
             if len(ready_tasks) > 5:
                 ready_content.append(f"[dim]... and {len(ready_tasks) - 5} more[/dim]")
 
@@ -314,7 +314,7 @@ class DAGVisualizer:
         if running_tasks:
             running_content = []
             for task in running_tasks:
-                running_content.append(f"🔵 {self._truncate_name(task.name, 20)}")
+                running_content.append(f" {self._truncate_name(task.name, 20)}")
 
             running_panel = Panel(
                 "\n".join(running_content),
@@ -325,7 +325,7 @@ class DAGVisualizer:
 
         if completed_tasks:
             completed_panel = Panel(
-                f"✅ {len(completed_tasks)} tasks completed",
+                f"[OK] {len(completed_tasks)} tasks completed",
                 title="Completed",
                 border_style="green",
             )
@@ -334,7 +334,7 @@ class DAGVisualizer:
         if failed_tasks:
             failed_content = []
             for task in failed_tasks[:3]:  # Show first few failed tasks
-                failed_content.append(f"❌ {self._truncate_name(task.name, 20)}")
+                failed_content.append(f"[FAIL] {self._truncate_name(task.name, 20)}")
             if len(failed_tasks) > 3:
                 failed_content.append(
                     f"[dim]... and {len(failed_tasks) - 3} more[/dim]"
@@ -493,7 +493,7 @@ def display_orion_update(
     # For updates, we use the DAGVisualizer for full overview
     visualizer = DAGVisualizer(console)
 
-    title = "🔄 Task Orion Updated"
+    title = "[CONTINUE] Task Orion Updated"
     if change_description:
         title += f" - {change_description}"
 

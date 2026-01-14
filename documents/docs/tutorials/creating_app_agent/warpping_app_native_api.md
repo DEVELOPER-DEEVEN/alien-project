@@ -470,10 +470,10 @@ Key features:
 !!!warning "Deprecated: API Prompt Files"
     The old approach of creating `api.yaml` prompt files and configuring `APP_API_PROMPT_ADDRESS` is **deprecated**. The new MCP architecture provides:
     
-    - ✅ **Better tool discovery**: Tools are automatically introspected from MCP servers
-    - ✅ **Type safety**: Pydantic models ensure parameter validation
-    - ✅ **Cleaner code**: No manual prompt file maintenance
-    - ✅ **Better testing**: Direct server testing with FastMCP Client
+    - [OK] **Better tool discovery**: Tools are automatically introspected from MCP servers
+    - [OK] **Type safety**: Pydantic models ensure parameter validation
+    - [OK] **Cleaner code**: No manual prompt file maintenance
+    - [OK] **Better testing**: Direct server testing with FastMCP Client
     
     If you're migrating from the old system, see [Creating MCP Servers Tutorial](../creating_mcp_servers.md).
 

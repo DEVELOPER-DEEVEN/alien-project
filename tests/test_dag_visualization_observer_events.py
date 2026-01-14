@@ -117,32 +117,32 @@ def create_task_event(
 
 async def test_observer_initialization():
     """Test that the observer initializes correctly."""
-    print("🧪 Testing DAGVisualizationObserver Initialization")
+    print(" Testing DAGVisualizationObserver Initialization")
     print("=" * 60)
 
     # Test with default settings
     observer = DAGVisualizationObserver()
     assert observer.enable_visualization == True
     assert observer._console is None
-    print("✅ Default initialization successful")
+    print("[OK] Default initialization successful")
 
     # Test with custom console
     custom_console = Console()
     observer_with_console = DAGVisualizationObserver(console=custom_console)
     assert observer_with_console._console == custom_console
-    print("✅ Custom console initialization successful")
+    print("[OK] Custom console initialization successful")
 
     # Test with disabled visualization
     disabled_observer = DAGVisualizationObserver(enable_visualization=False)
     assert disabled_observer.enable_visualization == False
-    print("✅ Disabled visualization initialization successful")
+    print("[OK] Disabled visualization initialization successful")
 
     return True
 
 
 async def test_orion_events():
     """Test orion event handling and visualization."""
-    print("\n🧪 Testing Orion Event Handling")
+    print("\n Testing Orion Event Handling")
     print("=" * 60)
 
     # Create observer with string output capture
@@ -154,7 +154,7 @@ async def test_orion_events():
     orion = create_test_orion()
 
     # Test orion started event
-    print("\n📤 Testing ORION_STARTED event...")
+    print("\n Testing ORION_STARTED event...")
     started_event = create_orion_event(
         EventType.ORION_STARTED,
         orion,
@@ -165,16 +165,16 @@ async def test_orion_events():
     output_text = output.getvalue()
 
     if "started" in output_text.lower() or "orion" in output_text.lower():
-        print("✅ Orion started event produced output")
+        print("[OK] Orion started event produced output")
     else:
-        print("⚠️  Orion started event - no visible output detected")
+        print("️  Orion started event - no visible output detected")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test orion completed event
-    print("\n📤 Testing ORION_COMPLETED event...")
+    print("\n Testing ORION_COMPLETED event...")
     completed_event = create_orion_event(
         EventType.ORION_COMPLETED,
         orion,
@@ -186,16 +186,16 @@ async def test_orion_events():
     output_text = output.getvalue()
 
     if "completed" in output_text.lower() or "execution" in output_text.lower():
-        print("✅ Orion completed event produced output")
+        print("[OK] Orion completed event produced output")
     else:
-        print("⚠️  Orion completed event - no visible output detected")
+        print("️  Orion completed event - no visible output detected")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test orion modified event
-    print("\n📤 Testing ORION_MODIFIED event...")
+    print("\n Testing ORION_MODIFIED event...")
 
     # Add a new task to simulate modification
     new_task = TaskStar(
@@ -223,16 +223,16 @@ async def test_orion_events():
     output_text = output.getvalue()
 
     if "modified" in output_text.lower() or "added" in output_text.lower():
-        print("✅ Orion modified event produced output")
+        print("[OK] Orion modified event produced output")
     else:
-        print("⚠️  Orion modified event - no visible output detected")
+        print("️  Orion modified event - no visible output detected")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test orion failed event
-    print("\n📤 Testing ORION_FAILED event...")
+    print("\n Testing ORION_FAILED event...")
     failed_event = create_orion_event(
         EventType.ORION_FAILED,
         orion,
@@ -244,16 +244,16 @@ async def test_orion_events():
     output_text = output.getvalue()
 
     if "failed" in output_text.lower() or "error" in output_text.lower():
-        print("✅ Orion failed event produced output")
+        print("[OK] Orion failed event produced output")
     else:
-        print("⚠️  Orion failed event - no visible output detected")
+        print("️  Orion failed event - no visible output detected")
 
     return True
 
 
 async def test_task_events():
     """Test task event handling and visualization."""
-    print("\n🧪 Testing Task Event Handling")
+    print("\n Testing Task Event Handling")
     print("=" * 60)
 
     # Create observer with string output capture
@@ -266,7 +266,7 @@ async def test_task_events():
     observer.register_orion(orion.orion_id, orion)
 
     # Test task started event
-    print("\n📤 Testing TASK_STARTED event...")
+    print("\n Testing TASK_STARTED event...")
     task_started_event = create_task_event(
         EventType.TASK_STARTED,
         "process_001",
@@ -279,16 +279,16 @@ async def test_task_events():
     output_text = output.getvalue()
 
     if "task" in output_text.lower() or "process" in output_text.lower():
-        print("✅ Task started event produced output")
+        print("[OK] Task started event produced output")
     else:
-        print("⚠️  Task started event - no visible output detected")
+        print("️  Task started event - no visible output detected")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test task completed event
-    print("\n📤 Testing TASK_COMPLETED event...")
+    print("\n Testing TASK_COMPLETED event...")
     task_completed_event = create_task_event(
         EventType.TASK_COMPLETED,
         "process_001",
@@ -302,16 +302,16 @@ async def test_task_events():
     output_text = output.getvalue()
 
     if "completed" in output_text.lower() or "task" in output_text.lower():
-        print("✅ Task completed event produced output")
+        print("[OK] Task completed event produced output")
     else:
-        print("⚠️  Task completed event - no visible output detected")
+        print("️  Task completed event - no visible output detected")
 
     # Clear output buffer
     output.seek(0)
     output.truncate(0)
 
     # Test task failed event
-    print("\n📤 Testing TASK_FAILED event...")
+    print("\n Testing TASK_FAILED event...")
     task_failed_event = create_task_event(
         EventType.TASK_FAILED,
         "validate_001",
@@ -325,16 +325,16 @@ async def test_task_events():
     output_text = output.getvalue()
 
     if "failed" in output_text.lower() or "error" in output_text.lower():
-        print("✅ Task failed event produced output")
+        print("[OK] Task failed event produced output")
     else:
-        print("⚠️  Task failed event - no visible output detected")
+        print("️  Task failed event - no visible output detected")
 
     return True
 
 
 async def test_observer_state_management():
     """Test observer state management functionality."""
-    print("\n🧪 Testing Observer State Management")
+    print("\n Testing Observer State Management")
     print("=" * 60)
 
     observer = DAGVisualizationObserver()
@@ -344,29 +344,29 @@ async def test_observer_state_management():
     observer.register_orion(orion.orion_id, orion)
     retrieved = observer.get_orion(orion.orion_id)
     assert retrieved == orion
-    print("✅ Orion registration and retrieval works")
+    print("[OK] Orion registration and retrieval works")
 
     # Test visualization toggle
     observer.set_visualization_enabled(False)
     assert observer.enable_visualization == False
-    print("✅ Visualization can be disabled")
+    print("[OK] Visualization can be disabled")
 
     observer.set_visualization_enabled(True)
     assert observer.enable_visualization == True
-    print("✅ Visualization can be re-enabled")
+    print("[OK] Visualization can be re-enabled")
 
     # Test clearing orions
     observer.clear_orions()
     retrieved = observer.get_orion(orion.orion_id)
     assert retrieved is None
-    print("✅ Orion clearing works")
+    print("[OK] Orion clearing works")
 
     return True
 
 
 async def test_error_handling():
     """Test observer error handling."""
-    print("\n🧪 Testing Error Handling")
+    print("\n Testing Error Handling")
     print("=" * 60)
 
     observer = DAGVisualizationObserver()
@@ -378,9 +378,9 @@ async def test_error_handling():
 
     try:
         await observer.on_event(task_event_no_orion)
-        print("✅ Gracefully handled task event with unknown orion")
+        print("[OK] Gracefully handled task event with unknown orion")
     except Exception as e:
-        print(f"❌ Error handling task event with unknown orion: {e}")
+        print(f"[FAIL] Error handling task event with unknown orion: {e}")
         return False
 
     # Test handling malformed event
@@ -393,9 +393,9 @@ async def test_error_handling():
 
     try:
         await observer.on_event(malformed_event)
-        print("✅ Gracefully handled malformed event")
+        print("[OK] Gracefully handled malformed event")
     except Exception as e:
-        print(f"❌ Error handling malformed event: {e}")
+        print(f"[FAIL] Error handling malformed event: {e}")
         return False
 
     return True
@@ -403,7 +403,7 @@ async def test_error_handling():
 
 async def test_visualization_output_quality():
     """Test the quality and completeness of visualization output."""
-    print("\n🧪 Testing Visualization Output Quality")
+    print("\n Testing Visualization Output Quality")
     print("=" * 60)
 
     # Create observer with full output capture
@@ -450,22 +450,22 @@ async def test_visualization_output_quality():
         total_output_length += len(event_output)
 
         print(
-            f"📊 {event.event_type.value} event output: {len(event_output)} characters"
+            f"[STATUS] {event.event_type.value} event output: {len(event_output)} characters"
         )
 
-    print(f"\n📈 Total visualization output: {total_output_length} characters")
+    print(f"\n Total visualization output: {total_output_length} characters")
 
     if total_output_length > 500:  # Expect meaningful output
-        print("✅ Rich visualization output generated")
+        print("[OK] Rich visualization output generated")
         return True
     else:
-        print("⚠️  Limited visualization output detected")
+        print("️  Limited visualization output detected")
         return False
 
 
 async def run_all_tests():
     """Run all DAGVisualizationObserver tests."""
-    print("🌟 DAGVisualizationObserver Event Handling Test Suite")
+    print(" DAGVisualizationObserver Event Handling Test Suite")
     print("=" * 80)
     print("Testing comprehensive event handling and visualization output")
     print("=" * 80)
@@ -487,34 +487,34 @@ async def run_all_tests():
             result = await test_func()
             test_results.append((test_name, result))
             print(
-                f"\n{'✅' if result else '❌'} {test_name}: {'PASSED' if result else 'FAILED'}"
+                f"\n{'[OK]' if result else '[FAIL]'} {test_name}: {'PASSED' if result else 'FAILED'}"
             )
         except Exception as e:
             test_results.append((test_name, False))
-            print(f"\n❌ {test_name}: FAILED - {e}")
+            print(f"\n[FAIL] {test_name}: FAILED - {e}")
 
     # Summary
     print("\n" + "=" * 80)
-    print("📊 Test Results Summary")
+    print("[STATUS] Test Results Summary")
     print("=" * 80)
 
     passed = sum(1 for _, result in test_results if result)
     total = len(test_results)
 
     for test_name, result in test_results:
-        status = "✅ PASSED" if result else "❌ FAILED"
+        status = "[OK] PASSED" if result else "[FAIL] FAILED"
         print(f"  {test_name}: {status}")
 
-    print(f"\n🎯 Overall Results: {passed}/{total} tests passed")
+    print(f"\n Overall Results: {passed}/{total} tests passed")
 
     if passed == total:
-        print("🎉 All DAGVisualizationObserver tests passed!")
-        print("✅ Observer properly handles all event types")
-        print("✅ Visualization output is generated for events")
-        print("✅ Error handling is robust")
-        print("✅ State management functions correctly")
+        print(" All DAGVisualizationObserver tests passed!")
+        print("[OK] Observer properly handles all event types")
+        print("[OK] Visualization output is generated for events")
+        print("[OK] Error handling is robust")
+        print("[OK] State management functions correctly")
     else:
-        print("💥 Some tests failed. Observer may need attention.")
+        print(" Some tests failed. Observer may need attention.")
 
     return passed == total
 

@@ -23,7 +23,7 @@ async def test_server_client_recognition():
     """测试服务器是否能正确识别客户端类型"""
 
     print("=" * 80)
-    print("🔍 测试服务器端客户端类型识别")
+    print(" 测试服务器端客户端类型识别")
     print("=" * 80)
 
     server_url = "ws://localhost:5000/ws"
@@ -48,7 +48,7 @@ async def test_server_client_recognition():
         )
 
         await device_ws.send(device_reg.model_dump_json())
-        print("📱 设备客户端注册消息已发送")
+        print(" 设备客户端注册消息已发送")
 
         # 发送心跳
         await asyncio.sleep(1)
@@ -59,13 +59,13 @@ async def test_server_client_recognition():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await device_ws.send(heartbeat.model_dump_json())
-        print("💓 设备客户端心跳已发送")
+        print(" 设备客户端心跳已发送")
 
         await device_ws.close()
-        print("✅ 设备客户端测试完成")
+        print("[OK] 设备客户端测试完成")
 
     except Exception as e:
-        print(f"❌ 设备客户端测试失败: {e}")
+        print(f"[FAIL] 设备客户端测试失败: {e}")
 
     # 测试2: 连接一个星座客户端
     print("\n[2] 测试星座客户端识别...")
@@ -89,7 +89,7 @@ async def test_server_client_recognition():
         )
 
         await orion_ws.send(orion_reg.model_dump_json())
-        print("🌟 星座客户端注册消息已发送")
+        print(" 星座客户端注册消息已发送")
 
         # 发送心跳
         await asyncio.sleep(1)
@@ -100,19 +100,19 @@ async def test_server_client_recognition():
             timestamp=datetime.now(timezone.utc).isoformat(),
         )
         await orion_ws.send(heartbeat.model_dump_json())
-        print("💓 星座客户端心跳已发送")
+        print(" 星座客户端心跳已发送")
 
         await orion_ws.close()
-        print("✅ 星座客户端测试完成")
+        print("[OK] 星座客户端测试完成")
 
     except Exception as e:
-        print(f"❌ 星座客户端测试失败: {e}")
+        print(f"[FAIL] 星座客户端测试失败: {e}")
 
     print("\n" + "=" * 80)
-    print("🎯 测试完成！请检查服务器日志以确认:")
-    print("   - 设备客户端应该显示: 📱 Device client test_device_001 connected")
+    print(" 测试完成！请检查服务器日志以确认:")
+    print("   - 设备客户端应该显示:  Device client test_device_001 connected")
     print(
-        "   - 星座客户端应该显示: 🌟 Orion client test_orion@client_001 connected"
+        "   - 星座客户端应该显示:  Orion client test_orion@client_001 connected"
     )
     print("   - 消息处理应该有相应的emoji标识")
     print("=" * 80)

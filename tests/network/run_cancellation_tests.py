@@ -40,15 +40,15 @@ def run_tests():
 
         if result.returncode != 0:
             all_passed = False
-            print(f"\n❌ FAILED: {test_file}\n")
+            print(f"\n[FAIL] FAILED: {test_file}\n")
         else:
-            print(f"\n✅ PASSED: {test_file}\n")
+            print(f"\n[OK] PASSED: {test_file}\n")
 
     print("\n" + "=" * 80)
     if all_passed:
-        print("✅ All cancellation tests PASSED!")
+        print("[OK] All cancellation tests PASSED!")
     else:
-        print("❌ Some tests FAILED. Please check the output above.")
+        print("[FAIL] Some tests FAILED. Please check the output above.")
     print("=" * 80)
 
     return 0 if all_passed else 1

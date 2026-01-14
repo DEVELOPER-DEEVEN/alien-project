@@ -1,4 +1,4 @@
-# 📱 Device Info Provider
+#  Device Info Provider
 
 The **Device Info Provider** collects comprehensive system information from client devices during registration, enabling intelligent task assignment and device selection in orion (multi-device) scenarios.
 
@@ -6,7 +6,7 @@ Device information is proactively collected during client registration and pushe
 
 ---
 
-## 📋 Overview
+## [TASK] Overview
 
 **Core Capabilities:**
 
@@ -22,15 +22,15 @@ Device information is proactively collected during client registration and pushe
 
 | Platform | Status | Features Detected |
 |----------|--------|-------------------|
-| **Windows** | ✅ Full Support | GUI, CLI, browser, file system, office, Windows apps |
-| **Linux** | ✅ Full Support | GUI, CLI, browser, file system, office, Linux apps |
-| **macOS** | ✅ Full Support | GUI, CLI, browser, file system, office |
-| **Mobile** | 🔮 Planned | Touch, mobile apps, sensors |
-| **IoT** | 🔮 Planned | Sensors, actuators, limited resources |
+| **Windows** | [OK] Full Support | GUI, CLI, browser, file system, office, Windows apps |
+| **Linux** | [OK] Full Support | GUI, CLI, browser, file system, office, Linux apps |
+| **macOS** | [OK] Full Support | GUI, CLI, browser, file system, office |
+| **Mobile** |  Planned | Touch, mobile apps, sensors |
+| **IoT** |  Planned | Sensors, actuators, limited resources |
 
 ---
 
-## 🏗️ Architecture
+## ️ Architecture
 
 ### DeviceSystemInfo Dataclass
 
@@ -86,7 +86,7 @@ classDiagram
 
 ---
 
-## 🔍 Collection Process
+##  Collection Process
 
 ### Automatic Collection
 
@@ -147,7 +147,7 @@ sequenceDiagram
 
 ---
 
-## 🎯 Feature Detection
+##  Feature Detection
 
 ### Platform-Specific Features
 
@@ -201,7 +201,7 @@ features = [
 
 ---
 
-## 💡 Usage Examples
+## [THOUGHT] Usage Examples
 
 ### Basic Collection
 
@@ -268,7 +268,7 @@ json_str = json.dumps(device_dict, indent=2)
 
 ---
 
-## ⚠️ Error Handling
+## ️ Error Handling
 
 ### Graceful Degradation
 
@@ -310,7 +310,7 @@ except Exception as e:
 
 ---
 
-## 🔧 Memory Detection Details
+## [CONFIG] Memory Detection Details
 
 ### psutil Dependency
 
@@ -342,7 +342,7 @@ def _get_memory_total_gb() -> float:
 
 ---
 
-## 🌐 IP Address Detection
+## [WEB] IP Address Detection
 
 ### Multi-Method Approach
 
@@ -375,7 +375,7 @@ return "unknown"
 
 ---
 
-## 🚀 Integration Points
+## [START] Integration Points
 
 ### WebSocket Client Registration
 
@@ -418,7 +418,7 @@ See [Server Quick Start](../server/quick_start.md) for server-side processing de
 
 ---
 
-## ✅ Best Practices
+## [OK] Best Practices
 
 **1. Add Custom Metadata for Environment Tracking**
 
@@ -477,7 +477,7 @@ assert system_info.cpu_count > 0, "CPU detection failed"
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 - [WebSocket Client](./websocket_client.md) - See how device info is used in registration
 - [Quick Start](./quick_start.md) - Connect your device to the server

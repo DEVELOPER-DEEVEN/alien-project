@@ -9,21 +9,21 @@ The **Network WebUI** is a modern, interactive web interface for the ALIEN³ Net
 
 ---
 
-## 🌟 Overview
+##  Overview
 
 The Network WebUI transforms the command-line Network experience into a rich, visual interface where you can:
 
-- **🗣️ Chat with Network**: Submit natural language requests through an intuitive chat interface
-- **📊 Visualize Orions**: Watch task orions form and execute as interactive DAG graphs
-- **🎯 Monitor Execution**: Track task status, device assignments, and real-time progress
-- **🔄 See Agent Reasoning**: Observe agent thoughts, plans, and decision-making processes
-- **🖥️ Manage Devices**: View, monitor, and **add new devices** through the UI
-- **➕ Add Device Agents**: Register new device agents dynamically without restarting
-- **📡 Stream Events**: Follow the event log to understand system behavior in real-time
+- **️ Chat with Network**: Submit natural language requests through an intuitive chat interface
+- **[STATUS] Visualize Orions**: Watch task orions form and execute as interactive DAG graphs
+- ** Monitor Execution**: Track task status, device assignments, and real-time progress
+- **[CONTINUE] See Agent Reasoning**: Observe agent thoughts, plans, and decision-making processes
+- **️ Manage Devices**: View, monitor, and **add new devices** through the UI
+- ** Add Device Agents**: Register new device agents dynamically without restarting
+- ** Stream Events**: Follow the event log to understand system behavior in real-time
 
 ---
 
-## 🚀 Quick Start
+## [START] Quick Start
 
 ### Starting the WebUI
 
@@ -52,7 +52,7 @@ The WebUI will automatically:
 
 ---
 
-## 🏗️ Architecture
+## ️ Architecture
 
 ### Design Principles
 
@@ -194,12 +194,12 @@ network/webui/
 
 **Architecture Benefits:**
 
-✅ **Maintainability**: Each module has a single, clear responsibility  
-✅ **Testability**: Services and handlers can be unit tested independently  
-✅ **Type Safety**: Pydantic models validate all inputs/outputs  
-✅ **Extensibility**: Easy to add new endpoints, message types, or services  
-✅ **Readability**: Clear module boundaries improve code comprehension  
-✅ **Reusability**: Services can be shared across multiple endpoints  
+[OK] **Maintainability**: Each module has a single, clear responsibility  
+[OK] **Testability**: Services and handlers can be unit tested independently  
+[OK] **Type Safety**: Pydantic models validate all inputs/outputs  
+[OK] **Extensibility**: Easy to add new endpoints, message types, or services  
+[OK] **Readability**: Clear module boundaries improve code comprehension  
+[OK] **Reusability**: Services can be shared across multiple endpoints  
 
 #### Frontend Components
 
@@ -218,7 +218,7 @@ network/webui/
 
 ---
 
-## 🔌 Communication Protocol
+##  Communication Protocol
 
 ### HTTP API Endpoints
 
@@ -448,7 +448,7 @@ All Network events are forwarded to the WebUI in real-time:
 
 ---
 
-## 🎨 User Interface
+##  User Interface
 
 ### Main Layout
 
@@ -457,28 +457,28 @@ The WebUI uses a three-panel layout:
 ```mermaid
 graph LR
     subgraph UI["Network WebUI Layout"]
-        subgraph Header["🌌 Header Bar"]
+        subgraph Header["[ORION] Header Bar"]
             H1[Network Logo]
             H2[Connection Status]
             H3[Settings]
         end
         
-        subgraph Left["📱 Left Panel: Devices"]
-            L1[Device Card 1<br/>Windows<br/>🟢 Connected]
-            L2[Device Card 2<br/>Linux<br/>🔵 Busy]
-            L3[Device Card 3<br/>macOS<br/>🟢 Idle]
+        subgraph Left[" Left Panel: Devices"]
+            L1[Device Card 1<br/>Windows<br/> Connected]
+            L2[Device Card 2<br/>Linux<br/> Busy]
+            L3[Device Card 3<br/>macOS<br/> Idle]
         end
         
-        subgraph Center["💬 Center Panel: Chat"]
+        subgraph Center["[COMMENT] Center Panel: Chat"]
             C1[Message History<br/>User/Agent/Actions]
             C2[Action Trees<br/>Collapsible]
             C3[Input Box<br/>Type request...]
         end
         
-        subgraph Right["📊 Right Panel: Tabs"]
-            R1[🌟 Orion<br/>DAG Graph]
-            R2[📋 Tasks<br/>Task List]
-            R3[📝 Details<br/>Selected Info]
+        subgraph Right["[STATUS] Right Panel: Tabs"]
+            R1[ Orion<br/>DAG Graph]
+            R2[[TASK] Tasks<br/>Task List]
+            R3[ Details<br/>Selected Info]
         end
         
         Header -.-> Left
@@ -496,7 +496,7 @@ graph LR
 
 ### Key Features
 
-#### 🗣️ Chat Interface
+#### ️ Chat Interface
 
 **Location:** Center panel
 
@@ -515,7 +515,7 @@ graph LR
 - **Action Messages**: Individual orion operations (add_task, build_orion, etc.)
 - **System Messages**: Status updates and notifications
 
-#### 📊 DAG Visualization
+#### [STATUS] DAG Visualization
 
 **Location:** Right panel → Orion tab
 
@@ -523,11 +523,11 @@ graph LR
 - Interactive node-and-edge graph
 - Real-time task status updates
 - Color-coded status indicators:
-  - 🔵 Pending: Gray
-  - 🟡 Running: Blue (animated)
-  - 🟢 Completed: Green
-  - 🔴 Failed: Red
-  - ⚫ Skipped: Orange
+  -  Pending: Gray
+  -  Running: Blue (animated)
+  -  Completed: Green
+  -  Failed: Red
+  -  Skipped: Orange
 - Dependency edges showing task relationships
 - Pan and zoom controls
 - Automatic layout optimization
@@ -539,23 +539,23 @@ graph LR
 - **Zoom**: Mouse wheel or pinch gesture
 - **Fit view**: Click fit-to-screen button
 
-#### 🖥️ Device Management
+#### ️ Device Management
 
 **Location:** Left sidebar
 
 **Features:**
 - Device status cards with real-time updates
 - Color-coded status indicators:
-  - 🟢 Connected/Idle: Green
-  - 🔵 Busy: Blue
-  - 🟡 Connecting: Yellow
-  - 🔴 Disconnected/Failed: Red
+  -  Connected/Idle: Green
+  -  Busy: Blue
+  -  Connecting: Yellow
+  -  Disconnected/Failed: Red
 - Capability badges
 - Current task assignment
 - Last heartbeat timestamp
 - Connection metrics
 - Click to view device details
-- **➕ Add Device Button**: Manually add new devices through UI
+- ** Add Device Button**: Manually add new devices through UI
 
 **Device Information:**
 - OS type and version
@@ -580,7 +580,7 @@ Click the **"+"** button in the Device Panel header to open the Add Device Modal
 
 2. **Capabilities:**
    - Add capabilities one by one (e.g., `excel`, `outlook`, `browser`)
-   - Remove capabilities by clicking the ✕ icon
+   - Remove capabilities by clicking the  icon
    - At least one capability is required
 
 3. **Advanced Options:**
@@ -643,7 +643,7 @@ When a device is added through the UI:
 5. **Event Broadcast**: Device status updates are broadcast to all WebSocket clients
 6. **UI Update**: Device card appears in the Device Panel with real-time status
 
-#### 📋 Task Details
+#### [TASK] Task Details
 
 **Location:** Right panel → Tasks tab / Details tab
 
@@ -658,7 +658,7 @@ When a device is added through the UI:
 - Execution timeline
 - Retry information
 
-#### 📡 Event Log
+####  Event Log
 
 **Location:** Right panel (optional view)
 
@@ -673,7 +673,7 @@ When a device is added through the UI:
 
 ---
 
-## 🎨 Theme and Styling
+##  Theme and Styling
 
 ### Design System
 
@@ -713,7 +713,7 @@ slate:    #64748b  // Neutral/Disabled
 
 ---
 
-## 🔧 Configuration
+## [CONFIG] Configuration
 
 ### Server Configuration
 
@@ -762,7 +762,7 @@ Builds production-ready frontend to `network/webui/frontend/dist/`
 
 ---
 
-## 🔍 Event Handling
+##  Event Handling
 
 ### Event Flow
 
@@ -868,7 +868,7 @@ interface NetworkStore {
 
 ---
 
-## 📱 Responsive Design
+##  Responsive Design
 
 The WebUI is designed to work on various screen sizes:
 
@@ -897,7 +897,7 @@ The WebUI is designed to work on various screen sizes:
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Connection Issues
 
@@ -1046,7 +1046,7 @@ The WebUI is designed to work on various screen sizes:
 
 ---
 
-## 🧪 Development
+##  Development
 
 ### Prerequisites
 
@@ -1234,7 +1234,7 @@ async def test_handle_ping():
 
 ---
 
-## 🚀 Advanced Usage
+## [START] Advanced Usage
 
 ### Extending the Backend
 
@@ -1515,10 +1515,10 @@ for device in devices:
     
     if response.status_code == 200:
         result = response.json()
-        print(f"✅ Added: {result['device']['device_id']}")
+        print(f"[OK] Added: {result['device']['device_id']}")
     else:
         error = response.json()
-        print(f"❌ Failed: {device['device_id']} - {error.get('detail')}")
+        print(f"[FAIL] Failed: {device['device_id']} - {error.get('detail')}")
 ```
 
 **Checking Device Status:**
@@ -1534,9 +1534,9 @@ websocket.onmessage = (event) => {
     console.log(`Device ${data.device_id} status: ${data.device_status}`);
     
     if (data.device_status === 'connected') {
-      console.log('✅ Device connected successfully');
+      console.log('[OK] Device connected successfully');
     } else if (data.device_status === 'failed') {
-      console.log('❌ Device connection failed');
+      console.log('[FAIL] Device connection failed');
     }
   }
 };
@@ -1584,7 +1584,7 @@ module.exports = {
 
 ---
 
-## 📊 Monitoring and Analytics
+## [STATUS] Monitoring and Analytics
 
 ### Health Check
 
@@ -1618,14 +1618,14 @@ INFO - WebSocket client disconnected. Total connections: 1
 
 **Frontend Console:**
 ```javascript
-🌌 Connected to Network WebSocket
-📨 Raw WebSocket message received
-📦 Parsed event data: {event_type: 'orion_created', ...}
+[ORION] Connected to Network WebSocket
+ Raw WebSocket message received
+ Parsed event data: {event_type: 'orion_created', ...}
 ```
 
 ---
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Production Deployment
 
@@ -1661,7 +1661,7 @@ When deploying to production:
 
 ---
 
-## 📚 Additional Resources
+## [PLAN] Additional Resources
 
 ### Documentation
 - [FastAPI WebSocket Documentation](https://fastapi.tiangolo.com/advanced/websockets/)
@@ -1684,7 +1684,7 @@ When deploying to production:
 
 ---
 
-## 🎯 Next Steps
+##  Next Steps
 
 Now that you understand the Network WebUI:
 
@@ -1693,4 +1693,4 @@ Now that you understand the Network WebUI:
 3. **[Task Orchestrator](orion_orchestrator/overview.md)** - Understand task execution
 4. **[Device Manager](client/device_manager.md)** - Configure and monitor devices
 
-Happy orchestrating with Network WebUI! 🌌✨
+Happy orchestrating with Network WebUI! [ORION][NEW]

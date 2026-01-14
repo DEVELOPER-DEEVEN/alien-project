@@ -30,7 +30,7 @@ from network.orion.enums import TaskPriority, DependencyType
 
 def test_basic_task_operations():
     """Test basic task CRUD operations."""
-    print("🧪 Testing Basic Task Operations...")
+    print(" Testing Basic Task Operations...")
 
     editor = OrionEditor()
 
@@ -40,29 +40,29 @@ def test_basic_task_operations():
     )
     assert task1.task_id == "task1"
     assert len(editor.list_tasks()) == 1
-    print("✅ Task creation and addition successful")
+    print("[OK] Task creation and addition successful")
 
     # Test update task
     updated_task = editor.update_task("task1", description="Updated task description")
     assert updated_task.description == "Updated task description"
-    print("✅ Task update successful")
+    print("[OK] Task update successful")
 
     # Test get task
     retrieved_task = editor.get_task("task1")
     assert retrieved_task is not None
     assert retrieved_task.task_id == "task1"
-    print("✅ Task retrieval successful")
+    print("[OK] Task retrieval successful")
 
     # Test remove task
     removed_id = editor.remove_task("task1")
     assert removed_id == "task1"
     assert len(editor.list_tasks()) == 0
-    print("✅ Task removal successful")
+    print("[OK] Task removal successful")
 
 
 def test_basic_dependency_operations():
     """Test basic dependency CRUD operations."""
-    print("\n🧪 Testing Basic Dependency Operations...")
+    print("\n Testing Basic Dependency Operations...")
 
     editor = OrionEditor()
 
@@ -77,31 +77,31 @@ def test_basic_dependency_operations():
     assert dep1.from_task_id == "task1"
     assert dep1.to_task_id == "task2"
     assert len(editor.list_dependencies()) == 1
-    print("✅ Dependency creation and addition successful")
+    print("[OK] Dependency creation and addition successful")
 
     # Test get dependency
     retrieved_dep = editor.get_dependency(dep1.line_id)
     assert retrieved_dep is not None
     assert retrieved_dep.line_id == dep1.line_id
-    print("✅ Dependency retrieval successful")
+    print("[OK] Dependency retrieval successful")
 
     # Test update dependency
     updated_dep = editor.update_dependency(
         dep1.line_id, condition_description="Updated condition"
     )
     assert updated_dep.condition_description == "Updated condition"
-    print("✅ Dependency update successful")
+    print("[OK] Dependency update successful")
 
     # Test remove dependency
     removed_dep_id = editor.remove_dependency(dep1.line_id)
     assert removed_dep_id == dep1.line_id
     assert len(editor.list_dependencies()) == 0
-    print("✅ Dependency removal successful")
+    print("[OK] Dependency removal successful")
 
 
 def test_undo_redo_operations():
     """Test undo/redo functionality."""
-    print("\n🧪 Testing Undo/Redo Operations...")
+    print("\n Testing Undo/Redo Operations...")
 
     editor = OrionEditor()
 
@@ -109,20 +109,20 @@ def test_undo_redo_operations():
     task1 = editor.create_and_add_task("task1", "Test task")
     assert len(editor.list_tasks()) == 1
     assert editor.can_undo(), "Should be able to undo after adding task"
-    print("✅ Task added, undo available")
+    print("[OK] Task added, undo available")
 
     # Undo the addition
     undo_success = editor.undo()
     assert undo_success
     assert len(editor.list_tasks()) == 0
     assert editor.can_redo()
-    print("✅ Task addition undone, redo available")
+    print("[OK] Task addition undone, redo available")
 
     # Redo the addition
     redo_success = editor.redo()
     assert redo_success
     assert len(editor.list_tasks()) == 1
-    print("✅ Task addition redone")
+    print("[OK] Task addition redone")
 
     # Test multiple operations
     task2 = editor.create_and_add_task("task2", "Second task")
@@ -130,22 +130,22 @@ def test_undo_redo_operations():
 
     assert len(editor.list_tasks()) == 2
     assert len(editor.list_dependencies()) == 1
-    print("✅ Multiple operations executed")
+    print("[OK] Multiple operations executed")
 
     # Undo dependency addition
     editor.undo()
     assert len(editor.list_dependencies()) == 0
-    print("✅ Dependency addition undone")
+    print("[OK] Dependency addition undone")
 
     # Undo task2 addition
     editor.undo()
     assert len(editor.list_tasks()) == 1
-    print("✅ Second task addition undone")
+    print("[OK] Second task addition undone")
 
 
 def test_bulk_operations():
     """Test bulk orion operations."""
-    print("\n🧪 Testing Bulk Operations...")
+    print("\n Testing Bulk Operations...")
 
     editor = OrionEditor()
 
@@ -187,29 +187,29 @@ def test_bulk_operations():
 
     assert len(editor.list_tasks()) == 3
     assert len(editor.list_dependencies()) == 2
-    print("✅ Bulk orion build successful")
+    print("[OK] Bulk orion build successful")
 
     # Test validation
     is_valid, errors = editor.validate_orion()
     assert is_valid
     assert len(errors) == 0
-    print("✅ Orion validation successful")
+    print("[OK] Orion validation successful")
 
     # Test topological order
     topo_order = editor.get_topological_order()
     assert topo_order == ["task1", "task2", "task3"]
-    print("✅ Topological ordering correct")
+    print("[OK] Topological ordering correct")
 
     # Test clear orion
     cleared = editor.clear_orion()
     assert len(editor.list_tasks()) == 0
     assert len(editor.list_dependencies()) == 0
-    print("✅ Orion cleared successfully")
+    print("[OK] Orion cleared successfully")
 
 
 def test_file_operations():
     """Test file save/load operations."""
-    print("\n🧪 Testing File Operations...")
+    print("\n Testing File Operations...")
 
     editor = OrionEditor()
 
@@ -226,7 +226,7 @@ def test_file_operations():
         saved_path = editor.save_orion(temp_file)
         assert saved_path == temp_file
         assert os.path.exists(temp_file)
-        print("✅ Orion saved to file")
+        print("[OK] Orion saved to file")
 
         # Test load from file
         editor2 = OrionEditor()
@@ -234,13 +234,13 @@ def test_file_operations():
 
         assert len(editor2.list_tasks()) == 2
         assert len(editor2.list_dependencies()) == 1
-        print("✅ Orion loaded from file")
+        print("[OK] Orion loaded from file")
 
         # Verify content matches
         original_task = editor.get_task("task1")
         loaded_task = editor2.get_task("task1")
         assert original_task.description == loaded_task.description
-        print("✅ Loaded content matches original")
+        print("[OK] Loaded content matches original")
 
     finally:
         # Clean up
@@ -250,7 +250,7 @@ def test_file_operations():
 
 def test_advanced_operations():
     """Test advanced editor operations."""
-    print("\n🧪 Testing Advanced Operations...")
+    print("\n Testing Advanced Operations...")
 
     editor = OrionEditor()
 
@@ -286,13 +286,13 @@ def test_advanced_operations():
     ]
 
     editor.build_from_tasks_and_dependencies(tasks, dependencies)
-    print("✅ Complex orion created")
+    print("[OK] Complex orion created")
 
     # Test subgraph creation
     subgraph_editor = editor.create_subgraph(["A", "B", "D"])
     assert len(subgraph_editor.list_tasks()) == 3
     assert len(subgraph_editor.list_dependencies()) == 2  # A->B and B->D dependencies
-    print("✅ Subgraph creation successful")
+    print("[OK] Subgraph creation successful")
 
     # Test merge operation
     merge_editor = OrionEditor()
@@ -303,19 +303,19 @@ def test_advanced_operations():
 
     assert len(editor.list_tasks()) == original_count + 1
     assert editor.get_task("merged_E") is not None
-    print("✅ Orion merge successful")
+    print("[OK] Orion merge successful")
 
     # Test statistics
     stats = editor.get_statistics()
     assert "total_tasks" in stats
     assert "editor_execution_count" in stats
     assert stats["total_tasks"] >= 5
-    print("✅ Statistics retrieval successful")
+    print("[OK] Statistics retrieval successful")
 
 
 def test_observer_pattern():
     """Test observer pattern functionality."""
-    print("\n🧪 Testing Observer Pattern...")
+    print("\n Testing Observer Pattern...")
 
     events = []
 
@@ -332,7 +332,7 @@ def test_observer_pattern():
     assert len(events) == 2
     assert events[0][0] == "add_task"
     assert events[1][0] == "update_task"
-    print("✅ Observer notifications successful")
+    print("[OK] Observer notifications successful")
 
     # Remove observer
     editor.remove_observer(test_observer)
@@ -340,12 +340,12 @@ def test_observer_pattern():
 
     # Should not add new events
     assert len(events) == 2
-    print("✅ Observer removal successful")
+    print("[OK] Observer removal successful")
 
 
 def test_error_handling():
     """Test error handling in commands."""
-    print("\n🧪 Testing Error Handling...")
+    print("\n Testing Error Handling...")
 
     editor = OrionEditor()
 
@@ -358,14 +358,14 @@ def test_error_handling():
         editor.add_task(task_duplicate)
         assert False, "Should have raised an error"
     except Exception as e:
-        print(f"✅ Duplicate task error handled: {type(e).__name__}")
+        print(f"[OK] Duplicate task error handled: {type(e).__name__}")
 
     # Test removing non-existent task
     try:
         editor.remove_task("non_existent")
         assert False, "Should have raised an error"
     except Exception as e:
-        print(f"✅ Non-existent task error handled: {type(e).__name__}")
+        print(f"[OK] Non-existent task error handled: {type(e).__name__}")
 
     # Test invalid dependency (cycle)
     editor.create_and_add_task("cycle1", "Cycle task 1")
@@ -377,12 +377,12 @@ def test_error_handling():
         editor.create_and_add_dependency("cycle2", "cycle1")
         assert False, "Should have raised an error for cycle"
     except Exception as e:
-        print(f"✅ Cycle dependency error handled: {type(e).__name__}")
+        print(f"[OK] Cycle dependency error handled: {type(e).__name__}")
 
 
 def main():
     """Run all tests."""
-    print("🚀 Starting TaskOrion Editor Command Pattern Tests\n")
+    print("[START] Starting TaskOrion Editor Command Pattern Tests\n")
 
     try:
         test_basic_task_operations()
@@ -394,13 +394,13 @@ def main():
         test_observer_pattern()
         test_error_handling()
 
-        print("\n🎉 All tests passed successfully!")
+        print("\n All tests passed successfully!")
         print(
-            "✅ TaskOrion Editor Command Pattern implementation is working correctly"
+            "[OK] TaskOrion Editor Command Pattern implementation is working correctly"
         )
 
     except Exception as e:
-        print(f"\n❌ Test failed with error: {e}")
+        print(f"\n[FAIL] Test failed with error: {e}")
         import traceback
 
         traceback.print_exc()

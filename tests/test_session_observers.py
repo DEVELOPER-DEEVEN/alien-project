@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 def test_observer_imports():
     """Test that all observer classes can be imported correctly."""
-    print("🧪 Testing observer imports...")
+    print(" Testing observer imports...")
 
     try:
         from network.session import (
@@ -25,24 +25,24 @@ def test_observer_imports():
             DAGVisualizationObserver,
         )
 
-        print("✅ All main classes imported successfully")
+        print("[OK] All main classes imported successfully")
         return True
     except Exception as e:
-        print(f"❌ Import failed: {e}")
+        print(f"[FAIL] Import failed: {e}")
         traceback.print_exc()
         return False
 
 
 def test_observer_instantiation():
     """Test that observer instances can be created correctly."""
-    print("\n🧪 Testing observer instantiation...")
+    print("\n Testing observer instantiation...")
 
     try:
         from network.session import SessionMetricsObserver, DAGVisualizationObserver
 
         # Test SessionMetricsObserver
         metrics_observer = SessionMetricsObserver(session_id="test_session")
-        print(f"✅ SessionMetricsObserver created: {type(metrics_observer)}")
+        print(f"[OK] SessionMetricsObserver created: {type(metrics_observer)}")
 
         # Test initial metrics
         initial_metrics = metrics_observer.get_metrics()
@@ -55,28 +55,28 @@ def test_observer_instantiation():
             "task_timings",
         }
         if expected_keys.issubset(initial_metrics.keys()):
-            print("✅ SessionMetricsObserver has expected metrics structure")
+            print("[OK] SessionMetricsObserver has expected metrics structure")
         else:
             print(
-                f"❌ Missing expected metrics keys: {expected_keys - initial_metrics.keys()}"
+                f"[FAIL] Missing expected metrics keys: {expected_keys - initial_metrics.keys()}"
             )
             return False
 
         # Test DAGVisualizationObserver (with visualization disabled to avoid import issues)
         dag_observer = DAGVisualizationObserver(enable_visualization=False)
-        print(f"✅ DAGVisualizationObserver created: {type(dag_observer)}")
+        print(f"[OK] DAGVisualizationObserver created: {type(dag_observer)}")
 
         return True
 
     except Exception as e:
-        print(f"❌ Instantiation failed: {e}")
+        print(f"[FAIL] Instantiation failed: {e}")
         traceback.print_exc()
         return False
 
 
 def test_modular_structure():
     """Test that the modular structure is working correctly."""
-    print("\n🧪 Testing modular structure...")
+    print("\n Testing modular structure...")
 
     try:
         # Test direct imports from observers module
@@ -93,8 +93,8 @@ def test_modular_structure():
             VisualizationChangeDetector,
         )
 
-        print("✅ Direct observer module imports successful")
-        print("✅ Visualization module imports successful")
+        print("[OK] Direct observer module imports successful")
+        print("[OK] Visualization module imports successful")
 
         # Test that observers work with visualization components
         observer = DAGVisualizationObserver()
@@ -102,29 +102,29 @@ def test_modular_structure():
         orion_display = OrionDisplay()
         change_detector = VisualizationChangeDetector()
 
-        print("✅ Observers and visualization components integrate correctly")
+        print("[OK] Observers and visualization components integrate correctly")
 
         # Test that observers integrate with visualization components
         observer = DAGVisualizationObserver()
-        print(f"✅ DAGVisualizationObserver: {type(observer)}")
+        print(f"[OK] DAGVisualizationObserver: {type(observer)}")
 
         # Test change detector functionality
-        print(f"✅ VisualizationChangeDetector: {type(change_detector)}")
+        print(f"[OK] VisualizationChangeDetector: {type(change_detector)}")
 
         print(
-            "✅ Modular structure test passed - observers delegate to visualization components"
+            "[OK] Modular structure test passed - observers delegate to visualization components"
         )
         return True
 
     except Exception as e:
-        print(f"❌ Modular structure test failed: {e}")
+        print(f"[FAIL] Modular structure test failed: {e}")
         traceback.print_exc()
         return False
 
 
 def test_observer_interfaces():
     """Test that observers implement the expected interfaces."""
-    print("\n🧪 Testing observer interfaces...")
+    print("\n Testing observer interfaces...")
 
     try:
         from network.session import SessionMetricsObserver, DAGVisualizationObserver
@@ -133,46 +133,46 @@ def test_observer_interfaces():
         # Test SessionMetricsObserver interface
         metrics_observer = SessionMetricsObserver(session_id="test")
         if isinstance(metrics_observer, IEventObserver):
-            print("✅ SessionMetricsObserver implements IEventObserver")
+            print("[OK] SessionMetricsObserver implements IEventObserver")
         else:
-            print("❌ SessionMetricsObserver does not implement IEventObserver")
+            print("[FAIL] SessionMetricsObserver does not implement IEventObserver")
             return False
 
         if hasattr(metrics_observer, "on_event") and callable(
             getattr(metrics_observer, "on_event")
         ):
-            print("✅ SessionMetricsObserver has on_event method")
+            print("[OK] SessionMetricsObserver has on_event method")
         else:
-            print("❌ SessionMetricsObserver missing on_event method")
+            print("[FAIL] SessionMetricsObserver missing on_event method")
             return False
 
         # Test DAGVisualizationObserver interface
         dag_observer = DAGVisualizationObserver(enable_visualization=False)
         if isinstance(dag_observer, IEventObserver):
-            print("✅ DAGVisualizationObserver implements IEventObserver")
+            print("[OK] DAGVisualizationObserver implements IEventObserver")
         else:
-            print("❌ DAGVisualizationObserver does not implement IEventObserver")
+            print("[FAIL] DAGVisualizationObserver does not implement IEventObserver")
             return False
 
         if hasattr(dag_observer, "on_event") and callable(
             getattr(dag_observer, "on_event")
         ):
-            print("✅ DAGVisualizationObserver has on_event method")
+            print("[OK] DAGVisualizationObserver has on_event method")
         else:
-            print("❌ DAGVisualizationObserver missing on_event method")
+            print("[FAIL] DAGVisualizationObserver missing on_event method")
             return False
 
         return True
 
     except Exception as e:
-        print(f"❌ Interface test failed: {e}")
+        print(f"[FAIL] Interface test failed: {e}")
         traceback.print_exc()
         return False
 
 
 def main():
     """Run all tests and report results."""
-    print("🚀 Starting Session Observer Module Tests")
+    print("[START] Starting Session Observer Module Tests")
     print("=" * 50)
 
     tests = [
@@ -188,26 +188,26 @@ def main():
             result = test()
             results.append(result)
         except Exception as e:
-            print(f"❌ Test {test.__name__} crashed: {e}")
+            print(f"[FAIL] Test {test.__name__} crashed: {e}")
             results.append(False)
 
     print("\n" + "=" * 50)
-    print("📊 Test Results Summary:")
+    print("[STATUS] Test Results Summary:")
 
     passed = sum(results)
     total = len(results)
 
     for i, (test, result) in enumerate(zip(tests, results)):
-        status = "✅ PASS" if result else "❌ FAIL"
+        status = "[OK] PASS" if result else "[FAIL] FAIL"
         print(f"  {i+1}. {test.__name__}: {status}")
 
     print(f"\nOverall: {passed}/{total} tests passed")
 
     if passed == total:
-        print("🎉 All tests passed! Observer module structure is working correctly.")
+        print(" All tests passed! Observer module structure is working correctly.")
         return 0
     else:
-        print("💥 Some tests failed. Please check the observer module structure.")
+        print(" Some tests failed. Please check the observer module structure.")
         return 1
 
 

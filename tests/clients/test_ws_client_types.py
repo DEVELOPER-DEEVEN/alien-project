@@ -113,7 +113,7 @@ async def test_client_types():
     """测试不同类型的客户端"""
 
     print("=" * 80)
-    print("🧪 测试 WebSocket 客户端类型区分功能")
+    print(" 测试 WebSocket 客户端类型区分功能")
     print("=" * 80)
 
     # 创建测试客户端
@@ -127,18 +127,18 @@ async def test_client_types():
         print("\n[1] 连接设备客户端...")
         device_connected = await device_client.connect()
         if device_connected:
-            print("✅ 设备客户端连接成功")
+            print("[OK] 设备客户端连接成功")
         else:
-            print("❌ 设备客户端连接失败")
+            print("[FAIL] 设备客户端连接失败")
             return
 
         # 2. 连接星座客户端
         print("\n[2] 连接星座客户端...")
         orion_connected = await orion_client.connect()
         if orion_connected:
-            print("✅ 星座客户端连接成功")
+            print("[OK] 星座客户端连接成功")
         else:
-            print("❌ 星座客户端连接失败")
+            print("[FAIL] 星座客户端连接失败")
             return
 
         # 3. 发送心跳测试
@@ -150,7 +150,7 @@ async def test_client_types():
         print("\n[4] 等待 5 秒观察服务器日志...")
         await asyncio.sleep(5)
 
-        print("\n✅ 客户端类型区分测试完成")
+        print("\n[OK] 客户端类型区分测试完成")
 
     except Exception as e:
         logger.error(f"测试过程中出错: {e}")

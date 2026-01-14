@@ -43,7 +43,7 @@ graph TB
         Shell["run_shell()"]
     end
     
-    System["System Modified<br/>✅ Side Effects"]
+    System["System Modified<br/>[OK] Side Effects"]
     
     LLM --> Agent
     Agent --> MCP
@@ -59,11 +59,11 @@ graph TB
 
 **Side Effects:**
 
-- **✅ Modifies State**: Can change system, files, UI
-- **⚠️ Not Idempotent**: Same action may have different results
-- **🔒 Use with Caution**: Always verify before executing
-- **📝 Audit Trail**: Log all actions for debugging
-- **🤖 LLM-Controlled**: Agent decides when and which action to execute
+- **[OK] Modifies State**: Can change system, files, UI
+- **️ Not Idempotent**: Same action may have different results
+- ** Use with Caution**: Always verify before executing
+- ** Audit Trail**: Log all actions for debugging
+- ** LLM-Controlled**: Agent decides when and which action to execute
 
 ## Tool Type Identifier
 
@@ -120,11 +120,11 @@ ALIEN² provides several built-in action servers for different automation scenar
 
 **Quick Reference:** Each server documentation page includes:
 
-- 📋 **Complete tool reference** with all parameters and return values
-- 💡 **Code examples** showing actual usage patterns
-- ⚙️ **Configuration examples** for different scenarios
-- ✅ **Best practices** with do's and don'ts
-- 🎯 **Use cases** with complete workflows
+- [TASK] **Complete tool reference** with all parameters and return values
+- [THOUGHT] **Code examples** showing actual usage patterns
+- ️ **Configuration examples** for different scenarios
+- [OK] **Best practices** with do's and don'ts
+-  **Use cases** with complete workflows
 
 ## Configuration Examples
 
@@ -213,7 +213,7 @@ For complete configuration details, see:
 Always observe before executing actions:
 
 ```python
-# ✅ Good: Verify target exists
+# [OK] Good: Verify target exists
 control_info = await computer.run_actions([
     MCPToolCall(tool_key="data_collection::get_control_info", ...)
 ])
@@ -365,8 +365,8 @@ For more details on data collection:
 
 **Safety Reminder:** Action servers can **modify system state**. Always:
 
-1. ✅ **Validate inputs** before execution
-2. ✅ **Verify targets** exist and are accessible
-3. ✅ **Log all actions** for audit trail
-4. ✅ **Handle failures** gracefully with retries
-5. ✅ **Test in safe environment** before production use
+1. [OK] **Validate inputs** before execution
+2. [OK] **Verify targets** exist and are accessible
+3. [OK] **Log all actions** for audit trail
+4. [OK] **Handle failures** gracefully with retries
+5. [OK] **Test in safe environment** before production use

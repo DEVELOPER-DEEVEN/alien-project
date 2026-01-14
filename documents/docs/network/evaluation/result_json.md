@@ -598,17 +598,17 @@ def extract_summary(result: dict) -> dict:
 result = load_session_result("task_32")
 summary = extract_summary(result)
 
-print(f"✅ Success Rate: {summary['success_rate'] * 100:.1f}%")
+print(f"[OK] Success Rate: {summary['success_rate'] * 100:.1f}%")
 print(f"⏱️  Duration: {summary['total_duration']:.2f}s")
-print(f"🔀 Parallelism: {summary['parallelism_ratio']:.2f}")
+print(f" Parallelism: {summary['parallelism_ratio']:.2f}")
 ```
 
 **Expected Output:**
 
 ```
-✅ Success Rate: 100.0%
+[OK] Success Rate: 100.0%
 ⏱️  Duration: 684.86s
-🔀 Parallelism: 1.06
+ Parallelism: 1.06
 ```
 
 ### Batch Analysis
@@ -636,7 +636,7 @@ def analyze_multiple_sessions(log_dir: str = "logs/network"):
     
     df = pd.DataFrame(sessions)
     
-    print("📊 Session Analysis Summary:")
+    print("[STATUS] Session Analysis Summary:")
     print(f"   Total sessions: {len(df)}")
     print(f"   Average duration: {df['total_duration'].mean():.2f}s")
     print(f"   Average success rate: {df['success_rate'].mean() * 100:.1f}%")
@@ -717,7 +717,7 @@ def debug_failed_session(task_name: str):
     result = load_session_result(task_name)
     
     if result["status"] != "completed":
-        print(f"⚠️  Session Failed: {result['status']}")
+        print(f"️  Session Failed: {result['status']}")
         
         metrics = result["session_results"]["metrics"]
         failed_tasks = []
@@ -728,13 +728,13 @@ def debug_failed_session(task_name: str):
                 failed_tasks.append(task_id)
         
         if failed_tasks:
-            print(f"\n❌ Failed Tasks:")
+            print(f"\n[FAIL] Failed Tasks:")
             for task_id in failed_tasks:
                 print(f"   • {task_id}")
         
         # Check logs for more details
         log_dir = Path(result["trajectory_path"])
-        print(f"\n📁 Check logs in: {log_dir}")
+        print(f"\n Check logs in: {log_dir}")
 ```
 
 ### 2. Comparing Session Performance
@@ -753,7 +753,7 @@ def compare_sessions(task_name_1: str, task_name_2: str):
     summary1 = extract_summary(result1)
     summary2 = extract_summary(result2)
     
-    print(f"📊 Session Comparison:")
+    print(f"[STATUS] Session Comparison:")
     print(f"\n{'Metric':<30} {task_name_1:<20} {task_name_2:<20}")
     print("-" * 70)
     print(f"{'Duration (s)':<30} {summary1['total_duration']:<20.2f} {summary2['total_duration']:<20.2f}")
@@ -814,7 +814,7 @@ def plot_performance_trend(log_dir: str = "logs/network"):
     
     plt.tight_layout()
     plt.savefig("performance_trend.png")
-    print("📈 Trend plot saved to performance_trend.png")
+    print(" Trend plot saved to performance_trend.png")
 
 # Example usage
 plot_performance_trend()

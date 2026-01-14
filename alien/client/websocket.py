@@ -72,7 +72,7 @@ class ALIENWebSocketClient:
                 # Check retry limit before attempting connection
                 if self.retry_count >= self.max_retries:
                     self.logger.error(
-                        f"[WS] ❌ Max retries ({self.max_retries}) reached. Exiting."
+                        f"[WS] [FAIL] Max retries ({self.max_retries}) reached. Exiting."
                     )
                     break
 
@@ -198,11 +198,11 @@ class ALIENWebSocketClient:
         if success:
             self.connected_event.set()
             self.logger.warning(
-                f"[WS] [AIP] ✅ Successfully registered as {self.alien_client.client_id}"
+                f"[WS] [AIP] [OK] Successfully registered as {self.alien_client.client_id}"
             )
         else:
             self.logger.error(
-                f"[WS] [AIP] ❌ Failed to register as {self.alien_client.client_id}"
+                f"[WS] [AIP] [FAIL] Failed to register as {self.alien_client.client_id}"
             )
             raise RuntimeError(f"Registration failed for {self.alien_client.client_id}")
 
@@ -415,7 +415,7 @@ class ALIENWebSocketClient:
             await asyncio.sleep(wait_time)
         else:
             self.logger.error(
-                f"[WS] ❌ Max retries reached ({self.max_retries}). Please check if server is running at {self.ws_url}"
+                f"[WS] [FAIL] Max retries reached ({self.max_retries}). Please check if server is running at {self.ws_url}"
             )
 
     def is_connected(self) -> bool:

@@ -50,7 +50,7 @@ def print_with_color(message: str, color: str = "white"):
 
 def test_basic_orion_workflow():
     """Test basic orion creation and visualization."""
-    print_with_color("📝 Test 1: Basic orion workflow...", "cyan")
+    print_with_color(" Test 1: Basic orion workflow...", "cyan")
 
     try:
         # Create orion with visualization
@@ -106,12 +106,12 @@ def test_basic_orion_workflow():
         for dep in dependencies:
             orion.add_dependency(dep)
 
-        print(f"✅ Orion created: {orion.name}")
-        print(f"📊 Tasks: {orion.task_count}")
-        print(f"🔗 Dependencies: {len(orion.dependencies)}")
+        print(f"[OK] Orion created: {orion.name}")
+        print(f"[STATUS] Tasks: {orion.task_count}")
+        print(f"[DEP] Dependencies: {len(orion.dependencies)}")
 
         # Test execution
-        print_with_color("🚀 Starting orion execution...", "yellow")
+        print_with_color("[START] Starting orion execution...", "yellow")
         orion.start_execution()
 
         # Simulate task completion
@@ -125,7 +125,7 @@ def test_basic_orion_workflow():
         return True
 
     except Exception as e:
-        print(f"❌ Test failed: {e}")
+        print(f"[FAIL] Test failed: {e}")
         import traceback
 
         traceback.print_exc()
@@ -134,7 +134,7 @@ def test_basic_orion_workflow():
 
 def test_real_time_dag_updates():
     """Test real-time DAG updates during execution."""
-    print_with_color("📝 Test 2: Real-time DAG updates during execution...", "cyan")
+    print_with_color(" Test 2: Real-time DAG updates during execution...", "cyan")
 
     try:
         # Create orion
@@ -183,17 +183,17 @@ def test_real_time_dag_updates():
 
         orion.complete_execution()
 
-        print("✅ Real-time updates test completed")
+        print("[OK] Real-time updates test completed")
         return True
 
     except Exception as e:
-        print(f"❌ Real-time updates test failed: {e}")
+        print(f"[FAIL] Real-time updates test failed: {e}")
         return False
 
 
 def test_complex_dag_structure():
     """Test complex DAG structure with multiple dependencies."""
-    print_with_color("📝 Test 3: Complex DAG structure...", "cyan")
+    print_with_color(" Test 3: Complex DAG structure...", "cyan")
 
     try:
         # Create orion
@@ -253,17 +253,17 @@ def test_complex_dag_structure():
 
         orion.complete_execution()
 
-        print("✅ Complex DAG structure test completed")
+        print("[OK] Complex DAG structure test completed")
         return True
 
     except Exception as e:
-        print(f"❌ Complex DAG test failed: {e}")
+        print(f"[FAIL] Complex DAG test failed: {e}")
         return False
 
 
 def test_error_handling():
     """Test error handling and failure scenarios."""
-    print_with_color("📝 Test 4: Error handling scenarios...", "cyan")
+    print_with_color(" Test 4: Error handling scenarios...", "cyan")
 
     try:
         # Create orion
@@ -306,14 +306,14 @@ def test_error_handling():
         # Verify the state
         stats = orion.get_statistics()
         if stats["failed_tasks"] > 0 and stats["completed_tasks"] > 0:
-            print("✅ Error handling test completed - mixed results as expected")
+            print("[OK] Error handling test completed - mixed results as expected")
             return True
         else:
-            print("❌ Error handling didn't work as expected")
+            print("[FAIL] Error handling didn't work as expected")
             return False
 
     except Exception as e:
-        print(f"❌ Error handling test failed: {e}")
+        print(f"[FAIL] Error handling test failed: {e}")
         return False
 
 
@@ -325,12 +325,12 @@ def save_test_results(results: Dict[str, Any]):
     with open(filename, "w") as f:
         json.dump(results, f, indent=2, default=str)
 
-    print(f"💾 Test results saved to: {filename}")
+    print(f" Test results saved to: {filename}")
 
 
 def main():
     """Run comprehensive integration tests."""
-    print_with_color("🌌 Network Framework E2E Integration Tests", "blue")
+    print_with_color("[ORION] Network Framework E2E Integration Tests", "blue")
     print("=" * 60)
 
     start_time = time.time()
@@ -367,10 +367,10 @@ def main():
 
             if success:
                 results["passed_tests"] += 1
-                print_with_color(f"✅ {test_name}: PASSED ({test_time:.2f}s)", "green")
+                print_with_color(f"[OK] {test_name}: PASSED ({test_time:.2f}s)", "green")
             else:
                 results["failed_tests"] += 1
-                print_with_color(f"❌ {test_name}: FAILED ({test_time:.2f}s)", "red")
+                print_with_color(f"[FAIL] {test_name}: FAILED ({test_time:.2f}s)", "red")
 
         except Exception as e:
             results["failed_tests"] += 1
@@ -379,7 +379,7 @@ def main():
                 "error": str(e),
                 "execution_time": time.time() - test_start,
             }
-            print_with_color(f"💥 {test_name}: ERROR - {e}", "red")
+            print_with_color(f" {test_name}: ERROR - {e}", "red")
 
     # Calculate final results
     total_time = time.time() - start_time
@@ -390,7 +390,7 @@ def main():
 
     # Print summary
     print("\n" + "=" * 60)
-    print_with_color("🌌 Network Framework Test Summary:", "blue")
+    print_with_color("[ORION] Network Framework Test Summary:", "blue")
     print(f"   - Total tests: {results['total_tests']}")
     print(f"   - Successful: {results['passed_tests']}")
     print(f"   - Success rate: {success_rate:.1f}%")
@@ -401,12 +401,12 @@ def main():
 
     # Print overall status
     if results["failed_tests"] == 0:
-        print_with_color("\n🎯 OVERALL TEST SUITE SUMMARY:", "green")
-        print("   - Orion Tests: ✅ SUCCESS")
-        print("   - Network Framework Tests: ✅ SUCCESS")
+        print_with_color("\n OVERALL TEST SUITE SUMMARY:", "green")
+        print("   - Orion Tests: [OK] SUCCESS")
+        print("   - Network Framework Tests: [OK] SUCCESS")
         print(f"   - Total Execution Time: {total_time:.2f}s")
     else:
-        print_with_color("\n⚠️ OVERALL TEST SUITE SUMMARY:", "yellow")
+        print_with_color("\n️ OVERALL TEST SUITE SUMMARY:", "yellow")
         print(f"   - Tests Passed: {results['passed_tests']}")
         print(f"   - Tests Failed: {results['failed_tests']}")
         print(f"   - Success Rate: {success_rate:.1f}%")

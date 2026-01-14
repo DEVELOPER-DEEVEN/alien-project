@@ -15,7 +15,7 @@ def main():
     """Run disconnection/reconnection tests"""
 
     print("=" * 70)
-    print("🧪 Device Disconnection and Reconnection Tests")
+    print(" Device Disconnection and Reconnection Tests")
     print("=" * 70)
     print()
 
@@ -40,9 +40,9 @@ def main():
     print()
     print("=" * 70)
     if result.returncode == 0:
-        print("✅ All tests passed!")
+        print("[OK] All tests passed!")
     else:
-        print("❌ Some tests failed. See output above.")
+        print("[FAIL] Some tests failed. See output above.")
     print("=" * 70)
 
     return result.returncode

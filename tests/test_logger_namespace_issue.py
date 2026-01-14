@@ -105,7 +105,7 @@ class TestLoggerNamespaceIssue:
 
         # Here's the problem!
         if len(observer_logs) > 0 and len(agent_logs) == 0:
-            print("❌ ISSUE CONFIRMED: Logger namespace mismatch!")
+            print("[FAIL] ISSUE CONFIRMED: Logger namespace mismatch!")
             print("   Observer logs appear (under 'alien.network.session.observers')")
             print(
                 "   Agent logs missing (under 'alien.network.agents.orion_agent')"
@@ -183,9 +183,9 @@ class TestLoggerNamespaceIssue:
         print(f"Agent logs: {len(agent_logs)}")
 
         if len(observer_logs) > 0 and len(agent_logs) > 0:
-            print("✅ FIX WORKS: Both observer and agent logs appear!")
+            print("[OK] FIX WORKS: Both observer and agent logs appear!")
         else:
-            print("❌ Fix didn't work as expected")
+            print("[FAIL] Fix didn't work as expected")
 
         # Clean up
         session_logger.removeHandler(console_handler)

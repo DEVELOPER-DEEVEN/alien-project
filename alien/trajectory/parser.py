@@ -386,7 +386,7 @@ class Trajectory:
             )
             with open(output_path, "w", encoding="utf-8") as file:
                 file.write("# Trajectory Data\n\n")
-                file.write("❌ **No trajectory data found**\n\n")
+                file.write("[FAIL] **No trajectory data found**\n\n")
                 file.write(
                     "This log directory appears to be empty or the response.log file contains no valid JSON entries.\n\n"
                 )
@@ -452,12 +452,12 @@ class Trajectory:
                     f"</div>\n\n"
                 )
 
-        console.print(f"✅ Markdown file saved to {output_path}.", style="green")
+        console.print(f"[OK] Markdown file saved to {output_path}.", style="green")
 
 
 if __name__ == "__main__":
 
-    console.print("🔍 ALIEN Trajectory Parser", style="blue bold")
+    console.print(" ALIEN Trajectory Parser", style="blue bold")
     print("Searching for valid trajectory logs...\n")
 
     # Try to find the most recent log directory with valid data

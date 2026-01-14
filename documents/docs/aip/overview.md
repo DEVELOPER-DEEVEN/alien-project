@@ -17,12 +17,12 @@ AIP serves as the **nervous system** of ALIEN², connecting the OrionClient, dev
 
 | Legacy HTTP Coordination | AIP WebSocket-Based Design |
 |--------------------------|----------------------------|
-| ❌ Short-lived requests | ✅ Persistent sessions (G1) |
-| ❌ Stateless interactions | ✅ Session-aware task management |
-| ❌ High latency overhead | ✅ Low-latency event streaming |
-| ❌ Poor reconnection support | ✅ Seamless recovery from disconnections (G6) |
-| ❌ Manual state synchronization | ✅ Automatic DAG state propagation |
-| ❌ Fragile partial failures | ✅ Fine-grained reliability (G3) |
+| [FAIL] Short-lived requests | [OK] Persistent sessions (G1) |
+| [FAIL] Stateless interactions | [OK] Session-aware task management |
+| [FAIL] High latency overhead | [OK] Low-latency event streaming |
+| [FAIL] Poor reconnection support | [OK] Seamless recovery from disconnections (G6) |
+| [FAIL] Manual state synchronization | [OK] Automatic DAG state propagation |
+| [FAIL] Fragile partial failures | [OK] Fine-grained reliability (G3) |
 
 ## Five-Layer Architecture
 
@@ -98,10 +98,10 @@ Provides role-specific facades integrating lower layers into deployable componen
 
 **Endpoint Integration Benefits:**
 
-- ✅ Connection lifecycle management (G1, G6)
-- ✅ Role-specific protocol variants (G5)
-- ✅ Health monitoring integration (G3)
-- ✅ Task routing and session management (G4)
+- [OK] Connection lifecycle management (G1, G6)
+- [OK] Role-specific protocol variants (G5)
+- [OK] Health monitoring integration (G3)
+- [OK] Task routing and session management (G4)
 
 [→ Endpoint setup guide](./endpoints.md)
 
@@ -133,10 +133,10 @@ Each agent is represented by an **AgentProfile** combining data from three sourc
 
 **Benefits of Multi-Level Profiling:**
 
-- ✅ Accurate task allocation based on real-time capabilities (G2)
-- ✅ Transparent adaptation to environmental changes (e.g., GPU availability)  
-- ✅ No manual updates needed when device state changes  
-- ✅ Informed scheduling decisions at scale
+- [OK] Accurate task allocation based on real-time capabilities (G2)
+- [OK] Transparent adaptation to environmental changes (e.g., GPU availability)  
+- [OK] No manual updates needed when device state changes  
+- [OK] Informed scheduling decisions at scale
 
 !!!tip "Dynamic Profile Updates"
     Client telemetry continuously refreshes, so the orchestrator always sees current device state—critical for GPU-aware scheduling or cross-device load balancing (G2).
@@ -197,10 +197,10 @@ Within each task, AIP executes **individual commands** deterministically with pr
 
 **Execution Guarantees:**
 
-- ✅ **Sequential execution** within a session (deterministic order) (G4)
-- ✅ **Command batching** supported (reduces network overhead)  
-- ✅ **Structured results** with status codes and error details  
-- ✅ **Timeout propagation** for precise recovery strategies (G3)
+- [OK] **Sequential execution** within a session (deterministic order) (G4)
+- [OK] **Command batching** supported (reduces network overhead)  
+- [OK] **Structured results** with status codes and error details  
+- [OK] **Timeout propagation** for precise recovery strategies (G3)
 
 **Command Batching Example:**
 
@@ -293,10 +293,10 @@ The `DISCONNECTED` state acts as a quarantine zone where the device is temporari
 
 **Guarantees:**
 
-- ✅ No orphaned tasks  
-- ✅ Synchronized state across client-server boundary  
-- ✅ Rapid recovery when connection restored (G6)
-- ✅ Consistent TaskOrion state (G4)
+- [OK] No orphaned tasks  
+- [OK] Synchronized state across client-server boundary  
+- [OK] Rapid recovery when connection restored (G6)
+- [OK] Consistent TaskOrion state (G4)
 
 [→ See resilience implementation](./resilience.md)
 
@@ -359,11 +359,11 @@ AIP abstracts network/device heterogeneity, allowing the orchestrator to treat a
 - [Configuration System](../configuration/system/system_config.md)
 **Next Steps:**
 
-- 📖 [Message Reference](./messages.md) - Complete message type documentation  
-- 🔧 [Protocol Guide](./protocols.md) - Implementation details and best practices  
-- 🌐 [Transport Layer](./transport.md) - WebSocket configuration and optimization  
-- 🔌 [Endpoints](./endpoints.md) - Endpoint setup and usage patterns  
-- 🛡️ [Resilience](./resilience.md) - Connection management and fault tolerance
+- [LANG] [Message Reference](./messages.md) - Complete message type documentation  
+- [CONFIG] [Protocol Guide](./protocols.md) - Implementation details and best practices  
+- [WEB] [Transport Layer](./transport.md) - WebSocket configuration and optimization  
+-  [Endpoints](./endpoints.md) - Endpoint setup and usage patterns  
+- ️ [Resilience](./resilience.md) - Connection management and fault tolerance
 
 ## Summary
 

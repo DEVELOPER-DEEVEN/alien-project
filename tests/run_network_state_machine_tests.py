@@ -56,7 +56,7 @@ class NetworkStateMachineTestRunner:
         self.setup_logging()
         start_time = time.time()
         
-        print("🚀 开始运行Network状态机系统测试...")
+        print("[START] 开始运行Network状态机系统测试...")
         print("=" * 60)
         
         # 基础功能测试
@@ -82,7 +82,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_state_manager(self):
         """测试状态管理器"""
-        print("📋 测试状态管理器...")
+        print("[TASK] 测试状态管理器...")
         
         try:
             manager = NetworkAgentStateManager()
@@ -110,7 +110,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_state_transitions(self):
         """测试状态转换"""
-        print("🔄 测试状态转换...")
+        print("[CONTINUE] 测试状态转换...")
         
         try:
             agent = MockNetworkWeaverAgent()
@@ -136,7 +136,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_monitoring_state_task_tracking(self):
         """测试监控状态任务跟踪"""
-        print("📊 测试监控状态任务跟踪...")
+        print("[STATUS] 测试监控状态任务跟踪...")
         
         try:
             monitoring_state = MonitoringNetworkAgentState()
@@ -180,7 +180,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_observer_integration(self):
         """测试观察者集成"""
-        print("👁️ 测试观察者集成...")
+        print("️ 测试观察者集成...")
         
         try:
             agent = MockNetworkWeaverAgent()
@@ -223,7 +223,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_complete_workflow(self):
         """测试完整工作流"""
-        print("🔄 测试完整工作流...")
+        print("[CONTINUE] 测试完整工作流...")
         
         try:
             agent = MockNetworkWeaverAgent()
@@ -271,7 +271,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_race_condition_resolution(self):
         """测试竞态条件解决"""
-        print("⚡ 测试竞态条件解决...")
+        print(" 测试竞态条件解决...")
         
         try:
             monitoring_state = MonitoringNetworkAgentState()
@@ -324,7 +324,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_error_handling(self):
         """测试错误处理"""
-        print("🚨 测试错误处理...")
+        print(" 测试错误处理...")
         
         try:
             # 测试创建状态错误处理
@@ -357,7 +357,7 @@ class NetworkStateMachineTestRunner:
     
     async def test_concurrent_operations(self):
         """测试并发操作"""
-        print("🏃‍♂️ 测试并发操作...")
+        print("‍️ 测试并发操作...")
         
         try:
             monitoring_state = MonitoringNetworkAgentState()
@@ -396,7 +396,7 @@ class NetworkStateMachineTestRunner:
         """记录成功测试"""
         self.results["tests_run"] += 1
         self.results["tests_passed"] += 1
-        print(f"✅ {test_name} - 通过")
+        print(f"[OK] {test_name} - 通过")
     
     def _record_failure(self, test_name: str, error: Exception):
         """记录失败测试"""
@@ -407,12 +407,12 @@ class NetworkStateMachineTestRunner:
             "error": str(error),
             "type": type(error).__name__
         })
-        print(f"❌ {test_name} - 失败: {error}")
+        print(f"[FAIL] {test_name} - 失败: {error}")
     
     def generate_report(self):
         """生成测试报告"""
         print("\n" + "=" * 60)
-        print("📊 测试报告")
+        print("[STATUS] 测试报告")
         print("=" * 60)
         
         print(f"总测试数: {self.results['tests_run']}")
@@ -421,7 +421,7 @@ class NetworkStateMachineTestRunner:
         print(f"执行时间: {self.results['execution_time']:.2f}秒")
         
         if self.results["failures"]:
-            print("\n❌ 失败测试详情:")
+            print("\n[FAIL] 失败测试详情:")
             for failure in self.results["failures"]:
                 print(f"  - {failure['test']}: {failure['error']}")
         
@@ -429,9 +429,9 @@ class NetworkStateMachineTestRunner:
         print(f"\n成功率: {success_rate:.1f}%")
         
         if success_rate == 100:
-            print("🎉 所有测试通过！Network状态机系统重构成功！")
+            print(" 所有测试通过！Network状态机系统重构成功！")
         else:
-            print("⚠️ 存在失败测试，需要进一步调试")
+            print("️ 存在失败测试，需要进一步调试")
 
 
 async def main():

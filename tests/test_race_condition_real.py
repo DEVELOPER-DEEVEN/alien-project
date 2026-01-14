@@ -470,7 +470,7 @@ class TestRaceConditionWithoutSynchronizer:
             orchestrator_time = events_timeline[2][1]
             agent_time = events_timeline[3][1]
             
-            logging.info(f"\n⚠️ RACE CONDITION DETECTED:")
+            logging.info(f"\n️ RACE CONDITION DETECTED:")
             logging.info(f"  Orchestrator accessed ready tasks at: {orchestrator_time:.3f}")
             logging.info(f"  Agent finished modification at: {agent_time:.3f}")
             logging.info(f"  Time difference: {agent_time - orchestrator_time:.3f}s")

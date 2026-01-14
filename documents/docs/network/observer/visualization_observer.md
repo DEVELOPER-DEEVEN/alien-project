@@ -111,7 +111,7 @@ Displays when a orion begins execution:
 
 ```
 ╭──────────────────────────────────────────────────────────────╮
-│ 🌟 Orion Started: email_batch_orion          │
+│  Orion Started: email_batch_orion          │
 ├──────────────────────────────────────────────────────────────┤
 │ ID: const_abc123                                             │
 │ Total Tasks: 8                                               │
@@ -158,7 +158,7 @@ Displays task execution events:
 
 **Task Completed:**
 ```
-✅ Task Completed: parse_email_1
+[OK] Task Completed: parse_email_1
    Duration: 2.3s
    Result: Parsed 1 email with 2 attachments
    Newly Ready: [reply_email_1]
@@ -166,7 +166,7 @@ Displays task execution events:
 
 **Task Failed:**
 ```
-❌ Task Failed: parse_email_2
+[FAIL] Task Failed: parse_email_2
    Duration: 1.8s
    Error: NetworkTimeout: Failed to connect to email server
    Retry: 1/3
@@ -178,7 +178,7 @@ Displays task execution events:
 Shows structural changes to the orion:
 
 ```
-🔄 Orion Modified: email_batch_orion
+[CONTINUE] Orion Modified: email_batch_orion
    Modification Type: add_tasks
    On Task: parse_email_1
    
@@ -483,12 +483,12 @@ event_bus.subscribe(viz_observer, {
 ### 1. Enable for Interactive Sessions
 
 ```python
-# ✅ Good: Interactive development/debugging
+# [OK] Good: Interactive development/debugging
 if __name__ == "__main__":
     viz_observer = DAGVisualizationObserver(enable_visualization=True)
     # ...
 
-# ✅ Good: Batch processing
+# [OK] Good: Batch processing
 if running_in_batch_mode:
     viz_observer = DAGVisualizationObserver(enable_visualization=False)
 ```

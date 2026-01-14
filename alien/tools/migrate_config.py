@@ -104,7 +104,7 @@ class ConfigMigrator:
 
         console.print(f"\n[yellow]Creating backup:[/yellow] {backup_path}")
         shutil.copytree(self.legacy_path, backup_path)
-        console.print("[green]✓[/green] Backup created successfully")
+        console.print("[green][/green] Backup created successfully")
 
         self.backup_path = backup_path
         return backup_path
@@ -129,7 +129,7 @@ class ConfigMigrator:
 
             if not dry_run:
                 shutil.copy2(file, dest)
-                console.print(f"[green]✓[/green] Copied: {file.name} → {dest}")
+                console.print(f"[green][/green] Copied: {file.name} → {dest}")
             else:
                 console.print(f"[blue]→[/blue] Would copy: {file.name} → {dest}")
 
@@ -175,7 +175,7 @@ class ConfigMigrator:
                 else ""
             )
             + "[green]Your ALIEN³ configuration is now using the modern structure![/green]",
-            title="✨ Success",
+            title="[NEW] Success",
             border_style="green",
         )
         console.print(panel)
@@ -193,7 +193,7 @@ class ConfigMigrator:
                 "[bold blue]ALIEN³ Configuration Migration Tool[/bold blue]\n"
                 f"Legacy: [yellow]{self.legacy_path}/[/yellow]\n"
                 f"New:    [green]{self.new_path}/[/green]",
-                title="🔧 Config Migration",
+                title="[CONFIG] Config Migration",
                 border_style="blue",
             )
         )
@@ -201,17 +201,17 @@ class ConfigMigrator:
         # Check if legacy exists
         if not self.check_legacy_exists():
             console.print(
-                f"\n[yellow]⚠️  No legacy configuration found at:[/yellow] {self.legacy_path}/"
+                f"\n[yellow]️  No legacy configuration found at:[/yellow] {self.legacy_path}/"
             )
             console.print(
-                "[green]✓[/green] You're already using the modern config structure!"
+                "[green][/green] You're already using the modern config structure!"
             )
             return True
 
         # Check if new already exists
         if self.check_new_exists() and not force:
             console.print(
-                f"\n[yellow]⚠️  Warning:[/yellow] New configuration already exists at {self.new_path}/"
+                f"\n[yellow]️  Warning:[/yellow] New configuration already exists at {self.new_path}/"
             )
             if not Confirm.ask(
                 "Do you want to overwrite existing files?", default=False
@@ -223,7 +223,7 @@ class ConfigMigrator:
         files = self.discover_files()
         if not files:
             console.print(
-                f"\n[yellow]⚠️  No YAML files found in:[/yellow] {self.legacy_path}/"
+                f"\n[yellow]️  No YAML files found in:[/yellow] {self.legacy_path}/"
             )
             return False
 
@@ -262,7 +262,7 @@ class ConfigMigrator:
                     "[yellow]This was a dry run - no files were modified.[/yellow]\n\n"
                     "Run without --dry-run to perform the actual migration:\n"
                     "[cyan]python -m alien.tools.migrate_config[/cyan]",
-                    title="ℹ️  Dry Run Complete",
+                    title="[INFO]  Dry Run Complete",
                     border_style="yellow",
                 )
             )

@@ -61,7 +61,7 @@ class OrionClient:
         :return: Dictionary mapping device_id to registration success status
         """
         self.logger.info(
-            f"🚀 Initializing Orion Client: {self.config.task_name}"
+            f"[START] Initializing Orion Client: {self.config.task_name}"
         )
         results = {}
 
@@ -72,15 +72,15 @@ class OrionClient:
                 results[device_config.device_id] = success
                 if success:
                     self.logger.info(
-                        f"✅ Device {device_config.device_id} registered successfully"
+                        f"[OK] Device {device_config.device_id} registered successfully"
                     )
                 else:
                     self.logger.error(
-                        f"❌ Failed to register device {device_config.device_id}"
+                        f"[FAIL] Failed to register device {device_config.device_id}"
                     )
             except Exception as e:
                 self.logger.error(
-                    f"❌ Error registering device {device_config.device_id}: {e}"
+                    f"[FAIL] Error registering device {device_config.device_id}: {e}"
                 )
                 results[device_config.device_id] = False
 
@@ -248,12 +248,12 @@ class OrionClient:
     # Lifecycle Management
     async def shutdown(self) -> None:
         """Shutdown the orion client and disconnect all devices."""
-        self.logger.info("🛑 Shutting down Orion Client")
+        self.logger.info(" Shutting down Orion Client")
 
         # Shutdown device manager
         await self.device_manager.shutdown()
 
-        self.logger.info("✅ Orion Client shutdown complete")
+        self.logger.info("[OK] Orion Client shutdown complete")
 
 
 # Convenience functions for backward compatibility and common operations

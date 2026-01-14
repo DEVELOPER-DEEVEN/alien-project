@@ -46,7 +46,7 @@ graph TB
 
 ---
 
-## 🛠️ Core Tools
+## ️ Core Tools
 
 The MCP server exposes **7 core tools** organized into three categories:
 
@@ -69,7 +69,7 @@ mindmap
 
 ---
 
-## 📦 Task Management Tools
+##  Task Management Tools
 
 ### add_task
 
@@ -79,11 +79,11 @@ Add a new atomic task (TaskStar) to the orion.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `task_id` | `str` | ✅ Yes | Unique identifier for the task (e.g., `"open_browser"`, `"login_system"`) |
-| `name` | `str` | ✅ Yes | Human-readable name (e.g., `"Open Browser"`, `"Login to System"`) |
-| `description` | `str` | ✅ Yes | Detailed task specification including steps and expected outcomes |
-| `target_device_id` | `str` | ❌ No (default: `None`) | Device where task executes (e.g., `"DESKTOP-ABC123"`, `"iPhone-001"`) |
-| `tips` | `List[str]` | ❌ No (default: `None`) | Critical hints for successful execution |
+| `task_id` | `str` | [OK] Yes | Unique identifier for the task (e.g., `"open_browser"`, `"login_system"`) |
+| `name` | `str` | [OK] Yes | Human-readable name (e.g., `"Open Browser"`, `"Login to System"`) |
+| `description` | `str` | [OK] Yes | Detailed task specification including steps and expected outcomes |
+| `target_device_id` | `str` | [FAIL] No (default: `None`) | Device where task executes (e.g., `"DESKTOP-ABC123"`, `"iPhone-001"`) |
+| `tips` | `List[str]` | [FAIL] No (default: `None`) | Critical hints for successful execution |
 
 #### Return Value
 
@@ -125,8 +125,8 @@ orion = json.loads(result)
 
 **Task ID Naming Best Practice**: Use descriptive, action-oriented identifiers:
 
-✅ Good: `"fetch_user_data"`, `"train_model"`, `"send_notification"`  
-❌ Avoid: `"task1"`, `"t"`, `"temp"`
+[OK] Good: `"fetch_user_data"`, `"train_model"`, `"send_notification"`  
+[FAIL] Avoid: `"task1"`, `"t"`, `"temp"`
 
 ---
 
@@ -138,7 +138,7 @@ Remove a task and all associated dependencies from the orion.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `task_id` | `str` | ✅ Yes | Unique identifier of task to remove |
+| `task_id` | `str` | [OK] Yes | Unique identifier of task to remove |
 
 #### Return Value
 
@@ -186,11 +186,11 @@ Modify specific fields of an existing task.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `task_id` | `str` | ✅ Yes | Task identifier |
-| `name` | `str` | ❌ No (default: `None`) | New human-readable name |
-| `description` | `str` | ❌ No (default: `None`) | New detailed description |
-| `target_device_id` | `str` | ❌ No (default: `None`) | New target device |
-| `tips` | `List[str]` | ❌ No (default: `None`) | New tips list |
+| `task_id` | `str` | [OK] Yes | Task identifier |
+| `name` | `str` | [FAIL] No (default: `None`) | New human-readable name |
+| `description` | `str` | [FAIL] No (default: `None`) | New detailed description |
+| `target_device_id` | `str` | [FAIL] No (default: `None`) | New target device |
+| `tips` | `List[str]` | [FAIL] No (default: `None`) | New tips list |
 
 #### Return Value
 
@@ -243,7 +243,7 @@ result = await mcp_client.call_tool(
 
 ---
 
-## 🔗 Dependency Management Tools
+## [DEP] Dependency Management Tools
 
 ### add_dependency
 
@@ -253,10 +253,10 @@ Create a dependency relationship (TaskStarLine) between two tasks.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `dependency_id` | `str` | ✅ Yes | Unique line identifier (e.g., `"task_a->task_b"`, `"line_001"`) |
-| `from_task_id` | `str` | ✅ Yes | Source/prerequisite task that must complete first |
-| `to_task_id` | `str` | ✅ Yes | Target/dependent task that waits for source |
-| `condition_description` | `str` | ❌ No (default: `None`) | Human-readable explanation of dependency logic |
+| `dependency_id` | `str` | [OK] Yes | Unique line identifier (e.g., `"task_a->task_b"`, `"line_001"`) |
+| `from_task_id` | `str` | [OK] Yes | Source/prerequisite task that must complete first |
+| `to_task_id` | `str` | [OK] Yes | Target/dependent task that waits for source |
+| `condition_description` | `str` | [FAIL] No (default: `None`) | Human-readable explanation of dependency logic |
 
 #### Return Value
 
@@ -309,7 +309,7 @@ Future extensions may support:
 ```
 A → B → C
       ↓
-      A  ❌ Creates cycle!
+      A  [FAIL] Creates cycle!
 ```
 
 ---
@@ -322,7 +322,7 @@ Remove a specific dependency relationship.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `dependency_id` | `str` | ✅ Yes | Line identifier to remove |
+| `dependency_id` | `str` | [OK] Yes | Line identifier to remove |
 
 #### Return Value
 
@@ -360,8 +360,8 @@ Modify the condition description of an existing dependency.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `dependency_id` | `str` | ✅ Yes | Line identifier |
-| `condition_description` | `str` | ✅ Yes | New explanation of dependency logic |
+| `dependency_id` | `str` | [OK] Yes | Line identifier |
+| `condition_description` | `str` | [OK] Yes | New explanation of dependency logic |
 
 #### Return Value
 
@@ -387,7 +387,7 @@ result = await mcp_client.call_tool(
 
 ---
 
-## 🏗️ Bulk Operations
+## ️ Bulk Operations
 
 ### build_orion
 
@@ -397,8 +397,8 @@ Batch-create a complete orion from structured configuration.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `config` | `TaskOrionSchema` | ✅ Yes | Orion configuration with tasks and dependencies |
-| `clear_existing` | `bool` | ❌ No (default: `True`) | Clear existing orion before building |
+| `config` | `TaskOrionSchema` | [OK] Yes | Orion configuration with tasks and dependencies |
+| `clear_existing` | `bool` | [FAIL] No (default: `True`) | Clear existing orion before building |
 
 #### Configuration Schema
 
@@ -519,21 +519,21 @@ result = await mcp_client.call_tool(
 
 ---
 
-## 📊 Tool Comparison Table
+## [STATUS] Tool Comparison Table
 
 | Tool | Category | Granularity | Creates | Modifies | Deletes | Returns |
 |------|----------|-------------|---------|----------|---------|---------|
-| `add_task` | Task | Single | ✅ Task | ❌ | ❌ | Full orion |
-| `remove_task` | Task | Single | ❌ | ❌ | ✅ Task + deps | Full orion |
-| `update_task` | Task | Single | ❌ | ✅ Task | ❌ | Full orion |
-| `add_dependency` | Dependency | Single | ✅ Dependency | ❌ | ❌ | Full orion |
-| `remove_dependency` | Dependency | Single | ❌ | ❌ | ✅ Dependency | Full orion |
-| `update_dependency` | Dependency | Single | ❌ | ✅ Dependency | ❌ | Full orion |
-| `build_orion` | Bulk | Batch | ✅ Many | ✅ Full | ✅ All (if clear) | Full orion |
+| `add_task` | Task | Single | [OK] Task | [FAIL] | [FAIL] | Full orion |
+| `remove_task` | Task | Single | [FAIL] | [FAIL] | [OK] Task + deps | Full orion |
+| `update_task` | Task | Single | [FAIL] | [OK] Task | [FAIL] | Full orion |
+| `add_dependency` | Dependency | Single | [OK] Dependency | [FAIL] | [FAIL] | Full orion |
+| `remove_dependency` | Dependency | Single | [FAIL] | [FAIL] | [OK] Dependency | Full orion |
+| `update_dependency` | Dependency | Single | [FAIL] | [OK] Dependency | [FAIL] | Full orion |
+| `build_orion` | Bulk | Batch | [OK] Many | [OK] Full | [OK] All (if clear) | Full orion |
 
 ---
 
-## 🔄 Usage Patterns
+## [CONTINUE] Usage Patterns
 
 ### Creation Mode Pattern
 
@@ -604,7 +604,7 @@ else:
 
 ---
 
-## 🛡️ Error Handling
+## ️ Error Handling
 
 ### Common Errors
 
@@ -638,7 +638,7 @@ except ToolError as e:
 
 ---
 
-## 📈 Performance Characteristics
+##  Performance Characteristics
 
 ### Operation Complexity
 
@@ -668,7 +668,7 @@ Where:
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 ### Tool Selection
 
@@ -703,7 +703,7 @@ except ToolError:
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 - [Orion Agent Overview](overview.md) — Architecture and weaving modes
 - [Orion Agent State Machine](state.md) — FSM lifecycle and transitions
@@ -714,7 +714,7 @@ except ToolError:
 
 ---
 
-## 📋 API Reference
+## [TASK] API Reference
 
 ### Tool Signatures
 

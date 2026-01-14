@@ -8,7 +8,7 @@ ALIEN² is a Desktop AgentOS that turns natural-language requests into automatic
 
 ---
 
-## 🛠️ Step 1: Installation
+## ️ Step 1: Installation
 
 ### Requirements
 
@@ -31,15 +31,15 @@ cd ALIEN
 pip install -r requirements.txt
 ```
 
-> **💡 Tip:** If you want to use Qwen as your LLM, uncomment the related libraries in `requirements.txt` before installing.
+> **[THOUGHT] Tip:** If you want to use Qwen as your LLM, uncomment the related libraries in `requirements.txt` before installing.
 
 ---
 
 ---
 
-## ⚙️ Step 2: Configure LLMs
+## ️ Step 2: Configure LLMs
 
-> **📢 New Configuration System (Recommended)**  
+> **[NEWS] New Configuration System (Recommended)**  
 > ALIEN² now uses a **new modular config system** located in `config/alien/` with auto-discovery and type validation. While the legacy `alien/config/config.yaml` is still supported for backward compatibility, we strongly recommend migrating to the new system for better maintainability.
 
 ### Option 1: New Config System (Recommended)
@@ -67,10 +67,10 @@ config/alien/
 
 **Migration Benefits:**
 
-- ✅ **Type Safety**: Automatic validation with Pydantic schemas
-- ✅ **Auto-Discovery**: No manual config loading needed
-- ✅ **Modular**: Separate concerns into individual files
-- ✅ **IDE Support**: Better autocomplete and error detection
+- [OK] **Type Safety**: Automatic validation with Pydantic schemas
+- [OK] **Auto-Discovery**: No manual config loading needed
+- [OK] **Modular**: Separate concerns into individual files
+- [OK] **IDE Support**: Better autocomplete and error detection
 
 ### Option 2: Legacy Config (Backward Compatible)
 
@@ -142,13 +142,13 @@ APP_AGENT:
   API_DEPLOYMENT_ID: "YOUR_DEPLOYMENT_ID"
 ```
 
-> **ℹ️ More LLM Options:** ALIEN² supports various LLM providers including Qwen, Gemini, Claude, DeepSeek, and more. See the [Model Configuration Guide](../configuration/models/overview.md) for complete details.
+> **[INFO] More LLM Options:** ALIEN² supports various LLM providers including Qwen, Gemini, Claude, DeepSeek, and more. See the [Model Configuration Guide](../configuration/models/overview.md) for complete details.
 
 ---
 
 ---
 
-## 📔 Step 3: Additional Settings (Optional)
+##  Step 3: Additional Settings (Optional)
 
 ### RAG Configuration
 
@@ -176,13 +176,13 @@ BING_API_KEY: "YOUR_BING_API_KEY"  # Get from https://www.microsoft.com/en-us/bi
 RAG_EXPERIENCE: true
 ```
 
-> **ℹ️ RAG Resources:** See [Knowledge Substrate Overview](../alien2/core_features/knowledge_substrate/overview.md) for complete RAG configuration and best practices.
+> **[INFO] RAG Resources:** See [Knowledge Substrate Overview](../alien2/core_features/knowledge_substrate/overview.md) for complete RAG configuration and best practices.
 
 ---
 
 ---
 
-## 🎉 Step 4: Start ALIEN²
+##  Step 4: Start ALIEN²
 
 ### Interactive Mode
 
@@ -195,13 +195,13 @@ python -m alien --task <your_task_name>
 
 **Expected Output:**
 ```
-Welcome to use ALIEN🛸, A UI-focused Agent for Windows OS Interaction. 
+Welcome to use ALIEN[UFO], A UI-focused Agent for Windows OS Interaction. 
  _   _  _____   ___
 | | | ||  ___| / _ \
 | | | || |_   | | | |
 | |_| ||  _|  | |_| |
  \___/ |_|     \___/
-Please enter your request to be completed🛸:
+Please enter your request to be completed[UFO]:
 ```
 
 ### Direct Request Mode
@@ -222,7 +222,7 @@ python -m alien --task email_demo -r "Send an email to john@example.com with sub
 
 ---
 
-## 🎥 Step 5: Execution Logs
+##  Step 5: Execution Logs
 
 ALIEN² automatically saves execution logs, screenshots, and traces for debugging and analysis.
 
@@ -246,7 +246,7 @@ ALIEN² automatically saves execution logs, screenshots, and traces for debuggin
 
 ---
 
-## 🔄 Migrating from Legacy Config
+## [CONTINUE] Migrating from Legacy Config
 
 If you're upgrading from an older version that used `alien/config/config.yaml`, ALIEN² provides an **automated conversion tool**.
 
@@ -265,12 +265,12 @@ python -m alien.tools.convert_config --force
 
 **What the tool does:**
 
-- ✅ Splits monolithic `config.yaml` into modular files
-- ✅ Converts flow-style YAML (with braces) to block-style YAML
-- ✅ Maps legacy file names to new structure
-- ✅ Preserves all configuration values
-- ✅ Creates timestamped backup for rollback
-- ✅ Validates output files
+- [OK] Splits monolithic `config.yaml` into modular files
+- [OK] Converts flow-style YAML (with braces) to block-style YAML
+- [OK] Maps legacy file names to new structure
+- [OK] Preserves all configuration values
+- [OK] Creates timestamped backup for rollback
+- [OK] Validates output files
 
 **Conversion Mapping:**
 
@@ -284,7 +284,7 @@ python -m alien.tools.convert_config --force
 
 ---
 
-## 📚 Additional Resources
+## [PLAN] Additional Resources
 
 ### Core Documentation
 
@@ -323,15 +323,15 @@ python -m alien.tools.convert_config --force
 
 ---
 
-## ❓ Getting Help
+##  Getting Help
 
-- 📖 **Documentation**: [https://github.com/DEVELOPER-DEEVEN/alien-project](https://github.com/DEVELOPER-DEEVEN/alien-project)
-- 🐛 **GitHub Issues**: [https://github.com/DEVELOPER-DEEVEN/alien-project/issues](https://github.com/DEVELOPER-DEEVEN/alien-project/issues) (preferred)
-- 📧 **Email**: [alien-agent@microsoft.com](mailto:alien-agent@microsoft.com)
+- [LANG] **Documentation**: [https://github.com/DEVELOPER-DEEVEN/alien-project](https://github.com/DEVELOPER-DEEVEN/alien-project)
+-  **GitHub Issues**: [https://github.com/DEVELOPER-DEEVEN/alien-project/issues](https://github.com/DEVELOPER-DEEVEN/alien-project/issues) (preferred)
+-  **Email**: [alien-agent@microsoft.com](mailto:alien-agent@microsoft.com)
 
 ---
 
-## 🎯 Next Steps
+##  Next Steps
 
 Now that ALIEN² is set up, explore these guides to unlock its full potential:
 
@@ -340,4 +340,4 @@ Now that ALIEN² is set up, explore these guides to unlock its full potential:
 3. **[Creating Custom Agents](../tutorials/creating_app_agent/overview.md)** - Build specialized agents
 4. **[MCP Integration](../mcp/overview.md)** - Extend with custom MCP servers
 
-Happy automating with ALIEN²! 🛸
+Happy automating with ALIEN²! [UFO]

@@ -41,7 +41,7 @@ class ClientDisplay:
         Displays a formatted banner for the ALIEN3 Network Framework.
         """
         banner = """╔══════════════════════════════════════╗
-║           🌌 ALIEN3 FRAMEWORK          ║
+║           [ORION] ALIEN3 FRAMEWORK          ║
 ║      DAG-based Task Orchestration    ║
 ╚══════════════════════════════════════╝"""
         self.console.print(Panel(banner, style="bold blue", expand=False))
@@ -53,7 +53,7 @@ class ClientDisplay:
         Shows main welcome message and usage examples for new users.
         """
         welcome_panel = Panel(
-            "[bold cyan]🌌 Network Framework[/bold cyan]\n\n"
+            "[bold cyan][ORION] Network Framework[/bold cyan]\n\n"
             "[white]AI-powered DAG workflow orchestration system[/white]\n\n"
             "[bold yellow]Quick Start:[/bold yellow]\n"
             "  [cyan]python -m network 'Create a data pipeline'[/cyan]\n"
@@ -74,7 +74,7 @@ class ClientDisplay:
         Shows welcome message and usage instructions for interactive mode.
         """
         banner = Panel.fit(
-            "[bold cyan]🌌 ALIEN3 Framework - Interactive Mode[/bold cyan]\n\n"
+            "[bold cyan][ORION] ALIEN3 Framework - Interactive Mode[/bold cyan]\n\n"
             "[white]Enter your requests below. ALIEN will convert them into Orion workflows.[/white]\n"
             "[dim]Commands: [bold]help[/bold], [bold]status[/bold], [bold]clear[/bold], [bold]quit[/bold][/dim]",
             border_style="blue",
@@ -88,7 +88,7 @@ class ClientDisplay:
         Displays a formatted table of available commands and usage tips
         for the interactive mode.
         """
-        help_table = Table(title="[bold cyan]📖 ALIEN3 Framework Commands[/bold cyan]")
+        help_table = Table(title="[bold cyan][LANG] ALIEN3 Framework Commands[/bold cyan]")
         help_table.add_column("Command", style="cyan", no_wrap=True)
         help_table.add_column("Description", style="white")
 
@@ -100,7 +100,7 @@ class ClientDisplay:
         self.console.print(help_table)
 
         tips_panel = Panel(
-            "[bold yellow]💡 Tips:[/bold yellow]\n"
+            "[bold yellow][THOUGHT] Tips:[/bold yellow]\n"
             "• Enter any text to create a DAG-based workflow\n"
             "• Complex requests will be broken down into tasks\n"
             "• Tasks are executed in dependency order\n"
@@ -128,7 +128,7 @@ class ClientDisplay:
         :param output_dir: Output directory path
         :param session_info: Optional session state information
         """
-        status_table = Table(title="[bold cyan]📊 Network Session Status[/bold cyan]")
+        status_table = Table(title="[bold cyan][STATUS] Network Session Status[/bold cyan]")
         status_table.add_column("Property", style="cyan", no_wrap=True)
         status_table.add_column("Value", style="white")
 
@@ -159,10 +159,10 @@ class ClientDisplay:
         """
         # Create main result panel
         status_color = "green" if result["status"] == "completed" else "red"
-        status_icon = "✅" if result["status"] == "completed" else "❌"
+        status_icon = "[OK]" if result["status"] == "completed" else "[FAIL]"
 
         result_table = Table(
-            title=f"[bold {status_color}]🎯 Execution Result[/bold {status_color}]"
+            title=f"[bold {status_color}] Execution Result[/bold {status_color}]"
         )
         result_table.add_column("Property", style="cyan", no_wrap=True)
         result_table.add_column("Value", style="white")
@@ -232,7 +232,7 @@ class ClientDisplay:
             f"{request_text[:100]}{'...' if len(request_text) > 100 else ''}"
         )
         self.console.print(
-            f"[bold cyan]🚀 Processing request:[/bold cyan] [white]{truncated_text}[/white]"
+            f"[bold cyan][START] Processing request:[/bold cyan] [white]{truncated_text}[/white]"
         )
 
     def show_execution_complete(self) -> None:
@@ -240,7 +240,7 @@ class ClientDisplay:
         Show execution completion banner.
         """
         self.console.print("\n" + "=" * 60)
-        self.print_success("🎯 ALIEN Framework Execution Complete!")
+        self.print_success(" ALIEN Framework Execution Complete!")
         self.console.print("=" * 60)
 
     def show_demo_banner(self) -> None:
@@ -248,7 +248,7 @@ class ClientDisplay:
         Show demo mode banner.
         """
         demo_panel = Panel(
-            "[bold cyan]🌟 ALIEN3 Framework Demo[/bold cyan]\n\n"
+            "[bold cyan] ALIEN3 Framework Demo[/bold cyan]\n\n"
             "[white]Showcasing AI-powered DAG workflow orchestration[/white]\n"
             "[dim]Watch complex requests transform into executable workflows![/dim]",
             border_style="cyan",
@@ -263,7 +263,7 @@ class ClientDisplay:
         :param request: Demo request text
         """
         self.console.print(
-            f"\n[bold yellow]🎯 Demo {step_number}:[/bold yellow] [white]{request}[/white]"
+            f"\n[bold yellow] Demo {step_number}:[/bold yellow] [white]{request}[/white]"
         )
 
     def show_demo_complete(self) -> None:
@@ -271,7 +271,7 @@ class ClientDisplay:
         Show demo completion panel.
         """
         success_panel = Panel(
-            "[bold green]✨ Demo Complete![/bold green]\n\n"
+            "[bold green][NEW] Demo Complete![/bold green]\n\n"
             "[white]All demo workflows processed successfully![/white]\n"
             "[dim]Try your own requests with --interactive or --request flags![/dim]",
             border_style="green",

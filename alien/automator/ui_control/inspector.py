@@ -114,16 +114,16 @@ class UIAElementInfoFix(UIAElementInfo):
             result = func(self, *args, **kvargs)
             if time.time() - before > 0.020:
                 print(
-                    f"[❌][{name}][{hash(self._element)}] lookup took {(time.time() - before) * 1000:.2f} ms"
+                    f"[[FAIL]][{name}][{hash(self._element)}] lookup took {(time.time() - before) * 1000:.2f} ms"
                 )
                 UIAElementInfoFix._time_delay_marker = True
             elif time.time() - before > 0.005:
                 print(
-                    f"[⚠️][{name}][{hash(self._element)}]Control type lookup took {(time.time() - before) * 1000:.2f} ms"
+                    f"[️][{name}][{hash(self._element)}]Control type lookup took {(time.time() - before) * 1000:.2f} ms"
                 )
                 UIAElementInfoFix._time_delay_marker = True
             else:
-                # print(f"[✅][{name}][{hash(self._element)}]Control type lookup took {(time.time() - before) * 1000:.2f} ms")
+                # print(f"[[OK]][{name}][{hash(self._element)}]Control type lookup took {(time.time() - before) * 1000:.2f} ms")
                 UIAElementInfoFix._time_delay_marker = False
             return result
 

@@ -43,9 +43,9 @@ class LinuxAgentProcessor(CustomizedProcessor):
 
 | Phase | Strategy Class | fail_fast | Rationale |
 |-------|---------------|-----------|-----------|
-| **LLM_INTERACTION** | `LinuxLLMInteractionStrategy` | ✓ True | LLM failure requires immediate recovery |
-| **ACTION_EXECUTION** | `LinuxActionExecutionStrategy` | ✗ False | Command failures can be handled gracefully |
-| **MEMORY_UPDATE** | `AppMemoryUpdateStrategy` | ✗ False | Memory failures shouldn't block execution |
+| **LLM_INTERACTION** | `LinuxLLMInteractionStrategy` |  True | LLM failure requires immediate recovery |
+| **ACTION_EXECUTION** | `LinuxActionExecutionStrategy` |  False | Command failures can be handled gracefully |
+| **MEMORY_UPDATE** | `AppMemoryUpdateStrategy` |  False | Memory failures shouldn't block execution |
 
 **Fail-Fast vs Graceful:**
 
@@ -488,9 +488,9 @@ The 3-phase strategy design provides:
 
 | Agent | Phases | Data Collection | LLM | Action | Memory |
 |-------|--------|----------------|-----|--------|--------|
-| **LinuxAgent** | 3 | ✗ None | ✓ CLI commands | ✓ MCP execute_command | ✓ Results |
-| **AppAgent** | 4 | ✓ Screenshots + UI | ✓ UI actions | ✓ GUI + API | ✓ Results |
-| **HostAgent** | 4 | ✓ Desktop snapshot | ✓ App selection | ✓ Orchestration | ✓ Results |
+| **LinuxAgent** | 3 |  None |  CLI commands |  MCP execute_command |  Results |
+| **AppAgent** | 4 |  Screenshots + UI |  UI actions |  GUI + API |  Results |
+| **HostAgent** | 4 |  Desktop snapshot |  App selection |  Orchestration |  Results |
 
 LinuxAgent omits the **DATA_COLLECTION** phase because there's no GUI to capture (CLI-based), system info is obtained on-demand via MCP tools, and previous execution results provide necessary context. This reflects the proactive information gathering principle.
 

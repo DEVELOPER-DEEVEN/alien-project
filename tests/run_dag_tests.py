@@ -19,8 +19,8 @@ sys.path.insert(0, project_root)
 def run_test(test_file: str, test_name: str) -> bool:
     """Run a single test file and return success status."""
     print(f"\n{'='*60}")
-    print(f"🧪 Running {test_name}")
-    print(f"📁 File: {test_file}")
+    print(f" Running {test_name}")
+    print(f" File: {test_file}")
     print(f"{'='*60}")
 
     start_time = time.time()
@@ -38,24 +38,24 @@ def run_test(test_file: str, test_name: str) -> bool:
         duration = end_time - start_time
 
         if result.returncode == 0:
-            print(f"\n✅ {test_name} PASSED ({duration:.2f}s)")
+            print(f"\n[OK] {test_name} PASSED ({duration:.2f}s)")
             return True
         else:
-            print(f"\n❌ {test_name} FAILED ({duration:.2f}s)")
+            print(f"\n[FAIL] {test_name} FAILED ({duration:.2f}s)")
             print(f"Exit code: {result.returncode}")
             return False
 
     except Exception as e:
         end_time = time.time()
         duration = end_time - start_time
-        print(f"\n💥 {test_name} ERROR ({duration:.2f}s): {e}")
+        print(f"\n {test_name} ERROR ({duration:.2f}s): {e}")
         return False
 
 
 def main():
     """Run all DAG visualization tests."""
-    print("🌌 DAG Visualization Test Suite")
-    print(f"📅 Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("[ORION] DAG Visualization Test Suite")
+    print(f"[DATE] Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 80)
 
     # Define test order (from simple to complex)
@@ -87,7 +87,7 @@ def main():
         test_file = os.path.join(project_root, test["file"])
 
         if not os.path.exists(test_file):
-            print(f"❌ Test file not found: {test_file}")
+            print(f"[FAIL] Test file not found: {test_file}")
             results["failed"] += 1
             continue
 
@@ -109,21 +109,21 @@ def main():
 
     # Print summary
     print("\n" + "=" * 80)
-    print("🎯 TEST SUITE SUMMARY")
+    print(" TEST SUITE SUMMARY")
     print("=" * 80)
-    print(f"📊 Total Tests: {results['total']}")
-    print(f"✅ Passed: {results['passed']}")
-    print(f"❌ Failed: {results['failed']}")
-    print(f"📈 Success Rate: {success_rate:.1f}%")
+    print(f"[STATUS] Total Tests: {results['total']}")
+    print(f"[OK] Passed: {results['passed']}")
+    print(f"[FAIL] Failed: {results['failed']}")
+    print(f" Success Rate: {success_rate:.1f}%")
     print(f"⏱️  Total Time: {total_time:.2f} seconds")
-    print(f"📅 Completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"[DATE] Completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     if results["failed"] == 0:
-        print("\n🎉 All tests passed! DAG visualization is working correctly.")
+        print("\n All tests passed! DAG visualization is working correctly.")
         return 0
     else:
         print(
-            f"\n⚠️  {results['failed']} test(s) failed. Please check the output above."
+            f"\n️  {results['failed']} test(s) failed. Please check the output above."
         )
         return 1
 

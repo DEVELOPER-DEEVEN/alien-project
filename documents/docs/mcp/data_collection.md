@@ -43,11 +43,11 @@ graph TB
 
 **Characteristics:**
 
-- **❌ No Side Effects**: Cannot modify system state
-- **✅ Safe to Retry**: Can be called multiple times without risk
-- **✅ Idempotent**: Same input always produces same output
-- **📊 Observation Only**: Provides information for decision-making
-- **🤖 Framework-Invoked**: Not selectable by LLM agent
+- **[FAIL] No Side Effects**: Cannot modify system state
+- **[OK] Safe to Retry**: Can be called multiple times without risk
+- **[OK] Idempotent**: Same input always produces same output
+- **[STATUS] Observation Only**: Provides information for decision-making
+- ** Framework-Invoked**: Not selectable by LLM agent
 
 ## Tool Type Identifier
 

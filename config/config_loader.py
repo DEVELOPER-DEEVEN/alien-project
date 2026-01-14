@@ -3,14 +3,14 @@
 Modern Configuration Loader for ALIEN³ and Network
 
 Professional Software Engineering Design:
-- ✅ Separation of Concerns: Modular YAML files for different config domains
-- ✅ Backward Compatibility: Automatic fallback to legacy paths (alien/config/)
-- ✅ Migration Support: Built-in migration warnings and tools
-- ✅ Type Safety: Pydantic-style typed configs + dynamic YAML fields
-- ✅ Auto-Discovery: Loads all YAML files automatically
-- ✅ Environment Overrides: dev/test/prod environment support
-- ✅ Priority Chain: New path → Legacy path → Environment variables
-- ✅ Zero Breaking Changes: Existing code continues to work
+- [OK] Separation of Concerns: Modular YAML files for different config domains
+- [OK] Backward Compatibility: Automatic fallback to legacy paths (alien/config/)
+- [OK] Migration Support: Built-in migration warnings and tools
+- [OK] Type Safety: Pydantic-style typed configs + dynamic YAML fields
+- [OK] Auto-Discovery: Loads all YAML files automatically
+- [OK] Environment Overrides: dev/test/prod environment support
+- [OK] Priority Chain: New path → Legacy path → Environment variables
+- [OK] Zero Breaking Changes: Existing code continues to work
 
 Configuration Structure:
     New (Recommended):
@@ -386,7 +386,7 @@ class ConfigLoader:
 
         logger.warning(
             f"\n{'=' * 70}\n"
-            f"⚠️  CONFIG CONFLICT DETECTED: {module.upper()}\n"
+            f"️  CONFIG CONFLICT DETECTED: {module.upper()}\n"
             f"{'=' * 70}\n"
             f"Found configurations in BOTH locations:\n"
             f"  1. {new_path}/     ← ACTIVE (using this)\n"
@@ -412,7 +412,7 @@ class ConfigLoader:
 
         logger.warning(
             f"\n{'=' * 70}\n"
-            f"⚠️  LEGACY CONFIG PATH DETECTED: {module.upper()}\n"
+            f"️  LEGACY CONFIG PATH DETECTED: {module.upper()}\n"
             f"{'=' * 70}\n"
             f"Using legacy config: {legacy_path}/\n"
             f"Please migrate to:   {new_path}/\n\n"

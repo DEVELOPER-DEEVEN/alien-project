@@ -11,29 +11,29 @@ from network.orion.task_star import TaskStar
 
 async def debug_visualization():
     """Debug visualization setup."""
-    print("🔍 Debugging DAGVisualizationObserver...")
+    print(" Debugging DAGVisualizationObserver...")
 
     # Create visualization observer
     viz_observer = DAGVisualizationObserver(enable_visualization=True)
 
-    print(f"✅ Visualization enabled: {viz_observer.enable_visualization}")
-    print(f"✅ Visualizer initialized: {viz_observer._visualizer is not None}")
+    print(f"[OK] Visualization enabled: {viz_observer.enable_visualization}")
+    print(f"[OK] Visualizer initialized: {viz_observer._visualizer is not None}")
 
     if viz_observer._visualizer:
-        print(f"✅ Console available: {viz_observer._visualizer._console is not None}")
+        print(f"[OK] Console available: {viz_observer._visualizer._console is not None}")
 
         # Test direct console output
-        print("\n🎨 Testing direct Rich console output...")
+        print("\n Testing direct Rich console output...")
         from rich.panel import Panel
         from rich.text import Text
 
         test_text = Text()
-        test_text.append("🚀 ", style="bold green")
+        test_text.append("[START] ", style="bold green")
         test_text.append("Direct Rich Test", style="bold yellow")
 
         panel = Panel(
             test_text,
-            title="[bold green]🧪 Rich Test Panel[/bold green]",
+            title="[bold green] Rich Test Panel[/bold green]",
             border_style="green",
             width=60,
         )
@@ -50,23 +50,23 @@ async def debug_visualization():
         )
         orion.add_task(task)
 
-        print(f"\n🔍 Testing with orion: {orion.orion_id}")
+        print(f"\n Testing with orion: {orion.orion_id}")
         print(f"   Task count: {orion.task_count}")
 
         # Test display methods directly
-        print("\n📊 Testing orion overview...")
+        print("\n[STATUS] Testing orion overview...")
         viz_observer._visualizer.display_orion_overview(
-            orion, "🧪 Debug Test"
+            orion, " Debug Test"
         )
 
     else:
-        print("❌ Visualizer not initialized - checking why...")
+        print("[FAIL] Visualizer not initialized - checking why...")
         try:
             from network.visualization.dag_visualizer import DAGVisualizer
 
-            print("✅ DAGVisualizer import successful")
+            print("[OK] DAGVisualizer import successful")
         except ImportError as e:
-            print(f"❌ DAGVisualizer import failed: {e}")
+            print(f"[FAIL] DAGVisualizer import failed: {e}")
 
 
 if __name__ == "__main__":

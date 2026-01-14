@@ -130,17 +130,17 @@ if __name__ == "__main__":
 
     print("Testing observer imports...")
     test.test_observer_imports()
-    print("✓ Observer imports test passed")
+    print(" Observer imports test passed")
 
     print("Testing observer creation...")
     test.test_orion_progress_observer_creation()
     test.test_session_metrics_observer_creation()
     test.test_dag_visualization_observer_creation()
-    print("✓ Observer creation tests passed")
+    print(" Observer creation tests passed")
 
     print("Testing module locations...")
     test.test_observer_module_locations()
-    print("✓ Module location tests passed")
+    print(" Module location tests passed")
 
-    print("\nAll basic tests passed! ✓")
+    print("\nAll basic tests passed! ")
     print("Note: Async tests require pytest to run properly.")

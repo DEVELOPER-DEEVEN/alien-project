@@ -1,10 +1,10 @@
-# 🌟 Agent Registration & Profiling - Overview
+#  Agent Registration & Profiling - Overview
 
 **Agent Registration** is the cornerstone of the AIP (Agent Interaction Protocol) initialization process. It enables dynamic discovery, capability advertisement, and intelligent task allocation across distributed orion agents.
 
 ---
 
-## 📋 Introduction
+## [TASK] Introduction
 
 ![Orion Agent Architecture](../../img/orion_agent.png)
 *An overview of the Orion Agent architecture showing the registration and profiling system.*
@@ -21,7 +21,7 @@ For a complete understanding of the orion system, see:
 
 ---
 
-## 🎯 Core Concepts
+##  Core Concepts
 
 ### Agent Registry
 
@@ -71,7 +71,7 @@ graph TB
 
 ---
 
-## 🔄 Registration Flow
+## [CONTINUE] Registration Flow
 
 ![Agent Registry Components](../../img/agent_registry.png)
 *Agent registration flow: multi-source AgentProfile construction and registration.*
@@ -124,7 +124,7 @@ Devices can be registered with `auto_connect=True` to automatically establish co
 
 ---
 
-## 📊 AgentProfile Structure
+## [STATUS] AgentProfile Structure
 
 The **AgentProfile** is the primary data structure representing a registered orion agent. For detailed information about the AgentProfile and its lifecycle operations, see [Agent Profile Documentation](./agent_profile.md).
 
@@ -206,7 +206,7 @@ For a complete example, see the [Agent Profile Documentation](./agent_profile.md
 
 ---
 
-## 🔄 Agent Lifecycle States
+## [CONTINUE] Agent Lifecycle States
 
 ![Agent State Machine](../../img/agent_state.png)
 *Lifecycle state transitions of the Orion Agent.*
@@ -270,7 +270,7 @@ stateDiagram-v2
 
 ---
 
-## 🛠️ Key Components
+## ️ Key Components
 
 ### 1. OrionDeviceManager
 
@@ -426,7 +426,7 @@ class ClientConnectionManager:
 
 ---
 
-## 📝 Configuration
+##  Configuration
 
 Agent registration uses two configuration files:
 
@@ -462,11 +462,11 @@ devices:
 
 For complete configuration schema, examples, and best practices, see:
 
-👉 **[Network Devices Configuration Guide](../../configuration/system/network_devices.md)**
+ **[Network Devices Configuration Guide](../../configuration/system/network_devices.md)**
 
 ---
 
-## 🚀 Usage Example
+## [START] Usage Example
 
 ### Basic Registration
 
@@ -494,7 +494,7 @@ success = await manager.register_device(
 )
 
 if success:
-    print("✅ Device registered and connected")
+    print("[OK] Device registered and connected")
     
     # Get device profile
     profile = manager.get_device_info("windows_workstation")
@@ -526,7 +526,7 @@ For more details on task assignment and execution, see:
 
 ---
 
-## 🔗 Cross-References
+## [DEP] Cross-References
 
 ### Related Documentation
 
@@ -550,7 +550,7 @@ For more details on task assignment and execution, see:
 
 ---
 
-## 💡 Key Benefits
+## [THOUGHT] Key Benefits
 
 The multi-source profiling approach provides several advantages:
 
@@ -580,7 +580,7 @@ The multi-source profiling approach provides several advantages:
 
 ---
 
-## 🎯 Next Steps
+##  Next Steps
 
 1. **Understand AgentProfile in Detail**: Read [Agent Profile Documentation](./agent_profile.md)
 2. **Learn Registration Process**: Follow [Registration Flow](./registration_flow.md)
@@ -590,7 +590,7 @@ The multi-source profiling approach provides several advantages:
 
 ---
 
-## 📚 Additional Resources
+## [PLAN] Additional Resources
 
 - **Source Code**: `network/client/device_manager.py`
 - **AIP Protocol**: `aip/protocol/registration.py`

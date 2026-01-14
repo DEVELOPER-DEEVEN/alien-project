@@ -170,7 +170,7 @@ class ContinueOrionAgentState(OrionAgentState):
         )
 
         agent.logger.info(
-            f"🔄 Real-time merged orion for editing. "
+            f"[CONTINUE] Real-time merged orion for editing. "
             f"Tasks before: {len(orchestrator_orion.tasks)}, "
             f"Tasks after merge: {len(merged_orion.tasks)}"
         )

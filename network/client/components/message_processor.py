@@ -67,7 +67,7 @@ class MessageProcessor:
         :param connection_manager: The WebSocketConnectionManager instance
         """
         self.connection_manager = connection_manager
-        self.logger.debug("🔗 ConnectionManager reference set")
+        self.logger.debug("[DEP] ConnectionManager reference set")
 
     def set_disconnection_handler(self, handler: callable) -> None:
         """
@@ -79,7 +79,7 @@ class MessageProcessor:
         :param handler: Async function to call on disconnection (device_id: str) -> None
         """
         self._disconnection_handler = handler
-        self.logger.debug("🔗 Disconnection handler set")
+        self.logger.debug("[DEP] Disconnection handler set")
 
     def start_message_handler(
         self, device_id: str, transport: "WebSocketTransport"
@@ -98,7 +98,7 @@ class MessageProcessor:
             self._message_handlers[device_id] = asyncio.create_task(
                 self._handle_device_messages(device_id, transport)
             )
-            self.logger.debug(f"📨 Started message handler for device {device_id}")
+            self.logger.debug(f" Started message handler for device {device_id}")
 
     def stop_message_handler(self, device_id: str) -> None:
         """
@@ -114,7 +114,7 @@ class MessageProcessor:
             if not task.done():
                 task.cancel()
             del self._message_handlers[device_id]
-            self.logger.debug(f"📨 Stopped message handler for device {device_id}")
+            self.logger.debug(f" Stopped message handler for device {device_id}")
 
     async def _handle_device_messages(
         self, device_id: str, transport: "WebSocketTransport"
@@ -163,50 +163,50 @@ class MessageProcessor:
                     raise
                 except json.JSONDecodeError as e:
                     self.logger.error(
-                        f"❌ Invalid JSON from device {device_id}: {e}", exc_info=True
+                        f"[FAIL] Invalid JSON from device {device_id}: {e}", exc_info=True
                     )
                 except ValueError as e:
                     self.logger.error(
-                        f"❌ Invalid message format from device {device_id}: {e}",
+                        f"[FAIL] Invalid message format from device {device_id}: {e}",
                         exc_info=True,
                     )
                 except TypeError as e:
                     self.logger.error(
-                        f"❌ Type error processing message from device {device_id}: {e}",
+                        f"[FAIL] Type error processing message from device {device_id}: {e}",
                         exc_info=True,
                     )
                 except Exception as e:
                     self.logger.error(
-                        f"❌ Unexpected error processing message from device {device_id}: {e}",
+                        f"[FAIL] Unexpected error processing message from device {device_id}: {e}",
                         exc_info=True,
                     )
 
         except ConnectionError as e:
             # Handle ConnectionError raised by transport layer
             self.logger.warning(
-                f"🔌 Connection to device {device_id} closed: {e} (messages received: {message_count})"
+                f" Connection to device {device_id} closed: {e} (messages received: {message_count})"
             )
             # Trigger disconnection handler for cleanup and reconnection
             await self._handle_disconnection(device_id)
         except websockets.ConnectionClosed as e:
             self.logger.warning(
-                f"🔌 Connection to device {device_id} closed "
+                f" Connection to device {device_id} closed "
                 f"(code: {e.code}, reason: {e.reason}, messages received: {message_count})"
             )
             # Trigger disconnection handler for cleanup and reconnection
             await self._handle_disconnection(device_id)
         except asyncio.CancelledError:
-            self.logger.info(f"📨 Message handler for device {device_id} was cancelled")
+            self.logger.info(f" Message handler for device {device_id} was cancelled")
             raise
         except websockets.WebSocketException as e:
-            self.logger.warning(f"⚠️ WebSocket error for device {device_id}: {e}")
+            self.logger.warning(f"️ WebSocket error for device {device_id}: {e}")
             await self._handle_disconnection(device_id)
         except OSError as e:
-            self.logger.warning(f"⚠️ Network error for device {device_id}: {e}")
+            self.logger.warning(f"️ Network error for device {device_id}: {e}")
             await self._handle_disconnection(device_id)
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected message handler error for device {device_id}: {e}"
+                f"[FAIL] Unexpected message handler error for device {device_id}: {e}"
             )
             # Trigger disconnection handler for unexpected errors
             await self._handle_disconnection(device_id)
@@ -231,7 +231,7 @@ class MessageProcessor:
         """
         try:
             self.logger.debug(
-                f"📨 Processing message type {server_msg.type} from device {device_id}"
+                f" Processing message type {server_msg.type} from device {device_id}"
             )
             start_time = asyncio.get_event_loop().time()
 
@@ -257,7 +257,7 @@ class MessageProcessor:
                 await self._handle_device_info_response(device_id, server_msg)
             else:
                 self.logger.debug(
-                    f"📋 Unhandled message type {server_msg.type} from device {device_id}"
+                    f"[TASK] Unhandled message type {server_msg.type} from device {device_id}"
                 )
 
             elapsed = asyncio.get_event_loop().time() - start_time
@@ -268,17 +268,17 @@ class MessageProcessor:
 
         except KeyError as e:
             self.logger.error(
-                f"❌ Missing required field in message from device {device_id}: {e}",
+                f"[FAIL] Missing required field in message from device {device_id}: {e}",
                 exc_info=True,
             )
         except AttributeError as e:
             self.logger.error(
-                f"❌ Invalid message structure from device {device_id}: {e}",
+                f"[FAIL] Invalid message structure from device {device_id}: {e}",
                 exc_info=True,
             )
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error processing server message from device {device_id}: {e}",
+                f"[FAIL] Unexpected error processing server message from device {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -320,21 +320,21 @@ class MessageProcessor:
             if self.connection_manager:
                 self.connection_manager.complete_task_response(session_id, server_msg)
                 self.logger.debug(
-                    f"🔄 Completed task response Future for task {task_id}"
+                    f"[CONTINUE] Completed task response Future for task {task_id}"
                 )
             else:
                 self.logger.warning(
-                    f"⚠️ ConnectionManager not set, cannot complete task response for {task_id}"
+                    f"️ ConnectionManager not set, cannot complete task response for {task_id}"
                 )
 
             self.logger.info(
-                f"✅ Task {task_id} completed on device {device_id} "
+                f"[OK] Task {task_id} completed on device {device_id} "
                 f"(status: {server_msg.status})"
             )
 
         except Exception as e:
             self.logger.error(
-                f"❌ Error handling task completion from device {device_id}: {e}",
+                f"[FAIL] Error handling task completion from device {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -351,7 +351,7 @@ class MessageProcessor:
         :param server_msg: ServerMessage containing error details
         """
         error_text = getattr(server_msg, "error", "Unknown error")
-        self.logger.error(f"❌ Error from device {device_id}: {error_text}")
+        self.logger.error(f"[FAIL] Error from device {device_id}: {error_text}")
 
     async def _handle_command_message(
         self, device_id: str, server_msg: ServerMessage
@@ -370,15 +370,15 @@ class MessageProcessor:
         try:
             # Commands are typically handled by local clients, not orion
             self.logger.debug(
-                f"🔄 Received command from device {device_id}, delegating to local clients"
+                f"[CONTINUE] Received command from device {device_id}, delegating to local clients"
             )
         except KeyError as e:
             self.logger.error(
-                f"❌ Missing command field from device {device_id}: {e}", exc_info=True
+                f"[FAIL] Missing command field from device {device_id}: {e}", exc_info=True
             )
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error handling command from device {device_id}: {e}",
+                f"[FAIL] Unexpected error handling command from device {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -399,7 +399,7 @@ class MessageProcessor:
 
             if not request_id:
                 self.logger.warning(
-                    f"⚠️ Device info response from {device_id} missing response_id"
+                    f"️ Device info response from {device_id} missing response_id"
                 )
                 return
 
@@ -410,7 +410,7 @@ class MessageProcessor:
                     device_info = server_msg.result
                 else:
                     self.logger.warning(
-                        f"⚠️ Device info request failed: {server_msg.result.get('error')}"
+                        f"️ Device info request failed: {server_msg.result.get('error')}"
                     )
 
             # Complete the pending request Future
@@ -419,16 +419,16 @@ class MessageProcessor:
                     request_id, device_info
                 )
                 self.logger.debug(
-                    f"🔄 Completed device info response Future for request {request_id}"
+                    f"[CONTINUE] Completed device info response Future for request {request_id}"
                 )
             else:
                 self.logger.warning(
-                    f"⚠️ ConnectionManager not set, cannot complete device info response"
+                    f"️ ConnectionManager not set, cannot complete device info response"
                 )
 
         except Exception as e:
             self.logger.error(
-                f"❌ Error handling device info response from {device_id}: {e}",
+                f"[FAIL] Error handling device info response from {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -447,19 +447,19 @@ class MessageProcessor:
         try:
             if isinstance(results, dict):
                 self.device_registry.set_device_capabilities(device_id, results)
-                self.logger.info(f"📊 Updated device info for {device_id}")
+                self.logger.info(f"[STATUS] Updated device info for {device_id}")
         except KeyError as e:
             self.logger.error(
-                f"❌ Missing required device info field for {device_id}: {e}",
+                f"[FAIL] Missing required device info field for {device_id}: {e}",
                 exc_info=True,
             )
         except TypeError as e:
             self.logger.error(
-                f"❌ Invalid device info data type for {device_id}: {e}", exc_info=True
+                f"[FAIL] Invalid device info data type for {device_id}: {e}", exc_info=True
             )
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error processing device info for {device_id}: {e}",
+                f"[FAIL] Unexpected error processing device info for {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -474,7 +474,7 @@ class MessageProcessor:
         :param device_id: Device that disconnected
         """
         try:
-            self.logger.info(f"🔌 Handling disconnection for device {device_id}")
+            self.logger.info(f" Handling disconnection for device {device_id}")
 
             # Stop heartbeat monitoring
             self.heartbeat_manager.stop_heartbeat(device_id)
@@ -484,12 +484,12 @@ class MessageProcessor:
                 await self._disconnection_handler(device_id)
             else:
                 self.logger.warning(
-                    f"⚠️ No disconnection handler set for device {device_id}"
+                    f"️ No disconnection handler set for device {device_id}"
                 )
 
         except Exception as e:
             self.logger.error(
-                f"❌ Error handling disconnection for device {device_id}: {e}",
+                f"[FAIL] Error handling disconnection for device {device_id}: {e}",
                 exc_info=True,
             )
 

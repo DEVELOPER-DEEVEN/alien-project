@@ -1,10 +1,10 @@
-# ⚡ Quick Start: Linux Agent
+#  Quick Start: Linux Agent
 
 Get your Linux device running as a ALIEN³ device agent in 5 minutes. This guide walks you through server/client configuration and MCP service initialization.
 
 ---
 
-## 📋 Prerequisites
+## [TASK] Prerequisites
 
 Before you begin, ensure you have:
 
@@ -22,11 +22,11 @@ Before you begin, ensure you have:
 | Network | N/A | `ping <server-ip>` |
 | LLM API Key | N/A | Check `config/alien/agents.yaml` |
 
-> **⚠️ LLM Configuration Required:** The Linux Agent shares the same LLM configuration with the AppAgent. Before starting, ensure you have configured your LLM provider (OpenAI, Azure OpenAI, Gemini, Claude, etc.) and added your API keys to `config/alien/agents.yaml`. See [Model Setup Guide](../configuration/models/overview.md) for detailed instructions.
+> **️ LLM Configuration Required:** The Linux Agent shares the same LLM configuration with the AppAgent. Before starting, ensure you have configured your LLM provider (OpenAI, Azure OpenAI, Gemini, Claude, etc.) and added your API keys to `config/alien/agents.yaml`. See [Model Setup Guide](../configuration/models/overview.md) for detailed instructions.
 
 ---
 
-## 📦 Step 1: Install Dependencies
+##  Step 1: Install Dependencies
 
 Install all dependencies from the requirements file:
 
@@ -37,7 +37,7 @@ pip install -r requirements.txt
 **Verify installation:**
 
 ```bash
-python3 -c "import alien; print('✅ ALIEN² installed successfully')"
+python3 -c "import alien; print('[OK] ALIEN² installed successfully')"
 ```
 
 > **Tip:** For production deployments, use a virtual environment to isolate dependencies:
@@ -50,7 +50,7 @@ python3 -c "import alien; print('✅ ALIEN² installed successfully')"
 
 ---
 
-## 🖥️ Step 2: Start Device Agent Server
+## ️ Step 2: Start Device Agent Server
 
 **Server Component:** The Device Agent Server is the central hub that manages connections from client devices and dispatches tasks. It can run on any machine (Linux, Windows, or remote server).
 
@@ -58,9 +58,9 @@ python3 -c "import alien; print('✅ ALIEN² installed successfully')"
 
 You can run the server on:
 
-- ✅ Same machine as the client (localhost setup for testing)
-- ✅ Different machine on the same network
-- ✅ Remote server (requires proper network routing/SSH tunneling)
+- [OK] Same machine as the client (localhost setup for testing)
+- [OK] Different machine on the same network
+- [OK] Remote server (requires proper network routing/SSH tunneling)
 
 ### Basic Server Startup
 
@@ -127,7 +127,7 @@ curl http://localhost:5001/api/health
 
 ---
 
-## 🐧 Step 3: Start Device Agent Client (Linux Machine)
+##  Step 3: Start Device Agent Client (Linux Machine)
 
 **Client Component:** The Device Agent Client runs on the Linux machine where you want to execute tasks. It connects to the server via WebSocket and receives task commands.
 
@@ -147,12 +147,12 @@ python -m alien.client.client \
 
 | Parameter | Required | Description | Example |
 |-----------|----------|-------------|---------|
-| `--ws` | ✅ Yes | Enable WebSocket mode | `--ws` |
-| `--ws-server` | ✅ Yes | Server WebSocket URL | `ws://172.23.48.1:5001/ws` |
-| `--client-id` | ✅ Yes | **Unique** device identifier | `linux_agent_1` |
-| `--platform` | ✅ Yes (Linux) | Platform type (must be `linux` for Linux Agent) | `--platform linux` |
+| `--ws` | [OK] Yes | Enable WebSocket mode | `--ws` |
+| `--ws-server` | [OK] Yes | Server WebSocket URL | `ws://172.23.48.1:5001/ws` |
+| `--client-id` | [OK] Yes | **Unique** device identifier | `linux_agent_1` |
+| `--platform` | [OK] Yes (Linux) | Platform type (must be `linux` for Linux Agent) | `--platform linux` |
 
-> **⚠️ Critical Requirements:**
+> **️ Critical Requirements:**
 > 
 > 1. `--client-id` must be globally unique - No two devices can share the same ID
 > 2. `--platform linux` is mandatory - Without this flag, the Linux Agent won't work correctly
@@ -190,7 +190,7 @@ INFO - [WS] Heartbeat loop started (interval: 30s)
 **Server Logs:**
 
 ```log
-INFO - [WS] ✅ Registered device client: linux_agent_1
+INFO - [WS] [OK] Registered device client: linux_agent_1
 INFO - [WS] Device linux_agent_1 platform: linux
 ```
 
@@ -223,7 +223,7 @@ curl http://172.23.48.1:5001/api/clients
 
 ---
 
-## 🔌 Step 4: Start MCP Service (Linux Machine)
+##  Step 4: Start MCP Service (Linux Machine)
 
 **MCP Service Component:** The MCP (Model Context Protocol) Service provides the execution layer for CLI commands. It must be running on the same Linux machine as the client to handle command execution requests.
 
@@ -273,7 +273,7 @@ sequenceDiagram
 
 The MCP server typically runs on `localhost:8010` by default. The client automatically connects to it when configured properly.
 
-> **⚠️ MCP Service Must Be Running:** If the MCP service is not running, the Linux Agent cannot execute commands and will fail with:
+> **️ MCP Service Must Be Running:** If the MCP service is not running, the Linux Agent cannot execute commands and will fail with:
 > ```
 > ERROR: Cannot connect to MCP server at http://127.0.0.1:8010
 > ```
@@ -282,7 +282,7 @@ The MCP server typically runs on `localhost:8010` by default. The client automat
 
 ---
 
-## 🎯 Step 5: Dispatch Tasks via HTTP API
+##  Step 5: Dispatch Tasks via HTTP API
 
 Once the server, client, and MCP service are all running, you can dispatch tasks to the Linux agent through the server's HTTP API.
 
@@ -406,11 +406,11 @@ sequenceDiagram
 
 | Field | Required | Type | Description | Example |
 |-------|----------|------|-------------|---------|
-| `client_id` | ✅ Yes | string | Target Linux agent ID (must match `--client-id`) | `"linux_agent_1"` |
-| `request` | ✅ Yes | string | Natural language task description | `"List files in /var/log"` |
-| `task_name` | ❌ Optional | string | Unique task identifier (auto-generated if omitted) | `"task_001"` |
+| `client_id` | [OK] Yes | string | Target Linux agent ID (must match `--client-id`) | `"linux_agent_1"` |
+| `request` | [OK] Yes | string | Natural language task description | `"List files in /var/log"` |
+| `task_name` | [FAIL] Optional | string | Unique task identifier (auto-generated if omitted) | `"task_001"` |
 
-> **⚠️ Client Must Be Online:** If the `client_id` is not connected, you'll receive:
+> **️ Client Must Be Online:** If the `client_id` is not connected, you'll receive:
 > ```json
 > {
 >   "detail": "Client not online"
@@ -424,7 +424,7 @@ sequenceDiagram
 
 ---
 
-## 🌉 Network Connectivity & SSH Tunneling
+##  Network Connectivity & SSH Tunneling
 
 When the server and client are on different networks or behind firewalls, you may need SSH tunneling to establish connectivity.
 
@@ -443,7 +443,7 @@ python -m alien.client.client \
   --platform linux
 ```
 
-**No additional configuration needed** ✅
+**No additional configuration needed** [OK]
 
 ### Scenario 2: Client Behind Firewall (Reverse SSH Tunnel)
 
@@ -580,11 +580,11 @@ autossh -M 0 \
   user@gateway
 ```
 
-> **ℹ️ Network Configuration:** For more network configuration details, see [Server Quick Start - Troubleshooting](../server/quick_start.md#common-issues-troubleshooting).
+> **[INFO] Network Configuration:** For more network configuration details, see [Server Quick Start - Troubleshooting](../server/quick_start.md#common-issues-troubleshooting).
 
 ---
 
-## 🌌 Step 6: Configure as ALIEN³ Network Device
+## [ORION] Step 6: Configure as ALIEN³ Network Device
 
 To use the Linux Agent as a managed device within the **ALIEN³ Network** multi-tier framework, you need to register it in the `devices.yaml` configuration file.
 
@@ -624,13 +624,13 @@ devices:
 
 | Field | Required | Type | Description | Example |
 |-------|----------|------|-------------|---------|
-| `device_id` | ✅ Yes | string | **Must match client `--client-id`** | `"linux_agent_1"` |
-| `server_url` | ✅ Yes | string | **Must match server WebSocket URL** | `"ws://172.23.48.1:5001/ws"` |
-| `os` | ✅ Yes | string | Operating system | `"linux"` |
-| `capabilities` | ❌ Optional | list | Device capabilities (for task routing) | `["server", "log_analysis"]` |
-| `metadata` | ❌ Optional | dict | Custom metadata for task context | See below |
-| `auto_connect` | ❌ Optional | boolean | Auto-connect on Network startup | `true` |
-| `max_retries` | ❌ Optional | integer | Connection retry attempts | `5` |
+| `device_id` | [OK] Yes | string | **Must match client `--client-id`** | `"linux_agent_1"` |
+| `server_url` | [OK] Yes | string | **Must match server WebSocket URL** | `"ws://172.23.48.1:5001/ws"` |
+| `os` | [OK] Yes | string | Operating system | `"linux"` |
+| `capabilities` | [FAIL] Optional | list | Device capabilities (for task routing) | `["server", "log_analysis"]` |
+| `metadata` | [FAIL] Optional | dict | Custom metadata for task context | See below |
+| `auto_connect` | [FAIL] Optional | boolean | Auto-connect on Network startup | `true` |
+| `max_retries` | [FAIL] Optional | integer | Connection retry attempts | `5` |
 
 ### Metadata Fields (Custom)
 
@@ -691,7 +691,7 @@ devices:
 
 ### Critical Requirements
 
-> **⚠️ Configuration Validation - These fields MUST match exactly:**
+> **️ Configuration Validation - These fields MUST match exactly:**
 > 
 > 1. **`device_id` in YAML** ↔ **`--client-id` in client command**
 >    ```yaml
@@ -720,13 +720,13 @@ python -m network --interactive
 ```
 
 **Network will:**
-1. ✅ Automatically load device configuration from `config/network/devices.yaml`
-2. ✅ Connect to all configured devices
-3. ✅ Orchestrate multi-device tasks
-4. ✅ Route tasks based on capabilities
-5. ✅ Monitor device health
+1. [OK] Automatically load device configuration from `config/network/devices.yaml`
+2. [OK] Connect to all configured devices
+3. [OK] Orchestrate multi-device tasks
+4. [OK] Route tasks based on capabilities
+5. [OK] Monitor device health
 
-> **ℹ️ Network Documentation:** For detailed Network configuration and usage, see:
+> **[INFO] Network Documentation:** For detailed Network configuration and usage, see:
 > 
 > - [Network Overview](../network/overview.md)
 > - [Network Quick Start](quick_start_network.md)
@@ -734,7 +734,7 @@ python -m network --interactive
 
 ---
 
-## 🐛 Common Issues & Troubleshooting
+##  Common Issues & Troubleshooting
 
 ### Issue 1: Client Cannot Connect to Server
 
@@ -955,7 +955,7 @@ ssh -N -L 5001:server:5001 user@gateway
 
 ---
 
-## 📚 Next Steps
+## [PLAN] Next Steps
 
 You've successfully set up a Linux Agent! Explore these topics to deepen your understanding:
 
@@ -963,9 +963,9 @@ You've successfully set up a Linux Agent! Explore these topics to deepen your un
 
 | Priority | Topic | Time | Link |
 |----------|-------|------|------|
-| 🥇 | **Linux Agent Architecture** | 10 min | [Overview](../linux/overview.md) |
-| 🥈 | **State Machine & Processing** | 15 min | [State Machine](../linux/state.md) |
-| 🥉 | **MCP Commands Reference** | 10 min | [Commands](../linux/commands.md) |
+|  | **Linux Agent Architecture** | 10 min | [Overview](../linux/overview.md) |
+|  | **State Machine & Processing** | 15 min | [State Machine](../linux/state.md) |
+|  | **MCP Commands Reference** | 10 min | [Commands](../linux/commands.md) |
 
 ### Advanced Topics
 
@@ -986,28 +986,28 @@ You've successfully set up a Linux Agent! Explore these topics to deepen your un
 
 ---
 
-## ✅ Summary
+## [OK] Summary
 
-## ✅ What You've Accomplished
+## [OK] What You've Accomplished
 
 Congratulations! You've successfully:
 
-✅ Switched to the `linux-client` branch  
-✅ Installed all dependencies  
-✅ Started the Device Agent Server  
-✅ Connected a Linux Device Agent Client  
-✅ Launched the MCP service for command execution  
-✅ Dispatched tasks via HTTP API  
-✅ (Optional) Configured SSH tunneling for remote access  
-✅ (Optional) Registered the device in Network configuration  
+[OK] Switched to the `linux-client` branch  
+[OK] Installed all dependencies  
+[OK] Started the Device Agent Server  
+[OK] Connected a Linux Device Agent Client  
+[OK] Launched the MCP service for command execution  
+[OK] Dispatched tasks via HTTP API  
+[OK] (Optional) Configured SSH tunneling for remote access  
+[OK] (Optional) Registered the device in Network configuration  
 
 **Your Linux Agent is Ready**
 
 You can now:
 
-- 🎯 Execute CLI commands on Linux machines remotely
-- 📊 Analyze log files across multiple servers
-- 🔧 Manage development environments
-- 🌌 Integrate with ALIEN³ Network for multi-device workflows
+-  Execute CLI commands on Linux machines remotely
+- [STATUS] Analyze log files across multiple servers
+- [CONFIG] Manage development environments
+- [ORION] Integrate with ALIEN³ Network for multi-device workflows
 
-**Start exploring and automating your Linux infrastructure!** 🚀
+**Start exploring and automating your Linux infrastructure!** [START]

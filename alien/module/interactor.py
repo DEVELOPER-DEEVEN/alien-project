@@ -14,9 +14,9 @@ from rich import box
 console = Console()
 
 WELCOME_TEXT = """
-Welcome to use ALIEN🛸, A UI-focused Agent for Windows OS Interaction. 
+Welcome to use ALIEN[UFO], A UI-focused Agent for Windows OS Interaction. 
 {art}
-Please enter your request to be completed🛸: """.format(
+Please enter your request to be completed[UFO]: """.format(
     art=text2art("ALIEN")
 )
 
@@ -29,15 +29,15 @@ def first_request() -> str:
 
     # Create an attractive welcome panel
     welcome_panel = Panel(
-        f"[bold cyan]🚀 Welcome to ALIEN - Your AI Assistant for Windows![/bold cyan]\n\n"
+        f"[bold cyan][START] Welcome to ALIEN - Your AI Assistant for Windows![/bold cyan]\n\n"
         f"[white]{text2art('ALIEN', font='small')}[/white]\n"
         f"[dim]A UI-focused Agent for seamless Windows OS interaction[/dim]\n\n"
-        f"[bold yellow]🎯 What can I help you with today?[/bold yellow]\n"
+        f"[bold yellow] What can I help you with today?[/bold yellow]\n"
         f"[dim]Examples:[/dim]\n"
-        f"[dim]• 📝 'Open Notepad and type a message'[/dim]\n"
-        f"[dim]• 🔍 'Search for files on my desktop'[/dim]\n"
-        f"[dim]• 📊 'Create a new Excel spreadsheet'[/dim]",
-        title="🛸 [bold blue]ALIEN Assistant[/bold blue]",
+        f"[dim]•  'Open Notepad and type a message'[/dim]\n"
+        f"[dim]•  'Search for files on my desktop'[/dim]\n"
+        f"[dim]• [STATUS] 'Create a new Excel spreadsheet'[/dim]",
+        title="[UFO] [bold blue]ALIEN Assistant[/bold blue]",
         border_style="blue",
         box=box.DOUBLE,
         padding=(1, 2),
@@ -48,18 +48,18 @@ def first_request() -> str:
     console.print()
 
     request = Prompt.ask(
-        "[bold green]✨ Your request[/bold green]",
+        "[bold green][NEW] Your request[/bold green]",
         console=console,
     )
 
     # Show confirmation with a nice message
     confirmation_text = Text()
-    confirmation_text.append("🎯 ", style="bold yellow")
+    confirmation_text.append(" ", style="bold yellow")
     confirmation_text.append("Got it! Starting to work on: ", style="dim")
     confirmation_text.append(f'"{request}"', style="bold cyan")
 
     console.print(confirmation_text)
-    console.print("[dim green]🚀 Let's get started![/dim green]")
+    console.print("[dim green][START] Let's get started![/dim green]")
     console.print()
 
     return request
@@ -74,8 +74,8 @@ def new_request() -> Tuple[str, bool]:
     # Create a styled panel for the prompt
     prompt_panel = Panel.fit(
         "[bold cyan]What would you like me to help you with next?[/bold cyan]\n\n"
-        "[dim]💡 Enter your new request, or type 'N' to exit[/dim]",
-        title="🛸 [bold blue]ALIEN Assistant[/bold blue]",
+        "[dim][THOUGHT] Enter your new request, or type 'N' to exit[/dim]",
+        title="[UFO] [bold blue]ALIEN Assistant[/bold blue]",
         border_style="cyan",
         box=box.ROUNDED,
     )
@@ -89,7 +89,7 @@ def new_request() -> Tuple[str, bool]:
     if request.upper() == "N":
         # Show goodbye message
         goodbye_panel = Panel.fit(
-            "[bold yellow]👋 Thank you for using ALIEN! Goodbye![/bold yellow]",
+            "[bold yellow] Thank you for using ALIEN! Goodbye![/bold yellow]",
             border_style="yellow",
             box=box.ROUNDED,
         )
@@ -97,7 +97,7 @@ def new_request() -> Tuple[str, bool]:
         complete = True
     else:
         # Show confirmation
-        console.print(f"[dim]✨ Processing your request: [bold]{request}[/bold][/dim]")
+        console.print(f"[dim][NEW] Processing your request: [bold]{request}[/bold][/dim]")
         complete = False
 
     return request, complete
@@ -111,14 +111,14 @@ def experience_asker() -> bool:
 
     # Create an attractive panel for the experience saving prompt
     experience_panel = Panel(
-        "[bold magenta]💾 Save Experience for Future Learning[/bold magenta]\n\n"
+        "[bold magenta] Save Experience for Future Learning[/bold magenta]\n\n"
         "[dim]Would you like to save the current conversation flow?\n"
         "This helps ALIEN learn and improve for similar tasks in the future.[/dim]\n\n"
         "[bold cyan]Benefits:[/bold cyan]\n"
-        "• 🚀 Faster execution for similar tasks\n"
-        "• 🎯 Better accuracy over time\n"
-        "• 🤝 Personalized assistance",
-        title="🧠 [bold]Learning & Memory[/bold]",
+        "• [START] Faster execution for similar tasks\n"
+        "•  Better accuracy over time\n"
+        "•  Personalized assistance",
+        title="[BRAIN] [bold]Learning & Memory[/bold]",
         border_style="magenta",
         box=box.DOUBLE,
     )
@@ -135,10 +135,10 @@ def experience_asker() -> bool:
 
     if save_experience:
         console.print(
-            "[dim green]✅ Experience will be saved for future reference[/dim green]"
+            "[dim green][OK] Experience will be saved for future reference[/dim green]"
         )
     else:
-        console.print("[dim yellow]ℹ️  Experience will not be saved[/dim yellow]")
+        console.print("[dim yellow][INFO]  Experience will not be saved[/dim yellow]")
 
     return save_experience
 
@@ -153,8 +153,8 @@ def question_asker(question: str, index: int) -> str:
 
     # Create a numbered question panel
     question_panel = Panel(
-        f"[bold blue]❓ Question #{index}[/bold blue]\n\n" f"[white]{question}[/white]",
-        title=f"🤔 [bold]Information Needed[/bold]",
+        f"[bold blue] Question #{index}[/bold blue]\n\n" f"[white]{question}[/white]",
+        title=f"[REASON] [bold]Information Needed[/bold]",
         border_style="blue",
         box=box.ROUNDED,
     )
@@ -168,7 +168,7 @@ def question_asker(question: str, index: int) -> str:
     )
 
     # Show confirmation
-    console.print(f"[dim green]✅ Answer recorded: {answer}[/dim green]")
+    console.print(f"[dim green][OK] Answer recorded: {answer}[/dim green]")
 
     return answer
 
@@ -183,12 +183,12 @@ def sensitive_step_asker(action, control_text) -> bool:
 
     # Create a warning panel for sensitive actions
     warning_panel = Panel(
-        f"[bold red]⚠️  Security Confirmation Required[/bold red]\n\n"
+        f"[bold red]️  Security Confirmation Required[/bold red]\n\n"
         f"[yellow]ALIEN is about to perform a potentially sensitive action:[/yellow]\n\n"
         f"[bold white]Action:[/bold white] [cyan]{action}[/cyan]\n"
         f"[bold white]Target:[/bold white] [cyan]{control_text}[/cyan]\n\n"
         f"[dim]Please review this action carefully before proceeding.[/dim]",
-        title="🔒 [bold red]Security Check[/bold red]",
+        title=" [bold red]Security Check[/bold red]",
         border_style="red",
         box=box.HEAVY,
     )
@@ -199,7 +199,7 @@ def sensitive_step_asker(action, control_text) -> bool:
 
     # Add some visual separation and emphasis
     console.print(
-        "[bold red]🚨 IMPORTANT:[/bold red] This action may modify system settings or data."
+        "[bold red] IMPORTANT:[/bold red] This action may modify system settings or data."
     )
     console.print()
 
@@ -210,8 +210,8 @@ def sensitive_step_asker(action, control_text) -> bool:
     )
 
     if proceed:
-        console.print("[dim green]✅ Action approved - proceeding...[/dim green]")
+        console.print("[dim green][OK] Action approved - proceeding...[/dim green]")
     else:
-        console.print("[dim red]❌ Action cancelled by user[/dim red]")
+        console.print("[dim red][FAIL] Action cancelled by user[/dim red]")
 
     return proceed

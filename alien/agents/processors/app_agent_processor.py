@@ -153,7 +153,7 @@ class AppAgentLoggingMiddleware(EnhancedLoggingMiddleware):
         round_step = context.get("round_step")
         request = context.get("request")
 
-        panel_title = f"🚀 Round {round_num + 1}, Step {round_step + 1}, Agent: {processor.agent.name}"
+        panel_title = f"[START] Round {round_num + 1}, Step {round_step + 1}, Agent: {processor.agent.name}"
         panel_content = self.starting_message(context)
 
         console.print(Panel(panel_content, title=panel_title, style="magenta"))
@@ -218,7 +218,7 @@ class AppAgentLoggingMiddleware(EnhancedLoggingMiddleware):
             # Display user-friendly completion message (maintaining original UX)
             if subtask and application_process_name:
                 console.print(
-                    f"✅ AppAgent: Successfully completed subtask '{subtask}' "
+                    f"[OK] AppAgent: Successfully completed subtask '{subtask}' "
                     f"on application '{application_process_name}'",
                     style="green",
                 )
@@ -231,7 +231,7 @@ class AppAgentLoggingMiddleware(EnhancedLoggingMiddleware):
 
             # Display user-friendly error message (maintaining original UX)
             console.print(
-                f"❌ AppAgent: Processing failed - {result.error}", style="red"
+                f"[FAIL] AppAgent: Processing failed - {result.error}", style="red"
             )
 
     async def on_error(self, processor: ProcessorTemplate, error: Exception) -> None:
@@ -248,4 +248,4 @@ class AppAgentLoggingMiddleware(EnhancedLoggingMiddleware):
         await super().on_error(processor, error)
 
         # Display user-friendly error message (maintaining original UX)
-        console.print(f"❌ AppAgent: Encountered error - {str(error)}", style="red")
+        console.print(f"[FAIL] AppAgent: Encountered error - {str(error)}", style="red")

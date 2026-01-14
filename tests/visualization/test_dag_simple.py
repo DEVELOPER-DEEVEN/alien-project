@@ -16,7 +16,7 @@ try:
     from network.orion.enums import TaskPriority
     from network.visualization.dag_visualizer import DAGVisualizer
 
-    print("✅ All imports successful!")
+    print("[OK] All imports successful!")
 
     # Create a simple orion
     orion = TaskOrion(
@@ -31,19 +31,19 @@ try:
         priority=TaskPriority.MEDIUM,
     )
 
-    print("📊 Adding task...")
+    print("[STATUS] Adding task...")
     orion.add_task(task)
 
     # Test manual visualization
-    print("🎨 Testing manual visualization...")
+    print(" Testing manual visualization...")
     orion.display_dag("overview", force=True)
 
-    print("🎉 DAG visualization test completed successfully!")
+    print(" DAG visualization test completed successfully!")
 
 except ImportError as e:
-    print(f"❌ Import error: {e}")
+    print(f"[FAIL] Import error: {e}")
 except Exception as e:
-    print(f"❌ Error: {e}")
+    print(f"[FAIL] Error: {e}")
     import traceback
 
     traceback.print_exc()

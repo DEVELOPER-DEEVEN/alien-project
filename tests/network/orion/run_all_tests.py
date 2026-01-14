@@ -69,10 +69,10 @@ def main():
     print(f"\nTotal: {passed}/{total} tests passed")
 
     if passed == total:
-        print("\n🎉 All tests passed!")
+        print("\n All tests passed!")
         return 0
     else:
-        print(f"\n⚠️  {total - passed} test(s) failed")
+        print(f"\n️  {total - passed} test(s) failed")
         print("\nSee docs/ORION_PARSING_TEST_REPORT.md for details.")
         return 1
 

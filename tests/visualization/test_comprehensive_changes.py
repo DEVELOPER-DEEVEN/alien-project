@@ -14,7 +14,7 @@ from network.core.events import OrionEvent, EventType
 @pytest.mark.asyncio
 async def test_all_change_types():
     """Comprehensive test for all types of orion changes."""
-    print("🧪 Comprehensive Orion Change Detection Test\n")
+    print(" Comprehensive Orion Change Detection Test\n")
 
     observer = DAGVisualizationObserver()
 
@@ -144,8 +144,8 @@ async def test_all_change_types():
     await observer.on_event(event4)
     print("\n")
 
-    print("✅ All comprehensive change detection tests completed!")
-    print("🎉 Features successfully implemented:")
+    print("[OK] All comprehensive change detection tests completed!")
+    print(" Features successfully implemented:")
     print("   • 自动对比 old/new orion，展示节点和边的增删")
     print("   • 优化 Rich 表格布局，防止换行")
     print("   • task 和 dep 属性变化都展示")

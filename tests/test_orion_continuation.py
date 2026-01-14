@@ -150,18 +150,18 @@ if __name__ == "__main__":
     async def run_tests():
         test_case = TestOrionContinuation()
         
-        print("🧪 Testing orion completion continuation...")
+        print(" Testing orion completion continuation...")
         
         try:
             await test_case.test_continuation_after_completion()
-            print("✅ Basic continuation test completed")
+            print("[OK] Basic continuation test completed")
         except Exception as e:
-            print(f"❌ Basic continuation test failed: {e}")
+            print(f"[FAIL] Basic continuation test failed: {e}")
         
         try:
             await test_case.test_orion_continuation_with_new_tasks()
-            print("✅ Continuation with new tasks test completed") 
+            print("[OK] Continuation with new tasks test completed") 
         except Exception as e:
-            print(f"❌ Continuation with new tasks test failed: {e}")
+            print(f"[FAIL] Continuation with new tasks test failed: {e}")
     
     asyncio.run(run_tests())

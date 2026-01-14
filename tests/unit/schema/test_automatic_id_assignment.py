@@ -18,7 +18,7 @@ from network.agents.schema import (
 
 def test_automatic_id_generation():
     """Test automatic ID generation for all schema types."""
-    print("🧪 Testing automatic ID generation...")
+    print(" Testing automatic ID generation...")
     
     # Test TaskStarSchema automatic task_id generation
     task_data = {
@@ -27,7 +27,7 @@ def test_automatic_id_generation():
     }
     
     task_schema = TaskStarSchema(**task_data)
-    print(f"✅ TaskStarSchema auto task_id: {task_schema.task_id}")
+    print(f"[OK] TaskStarSchema auto task_id: {task_schema.task_id}")
     assert task_schema.task_id is not None
     assert task_schema.task_id.startswith("task_")
     
@@ -38,7 +38,7 @@ def test_automatic_id_generation():
     }
     
     line_schema = TaskStarLineSchema(**line_data)
-    print(f"✅ TaskStarLineSchema auto line_id: {line_schema.line_id}")
+    print(f"[OK] TaskStarLineSchema auto line_id: {line_schema.line_id}")
     assert line_schema.line_id is not None
     assert line_schema.line_id.startswith("line_")
     
@@ -48,7 +48,7 @@ def test_automatic_id_generation():
     }
     
     orion_schema = TaskOrionSchema(**orion_data)
-    print(f"✅ TaskOrionSchema auto orion_id: {orion_schema.orion_id}")
+    print(f"[OK] TaskOrionSchema auto orion_id: {orion_schema.orion_id}")
     assert orion_schema.orion_id is not None
     assert orion_schema.orion_id.startswith("orion_")
     
@@ -57,7 +57,7 @@ def test_automatic_id_generation():
 
 def test_explicit_id_preservation():
     """Test that explicitly provided IDs are preserved."""
-    print("\n🧪 Testing explicit ID preservation...")
+    print("\n Testing explicit ID preservation...")
     
     # Test with explicit IDs
     task_schema = TaskStarSchema(
@@ -65,7 +65,7 @@ def test_explicit_id_preservation():
         name="Explicit Task",
         description="Task with explicit ID"
     )
-    print(f"✅ Explicit task_id preserved: {task_schema.task_id}")
+    print(f"[OK] Explicit task_id preserved: {task_schema.task_id}")
     assert task_schema.task_id == "explicit_task_001"
     
     line_schema = TaskStarLineSchema(
@@ -73,14 +73,14 @@ def test_explicit_id_preservation():
         from_task_id="task1",
         to_task_id="task2"
     )
-    print(f"✅ Explicit line_id preserved: {line_schema.line_id}")
+    print(f"[OK] Explicit line_id preserved: {line_schema.line_id}")
     assert line_schema.line_id == "explicit_line_001"
     
     orion_schema = TaskOrionSchema(
         orion_id="explicit_orion_001",
         name="Explicit Orion"
     )
-    print(f"✅ Explicit orion_id preserved: {orion_schema.orion_id}")
+    print(f"[OK] Explicit orion_id preserved: {orion_schema.orion_id}")
     assert orion_schema.orion_id == "explicit_orion_001"
     
     return True
@@ -88,7 +88,7 @@ def test_explicit_id_preservation():
 
 def test_uniqueness_validation():
     """Test uniqueness validation within orion context."""
-    print("\n🧪 Testing ID uniqueness validation...")
+    print("\n Testing ID uniqueness validation...")
     
     # Create tasks with unique IDs
     task1 = TaskStarSchema(
@@ -123,9 +123,9 @@ def test_uniqueness_validation():
                 "unique_line_001": dependency
             }
         )
-        print("✅ Orion with unique IDs created successfully")
+        print("[OK] Orion with unique IDs created successfully")
     except Exception as e:
-        print(f"❌ Failed to create orion with unique IDs: {e}")
+        print(f"[FAIL] Failed to create orion with unique IDs: {e}")
         return False
     
     # Test duplicate task ID detection
@@ -144,12 +144,12 @@ def test_uniqueness_validation():
                 "duplicate_task": duplicate_task  # This should cause validation error
             }
         )
-        print("❌ Duplicate task ID validation failed - should have been caught")
+        print("[FAIL] Duplicate task ID validation failed - should have been caught")
         return False
     except ValueError as e:
-        print(f"✅ Duplicate task ID correctly detected: {e}")
+        print(f"[OK] Duplicate task ID correctly detected: {e}")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"[FAIL] Unexpected error: {e}")
         return False
     
     return True
@@ -157,7 +157,7 @@ def test_uniqueness_validation():
 
 def test_id_manager_context():
     """Test that ID Manager maintains context properly."""
-    print("\n🧪 Testing ID Manager context...")
+    print("\n Testing ID Manager context...")
     
     id_manager = IDManager()
     
@@ -169,27 +169,27 @@ def test_id_manager_context():
     task_id_1b = id_manager.generate_task_id("orion_b")
     task_id_2b = id_manager.generate_task_id("orion_b")
     
-    print(f"✅ Orion A task IDs: {task_id_1a}, {task_id_2a}")
-    print(f"✅ Orion B task IDs: {task_id_1b}, {task_id_2b}")
+    print(f"[OK] Orion A task IDs: {task_id_1a}, {task_id_2a}")
+    print(f"[OK] Orion B task IDs: {task_id_1b}, {task_id_2b}")
     
     # Verify uniqueness within each orion
     assert task_id_1a != task_id_2a
     assert task_id_1b != task_id_2b
     
     # Verify IDs can be same across different orions (they use different counters)
-    print("✅ ID context separation working correctly")
+    print("[OK] ID context separation working correctly")
     
     # Test availability check
     assert not id_manager.is_task_id_available("orion_a", task_id_1a)
     assert id_manager.is_task_id_available("orion_a", "unused_task_id")
-    print("✅ ID availability check working correctly")
+    print("[OK] ID availability check working correctly")
     
     return True
 
 
 def test_sequential_id_generation():
     """Test that IDs are generated sequentially within orion context."""
-    print("\n🧪 Testing sequential ID generation...")
+    print("\n Testing sequential ID generation...")
     
     id_manager = IDManager()
     orion_id = "seq_test_orion"
@@ -200,7 +200,7 @@ def test_sequential_id_generation():
         task_id = id_manager.generate_task_id(orion_id)
         task_ids.append(task_id)
     
-    print(f"✅ Generated task IDs: {task_ids}")
+    print(f"[OK] Generated task IDs: {task_ids}")
     
     # Verify they are sequential
     for i, task_id in enumerate(task_ids, 1):
@@ -213,20 +213,20 @@ def test_sequential_id_generation():
         line_id = id_manager.generate_line_id(orion_id)
         line_ids.append(line_id)
     
-    print(f"✅ Generated line IDs: {line_ids}")
+    print(f"[OK] Generated line IDs: {line_ids}")
     
     # Verify they are sequential
     for i, line_id in enumerate(line_ids, 1):
         expected = f"line_{i:03d}"
         assert line_id == expected, f"Expected {expected}, got {line_id}"
     
-    print("✅ Sequential ID generation working correctly")
+    print("[OK] Sequential ID generation working correctly")
     return True
 
 
 def test_empty_string_handling():
     """Test that empty strings are treated as None for ID generation."""
-    print("\n🧪 Testing empty string handling...")
+    print("\n Testing empty string handling...")
     
     # Test empty string for task_id
     task_schema = TaskStarSchema(
@@ -235,7 +235,7 @@ def test_empty_string_handling():
         description="Task with empty string ID"
     )
     
-    print(f"✅ Empty task_id generated as: {task_schema.task_id}")
+    print(f"[OK] Empty task_id generated as: {task_schema.task_id}")
     assert task_schema.task_id != ""
     assert task_schema.task_id.startswith("task_")
     
@@ -246,7 +246,7 @@ def test_empty_string_handling():
         to_task_id="task2"
     )
     
-    print(f"✅ Empty line_id generated as: {line_schema.line_id}")
+    print(f"[OK] Empty line_id generated as: {line_schema.line_id}")
     assert line_schema.line_id != ""
     assert line_schema.line_id.startswith("line_")
     
@@ -255,7 +255,7 @@ def test_empty_string_handling():
 
 def main():
     """Run all tests."""
-    print("🚀 Testing Automatic ID Assignment and Validation\n")
+    print("[START] Testing Automatic ID Assignment and Validation\n")
     
     success = True
     
@@ -267,16 +267,16 @@ def main():
     success &= test_empty_string_handling()
     
     if success:
-        print("\n🎉 All tests passed successfully!")
-        print("\n📊 Test Summary:")
-        print("   ✅ Automatic ID generation")
-        print("   ✅ Explicit ID preservation")
-        print("   ✅ Uniqueness validation")
-        print("   ✅ Context-aware ID management")
-        print("   ✅ Sequential ID generation")
-        print("   ✅ Empty string handling")
+        print("\n All tests passed successfully!")
+        print("\n[STATUS] Test Summary:")
+        print("   [OK] Automatic ID generation")
+        print("   [OK] Explicit ID preservation")
+        print("   [OK] Uniqueness validation")
+        print("   [OK] Context-aware ID management")
+        print("   [OK] Sequential ID generation")
+        print("   [OK] Empty string handling")
     else:
-        print("\n❌ Some tests failed!")
+        print("\n[FAIL] Some tests failed!")
         
     return success
 

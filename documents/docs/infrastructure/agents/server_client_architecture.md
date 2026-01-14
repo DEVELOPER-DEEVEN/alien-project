@@ -17,12 +17,12 @@ To support safe, scalable, and flexible execution across heterogeneous devices, 
 
 | Benefit | Description |
 |---------|-------------|
-| **🔒 Safe Execution** | Separates reasoning (server) from system operations (client), reducing risk |
-| **📈 Scalable Orchestration** | Single server can manage multiple clients concurrently |
-| **🔧 Independent Updates** | Server logic and client tools can be updated independently |
-| **🌐 Multi-Device Support** | Clients can be rapidly deployed on new devices with minimal configuration |
-| **🛡️ Fault Isolation** | Client failures don't crash the server's reasoning logic |
-| **📡 Real-Time Communication** | Persistent WebSocket connections enable low-latency bidirectional messaging |
+| ** Safe Execution** | Separates reasoning (server) from system operations (client), reducing risk |
+| ** Scalable Orchestration** | Single server can manage multiple clients concurrently |
+| **[CONFIG] Independent Updates** | Server logic and client tools can be updated independently |
+| **[WEB] Multi-Device Support** | Clients can be rapidly deployed on new devices with minimal configuration |
+| **️ Fault Isolation** | Client failures don't crash the server's reasoning logic |
+| ** Real-Time Communication** | Persistent WebSocket connections enable low-latency bidirectional messaging |
 
 **Design Philosophy:**
 
@@ -36,12 +36,12 @@ The **agent server** is responsible for managing the agent's state machine lifec
 
 **Server Responsibilities:**
 
-- 🧠 **State Machine Management**: Controls agent lifecycle through the [FSM](./overview.md#level-1-state-layer-fsm)
-- 🎯 **Strategy Execution**: Implements the [Strategy Layer](./overview.md#level-2-strategy-layer-execution-logic)
-- 🤖 **LLM Interaction**: Constructs prompts, parses responses, makes decisions
-- 📋 **Task Decomposition**: Breaks down high-level tasks into executable commands
-- 🔀 **Command Sequencing**: Determines execution order and dependencies
-- 👥 **Multi-Client Coordination**: Manages multiple device clients concurrently
+- [BRAIN] **State Machine Management**: Controls agent lifecycle through the [FSM](./overview.md#level-1-state-layer-fsm)
+-  **Strategy Execution**: Implements the [Strategy Layer](./overview.md#level-2-strategy-layer-execution-logic)
+-  **LLM Interaction**: Constructs prompts, parses responses, makes decisions
+- [TASK] **Task Decomposition**: Breaks down high-level tasks into executable commands
+-  **Command Sequencing**: Determines execution order and dependencies
+-  **Multi-Client Coordination**: Manages multiple device clients concurrently
 
 ### Server Architecture
 
@@ -164,12 +164,12 @@ The **agent client** runs on the target device and manages a collection of MCP s
 
 **Client Responsibilities:**
 
-- ⚙️ **Command Execution**: Translates server commands into MCP tool calls
-- 🛠️ **Tool Management**: Registers and orchestrates local/remote MCP servers
-- 📊 **Device Profiling**: Reports hardware and software configuration
-- 📡 **Result Reporting**: Returns structured execution results via AIP
-- 🔍 **Self-Checks**: Performs diagnostics (disk, CPU, memory, GPU, network)
-- 🚫 **Stateless Operation**: Executes directives without high-level reasoning
+- ️ **Command Execution**: Translates server commands into MCP tool calls
+- ️ **Tool Management**: Registers and orchestrates local/remote MCP servers
+- [STATUS] **Device Profiling**: Reports hardware and software configuration
+-  **Result Reporting**: Returns structured execution results via AIP
+-  **Self-Checks**: Performs diagnostics (disk, CPU, memory, GPU, network)
+-  **Stateless Operation**: Executes directives without high-level reasoning
 
 ### Client Architecture
 
@@ -389,19 +389,19 @@ The client remains **stateless with respect to reasoning**: it faithfully execut
 
 **Client Does NOT:**
 
-- ❌ Construct prompts for LLMs
-- ❌ Make strategic decisions
-- ❌ Manage state transitions
-- ❌ Decompose tasks into subtasks
-- ❌ Coordinate with other agents
+- [FAIL] Construct prompts for LLMs
+- [FAIL] Make strategic decisions
+- [FAIL] Manage state transitions
+- [FAIL] Decompose tasks into subtasks
+- [FAIL] Coordinate with other agents
 
 **Client DOES:**
 
-- ✅ Execute commands deterministically
-- ✅ Manage MCP tool lifecycle
-- ✅ Report execution results
-- ✅ Monitor device health
-- ✅ Handle tool failures gracefully
+- [OK] Execute commands deterministically
+- [OK] Manage MCP tool lifecycle
+- [OK] Report execution results
+- [OK] Monitor device health
+- [OK] Handle tool failures gracefully
 
 This separation ensures that **updates to one layer do not interfere with the other**, enhancing maintainability and reducing risk of disruption.
 
@@ -772,12 +772,12 @@ The server-client architecture is a foundational design pattern in ALIEN's distr
 
 **Key Takeaways:**
 
-- 🏗️ **Separation of Concerns**: Server handles reasoning, client handles execution
-- 📡 **AIP Communication**: Persistent WebSocket connections enable real-time bidirectional messaging
-- 🔧 **Independent Updates**: Server logic and client tools evolve independently
-- 📈 **Scalable Management**: Single server orchestrates multiple clients
-- 🛡️ **Fault Isolation**: Client failures don't crash server reasoning
-- 🌐 **Multi-Device Ready**: Supports heterogeneous device orchestration
+- ️ **Separation of Concerns**: Server handles reasoning, client handles execution
+-  **AIP Communication**: Persistent WebSocket connections enable real-time bidirectional messaging
+- [CONFIG] **Independent Updates**: Server logic and client tools evolve independently
+-  **Scalable Management**: Single server orchestrates multiple clients
+- ️ **Fault Isolation**: Client failures don't crash server reasoning
+- [WEB] **Multi-Device Ready**: Supports heterogeneous device orchestration
 
 **Related Documentation:**
 

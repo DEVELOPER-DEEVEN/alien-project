@@ -839,7 +839,7 @@ class NetworkTrajectory:
                             # Check for parse errors
                             if "parse_error" in orion_before:
                                 error_info = orion_before["parse_error"]
-                                file.write("##### ⚠️ Parse Error\n\n")
+                                file.write("##### ️ Parse Error\n\n")
                                 file.write(
                                     f"**Error Type**: `{error_info.get('error_type', 'unknown')}`\n\n"
                                 )
@@ -912,7 +912,7 @@ class NetworkTrajectory:
                             # Check for parse errors
                             if "parse_error" in orion_after:
                                 error_info = orion_after["parse_error"]
-                                file.write("##### ⚠️ Parse Error\n\n")
+                                file.write("##### ️ Parse Error\n\n")
                                 file.write(
                                     f"**Error Type**: `{error_info.get('error_type', 'unknown')}`\n\n"
                                 )

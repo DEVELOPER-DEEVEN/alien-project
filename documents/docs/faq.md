@@ -4,7 +4,7 @@ Quick answers to common questions about ALIEN³ Network, ALIEN², Linux Agents, 
 
 ---
 
-## 🎯 General Questions
+##  General Questions
 
 ### Q: What is ALIEN³?
 
@@ -48,13 +48,13 @@ See [Migration Guide](getting_started/migration_alien2_to_network.md) for detail
 
 **A:** Yes and No:
 
-- **✅ Linux:** Supported via Linux Agent for server/CLI automation
-- **❌ macOS:** Not currently supported (Windows and Linux only)
+- **[OK] Linux:** Supported via Linux Agent for server/CLI automation
+- **[FAIL] macOS:** Not currently supported (Windows and Linux only)
 - **Windows:** Full ALIEN² desktop automation support
 
 ---
 
-## 🔧 Installation & Setup
+## [CONFIG] Installation & Setup
 
 ### Q: Which Python version do I need?
 
@@ -112,16 +112,16 @@ See [Model Configuration](configuration/models/overview.md) for details.
 
 | Component | Requires API Key | Purpose |
 |-----------|-----------------|---------|
-| **OrionAgent** (Network) | ✅ Yes | Orchestration reasoning |
-| **HostAgent** (ALIEN²) | ✅ Yes | Task planning |
-| **AppAgent** (ALIEN²) | ✅ Yes | Action execution |
-| **LinuxAgent** | ✅ Yes | Command planning |
-| **Device Server** | ❌ No | Message routing only |
-| **MCP Servers** | ❌ No | Tool provider only |
+| **OrionAgent** (Network) | [OK] Yes | Orchestration reasoning |
+| **HostAgent** (ALIEN²) | [OK] Yes | Task planning |
+| **AppAgent** (ALIEN²) | [OK] Yes | Action execution |
+| **LinuxAgent** | [OK] Yes | Command planning |
+| **Device Server** | [FAIL] No | Message routing only |
+| **MCP Servers** | [FAIL] No | Tool provider only |
 
 ---
 
-## ⚙️ Configuration
+## ️ Configuration
 
 ### Q: Where are configuration files located?
 
@@ -181,7 +181,7 @@ See [Configuration Migration Guide](configuration/system/migration.md) for detai
 
 ---
 
-## 🌌 ALIEN³ Network Questions
+## [ORION] ALIEN³ Network Questions
 
 ### Q: What's the minimum number of devices for Network?
 
@@ -243,7 +243,7 @@ os: "linux"
 
 ---
 
-## 🐧 Linux Agent Questions
+##  Linux Agent Questions
 
 ### Q: Does the Linux Agent require a GUI?
 
@@ -289,9 +289,9 @@ Without MCP, the Linux Agent can't execute commands - it can only plan them.
 ### Q: Does ALIEN² work on Windows 10?
 
 **A:** Yes! ALIEN² supports:
-- ✅ Windows 11 (recommended)
-- ✅ Windows 10 (fully supported)
-- ❌ Windows 8.1 or earlier (not tested)
+- [OK] Windows 11 (recommended)
+- [OK] Windows 10 (fully supported)
+- [FAIL] Windows 8.1 or earlier (not tested)
 
 ### Q: Can ALIEN² automate Office apps?
 
@@ -314,7 +314,7 @@ Enable MCP in `config/alien/mcp.yaml` for better Office automation.
 
 ---
 
-## 🐛 Common Issues & Troubleshooting
+##  Common Issues & Troubleshooting
 
 ### Issue: "Configuration file not found"
 
@@ -502,7 +502,7 @@ Performance may vary by language and model. Test with your specific language and
 
 ---
 
-## 📚 Where to Find More Help
+## [PLAN] Where to Find More Help
 
 ### Documentation
 
@@ -557,4 +557,4 @@ Performance may vary by language and model. Test with your specific language and
 
 ---
 
-> **💡 Still have questions?** Check the [More Guidance](getting_started/more_guidance.md) page for additional resources, or reach out to the community!
+> **[THOUGHT] Still have questions?** Check the [More Guidance](getting_started/more_guidance.md) page for additional resources, or reach out to the community!

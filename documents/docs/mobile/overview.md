@@ -126,7 +126,7 @@ sequenceDiagram
 | **Architecture** | Single-agent | Single-agent | Child executor |
 | **Interface** | Mobile UI (touch-based) | Command-line | Desktop GUI |
 | **Processing Phases** | 4 phases (with DATA_COLLECTION) | 3 phases | 4 phases |
-| **Visual** | ✓ Screenshots + Annotations | ✗ Text-only | ✓ Screenshots + Annotations |
+| **Visual** |  Screenshots + Annotations |  Text-only |  Screenshots + Annotations |
 | **MCP Tools** | UI controls + App management | CLI commands | UI controls + API |
 | **Input Method** | Touch (tap, swipe, type) | Keyboard commands | Mouse + Keyboard |
 | **Control Identification** | UI hierarchy + bounds | N/A | UI Automation API |

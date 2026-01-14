@@ -5,19 +5,19 @@
 
 ## 发现的Bug
 
-### 🐛 Bug #1: AttributeError - session_id 属性不存在
+###  Bug #1: AttributeError - session_id 属性不存在
 **位置**: `NetworkSession`对象  
 **错误**: `AttributeError: 'NetworkSession' object has no attribute 'session_id'`  
 **根因**: NetworkSession使用`_id`而不是`session_id`  
-**状态**: ✅ 已修复  
+**状态**: [OK] 已修复  
 
-### 🐛 Bug #2: TypeError - Mock对象无法迭代  
+###  Bug #2: TypeError - Mock对象无法迭代  
 **位置**: `_format_device_info`方法  
 **错误**: `TypeError: 'Mock' object is not iterable`  
 **根因**: `device_info`参数是Mock对象，无法在for循环中迭代  
-**状态**: ✅ 已修复  
+**状态**: [OK] 已修复  
 
-### 🐛 Bug #3: Pydantic Validation Error - 数据类型不匹配
+###  Bug #3: Pydantic Validation Error - 数据类型不匹配
 **位置**: `OrionAgentResponse`解析  
 **错误**: 
 ```
@@ -26,25 +26,25 @@ orion
   Input should be a valid string [type=string_type, input_value={'tasks': [...]}, input_type=dict]
 ```
 **根因**: LLM返回了dict格式的orion，但Pydantic模型期望string  
-**状态**: ❌ 未修复  
+**状态**: [FAIL] 未修复  
 **影响**: 阻止orion创建，导致任务无法执行  
 
-### 🐛 Bug #4: 性能问题 - 执行时间过长
+###  Bug #4: 性能问题 - 执行时间过长
 **测量**: 99.70秒执行时间  
 **根因**: 可能由于LLM响应格式错误导致重试  
-**状态**: ❌ 未修复  
+**状态**: [FAIL] 未修复  
 **影响**: 用户体验差，资源浪费  
 
-### 🐛 Bug #5: 流程中断 - Orion未创建
+###  Bug #5: 流程中断 - Orion未创建
 **现象**: `No orion was created`  
 **根因**: 由于Bug #3，orion解析失败  
-**状态**: ❌ 未修复  
+**状态**: [FAIL] 未修复  
 **影响**: 整个DAG工作流程无法启动  
 
-### 🐛 Bug #6: 设备任务未执行
+###  Bug #6: 设备任务未执行
 **现象**: `No device tasks were executed`  
 **根因**: 由于orion未创建，后续设备任务无法分派  
-**状态**: ❌ 未修复  
+**状态**: [FAIL] 未修复  
 **影响**: 核心功能无法工作  
 
 ## 测试结果详细分析
@@ -52,7 +52,7 @@ orion
 ### 执行统计
 - **总执行时间**: 99.70秒
 - **完成rounds**: 1个
-- **创建orion**: ❌ 失败
+- **创建orion**: [FAIL] 失败
 - **设备交互**: 0次
 - **发现问题**: 6个
 

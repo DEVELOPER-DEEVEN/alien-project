@@ -379,7 +379,7 @@ class HostAgent(BasicAgent):
         comment_text = Text()
 
         # Add agent identifier
-        comment_text.append("🤖 ALIEN Agent", style="bold blue")
+        comment_text.append(" ALIEN Agent", style="bold blue")
         comment_text.append(" says:\n\n", style="dim blue")
 
         # Add the actual comment with proper formatting
@@ -388,7 +388,7 @@ class HostAgent(BasicAgent):
             if line.strip():
                 # Add bullet point for multiple lines
                 if len(comment_lines) > 1 and line.strip():
-                    comment_text.append("💭 ", style="cyan")
+                    comment_text.append(" ", style="cyan")
                 comment_text.append(line.strip(), style="white")
                 if i < len(comment_lines) - 1:
                     comment_text.append("\n")
@@ -396,7 +396,7 @@ class HostAgent(BasicAgent):
         # Create enhanced panel with conversation styling
         comment_panel = Panel(
             Align.left(comment_text),
-            title="💬 [bold yellow]Agent Dialogue[/bold yellow]",
+            title="[COMMENT] [bold yellow]Agent Dialogue[/bold yellow]",
             title_align="left",
             border_style="yellow",
             box=DOUBLE,

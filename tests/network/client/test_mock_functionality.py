@@ -85,4 +85,4 @@ def test_visualization_display():
     }
     display.display_result(mock_result)
 
-    print("✅ All visualization tests passed")
+    print("[OK] All visualization tests passed")

@@ -2,7 +2,7 @@
 
 Configure Mobile Agent as a sub-agent in ALIEN's Network framework to enable cross-platform, multi-device task orchestration. Network can coordinate Mobile agents alongside Windows and Linux devices to execute complex workflows spanning multiple systems and platforms.
 
-> **📖 Prerequisites:**
+> **[LANG] Prerequisites:**
 > 
 > Before configuring Mobile Agent in Network, ensure you have:
 > 
@@ -95,13 +95,13 @@ devices:
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
-| `device_id` | ✅ Yes | string | **Unique identifier** - must match client `--client-id` |
-| `server_url` | ✅ Yes | string | WebSocket URL - must match server endpoint |
-| `os` | ✅ Yes | string | Operating system - set to `"mobile"` |
-| `capabilities` | ❌ Optional | list | Skills/capabilities for task routing |
-| `metadata` | ❌ Optional | dict | Custom context for LLM-based task execution |
-| `auto_connect` | ❌ Optional | boolean | Auto-connect on Network startup (default: `true`) |
-| `max_retries` | ❌ Optional | integer | Connection retry attempts (default: `5`) |
+| `device_id` | [OK] Yes | string | **Unique identifier** - must match client `--client-id` |
+| `server_url` | [OK] Yes | string | WebSocket URL - must match server endpoint |
+| `os` | [OK] Yes | string | Operating system - set to `"mobile"` |
+| `capabilities` | [FAIL] Optional | list | Skills/capabilities for task routing |
+| `metadata` | [FAIL] Optional | dict | Custom context for LLM-based task execution |
+| `auto_connect` | [FAIL] Optional | boolean | Auto-connect on Network startup (default: `true`) |
+| `max_retries` | [FAIL] Optional | integer | Connection retry attempts (default: `5`) |
 
 ### Step 3: Capabilities-Based Task Routing
 
@@ -335,12 +335,12 @@ devices:
 
 Ensure all components are running before starting Network:
 
-1. ✅ Device Agent Servers running on all machines
-2. ✅ Device Agent Clients connected to their respective servers
-3. ✅ MCP Services running (both data collection and action servers)
-4. ✅ ADB accessible and Android devices connected
-5. ✅ USB debugging enabled on all Android devices
-6. ✅ LLM configured in `config/alien/agents.yaml` or `config/network/agent.yaml`
+1. [OK] Device Agent Servers running on all machines
+2. [OK] Device Agent Clients connected to their respective servers
+3. [OK] MCP Services running (both data collection and action servers)
+4. [OK] ADB accessible and Android devices connected
+5. [OK] USB debugging enabled on all Android devices
+6. [OK] LLM configured in `config/alien/agents.yaml` or `config/network/agent.yaml`
 
 ### Launch Sequence
 

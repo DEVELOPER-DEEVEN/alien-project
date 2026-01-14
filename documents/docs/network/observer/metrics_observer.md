@@ -8,7 +8,7 @@ The metrics observer is essential for evaluating Network performance, identifyin
 
 ---
 
-## 🎯 Purpose
+##  Purpose
 
 The Metrics Observer provides:
 
@@ -19,7 +19,7 @@ The Metrics Observer provides:
 
 ---
 
-## 🏗️ Architecture
+## ️ Architecture
 
 ```mermaid
 graph TB
@@ -65,7 +65,7 @@ graph TB
 
 ---
 
-## 📊 Metrics Collected
+## [STATUS] Metrics Collected
 
 The observer collects metrics across three categories:
 
@@ -119,7 +119,7 @@ Track orion structural changes:
 
 ---
 
-## 💻 Implementation
+##  Implementation
 
 ### Initialization
 
@@ -175,7 +175,7 @@ self.metrics: Dict[str, Any] = {
 
 ---
 
-## 🔄 Event Processing
+## [CONTINUE] Event Processing
 
 ### Task Event Handling
 
@@ -326,7 +326,7 @@ def _handle_orion_modified(self, event: OrionEvent) -> None:
 
 ---
 
-## 📖 API Reference
+## [LANG] API Reference
 
 ### Constructor
 
@@ -379,7 +379,7 @@ print(f"Modification types: {metrics['modification_statistics']['modification_ty
 
 ---
 
-## 📊 Computed Statistics
+## [STATUS] Computed Statistics
 
 The observer computes three categories of statistics:
 
@@ -436,7 +436,7 @@ The observer computes three categories of statistics:
 
 ---
 
-## 🔍 Usage Examples
+##  Usage Examples
 
 ### Example 1: Basic Metrics Collection
 
@@ -552,17 +552,17 @@ def export_metrics(metrics_observer: SessionMetricsObserver, output_path: str):
 
 ---
 
-## 🎓 Best Practices
+##  Best Practices
 
 ### 1. Session ID Naming
 
 Use descriptive session IDs for easier analysis:
 
 ```python
-# ✅ Good: Descriptive session ID
+# [OK] Good: Descriptive session ID
 session_id = f"network_session_{task_type}_{timestamp}"
 
-# ❌ Bad: Generic session ID
+# [FAIL] Bad: Generic session ID
 session_id = "session_1"
 ```
 
@@ -591,7 +591,7 @@ metrics_observer.metrics["orion_timings"].clear()
 
 ---
 
-## 🔗 Related Documentation
+## [DEP] Related Documentation
 
 - **[Observer System Overview](overview.md)** — Architecture and design
 - **[Event System Core](event_system.md)** — Event types and EventBus
@@ -601,7 +601,7 @@ metrics_observer.metrics["orion_timings"].clear()
 
 ---
 
-## 📋 Summary
+## [TASK] Summary
 
 The Session Metrics Observer:
 

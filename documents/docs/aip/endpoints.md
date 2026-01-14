@@ -6,9 +6,9 @@ Endpoints combine protocol, transport, and resilience components to provide prod
 
 | Endpoint Type | Role | Used By | Key Features |
 |---------------|------|---------|--------------|
-| **DeviceServerEndpoint** | Server | Device Agent Service | ✅ Multiplexed connections<br>✅ Session management<br>✅ Task dispatching<br>✅ Result aggregation |
-| **DeviceClientEndpoint** | Client | Device Agent Client | ✅ Auto-reconnection<br>✅ Heartbeat management<br>✅ Command execution<br>✅ Telemetry reporting |
-| **OrionEndpoint** | Orchestrator | OrionClient | ✅ Multi-device coordination<br>✅ Task distribution<br>✅ Device info querying<br>✅ Connection pooling |
+| **DeviceServerEndpoint** | Server | Device Agent Service | [OK] Multiplexed connections<br>[OK] Session management<br>[OK] Task dispatching<br>[OK] Result aggregation |
+| **DeviceClientEndpoint** | Client | Device Agent Client | [OK] Auto-reconnection<br>[OK] Heartbeat management<br>[OK] Command execution<br>[OK] Telemetry reporting |
+| **OrionEndpoint** | Orchestrator | OrionClient | [OK] Multi-device coordination<br>[OK] Task distribution<br>[OK] Device info querying<br>[OK] Connection pooling |
 
 ---
 

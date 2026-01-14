@@ -2,7 +2,7 @@
 
 ---
 
-## 📋 Overview
+## [TASK] Overview
 
 **OrionEditor** provides a high-level, command pattern-based interface for safe and comprehensive TaskOrion manipulation. It offers undo/redo capabilities, batch operations, validation, and observer patterns for building, modifying, and managing complex workflow DAGs interactively.
 
@@ -12,7 +12,7 @@ The editor uses the **Command Pattern** to encapsulate all operations as reversi
 
 ---
 
-## 🏗️ Architecture
+## ️ Architecture
 
 ### Core Components
 
@@ -40,7 +40,7 @@ graph TD
 
 ---
 
-## 💻 Basic Usage
+##  Basic Usage
 
 ### Creating an Editor
 
@@ -65,7 +65,7 @@ print(f"Editing: {editor.orion.name}")
 
 ---
 
-## 🎯 Task Operations
+##  Task Operations
 
 ### Adding Tasks
 
@@ -150,7 +150,7 @@ ready = editor.get_ready_tasks()
 
 ---
 
-## 🔗 Dependency Operations
+## [DEP] Dependency Operations
 
 ### Adding Dependencies
 
@@ -216,7 +216,7 @@ task_deps = editor.get_task_dependencies("train_model")
 
 ---
 
-## 🔄 Undo/Redo Operations
+## [CONTINUE] Undo/Redo Operations
 
 ### Basic Undo/Redo
 
@@ -230,12 +230,12 @@ task = editor.create_and_add_task(
 # Oops, didn't mean to add that
 if editor.can_undo():
     editor.undo()
-    print("✅ Task addition undone")
+    print("[OK] Task addition undone")
 
 # Actually, let's keep it
 if editor.can_redo():
     editor.redo()
-    print("✅ Task addition redone")
+    print("[OK] Task addition redone")
 ```
 
 ### Checking Undo/Redo Availability
@@ -273,7 +273,7 @@ editor.clear_history()
 
 ---
 
-## 🏗️ Bulk Operations
+## ️ Bulk Operations
 
 ### Building from Configuration
 
@@ -354,7 +354,7 @@ print(f"Orion cleared: {cleared.task_count == 0}")
 
 ---
 
-## 💾 File Operations
+##  File Operations
 
 ### Saving Orion
 
@@ -394,7 +394,7 @@ orion = editor.load_from_json_string(json_string)
 
 ---
 
-## 🔍 Validation and Analysis
+##  Validation and Analysis
 
 ### DAG Validation
 
@@ -403,15 +403,15 @@ orion = editor.load_from_json_string(json_string)
 is_valid, errors = editor.validate_orion()
 
 if not is_valid:
-    print("❌ Validation errors:")
+    print("[FAIL] Validation errors:")
     for error in errors:
         print(f"  - {error}")
 else:
-    print("✅ Orion is valid")
+    print("[OK] Orion is valid")
 
 # Check for cycles
 if editor.has_cycles():
-    print("❌ Orion contains cycles")
+    print("[FAIL] Orion contains cycles")
 ```
 
 ### Topological Analysis
@@ -447,7 +447,7 @@ print(f"Can redo: {stats['editor_can_redo']}")
 
 ---
 
-## 👀 Observer Pattern
+## [OBSERVATION] Observer Pattern
 
 ### Adding Observers
 
@@ -501,7 +501,7 @@ editor.add_observer(metrics_observer)
 
 ---
 
-## 🎨 Advanced Features
+##  Advanced Features
 
 ### Batch Operations
 
@@ -556,7 +556,7 @@ editor1.merge_orion(
 
 ---
 
-## 🛡️ Error Handling
+## ️ Error Handling
 
 ### Validation Errors
 
@@ -565,7 +565,7 @@ try:
     # Try to add task with duplicate ID
     editor.create_and_add_task("existing_id", "Duplicate task")
 except Exception as e:
-    print(f"❌ Error: {e}")
+    print(f"[FAIL] Error: {e}")
     # Can undo to previous valid state
     if editor.can_undo():
         editor.undo()
@@ -586,14 +586,14 @@ try:
     # This creates a cycle
     editor.create_and_add_dependency("c", "a", "UNCONDITIONAL")
 except Exception as e:
-    print(f"❌ Cycle detected: {e}")
+    print(f"[FAIL] Cycle detected: {e}")
     # Undo the failed operation
     # (Actually, the operation fails before execution, so nothing to undo)
 ```
 
 ---
 
-## 📊 Complete Example Workflow
+## [STATUS] Complete Example Workflow
 
 ```python
 from network.orion.editor import OrionEditor
@@ -666,7 +666,7 @@ For details on executing the built orion, see the [Orion Orchestrator documentat
 
 ---
 
-## 🎯 Best Practices
+##  Best Practices
 
 ### Editor Usage Guidelines
 
@@ -693,7 +693,7 @@ The command pattern architecture provides several key advantages:
 
 ---
 
-## 📚 Command Registry
+## [PLAN] Command Registry
 
 ### Available Commands
 
@@ -729,7 +729,7 @@ result = editor.execute_command_by_name(
 
 ---
 
-## 🔗 Related Components
+## [DEP] Related Components
 
 - **[TaskStar](task_star.md)** — Individual tasks that can be edited and managed
 - **[TaskStarLine](task_star_line.md)** — Dependencies between tasks that define execution order
@@ -744,7 +744,7 @@ result = editor.execute_command_by_name(
 
 ---
 
-## 📚 API Reference
+## [PLAN] API Reference
 
 ### Constructor
 

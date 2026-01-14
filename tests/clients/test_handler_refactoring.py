@@ -51,7 +51,7 @@ async def test_handler_methods():
     """测试重构后的方法结构"""
 
     print("=" * 80)
-    print("🧪 测试重构后的 ALIENWebSocketHandler 方法结构")
+    print(" 测试重构后的 ALIENWebSocketHandler 方法结构")
     print("=" * 80)
 
     # 创建模拟对象
@@ -74,9 +74,9 @@ async def test_handler_methods():
 
         for method_name in methods_to_check:
             if hasattr(handler, method_name):
-                print(f"✅ {method_name} 方法存在")
+                print(f"[OK] {method_name} 方法存在")
             else:
-                print(f"❌ {method_name} 方法缺失")
+                print(f"[FAIL] {method_name} 方法缺失")
 
         # 测试2: 测试设备客户端注册流程
         print("\n[2] 测试设备客户端注册流程...")
@@ -89,9 +89,9 @@ async def test_handler_methods():
         print(f"   发送的消息数量: {len(mock_websocket.messages_sent)}")
 
         if client_type == "device":
-            print("✅ 设备客户端注册成功")
+            print("[OK] 设备客户端注册成功")
         else:
-            print("❌ 客户端类型识别错误")
+            print("[FAIL] 客户端类型识别错误")
 
         # 测试3: 测试方法职责分离
         print("\n[3] 验证方法职责分离...")
@@ -104,31 +104,31 @@ async def test_handler_methods():
 
         print(f"   connect 方法行数: {connect_lines}")
         if connect_lines < 30:  # 重构后应该更短
-            print("✅ connect 方法长度合理")
+            print("[OK] connect 方法长度合理")
         else:
-            print("⚠️ connect 方法可能仍然过长")
+            print("️ connect 方法可能仍然过长")
 
         # 检查是否有适当的方法调用
         if "_parse_registration_message" in connect_source:
-            print("✅ connect 调用了 _parse_registration_message")
+            print("[OK] connect 调用了 _parse_registration_message")
         if "_determine_and_validate_client_type" in connect_source:
-            print("✅ connect 调用了 _determine_and_validate_client_type")
+            print("[OK] connect 调用了 _determine_and_validate_client_type")
         if "_send_registration_confirmation" in connect_source:
-            print("✅ connect 调用了 _send_registration_confirmation")
+            print("[OK] connect 调用了 _send_registration_confirmation")
 
-        print("\n✅ 方法重构测试完成")
+        print("\n[OK] 方法重构测试完成")
 
     except Exception as e:
-        print(f"❌ 测试过程中出错: {e}")
+        print(f"[FAIL] 测试过程中出错: {e}")
         import traceback
 
         traceback.print_exc()
 
     print("\n" + "=" * 80)
-    print("🎯 重构验证结果:")
-    print("   ✅ 方法结构清晰，职责分离明确")
-    print("   ✅ connect 方法长度合理")
-    print("   ✅ 各个子方法功能单一")
+    print(" 重构验证结果:")
+    print("   [OK] 方法结构清晰，职责分离明确")
+    print("   [OK] connect 方法长度合理")
+    print("   [OK] 各个子方法功能单一")
     print("=" * 80)
 
 

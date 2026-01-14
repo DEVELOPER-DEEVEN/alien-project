@@ -32,7 +32,7 @@ class TestEventObserver:
     async def on_event(self, event):
         """Capture events for testing."""
         self.received_events.append(event)
-        print(f"📨 Received event: {event.event_type.value}")
+        print(f" Received event: {event.event_type.value}")
         print(f"   Source: {event.source_id}")
         print(f"   Orion ID: {event.orion_id}")
         print(f"   Data keys: {list(event.data.keys())}")
@@ -41,7 +41,7 @@ class TestEventObserver:
 @pytest.mark.asyncio
 async def test_orion_agent_event_publishing():
     """Test OrionAgent event publishing during process_editing."""
-    print("🧪 Testing OrionAgent Event Publishing\n")
+    print(" Testing OrionAgent Event Publishing\n")
 
     # Create mock orchestrator
     mock_orchestrator = MagicMock(spec=TaskOrionOrchestrator)
@@ -110,12 +110,12 @@ async def test_orion_agent_event_publishing():
     try:
         result = await agent.process_editing(context=context)
 
-        print(f"✅ Process editing completed successfully")
+        print(f"[OK] Process editing completed successfully")
         print(f"   Returned orion: {result.orion_id}")
         print(f"   Agent status: {agent.status}")
 
         # Verify that events were published and received
-        print(f"\n📊 Event Publishing Results:")
+        print(f"\n[STATUS] Event Publishing Results:")
         print(
             f"   Events captured by test observer: {len(test_observer.received_events)}"
         )
@@ -136,10 +136,10 @@ async def test_orion_agent_event_publishing():
                 print(f"   Old orion tasks: {len(old_const.tasks)}")
                 print(f"   New orion tasks: {len(new_const.tasks)}")
         else:
-            print("   ❌ No events were captured!")
+            print("   [FAIL] No events were captured!")
 
     except Exception as e:
-        print(f"❌ Error during process_editing: {e}")
+        print(f"[FAIL] Error during process_editing: {e}")
 
     print("\n" + "=" * 80)
 
@@ -149,11 +149,11 @@ async def test_orion_agent_event_publishing():
     # Give a small delay to ensure event processing
     await asyncio.sleep(0.1)
 
-    print("✅ DAG Visualization Observer should have received and processed the event")
+    print("[OK] DAG Visualization Observer should have received and processed the event")
     print("   (Check the Rich visualization output above)")
 
-    print("\n✅ All OrionAgent event publishing tests completed!")
-    print("🎉 Event publishing integration successful!")
+    print("\n[OK] All OrionAgent event publishing tests completed!")
+    print(" Event publishing integration successful!")
 
 
 if __name__ == "__main__":

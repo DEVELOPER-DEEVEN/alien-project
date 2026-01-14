@@ -160,12 +160,12 @@ class OrionDeviceManager:
 
             await self.event_bus.publish_event(event)
             self.logger.debug(
-                f"📢 Published {event_type.value} event for device {device_id}"
+                f"[NEWS] Published {event_type.value} event for device {device_id}"
             )
 
         except Exception as e:
             self.logger.error(
-                f"❌ Failed to publish device event for {device_id}: {e}",
+                f"[FAIL] Failed to publish device event for {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -201,17 +201,17 @@ class OrionDeviceManager:
 
         except ValueError as e:
             self.logger.error(
-                f"❌ Invalid device configuration for {device_id}: {e}", exc_info=True
+                f"[FAIL] Invalid device configuration for {device_id}: {e}", exc_info=True
             )
             return False
         except TypeError as e:
             self.logger.error(
-                f"❌ Type error registering device {device_id}: {e}", exc_info=True
+                f"[FAIL] Type error registering device {device_id}: {e}", exc_info=True
             )
             return False
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error registering device {device_id}: {e}",
+                f"[FAIL] Unexpected error registering device {device_id}: {e}",
                 exc_info=True,
             )
             return False
@@ -227,7 +227,7 @@ class OrionDeviceManager:
         :return: True if connection successful
         """
         if not self.device_registry.is_device_registered(device_id):
-            self.logger.error(f"❌ Device {device_id} not registered")
+            self.logger.error(f"[FAIL] Device {device_id} not registered")
             return False
 
         device_info = self.device_registry.get_device(device_id)
@@ -235,7 +235,7 @@ class OrionDeviceManager:
             return False
 
         if device_info.status == DeviceStatus.CONNECTED:
-            self.logger.info(f"✅ Device {device_id} already connected")
+            self.logger.info(f"[OK] Device {device_id} already connected")
             return True
 
         try:
@@ -250,7 +250,7 @@ class OrionDeviceManager:
                 self.device_registry.increment_connection_attempts(device_id)
 
             # Establish connection with message processor
-            # ⚠️ Pass message_processor to ensure it starts BEFORE registration
+            # ️ Pass message_processor to ensure it starts BEFORE registration
             # This prevents race conditions where server responses arrive before we start listening
             await self.connection_manager.connect_to_device(
                 device_info, message_processor=self.message_processor
@@ -260,7 +260,7 @@ class OrionDeviceManager:
             self.device_registry.update_device_status(device_id, DeviceStatus.CONNECTED)
             self.device_registry.update_heartbeat(device_id)
 
-            # ⚠️ Message handler already started in connect_to_device()
+            # ️ Message handler already started in connect_to_device()
             # No need to start it again here to avoid race conditions
             # self.message_processor.start_message_handler(device_id, websocket)
 
@@ -286,7 +286,7 @@ class OrionDeviceManager:
                 EventType.DEVICE_CONNECTED, device_id, device_info
             )
 
-            self.logger.info(f"✅ Successfully connected to device {device_id}")
+            self.logger.info(f"[OK] Successfully connected to device {device_id}")
             return True
 
         except websockets.InvalidURI as e:
@@ -296,7 +296,7 @@ class OrionDeviceManager:
                 self.logger.debug(f"Invalid WebSocket URI for device {device_id}: {e}")
             else:
                 self.logger.error(
-                    f"❌ Invalid WebSocket URI for device {device_id}: {e}"
+                    f"[FAIL] Invalid WebSocket URI for device {device_id}: {e}"
                 )
             return False
         except websockets.WebSocketException as e:
@@ -308,7 +308,7 @@ class OrionDeviceManager:
                 )
             else:
                 self.logger.error(
-                    f"❌ WebSocket error connecting to device {device_id}: {e}"
+                    f"[FAIL] WebSocket error connecting to device {device_id}: {e}"
                 )
             # Schedule reconnection if under retry limit
             if device_info.connection_attempts < device_info.max_retries:
@@ -323,7 +323,7 @@ class OrionDeviceManager:
                 )
             else:
                 self.logger.error(
-                    f"❌ Network error connecting to device {device_id}: {e}"
+                    f"[FAIL] Network error connecting to device {device_id}: {e}"
                 )
             # Schedule reconnection if under retry limit
             if device_info.connection_attempts < device_info.max_retries:
@@ -335,7 +335,7 @@ class OrionDeviceManager:
             if is_reconnection:
                 self.logger.debug(f"Timeout connecting to device {device_id}: {e}")
             else:
-                self.logger.error(f"❌ Timeout connecting to device {device_id}: {e}")
+                self.logger.error(f"[FAIL] Timeout connecting to device {device_id}: {e}")
             # Schedule reconnection if under retry limit
             if device_info.connection_attempts < device_info.max_retries:
                 self._schedule_reconnection(device_id)
@@ -347,7 +347,7 @@ class OrionDeviceManager:
                 self.logger.debug(f"Error connecting to device {device_id}: {e}")
             else:
                 self.logger.error(
-                    f"❌ Unexpected error connecting to device {device_id}: {e}"
+                    f"[FAIL] Unexpected error connecting to device {device_id}: {e}"
                 )
             # Schedule reconnection if under retry limit
             if device_info.connection_attempts < device_info.max_retries:
@@ -385,13 +385,13 @@ class OrionDeviceManager:
         :param device_id: Device that disconnected
         """
         try:
-            self.logger.warning(f"🔌 Device {device_id} disconnected, cleaning up...")
+            self.logger.warning(f" Device {device_id} disconnected, cleaning up...")
 
             # Get device info for reconnection logic
             device_info = self.device_registry.get_device(device_id)
             if not device_info:
                 self.logger.error(
-                    f"❌ Cannot handle disconnection: device {device_id} not found in registry"
+                    f"[FAIL] Cannot handle disconnection: device {device_id} not found in registry"
                 )
                 return
 
@@ -415,7 +415,7 @@ class OrionDeviceManager:
             current_task_id = device_info.current_task_id
             if current_task_id:
                 self.logger.warning(
-                    f"⚠️ Device {device_id} was executing task {current_task_id}, marking as failed"
+                    f"️ Device {device_id} was executing task {current_task_id}, marking as failed"
                 )
                 # Fail the task in queue manager
                 error = ConnectionError(
@@ -428,24 +428,24 @@ class OrionDeviceManager:
             # Schedule reconnection (will retry internally until max_retries)
             # The reconnection loop manages its own retry counter
             self.logger.info(
-                f"🔄 Scheduling automatic reconnection for device {device_id} "
+                f"[CONTINUE] Scheduling automatic reconnection for device {device_id} "
                 f"(max retries: {device_info.max_retries})"
             )
             self._schedule_reconnection(device_id)
 
         except KeyError as e:
             self.logger.error(
-                f"❌ Device {device_id} not found during disconnection handling: {e}",
+                f"[FAIL] Device {device_id} not found during disconnection handling: {e}",
                 exc_info=True,
             )
         except AttributeError as e:
             self.logger.error(
-                f"❌ Invalid device state during disconnection for {device_id}: {e}",
+                f"[FAIL] Invalid device state during disconnection for {device_id}: {e}",
                 exc_info=True,
             )
         except Exception as e:
             self.logger.error(
-                f"❌ Unexpected error handling disconnection for device {device_id}: {e}",
+                f"[FAIL] Unexpected error handling disconnection for device {device_id}: {e}",
                 exc_info=True,
             )
 
@@ -471,7 +471,7 @@ class OrionDeviceManager:
         try:
             device_info = self.device_registry.get_device(device_id)
             if not device_info:
-                self.logger.error(f"❌ Device {device_id} not found in registry")
+                self.logger.error(f"[FAIL] Device {device_id} not found in registry")
                 return
 
             retry_count = 0
@@ -483,7 +483,7 @@ class OrionDeviceManager:
 
                 retry_count += 1
                 self.logger.info(
-                    f"🔄 Reconnection attempt {retry_count}/{max_retries} for device {device_id}"
+                    f"[CONTINUE] Reconnection attempt {retry_count}/{max_retries} for device {device_id}"
                 )
 
                 try:
@@ -492,7 +492,7 @@ class OrionDeviceManager:
 
                     if success:
                         self.logger.info(
-                            f"✅ Successfully reconnected to device {device_id} "
+                            f"[OK] Successfully reconnected to device {device_id} "
                             f"on attempt {retry_count}/{max_retries}"
                         )
                         # Reset connection attempts on successful reconnection
@@ -500,7 +500,7 @@ class OrionDeviceManager:
                         return  # Success, exit retry loop
                     else:
                         self.logger.info(
-                            f"🔄 Reconnection attempt {retry_count}/{max_retries} failed for device {device_id}, will retry..."
+                            f"[CONTINUE] Reconnection attempt {retry_count}/{max_retries} failed for device {device_id}, will retry..."
                         )
 
                 except websockets.WebSocketException as e:
@@ -520,19 +520,19 @@ class OrionDeviceManager:
                     )
                 except Exception as e:
                     self.logger.warning(
-                        f"⚠️ Error on reconnection attempt {retry_count}/{max_retries} "
+                        f"️ Error on reconnection attempt {retry_count}/{max_retries} "
                         f"for device {device_id}: {e}"
                     )
 
             # All retries exhausted
             self.logger.error(
-                f"❌ Failed to reconnect to device {device_id} after {max_retries} attempts, giving up"
+                f"[FAIL] Failed to reconnect to device {device_id} after {max_retries} attempts, giving up"
             )
             self.device_registry.update_device_status(device_id, DeviceStatus.FAILED)
 
         except Exception as e:
             self.logger.error(
-                f"❌ Reconnection loop failed for device {device_id}: {e}",
+                f"[FAIL] Reconnection loop failed for device {device_id}: {e}",
                 exc_info=True,
             )
         finally:
@@ -584,7 +584,7 @@ class OrionDeviceManager:
         # Check if device is busy
         if self.device_registry.is_device_busy(device_id):
             self.logger.info(
-                f"⏸️  Device {device_id} is BUSY. Task {task_id} will be queued."
+                f"[PAUSE]  Device {device_id} is BUSY. Task {task_id} will be queued."
             )
             # Enqueue task and get future
             future = self.task_queue_manager.enqueue_task(device_id, task_request)
@@ -635,7 +635,7 @@ class OrionDeviceManager:
         except ConnectionError as e:
             # Handle device disconnection during task execution
             self.logger.error(
-                f"❌ Device {device_id} disconnected during task {task_request.task_id}: {e}"
+                f"[FAIL] Device {device_id} disconnected during task {task_request.task_id}: {e}"
             )
 
             # Create ExecutionResult with FAILED status and disconnection message
@@ -664,7 +664,7 @@ class OrionDeviceManager:
         except asyncio.TimeoutError as e:
             # Handle task timeout
             self.logger.error(
-                f"❌ Task {task_request.task_id} timed out on device {device_id}"
+                f"[FAIL] Task {task_request.task_id} timed out on device {device_id}"
             )
 
             result = ExecutionResult(
@@ -692,7 +692,7 @@ class OrionDeviceManager:
         except Exception as e:
             # Handle other errors
             self.logger.error(
-                f"❌ Task {task_request.task_id} failed on device {device_id}: {e}"
+                f"[FAIL] Task {task_request.task_id} failed on device {device_id}: {e}"
             )
 
             result = ExecutionResult(
@@ -740,7 +740,7 @@ class OrionDeviceManager:
             next_task = self.task_queue_manager.dequeue_task(device_id)
             if next_task:
                 self.logger.info(
-                    f"🚀 Processing next queued task {next_task.task_id} for device {device_id}"
+                    f"[START] Processing next queued task {next_task.task_id} for device {device_id}"
                 )
                 # Execute next task asynchronously (don't await here to avoid blocking)
                 asyncio.create_task(self._execute_task_on_device(device_id, next_task))
@@ -823,7 +823,7 @@ class OrionDeviceManager:
 
         :return: Dictionary mapping device_id to connection status (True if connected)
         """
-        self.logger.info("🔌 Checking and ensuring all devices are connected...")
+        self.logger.info(" Checking and ensuring all devices are connected...")
         results = {}
 
         all_devices = self.device_registry.get_all_devices()
@@ -842,12 +842,12 @@ class OrionDeviceManager:
 
             if is_actually_connected:
                 self.logger.debug(
-                    f"✅ Device {device_id} already connected (status: {device_info.status.value})"
+                    f"[OK] Device {device_id} already connected (status: {device_info.status.value})"
                 )
                 results[device_id] = True
             else:
                 self.logger.info(
-                    f"🔄 Device {device_id} needs reconnection (status: {device_info.status.value}), attempting to connect..."
+                    f"[CONTINUE] Device {device_id} needs reconnection (status: {device_info.status.value}), attempting to connect..."
                 )
                 try:
                     # Use regular connect (not is_reconnection) to properly reset state
@@ -857,25 +857,25 @@ class OrionDeviceManager:
                     results[device_id] = success
                     if success:
                         self.logger.info(
-                            f"✅ Successfully connected device {device_id}"
+                            f"[OK] Successfully connected device {device_id}"
                         )
                     else:
-                        self.logger.warning(f"⚠️ Failed to connect device {device_id}")
+                        self.logger.warning(f"️ Failed to connect device {device_id}")
                 except Exception as e:
-                    self.logger.error(f"❌ Error connecting device {device_id}: {e}")
+                    self.logger.error(f"[FAIL] Error connecting device {device_id}: {e}")
                     results[device_id] = False
 
         connected_count = sum(1 for connected in results.values() if connected)
         total_count = len(results)
         self.logger.info(
-            f"🔌 Connection check complete: {connected_count}/{total_count} devices connected"
+            f" Connection check complete: {connected_count}/{total_count} devices connected"
         )
 
         return results
 
     async def shutdown(self) -> None:
         """Shutdown the device manager and disconnect all devices"""
-        self.logger.info("🛑 Shutting down device manager")
+        self.logger.info(" Shutting down device manager")
 
         # Cancel all queued tasks for all devices
         for device_id in self.device_registry.get_all_devices():
@@ -899,4 +899,4 @@ class OrionDeviceManager:
                 except Exception as e:
                     self.logger.warning(f"Error during reconnect task cleanup: {e}")
 
-        self.logger.info("✅ Device manager shutdown complete")
+        self.logger.info("[OK] Device manager shutdown complete")

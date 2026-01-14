@@ -137,7 +137,7 @@ async def websocket_endpoint(websocket: WebSocket):
 ### Configuration Parameters
 
 <details>
-<summary><strong>🔧 Configuration Options (Click to expand)</strong></summary>
+<summary><strong>[CONFIG] Configuration Options (Click to expand)</strong></summary>
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -226,8 +226,8 @@ The `x` marker indicates a failed pong response. After `ping_timeout` expires wi
 
 **Timeout Behavior:**
 
-- ✅ **Pong received within `ping_timeout`**: Connection healthy, continue
-- ❌ **No pong within `ping_timeout`**: Connection marked dead, automatic close triggered
+- [OK] **Pong received within `ping_timeout`**: Connection healthy, continue
+- [FAIL] **No pong within `ping_timeout`**: Connection marked dead, automatic close triggered
 
 ### Error Handling
 
@@ -297,10 +297,10 @@ await transport.connect("ws://server:8000/ws")
 
 **Benefits:**
 
-- ✅ Protocol-level code remains unchanged across client/server
-- ✅ API differences abstracted by adapters
-- ✅ Easy to add new WebSocket implementations
-- ✅ Testability through adapter mocking
+- [OK] Protocol-level code remains unchanged across client/server
+- [OK] API differences abstracted by adapters
+- [OK] Easy to add new WebSocket implementations
+- [OK] Testability through adapter mocking
 
 ---
 
@@ -467,10 +467,10 @@ device_transports = {
 
 **Benefits:**
 
-- ✅ Multiplexing without head-of-line blocking (QUIC protocol)
-- ✅ 0-RTT connection resumption (faster reconnection)
-- ✅ Better mobile network performance (connection migration)
-- ✅ Built-in encryption (TLS 1.3)
+- [OK] Multiplexing without head-of-line blocking (QUIC protocol)
+- [OK] 0-RTT connection resumption (faster reconnection)
+- [OK] Better mobile network performance (connection migration)
+- [OK] Built-in encryption (TLS 1.3)
 
 **Use Cases:**
 
@@ -482,10 +482,10 @@ device_transports = {
 
 **Benefits:**
 
-- ✅ Strong typing with Protocol Buffers
-- ✅ Built-in load balancing
-- ✅ Bidirectional streaming RPCs
-- ✅ Code generation for multiple languages
+- [OK] Strong typing with Protocol Buffers
+- [OK] Built-in load balancing
+- [OK] Bidirectional streaming RPCs
+- [OK] Code generation for multiple languages
 
 **Use Cases:**
 

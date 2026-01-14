@@ -1,8 +1,8 @@
-# ⚡ Quick Start: Mobile Agent
+#  Quick Start: Mobile Agent
 
 Get your Android device running as a ALIEN³ device agent in 10 minutes. This guide walks you through ADB setup, server/client configuration, and MCP service initialization for Android automation.
 
-> **📚 Documentation Navigation:**
+> **[PLAN] Documentation Navigation:**
 > 
 > - **Architecture & Concepts:** [Mobile Agent Overview](../mobile/overview.md)
 > - **State Management:** [State Machine](../mobile/state.md)
@@ -12,7 +12,7 @@ Get your Android device running as a ALIEN³ device agent in 10 minutes. This gu
 
 ---
 
-## 📋 Prerequisites
+## [TASK] Prerequisites
 
 Before you begin, ensure you have:
 
@@ -31,11 +31,11 @@ Before you begin, ensure you have:
 | ADB | Latest | `adb --version` |
 | LLM API Key | N/A | Check `config/alien/agents.yaml` |
 
-> **⚠️ LLM Configuration Required:** The Mobile Agent shares the same LLM configuration with the AppAgent. Before starting, ensure you have configured your LLM provider (OpenAI, Azure OpenAI, Gemini, Claude, etc.) and added your API keys to `config/alien/agents.yaml`. See [Model Setup Guide](../configuration/models/overview.md) for detailed instructions.
+> **️ LLM Configuration Required:** The Mobile Agent shares the same LLM configuration with the AppAgent. Before starting, ensure you have configured your LLM provider (OpenAI, Azure OpenAI, Gemini, Claude, etc.) and added your API keys to `config/alien/agents.yaml`. See [Model Setup Guide](../configuration/models/overview.md) for detailed instructions.
 
 ---
 
-## 📱 Step 0: Android Device Setup
+##  Step 0: Android Device Setup
 
 You can use either a **physical Android device** or an **Android emulator**. Choose the setup method that fits your needs.
 
@@ -127,10 +127,10 @@ cd android-studio/bin
 1. Open Android Studio
 2. Go to **Tools** → **SDK Manager**
 3. Install:
-   - ✅ Android SDK Platform (API 33 or higher)
-   - ✅ Android SDK Platform-Tools
-   - ✅ Android SDK Build-Tools
-   - ✅ Android Emulator
+   - [OK] Android SDK Platform (API 33 or higher)
+   - [OK] Android SDK Platform-Tools
+   - [OK] Android SDK Build-Tools
+   - [OK] Android Emulator
 
 **Step 3: Create Virtual Device**
 
@@ -230,11 +230,11 @@ adb shell screencap -p /sdcard/test.png
 adb pull /sdcard/test.png .
 ```
 
-If all commands succeed, your device is ready! ✅
+If all commands succeed, your device is ready! [OK]
 
 ---
 
-## 🔧 Step 1: Install ADB (Android Debug Bridge)
+## [CONFIG] Step 1: Install ADB (Android Debug Bridge)
 
 ADB is essential for communicating with Android devices. Choose your platform:
 
@@ -350,7 +350,7 @@ Version 34.0.5-10900879
 
 ---
 
-## 📦 Step 2: Install Python Dependencies
+##  Step 2: Install Python Dependencies
 
 Install all ALIEN dependencies:
 
@@ -362,7 +362,7 @@ pip install -r requirements.txt
 **Verify installation:**
 
 ```bash
-python -c "import alien; print('✅ ALIEN installed successfully')"
+python -c "import alien; print('[OK] ALIEN installed successfully')"
 ```
 
 > **Tip:** For production deployments, use a virtual environment:
@@ -381,7 +381,7 @@ python -c "import alien; print('✅ ALIEN installed successfully')"
 
 ---
 
-## 🖥️ Step 3: Start Device Agent Server
+## ️ Step 3: Start Device Agent Server
 
 **Server Component:** The Device Agent Server manages connections from Android devices and dispatches tasks.
 
@@ -444,15 +444,15 @@ curl http://localhost:5001/api/health
 }
 ```
 
-> **💡 Tip:** The `online_clients` list will be empty until you start and connect the Mobile Client in Step 5.
+> **[THOUGHT] Tip:** The `online_clients` list will be empty until you start and connect the Mobile Client in Step 5.
 
 ---
 
-## 🔌 Step 4: Start MCP Services (Android Machine)
+##  Step 4: Start MCP Services (Android Machine)
 
 **MCP Service Component:** Two MCP servers provide Android device interaction capabilities. They must be running before starting the client.
 
-> **💡 Learn More:** For detailed documentation on all available MCP commands and their usage, see the [MCP Commands Reference](../mobile/commands.md).
+> **[THOUGHT] Learn More:** For detailed documentation on all available MCP commands and their usage, see the [MCP Commands Reference](../mobile/commands.md).
 
 ### Understanding the Two MCP Servers
 
@@ -491,16 +491,16 @@ Checking ADB connection...
 List of devices attached
 emulator-5554    device
 
-✅ Found 1 connected device(s)
+[OK] Found 1 connected device(s)
 ====================================================================
 
-🚀 Starting both servers on localhost (shared state)
+[START] Starting both servers on localhost (shared state)
    - Data Collection Server: localhost:8020
    - Action Server: localhost:8021
 
 Note: Both servers share the same MobileServerState for caching
 
-✅ Starting both servers in same process (shared MobileServerState)
+[OK] Starting both servers in same process (shared MobileServerState)
    - Data Collection Server: localhost:8020
    - Action Server: localhost:8021
 
@@ -508,8 +508,8 @@ Note: Both servers share the same MobileServerState for caching
 Both servers share MobileServerState cache. Press Ctrl+C to stop.
 ======================================================================
 
-✅ Data Collection Server thread started
-✅ Action Server thread started
+[OK] Data Collection Server thread started
+[OK] Action Server thread started
 
 ======================================================================
 Both servers are running. Press Ctrl+C to stop.
@@ -536,7 +536,7 @@ python -m alien.client.mcp.http_servers.mobile_mcp_server \
   --server action
 ```
 
-> **⚠️ Important:** When running servers separately, they won't share cached state, which may impact performance. Running both together is recommended.
+> **️ Important:** When running servers separately, they won't share cached state, which may impact performance. Running both together is recommended.
 
 ### MCP Server Configuration Options
 
@@ -589,7 +589,7 @@ python -m alien.client.mcp.http_servers.mobile_mcp_server \
 
 ---
 
-## 📱 Step 5: Start Device Agent Client
+##  Step 5: Start Device Agent Client
 
 **Client Component:** The Device Agent Client connects your Android device to the server and executes mobile automation tasks.
 
@@ -609,12 +609,12 @@ python -m alien.client.client \
 
 | Parameter | Required | Description | Example |
 |-----------|----------|-------------|---------|
-| `--ws` | ✅ Yes | Enable WebSocket mode | `--ws` |
-| `--ws-server` | ✅ Yes | Server WebSocket URL | `ws://localhost:5001/ws` |
-| `--client-id` | ✅ Yes | **Unique** device identifier | `mobile_phone_1` |
-| `--platform` | ✅ Yes | Platform type (must be `mobile`) | `--platform mobile` |
+| `--ws` | [OK] Yes | Enable WebSocket mode | `--ws` |
+| `--ws-server` | [OK] Yes | Server WebSocket URL | `ws://localhost:5001/ws` |
+| `--client-id` | [OK] Yes | **Unique** device identifier | `mobile_phone_1` |
+| `--platform` | [OK] Yes | Platform type (must be `mobile`) | `--platform mobile` |
 
-> **⚠️ Critical Requirements:**
+> **️ Critical Requirements:**
 > 
 > 1. `--client-id` must be globally unique - No two devices can share the same ID
 > 2. `--platform mobile` is mandatory - Without this flag, the Mobile Agent won't work correctly
@@ -651,11 +651,11 @@ INFO - [WS] Heartbeat loop started (interval: 30s)
 **Server Logs:**
 
 ```log
-INFO - [WS] ✅ Registered device client: mobile_phone_1
+INFO - [WS] [OK] Registered device client: mobile_phone_1
 INFO - [WS] Device mobile_phone_1 platform: mobile
 ```
 
-Client is connected and ready to receive tasks when you see "Successfully registered"! ✅
+Client is connected and ready to receive tasks when you see "Successfully registered"! [OK]
 
 ### Verify Connection
 
@@ -676,7 +676,7 @@ curl http://localhost:5001/api/clients
 
 ---
 
-## 🎯 Step 6: Dispatch Tasks via HTTP API
+##  Step 6: Dispatch Tasks via HTTP API
 
 Once the server, client, and MCP services are all running, you can dispatch tasks to your Android device through the server's HTTP API.
 
@@ -817,11 +817,11 @@ sequenceDiagram
 
 | Field | Required | Type | Description | Example |
 |-------|----------|------|-------------|---------|
-| `client_id` | ✅ Yes | string | Target mobile device ID (must match `--client-id`) | `"mobile_phone_1"` |
-| `request` | ✅ Yes | string | Natural language task description | `"Open Chrome"` |
-| `task_name` | ❌ Optional | string | Unique task identifier (auto-generated if omitted) | `"task_001"` |
+| `client_id` | [OK] Yes | string | Target mobile device ID (must match `--client-id`) | `"mobile_phone_1"` |
+| `request` | [OK] Yes | string | Natural language task description | `"Open Chrome"` |
+| `task_name` | [FAIL] Optional | string | Unique task identifier (auto-generated if omitted) | `"task_001"` |
 
-> **⚠️ Client Must Be Online:** If the `client_id` is not connected, you'll receive:
+> **️ Client Must Be Online:** If the `client_id` is not connected, you'll receive:
 > ```json
 > {
 >   "detail": "Client not online"
@@ -835,11 +835,11 @@ sequenceDiagram
 
 ---
 
-## 🌌 Step 7: Configure as ALIEN³ Network Device
+## [ORION] Step 7: Configure as ALIEN³ Network Device
 
 To use the Mobile Agent as a managed device within the **ALIEN³ Network** multi-tier framework, you need to register it in the `devices.yaml` configuration file.
 
-> **📖 Detailed Guide:** For comprehensive information on using Mobile Agent in Network, including multi-device workflows and advanced configuration, see [Using Mobile Agent as Network Device](../mobile/as_network_device.md).
+> **[LANG] Detailed Guide:** For comprehensive information on using Mobile Agent in Network, including multi-device workflows and advanced configuration, see [Using Mobile Agent as Network Device](../mobile/as_network_device.md).
 
 ### Device Configuration File
 
@@ -882,13 +882,13 @@ devices:
 
 | Field | Required | Type | Description | Example |
 |-------|----------|------|-------------|---------|
-| `device_id` | ✅ Yes | string | **Must match client `--client-id`** | `"mobile_phone_1"` |
-| `server_url` | ✅ Yes | string | **Must match server WebSocket URL** | `"ws://localhost:5001/ws"` |
-| `os` | ✅ Yes | string | Operating system | `"mobile"` |
-| `capabilities` | ❌ Optional | list | Device capabilities | `["mobile", "android"]` |
-| `metadata` | ❌ Optional | dict | Custom metadata | See below |
-| `auto_connect` | ❌ Optional | boolean | Auto-connect on Network startup | `true` |
-| `max_retries` | ❌ Optional | integer | Connection retry attempts | `5` |
+| `device_id` | [OK] Yes | string | **Must match client `--client-id`** | `"mobile_phone_1"` |
+| `server_url` | [OK] Yes | string | **Must match server WebSocket URL** | `"ws://localhost:5001/ws"` |
+| `os` | [OK] Yes | string | Operating system | `"mobile"` |
+| `capabilities` | [FAIL] Optional | list | Device capabilities | `["mobile", "android"]` |
+| `metadata` | [FAIL] Optional | dict | Custom metadata | See below |
+| `auto_connect` | [FAIL] Optional | boolean | Auto-connect on Network startup | `true` |
+| `max_retries` | [FAIL] Optional | integer | Connection retry attempts | `5` |
 
 ### Metadata Fields (Custom)
 
@@ -970,7 +970,7 @@ devices:
 
 ### Critical Requirements
 
-> **⚠️ Configuration Validation - These fields MUST match exactly:**
+> **️ Configuration Validation - These fields MUST match exactly:**
 > 
 > 1. **`device_id` in YAML** ↔ **`--client-id` in client command**
 > 2. **`server_url` in YAML** ↔ **`--ws-server` in client command**
@@ -986,12 +986,12 @@ python -m network --interactive
 ```
 
 **Network will:**
-1. ✅ Load device configuration from `config/network/devices.yaml`
-2. ✅ Connect to all configured Android devices
-3. ✅ Orchestrate multi-device tasks
-4. ✅ Route tasks based on capabilities
+1. [OK] Load device configuration from `config/network/devices.yaml`
+2. [OK] Connect to all configured Android devices
+3. [OK] Orchestrate multi-device tasks
+4. [OK] Route tasks based on capabilities
 
-> **ℹ️ Network Documentation:** For detailed Network usage, see:
+> **[INFO] Network Documentation:** For detailed Network usage, see:
 > 
 > - [Network Overview](../network/overview.md)
 > - [Network Quick Start](quick_start_network.md)
@@ -999,7 +999,7 @@ python -m network --interactive
 
 ---
 
-## 🔍 Understanding Mobile Agent Internals
+##  Understanding Mobile Agent Internals
 
 Now that you have Mobile Agent running, you may want to understand how it works under the hood:
 
@@ -1035,7 +1035,7 @@ Learn more: [MCP Commands Reference](../mobile/commands.md)
 
 ---
 
-## 🐛 Common Issues & Troubleshooting
+##  Common Issues & Troubleshooting
 
 ### Issue 1: ADB Device Not Found
 
@@ -1328,7 +1328,7 @@ emulator-5554    device
 
 ---
 
-## 📚 Next Steps
+## [PLAN] Next Steps
 
 You've successfully set up a Mobile Agent! Explore these topics to deepen your understanding:
 
@@ -1336,9 +1336,9 @@ You've successfully set up a Mobile Agent! Explore these topics to deepen your u
 
 | Priority | Topic | Time | Link |
 |----------|-------|------|------|
-| 🥇 | **Mobile Agent Architecture** | 10 min | [Overview](../mobile/overview.md) |
-| 🥈 | **State Machine & Processing** | 15 min | [State Machine](../mobile/state.md) |
-| 🥉 | **MCP Commands Reference** | 15 min | [Commands](../mobile/commands.md) |
+|  | **Mobile Agent Architecture** | 10 min | [Overview](../mobile/overview.md) |
+|  | **State Machine & Processing** | 15 min | [State Machine](../mobile/state.md) |
+|  | **MCP Commands Reference** | 15 min | [Commands](../mobile/commands.md) |
 
 ### Advanced Topics
 
@@ -1357,37 +1357,37 @@ You've successfully set up a Mobile Agent! Explore these topics to deepen your u
 | **Screenshot Storage** | Configure log paths and cleanup policies in `config/alien/system.yaml` |
 | **Security** | Use secure WebSocket (wss://) for remote deployments |
 
-> **💡 Learn More:** For comprehensive understanding of the Mobile Agent architecture and processing flow, see the [Mobile Agent Overview](../mobile/overview.md).
+> **[THOUGHT] Learn More:** For comprehensive understanding of the Mobile Agent architecture and processing flow, see the [Mobile Agent Overview](../mobile/overview.md).
 
 ---
 
-## ✅ Summary
+## [OK] Summary
 
 Congratulations! You've successfully:
 
-✅ Set up Android device (physical or emulator)  
-✅ Installed ADB (Android Debug Bridge)  
-✅ Installed Python dependencies  
-✅ Started the Device Agent Server  
-✅ Launched MCP services (data collection + action)  
-✅ Connected Mobile Device Agent Client  
-✅ Dispatched mobile automation tasks via HTTP API  
-✅ (Optional) Configured device in Network  
+[OK] Set up Android device (physical or emulator)  
+[OK] Installed ADB (Android Debug Bridge)  
+[OK] Installed Python dependencies  
+[OK] Started the Device Agent Server  
+[OK] Launched MCP services (data collection + action)  
+[OK] Connected Mobile Device Agent Client  
+[OK] Dispatched mobile automation tasks via HTTP API  
+[OK] (Optional) Configured device in Network  
 
 **Your Mobile Agent is Ready**
 
 You can now:
 
-- 📱 Automate Android apps remotely
-- 🖼️ Capture and analyze screenshots
-- 🎯 Interact with UI controls precisely
-- 🌌 Integrate with ALIEN³ Network for cross-platform workflows
+-  Automate Android apps remotely
+- ️ Capture and analyze screenshots
+-  Interact with UI controls precisely
+- [ORION] Integrate with ALIEN³ Network for cross-platform workflows
 
-**Start exploring mobile automation!** 🚀
+**Start exploring mobile automation!** [START]
 
 ---
 
-## 💡 Pro Tips
+## [THOUGHT] Pro Tips
 
 ### Quick Start Command Summary
 
@@ -1475,4 +1475,4 @@ curl -X POST http://localhost:5001/api/dispatch \
 # Should return dispatched status
 ```
 
-**Happy Mobile Automation! 🎉**
+**Happy Mobile Automation! **

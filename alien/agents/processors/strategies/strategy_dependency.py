@@ -208,9 +208,9 @@ class StrategyDependencyValidator:
         print("=" * 60)
 
         if report["valid"]:
-            print("✅ 所有策略依赖关系都满足")
+            print("[OK] 所有策略依赖关系都满足")
         else:
-            print("❌ 发现依赖问题:")
+            print("[FAIL] 发现依赖问题:")
             for issue in report["issues"]:
                 if issue["type"] == "missing_required_fields":
                     print(
@@ -229,11 +229,11 @@ class StrategyDependencyValidator:
             consumers = [f"{c['phase']}({c['strategy']})" for c in flow["consumers"]]
 
             if not providers:
-                print(f"  ⚠️  {field}: 无提供者 -> {', '.join(consumers)}")
+                print(f"  ️  {field}: 无提供者 -> {', '.join(consumers)}")
             elif not consumers:
-                print(f"  ℹ️  {field}: {', '.join(providers)} -> 无消费者")
+                print(f"  [INFO]  {field}: {', '.join(providers)} -> 无消费者")
             else:
-                print(f"  ✅ {field}: {', '.join(providers)} -> {', '.join(consumers)}")
+                print(f"  [OK] {field}: {', '.join(providers)} -> {', '.join(consumers)}")
 
         print("\n详细依赖图:")
         for phase, info in report["dependency_graph"].items():

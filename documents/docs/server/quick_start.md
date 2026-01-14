@@ -4,7 +4,7 @@ This hands-on guide walks you through starting the ALIEN Agent Server, connectin
 
 ---
 
-## 📋 Prerequisites
+## [TASK] Prerequisites
 
 Before you begin, ensure you have:
 
@@ -22,7 +22,7 @@ Before you begin, ensure you have:
 
 ---
 
-## 🚀 Starting the Server
+## [START] Starting the Server
 
 ### Basic Startup
 
@@ -90,7 +90,7 @@ python -m alien.server.app --host 192.168.1.100 --port 5000
 
 ---
 
-## 🖥️ Connecting Device Clients
+## ️ Connecting Device Clients
 
 A Device Client is an agent running on a physical or virtual machine that can execute tasks. Each device connects via WebSocket and registers with a unique `client_id`.
 
@@ -110,7 +110,7 @@ python -m alien.client.client --ws --ws-server ws://127.0.0.1:5000/ws --client-i
 
 When a client connects successfully, the server logs will display:
 ```console
-INFO: [WS] 📱 Device client my_windows_device connected
+INFO: [WS]  Device client my_windows_device connected
 ```
 
 ### Client Connection Parameters
@@ -120,7 +120,7 @@ INFO: [WS] 📱 Device client my_windows_device connected
 | `--ws` | Yes | flag | Enable WebSocket mode (vs. local mode) | `--ws` |
 | `--ws-server` | Yes | URL | Server WebSocket endpoint | `ws://127.0.0.1:5000/ws` |
 | `--client-id` | Yes | string | Unique device identifier (must be unique across all clients) | `device_win_001` |
-| `--platform` | ⚠️ Optional | string | Platform type: `windows`, `linux` | `--platform windows` |
+| `--platform` | ️ Optional | string | Platform type: `windows`, `linux` | `--platform windows` |
 
 !!!warning "Important: Client ID Uniqueness"
     Each `client_id` must be globally unique. If a client connects with an existing ID, the old connection will be terminated.
@@ -149,7 +149,7 @@ The registration process uses the **Agent Interaction Protocol (AIP)** for struc
 
 ---
 
-## 🌌 Connecting Orion Clients
+## [ORION] Connecting Orion Clients
 
 A Orion Client is an orchestrator that coordinates multi-device tasks. It connects to the server and can dispatch work across multiple registered device clients.
 
@@ -165,7 +165,7 @@ python -m network.orion.orion --ws --ws-server ws://127.0.0.1:5000/ws --target-i
 |-----------|----------|-------------|---------|
 | `--ws` | Yes | Enable WebSocket mode | `--ws` |
 | `--ws-server` | Yes | Server WebSocket URL | `ws://127.0.0.1:5000/ws` |
-| `--target-id` | ⚠️ Optional | Initial target device ID for tasks | `my_windows_device` |
+| `--target-id` | ️ Optional | Initial target device ID for tasks | `my_windows_device` |
 
 !!!danger "Important: Target Device Must Be Online"
     If you specify `--target-id`, that device **must already be connected** to the server. Otherwise, registration will fail with: `Target device 'my_windows_device' is not connected`
@@ -213,7 +213,7 @@ The `/api/health` endpoint is useful for health checks in production monitoring 
 
 ---
 
-## 🎯 Dispatching Your First Task
+##  Dispatching Your First Task
 
 The easiest way to send a task to a connected device is through the HTTP `/api/dispatch` endpoint.
 
@@ -237,7 +237,7 @@ curl -X POST http://localhost:5000/api/dispatch \
 |-------|----------|------|-------------|---------|
 | `client_id` | Yes | string | Target device identifier | `"my_windows_device"` |
 | `request` | Yes | string | Natural language task description | `"Open Notepad"` |
-| `task_name` | ⚠️ Optional | string | Unique task identifier (auto-generated if omitted) | `"task_001"` |
+| `task_name` | ️ Optional | string | Unique task identifier (auto-generated if omitted) | `"task_001"` |
 
 **Successful Response:**
 
@@ -342,7 +342,7 @@ curl -X POST http://localhost:5000/api/dispatch \
 
 ---
 
-## 🐛 Common Issues & Troubleshooting
+##  Common Issues & Troubleshooting
 
 ### Issue 1: Port Already in Use
 
@@ -428,7 +428,7 @@ When dispatching a task:
 **Solutions:**
 
 - Verify the device client is running and successfully registered
-- Check server logs for `📱 Device client <client_id> connected`
+- Check server logs for ` Device client <client_id> connected`
 - Ensure no typos in `client_id` when dispatching
 - If the device disconnected, restart the client connection
 
@@ -503,7 +503,7 @@ Target device 'my_windows_device' is not connected
 
 ---
 
-## 📚 Next Steps
+## [PLAN] Next Steps
 
 Now that you have the server running and can dispatch tasks, explore these topics:
 
@@ -527,7 +527,7 @@ Now that you have the server running and can dispatch tasks, explore these topic
 
 ---
 
-## 🚀 Production Deployment
+## [START] Production Deployment
 
 !!!warning "Production Readiness Checklist"
     Before deploying to production, ensure you address these critical areas:
@@ -586,7 +586,7 @@ For complete production deployment guidance including SSL/TLS, security hardenin
 
 ---
 
-## 🎓 What You Learned
+##  What You Learned
 
 You've successfully:
 

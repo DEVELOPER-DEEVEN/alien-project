@@ -4,7 +4,7 @@ This page provides additional guidance and resources for different user types an
 
 ---
 
-## 🎯 For End Users
+##  For End Users
 
 If you want to use ALIEN³ to automate your tasks on Windows, Linux, or across multiple devices, here's your learning path:
 
@@ -39,7 +39,7 @@ After installation, customize ALIEN³ to your needs:
   - Linux command execution
   - Custom tool integration
 
-> **💡 Configuration Tip:** Start with default settings and adjust only what you need. See [Configuration Overview](../configuration/system/overview.md) for the big picture.
+> **[THOUGHT] Configuration Tip:** Start with default settings and adjust only what you need. See [Configuration Overview](../configuration/system/overview.md) for the big picture.
 
 ### 3. Learn Core Features (20-30 minutes)
 
@@ -91,7 +91,7 @@ After installation, customize ALIEN³ to your needs:
 
 ---
 
-## 👨‍💻 For Developers
+## ‍ For Developers
 
 If you want to contribute to ALIEN³ or build extensions, here's your development guide:
 
@@ -254,21 +254,21 @@ flake8 alien/ network/
 
 **Best Practices:**
 
-- ✅ Use type hints: `def process(data: Dict[str, Any]) -> Optional[str]:`
-- ✅ Write docstrings for public functions
-- ✅ Follow existing code patterns
-- ✅ Add comments for complex logic
-- ✅ Keep functions focused and modular
-- ✅ Handle errors gracefully
-- ✅ Write tests for new features
+- [OK] Use type hints: `def process(data: Dict[str, Any]) -> Optional[str]:`
+- [OK] Write docstrings for public functions
+- [OK] Follow existing code patterns
+- [OK] Add comments for complex logic
+- [OK] Keep functions focused and modular
+- [OK] Handle errors gracefully
+- [OK] Write tests for new features
 
 **Configuration Best Practices:**
 
-- ✅ Use typed config access: `config.system.max_step`
-- ✅ Provide `.template` files for sensitive configs
-- ✅ Document custom fields in YAML comments
-- ✅ Use environment variables for secrets: `${OPENAI_API_KEY}`
-- ✅ Validate configurations early: `ConfigValidator.validate()`
+- [OK] Use typed config access: `config.system.max_step`
+- [OK] Provide `.template` files for sensitive configs
+- [OK] Document custom fields in YAML comments
+- [OK] Use environment variables for secrets: `${OPENAI_API_KEY}`
+- [OK] Validate configurations early: `ConfigValidator.validate()`
 
 ### 7. Contributing Guidelines
 
@@ -314,47 +314,47 @@ Brief description of changes
 
 ---
 
-## 🎓 Learning Paths
+##  Learning Paths
 
 ### Path 1: Basic User → Power User
 
-1. ✅ Complete quick start for your platform
-2. ✅ Run 5-10 simple automation tasks
-3. ✅ Configure RAG for your organization's docs
-4. ✅ Enable MCP for better Office automation
-5. ✅ Set up experience learning for common tasks
-6. ✅ Create custom device configurations (Network)
+1. [OK] Complete quick start for your platform
+2. [OK] Run 5-10 simple automation tasks
+3. [OK] Configure RAG for your organization's docs
+4. [OK] Enable MCP for better Office automation
+5. [OK] Set up experience learning for common tasks
+6. [OK] Create custom device configurations (Network)
 
 **Time Investment:** 2-4 hours  
 **Outcome:** Efficient automation of daily tasks
 
 ### Path 2: Power User → Developer
 
-1. ✅ Understand project structure and architecture
-2. ✅ Read Session and Round module code
-3. ✅ Create a custom MCP server
-4. ✅ Add custom metadata to device configs
-5. ✅ Contribute documentation improvements
-6. ✅ Submit your first bug fix PR
+1. [OK] Understand project structure and architecture
+2. [OK] Read Session and Round module code
+3. [OK] Create a custom MCP server
+4. [OK] Add custom metadata to device configs
+5. [OK] Contribute documentation improvements
+6. [OK] Submit your first bug fix PR
 
 **Time Investment:** 10-20 hours  
 **Outcome:** Ability to extend and customize ALIEN³
 
 ### Path 3: Developer → Core Contributor
 
-1. ✅ Deep dive into agent implementations
-2. ✅ Understand Network orchestration internals
-3. ✅ Study AIP protocol and transport layer
-4. ✅ Implement a new agent capability
-5. ✅ Add support for a new LLM provider
-6. ✅ Contribute major features or refactorings
+1. [OK] Deep dive into agent implementations
+2. [OK] Understand Network orchestration internals
+3. [OK] Study AIP protocol and transport layer
+4. [OK] Implement a new agent capability
+5. [OK] Add support for a new LLM provider
+6. [OK] Contribute major features or refactorings
 
 **Time Investment:** 40+ hours  
 **Outcome:** Core contributor to ALIEN³ project
 
 ---
 
-## 📚 Additional Resources
+## [PLAN] Additional Resources
 
 ### Documentation Hubs
 
@@ -381,11 +381,11 @@ Brief description of changes
 
 ---
 
-## 🆘 Need More Help?
+##  Need More Help?
 
 - **Can't find what you're looking for?** Check the [FAQ](../faq.md)
 - **Still stuck?** Ask on [GitHub Discussions](https://github.com/DEVELOPER-DEEVEN/alien-project/discussions)
 - **Found a bug?** Open an issue on [GitHub Issues](https://github.com/DEVELOPER-DEEVEN/alien-project/issues)
 - **Want to contribute?** Read the [Contributing Guidelines](https://github.com/DEVELOPER-DEEVEN/alien-project/blob/main/CONTRIBUTING.md)
 
-**Happy automating!** 🚀
+**Happy automating!** [START]

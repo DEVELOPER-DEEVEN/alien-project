@@ -39,7 +39,7 @@ def test_serializable_parameters():
     }
 
     task = editor.add_task(task_data)
-    print(f"   ✓ Added task: {task.task_id} - {task.name}")
+    print(f"    Added task: {task.task_id} - {task.name}")
 
     # Test 2: Add another task for dependency
     task2_data = {
@@ -48,7 +48,7 @@ def test_serializable_parameters():
         "description": "Another test task",
     }
     task2 = editor.add_task(task2_data)
-    print(f"   ✓ Added task: {task2.task_id} - {task2.name}")
+    print(f"    Added task: {task2.task_id} - {task2.name}")
 
     # Test 3: Add dependency with dict parameters
     print("\n2. Testing add_dependency with dict parameters...")
@@ -60,7 +60,7 @@ def test_serializable_parameters():
 
     dependency = editor.add_dependency(dependency_data)
     print(
-        f"   ✓ Added dependency: {dependency.from_task_id} -> {dependency.to_task_id}"
+        f"    Added dependency: {dependency.from_task_id} -> {dependency.to_task_id}"
     )
 
     print(
@@ -101,9 +101,9 @@ def test_command_registry():
             "description": "Task created via registry",
         }
         result = editor.execute_command_by_name("add_task", task_data)
-        print(f"   ✓ Created task via registry: {result.task_id}")
+        print(f"    Created task via registry: {result.task_id}")
     except Exception as e:
-        print(f"   ✗ Error executing via registry: {e}")
+        print(f"    Error executing via registry: {e}")
 
 
 def test_validation_rollback():
@@ -148,9 +148,9 @@ def test_validation_rollback():
         # This should fail during command execution, not validation
         # But let's see what happens
         result = editor.add_dependency(invalid_dependency_data)
-        print(f"   ✗ Unexpected success: {result}")
+        print(f"    Unexpected success: {result}")
     except Exception as e:
-        print(f"   ✓ Expected failure: {e}")
+        print(f"    Expected failure: {e}")
 
     print(
         f"After failed operation: {len(orion.tasks)} tasks, {len(orion.dependencies)} dependencies"
@@ -170,10 +170,10 @@ def test_validation_rollback():
         }
         result = editor.add_dependency(valid_dependency_data)
         print(
-            f"   ✓ Successfully added dependency: {result.from_task_id} -> {result.to_task_id}"
+            f"    Successfully added dependency: {result.from_task_id} -> {result.to_task_id}"
         )
     except Exception as e:
-        print(f"   ✗ Unexpected failure: {e}")
+        print(f"    Unexpected failure: {e}")
 
     print(
         f"Final state: {len(orion.tasks)} tasks, {len(orion.dependencies)} dependencies"
@@ -210,7 +210,7 @@ def test_undo_redo_with_validation():
     editor.redo()
     print(f"   Tasks: {len(orion.tasks)}, Can undo: {editor.can_undo()}")
 
-    print("   ✓ Undo/redo working correctly with validation")
+    print("    Undo/redo working correctly with validation")
 
 
 def main():
@@ -225,10 +225,10 @@ def main():
         test_undo_redo_with_validation()
 
         print("\n" + "=" * 50)
-        print("✓ All tests completed successfully!")
+        print(" All tests completed successfully!")
 
     except Exception as e:
-        print(f"\n✗ Test failed with error: {e}")
+        print(f"\n Test failed with error: {e}")
         import traceback
 
         traceback.print_exc()

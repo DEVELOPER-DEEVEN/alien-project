@@ -16,21 +16,21 @@
 ALIEN² addresses fundamental limitations of existing desktop automation solutions:
 
 **Traditional RPA (UiPath, Power Automate):**  
-❌ Fragile scripts that break with UI changes  
-❌ Requires extensive manual maintenance  
-❌ Limited adaptability to dynamic environments
+[FAIL] Fragile scripts that break with UI changes  
+[FAIL] Requires extensive manual maintenance  
+[FAIL] Limited adaptability to dynamic environments
 
 **Current CUAs (Claude, Operator):**  
-❌ Visual-only inputs with high cognitive overhead  
-❌ Miss native OS APIs and application internals  
-❌ Lock users out during automation (poor UX)
+[FAIL] Visual-only inputs with high cognitive overhead  
+[FAIL] Miss native OS APIs and application internals  
+[FAIL] Lock users out during automation (poor UX)
 
 **ALIEN² AgentOS:**  
-✅ **Deep OS Integration** — Windows UIA, Win32, WinCOM APIs  
-✅ **Hybrid GUI–API Actions** — Native APIs + fallback GUI automation  
-✅ **Continuous Knowledge Learning** — RAG-enhanced from docs & execution history  
-✅ **Picture-in-Picture Desktop** — Parallel automation without user disruption  
-✅ **10%+ better success rate** than state-of-the-art CUAs
+[OK] **Deep OS Integration** — Windows UIA, Win32, WinCOM APIs  
+[OK] **Hybrid GUI–API Actions** — Native APIs + fallback GUI automation  
+[OK] **Continuous Knowledge Learning** — RAG-enhanced from docs & execution history  
+[OK] **Picture-in-Picture Desktop** — Parallel automation without user disruption  
+[OK] **10%+ better success rate** than state-of-the-art CUAs
 
 <figure markdown>
   ![AgentOS vs Traditional CUA](../img/comparison.png)
@@ -71,7 +71,7 @@ ALIEN² implements a **hierarchical multi-agent system** optimized for Windows d
 
 ## Key Innovations
 
-### 1. Deep OS Integration 🔧
+### 1. Deep OS Integration [CONFIG]
 
 ALIEN² embeds directly into Windows OS infrastructure:
 
@@ -83,9 +83,9 @@ ALIEN² embeds directly into Windows OS infrastructure:
 !!!tip "Hybrid Control Detection"
     Combines Windows UIA APIs with vision models ([OmniParser](https://arxiv.org/abs/2408.00203)) to detect both standard and custom UI controls—bridging structured accessibility trees and pixel-level perception.
     
-    📖 [Control Detection Guide](core_features/control_detection/overview.md)
+    [LANG] [Control Detection Guide](core_features/control_detection/overview.md)
 
-### 2. Unified GUI–API Action Layer ⚡
+### 2. Unified GUI–API Action Layer 
 
 Traditional CUAs simulate mouse/keyboard only. ALIEN² chooses the best execution method:
 
@@ -102,9 +102,9 @@ Traditional CUAs simulate mouse/keyboard only. ALIEN² chooses the best executio
 Extensible framework for adding application-specific APIs without modifying agent code.
 
 !!!info "Learn More"
-    📖 [Hybrid Actions Guide](core_features/hybrid_actions.md) • [MCP Integration](../mcp/overview.md)
+    [LANG] [Hybrid Actions Guide](core_features/hybrid_actions.md) • [MCP Integration](../mcp/overview.md)
 
-### 3. Continuous Knowledge Substrate 📚
+### 3. Continuous Knowledge Substrate [PLAN]
 
 ALIEN² learns from three knowledge sources without model retraining:
 
@@ -117,11 +117,11 @@ ALIEN² learns from three knowledge sources without model retraining:
 **Result:** Agents improve autonomously by retrieving relevant context at execution time.
 
 !!!info "Knowledge Integration"
-    📖 [Knowledge Substrate Overview](core_features/knowledge_substrate/overview.md)  
-    📖 [Learning from Help Documents](core_features/knowledge_substrate/learning_from_help_document.md)  
-    📖 [Experience Learning](core_features/knowledge_substrate/experience_learning.md)
+    [LANG] [Knowledge Substrate Overview](core_features/knowledge_substrate/overview.md)  
+    [LANG] [Learning from Help Documents](core_features/knowledge_substrate/learning_from_help_document.md)  
+    [LANG] [Experience Learning](core_features/knowledge_substrate/experience_learning.md)
 
-### 4. Speculative Multi-Action Execution 🚀
+### 4. Speculative Multi-Action Execution [START]
 
 Reduce LLM latency by predicting and validating action sequences:
 
@@ -140,9 +140,9 @@ Lightweight control-state checks ensure predicted actions remain valid before ex
     - **Traditional CUA:** 10 LLM calls (1 per field) → ~30 seconds  
     - **ALIEN² Speculative:** 1 LLM call predicts all 10 actions → ~8 seconds
     
-    📖 [Multi-Action Execution Guide](core_features/multi_action.md)
+    [LANG] [Multi-Action Execution Guide](core_features/multi_action.md)
 
-### 5. Picture-in-Picture Desktop 🖼️
+### 5. Picture-in-Picture Desktop ️
 
 **Problem:** Existing CUAs lock users out during automation (poor UX).
 
@@ -174,8 +174,8 @@ Both HostAgent and AppAgent execute a **4-phase processing cycle**:
 | **4. Memory Update** | Record execution | Save orchestration step | Save interaction step, update blackboard |
 
 !!!info "Processing Details"
-    📖 [Strategy Layer](../infrastructure/agents/design/processor.md) — Processing framework and dependency chain  
-    📖 [State Layer](../infrastructure/agents/design/state.md) — FSM design principles
+    [LANG] [Strategy Layer](../infrastructure/agents/design/processor.md) — Processing framework and dependency chain  
+    [LANG] [State Layer](../infrastructure/agents/design/state.md) — FSM design principles
 
 ### Command System
 
@@ -195,8 +195,8 @@ Commands are dispatched through **MCP (Model Context Protocol)** servers:
 - **Control Selection:** `select_control_by_index`, `select_control_by_name`
 
 !!!info "Command Architecture"
-    📖 [Command Layer](../infrastructure/agents/design/command.md) — MCP integration and command dispatch  
-    📖 [MCP Servers](../mcp/overview.md) — Server architecture and custom server creation
+    [LANG] [Command Layer](../infrastructure/agents/design/command.md) — MCP integration and command dispatch  
+    [LANG] [MCP Servers](../mcp/overview.md) — Server architecture and custom server creation
 
 ---
 
@@ -224,9 +224,9 @@ app_agent:
 !!!tip "Complete Configuration Guide"
     For detailed configuration options, model setup, and advanced customization:
     
-    📖 **[Configuration & Setup](../configuration/system/overview.md)** — Complete system configuration reference  
-    📖 **[Model Setup](../configuration/models/overview.md)** — LLM provider configuration (OpenAI, Azure, Gemini, Claude, etc.)  
-    📖 **[MCP Configuration](../configuration/system/mcp_reference.md)** — MCP server and extension configuration
+    [LANG] **[Configuration & Setup](../configuration/system/overview.md)** — Complete system configuration reference  
+    [LANG] **[Model Setup](../configuration/models/overview.md)** — LLM provider configuration (OpenAI, Azure, Gemini, Claude, etc.)  
+    [LANG] **[MCP Configuration](../configuration/system/mcp_reference.md)** — MCP server and extension configuration
 
 ---
 
@@ -249,8 +249,8 @@ python -m alien --task excel_demo
 
 This will prompt you to enter your request interactively:
 ```
-Welcome to use ALIEN🛸, A UI-focused Agent for Windows OS Interaction.
-Please enter your request to be completed🛸: Create a chart from Sheet1 data in Excel
+Welcome to use ALIEN[UFO], A UI-focused Agent for Windows OS Interaction.
+Please enter your request to be completed[UFO]: Create a chart from Sheet1 data in Excel
 ```
 
 **Direct Request Mode:**
@@ -278,8 +278,8 @@ python -m alien --task excel_demo -r "Open Excel and create a chart from Sheet1 
 7. **HostAgent** verifies task, returns success to **Session**
 
 !!!tip "Next Steps"
-    📖 [Getting Started Guide](../getting_started/quick_start_alien2.md)  
-    📖 [Creating Your AppAgent](../tutorials/creating_app_agent/overview.md)
+    [LANG] [Getting Started Guide](../getting_started/quick_start_alien2.md)  
+    [LANG] [Creating Your AppAgent](../tutorials/creating_app_agent/overview.md)
 
 ---
 
@@ -334,7 +334,7 @@ ALIEN² demonstrates that **system-level integration** and **architectural desig
     - **Non-disruptive UX** via Picture-in-Picture desktop
 
 **Research Paper:**  
-📄 [ALIEN²: A Grounded OS Agent for Windows](https://arxiv.org/abs/2504.14603)
+[DOC] [ALIEN²: A Grounded OS Agent for Windows](https://arxiv.org/abs/2504.14603)
 
 ---
 
@@ -343,16 +343,16 @@ ALIEN² demonstrates that **system-level integration** and **architectural desig
 Ready to explore ALIEN²? Choose your path:
 
 !!!info "Learning Paths"
-    **🚀 New Users:** Start with [Quick Start Guide](../getting_started/quick_start_alien2.md)  
-    **🔧 Developers:** Read [Creating AppAgent](../tutorials/creating_app_agent/overview.md)  
-    **🏗️ System Architects:** Study [Device Agent Architecture](../infrastructure/agents/overview.md)  
-    **📊 Researchers:** Check [Benchmark Results](evaluation/benchmark/overview.md)
+    **[START] New Users:** Start with [Quick Start Guide](../getting_started/quick_start_alien2.md)  
+    **[CONFIG] Developers:** Read [Creating AppAgent](../tutorials/creating_app_agent/overview.md)  
+    **️ System Architects:** Study [Device Agent Architecture](../infrastructure/agents/overview.md)  
+    **[STATUS] Researchers:** Check [Benchmark Results](evaluation/benchmark/overview.md)
 
 **Next:** [HostAgent Deep Dive](host_agent/overview.md) → Understand desktop orchestration
 
 ---
 
-## 🌐 Media Coverage
+## [WEB] Media Coverage
 
 Check out our official deep dive of ALIEN on [this Youtube Video](https://www.youtube.com/watch?v=QT_OhygMVXU).
 
@@ -360,7 +360,7 @@ ALIEN sightings have garnered attention from various media outlets, including:
 
 - [微软正式开源ALIEN²，Windows桌面迈入「AgentOS 时代」](https://www.jiqizhixin.com/articles/2025-05-06-13)
 - [Microsoft's ALIEN abducts traditional user interfaces for a smarter Windows experience](https://the-decoder.com/microsofts-alien-abducts-traditional-user-interfaces-for-a-smarter-windows-experience/)
-- [🚀 ALIEN & GPT-4-V: Sit back and relax, mientras GPT lo hace todo🌌](https://www.linkedin.com/posts/gutierrezfrancois_ai-alien-microsoft-activity-7176819900399652865-pLoo?utm_source=share&utm_medium=member_desktop)
+- [[START] ALIEN & GPT-4-V: Sit back and relax, mientras GPT lo hace todo[ORION]](https://www.linkedin.com/posts/gutierrezfrancois_ai-alien-microsoft-activity-7176819900399652865-pLoo?utm_source=share&utm_medium=member_desktop)
 - [The AI PC - The Future of Computers? - Microsoft ALIEN](https://www.youtube.com/watch?v=1k4LcffCq3E)
 - [下一代Windows系统曝光：基于GPT-4V，Agent跨应用调度，代号ALIEN](https://baijiahao.baidu.com/s?id=1790938358152188625&wfr=spider&for=pc)
 - [下一代智能版 Windows 要来了？微软推出首个 Windows Agent，命名为 ALIEN！](https://blog.csdn.net/csdnnews/article/details/136161570)
@@ -368,7 +368,7 @@ ALIEN sightings have garnered attention from various media outlets, including:
 
 ---
 
-## 📚 Citation
+## [PLAN] Citation
 
 If you build on this work, please cite the AgentOS framework:
 
@@ -398,15 +398,15 @@ If you build on this work, please cite the AgentOS framework:
 
 ---
 
-## 🎨 Related Projects
+##  Related Projects
 
 - **TaskWeaver** — a code‑first LLM agent for data analytics: <https://github.com/microsoft/TaskWeaver>  
 - **LLM‑Brained GUI Agents: A Survey**: <https://arxiv.org/abs/2411.18279> • [GitHub](https://github.com/vyokky/LLM-Brained-GUI-Agents-Survey) • [Interactive site](https://vyokky.github.io/LLM-Brained-GUI-Agents-Survey/)
 
 ---
 
-## ❓Get Help
+## Get Help
 
-- ❔GitHub Issues (preferred)
+- GitHub Issues (preferred)
 - For other communications, please contact [alien-agent@microsoft.com](mailto:alien-agent@microsoft.com)
 

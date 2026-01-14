@@ -90,10 +90,10 @@ The `x` marker on the connection arrow indicates an abnormal termination. The se
 
 **Guarantees:**
 
-- ✅ No orphaned tasks or zombie processes
-- ✅ End-to-end consistency across client-server boundary  
-- ✅ Automatic resource cleanup
-- ✅ Synchronized task state reflection
+- [OK] No orphaned tasks or zombie processes
+- [OK] End-to-end consistency across client-server boundary  
+- [OK] Automatic resource cleanup
+- [OK] Synchronized task state reflection
 
 ---
 
@@ -125,7 +125,7 @@ Select the policy that matches your deployment environment's network characteris
 |--------|----------------|----------|------------------|
 | **EXPONENTIAL_BACKOFF** | Doubles each attempt | Internet, unreliable networks | 1s → 2s → 4s → 8s → 16s |
 | **LINEAR_BACKOFF** | Linear increase | Local networks, testing | 1s → 2s → 3s → 4s → 5s |
-| **IMMEDIATE** | No delay | ⚠️ Testing only | 0s → 0s → 0s → 0s → 0s |
+| **IMMEDIATE** | No delay | ️ Testing only | 0s → 0s → 0s → 0s → 0s |
 | **NONE** | No reconnection | Manual control | Disabled |
 
 !!!danger "IMMEDIATE Policy Warning"
@@ -460,34 +460,34 @@ timeout_default = 180.0
 **Problem**: Network glitch disconnects client for 3 seconds.
 
 **Resolution**:
-1. ✅ Disconnection detected via heartbeat timeout
-2. ✅ Automatic reconnection triggered (1st attempt after 2s)
-3. ✅ Connection restored successfully
-4. ✅ Heartbeat resumes
-5. ✅ Tasks continue
+1. [OK] Disconnection detected via heartbeat timeout
+2. [OK] Automatic reconnection triggered (1st attempt after 2s)
+3. [OK] Connection restored successfully
+4. [OK] Heartbeat resumes
+5. [OK] Tasks continue
 
 ### Scenario 2: Prolonged Outage
 
 **Problem**: Device offline for 10 minutes.
 
 **Resolution**:
-1. ❌ Initial disconnection detected
+1. [FAIL] Initial disconnection detected
 2. ⏳ Multiple reconnection attempts (exponential backoff: 2s, 4s, 8s, 16s, 32s)
-3. ❌ All attempts fail (max retries reached)
-4. ⚠️ Tasks marked as FAILED
-5. 📢 OrionAgent notified
-6. ♻️ Tasks reassigned to other devices
+3. [FAIL] All attempts fail (max retries reached)
+4. ️ Tasks marked as FAILED
+5. [NEWS] OrionAgent notified
+6. ️ Tasks reassigned to other devices
 
 ### Scenario 3: Server Restart
 
 **Problem**: Server restarts, causing all clients to disconnect at once.
 
 **Resolution**:
-1. ⚠️ All clients detect disconnection
+1. ️ All clients detect disconnection
 2. ⏳ Each client begins reconnection (with jitter to avoid thundering herd)
-3. ✅ Server restarts and accepts connections
-4. ✅ Clients reconnect and re-register
-5. ✅ Task execution resumes
+3. [OK] Server restarts and accepts connections
+4. [OK] Clients reconnect and re-register
+5. [OK] Task execution resumes
 
 ### Scenario 4: Heartbeat Timeout
 
@@ -495,10 +495,10 @@ timeout_default = 180.0
 
 **Resolution**:
     1. ⏰ HeartbeatManager detects missing pong
-    2. ⚠️ Connection marked as potentially dead
-    3. 🔄 Disconnection handling triggered
+    2. ️ Connection marked as potentially dead
+    3. [CONTINUE] Disconnection handling triggered
     4. ⏳ Reconnection attempted
-    5. ✅ If successful, heartbeat resumes
+    5. [OK] If successful, heartbeat resumes
 
 ---
 

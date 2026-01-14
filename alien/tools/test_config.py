@@ -26,14 +26,14 @@ def test_alien_config():
         config = get_alien_config()
 
         # Test typed access
-        print("\n✓ Typed access (recommended):")
+        print("\n Typed access (recommended):")
         print(f"  config.system.max_step = {config.system.max_step}")
         print(f"  config.system.timeout = {config.system.timeout}")
         print(f"  config.app_agent.api_type = {config.app_agent.api_type}")
         print(f"  config.app_agent.api_model = {config.app_agent.api_model}")
 
         # Test dict-style access (backward compatible)
-        print("\n✓ Dict-style access (backward compatible):")
+        print("\n Dict-style access (backward compatible):")
         print(f"  config['MAX_STEP'] = {config.get('MAX_STEP', 'N/A')}")
         print(f"  config['TIMEOUT'] = {config.get('TIMEOUT', 'N/A')}")
 
@@ -45,15 +45,15 @@ def test_alien_config():
             )
 
         # Test dynamic access
-        print("\n✓ Dynamic access:")
+        print("\n Dynamic access:")
         print(f"  config keys count = {len(list(config.keys()))}")
         print(f"  Sample keys = {list(config.keys())[:5]}...")
 
-        print("\n✅ ALIEN configuration loaded successfully!")
+        print("\n[OK] ALIEN configuration loaded successfully!")
         return True
 
     except Exception as e:
-        print(f"\n❌ Error loading ALIEN configuration: {e}")
+        print(f"\n[FAIL] Error loading ALIEN configuration: {e}")
         import traceback
 
         traceback.print_exc()
@@ -73,7 +73,7 @@ def test_network_config():
         config = get_network_config()
 
         # Test typed access
-        print("\n✓ Typed access (recommended):")
+        print("\n Typed access (recommended):")
         print(
             f"  config.orion_agent.api_type = {config.orion_agent.api_type}"
         )
@@ -82,7 +82,7 @@ def test_network_config():
         )
 
         # Test dict-style access
-        print("\n✓ Dict-style access (backward compatible):")
+        print("\n Dict-style access (backward compatible):")
         if "ORION_AGENT" in config:
             agent = config["ORION_AGENT"]
             print(
@@ -90,15 +90,15 @@ def test_network_config():
             )
 
         # Test dynamic access
-        print("\n✓ Dynamic access:")
+        print("\n Dynamic access:")
         print(f"  config keys count = {len(list(config.keys()))}")
         print(f"  Sample keys = {list(config.keys())[:5]}...")
 
-        print("\n✅ Network configuration loaded successfully!")
+        print("\n[OK] Network configuration loaded successfully!")
         return True
 
     except Exception as e:
-        print(f"\n❌ Error loading Network configuration: {e}")
+        print(f"\n[FAIL] Error loading Network configuration: {e}")
         import traceback
 
         traceback.print_exc()
@@ -117,7 +117,7 @@ def test_path_detection():
 
     print("\nALIEN Configuration Paths:")
     print(
-        f"  New path (config/alien/):     {'✓ EXISTS' if alien_new.exists() else '✗ NOT FOUND'}"
+        f"  New path (config/alien/):     {' EXISTS' if alien_new.exists() else ' NOT FOUND'}"
     )
     if alien_new.exists():
         yaml_files = list(alien_new.glob("*.yaml"))
@@ -126,7 +126,7 @@ def test_path_detection():
             print(f"      - {f.name}")
 
     print(
-        f"  Legacy path (alien/config/):  {'✓ EXISTS' if alien_legacy.exists() else '✗ NOT FOUND'}"
+        f"  Legacy path (alien/config/):  {' EXISTS' if alien_legacy.exists() else ' NOT FOUND'}"
     )
     if alien_legacy.exists():
         yaml_files = list(alien_legacy.glob("*.yaml"))
@@ -139,7 +139,7 @@ def test_path_detection():
 
     print("\nNetwork Configuration Paths:")
     print(
-        f"  New path (config/network/):  {'✓ EXISTS' if network_new.exists() else '✗ NOT FOUND'}"
+        f"  New path (config/network/):  {' EXISTS' if network_new.exists() else ' NOT FOUND'}"
     )
     if network_new.exists():
         yaml_files = list(network_new.glob("*.yaml"))
@@ -167,8 +167,8 @@ def main():
     print("\n" + "=" * 70)
     print("Test Summary")
     print("=" * 70)
-    print(f"  ALIEN Configuration:    {'✅ PASS' if alien_success else '❌ FAIL'}")
-    print(f"  Network Configuration: {'✅ PASS' if network_success else '❌ FAIL'}")
+    print(f"  ALIEN Configuration:    {'[OK] PASS' if alien_success else '[FAIL] FAIL'}")
+    print(f"  Network Configuration: {'[OK] PASS' if network_success else '[FAIL] FAIL'}")
     print("=" * 70)
 
     return alien_success and network_success

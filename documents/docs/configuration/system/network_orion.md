@@ -384,7 +384,7 @@ for device in devices_config["devices"]:
         auto_connect=device.get("auto_connect", True)
     )
 
-print(f"✅ Orion '{orion_config['ORION_ID']}' initialized")
+print(f"[OK] Orion '{orion_config['ORION_ID']}' initialized")
 print(f"   Devices registered: {len(devices_config['devices'])}")
 print(f"   Max concurrent tasks: {orion_config['MAX_CONCURRENT_TASKS']}")
 ```

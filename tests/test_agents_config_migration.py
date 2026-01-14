@@ -105,17 +105,17 @@ def test_system_config_fields():
 
             if old_value == new_value:
                 passed += 1
-                print(f"✓ {old_key:40s} → {new_attr:40s} MATCH")
+                print(f" {old_key:40s} → {new_attr:40s} MATCH")
             else:
                 failed += 1
                 failures.append((old_key, new_attr, old_value, new_value))
-                print(f"✗ {old_key:40s} → {new_attr:40s} MISMATCH")
+                print(f" {old_key:40s} → {new_attr:40s} MISMATCH")
                 print(f"  Old: {old_value}")
                 print(f"  New: {new_value}")
         except Exception as e:
             failed += 1
             failures.append((old_key, new_attr, "ERROR", str(e)))
-            print(f"✗ {old_key:40s} → {new_attr:40s} ERROR: {e}")
+            print(f" {old_key:40s} → {new_attr:40s} ERROR: {e}")
 
     print("\n" + "=" * 80)
     print(f"System Config Test Results: {passed} passed, {failed} failed")
@@ -158,17 +158,17 @@ def test_rag_config_fields():
 
             if old_value == new_value:
                 passed += 1
-                print(f"✓ {old_key:45s} → {new_attr:40s} MATCH")
+                print(f" {old_key:45s} → {new_attr:40s} MATCH")
             else:
                 failed += 1
                 failures.append((old_key, new_attr, old_value, new_value))
-                print(f"✗ {old_key:45s} → {new_attr:40s} MISMATCH")
+                print(f" {old_key:45s} → {new_attr:40s} MISMATCH")
                 print(f"  Old: {old_value}")
                 print(f"  New: {new_value}")
         except Exception as e:
             failed += 1
             failures.append((old_key, new_attr, "ERROR", str(e)))
-            print(f"✗ {old_key:45s} → {new_attr:40s} ERROR: {e}")
+            print(f" {old_key:45s} → {new_attr:40s} ERROR: {e}")
 
     print("\n" + "=" * 80)
     print(f"RAG Config Test Results: {passed} passed, {failed} failed")
@@ -200,7 +200,7 @@ def test_agent_config_fields():
     for old_key, new_config, config_name in agents_to_test:
         try:
             if old_key not in old_configs:
-                print(f"⚠ {old_key} not in old config, skipping")
+                print(f" {old_key} not in old config, skipping")
                 continue
 
             old_agent = old_configs[old_key]
@@ -223,7 +223,7 @@ def test_agent_config_fields():
                     if old_value == new_value:
                         passed += 1
                         print(
-                            f"✓ {old_key}.{old_field:20s} → {config_name}.{new_attr:20s} MATCH"
+                            f" {old_key}.{old_field:20s} → {config_name}.{new_attr:20s} MATCH"
                         )
                     else:
                         failed += 1
@@ -236,7 +236,7 @@ def test_agent_config_fields():
                             )
                         )
                         print(
-                            f"✗ {old_key}.{old_field:20s} → {config_name}.{new_attr:20s} MISMATCH"
+                            f" {old_key}.{old_field:20s} → {config_name}.{new_attr:20s} MISMATCH"
                         )
                         print(f"  Old: {old_value}")
                         print(f"  New: {new_value}")
@@ -247,23 +247,23 @@ def test_agent_config_fields():
                         if old_agent.get(old_field) == new_value:
                             passed += 1
                             print(
-                                f"✓ {old_key}.{old_field:20s} → {config_name}._extras[{old_field}] MATCH"
+                                f" {old_key}.{old_field:20s} → {config_name}._extras[{old_field}] MATCH"
                             )
                         else:
                             failed += 1
                             print(
-                                f"✗ {old_key}.{old_field:20s} FIELD NOT FOUND IN NEW CONFIG"
+                                f" {old_key}.{old_field:20s} FIELD NOT FOUND IN NEW CONFIG"
                             )
                     except:
                         failed += 1
                         print(
-                            f"✗ {old_key}.{old_field:20s} FIELD NOT FOUND IN NEW CONFIG"
+                            f" {old_key}.{old_field:20s} FIELD NOT FOUND IN NEW CONFIG"
                         )
 
         except Exception as e:
             failed += 1
             failures.append((old_key, config_name, "ERROR", str(e)))
-            print(f"✗ {old_key:40s} → {config_name:40s} ERROR: {e}")
+            print(f" {old_key:40s} → {config_name:40s} ERROR: {e}")
 
     print("\n" + "=" * 80)
     print(f"Agent Config Test Results: {passed} passed, {failed} failed")

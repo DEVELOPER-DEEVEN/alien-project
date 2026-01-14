@@ -295,14 +295,14 @@ graph TB
 
 | Feature | Windows | Linux | Notes |
 |---------|---------|-------|-------|
-| **HostAgent** | ✅ Yes | ❌ No | Windows uses HostAgent for app selection |
-| **AppAgent** | ✅ Yes | ❌ No | Windows creates AppAgent per application |
-| **LinuxAgent** | ❌ No | ✅ Yes | Linux uses LinuxAgent directly |
-| **Agent Switching** | ✅ Yes | ❌ No | Windows can switch between apps mid-task |
-| **Multi-App Tasks** | ✅ Native | ⚠️ Limited | Windows handles multi-app naturally |
-| **Execution Modes** | ✅ All 7 | ⚠️ 3 modes | Windows supports all modes |
-| **Evaluation** | ✅ Yes | 🚧 Planned | Linux evaluation in development |
-| **Markdown Logs** | ✅ Yes | 🚧 Planned | Linux markdown logging in development |
+| **HostAgent** | [OK] Yes | [FAIL] No | Windows uses HostAgent for app selection |
+| **AppAgent** | [OK] Yes | [FAIL] No | Windows creates AppAgent per application |
+| **LinuxAgent** | [FAIL] No | [OK] Yes | Linux uses LinuxAgent directly |
+| **Agent Switching** | [OK] Yes | [FAIL] No | Windows can switch between apps mid-task |
+| **Multi-App Tasks** | [OK] Native | ️ Limited | Windows handles multi-app naturally |
+| **Execution Modes** | [OK] All 7 | ️ 3 modes | Windows supports all modes |
+| **Evaluation** | [OK] Yes |  Planned | Linux evaluation in development |
+| **Markdown Logs** | [OK] Yes |  Planned | Linux markdown logging in development |
 | **UI Automation** | UIA | Platform tools | Different automation backends |
 
 ### Execution Comparison
@@ -453,30 +453,30 @@ system:
 ### Windows Sessions
 
 !!!tip "Leverage Two-Tier Architecture"
-    - ✅ Use HostAgent for complex multi-app workflows
-    - ✅ Let HostAgent decide application selection
-    - ✅ Design tasks that benefit from app switching
-    - ❌ Don't micromanage app selection
-    - ❌ Don't bypass HostAgent for multi-app tasks
+    - [OK] Use HostAgent for complex multi-app workflows
+    - [OK] Let HostAgent decide application selection
+    - [OK] Design tasks that benefit from app switching
+    - [FAIL] Don't micromanage app selection
+    - [FAIL] Don't bypass HostAgent for multi-app tasks
 
 ### Linux Sessions
 
 !!!success "Work Within Single-Tier Model"
-    - ✅ Specify application in request if known
-    - ✅ Keep tasks focused on single application
-    - ✅ Split multi-app workflows into multiple sessions
-    - ❌ Don't expect automatic app switching
-    - ❌ Don't assume HostAgent features available
+    - [OK] Specify application in request if known
+    - [OK] Keep tasks focused on single application
+    - [OK] Split multi-app workflows into multiple sessions
+    - [FAIL] Don't expect automatic app switching
+    - [FAIL] Don't assume HostAgent features available
 
 ### Cross-Platform Development
 
 !!!warning "Platform Awareness"
-    - ✅ Test on both platforms if deploying cross-platform
-    - ✅ Use platform detection, not hardcoded assumptions
-    - ✅ Handle platform-specific features gracefully
-    - ✅ Document platform limitations
-    - ❌ Don't assume identical behavior
-    - ❌ Don't use platform_override in production
+    - [OK] Test on both platforms if deploying cross-platform
+    - [OK] Use platform detection, not hardcoded assumptions
+    - [OK] Handle platform-specific features gracefully
+    - [OK] Document platform limitations
+    - [FAIL] Don't assume identical behavior
+    - [FAIL] Don't use platform_override in production
 
 ---
 

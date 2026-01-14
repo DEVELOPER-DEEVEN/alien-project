@@ -34,14 +34,14 @@ class DeviceEventMonitor(IEventObserver):
     async def _handle_device_event(self, event: DeviceEvent) -> None:
         """处理设备事件"""
         print("\n" + "=" * 80)
-        print(f"🔔 [{self.name}] Device Event #{self.event_count}")
+        print(f" [{self.name}] Device Event #{self.event_count}")
         print("=" * 80)
 
-        print(f"\n📋 Event Type: {event.event_type.value}")
+        print(f"\n[TASK] Event Type: {event.event_type.value}")
         print(f"⏰ Timestamp: {event.timestamp}")
-        print(f"📍 Source: {event.source_id}")
+        print(f" Source: {event.source_id}")
 
-        print(f"\n📱 Device Information:")
+        print(f"\n Device Information:")
         print(f"   Device ID: {event.device_id}")
         print(f"   Status: {event.device_status}")
 
@@ -52,7 +52,7 @@ class DeviceEventMonitor(IEventObserver):
         print(f"   Current Task: {device_info.get('current_task_id', 'None')}")
         print(f"   Connection Attempts: {device_info.get('connection_attempts', 0)}")
 
-        print(f"\n📊 Device Registry Snapshot:")
+        print(f"\n[STATUS] Device Registry Snapshot:")
         print(f"   Total Devices: {len(event.all_devices)}")
 
         # 统计各状态设备数量
@@ -82,14 +82,14 @@ class DeviceEventMonitor(IEventObserver):
     def _get_status_icon(status: str) -> str:
         """获取状态图标"""
         icons = {
-            "connected": "🟢",
-            "disconnected": "🔴",
-            "idle": "🟢",
-            "busy": "🟡",
-            "failed": "🔴",
-            "connecting": "🟠",
+            "connected": "",
+            "disconnected": "",
+            "idle": "",
+            "busy": "",
+            "failed": "",
+            "connecting": "",
         }
-        return icons.get(status, "⚪")
+        return icons.get(status, "")
 
 
 class DeviceStatisticsMonitor(IEventObserver):
@@ -116,7 +116,7 @@ class DeviceStatisticsMonitor(IEventObserver):
     def print_statistics(self) -> None:
         """打印统计信息"""
         print("\n" + "=" * 80)
-        print("📈 Device Event Statistics")
+        print(" Device Event Statistics")
         print("=" * 80)
         print(f"Total Events: {self.total_events}")
         print(f"  - Connected: {self.connected_count}")
@@ -127,7 +127,7 @@ class DeviceStatisticsMonitor(IEventObserver):
 
 async def demo_device_events():
     """演示设备事件系统"""
-    print("\n🚀 Device Event System Demo\n")
+    print("\n[START] Device Event System Demo\n")
 
     # 获取事件总线
     event_bus = get_event_bus()
@@ -155,13 +155,13 @@ async def demo_device_events():
         },
     )
 
-    print("✅ Event monitors subscribed to device events")
-    print("\n💡 To see real device events, use the OrionDeviceManager")
+    print("[OK] Event monitors subscribed to device events")
+    print("\n[THOUGHT] To see real device events, use the OrionDeviceManager")
     print("   and register/connect actual devices.\n")
 
     # 显示示例代码
     print("=" * 80)
-    print("📝 Example Usage Code:")
+    print(" Example Usage Code:")
     print("=" * 80)
     print(
         """

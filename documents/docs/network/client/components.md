@@ -374,7 +374,7 @@ self._registration_protocols[device_id] = RegistrationProtocol(transport)
 self._task_protocols[device_id] = TaskExecutionProtocol(transport)
 self._device_info_protocols[device_id] = DeviceInfoProtocol(transport)
 
-# ⚠️ CRITICAL: Start message handler BEFORE sending registration
+# ️ CRITICAL: Start message handler BEFORE sending registration
 # This ensures we don't miss the server's registration response
 self.message_processor.start_message_handler(device_id, transport)
 await asyncio.sleep(0.05)  # Small delay to ensure handler is listening

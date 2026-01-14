@@ -7,7 +7,7 @@
 
 ---
 
-## 🌌 Introduction
+## [ORION] Introduction
 
 The **Task Orion** is the central abstraction in Network that captures the concurrent and asynchronous structure of distributed task execution. It provides a formal, directed acyclic graph (DAG) representation of complex workflows, enabling consistent scheduling, fault-tolerant orchestration, and runtime dynamism across heterogeneous devices.
 
@@ -17,7 +17,7 @@ For information on how Task Orions are orchestrated and scheduled, see the [Orio
 
 ---
 
-## 🎯 Core Components
+##  Core Components
 
 The Task Orion framework consists of four primary components:
 
@@ -30,7 +30,7 @@ The Task Orion framework consists of four primary components:
 
 ---
 
-## 📐 Formal Model
+##  Formal Model
 
 ### Mathematical Foundation
 
@@ -75,7 +75,7 @@ Each TaskStarLine $e_{i \rightarrow j} \in \mathcal{E}$ represents a dependency 
 
 ---
 
-## ✨ Key Advantages
+## [NEW] Key Advantages
 
 ### 1. Explicit Task Ordering
 Task dependencies are explicitly captured in the DAG structure, ensuring correctness across distributed execution without ambiguity.
@@ -99,7 +99,7 @@ The DAG representation provides formal properties:
 
 ---
 
-## 🔄 Lifecycle States
+## [CONTINUE] Lifecycle States
 
 The Task Orion progresses through several states during its lifecycle:
 
@@ -128,7 +128,7 @@ stateDiagram-v2
 
 ---
 
-## 📊 DAG Metrics
+## [STATUS] DAG Metrics
 
 ### Parallelism Analysis
 
@@ -176,7 +176,7 @@ $$
 
 ---
 
-## 🛠️ Core Operations
+## ️ Core Operations
 
 ### DAG Construction
 
@@ -246,7 +246,7 @@ print(f"Maximum concurrent tasks: {max_width}")
 
 ---
 
-## 🔧 Dynamic Modification
+## [CONFIG] Dynamic Modification
 
 ### Safe Editing with OrionEditor
 
@@ -285,7 +285,7 @@ modifiable_deps = orion.get_modifiable_dependencies()
 
 ---
 
-## 📈 Example Workflows
+##  Example Workflows
 
 ### Sequential Workflow
 
@@ -328,7 +328,7 @@ graph LR
 
 ---
 
-## 🎨 Visualization
+##  Visualization
 
 The Task Orion provides multiple visualization modes for monitoring and debugging:
 
@@ -353,7 +353,7 @@ For interactive web-based visualization, check out the [Network WebUI](../webui.
 
 ---
 
-## 📚 Component Documentation
+## [PLAN] Component Documentation
 
 Explore detailed documentation for each component:
 
@@ -370,7 +370,7 @@ Explore detailed documentation for each component:
 
 ---
 
-## 🔬 Research Background
+##  Research Background
 
 The Task Orion model is grounded in formal DAG theory and distributed systems research. Key properties include:
 
@@ -383,7 +383,7 @@ For more on Network's architecture and design principles, see the [Network Overv
 
 ---
 
-## 💡 Best Practices
+## [THOUGHT] Best Practices
 
 !!!tip "Designing Effective Orions"
     1. **Keep tasks atomic**: Each TaskStar should represent a single, well-defined operation
@@ -401,7 +401,7 @@ For more on Network's architecture and design principles, see the [Network Overv
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 - Learn about **[TaskStar](task_star.md)** — Atomic task execution units
 - Explore **[TaskStarLine](task_star_line.md)** — Dependency relationships

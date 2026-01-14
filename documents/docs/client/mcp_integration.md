@@ -1,4 +1,4 @@
-# 🔌 MCP Integration
+#  MCP Integration
 
 **MCP (Model Context Protocol)** provides the tool execution layer in ALIEN clients, enabling agents to collect system state and execute actions through a standardized interface. This page provides a **client-focused overview** of how MCP integrates into the client architecture.
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 🏗️ MCP in Client Architecture
+## ️ MCP in Client Architecture
 
 ### Role in the Client Stack
 
@@ -52,7 +52,7 @@ graph TB
 
 ---
 
-## 🔄 Client-MCP Integration Flow
+## [CONTINUE] Client-MCP Integration Flow
 
 ### End-to-End Execution
 
@@ -88,7 +88,7 @@ sequenceDiagram
 
 ---
 
-## 💻 Computer: The MCP Manager
+##  Computer: The MCP Manager
 
 ### Computer Class Overview
 
@@ -130,7 +130,7 @@ See [Computer](./computer.md) for detailed class documentation.
 
 ---
 
-## 🛠️ Two Server Types
+## ️ Two Server Types
 
 ### Data Collection vs Action
 
@@ -143,7 +143,7 @@ Understanding the difference between server types is essential for proper MCP us
 | **Purpose** | Observe system state | Modify system state |
 | **Examples** | `take_screenshot`, `detect_ui_elements` | `click`, `type_text`, `run_command` |
 | **Invocation** | LLM-selected tools | LLM-selected tools |
-| **Side Effects** | ❌ None (read-only) | ✅ Yes (state changes) |
+| **Side Effects** | [FAIL] None (read-only) | [OK] Yes (state changes) |
 | **Namespace** | `"data_collection"` | `"action"` |
 | **Tool Key Format** | `data_collection::tool_name` | `action::tool_name` |
 
@@ -180,7 +180,7 @@ See [MCP Overview - Server Types](../mcp/overview.md#1-two-server-types) for det
 
 ---
 
-## 📋 Server Configuration
+## [TASK] Server Configuration
 
 ### Configuration File
 
@@ -212,7 +212,7 @@ HostAgent:
 | `type` | `str` | Deployment type: `local`, `http`, `stdio` | `"local"` |
 | `reset` | `bool` | Reset server state on each step | `false` |
 
-!!!tip "📖 Full Configuration Guide"
+!!!tip "[LANG] Full Configuration Guide"
     See [MCP Configuration](../mcp/configuration.md) for advanced configuration including:
     - HTTP server endpoints
     - Stdio server commands
@@ -221,7 +221,7 @@ HostAgent:
 
 ---
 
-## 🔧 Tool Registry & Execution
+## [CONFIG] Tool Registry & Execution
 
 ### Tool Discovery
 
@@ -286,7 +286,7 @@ See [Computer](./computer.md) for execution details.
 
 ---
 
-## 🚀 Integration Examples
+## [START] Integration Examples
 
 ### Basic Usage
 
@@ -349,7 +349,7 @@ async def custom_action(param: str) -> str:
 
 ---
 
-## 🔗 Integration Points
+## [DEP] Integration Points
 
 ### With Other Client Components
 
@@ -375,7 +375,7 @@ See [ALIEN Client](./alien_client.md) and [Computer](./computer.md) for integrat
 
 ---
 
-## 📚 Related Documentation
+## [PLAN] Related Documentation
 
 ### Client Components
 
@@ -399,7 +399,7 @@ See [ALIEN Client](./alien_client.md) and [Computer](./computer.md) for integrat
 
 ---
 
-## 🎯 Key Takeaways
+##  Key Takeaways
 
 **MCP in Client - Summary**
 
@@ -426,7 +426,7 @@ See [ALIEN Client](./alien_client.md) and [Computer](./computer.md) for integrat
 
 ---
 
-## 🚀 Next Steps
+## [START] Next Steps
 
 - [MCP Overview](../mcp/overview.md) - Understand MCP architecture in depth
 - [Computer](./computer.md) - See how MCP servers are managed

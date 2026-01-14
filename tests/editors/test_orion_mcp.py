@@ -57,10 +57,10 @@ def test_mcp_server():
             description="Second test task created through MCP server for dependency testing",
             tips="This task depends on task1 completion",
         )
-        print(f"   ✓ Added task1: {json.loads(result1)['task_id']}")
-        print(f"   ✓ Added task2: {json.loads(result2)['task_id']}")
+        print(f"    Added task1: {json.loads(result1)['task_id']}")
+        print(f"    Added task2: {json.loads(result2)['task_id']}")
     except Exception as e:
-        print(f"   ✗ Failed to add tasks: {e}")
+        print(f"    Failed to add tasks: {e}")
         return False
 
     # Test 2: List tasks
@@ -68,11 +68,11 @@ def test_mcp_server():
     try:
         tasks_result = call_tool("list_tasks")
         tasks = json.loads(tasks_result)
-        print(f"   ✓ Found {len(tasks)} tasks")
+        print(f"    Found {len(tasks)} tasks")
         for task in tasks:
             print(f"     - {task['task_id']}: {task['name']}")
     except Exception as e:
-        print(f"   ✗ Failed to list tasks: {e}")
+        print(f"    Failed to list tasks: {e}")
         return False
 
     # Test 3: Add dependency
@@ -86,9 +86,9 @@ def test_mcp_server():
             condition_description="Task2 waits for Task1 to complete successfully before starting execution",
         )
         dep = json.loads(dep_result)
-        print(f"   ✓ Added dependency: {dep['from_task_id']} -> {dep['to_task_id']}")
+        print(f"    Added dependency: {dep['from_task_id']} -> {dep['to_task_id']}")
     except Exception as e:
-        print(f"   ✗ Failed to add dependency: {e}")
+        print(f"    Failed to add dependency: {e}")
         return False
 
     # Test 4: List dependencies
@@ -96,11 +96,11 @@ def test_mcp_server():
     try:
         deps_result = call_tool("list_dependencies")
         deps = json.loads(deps_result)
-        print(f"   ✓ Found {len(deps)} dependencies")
+        print(f"    Found {len(deps)} dependencies")
         for dep in deps:
             print(f"     - {dep['line_id']}: {dep['dependency_type']}")
     except Exception as e:
-        print(f"   ✗ Failed to list dependencies: {e}")
+        print(f"    Failed to list dependencies: {e}")
         return False
 
     # Test 5: Update task
@@ -115,9 +115,9 @@ def test_mcp_server():
             tips="Updated tips: Remember to validate results after completion",
         )
         updated_task = json.loads(updated_result)
-        print(f"   ✓ Updated task: {updated_task['name']}")
+        print(f"    Updated task: {updated_task['name']}")
     except Exception as e:
-        print(f"   ✗ Failed to update task: {e}")
+        print(f"    Failed to update task: {e}")
         return False
 
     # Test 6: Update dependency
@@ -134,11 +134,11 @@ def test_mcp_server():
                 condition_description="Updated condition: Task2 must wait for Task1 to complete successfully with validation",
             )
             updated_dep = json.loads(updated_dep_result)
-            print(f"   ✓ Updated dependency condition description")
+            print(f"    Updated dependency condition description")
         else:
-            print(f"   ✗ No dependencies found to update")
+            print(f"    No dependencies found to update")
     except Exception as e:
-        print(f"   ✗ Failed to update dependency: {e}")
+        print(f"    Failed to update dependency: {e}")
         return False
 
     # Test 7: Get orion status
@@ -146,12 +146,12 @@ def test_mcp_server():
     try:
         status_result = call_tool("get_orion_status")
         status = json.loads(status_result)
-        print(f"   ✓ Orion status:")
+        print(f"    Orion status:")
         print(f"     - Task count: {status['task_count']}")
         print(f"     - Dependency count: {status['dependency_count']}")
         print(f"     - Is valid: {status['is_valid']}")
     except Exception as e:
-        print(f"   ✗ Failed to get status: {e}")
+        print(f"    Failed to get status: {e}")
         return False
 
     # Test 8: Build orion
@@ -184,36 +184,36 @@ def test_mcp_server():
     try:
         build_result = call_tool("build_orion", config, False)
         built = json.loads(build_result)
-        print(f"   ✓ Built orion with {len(built['tasks'])} total tasks")
+        print(f"    Built orion with {len(built['tasks'])} total tasks")
     except Exception as e:
-        print(f"   ✗ Failed to build orion: {e}")
+        print(f"    Failed to build orion: {e}")
         return False
 
     # Test 9: Undo/Redo operations
     print("\n9. Testing undo_last_operation...")
     try:
         undo_result = call_tool("undo_last_operation")
-        print(f"   ✓ Undo result: {undo_result}")
+        print(f"    Undo result: {undo_result}")
 
         # Check task count after undo
         status_after_undo = json.loads(call_tool("get_orion_status"))
         print(f"   Tasks after undo: {status_after_undo['task_count']}")
 
     except Exception as e:
-        print(f"   ✗ Failed to undo: {e}")
+        print(f"    Failed to undo: {e}")
         return False
 
     print("\n10. Testing redo_last_operation...")
     try:
         redo_result = call_tool("redo_last_operation")
-        print(f"   ✓ Redo result: {redo_result}")
+        print(f"    Redo result: {redo_result}")
 
         # Check task count after redo
         status_after_redo = json.loads(call_tool("get_orion_status"))
         print(f"   Tasks after redo: {status_after_redo['task_count']}")
 
     except Exception as e:
-        print(f"   ✗ Failed to redo: {e}")
+        print(f"    Failed to redo: {e}")
         return False
 
     # Test 11: Clear orion
@@ -221,9 +221,9 @@ def test_mcp_server():
     try:
         clear_result = call_tool("clear_orion")
         cleared = json.loads(clear_result)
-        print(f"   ✓ Cleared orion, remaining tasks: {len(cleared['tasks'])}")
+        print(f"    Cleared orion, remaining tasks: {len(cleared['tasks'])}")
     except Exception as e:
-        print(f"   ✗ Failed to clear orion: {e}")
+        print(f"    Failed to clear orion: {e}")
         return False
 
     return True
@@ -239,14 +239,14 @@ def main():
 
         if success:
             print("\n" + "=" * 50)
-            print("✓ All MCP server tests completed successfully!")
+            print(" All MCP server tests completed successfully!")
         else:
             print("\n" + "=" * 50)
-            print("✗ Some tests failed")
+            print(" Some tests failed")
             return 1
 
     except Exception as e:
-        print(f"\n✗ Test suite failed with error: {e}")
+        print(f"\n Test suite failed with error: {e}")
         import traceback
 
         traceback.print_exc()

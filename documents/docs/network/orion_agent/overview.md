@@ -4,7 +4,7 @@ The **Orion Agent** serves as the central intelligence of ALIEN³ Network, actin
 
 For an overview of the Network system architecture, see [Network Overview](../overview.md).
 
-## 🌟 Introduction
+##  Introduction
 
 ![Orion Agent Architecture](../../img/orion_agent.png)
 **Figure:** An overview of the Orion Agent showing the dual-mode control cycle between creation and editing phases.
@@ -18,7 +18,7 @@ Unlike traditional static DAG schedulers, the Orion Agent operates as a **dynami
 
 This feedback-driven control loop achieves tight coupling between symbolic reasoning and distributed execution, maintaining global consistency while adapting to changing device conditions.
 
-## 🎯 Core Responsibilities
+##  Core Responsibilities
 
 The Orion Agent orchestrates distributed workflows through structured feedback loops, alternating between creation and editing phases with explicit operational boundaries. For details on task execution, see [Orion Orchestrator](../orion_orchestrator/overview.md).
 
@@ -33,7 +33,7 @@ The Orion Agent orchestrates distributed workflows through structured feedback l
 | **Dynamic Adaptation** | Add, remove, or modify tasks/dependencies based on feedback | Editing |
 | **Consistency Maintenance** | Ensure DAG validity and execution correctness throughout lifecycle | Both |
 
-## 🏗️ Architecture
+## ️ Architecture
 
 ### Dual-Mode Control System
 
@@ -91,7 +91,7 @@ graph TB
     style Orchestrator fill:#e8f5e9
 ```
 
-## 🔄 Creation Mode
+## [CONTINUE] Creation Mode
 
 In creation mode, the Orion Agent receives a user request and generates the initial Task Orion.
 
@@ -153,7 +153,7 @@ sequenceDiagram
 
 **Thought:** "Decomposed into 3 sequential tasks based on computational requirements. Laptop handles download, server preprocesses data, GPU server trains model."
 
-## ✏️ Editing Mode
+## ️ Editing Mode
 
 During execution, the Orion Agent enters editing mode to process task completion events and adapt the orion.
 
@@ -223,7 +223,7 @@ The agent can perform the following modifications through the MCP-based Orion Ed
 | **State** | `OrionAgentStatus` | Next FSM state (`CONTINUE`, `FINISH`, or `FAIL`) |
 | **Result** | `Any` | Summary of changes or completion status |
 
-## 🔁 Finite-State Machine Lifecycle
+##  Finite-State Machine Lifecycle
 
 ![Agent State Transitions](../../img/agent_state.png)
 **Figure:** Lifecycle state transitions of the Orion Agent FSM.
@@ -270,7 +270,7 @@ stateDiagram-v2
 
 For detailed state machine documentation, see [State Machine Details](state.md).
 
-## 🛠️ MCP-Based Orion Editor
+## ️ MCP-Based Orion Editor
 
 The Orion Agent interacts with the **Orion Editor** through the **Model Context Protocol (MCP)** layer. The architecture uses:
 
@@ -308,7 +308,7 @@ All operations are:
 
 For complete MCP command specifications and examples, see [Command Reference](command.md). For details on the underlying Task Orion structure, see [Task Orion Overview](../orion/overview.md).
 
-## 📋 Processing Pipeline
+## [TASK] Processing Pipeline
 
 The Orion Agent follows a **4-phase processing pipeline** for both creation and editing modes:
 
@@ -364,7 +364,7 @@ memory.add_round_log(
 )
 ```
 
-## 🎭 Prompter Architecture
+##  Prompter Architecture
 
 The Orion Agent uses the **Factory Pattern** to create appropriate prompters for different weaving modes (creation and editing).
 
@@ -411,7 +411,7 @@ classDiagram
 
 For complete prompter architecture documentation, see [Prompter Details](strategy.md).
 
-## 💡 Key Design Benefits
+## [THOUGHT] Key Design Benefits
 
 ### 1. Unified Reasoning and Control
 
@@ -440,7 +440,7 @@ The FSM + MCP Server architecture ensures:
 - **Atomicity**: Each MCP operation is atomic and idempotent
 - **Auditability**: Full modification history maintained
 
-## 🔍 Example Workflow
+##  Example Workflow
 
 ### User Request
 ```
@@ -498,7 +498,7 @@ Task task_003 (evaluate) completed with result: {"accuracy": 0.92}
 }
 ```
 
-## 📊 Performance Characteristics
+## [STATUS] Performance Characteristics
 
 ### Creation Complexity
 
@@ -521,7 +521,7 @@ Task task_003 (evaluate) completed with result: {"accuracy": 0.92}
 | Editing Events per Session | 1-10 | 50+ |
 | LLM Response Time | 2-5s | 15s |
 
-## 🔗 Related Components
+## [DEP] Related Components
 
 - **[Task Orion](../orion/overview.md)** — Abstract DAG model
 - **[TaskStar](../orion/task_star.md)** — Atomic execution units
@@ -531,7 +531,7 @@ Task task_003 (evaluate) completed with result: {"accuracy": 0.92}
 - **[Prompter Details](strategy.md)** — Prompter architecture
 - **[Command Reference](command.md)** — Editor operation specifications
 
-## 🎯 Summary
+##  Summary
 
 The Orion Agent serves as the **central weaver** of distributed intelligence in ALIEN³ Network. Through its dual-mode control loop, finite-state machine governance, and MCP-based orion manipulation, it transforms abstract user goals into live, evolving orions—maintaining both rigor and adaptability across the complete lifecycle of multi-device orchestration.
 

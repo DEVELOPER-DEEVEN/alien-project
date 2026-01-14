@@ -134,15 +134,15 @@ These fields are available for `HOST_AGENT`, `APP_AGENT`, `BACKUP_AGENT`, `EVALU
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `VISUAL_MODE` | Boolean | ❌ | `True` | Enable vision capabilities (screenshot understanding) |
-| `REASONING_MODEL` | Boolean | ❌ | `False` | Whether model is a reasoning model (o1, o3, o3-mini) |
-| `API_TYPE` | String | ✅ | `"openai"` | LLM provider type |
-| `API_BASE` | String | ✅ | varies | API endpoint URL |
-| `API_KEY` | String | ✅ | `""` | API authentication key |
-| `API_MODEL` | String | ✅ | varies | Model identifier |
-| `API_VERSION` | String | ❌ | `"2025-02-01-preview"` | API version |
+| `VISUAL_MODE` | Boolean | [FAIL] | `True` | Enable vision capabilities (screenshot understanding) |
+| `REASONING_MODEL` | Boolean | [FAIL] | `False` | Whether model is a reasoning model (o1, o3, o3-mini) |
+| `API_TYPE` | String | [OK] | `"openai"` | LLM provider type |
+| `API_BASE` | String | [OK] | varies | API endpoint URL |
+| `API_KEY` | String | [OK] | `""` | API authentication key |
+| `API_MODEL` | String | [OK] | varies | Model identifier |
+| `API_VERSION` | String | [FAIL] | `"2025-02-01-preview"` | API version |
 
-**Legend:** ✅ = Required (must be set), ❌ = Optional (has default value)
+**Legend:** [OK] = Required (must be set), [FAIL] = Optional (has default value)
 
 #### API_TYPE Options
 
@@ -160,7 +160,7 @@ These fields are available for `HOST_AGENT`, `APP_AGENT`, `BACKUP_AGENT`, `EVALU
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `API_DEPLOYMENT_ID` | String | ✅ (for AOAI) | Azure deployment name |
+| `API_DEPLOYMENT_ID` | String | [OK] (for AOAI) | Azure deployment name |
 
 **Example**:
 ```yaml
@@ -176,9 +176,9 @@ HOST_AGENT:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `AAD_TENANT_ID` | String | ✅ (for azure_ad) | Azure AD tenant ID |
-| `AAD_API_SCOPE` | String | ✅ (for azure_ad) | Azure AD API scope |
-| `AAD_API_SCOPE_BASE` | String | ✅ (for azure_ad) | Scope base URL |
+| `AAD_TENANT_ID` | String | [OK] (for azure_ad) | Azure AD tenant ID |
+| `AAD_API_SCOPE` | String | [OK] (for azure_ad) | Azure AD API scope |
+| `AAD_API_SCOPE_BASE` | String | [OK] (for azure_ad) | Scope base URL |
 
 **Example**:
 ```yaml
@@ -196,9 +196,9 @@ HOST_AGENT:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `PROMPT` | String | ❌ | Path to main prompt template |
-| `EXAMPLE_PROMPT` | String | ❌ | Path to example prompt template |
-| `API_PROMPT` | String | ❌ | Path to API usage prompt (APP_AGENT only) |
+| `PROMPT` | String | [FAIL] | Path to main prompt template |
+| `EXAMPLE_PROMPT` | String | [FAIL] | Path to example prompt template |
+| `API_PROMPT` | String | [FAIL] | Path to API usage prompt (APP_AGENT only) |
 
 **Default Prompt Paths:**
 ```yaml
@@ -218,7 +218,7 @@ You can customize prompts by creating your own YAML files and updating these pat
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `SCALER` | List[int] | ❌ | Screen dimensions for visual input `[width, height]`, default: `[1024, 768]` |
+| `SCALER` | List[int] | [FAIL] | Screen dimensions for visual input `[width, height]`, default: `[1024, 768]` |
 
 **Example:**
 ```yaml
@@ -466,20 +466,20 @@ openai.RateLimitError: Rate limit exceeded
 
 **API Key Security Guidelines:**
 
-1. ✅ **Never commit `agents.yaml` to Git**
+1. [OK] **Never commit `agents.yaml` to Git**
    - Add to `.gitignore`
    - Only commit `agents.yaml.template`
 
-2. ✅ **Use environment variables** for production
+2. [OK] **Use environment variables** for production
    ```yaml
    API_KEY: "${OPENAI_API_KEY}"
    ```
 
-3. ✅ **Rotate keys regularly**
+3. [OK] **Rotate keys regularly**
 
-4. ✅ **Use separate keys** for dev/prod environments
+4. [OK] **Use separate keys** for dev/prod environments
 
-5. ✅ **Restrict key permissions** (e.g., read-only for evaluation agents)
+5. [OK] **Restrict key permissions** (e.g., read-only for evaluation agents)
 
 ## Related Documentation
 
@@ -495,10 +495,10 @@ openai.RateLimitError: Rate limit exceeded
 
 **Key Takeaways:**
 
-✅ **Copy template first**: `Copy-Item config\alien\agents.yaml.template config\alien\agents.yaml`  
-✅ **Add your API keys**: Edit `agents.yaml` with your credentials  
-✅ **Choose models wisely**: GPT-4o for planning, GPT-4o-mini for actions  
-✅ **Never commit secrets**: Keep `agents.yaml` out of version control  
-✅ **Use environment variables**: For production deployments
+[OK] **Copy template first**: `Copy-Item config\alien\agents.yaml.template config\alien\agents.yaml`  
+[OK] **Add your API keys**: Edit `agents.yaml` with your credentials  
+[OK] **Choose models wisely**: GPT-4o for planning, GPT-4o-mini for actions  
+[OK] **Never commit secrets**: Keep `agents.yaml` out of version control  
+[OK] **Use environment variables**: For production deployments
 
-**Your agents are now ready to work!** 🚀
+**Your agents are now ready to work!** [START]

@@ -108,7 +108,7 @@ class TestTargetDeviceNotRegistered:
             # Attempt to connect
             success = await device_manager.connect_device(target_device_id)
 
-            # ✅ Verification: connect_device should return False
+            # [OK] Verification: connect_device should return False
             assert (
                 success is False
             ), "Connection should fail when target device not registered"
