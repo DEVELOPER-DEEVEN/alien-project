@@ -7,7 +7,7 @@
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 1.  [Scenario Description](#scenario-description)
 2.  [Simulated Environment](#simulated-environment)

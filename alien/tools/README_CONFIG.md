@@ -7,7 +7,7 @@
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 1.  [Configuration Architecture](#configuration-architecture)
 2.  [System Parameters (`config.yaml`)](#system-parameters-configyaml)
