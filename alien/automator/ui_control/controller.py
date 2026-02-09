@@ -7,14 +7,17 @@ from abc import abstractmethod
 from typing import Any, Dict, List, Optional, Tuple, Type, Union, TYPE_CHECKING
 
 # Conditional imports for Windows-specific packages
-if TYPE_CHECKING or platform.system() == "Windows":
+try:
     import pyautogui
+except ImportError:
+    pyautogui = None
+
+if TYPE_CHECKING or platform.system() == "Windows":
     import pywinauto
     from pywinauto import keyboard
     from pywinauto.controls.uiawrapper import UIAWrapper
     from pywinauto.win32structures import RECT
 else:
-    pyautogui = None
     pywinauto = None
     keyboard = None
     UIAWrapper = Any
