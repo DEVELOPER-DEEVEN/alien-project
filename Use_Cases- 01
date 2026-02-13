@@ -1,0 +1,43 @@
+Autonomous Server error Check & Fix
+
+ID: UC-01
+Actor: DevOps Engineer / System Admin
+Description: The user triggers a remote diagnostic and remediation sequence on a Linux server via a natural language mobile interface, bypassing the need for manual SSH terminal entry.
+________________________________________
+
+ 2. Flow of Events
+  
+    2.1 Main Scenario
+      1.	Trigger: Actor issues command: "Check Ubuntu server logs; if RAM > 90%, restart the web-app Docker container."
+      2.	Connection: ALIEN establishes a secure bridge to the designated Ubuntu instance.
+      3.	Diagnostic: System executes top or free -m to parse memory usage and tail -n 50 /var/log/syslog to check for anomalies.
+      4.	Reasoning: ALIEN compares the output against the "90%" threshold defined in the prompt.
+      5.	Execution: Upon confirming high usage, ALIEN executes docker restart web-app-container.
+      6.	Validation: System re-checks memory levels to ensure the restart was effective.
+      7.	Reporting: ALIEN sends push notification/voice feedback: "Memory was at 94%. Web-app container restarted successfully. Current usage: 42%."
+  
+2.2 Alternative Flows
+    •	A1: Threshold Not Met
+    	  If memory is below 90%, ALIEN reports: "Memory is healthy at 65%, but I found a 'Connection Timeout' error in the logs. Would you like me to investigate further?"
+ 
+2.3 Exception Flows
+    •	E1: Permission Denied
+  	    If the ALIEN agent lacks sudo privileges for the restart, it notifies the Actor immediately: "Execution failed: Insufficient permissions to restart Docker."
+    •	E2: SSH Timeout
+    	  If the server is unreachable due to a network outage, ALIEN attempts a retry before alerting the user of a potential downtime event.
+  ________________________________________
+
+3.Requirements
+     ______________________________________________________________________________________________________________
+    |Type	                                                  |Description                                     |
+    |_____________________________________________________________|________________________________________________|
+    |Preconditions	ALIEN Bridge configured on Linux server;  | SSH keys/Agent active.                         |
+    | Postconditions	Issue resolved or logged;                 | System health state updated in the dashboard.  |
+    | Priority	                                                  | High (Targeting Power Users/Enterprise)        |
+    |_____________________________________________________________|________________________________________________|
+________________________________________
+
+4.Technical Logic
+  •	Cross-Platform Bridge: Android (Mobile) $\rightarrow$ ALIEN Cloud $\rightarrow$ Linux Agent (Server).
+  •	Command Synthesis: Converts "Check logs" into appropriate shell scripts based on the OS flavor (Ubuntu/Debian).
+  •	Decision Engine: Boolean logic implementation ($Memory > 90\% \implies Restart$).
