@@ -3,7 +3,7 @@ Autonomous Server error Check & Fix
 ID: UC-01
 Actor: DevOps Engineer / System Admin
 Description: The user triggers a remote diagnostic and remediation sequence on a Linux server via a natural language mobile interface, bypassing the need for manual SSH terminal entry.
-________________________________________
+
 
  2. Flow of Events
   
