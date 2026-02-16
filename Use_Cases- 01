@@ -29,11 +29,11 @@ Description: The user triggers a remote diagnostic and remediation sequence on a
 
 3.Requirements
      ______________________________________________________________________________________________________________
-    |Type	                                                  |Description                                     |
+    |Type	                                                        |Description                                     |
     |_____________________________________________________________|________________________________________________|
-    |Preconditions	ALIEN Bridge configured on Linux server;  | SSH keys/Agent active.                         |
-    | Postconditions	Issue resolved or logged;                 | System health state updated in the dashboard.  |
-    | Priority	                                                  | High (Targeting Power Users/Enterprise)        |
+    |Preconditions	ALIEN Bridge configured on Linux server;       | SSH keys/Agent active.                         |
+    | Postconditions	Issue resolved or logged;                    | System health state updated in the dashboard.  |
+    | Priority	                                                   | High (Targeting Power Users/Enterprise)        |
     |_____________________________________________________________|________________________________________________|
 ________________________________________
 
